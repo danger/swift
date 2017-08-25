@@ -6,15 +6,33 @@ Not ready for production use. Requires Danger JS 2.x.
 
 ### TODO
 
- - Read JSON from STDIN
  - A simple DSL
  - Compile & Eval the Dangerfile.swift
  - Pass results back out
  - Investigate the right path for getting it on CI ([Marathon + Homebrew][m]?)
 
+### What it looks like today
+
+You can make a Dangerfile that looks through modified/created/deleted files:
+
+```swift
+import Danger
+
+let danger = Danger()
+for file in danger.git.modifiedFiles {
+    print(" - " + file)
+}
+
+warn("Warning: bad stuff")
+fail("Failure: bad stuff happened")
+markdown("## Markdown for GitHub")
+```
+
+But setting it up and running is not feasible right now, just development.
+
 ### How it works
 
-This project takes its ideas from how the Swift Package Manager handles it's package manifests. You can get the [long story here][spm-lr], but the TLDR is that there is a runner which compiles and executes a runtime lib which exports its data out into JSON when the libs process is over.
+This project takes its ideas from how the Swift Package Manager handles package manifests. You can get the [long story here][spm-lr], but the TLDR is that there is a runner which compiles and executes a runtime lib which exports its data out into JSON when the libs process is over.
 
 So this project will export a lib ^ and a CLI tool `danger-swift` which is the runner. It will handle turning the Danger DSL JSON [message from DangerJS][dsl] and passing that into the eval'd `Dangerfile.swift`. When that process is finished it's expected that the Swift `Danger` object would post the results into a place where they can easily be passed back to DangerJS.
 
@@ -26,9 +44,15 @@ Make sure Xcode 9 is your CLT setup ( see prefs in Xcode )
 git clone https://github.com/danger/danger-swift.git
 cd danger-swift
 swift build
+swift package generate-xcodeproj
+open Danger.xcodeproj
 ```
 
-Then you can eval the Dangerfile via `swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift`
+Then I tend to run it by eval the Dangerfile with:
+
+```sh
+swift build && swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json
+```
 
 ### Long-term
 

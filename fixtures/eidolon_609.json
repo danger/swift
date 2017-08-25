@@ -1,0 +1,1904 @@
+{
+  "danger": {
+    "git": {
+      "modified_files": [
+        ".travis.yml",
+        "Kiosk.xcodeproj/project.pbxproj",
+        "Kiosk/App/Logger.swift",
+        "Kiosk/App/Networking/NetworkLogger.swift",
+        "Kiosk/App/Networking/Networking.swift",
+        "Kiosk/App/Networking/XAppToken.swift",
+        "Kiosk/Auction Listings/ListingsViewModel.swift",
+        "Kiosk/HelperFunctions.swift",
+        "Kiosk/Images.xcassets/AppIcon.appiconset/Contents.json",
+        "KioskTests/Bid Fulfillment/ConfirmYourBidArtsyLoginViewControllerTests.swift",
+        "KioskTests/Bid Fulfillment/ConfirmYourBidEnterYourEmailViewControllerTests.swift",
+        "KioskTests/Bid Fulfillment/LoadingViewControllerTests.swift",
+        "KioskTests/Bid Fulfillment/RegistrationEmailViewControllerTests.swift",
+        "KioskTests/Bid Fulfillment/RegistrationPasswordViewModelTests.swift",
+        "KioskTests/Bid Fulfillment/SwipeCreditCardViewControllerTests.swift",
+        "KioskTests/ListingsViewControllerTests.swift",
+        "KioskTests/Models/SaleArtworkTests.swift",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_artworks_not_for_sale__a_listings_controller__alphabetical@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_artworks_not_for_sale__a_listings_controller__grid@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_artworks_not_for_sale__a_listings_controller__highest_bid@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_artworks_not_for_sale__a_listings_controller__least_bids@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_artworks_not_for_sale__a_listings_controller__lowest_bid@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_artworks_not_for_sale__a_listings_controller__most_bids@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_lot_numbers__a_listings_controller__alphabetical@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_lot_numbers__a_listings_controller__grid@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_lot_numbers__a_listings_controller__highest_bid@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_lot_numbers__a_listings_controller__least_bids@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_lot_numbers__a_listings_controller__lowest_bid@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__with_lot_numbers__a_listings_controller__most_bids@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__without_lot_numbers__a_listings_controller__alphabetical@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__without_lot_numbers__a_listings_controller__grid@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__without_lot_numbers__a_listings_controller__highest_bid@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__without_lot_numbers__a_listings_controller__least_bids@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__without_lot_numbers__a_listings_controller__lowest_bid@2x.png",
+        "KioskTests/ReferenceImages/ListingsViewControllerTests/when_displaying_stubbed_contents__without_lot_numbers__a_listings_controller__most_bids@2x.png",
+        "KioskTests/ReferenceImages/LoadingViewControllerTests/default__placing_a_bid@2x.png",
+        "KioskTests/ReferenceImages/LoadingViewControllerTests/ending__placing_bid_error_due_to_outbid@2x.png",
+        "KioskTests/ReferenceImages/LoadingViewControllerTests/ending__placing_bid_succeeded_but_not_resolved@2x.png",
+        "KioskTests/ReferenceImages/LoadingViewControllerTests/ending__placing_bid_success_highest@2x.png",
+        "KioskTests/ReferenceImages/LoadingViewControllerTests/ending__placing_bid_success_not_highest@2x.png",
+        "KioskTests/ReferenceImages/LoadingViewControllerTests/ending__registering_user_not_resolved@2x.png",
+        "KioskTests/ReferenceImages/LoadingViewControllerTests/ending__registering_user_success@2x.png",
+        "KioskTests/ReferenceImages/LoadingViewControllerTests/errors__correctly_placing_a_bid@2x.png",
+        "KioskTests/ReferenceImages/RegistrationEmailViewControllerTests/looks_right_by_default@2x.png",
+        "KioskTests/ReferenceImages/RegistrationEmailViewControllerTests/looks_right_with_existing_email@2x.png",
+        "KioskTests/ReferenceImages/RegistrationMobileViewControllerTests/looks_right_by_default@2x.png",
+        "KioskTests/ReferenceImages/RegistrationMobileViewControllerTests/looks_right_with_existing_mobile@2x.png",
+        "KioskTests/ReferenceImages/RegistrationPasswordViewControllerTests/looks_right_with_a_valid_password@2x.png",
+        "KioskTests/ReferenceImages/RegistrationPasswordViewControllerTests/looks_right_with_an_invalid_password@2x.png",
+        "KioskTests/ReferenceImages/RegistrationPostalZipViewControllerTests/looks_right_by_default@2x.png",
+        "KioskTests/ReferenceImages/RegistrationPostalZipViewControllerTests/looks_right_with_existing_postal_code@2x.png",
+        "KioskTests/ReferenceImages/YourBiddingDetailsViewControllerTests/displays_bidder_number_and_PIN@2x.png",
+        "KioskTests/XAppTokenSpec.swift",
+        "Podfile",
+        "Podfile.lock"
+      ],
+      "created_files": [".ruby-version"],
+      "deleted_files": [],
+      "commits": [
+        {
+          "sha": "93ae30cf2aee4241c442fb3242543490998cffdb",
+          "parents": ["68c8db83776c1942145f530159a3fffddb812577"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-07-26T19:54:16Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-07-26T19:55:00Z"
+          },
+          "message": "[Xcode] Updates for compatibility with Xcode 7.3.1.",
+          "tree": {
+            "sha": "fb6bc3fda2456c5ff0a4e8f307f24ee73f281fc1",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/fb6bc3fda2456c5ff0a4e8f307f24ee73f281fc1"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/93ae30cf2aee4241c442fb3242543490998cffdb"
+        },
+        {
+          "sha": "4cf1e41f72516a4135f1738c47f7dd3d421ff3c4",
+          "parents": ["93ae30cf2aee4241c442fb3242543490998cffdb"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-07-26T19:55:53Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-07-26T19:55:53Z"
+          },
+          "message": "[CI] Updates Travis to Xcode 7.3.",
+          "tree": {
+            "sha": "01f7e53a061a1df01e7d6d3a6fb4d2ce9ee0e39a",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/01f7e53a061a1df01e7d6d3a6fb4d2ce9ee0e39a"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/4cf1e41f72516a4135f1738c47f7dd3d421ff3c4"
+        },
+        {
+          "sha": "d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac",
+          "parents": ["4cf1e41f72516a4135f1738c47f7dd3d421ff3c4"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-07-26T21:17:40Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-07-26T21:17:40Z"
+          },
+          "message": "[Deps] Updates dependencies for Swift 2.2.",
+          "tree": {
+            "sha": "a30d9d8be16847c33eb50483a653f27475f197a4",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/a30d9d8be16847c33eb50483a653f27475f197a4"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac"
+        },
+        {
+          "sha": "c330e8dfc6ae553a98fb9ffa6347f87d9f00f864",
+          "parents": ["d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-15T20:41:00Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-15T20:41:00Z"
+          },
+          "message": "[Tests] Cleans up snapshot tests for Xcode 7.3.1.",
+          "tree": {
+            "sha": "74f18cfa9f377497c46295e5bc254556a9eb159f",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/74f18cfa9f377497c46295e5bc254556a9eb159f"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/c330e8dfc6ae553a98fb9ffa6347f87d9f00f864"
+        },
+        {
+          "sha": "263d74a15e856f563f18864c459167c46c92cf48",
+          "parents": ["c330e8dfc6ae553a98fb9ffa6347f87d9f00f864"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-15T20:42:13Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-15T20:42:13Z"
+          },
+          "message": "[Tests] Fixes typo, thanks @Gerst20051.",
+          "tree": {
+            "sha": "505840c1fd602e9ce7e44fda47488229aa1284b2",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/505840c1fd602e9ce7e44fda47488229aa1284b2"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/263d74a15e856f563f18864c459167c46c92cf48"
+        },
+        {
+          "sha": "b71e4f62e248f2ca166582c4c9a6f15e14eaa15f",
+          "parents": ["263d74a15e856f563f18864c459167c46c92cf48"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-15T20:54:06Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-15T20:54:06Z"
+          },
+          "message": "[Podfile] Adds comment for specific pod commit.",
+          "tree": {
+            "sha": "4589f4905bd0e23710a257ed6560983cbda91838",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/4589f4905bd0e23710a257ed6560983cbda91838"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/b71e4f62e248f2ca166582c4c9a6f15e14eaa15f"
+        },
+        {
+          "sha": "31b4eccb1bba8510485d468a0b73221eead2b0f0",
+          "parents": ["b71e4f62e248f2ca166582c4c9a6f15e14eaa15f"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-16T23:23:51Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-16T23:23:51Z"
+          },
+          "message": "[CI] Fix for intermittent CI failures.",
+          "tree": {
+            "sha": "e31f2c677fd09e21e2a056853a9f722c8f6a6c69",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/e31f2c677fd09e21e2a056853a9f722c8f6a6c69"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/31b4eccb1bba8510485d468a0b73221eead2b0f0"
+        },
+        {
+          "sha": "db2af03f247bec4d12a3e743b4464a70501fac77",
+          "parents": ["31b4eccb1bba8510485d468a0b73221eead2b0f0"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T13:34:47Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T13:34:47Z"
+          },
+          "message": "[Ruby] Adds version-specifier.",
+          "tree": {
+            "sha": "9226b26bd2cc9f6e50076badff8229bec8ff818b",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/9226b26bd2cc9f6e50076badff8229bec8ff818b"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/db2af03f247bec4d12a3e743b4464a70501fac77"
+        },
+        {
+          "sha": "57b041fbbbebd075f7fe186fb754cf7cce85519c",
+          "parents": ["db2af03f247bec4d12a3e743b4464a70501fac77"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T13:42:29Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T13:42:29Z"
+          },
+          "message": "[CI] Split up failing test + switch to syncrhonous testing.",
+          "tree": {
+            "sha": "64bc098d18f98b3363e7a02fefba816140e17b8f",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/64bc098d18f98b3363e7a02fefba816140e17b8f"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/57b041fbbbebd075f7fe186fb754cf7cce85519c"
+        },
+        {
+          "sha": "851e911b4e8697a0f8e3b84c19df6cec30aead2a",
+          "parents": ["57b041fbbbebd075f7fe186fb754cf7cce85519c"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T13:48:43Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T13:58:30Z"
+          },
+          "message": "[CI] Fixes pre-launching simulator UUID.",
+          "tree": {
+            "sha": "9cbec8e2436334ac71c0254ff34595d24cf1c134",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/9cbec8e2436334ac71c0254ff34595d24cf1c134"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/851e911b4e8697a0f8e3b84c19df6cec30aead2a"
+        },
+        {
+          "sha": "9963a5ff97b5dbd423df740c50e01a9dffd0a3ff",
+          "parents": ["851e911b4e8697a0f8e3b84c19df6cec30aead2a"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T14:10:05Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T14:10:05Z"
+          },
+          "message": "[CI] Fixes intermittently failing test comparing dates.",
+          "tree": {
+            "sha": "2ab689baa382cc918289529955121d17672db7a4",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/2ab689baa382cc918289529955121d17672db7a4"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/9963a5ff97b5dbd423df740c50e01a9dffd0a3ff"
+        },
+        {
+          "sha": "1aa0360bc7a95d7878160ae91eea62324ac3252f",
+          "parents": ["9963a5ff97b5dbd423df740c50e01a9dffd0a3ff"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T14:41:27Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T14:41:27Z"
+          },
+          "message": "[Deps] Updates dependencies to latest Swift 2.x versions.",
+          "tree": {
+            "sha": "0ef37421cfa8cbd2d729e58de786b77f6219d3ad",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/0ef37421cfa8cbd2d729e58de786b77f6219d3ad"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/1aa0360bc7a95d7878160ae91eea62324ac3252f"
+        },
+        {
+          "sha": "fb0688c603ddb48afe0edad336d3a7fac6f5e9f7",
+          "parents": ["1aa0360bc7a95d7878160ae91eea62324ac3252f"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T14:41:31Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T14:41:31Z"
+          },
+          "message": "[CI] Fixes more intermittent tests.",
+          "tree": {
+            "sha": "00271b152921db4988396350eca46ed6b19f6649",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/00271b152921db4988396350eca46ed6b19f6649"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/fb0688c603ddb48afe0edad336d3a7fac6f5e9f7"
+        },
+        {
+          "sha": "c6eb849f100cbaa261680ee0d3dc819b91aa8af1",
+          "parents": ["fb0688c603ddb48afe0edad336d3a7fac6f5e9f7"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T14:55:34Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T14:55:34Z"
+          },
+          "message": "[CI] Removed duplicate simulator launch.",
+          "tree": {
+            "sha": "965807f296e1a3fb30134508062825cf30806786",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/965807f296e1a3fb30134508062825cf30806786"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/c6eb849f100cbaa261680ee0d3dc819b91aa8af1"
+        },
+        {
+          "sha": "d769f276e066d79169a8bfa5795c8a4853f942f3",
+          "parents": ["c6eb849f100cbaa261680ee0d3dc819b91aa8af1"],
+          "author": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T15:14:19Z"
+          },
+          "committer": {
+            "name": "Ash Furrow",
+            "email": "ash@ashfurrow.com",
+            "date": "2016-08-17T15:20:42Z"
+          },
+          "message": "[Feedback] Adds clarifying comments as per feedback in #609.",
+          "tree": {
+            "sha": "9004fe3df2b4d7d3285460095c37d9f62b4be26a",
+            "url": "https://api.github.com/repos/artsy/eidolon/git/trees/9004fe3df2b4d7d3285460095c37d9f62b4be26a"
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/d769f276e066d79169a8bfa5795c8a4853f942f3"
+        }
+      ]
+    },
+    "utils": {},
+    "github": {
+      "api": {},
+      "issue": {
+        "url": "https://api.github.com/repos/artsy/eidolon/issues/609",
+        "repository_url": "https://api.github.com/repos/artsy/eidolon",
+        "labels_url": "https://api.github.com/repos/artsy/eidolon/issues/609/labels{/name}",
+        "comments_url": "https://api.github.com/repos/artsy/eidolon/issues/609/comments",
+        "events_url": "https://api.github.com/repos/artsy/eidolon/issues/609/events",
+        "html_url": "https://github.com/artsy/eidolon/pull/609",
+        "id": 167696965,
+        "number": 609,
+        "title": "Xcode updates",
+        "user": {
+          "login": "ashfurrow",
+          "id": 498212,
+          "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/ashfurrow",
+          "html_url": "https://github.com/ashfurrow",
+          "followers_url": "https://api.github.com/users/ashfurrow/followers",
+          "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+          "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+          "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+          "repos_url": "https://api.github.com/users/ashfurrow/repos",
+          "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "labels": [],
+        "state": "closed",
+        "locked": false,
+        "assignee": {
+          "login": "orta",
+          "id": 49038,
+          "avatar_url": "https://avatars2.githubusercontent.com/u/49038?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/orta",
+          "html_url": "https://github.com/orta",
+          "followers_url": "https://api.github.com/users/orta/followers",
+          "following_url": "https://api.github.com/users/orta/following{/other_user}",
+          "gists_url": "https://api.github.com/users/orta/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/orta/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/orta/subscriptions",
+          "organizations_url": "https://api.github.com/users/orta/orgs",
+          "repos_url": "https://api.github.com/users/orta/repos",
+          "events_url": "https://api.github.com/users/orta/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/orta/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "assignees": [
+          {
+            "login": "orta",
+            "id": 49038,
+            "avatar_url": "https://avatars2.githubusercontent.com/u/49038?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/orta",
+            "html_url": "https://github.com/orta",
+            "followers_url": "https://api.github.com/users/orta/followers",
+            "following_url": "https://api.github.com/users/orta/following{/other_user}",
+            "gists_url": "https://api.github.com/users/orta/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/orta/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/orta/subscriptions",
+            "organizations_url": "https://api.github.com/users/orta/orgs",
+            "repos_url": "https://api.github.com/users/orta/repos",
+            "events_url": "https://api.github.com/users/orta/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/orta/received_events",
+            "type": "User",
+            "site_admin": false
+          }
+        ],
+        "milestone": null,
+        "comments": 8,
+        "created_at": "2016-07-26T19:57:30Z",
+        "updated_at": "2016-08-17T15:26:14Z",
+        "closed_at": "2016-08-17T15:26:14Z",
+        "pull_request": {
+          "url": "https://api.github.com/repos/artsy/eidolon/pulls/609",
+          "html_url": "https://github.com/artsy/eidolon/pull/609",
+          "diff_url": "https://github.com/artsy/eidolon/pull/609.diff",
+          "patch_url": "https://github.com/artsy/eidolon/pull/609.patch"
+        },
+        "body": "I don't want to spend much time on this project, but I do want to keep it up to date with current tools so that we can deploy any fixes quickly. \n\nI tried updating to CocoaPods 1.0, but things went quickly awry. It's a large job, but not necessary for now. \n",
+        "closed_by": {
+          "login": "ashfurrow",
+          "id": 498212,
+          "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/ashfurrow",
+          "html_url": "https://github.com/ashfurrow",
+          "followers_url": "https://api.github.com/users/ashfurrow/followers",
+          "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+          "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+          "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+          "repos_url": "https://api.github.com/users/ashfurrow/repos",
+          "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "performed_via_integration": null,
+        "performed_via_github_app": null
+      },
+      "pr": {
+        "url": "https://api.github.com/repos/artsy/eidolon/pulls/609",
+        "id": 78914852,
+        "html_url": "https://github.com/artsy/eidolon/pull/609",
+        "diff_url": "https://github.com/artsy/eidolon/pull/609.diff",
+        "patch_url": "https://github.com/artsy/eidolon/pull/609.patch",
+        "issue_url": "https://api.github.com/repos/artsy/eidolon/issues/609",
+        "number": 609,
+        "state": "closed",
+        "locked": false,
+        "title": "Xcode updates",
+        "user": {
+          "login": "ashfurrow",
+          "id": 498212,
+          "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/ashfurrow",
+          "html_url": "https://github.com/ashfurrow",
+          "followers_url": "https://api.github.com/users/ashfurrow/followers",
+          "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+          "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+          "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+          "repos_url": "https://api.github.com/users/ashfurrow/repos",
+          "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "body": "I don't want to spend much time on this project, but I do want to keep it up to date with current tools so that we can deploy any fixes quickly. \n\nI tried updating to CocoaPods 1.0, but things went quickly awry. It's a large job, but not necessary for now. \n",
+        "created_at": "2016-07-26T19:57:30Z",
+        "updated_at": "2016-08-17T15:26:15Z",
+        "closed_at": "2016-08-17T15:26:14Z",
+        "merged_at": "2016-08-17T15:26:14Z",
+        "merge_commit_sha": "e80bc6c78cd2f3524577e1401d7a460feba7a26c",
+        "assignee": {
+          "login": "orta",
+          "id": 49038,
+          "avatar_url": "https://avatars2.githubusercontent.com/u/49038?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/orta",
+          "html_url": "https://github.com/orta",
+          "followers_url": "https://api.github.com/users/orta/followers",
+          "following_url": "https://api.github.com/users/orta/following{/other_user}",
+          "gists_url": "https://api.github.com/users/orta/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/orta/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/orta/subscriptions",
+          "organizations_url": "https://api.github.com/users/orta/orgs",
+          "repos_url": "https://api.github.com/users/orta/repos",
+          "events_url": "https://api.github.com/users/orta/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/orta/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "assignees": [
+          {
+            "login": "orta",
+            "id": 49038,
+            "avatar_url": "https://avatars2.githubusercontent.com/u/49038?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/orta",
+            "html_url": "https://github.com/orta",
+            "followers_url": "https://api.github.com/users/orta/followers",
+            "following_url": "https://api.github.com/users/orta/following{/other_user}",
+            "gists_url": "https://api.github.com/users/orta/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/orta/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/orta/subscriptions",
+            "organizations_url": "https://api.github.com/users/orta/orgs",
+            "repos_url": "https://api.github.com/users/orta/repos",
+            "events_url": "https://api.github.com/users/orta/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/orta/received_events",
+            "type": "User",
+            "site_admin": false
+          }
+        ],
+        "requested_reviewers": [],
+        "milestone": null,
+        "commits_url": "https://api.github.com/repos/artsy/eidolon/pulls/609/commits",
+        "review_comments_url": "https://api.github.com/repos/artsy/eidolon/pulls/609/comments",
+        "review_comment_url": "https://api.github.com/repos/artsy/eidolon/pulls/comments{/number}",
+        "comments_url": "https://api.github.com/repos/artsy/eidolon/issues/609/comments",
+        "statuses_url": "https://api.github.com/repos/artsy/eidolon/statuses/d769f276e066d79169a8bfa5795c8a4853f942f3",
+        "head": {
+          "label": "artsy:xcode-update",
+          "ref": "xcode-update",
+          "sha": "d769f276e066d79169a8bfa5795c8a4853f942f3",
+          "user": {
+            "login": "artsy",
+            "id": 546231,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/546231?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/artsy",
+            "html_url": "https://github.com/artsy",
+            "followers_url": "https://api.github.com/users/artsy/followers",
+            "following_url": "https://api.github.com/users/artsy/following{/other_user}",
+            "gists_url": "https://api.github.com/users/artsy/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/artsy/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/artsy/subscriptions",
+            "organizations_url": "https://api.github.com/users/artsy/orgs",
+            "repos_url": "https://api.github.com/users/artsy/repos",
+            "events_url": "https://api.github.com/users/artsy/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/artsy/received_events",
+            "type": "Organization",
+            "site_admin": false
+          },
+          "repo": {
+            "id": 22613546,
+            "name": "eidolon",
+            "full_name": "artsy/eidolon",
+            "owner": {
+              "login": "artsy",
+              "id": 546231,
+              "avatar_url": "https://avatars3.githubusercontent.com/u/546231?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/artsy",
+              "html_url": "https://github.com/artsy",
+              "followers_url": "https://api.github.com/users/artsy/followers",
+              "following_url": "https://api.github.com/users/artsy/following{/other_user}",
+              "gists_url": "https://api.github.com/users/artsy/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/artsy/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/artsy/subscriptions",
+              "organizations_url": "https://api.github.com/users/artsy/orgs",
+              "repos_url": "https://api.github.com/users/artsy/repos",
+              "events_url": "https://api.github.com/users/artsy/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/artsy/received_events",
+              "type": "Organization",
+              "site_admin": false
+            },
+            "private": false,
+            "html_url": "https://github.com/artsy/eidolon",
+            "description": "The Artsy Auction Kiosk App",
+            "fork": false,
+            "url": "https://api.github.com/repos/artsy/eidolon",
+            "forks_url": "https://api.github.com/repos/artsy/eidolon/forks",
+            "keys_url": "https://api.github.com/repos/artsy/eidolon/keys{/key_id}",
+            "collaborators_url": "https://api.github.com/repos/artsy/eidolon/collaborators{/collaborator}",
+            "teams_url": "https://api.github.com/repos/artsy/eidolon/teams",
+            "hooks_url": "https://api.github.com/repos/artsy/eidolon/hooks",
+            "issue_events_url": "https://api.github.com/repos/artsy/eidolon/issues/events{/number}",
+            "events_url": "https://api.github.com/repos/artsy/eidolon/events",
+            "assignees_url": "https://api.github.com/repos/artsy/eidolon/assignees{/user}",
+            "branches_url": "https://api.github.com/repos/artsy/eidolon/branches{/branch}",
+            "tags_url": "https://api.github.com/repos/artsy/eidolon/tags",
+            "blobs_url": "https://api.github.com/repos/artsy/eidolon/git/blobs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/artsy/eidolon/git/tags{/sha}",
+            "git_refs_url": "https://api.github.com/repos/artsy/eidolon/git/refs{/sha}",
+            "trees_url": "https://api.github.com/repos/artsy/eidolon/git/trees{/sha}",
+            "statuses_url": "https://api.github.com/repos/artsy/eidolon/statuses/{sha}",
+            "languages_url": "https://api.github.com/repos/artsy/eidolon/languages",
+            "stargazers_url": "https://api.github.com/repos/artsy/eidolon/stargazers",
+            "contributors_url": "https://api.github.com/repos/artsy/eidolon/contributors",
+            "subscribers_url": "https://api.github.com/repos/artsy/eidolon/subscribers",
+            "subscription_url": "https://api.github.com/repos/artsy/eidolon/subscription",
+            "commits_url": "https://api.github.com/repos/artsy/eidolon/commits{/sha}",
+            "git_commits_url": "https://api.github.com/repos/artsy/eidolon/git/commits{/sha}",
+            "comments_url": "https://api.github.com/repos/artsy/eidolon/comments{/number}",
+            "issue_comment_url": "https://api.github.com/repos/artsy/eidolon/issues/comments{/number}",
+            "contents_url": "https://api.github.com/repos/artsy/eidolon/contents/{+path}",
+            "compare_url": "https://api.github.com/repos/artsy/eidolon/compare/{base}...{head}",
+            "merges_url": "https://api.github.com/repos/artsy/eidolon/merges",
+            "archive_url": "https://api.github.com/repos/artsy/eidolon/{archive_format}{/ref}",
+            "downloads_url": "https://api.github.com/repos/artsy/eidolon/downloads",
+            "issues_url": "https://api.github.com/repos/artsy/eidolon/issues{/number}",
+            "pulls_url": "https://api.github.com/repos/artsy/eidolon/pulls{/number}",
+            "milestones_url": "https://api.github.com/repos/artsy/eidolon/milestones{/number}",
+            "notifications_url": "https://api.github.com/repos/artsy/eidolon/notifications{?since,all,participating}",
+            "labels_url": "https://api.github.com/repos/artsy/eidolon/labels{/name}",
+            "releases_url": "https://api.github.com/repos/artsy/eidolon/releases{/id}",
+            "deployments_url": "https://api.github.com/repos/artsy/eidolon/deployments",
+            "created_at": "2014-08-04T17:38:26Z",
+            "updated_at": "2017-08-24T19:35:23Z",
+            "pushed_at": "2017-07-06T16:17:56Z",
+            "git_url": "git://github.com/artsy/eidolon.git",
+            "ssh_url": "git@github.com:artsy/eidolon.git",
+            "clone_url": "https://github.com/artsy/eidolon.git",
+            "svn_url": "https://github.com/artsy/eidolon",
+            "homepage": "http://artsy.github.io/blog/2014/11/13/eidolon-retrospective/",
+            "size": 135482,
+            "stargazers_count": 1939,
+            "watchers_count": 1939,
+            "language": "Swift",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": false,
+            "has_pages": false,
+            "forks_count": 257,
+            "mirror_url": null,
+            "open_issues_count": 39,
+            "forks": 257,
+            "open_issues": 39,
+            "watchers": 1939,
+            "default_branch": "master"
+          }
+        },
+        "base": {
+          "label": "artsy:master",
+          "ref": "master",
+          "sha": "68c8db83776c1942145f530159a3fffddb812577",
+          "user": {
+            "login": "artsy",
+            "id": 546231,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/546231?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/artsy",
+            "html_url": "https://github.com/artsy",
+            "followers_url": "https://api.github.com/users/artsy/followers",
+            "following_url": "https://api.github.com/users/artsy/following{/other_user}",
+            "gists_url": "https://api.github.com/users/artsy/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/artsy/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/artsy/subscriptions",
+            "organizations_url": "https://api.github.com/users/artsy/orgs",
+            "repos_url": "https://api.github.com/users/artsy/repos",
+            "events_url": "https://api.github.com/users/artsy/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/artsy/received_events",
+            "type": "Organization",
+            "site_admin": false
+          },
+          "repo": {
+            "id": 22613546,
+            "name": "eidolon",
+            "full_name": "artsy/eidolon",
+            "owner": {
+              "login": "artsy",
+              "id": 546231,
+              "avatar_url": "https://avatars3.githubusercontent.com/u/546231?v=4",
+              "gravatar_id": "",
+              "url": "https://api.github.com/users/artsy",
+              "html_url": "https://github.com/artsy",
+              "followers_url": "https://api.github.com/users/artsy/followers",
+              "following_url": "https://api.github.com/users/artsy/following{/other_user}",
+              "gists_url": "https://api.github.com/users/artsy/gists{/gist_id}",
+              "starred_url": "https://api.github.com/users/artsy/starred{/owner}{/repo}",
+              "subscriptions_url": "https://api.github.com/users/artsy/subscriptions",
+              "organizations_url": "https://api.github.com/users/artsy/orgs",
+              "repos_url": "https://api.github.com/users/artsy/repos",
+              "events_url": "https://api.github.com/users/artsy/events{/privacy}",
+              "received_events_url": "https://api.github.com/users/artsy/received_events",
+              "type": "Organization",
+              "site_admin": false
+            },
+            "private": false,
+            "html_url": "https://github.com/artsy/eidolon",
+            "description": "The Artsy Auction Kiosk App",
+            "fork": false,
+            "url": "https://api.github.com/repos/artsy/eidolon",
+            "forks_url": "https://api.github.com/repos/artsy/eidolon/forks",
+            "keys_url": "https://api.github.com/repos/artsy/eidolon/keys{/key_id}",
+            "collaborators_url": "https://api.github.com/repos/artsy/eidolon/collaborators{/collaborator}",
+            "teams_url": "https://api.github.com/repos/artsy/eidolon/teams",
+            "hooks_url": "https://api.github.com/repos/artsy/eidolon/hooks",
+            "issue_events_url": "https://api.github.com/repos/artsy/eidolon/issues/events{/number}",
+            "events_url": "https://api.github.com/repos/artsy/eidolon/events",
+            "assignees_url": "https://api.github.com/repos/artsy/eidolon/assignees{/user}",
+            "branches_url": "https://api.github.com/repos/artsy/eidolon/branches{/branch}",
+            "tags_url": "https://api.github.com/repos/artsy/eidolon/tags",
+            "blobs_url": "https://api.github.com/repos/artsy/eidolon/git/blobs{/sha}",
+            "git_tags_url": "https://api.github.com/repos/artsy/eidolon/git/tags{/sha}",
+            "git_refs_url": "https://api.github.com/repos/artsy/eidolon/git/refs{/sha}",
+            "trees_url": "https://api.github.com/repos/artsy/eidolon/git/trees{/sha}",
+            "statuses_url": "https://api.github.com/repos/artsy/eidolon/statuses/{sha}",
+            "languages_url": "https://api.github.com/repos/artsy/eidolon/languages",
+            "stargazers_url": "https://api.github.com/repos/artsy/eidolon/stargazers",
+            "contributors_url": "https://api.github.com/repos/artsy/eidolon/contributors",
+            "subscribers_url": "https://api.github.com/repos/artsy/eidolon/subscribers",
+            "subscription_url": "https://api.github.com/repos/artsy/eidolon/subscription",
+            "commits_url": "https://api.github.com/repos/artsy/eidolon/commits{/sha}",
+            "git_commits_url": "https://api.github.com/repos/artsy/eidolon/git/commits{/sha}",
+            "comments_url": "https://api.github.com/repos/artsy/eidolon/comments{/number}",
+            "issue_comment_url": "https://api.github.com/repos/artsy/eidolon/issues/comments{/number}",
+            "contents_url": "https://api.github.com/repos/artsy/eidolon/contents/{+path}",
+            "compare_url": "https://api.github.com/repos/artsy/eidolon/compare/{base}...{head}",
+            "merges_url": "https://api.github.com/repos/artsy/eidolon/merges",
+            "archive_url": "https://api.github.com/repos/artsy/eidolon/{archive_format}{/ref}",
+            "downloads_url": "https://api.github.com/repos/artsy/eidolon/downloads",
+            "issues_url": "https://api.github.com/repos/artsy/eidolon/issues{/number}",
+            "pulls_url": "https://api.github.com/repos/artsy/eidolon/pulls{/number}",
+            "milestones_url": "https://api.github.com/repos/artsy/eidolon/milestones{/number}",
+            "notifications_url": "https://api.github.com/repos/artsy/eidolon/notifications{?since,all,participating}",
+            "labels_url": "https://api.github.com/repos/artsy/eidolon/labels{/name}",
+            "releases_url": "https://api.github.com/repos/artsy/eidolon/releases{/id}",
+            "deployments_url": "https://api.github.com/repos/artsy/eidolon/deployments",
+            "created_at": "2014-08-04T17:38:26Z",
+            "updated_at": "2017-08-24T19:35:23Z",
+            "pushed_at": "2017-07-06T16:17:56Z",
+            "git_url": "git://github.com/artsy/eidolon.git",
+            "ssh_url": "git@github.com:artsy/eidolon.git",
+            "clone_url": "https://github.com/artsy/eidolon.git",
+            "svn_url": "https://github.com/artsy/eidolon",
+            "homepage": "http://artsy.github.io/blog/2014/11/13/eidolon-retrospective/",
+            "size": 135482,
+            "stargazers_count": 1939,
+            "watchers_count": 1939,
+            "language": "Swift",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": false,
+            "has_pages": false,
+            "forks_count": 257,
+            "mirror_url": null,
+            "open_issues_count": 39,
+            "forks": 257,
+            "open_issues": 39,
+            "watchers": 1939,
+            "default_branch": "master"
+          }
+        },
+        "_links": {
+          "self": {
+            "href": "https://api.github.com/repos/artsy/eidolon/pulls/609"
+          },
+          "html": {
+            "href": "https://github.com/artsy/eidolon/pull/609"
+          },
+          "issue": {
+            "href": "https://api.github.com/repos/artsy/eidolon/issues/609"
+          },
+          "comments": {
+            "href": "https://api.github.com/repos/artsy/eidolon/issues/609/comments"
+          },
+          "review_comments": {
+            "href": "https://api.github.com/repos/artsy/eidolon/pulls/609/comments"
+          },
+          "review_comment": {
+            "href": "https://api.github.com/repos/artsy/eidolon/pulls/comments{/number}"
+          },
+          "commits": {
+            "href": "https://api.github.com/repos/artsy/eidolon/pulls/609/commits"
+          },
+          "statuses": {
+            "href": "https://api.github.com/repos/artsy/eidolon/statuses/d769f276e066d79169a8bfa5795c8a4853f942f3"
+          }
+        },
+        "merged": true,
+        "mergeable": null,
+        "rebaseable": null,
+        "mergeable_state": "unknown",
+        "merged_by": {
+          "login": "ashfurrow",
+          "id": 498212,
+          "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+          "gravatar_id": "",
+          "url": "https://api.github.com/users/ashfurrow",
+          "html_url": "https://github.com/ashfurrow",
+          "followers_url": "https://api.github.com/users/ashfurrow/followers",
+          "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+          "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+          "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+          "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+          "repos_url": "https://api.github.com/users/ashfurrow/repos",
+          "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+          "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+          "type": "User",
+          "site_admin": false
+        },
+        "comments": 8,
+        "review_comments": 11,
+        "maintainer_can_modify": false,
+        "commits": 15,
+        "additions": 205,
+        "deletions": 111,
+        "changed_files": 56
+      },
+      "commits": [
+        {
+          "sha": "93ae30cf2aee4241c442fb3242543490998cffdb",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-07-26T19:54:16Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-07-26T19:55:00Z"
+            },
+            "message": "[Xcode] Updates for compatibility with Xcode 7.3.1.",
+            "tree": {
+              "sha": "fb6bc3fda2456c5ff0a4e8f307f24ee73f281fc1",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/fb6bc3fda2456c5ff0a4e8f307f24ee73f281fc1"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/93ae30cf2aee4241c442fb3242543490998cffdb",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/93ae30cf2aee4241c442fb3242543490998cffdb",
+          "html_url": "https://github.com/artsy/eidolon/commit/93ae30cf2aee4241c442fb3242543490998cffdb",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/93ae30cf2aee4241c442fb3242543490998cffdb/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "68c8db83776c1942145f530159a3fffddb812577",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/68c8db83776c1942145f530159a3fffddb812577",
+              "html_url": "https://github.com/artsy/eidolon/commit/68c8db83776c1942145f530159a3fffddb812577"
+            }
+          ]
+        },
+        {
+          "sha": "4cf1e41f72516a4135f1738c47f7dd3d421ff3c4",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-07-26T19:55:53Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-07-26T19:55:53Z"
+            },
+            "message": "[CI] Updates Travis to Xcode 7.3.",
+            "tree": {
+              "sha": "01f7e53a061a1df01e7d6d3a6fb4d2ce9ee0e39a",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/01f7e53a061a1df01e7d6d3a6fb4d2ce9ee0e39a"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/4cf1e41f72516a4135f1738c47f7dd3d421ff3c4",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/4cf1e41f72516a4135f1738c47f7dd3d421ff3c4",
+          "html_url": "https://github.com/artsy/eidolon/commit/4cf1e41f72516a4135f1738c47f7dd3d421ff3c4",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/4cf1e41f72516a4135f1738c47f7dd3d421ff3c4/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "93ae30cf2aee4241c442fb3242543490998cffdb",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/93ae30cf2aee4241c442fb3242543490998cffdb",
+              "html_url": "https://github.com/artsy/eidolon/commit/93ae30cf2aee4241c442fb3242543490998cffdb"
+            }
+          ]
+        },
+        {
+          "sha": "d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-07-26T21:17:40Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-07-26T21:17:40Z"
+            },
+            "message": "[Deps] Updates dependencies for Swift 2.2.",
+            "tree": {
+              "sha": "a30d9d8be16847c33eb50483a653f27475f197a4",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/a30d9d8be16847c33eb50483a653f27475f197a4"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac",
+          "html_url": "https://github.com/artsy/eidolon/commit/d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "4cf1e41f72516a4135f1738c47f7dd3d421ff3c4",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/4cf1e41f72516a4135f1738c47f7dd3d421ff3c4",
+              "html_url": "https://github.com/artsy/eidolon/commit/4cf1e41f72516a4135f1738c47f7dd3d421ff3c4"
+            }
+          ]
+        },
+        {
+          "sha": "c330e8dfc6ae553a98fb9ffa6347f87d9f00f864",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-15T20:41:00Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-15T20:41:00Z"
+            },
+            "message": "[Tests] Cleans up snapshot tests for Xcode 7.3.1.",
+            "tree": {
+              "sha": "74f18cfa9f377497c46295e5bc254556a9eb159f",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/74f18cfa9f377497c46295e5bc254556a9eb159f"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/c330e8dfc6ae553a98fb9ffa6347f87d9f00f864",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/c330e8dfc6ae553a98fb9ffa6347f87d9f00f864",
+          "html_url": "https://github.com/artsy/eidolon/commit/c330e8dfc6ae553a98fb9ffa6347f87d9f00f864",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/c330e8dfc6ae553a98fb9ffa6347f87d9f00f864/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac",
+              "html_url": "https://github.com/artsy/eidolon/commit/d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac"
+            }
+          ]
+        },
+        {
+          "sha": "263d74a15e856f563f18864c459167c46c92cf48",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-15T20:42:13Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-15T20:42:13Z"
+            },
+            "message": "[Tests] Fixes typo, thanks @Gerst20051.",
+            "tree": {
+              "sha": "505840c1fd602e9ce7e44fda47488229aa1284b2",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/505840c1fd602e9ce7e44fda47488229aa1284b2"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/263d74a15e856f563f18864c459167c46c92cf48",
+            "comment_count": 1
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/263d74a15e856f563f18864c459167c46c92cf48",
+          "html_url": "https://github.com/artsy/eidolon/commit/263d74a15e856f563f18864c459167c46c92cf48",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/263d74a15e856f563f18864c459167c46c92cf48/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "c330e8dfc6ae553a98fb9ffa6347f87d9f00f864",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/c330e8dfc6ae553a98fb9ffa6347f87d9f00f864",
+              "html_url": "https://github.com/artsy/eidolon/commit/c330e8dfc6ae553a98fb9ffa6347f87d9f00f864"
+            }
+          ]
+        },
+        {
+          "sha": "b71e4f62e248f2ca166582c4c9a6f15e14eaa15f",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-15T20:54:06Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-15T20:54:06Z"
+            },
+            "message": "[Podfile] Adds comment for specific pod commit.",
+            "tree": {
+              "sha": "4589f4905bd0e23710a257ed6560983cbda91838",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/4589f4905bd0e23710a257ed6560983cbda91838"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/b71e4f62e248f2ca166582c4c9a6f15e14eaa15f",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/b71e4f62e248f2ca166582c4c9a6f15e14eaa15f",
+          "html_url": "https://github.com/artsy/eidolon/commit/b71e4f62e248f2ca166582c4c9a6f15e14eaa15f",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/b71e4f62e248f2ca166582c4c9a6f15e14eaa15f/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "263d74a15e856f563f18864c459167c46c92cf48",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/263d74a15e856f563f18864c459167c46c92cf48",
+              "html_url": "https://github.com/artsy/eidolon/commit/263d74a15e856f563f18864c459167c46c92cf48"
+            }
+          ]
+        },
+        {
+          "sha": "31b4eccb1bba8510485d468a0b73221eead2b0f0",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-16T23:23:51Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-16T23:23:51Z"
+            },
+            "message": "[CI] Fix for intermittent CI failures.",
+            "tree": {
+              "sha": "e31f2c677fd09e21e2a056853a9f722c8f6a6c69",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/e31f2c677fd09e21e2a056853a9f722c8f6a6c69"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/31b4eccb1bba8510485d468a0b73221eead2b0f0",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/31b4eccb1bba8510485d468a0b73221eead2b0f0",
+          "html_url": "https://github.com/artsy/eidolon/commit/31b4eccb1bba8510485d468a0b73221eead2b0f0",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/31b4eccb1bba8510485d468a0b73221eead2b0f0/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "b71e4f62e248f2ca166582c4c9a6f15e14eaa15f",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/b71e4f62e248f2ca166582c4c9a6f15e14eaa15f",
+              "html_url": "https://github.com/artsy/eidolon/commit/b71e4f62e248f2ca166582c4c9a6f15e14eaa15f"
+            }
+          ]
+        },
+        {
+          "sha": "db2af03f247bec4d12a3e743b4464a70501fac77",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T13:34:47Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T13:34:47Z"
+            },
+            "message": "[Ruby] Adds version-specifier.",
+            "tree": {
+              "sha": "9226b26bd2cc9f6e50076badff8229bec8ff818b",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/9226b26bd2cc9f6e50076badff8229bec8ff818b"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/db2af03f247bec4d12a3e743b4464a70501fac77",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/db2af03f247bec4d12a3e743b4464a70501fac77",
+          "html_url": "https://github.com/artsy/eidolon/commit/db2af03f247bec4d12a3e743b4464a70501fac77",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/db2af03f247bec4d12a3e743b4464a70501fac77/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "31b4eccb1bba8510485d468a0b73221eead2b0f0",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/31b4eccb1bba8510485d468a0b73221eead2b0f0",
+              "html_url": "https://github.com/artsy/eidolon/commit/31b4eccb1bba8510485d468a0b73221eead2b0f0"
+            }
+          ]
+        },
+        {
+          "sha": "57b041fbbbebd075f7fe186fb754cf7cce85519c",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T13:42:29Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T13:42:29Z"
+            },
+            "message": "[CI] Split up failing test + switch to syncrhonous testing.",
+            "tree": {
+              "sha": "64bc098d18f98b3363e7a02fefba816140e17b8f",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/64bc098d18f98b3363e7a02fefba816140e17b8f"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/57b041fbbbebd075f7fe186fb754cf7cce85519c",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/57b041fbbbebd075f7fe186fb754cf7cce85519c",
+          "html_url": "https://github.com/artsy/eidolon/commit/57b041fbbbebd075f7fe186fb754cf7cce85519c",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/57b041fbbbebd075f7fe186fb754cf7cce85519c/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "db2af03f247bec4d12a3e743b4464a70501fac77",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/db2af03f247bec4d12a3e743b4464a70501fac77",
+              "html_url": "https://github.com/artsy/eidolon/commit/db2af03f247bec4d12a3e743b4464a70501fac77"
+            }
+          ]
+        },
+        {
+          "sha": "851e911b4e8697a0f8e3b84c19df6cec30aead2a",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T13:48:43Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T13:58:30Z"
+            },
+            "message": "[CI] Fixes pre-launching simulator UUID.",
+            "tree": {
+              "sha": "9cbec8e2436334ac71c0254ff34595d24cf1c134",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/9cbec8e2436334ac71c0254ff34595d24cf1c134"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/851e911b4e8697a0f8e3b84c19df6cec30aead2a",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/851e911b4e8697a0f8e3b84c19df6cec30aead2a",
+          "html_url": "https://github.com/artsy/eidolon/commit/851e911b4e8697a0f8e3b84c19df6cec30aead2a",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/851e911b4e8697a0f8e3b84c19df6cec30aead2a/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "57b041fbbbebd075f7fe186fb754cf7cce85519c",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/57b041fbbbebd075f7fe186fb754cf7cce85519c",
+              "html_url": "https://github.com/artsy/eidolon/commit/57b041fbbbebd075f7fe186fb754cf7cce85519c"
+            }
+          ]
+        },
+        {
+          "sha": "9963a5ff97b5dbd423df740c50e01a9dffd0a3ff",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T14:10:05Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T14:10:05Z"
+            },
+            "message": "[CI] Fixes intermittently failing test comparing dates.",
+            "tree": {
+              "sha": "2ab689baa382cc918289529955121d17672db7a4",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/2ab689baa382cc918289529955121d17672db7a4"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/9963a5ff97b5dbd423df740c50e01a9dffd0a3ff",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/9963a5ff97b5dbd423df740c50e01a9dffd0a3ff",
+          "html_url": "https://github.com/artsy/eidolon/commit/9963a5ff97b5dbd423df740c50e01a9dffd0a3ff",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/9963a5ff97b5dbd423df740c50e01a9dffd0a3ff/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "851e911b4e8697a0f8e3b84c19df6cec30aead2a",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/851e911b4e8697a0f8e3b84c19df6cec30aead2a",
+              "html_url": "https://github.com/artsy/eidolon/commit/851e911b4e8697a0f8e3b84c19df6cec30aead2a"
+            }
+          ]
+        },
+        {
+          "sha": "1aa0360bc7a95d7878160ae91eea62324ac3252f",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T14:41:27Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T14:41:27Z"
+            },
+            "message": "[Deps] Updates dependencies to latest Swift 2.x versions.",
+            "tree": {
+              "sha": "0ef37421cfa8cbd2d729e58de786b77f6219d3ad",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/0ef37421cfa8cbd2d729e58de786b77f6219d3ad"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/1aa0360bc7a95d7878160ae91eea62324ac3252f",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/1aa0360bc7a95d7878160ae91eea62324ac3252f",
+          "html_url": "https://github.com/artsy/eidolon/commit/1aa0360bc7a95d7878160ae91eea62324ac3252f",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/1aa0360bc7a95d7878160ae91eea62324ac3252f/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "9963a5ff97b5dbd423df740c50e01a9dffd0a3ff",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/9963a5ff97b5dbd423df740c50e01a9dffd0a3ff",
+              "html_url": "https://github.com/artsy/eidolon/commit/9963a5ff97b5dbd423df740c50e01a9dffd0a3ff"
+            }
+          ]
+        },
+        {
+          "sha": "fb0688c603ddb48afe0edad336d3a7fac6f5e9f7",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T14:41:31Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T14:41:31Z"
+            },
+            "message": "[CI] Fixes more intermittent tests.",
+            "tree": {
+              "sha": "00271b152921db4988396350eca46ed6b19f6649",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/00271b152921db4988396350eca46ed6b19f6649"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/fb0688c603ddb48afe0edad336d3a7fac6f5e9f7",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/fb0688c603ddb48afe0edad336d3a7fac6f5e9f7",
+          "html_url": "https://github.com/artsy/eidolon/commit/fb0688c603ddb48afe0edad336d3a7fac6f5e9f7",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/fb0688c603ddb48afe0edad336d3a7fac6f5e9f7/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "1aa0360bc7a95d7878160ae91eea62324ac3252f",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/1aa0360bc7a95d7878160ae91eea62324ac3252f",
+              "html_url": "https://github.com/artsy/eidolon/commit/1aa0360bc7a95d7878160ae91eea62324ac3252f"
+            }
+          ]
+        },
+        {
+          "sha": "c6eb849f100cbaa261680ee0d3dc819b91aa8af1",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T14:55:34Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T14:55:34Z"
+            },
+            "message": "[CI] Removed duplicate simulator launch.",
+            "tree": {
+              "sha": "965807f296e1a3fb30134508062825cf30806786",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/965807f296e1a3fb30134508062825cf30806786"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/c6eb849f100cbaa261680ee0d3dc819b91aa8af1",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/c6eb849f100cbaa261680ee0d3dc819b91aa8af1",
+          "html_url": "https://github.com/artsy/eidolon/commit/c6eb849f100cbaa261680ee0d3dc819b91aa8af1",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/c6eb849f100cbaa261680ee0d3dc819b91aa8af1/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "fb0688c603ddb48afe0edad336d3a7fac6f5e9f7",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/fb0688c603ddb48afe0edad336d3a7fac6f5e9f7",
+              "html_url": "https://github.com/artsy/eidolon/commit/fb0688c603ddb48afe0edad336d3a7fac6f5e9f7"
+            }
+          ]
+        },
+        {
+          "sha": "d769f276e066d79169a8bfa5795c8a4853f942f3",
+          "commit": {
+            "author": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T15:14:19Z"
+            },
+            "committer": {
+              "name": "Ash Furrow",
+              "email": "ash@ashfurrow.com",
+              "date": "2016-08-17T15:20:42Z"
+            },
+            "message": "[Feedback] Adds clarifying comments as per feedback in #609.",
+            "tree": {
+              "sha": "9004fe3df2b4d7d3285460095c37d9f62b4be26a",
+              "url": "https://api.github.com/repos/artsy/eidolon/git/trees/9004fe3df2b4d7d3285460095c37d9f62b4be26a"
+            },
+            "url": "https://api.github.com/repos/artsy/eidolon/git/commits/d769f276e066d79169a8bfa5795c8a4853f942f3",
+            "comment_count": 0
+          },
+          "url": "https://api.github.com/repos/artsy/eidolon/commits/d769f276e066d79169a8bfa5795c8a4853f942f3",
+          "html_url": "https://github.com/artsy/eidolon/commit/d769f276e066d79169a8bfa5795c8a4853f942f3",
+          "comments_url": "https://api.github.com/repos/artsy/eidolon/commits/d769f276e066d79169a8bfa5795c8a4853f942f3/comments",
+          "author": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "committer": {
+            "login": "ashfurrow",
+            "id": 498212,
+            "avatar_url": "https://avatars3.githubusercontent.com/u/498212?v=4",
+            "gravatar_id": "",
+            "url": "https://api.github.com/users/ashfurrow",
+            "html_url": "https://github.com/ashfurrow",
+            "followers_url": "https://api.github.com/users/ashfurrow/followers",
+            "following_url": "https://api.github.com/users/ashfurrow/following{/other_user}",
+            "gists_url": "https://api.github.com/users/ashfurrow/gists{/gist_id}",
+            "starred_url": "https://api.github.com/users/ashfurrow/starred{/owner}{/repo}",
+            "subscriptions_url": "https://api.github.com/users/ashfurrow/subscriptions",
+            "organizations_url": "https://api.github.com/users/ashfurrow/orgs",
+            "repos_url": "https://api.github.com/users/ashfurrow/repos",
+            "events_url": "https://api.github.com/users/ashfurrow/events{/privacy}",
+            "received_events_url": "https://api.github.com/users/ashfurrow/received_events",
+            "type": "User",
+            "site_admin": false
+          },
+          "parents": [
+            {
+              "sha": "c6eb849f100cbaa261680ee0d3dc819b91aa8af1",
+              "url": "https://api.github.com/repos/artsy/eidolon/commits/c6eb849f100cbaa261680ee0d3dc819b91aa8af1",
+              "html_url": "https://github.com/artsy/eidolon/commit/c6eb849f100cbaa261680ee0d3dc819b91aa8af1"
+            }
+          ]
+        }
+      ],
+      "reviews": [],
+      "requested_reviewers": [],
+      "thisPR": {
+        "number": 609,
+        "repo": "eidolon",
+        "owner": "artsy"
+      },
+      "utils": {}
+    }
+  },
+  "status": "OK"
+}
