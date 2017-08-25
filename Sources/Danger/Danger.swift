@@ -35,7 +35,7 @@ struct MarkdownRule: DangerRule {
 }
 
 private final class DangerRunner {
-    static var shared = DangerRunner()
+    static let shared = DangerRunner()
 
     let dsl: DSL
     var rules = [DangerRule]()
