@@ -48,6 +48,12 @@ swift package generate-xcodeproj
 open Danger.xcodeproj
 ```
 
+If you use Xcode 9 beta, run the following command before `swift build`:
+
+```sh
+export DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer
+```
+
 Then I tend to run it by eval the Dangerfile with:
 
 ```sh
