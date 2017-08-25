@@ -2,13 +2,13 @@
 
 Write your Dangerfiles in Swift.
 
-Not ready for production use. Requires Danger JS 2.x.
+Not ready for production use. Requires [a branch of][dsl] Danger JS 2.x.
 
 ### TODO
 
  - A simple DSL
- - Compile & Eval the Dangerfile.swift
- - Pass results back out
+ - Compile & Eval the Dangerfile.swift from Runner
+ - Pass results back out to Danger JS
  - Investigate the right path for getting it on CI ([Marathon + Homebrew][m]?)
 
 ### What it looks like today
@@ -38,7 +38,13 @@ So this project will export a lib ^ and a CLI tool `danger-swift` which is the r
 
 ### Dev
 
-Make sure Xcode 9 is your CLT setup ( see prefs in Xcode )
+If you are not using Xcode 9 beta for command-line things, run the following command:
+
+```sh
+export DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer
+```
+
+Now that tab of terminal will always be using the Xcode beta. You can skip this if you change the settings in Xcode's prefs.
 
 ```sh
 git clone https://github.com/danger/danger-swift.git
@@ -46,12 +52,6 @@ cd danger-swift
 swift build
 swift package generate-xcodeproj
 open Danger.xcodeproj
-```
-
-If you use Xcode 9 beta, run the following command before `swift build`:
-
-```sh
-export DEVELOPER_DIR=/Applications/Xcode-beta.app/Contents/Developer
 ```
 
 Then I tend to run it by eval the Dangerfile with:
