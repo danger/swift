@@ -1,6 +1,8 @@
 import Danger
-import Foundation
 
-let danger = Danger()
 
-print("Evaling Dangerfile")
+print("Evaluating Dangerfile")
+
+warn("Warning: bad stuff")
+fail("Failure: bad stuff happened")
+markdown("## Markdown for GitHub")
