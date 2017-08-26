@@ -82,7 +82,7 @@ public struct GitHubPR: Decodable {
     public let user: GitHubUser
 
     /// The user who is assigned to the pull request
-    public let assignee: GitHubUser
+    public let assignee: GitHubUser?
 
     /// The users who are assigned to the pull request
     public let assignees: [GitHubUser]
