@@ -10,7 +10,8 @@ let package = Package(
     ],
     targets: [
         .target(name: "Danger", dependencies: []),
-        .target(name: "Runner", dependencies: ["Danger"])
+        .target(name: "Runner", dependencies: ["Danger"]),
+        .testTarget(name: "DangerTests", dependencies: ["Danger"])
     ],
     swiftLanguageVersions: [3]
 )
