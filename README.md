@@ -7,8 +7,7 @@ Not ready for production use. Requires [a branch of][dsl] Danger JS 2.x.
 ### TODO
 
  - A simple DSL
- - Compile & Eval the Dangerfile.swift from Runner
- - Pass results back out to Danger JS
+ - Add introspection for finding the right paths for the Danger lib in the runner
  - Investigate the right path for getting it on CI ([Marathon + Homebrew][m]?)
 
 ### What it looks like today
@@ -58,6 +57,12 @@ Then I tend to run it by eval the Dangerfile with:
 
 ```sh
 swift build && swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json fixtures/response_data.json
+```
+
+If you want to emulate how DangerJS's `process` will work entirely, then use`
+
+```sh
+swift build && cat fixtures/eidolon_609.json | ./.build/debug/danger-swift
 ```
 
 ### Long-term
