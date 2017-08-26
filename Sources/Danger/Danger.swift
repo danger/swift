@@ -6,44 +6,27 @@ import Foundation
     import Darwin.C
 #endif
 
-protocol DangerRule {
-    var message: String { get }
+struct Results: Codable {
+    var fails = [Violation]()
+    var warnings = [Violation]()
+    var messages = [Violation]()
+    var markdowns = [String]()
 }
 
-struct WarningRule: DangerRule {
+struct Violation: Codable {
     let message: String
-
-    init(_ message: String) {
-        self.message = message
-    }
-}
-
-struct FailureRule: DangerRule {
-    let message: String
-
-    init(_ message: String) {
-        self.message = message
-    }
-}
-
-struct MarkdownRule: DangerRule {
-    let message: String
-
-    init(_ message: String) {
-        self.message = message
-    }
 }
 
 private final class DangerRunner {
     static let shared = DangerRunner()
 
     let dsl: DSL
-    var rules = [DangerRule]()
+    var results = Results()
+
 
     private init() {
-
         let dslJSONArg: String? = CommandLine.arguments[1]
-//        var outputJSON = CommandLine.arguments[2]
+        let outputJSONPath = CommandLine.arguments[2]
 
         guard let dslJSONPath = dslJSONArg else {
             print("could not find DSL JSON arg")
@@ -65,11 +48,7 @@ private final class DangerRunner {
             exit(1)
         }
 
-        dumpResultsAtExit(self, path: "somewhere")
-    }
-
-    func add(_ rule: DangerRule) {
-        rules.append(rule)
+        dumpResultsAtExit(self, path: outputJSONPath)
     }
 }
 
@@ -77,26 +56,55 @@ public func Danger() -> DangerDSL {
     return DangerRunner.shared.dsl.danger
 }
 
+
+/// Adds a warning message to the Danger report
+///
+/// - Parameter message: A markdown-ish
 public func warn(_ message: String) {
-    DangerRunner.shared.add(WarningRule(message))
+    DangerRunner.shared.results.warnings.append(Violation(message: message))
 }
 
+/// Adds a warning message to the Danger report
+///
+/// - Parameter message: A markdown-ish
 public func fail(_ message: String) {
-    DangerRunner.shared.add(FailureRule(message))
+    DangerRunner.shared.results.fails.append(Violation(message: message))
 }
 
-public func markdown(_ message: String) {
-    DangerRunner.shared.add(MarkdownRule(message))
+/// Adds a warning message to the Danger report
+///
+/// - Parameter message: A markdown-ish
+public func message(_ message: String) {
+    DangerRunner.shared.results.messages.append(Violation(message: message))
 }
+
+/// Adds a warning message to the Danger report
+///
+/// - Parameter message: A markdown-ish
+public func markdown(_ message: String) {
+    DangerRunner.shared.results.markdowns.append(message)
+}
+
 
 private var dumpInfo: (danger: DangerRunner, path: String)?
 private func dumpResultsAtExit(_ runner: DangerRunner, path: String) {
     func dump() {
         guard let dumpInfo = dumpInfo else { return }
         print("Sending results back to Danger")
-        for rule in dumpInfo.danger.rules {
-            print("\(type(of: rule)): \"\(rule.message)\"")
+        do {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let data = try encoder.encode(dumpInfo.danger.results)
+//          print(String(data: data, encoding: .utf8)!)
+
+            FileManager.default.createFile(atPath: dumpInfo.path, contents: data, attributes: nil)
+
+        } catch let error {
+            print("Failed to generate result JSON:")
+            print(error)
+            exit(1)
         }
+
     }
     dumpInfo = (runner, path)
     atexit(dump)

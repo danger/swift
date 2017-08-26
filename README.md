@@ -57,7 +57,7 @@ open Danger.xcodeproj
 Then I tend to run it by eval the Dangerfile with:
 
 ```sh
-swift build && swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json
+swift build && swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json fixtures/response_data.json
 ```
 
 ### Long-term
