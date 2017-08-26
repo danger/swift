@@ -1,0 +1,10 @@
+language: objective-c
+osx_image: xcode9
+
+install:
+  - node -v
+  - npm install -g danger
+
+script:
+  - swift build 
+  - danger process ./.build/debug/danger-swift
