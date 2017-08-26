@@ -23,7 +23,6 @@ private final class DangerRunner {
     let dsl: DSL
     var results = Results()
 
-
     private init() {
         let dslJSONArg: String? = CommandLine.arguments[1]
         let outputJSONPath = CommandLine.arguments[2]
