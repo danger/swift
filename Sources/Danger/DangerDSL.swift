@@ -3,10 +3,6 @@ import Foundation
 // http://benscheirman.com/2017/06/ultimate-guide-to-json-parsing-with-swift-4/
 // http://danger.systems/js/reference.html
 
-struct DSL: Decodable {
-    let danger: DangerDSL
-}
-
 public struct DangerDSL: Decodable {
     public let git: Git
     public let github: GitHub
@@ -86,7 +82,7 @@ public struct GitHubPR: Decodable {
     public let user: GitHubUser
 
     /// The user who is assigned to the pull request
-    public let assignee: GitHubUser
+    public let assignee: GitHubUser?
 
     /// The users who are assigned to the pull request
     public let assignees: [GitHubUser]
