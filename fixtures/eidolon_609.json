@@ -1,5 +1,4 @@
 {
-  "danger": {
     "git": {
       "modified_files": [
         ".travis.yml",
@@ -1899,6 +1898,4 @@
       },
       "utils": {}
     }
-  },
-  "status": "OK"
 }

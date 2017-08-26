@@ -20,7 +20,7 @@ struct Violation: Codable {
 private final class DangerRunner {
     static let shared = DangerRunner()
 
-    let dsl: DSL
+    let dsl: DangerDSL
     var results = Results()
 
     private init() {
@@ -39,7 +39,7 @@ private final class DangerRunner {
 
         do {
             let decoder = JSONDecoder()
-            dsl = try decoder.decode(DSL.self, from: dslJSONContents)
+            dsl = try decoder.decode(DangerDSL.self, from: dslJSONContents)
 
         } catch let error {
             print("Failed to parse JSON:")
@@ -52,7 +52,7 @@ private final class DangerRunner {
 }
 
 public func Danger() -> DangerDSL {
-    return DangerRunner.shared.dsl.danger
+    return DangerRunner.shared.dsl
 }
 
 

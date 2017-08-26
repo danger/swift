@@ -3,10 +3,6 @@ import Foundation
 // http://benscheirman.com/2017/06/ultimate-guide-to-json-parsing-with-swift-4/
 // http://danger.systems/js/reference.html
 
-struct DSL: Decodable {
-    let danger: DangerDSL
-}
-
 public struct DangerDSL: Decodable {
     public let git: Git
     public let github: GitHub
