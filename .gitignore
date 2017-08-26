@@ -69,3 +69,4 @@ fastlane/test_output
 Danger/.build
 *.xcodeproj
 .build
+fixtures/response_data.json
