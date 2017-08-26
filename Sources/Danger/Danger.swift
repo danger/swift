@@ -10,7 +10,7 @@ struct Results: Codable {
     var fails = [Violation]()
     var warnings = [Violation]()
     var messages = [Violation]()
-    var markdowns = [Violation]()
+    var markdowns = [String]()
 }
 
 struct Violation: Codable {
@@ -82,7 +82,7 @@ public func message(_ message: String) {
 ///
 /// - Parameter message: A markdown-ish
 public func markdown(_ message: String) {
-    DangerRunner.shared.results.markdowns.append(Violation(message: message))
+    DangerRunner.shared.results.markdowns.append(message)
 }
 
 
