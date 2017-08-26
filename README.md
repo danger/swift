@@ -6,7 +6,6 @@ Not ready for production use. Requires [a branch of][dsl] Danger JS 2.x.
 
 ### TODO
 
- - A simple DSL
  - Add introspection for finding the right paths for the Danger lib in the runner
  - Investigate the right path for getting it on CI ([Marathon + Homebrew][m]?)
 
