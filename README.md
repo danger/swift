@@ -2,12 +2,13 @@
 
 Write your Dangerfiles in Swift.
 
-Not ready for production use. Requires [a branch of][dsl] Danger JS 2.x.
+Not ready for production use, does work though. Requires Danger JS 2.x. 
 
 ### TODO
 
- - Add introspection for finding the right paths for the Danger lib in the runner
  - Investigate the right path for getting it on CI ([Marathon + Homebrew][m]?)
+ - Add introspection for finding the right paths for the Danger lib in the runner
+ - See the issues [for more TODOs](https://github.com/danger/danger-swift/issues)
 
 ### What it looks like today
 
