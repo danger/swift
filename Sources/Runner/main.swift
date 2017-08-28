@@ -42,6 +42,9 @@ proc.waitUntilExit()
 // Pull out the results JSON that the Danger eval should generate
 guard let results = fileManager.contents(atPath: dangerResponsePath) else {
     print("Could not get the results JSON file")
+    // Clean up after ourselves
+    try? fileManager.removeItem(atPath: dslJSONPath)
+    try? fileManager.removeItem(atPath: dangerResponsePath)
     exit(1)
 }
 
