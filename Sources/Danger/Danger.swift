@@ -6,22 +6,14 @@ import Foundation
     import Darwin.C
 #endif
 
-struct Results: Codable {
-    var fails = [Violation]()
-    var warnings = [Violation]()
-    var messages = [Violation]()
-    var markdowns = [String]()
-}
-
-struct Violation: Codable {
-    let message: String
-}
+// MARK: - DangerRunner
 
 private final class DangerRunner {
+
     static let shared = DangerRunner()
 
     let dsl: DangerDSL
-    var results = Results()
+    var results = DangerResults()
 
     private init() {
         let dslJSONArg: String? = CommandLine.arguments[1]
@@ -51,10 +43,11 @@ private final class DangerRunner {
     }
 }
 
+// MARK: - Public Functions
+
 public func Danger() -> DangerDSL {
     return DangerRunner.shared.dsl
 }
-
 
 /// Adds a warning message to the Danger report
 ///
@@ -84,8 +77,10 @@ public func markdown(_ message: String) {
     DangerRunner.shared.results.markdowns.append(message)
 }
 
+// MARK: - Private Functions
 
 private var dumpInfo: (danger: DangerRunner, path: String)?
+
 private func dumpResultsAtExit(_ runner: DangerRunner, path: String) {
     func dump() {
         guard let dumpInfo = dumpInfo else { return }
