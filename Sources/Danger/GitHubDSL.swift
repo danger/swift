@@ -243,13 +243,23 @@ public struct GitHubRepo: Decodable {
 
 public struct GitHubReview: Decodable {
 
+    // MARK: - CodingKeys
+
+    enum CodingKeys: String, CodingKey {
+        case user
+        case id
+        case body
+        case state
+        case commitId = "commit_id"
+    }
+
     // MARK: - ReviewState
 
     public enum ReviewState: String, Decodable {
-        case approved
-        case requestedChanges
-        case comment
-        case pending
+        case approved = "APPROVED"
+        case requestedChanges = "CHANGES_REQUESTED"
+        case comment = "COMMENTED"
+        case pending = "PENDING"
     }
 
     /// The user who has completed the review or has been requested to review.
@@ -262,7 +272,7 @@ public struct GitHubReview: Decodable {
     public let body: String?
 
     /// The commit ID the review was made on (if a review was made).
-    public let commitID: String?
+    public let commitId: String?
 
     /// The state of the review (if a review was made).
     public let state: ReviewState?
@@ -297,7 +307,69 @@ public struct GitHubCommit: Decodable {
 
 public struct GitHubIssue: Decodable {
 
+    // MARK: - CodingKeys
+
+    enum CodingKeys: String, CodingKey {
+        case number
+        case title
+        case user
+        case state
+        case assignee
+        case assignees
+        case body
+        case labels
+        case commentCount = "comments"
+        case isLocked = "locked"
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
+        case closedAt = "closed_at"
+    }
+
+    // MARK: - IssueState
+
+    public enum IssueState: String, Decodable {
+        case open
+        case closed
+        case locked
+    }
+
     // MARK: - Properties
+
+    /// The number of the issue.
+    public let number: Int
+
+    /// The title of the issue.
+    public let title: String
+
+    /// The user who created the issue.
+    public let user: GitHubUser
+
+    /// The state for the issue: open, closed, locked.
+    public let state: IssueState
+
+    /// A boolean indicating if the issue has been locked to contributors only.
+    public let isLocked: Bool
+
+    /// The markdown body message of the issue.
+    public let body: String
+
+    /// The comment number of comments for the issue.
+    public let commentCount: Int
+
+    /// The user who is assigned to the issue.
+    public let assignee: GitHubUser?
+
+    /// The users who are assigned to the issue.
+    public let assignees: [GitHubUser]
+
+    /// The ISO6801 date string for when the issue was created.
+    public let createdAt: String
+
+    /// The ISO6801 date string for when the issue was updated.
+    public let updatedAt: String
+
+    /// The ISO6801 date string for when the issue was closed.
+    public let closedAt: String?
 
     /// The labels associated with this issue.
     public let labels: [GitHubIssueLabel]

@@ -59,7 +59,7 @@ Then I tend to run it by eval the Dangerfile with:
 swift build && swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json fixtures/response_data.json
 ```
 
-If you want to emulate how DangerJS's `process` will work entirely, then use`
+If you want to emulate how DangerJS's `process` will work entirely, then use:
 
 ```sh
 swift build && cat fixtures/eidolon_609.json | ./.build/debug/danger-swift
