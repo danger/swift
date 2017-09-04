@@ -20,6 +20,15 @@ let fileManager = FileManager.default
 // Create the DSL JSON file for the the runner to read from
 fileManager.createFile(atPath: dslJSONPath, contents: input, attributes: nil)
 
+var dangerfilePath = "Dangerfile.swift"
+if !fileManager.fileExists(atPath: dangerfilePath) {
+    dangerfilePath = "danger/Dangerfile.swift"
+    if !fileManager.fileExists(atPath: dangerfilePath) {
+      print("Could not find a Dangerfile")
+      // Exit 0
+    }
+}
+
 // Example command
 // swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json fixtures/response_data.json
 
@@ -28,7 +37,7 @@ args += ["--driver-mode=swift"] // Eval in swift mode, I think?
 args += ["-L", ".build/debug"] // Find libs inside this folder (may need to change in production)
 args += ["-I", ".build/debug"] // Find libs inside this folder (may need to change in production)
 args += ["-lDanger"] // Eval the code with the Target Danger added
-args += ["Dangerfile.swift"] // The Dangerfile
+args += [dangerfilePath] // The Dangerfile
 args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
 args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
 
