@@ -4,6 +4,7 @@
 
 ## 0.0.2
 
+* Supports a Dangerfile in both: "/Dangerfile.swift" and "/danger/Dangerfile.swift" to handle SPM rules on Swift files in the root - orta
 * Adds a CHANGELOG, renames project to danger-swift - orta
 
 ## 0.0.1
