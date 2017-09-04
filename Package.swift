@@ -2,6 +2,8 @@
 
 import PackageDescription
 
+// Version number can be found in Source/Danger/Danger.swift
+
 let package = Package(
     name: "danger-swift",
     products: [

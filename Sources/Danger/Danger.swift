@@ -9,6 +9,7 @@ import Foundation
 // MARK: - DangerRunner
 
 private final class DangerRunner {
+    let version = "0.0.2"
 
     static let shared = DangerRunner()
 
