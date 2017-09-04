@@ -20,12 +20,16 @@ let fileManager = FileManager.default
 // Create the DSL JSON file for the the runner to read from
 fileManager.createFile(atPath: dslJSONPath, contents: input, attributes: nil)
 
+// TODO, make elegant:
 var dangerfilePath = "Dangerfile.swift"
 if !fileManager.fileExists(atPath: dangerfilePath) {
     dangerfilePath = "danger/Dangerfile.swift"
     if !fileManager.fileExists(atPath: dangerfilePath) {
-      print("Could not find a Dangerfile")
-      // Exit 0
+        dangerfilePath = "Danger/Dangerfile.swift"
+        if !fileManager.fileExists(atPath: dangerfilePath) {
+            print("Could not find a Dangerfile")
+            // Exit 0
+        }
     }
 }
 
