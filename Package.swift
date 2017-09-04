@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Danger",
+    name: "danger-swift",
     products: [
         .library(name: "Danger", type: .dynamic, targets: ["Danger"]),
         .executable(name: "danger-swift", targets: ["Runner"])
