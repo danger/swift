@@ -3,15 +3,13 @@ language: generic
 sudo: required
 dist: trusty
 
-env:
-  - SWIFT_VERSION=4.0-dev
-
 install:
   - node -v
   - npm install -g danger@alpha
   - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
+  - swiftenv install https://swift.org/builds/swift-4.0-branch/ubuntu1404/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-09-07-a/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-09-07-a-ubuntu14.04.tar.gz
   - swift build 
 
 script:
   - swift test
-  - danger process ./.build/debug/danger-swift
+  - danger process ./.build/x86_64-unknown-linux/debug/danger-swift
