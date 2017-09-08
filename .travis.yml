@@ -12,4 +12,6 @@ install:
 
 script:
   - swift test
-  - danger process
+  # - swiftc --driver-mode=swift -L .build/x86_64-unknown-linux/debug -I .build/x86_64-unknown-linux/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json fixtures/response_data.json
+  # - more fixtures/response_data.json
+  - danger process ./.build/x86_64-unknown-linux/debug/danger-swift
