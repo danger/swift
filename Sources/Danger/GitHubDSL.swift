@@ -260,6 +260,7 @@ public struct GitHubReview: Decodable {
         case requestedChanges = "CHANGES_REQUESTED"
         case comment = "COMMENTED"
         case pending = "PENDING"
+        case dismissed = "DISMISSED"
     }
 
     /// The user who has completed the review or has been requested to review.

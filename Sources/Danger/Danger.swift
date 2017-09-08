@@ -90,9 +90,11 @@ private func dumpResultsAtExit(_ runner: DangerRunner, path: String) {
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
             let data = try encoder.encode(dumpInfo.danger.results)
-//          print(String(data: data, encoding: .utf8)!)
 
-            FileManager.default.createFile(atPath: dumpInfo.path, contents: data, attributes: nil)
+            if !FileManager.default.createFile(atPath: dumpInfo.path, contents: data, attributes: nil) {
+                print("Could not create a temporary file for the Dangerfile DSL at: \(dumpInfo.path)")
+                exit(0)
+            }
 
         } catch let error {
             print("Failed to generate result JSON:")

@@ -1,10 +1,17 @@
-language: objective-c
-osx_image: xcode9
+os: linux
+language: generic
+sudo: required
+dist: trusty
 
 install:
   - node -v
   - npm install -g danger@alpha
+  - eval "$(curl -sL https://gist.githubusercontent.com/kylef/5c0475ff02b7c7671d2a/raw/9f442512a46d7a2af7b850d65a7e9bd31edfb09b/swiftenv-install.sh)"
+  - swiftenv install https://swift.org/builds/swift-4.0-branch/ubuntu1404/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-09-07-a/swift-4.0-DEVELOPMENT-SNAPSHOT-2017-09-07-a-ubuntu14.04.tar.gz
+  - swift build 
 
 script:
-  - swift build 
-  - danger process ./.build/debug/danger-swift
+  - swift test
+  # - swiftc --driver-mode=swift -L .build/x86_64-unknown-linux/debug -I .build/x86_64-unknown-linux/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json fixtures/response_data.json
+  # - more fixtures/response_data.json
+  - danger process ./.build/x86_64-unknown-linux/debug/danger-swift
