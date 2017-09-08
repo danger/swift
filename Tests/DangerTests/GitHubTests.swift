@@ -14,8 +14,17 @@ class GitHubTests: XCTestCase {
     }
     
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
     }
     
 }
+#if os(Linux)
+extension GitHubTests {
+	static var allTests : [(String, GitHubTests -> () throws -> Void)] {
+		return [
+			("testExample", testExample),
+		]
+	}
+}
+#endif 
+
