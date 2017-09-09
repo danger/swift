@@ -61,21 +61,8 @@ proc.arguments = args
 proc.launch()
 
 let standardOutput = FileHandle.standardOutput
-
 proc.standardOutput = standardOutput
 proc.standardError = standardOutput
-//
-//    let data = stdOutPipe.fileHandleForReading.readDataToEndOfFile()
-//    if let string = String(data: data, encoding: String.Encoding.utf8) {
-//       print("## STD OUT:\n")
-//       print(string)
-//    }
-//
-//    let errData = stdErrPipe.fileHandleForReading.readDataToEndOfFile()
-//    if let string = String(data: errData, encoding: String.Encoding.utf8) {
-//       print("## STD ERR:\n")
-//       print(string)
-//    }
 
 proc.waitUntilExit()
 

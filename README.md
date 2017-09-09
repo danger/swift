@@ -1,18 +1,21 @@
 # danger-swift
 
-Write your Dangerfiles in Swift.
-
-Not ready for production use, does work though. Requires Danger JS 2.x. 
+Write your Dangerfiles in Swift 4+.
 
 ### TODO
 
- - Investigate the right path for getting it on CI ([Marathon + Homebrew][m]?)
- - Add introspection for finding the right paths for the Danger lib in the runner
- - See the issues [for more TODOs](https://github.com/danger/danger-swift/issues)
+Not ready for production use today, does work on our CI though. 
+Requires Danger JS 2.x. Rough ETA of production use is ~2 weeks. Currently
+blocked [on marathon](https://github.com/JohnSundell/Marathon/pull/127)
+
+### Blockers
+
+ - Ensure marathon installs Danger correctly
+ - Ensure the right paths for the Danger lib in the runner
 
 ### What it looks like today
 
-You can make a Dangerfile that looks through modified/created/deleted files:
+You can make a Dangerfile that looks through PR metadata, it's fully typed.
 
 ```swift
 import Danger
@@ -26,12 +29,32 @@ if !changelogChanged && sourceChanges != nil {
   warn("No CHANGELOG entry added.")
 }
 
-warn("Warning: bad stuff")
-fail("Failure: bad stuff happened")
-markdown("## Markdown for GitHub")
+
+// You can use these functions to send feedback:
+
+message("Highlight something in the table")
+warn("Something pretty bad, but not important enough to fail the build")
+fail("Something that must be changed")
+
+markdown("Free-form markdown that goes under the table, so you can do whatever.")
 ```
 
-But setting it up and running is not feasible right now, just development.
+### The ideal flow
+
+In your CI:
+
+```sh
+# Setup
+npm install -g danger@alpha           # Get DangerJS
+brew install marathon-swift           # Install the SwiftPM app installer
+marathon install danger/danger-swift  # Install danger-swift locally
+
+# Script
+danger process danger-swift           # Run Danger
+```
+
+Creating a `Dangerfile.swift` is a bit tricky, because it relies on a library target which isn't available by default. 
+Ideally we add a command to create a temporary Danger Xcodeproject with the right settings for editing with docs + tools.
 
 ### How it works
 
@@ -71,7 +94,7 @@ swift build && cat fixtures/eidolon_609.json | ./.build/debug/danger-swift
 
 ### Long-term
 
-I, orta, only want to make a small proof of concept, as I won't be using this in production. The future for Artsy mobile is JS. However, I'm happy to have someone else turn it into a real project though, and I'll hang out and be useful.
+I, orta, only plan on bootstrapping this project, as I won't be using this in production. I'm happy to help support others who want to own this idea and really make it shine though! So if you're interested in helping out, make a few PRs and I'll give you org access. 
 
 [m]: https://github.com/JohnSundell/Marathon/issues/59
 [spm-lr]: http://bhargavg.com/swift/2016/06/11/how-swiftpm-parses-manifest-file.html
