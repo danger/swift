@@ -1,11 +1,5 @@
 import Foundation
 
-#if os(Linux)
-    import Glibc
-#else
-    import Darwin.C
-#endif
-
 // Pull in the JSON from Danger JS
 let standardInput = FileHandle.standardInput
 let input = standardInput.readDataToEndOfFile()
@@ -34,13 +28,48 @@ guard let dangerfilePath = resolvedPath else {
     exit(0)
 }
 
-// Example command
+// Is this a dev build: e.g. running inside a cloned danger/danger-swift
+let libraryFolders = [".build/debug", ".build/release"]
+
+// Was danger-swift installed via marathon?
+// e.g "~/.marathon/Scripts/Temp/https:--github.com-danger-danger-swift.git/clone/.build/release"
+let marathonDangerDLDir = NSHomeDirectory() + "/.marathon/Scripts/Temp/"
+let marathonScripts = try? fileManager.contentsOfDirectory(atPath: marathonDangerDLDir)
+var marathonDangerLibPaths: [String] = []
+
+if marathonScripts != nil {
+    // TODO: Support running from a fork?
+    let dangerSwiftPath = marathonScripts!.first { return $0.contains("danger-swift") }
+    if dangerSwiftPath != nil {
+        let path = marathonDangerDLDir + dangerSwiftPath! + "/clone/.build/release"
+        marathonDangerLibPaths.append(path)
+    }
+}
+
+// Check and find where we can link to libDanger from
+let libDanger = "libDanger.dylib"
+let libPaths = libraryFolders + marathonDangerLibPaths
+guard let libPath = libPaths.first(where: { fileManager.fileExists(atPath: $0 + "/libDanger.dylib") }) else {
+    print("Could not find a libDanger at any of: \(libPaths)")
+    exit(1)
+}
+
+// Example commands:
+//
+//
+// ## Run the full system:
+// swift build; env DANGER_GITHUB_API_TOKEN='MY_TOKEN' DANGER_FAKE_CI="YEP" DANGER_TEST_REPO='artsy/eigen' DANGER_TEST_PR='2408' danger process .build/debug/danger-swift --verbose --text-only
+//
+// ## Run compilation and eval of the Dangerfile:
 // swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json fixtures/response_data.json
+//
+// ## Run Danger Swift with a fixture'd JSON file
+// swift build; cat fixtures/eidolon_609.json  | ./.build/debug/danger-swift
 
 var args = [String]()
 args += ["--driver-mode=swift"] // Eval in swift mode, I think?
-args += ["-L", ".build/debug"] // Find libs inside this folder (may need to change in production)
-args += ["-I", ".build/debug"] // Find libs inside this folder (may need to change in production)
+args += ["-L", libPath] // Find libs inside this folder
+args += ["-I", libPath] // Find libs inside this folder
 args += ["-lDanger"] // Eval the code with the Target Danger added
 args += [dangerfilePath] // The Dangerfile
 args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
@@ -52,18 +81,18 @@ let supportedSwiftCPaths = ["/home/travis/.swiftenv/shims/swiftc", "/usr/bin/swi
 let swiftCPath = supportedSwiftCPaths.first { fileManager.fileExists(atPath: $0) }
 let swiftC = swiftCPath != nil ? swiftCPath! : "swiftc"
 
-print("Running: \(swiftC) - \(args.joined(separator: " "))")
+print("Running: \(swiftC) \(args.joined(separator: " "))")
 
 // Create a process to eval the Swift file
 let proc = Process()
 proc.launchPath = swiftC
 proc.arguments = args
-proc.launch()
 
 let standardOutput = FileHandle.standardOutput
 proc.standardOutput = standardOutput
 proc.standardError = standardOutput
 
+proc.launch()
 proc.waitUntilExit()
 
 if (proc.terminationStatus != 0) {
