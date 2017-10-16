@@ -5,12 +5,10 @@ Write your Dangerfiles in Swift 4+.
 ### TODO
 
 Not ready for production use today, does work on our CI though. 
-Requires Danger JS 2.x. Rough ETA of production use is ~2 weeks. Currently
-blocked [on marathon](https://github.com/JohnSundell/Marathon/pull/127)
+Requires Danger JS 2.x. Rough ETA of production use is ~2 weeks.
 
 ### Blockers
 
- - Ensure marathon installs Danger correctly
  - Ensure the right paths for the Danger lib in the runner
 
 ### What it looks like today
@@ -39,24 +37,39 @@ fail("Something that must be changed")
 markdown("Free-form markdown that goes under the table, so you can do whatever.")
 ```
 
-### The ideal flow
+### CI Configuration
 
 In your CI:
 
 ```sh
 # Setup
 npm install -g danger@alpha           # Get DangerJS
-brew install marathon-swift           # Install the SwiftPM app installer
-marathon install danger/danger-swift  # Install danger-swift locally
+brew install danger/tap/danger-swift  # Install danger-swift locally
 
 # Script
 danger process danger-swift           # Run Danger
 ```
 
+### Local installation
+
+#### Homebrew
+```
+brew install danger/tap/danger-swift
+```
+
+#### Manual install
+```
+git clone https://www.github.com/danger/danger-swift.git
+cd danger-swift
+make install
+```
+
+### Dangerfile.swift
+
 Creating a `Dangerfile.swift` is a bit tricky, because it relies on a library target which isn't available by default. 
 Ideally we add a command to create a temporary Danger Xcodeproject with the right settings for editing with docs + tools.
 
-### How it works
+#### How it works
 
 This project takes its ideas from how the Swift Package Manager handles package manifests. You can get the [long story here][spm-lr], but the TLDR is that there is a runner which compiles and executes a runtime lib which exports its data out into JSON when the libs process is over.
 
