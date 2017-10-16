@@ -9,7 +9,7 @@ import Foundation
 // MARK: - DangerRunner
 
 private final class DangerRunner {
-    let version = "0.0.2"
+    let version = "0.1.1"
 
     static let shared = DangerRunner()
 
@@ -17,8 +17,11 @@ private final class DangerRunner {
     var results = DangerResults()
 
     private init() {
-        let dslJSONArg: String? = CommandLine.arguments[1]
-        let outputJSONPath = CommandLine.arguments[2]
+        print("Ran with: \(CommandLine.arguments.joined(separator: " "))")
+
+        let cliLength = CommandLine.arguments.count
+        let dslJSONArg: String? = CommandLine.arguments[cliLength - 2]
+        let outputJSONPath = CommandLine.arguments[cliLength - 1]
 
         guard let dslJSONPath = dslJSONArg else {
             print("could not find DSL JSON arg")
