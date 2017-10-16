@@ -59,7 +59,7 @@ brew install danger/tap/danger-swift
 
 #### Manual install
 ```
-git clone https://www.github.com/danger/danger-swift.git
+git clone https://github.com/danger/danger-swift.git
 cd danger-swift
 make install
 ```
