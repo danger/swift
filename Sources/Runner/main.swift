@@ -35,20 +35,26 @@ let libraryFolders = [".build/debug", ".build/release"]
 // e.g "~/.marathon/Scripts/Temp/https:--github.com-danger-danger-swift.git/clone/.build/release"
 let marathonDangerDLDir = NSHomeDirectory() + "/.marathon/Scripts/Temp/"
 let marathonScripts = try? fileManager.contentsOfDirectory(atPath: marathonDangerDLDir)
-var marathonDangerLibPaths: [String] = []
+var depManagerDangerLibPaths: [String] = []
 
 if marathonScripts != nil {
     // TODO: Support running from a fork?
     let dangerSwiftPath = marathonScripts!.first { return $0.contains("danger-swift") }
     if dangerSwiftPath != nil {
         let path = marathonDangerDLDir + dangerSwiftPath! + "/clone/.build/release"
-        marathonDangerLibPaths.append(path)
+        depManagerDangerLibPaths.append(path)
     }
 }
 
+// Was danger-swift installed via homebrew?
+// e.g "/usr/local/Cellar/danger-swift/0.1.0"
+let brewDangerDLDir = "/usr/local/Cellar/danger-swift/"
+let brewScripts = try? fileManager.contentsOfDirectory(atPath: marathonDangerDLDir)
+if marathonScripts != nil { depManagerDangerLibPaths.append("/usr/local/lib") }
+
 // Check and find where we can link to libDanger from
 let libDanger = "libDanger.dylib"
-let libPaths = libraryFolders + marathonDangerLibPaths
+let libPaths = libraryFolders + depManagerDangerLibPaths
 guard let libPath = libPaths.first(where: { fileManager.fileExists(atPath: $0 + "/libDanger.dylib") }) else {
     print("Could not find a libDanger at any of: \(libPaths)")
     exit(1)

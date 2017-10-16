@@ -1,14 +1,18 @@
 TOOL_NAME = danger-swift
-VERSION = 0.1.0
+LIB_NAME = libDanger.dylib
+VERSION = 0.1.1
 
 PREFIX = /usr/local
 INSTALL_PATH = $(PREFIX)/bin/$(TOOL_NAME)
 BUILD_PATH = .build/release/$(TOOL_NAME)
+LIB_PATH = .build/release/$(LIB_NAME)
+LIB_INSTALL_PATH = $(PREFIX)/lib/$(LIB_NAME)
 TAR_FILENAME = $(TOOL_NAME)-$(VERSION).tar.gz
 
 install: build
 	mkdir -p $(PREFIX)/bin
 	cp -f $(BUILD_PATH) $(INSTALL_PATH)
+	cp -f $(LIB_PATH) $(LIB_INSTALL_PATH)
 
 build:
 	swift package clean
