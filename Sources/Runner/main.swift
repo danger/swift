@@ -30,10 +30,10 @@ guard let dangerfilePath = resolvedPath else {
 
 // Is this a dev build: e.g. running inside a cloned danger/danger-swift
 let libraryFolders = [
-    ".build/debug",
-    ".build/debug/x86_64-unknown-linux",
-    ".build/release",
-    "/usr/local/lib/danger"
+    ".build/debug", // Working in Xcode / CLI
+    ".build/x86_64-unknown-linux/debug", // Danger Swift's CI
+    ".build/release", // Testing prod
+    "/usr/local/lib/danger" // Homebrew installs lib stuff to here
 ]
 
 // for testing prod, do a `make install` first
