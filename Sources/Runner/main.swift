@@ -57,7 +57,14 @@ if marathonScripts != nil {
 // Check and find where we can link to libDanger from
 let libDanger = "libDanger.dylib"
 let libPaths = libraryFolders + depManagerDangerLibPaths
-guard let libPath = libPaths.first(where: { fileManager.fileExists(atPath: $0 + "/libDanger.dylib") }) else {
+
+
+func isTheDangerLibPath(path: String) -> Bool {
+    return fileManager.fileExists(atPath: path + "/libDanger.dylib")  || // OSX
+           fileManager.fileExists(atPath: path + "/libDanger.so")        // Linux
+}
+
+guard let libPath = libPaths.first(where: isTheDangerLibPath) else {
     print("Could not find a libDanger at any of: \(libPaths)")
     exit(1)
 }

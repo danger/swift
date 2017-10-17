@@ -11,7 +11,4 @@ install:
 
 script:
   - swift test
-  - ls .build
-  - ls .build/x86_64-unknown-linux
-  - ls .build/x86_64-unknown-linux/debug
   - danger process .build/x86_64-unknown-linux/debug/danger-swift
