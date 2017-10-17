@@ -29,10 +29,15 @@ guard let dangerfilePath = resolvedPath else {
 }
 
 // Is this a dev build: e.g. running inside a cloned danger/danger-swift
-// let libraryFolders = [".build/debug", ".build/release", "/usr/local/lib/danger"]
+let libraryFolders = [
+    ".build/debug",
+    ".build/debug/x86_64-unknown-linux",
+    ".build/release",
+    "/usr/local/lib/danger"
+]
 
 // for testing prod, do a `make install` first
-let libraryFolders = ["/usr/local/lib/danger"]
+//let libraryFolders = ["/usr/local/lib/danger"]
 
 // Was danger-swift installed via marathon?
 // e.g "~/.marathon/Scripts/Temp/https:--github.com-danger-danger-swift.git/clone/.build/release"
