@@ -73,6 +73,15 @@ make install
 Creating a `Dangerfile.swift` is a bit tricky, because it relies on a library target which isn't available by default. 
 Ideally we add a command to create a temporary Danger Xcodeproject with the right settings for editing with docs + tools.
 
+In the meantime, I'd recommend cloning this repo, creating the xcode project and then dragging in this repo's 
+`Dangerfile.swift` and editing that to be what you want.
+
+```sh
+git clone https://github.com/danger/danger-swift.git
+swift package generate-xcodeproj
+open Danger.xcodeproj
+```
+
 #### How it works
 
 This project takes its ideas from how the Swift Package Manager handles package manifests. You can get the [long story here][spm-lr], but the TLDR is that there is a runner project which compiles and executes a runtime lib which exports its data out into JSON when the libs process is over.
