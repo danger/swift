@@ -2,6 +2,10 @@
 
 * Add your own contributions to the next release on the line below this, please include your name too. Please don't set a new version if you are the first to make the section for `master`.
 
+## 0.2.0
+
+- Support the beta formatting of the JSON DSL ( it now is `{ "danger": { [DSL] }}`, instead of a root element) - orta
+
 ## 0.1.1
 
 - Fix install paths for libDanger when using homebrew - orta

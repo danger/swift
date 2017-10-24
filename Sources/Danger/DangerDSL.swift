@@ -4,6 +4,12 @@ import Foundation
 
 // MARK: - DangerDSL
 
+public struct DSL: Decodable {
+
+    public let danger: DangerDSL
+
+}
+
 public struct DangerDSL: Decodable {
 
     public let git: Git

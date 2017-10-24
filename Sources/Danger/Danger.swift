@@ -9,7 +9,7 @@ import Foundation
 // MARK: - DangerRunner
 
 private final class DangerRunner {
-    let version = "0.1.1"
+    let version = "0.2.0"
 
     static let shared = DangerRunner()
 
@@ -35,7 +35,7 @@ private final class DangerRunner {
 
         do {
             let decoder = JSONDecoder()
-            dsl = try decoder.decode(DangerDSL.self, from: dslJSONContents)
+            dsl = try decoder.decode(DSL.self, from: dslJSONContents).danger
 
         } catch let error {
             print("Failed to parse JSON:")
