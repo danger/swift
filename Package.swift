@@ -10,9 +10,12 @@ let package = Package(
         .library(name: "Danger", type: .dynamic, targets: ["Danger"]),
         .executable(name: "danger-swift", targets: ["Runner"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/xcodeswift/xcproj.git", .upToNextMajor(from: "1.0.0")),
+    ],
     targets: [
         .target(name: "Danger", dependencies: []),
-        .target(name: "Runner", dependencies: ["Danger"]),
+        .target(name: "Runner", dependencies: ["Danger", "xcproj"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger"]),
     ],
     swiftLanguageVersions: [4]
