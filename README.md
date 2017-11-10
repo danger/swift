@@ -34,7 +34,7 @@ In your CI:
 
 ```sh
 # Setup
-npm install -g danger@alpha           # Get DangerJS
+npm install -g danger                 # Get DangerJS
 brew install danger/tap/danger-swift  # Install danger-swift locally
 
 # Script
