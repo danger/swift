@@ -2,6 +2,8 @@
 
 * Add your own contributions to the next release on the line below this, please include your name too. Please don't set a new version if you are the first to make the section for `master`.
 
+- Supports the command: `danger-swift edit` to generate an Xcodeproj which you can edit your Dangerfile in with docs etc. - orta
+
 ## 0.2.0
 
 - Support the beta formatting of the JSON DSL ( it now is `{ "danger": { [DSL] }}`, instead of a root element) - orta

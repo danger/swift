@@ -1,0 +1,98 @@
+import Foundation
+import Danger
+
+func runDanger() -> Void {
+    // Pull in the JSON from Danger JS
+    let standardInput = FileHandle.standardInput
+    let input = standardInput.readDataToEndOfFile()
+
+    // Set up some example paths for us to work with
+    let path = NSTemporaryDirectory()
+    let dslJSONPath = path + "danger-dsl.json"
+    let dangerResponsePath = path + "danger-response.json"
+
+    let fileManager = FileManager.default
+
+    // Create the DSL JSON file for the the runner to read from
+    if !fileManager.createFile(atPath: dslJSONPath, contents: input, attributes: nil) {
+        print("Could not create a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
+        exit(1)
+    }
+
+    // Exit if a dangerfile was not found at any supported path
+    guard let dangerfilePath = Runtime.getDangerfile() else {
+        print("Could not find a Dangerfile")
+        print("Please use a supported path: \(Runtime.supportedPaths)")
+        exit(1)
+    }
+
+    guard let libPath = Runtime.getLibDangerPath() else {
+        print("Could not find a libDanger to link against at any of: \(Runtime.potentialLibraryFolders)")
+        print("Or via Homebrew, or Marathon")
+        exit(1)
+    }
+
+    // Example commands:
+    //
+    //
+    // ## Run the full system:
+    // swift build; env DANGER_GITHUB_API_TOKEN='MY_TOKEN' DANGER_FAKE_CI="YEP" DANGER_TEST_REPO='artsy/eigen' DANGER_TEST_PR='2408' danger process .build/debug/danger-swift --verbose --text-only
+    //
+    // ## Run compilation and eval of the Dangerfile:
+    // swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json fixtures/response_data.json
+    //
+    // ## Run Danger Swift with a fixture'd JSON file
+    // swift build; cat fixtures/eidolon_609.json  | ./.build/debug/danger-swift
+
+    var args = [String]()
+    args += ["--driver-mode=swift"] // Eval in swift mode, I think?
+    args += ["-L", libPath] // Find libs inside this folder
+    args += ["-I", libPath] // Find libs inside this folder
+    args += ["-lDanger"] // Eval the code with the Target Danger added
+    args += [dangerfilePath] // The Dangerfile
+    args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
+    args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
+
+    // This ain't optimal, but SwiftPM have _so much code_ around this.
+    // So maybe there's a better way
+    let supportedSwiftCPaths = ["/home/travis/.swiftenv/shims/swiftc", "/usr/bin/swiftc"]
+    let swiftCPath = supportedSwiftCPaths.first { fileManager.fileExists(atPath: $0) }
+    let swiftC = swiftCPath != nil ? swiftCPath! : "swiftc"
+
+    print("Running: \(swiftC) \(args.joined(separator: " "))")
+
+    // Create a process to eval the Swift file
+    let proc = Process()
+    proc.launchPath = swiftC
+    proc.arguments = args
+
+    let standardOutput = FileHandle.standardOutput
+    proc.standardOutput = standardOutput
+    proc.standardError = standardOutput
+
+    proc.launch()
+    proc.waitUntilExit()
+
+    if (proc.terminationStatus != 0) {
+        print("Dangerfile eval failed at \(dangerfilePath)")
+    }
+
+    // Pull out the results JSON that the Danger eval should generate
+    guard let results = fileManager.contents(atPath: dangerResponsePath) else {
+        print("Could not get the results JSON file at \(dangerResponsePath)")
+        // Clean up after ourselves
+        try? fileManager.removeItem(atPath: dslJSONPath)
+        try? fileManager.removeItem(atPath: dangerResponsePath)
+        exit(1)
+    }
+
+    // Take JSON and pipe it back to SDTOUT for DangerJS to read
+    standardOutput.write(results)
+
+    // Clean up after ourselves
+    try? fileManager.removeItem(atPath: dslJSONPath)
+    try? fileManager.removeItem(atPath: dangerResponsePath)
+
+    // Return the same error code as the compilation
+    exit(proc.terminationStatus)
+}
