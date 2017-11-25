@@ -10,9 +10,12 @@ let package = Package(
         .library(name: "Danger", type: .dynamic, targets: ["Danger"]),
         .executable(name: "danger-swift", targets: ["Runner"])
     ],
+    dependencies: [
+        .package(url: "https://github.com/JohnSundell/Marathon.git", .branch("edit_edit")),
+    ],
     targets: [
         .target(name: "Danger", dependencies: []),
-        .target(name: "Runner", dependencies: ["Danger"]),
+        .target(name: "Runner", dependencies: ["Danger", "MarathonCore"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger"]),
     ],
     swiftLanguageVersions: [4]
