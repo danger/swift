@@ -1,32 +1,21 @@
 import Foundation
 import Files
+import Danger
 
 @testable import MarathonCore
 
-//internal final class DangerfileEditTask: Task, Executable {
-//    private typealias Error = EditError
-//
-//    // MARK: - Executable
-//
-//    func execute() throws {
-//        let script = try scriptManager.script(atPath: "Dangerfile.swift", allowRemote: false)
-//        try script.edit(arguments: arguments, open: true)
-//    }
-//}
-
-
 func editDanger() throws -> Void {
-//    let task = DangerfileEditTask(folder: ".", arguments: [], scriptManager: <#T##ScriptManager#>, packageManager: <#T##PackageManager#>, printer: <#T##Printer#>)
-//    let script = try scriptManager.script(atPath: "Dangerfile.swift", allowRemote: false)
-//    try script.edit(arguments: [], open: true)
     let arguments: [String] = CommandLine.arguments
     let folderPath = "~/.danger-swift"
     let printFunction = { print($0) }
+    let vPrintFunction = { (messageExpression: () -> String) in
+        print(messageExpression())
+    }
 
     let printer = Printer(
         outputFunction: printFunction,
-        progressFunction: printFunction,
-        verboseFunction: printFunction
+        progressFunction: vPrintFunction,
+        verboseFunction: vPrintFunction
     )
     let fileSystem = FileSystem()
 
@@ -37,50 +26,41 @@ func editDanger() throws -> Void {
     let packageManager = try PackageManager(folder: packageFolder, printer: printer)
     let scriptManager = try ScriptManager(folder: scriptFolder, packageManager: packageManager, printer: printer)
 
-    let script = try scriptManager.script(atPath: "Dangerfile.swift", allowRemote: true)
+    // Exit if a dangerfile was not found at any supported path
+    guard let dangerfilePath = Runtime.getDangerfile() else {
+        print("Could not find a Dangerfile")
+        print("Please use a supported path: \(Runtime.supportedPaths)")
+        exit(1)
+    }
+
+    guard let libPath = Runtime.getLibDangerPath() else {
+        print("Could not find a libDanger to link against at any of: \(Runtime.potentialLibraryFolders)")
+        print("Or via Homebrew, or Marathon")
+        exit(1)
+    }
+
+    let letAbsoluteLibPath = try Folder(path: libPath).path
+
+    let script = try scriptManager.script(atPath: dangerfilePath, allowRemote: true)
     let xcodeprojPath = try script.setupForEdit(arguments: arguments)
 
-//    let xcodeproj = try File(path: xcodeprojPath)
-    let pbxproj = try File(path: xcodeprojPath  + "project.pbxproj")
-    let content = try pbxproj.readAsString()
-    let newContent = content.replacingOccurrences(of: "-DXcode\",", with: "-DXcode\", \"-I\", \"/Users/orta/dev/projects/danger/danger-swift/.build/debug\"")
-    try pbxproj.write(string:newContent)
-
-//    let copy = try moduleFolder.createFile(named: dependencyScriptFile.name)
-//    try copy.write(data: dependencyScriptFile.read())
-
-
-    print(pbxproj)
-
-    try script.watch(arguments: arguments)
-
-//    }
-//    // TODO: Split this \/ into two functions, one that generates the xcodeproj
-//    //       and another that opens it
-//    try script.edit(arguments: arguments, open: true)
-
-// Before
+// Before:
 //    OTHER_SWIFT_FLAGS = (
 //        "-DXcode",
 //    );
-
-// After
+//
+// After:
 //    OTHER_SWIFT_FLAGS = (
 //        "-I",
 //        "/Users/orta/dev/projects/danger/danger-swift/.build/debug",
 //        "-DXcode",
 //    );
 
-    print("OK")
-
+//  This is so we can dynamically link the danger library to the runtime generated xcodeproj
+    let pbxproj = try File(path: xcodeprojPath  + "project.pbxproj")
+    let content = try pbxproj.readAsString()
+    let newContent = content.replacingOccurrences(of: "-DXcode\",", with: "-DXcode\", \"-I\", \"\(letAbsoluteLibPath)\"")
+    
+    try pbxproj.write(string:newContent)
+    try script.watch(arguments: arguments)
 }
-
-
-//func makePrinter(using printFunction: @escaping PrintFunction,
-//                                command: Command,
-//                                arguments: [String]) -> Printer {
-//    let progressFunction = makeProgressPrintingFunction(using: printFunction, command: command, arguments: arguments)
-//    let verboseFunction = makeVerbosePrintingFunction(using: progressFunction, arguments: arguments)
-//
-//}
-
