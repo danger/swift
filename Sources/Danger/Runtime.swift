@@ -3,7 +3,7 @@ import Foundation
 //  Bunch of Danger runtime util funcs
 
 public struct Runtime {
-    public static let supportedPaths = ["Dangerfile.swift", "danger/Dangerfile.swift", "Danger/Dangerfile.swift"]
+    public static let supportedPaths = ["Dangerfile.swift", "Danger.swift", "danger/Dangerfile.swift", "Danger/Dangerfile.swift"]
 
     /// Finds a Dangerfile from the current working directory
     public static func getDangerfile() -> String? {

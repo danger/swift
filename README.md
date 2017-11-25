@@ -60,7 +60,6 @@ make install
 #### What are the next big steps?
 
 - Add tests
-- Create throwaway Xcode projects for [editing the Dangerfile](https://github.com/danger/danger-swift/issues/10)
 - Add an [API client for GitHub](https://github.com/danger/danger-swift/issues/17)
 - Improve error handling
 - Write docs for end-users with examples
@@ -70,17 +69,13 @@ make install
 
 ### Dangerfile.swift
 
-Creating a `Dangerfile.swift` is a bit tricky, because it relies on a library target which isn't available by default. 
-Ideally we add a command to create a temporary Danger Xcodeproject with the right settings for editing with docs + tools.
+Setting up: 
 
-In the meantime, I'd recommend cloning this repo, creating the xcode project and then dragging in this repo's 
-`Dangerfile.swift` and editing that to be what you want.
+1. Install Danger Swift: `brew install danger/tap/danger-swift`.
+1. Create a `Dangerfile.swift` in your project root: `touch Dangerfile.swift`.
+1. Edit the dangerfile: `danger-swift edit`.
 
-```sh
-git clone https://github.com/danger/danger-swift.git
-swift package generate-xcodeproj
-open Danger.xcodeproj
-```
+This will pop up a temporary Xcode project set up for editing a Swift Dangerfile. 
 
 #### How it works
 
