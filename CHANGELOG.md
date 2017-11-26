@@ -3,6 +3,20 @@
 * Add your own contributions to the next release on the line below this, please include your name too. Please don't set a new version if you are the first to make the section for `master`.
 
 - Supports the command: `danger-swift edit` to generate an Xcodeproj which you can edit your Dangerfile in with docs etc. - orta
+- Adds plugin infrastructure to `danger-swift`.
+
+  There aren't any plugins yet, but there is infrastructure for them. By suffixing `package: [url]` to any import,
+  you can directly import Swift PM package as a dependency, which is basically how plugins will work.
+
+  So, one of these days:
+
+  ```swift
+  import SwiftLint // package: https://github.com/danger/DangerSwiftLint.git
+
+  SwiftLint.lint(danger)
+  ```
+  
+  - orta
 
 ## 0.2.0
 
