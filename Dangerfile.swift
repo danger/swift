@@ -1,3 +1,5 @@
+import Files // package: https://github.com/JohnSundell/Files.git
+
 import Foundation
 import Danger
 

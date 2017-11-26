@@ -20,7 +20,6 @@ if !changelogChanged && sourceChanges != nil {
 
 
 // You can use these functions to send feedback:
-
 message("Highlight something in the table")
 warn("Something pretty bad, but not important enough to fail the build")
 fail("Something that must be changed")
@@ -34,7 +33,7 @@ In your CI:
 
 ```sh
 # Setup
-npm install -g danger@alpha           # Get DangerJS
+npm install -g danger                 # Get DangerJS
 brew install danger/tap/danger-swift  # Install danger-swift locally
 
 # Script
@@ -63,8 +62,6 @@ make install
 - Add an [API client for GitHub](https://github.com/danger/danger-swift/issues/17)
 - Improve error handling
 - Write docs for end-users with examples
-- Get some other projects using Danger Swift
-- Think about what a plugin infrastructure could look like (e.g. [Danger Swiftlint](https://github.com/ashfurrow/danger-swiftlint))
 - Look into the `Class SwiftObject is implemented in both [x], [y]` runtime error, [probably this](https://bugs.swift.org/browse/SR-1060)
 
 ### Dangerfile.swift
@@ -76,6 +73,19 @@ Setting up:
 1. Edit the dangerfile: `danger-swift edit`.
 
 This will pop up a temporary Xcode project set up for editing a Swift Dangerfile. 
+
+#### Plugins
+
+There aren't any plugins yet, but there is infrastructure for them. By suffixing `package: [url]` to an import,
+you can directly import Swift PM package as a dependency, which is basically how plugins will work.
+
+So, one of these days:
+
+```swift
+import SwiftLint // package: https://github.com/danger/DangerSwiftLint.git
+
+SwiftLint.lint(danger)
+```
 
 #### How it works
 

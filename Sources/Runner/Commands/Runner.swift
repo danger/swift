@@ -1,17 +1,19 @@
 import Foundation
 import Danger
 
-func runDanger() -> Void {
+import Files
+@testable import MarathonCore
+
+func runDanger() throws -> Void {
     // Pull in the JSON from Danger JS
     let standardInput = FileHandle.standardInput
     let input = standardInput.readDataToEndOfFile()
+    let fileManager = FileManager.default
 
     // Set up some example paths for us to work with
     let path = NSTemporaryDirectory()
     let dslJSONPath = path + "danger-dsl.json"
     let dangerResponsePath = path + "danger-response.json"
-
-    let fileManager = FileManager.default
 
     // Create the DSL JSON file for the the runner to read from
     if !fileManager.createFile(atPath: dslJSONPath, contents: input, attributes: nil) {
@@ -26,10 +28,38 @@ func runDanger() -> Void {
         exit(1)
     }
 
-    guard let libPath = Runtime.getLibDangerPath() else {
+    guard let libDangerPath = Runtime.getLibDangerPath() else {
         print("Could not find a libDanger to link against at any of: \(Runtime.potentialLibraryFolders)")
         print("Or via Homebrew, or Marathon")
         exit(1)
+    }
+
+    var libArgs: [String] = []
+    libArgs += ["-L", libDangerPath] // Link to libDanger inside this folder
+    libArgs += ["-I", libDangerPath] // Find libDanger inside this folder
+
+    // Set up plugin infra
+    let importsOnly =  try File(path: dangerfilePath).readAsString()
+    let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") }
+
+    if (importExternalDeps.count > 0) {
+        try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
+        let tempDangerfile = try File(path: "_dangerfile_imports.swift")
+        try tempDangerfile.write(string: importExternalDeps.joined(separator: "\n"))
+        defer { try? tempDangerfile.delete() }
+
+        let scriptManager = try getScriptManager()
+        let script = try scriptManager.script(atPath: tempDangerfile.path, allowRemote: true)
+
+        try script.build()
+        let marathonPath = script.folder.path
+        let artifactPaths = [".build/debug", ".build/release"]
+
+        let marathonLibPath = artifactPaths.first(where: { fileManager.fileExists(atPath: marathonPath + $0 ) })
+        if marathonLibPath != nil {
+            libArgs += ["-L", marathonPath + marathonLibPath!]
+            libArgs += ["-I", marathonPath + marathonLibPath!]
+        }
     }
 
     // Example commands:
@@ -46,12 +76,14 @@ func runDanger() -> Void {
 
     var args = [String]()
     args += ["--driver-mode=swift"] // Eval in swift mode, I think?
-    args += ["-L", libPath] // Find libs inside this folder
-    args += ["-I", libPath] // Find libs inside this folder
+    args += ["-L", libDangerPath] // Find libs inside this folder
+    args += ["-I", libDangerPath] // Find libs inside this folder
     args += ["-lDanger"] // Eval the code with the Target Danger added
+    args += libArgs
     args += [dangerfilePath] // The Dangerfile
     args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
     args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
+
 
     // This ain't optimal, but SwiftPM have _so much code_ around this.
     // So maybe there's a better way
