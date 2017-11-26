@@ -1,8 +1,8 @@
 import Foundation
-import Files
 import Danger
 
-@testable import MarathonCore
+import Files
+import MarathonCore
 
 func editDanger() throws -> Void {
     
