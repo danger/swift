@@ -1,5 +1,5 @@
 import Files
-@testable import MarathonCore
+import MarathonCore
 
 func getScriptManager() throws -> ScriptManager {
     let folder = "~/.danger-swift"

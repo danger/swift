@@ -2,7 +2,7 @@ import Foundation
 import Danger
 
 import Files
-@testable import MarathonCore
+import MarathonCore
 
 func runDanger() throws -> Void {
     // Pull in the JSON from Danger JS
