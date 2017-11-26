@@ -117,6 +117,10 @@ If you want to emulate how DangerJS's `process` will work entirely, then use:
 swift build && cat fixtures/eidolon_609.json | ./.build/debug/danger-swift
 ```
 
+#### Deploying
+
+
+
 ### Long-term
 
 I, orta, only plan on bootstrapping this project, as I won't be using this in production. I'm happy to help support others who want to own this idea and really make it shine though! So if you're interested in helping out, make a few PRs and I'll give you org access.
