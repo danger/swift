@@ -2,7 +2,7 @@ import Files
 @testable import MarathonCore
 
 func getScriptManager() throws -> ScriptManager {
-    let folder = try Folder.temporary.createSubfolder(named: ".danger-swift")
+    let folder = "~/.danger-swift"
     let printFunction = { print($0) }
     let vPrintFunction = { (messageExpression: () -> String) in
         print(messageExpression())
@@ -15,7 +15,7 @@ func getScriptManager() throws -> ScriptManager {
     )
     let fileSystem = FileSystem()
     
-    let rootFolder = try fileSystem.createFolderIfNeeded(at: folder.path)
+    let rootFolder = try fileSystem.createFolderIfNeeded(at: folder)
     let packageFolder = try rootFolder.createSubfolderIfNeeded(withName: "Packages")
     let scriptFolder = try rootFolder.createSubfolderIfNeeded(withName: "Scripts")
     
