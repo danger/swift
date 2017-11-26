@@ -119,7 +119,12 @@ swift build && cat fixtures/eidolon_609.json | ./.build/debug/danger-swift
 
 #### Deploying
 
-
+1. Update the CHANGELOG entry
+1. Commit the changes
+1. Create a git tag for the version
+1. Wait a second, run `make get_sha` to grab the SHA
+1. Edit the [brew formula](https://github.com/danger/homebrew-tap/edit/master/danger-swift.rb) with the new SHA/version
+1. Announce
 
 ### Long-term
 
