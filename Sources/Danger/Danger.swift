@@ -28,13 +28,14 @@ private final class DangerRunner {
             exit(1)
         }
 
-        guard let dslJSONContents = FileManager.default.contents(atPath: dslJSONPath) else {
+        guard var dslJSONContents = FileManager.default.contents(atPath: dslJSONPath) else {
             print("could not find DSL JSON at path: \(dslJSONPath)")
             exit(1)
         }
 
         do {
             let decoder = JSONDecoder()
+            stripToplevelObject(&dslJSONContents)
             dsl = try decoder.decode(DSL.self, from: dslJSONContents).danger
 
         } catch let error {
@@ -82,6 +83,34 @@ public func markdown(_ message: String) {
 }
 
 // MARK: - Private Functions
+
+private func stripToplevelObject(_ data: inout Data) {
+
+    var seenOpenBracket = false
+
+    while let byte = data.first {
+        // { == 123
+        if byte == 123 {
+            if !seenOpenBracket {
+                seenOpenBracket = true
+                data.removeFirst()
+                continue
+            } else {
+                break
+            }
+        }
+        data.removeFirst()
+    }
+
+    while let byte = data.last {
+        // } == 125
+        if byte == 125 {
+            data.removeLast()
+            break
+        }
+        data.removeLast()
+    }
+}
 
 private var dumpInfo: (danger: DangerRunner, path: String)?
 
