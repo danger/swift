@@ -5,13 +5,20 @@ import Files
 import MarathonCore
 
 func editDanger() throws -> Void {
-    
-    // Exit if a dangerfile was not found at any supported path
-    guard let dangerfilePath = Runtime.getDangerfile() else {
-        print("Could not find a Dangerfile")
-        print("Please use a supported path: \(Runtime.supportedPaths)")
-        exit(1)
+
+    let createDangerfile = { () -> String in
+        do {
+            let template = "import Danger \n let danger = Danger()"
+            let data = template.data(using: .utf8)!
+            return try FileSystem().createFile(at: "Dangerfile.swift", contents: data).path
+        } catch {
+            print("Could not find or generate a Dangerfile")
+            exit(1)
+        }
     }
+
+    // If dangerfile was not found, attempt to create one at Dangerfile.swift
+    let dangerfilePath = Runtime.getDangerfile() ?? createDangerfile()
 
     guard let libPath = Runtime.getLibDangerPath() else {
         print("Could not find a libDanger to link against at any of: \(Runtime.potentialLibraryFolders)")
