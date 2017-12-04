@@ -69,10 +69,9 @@ make install
 Setting up: 
 
 1. Install Danger Swift: `brew install danger/tap/danger-swift`.
-1. Create a `Dangerfile.swift` in your project root: `touch Dangerfile.swift`.
-1. Edit the dangerfile: `danger-swift edit`.
+1. Edit the dangerfile: `danger-swift edit`. 
 
-This will pop up a temporary Xcode project set up for editing a Swift Dangerfile. 
+This will make a `Dangerfile.swift` for you., then pop up a temporary Xcode project set up for editing a Swift Dangerfile.
 
 #### Plugins
 
