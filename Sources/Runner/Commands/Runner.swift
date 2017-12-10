@@ -59,6 +59,7 @@ func runDanger() throws -> Void {
         if marathonLibPath != nil {
             libArgs += ["-L", marathonPath + marathonLibPath!]
             libArgs += ["-I", marathonPath + marathonLibPath!]
+            libArgs += ["-lMarathonDependencies"]
         }
     }
 

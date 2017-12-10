@@ -2,6 +2,7 @@
 
 * Add your own contributions to the next release on the line below this, please include your name too. Please don't set
   a new version if you are the first to make the section for `master`.
+* Adds linker flag to link against Marathon dependencies. See https://github.com/JohnSundell/Marathon/pull/153.
 
 ## 0.3.0
 
