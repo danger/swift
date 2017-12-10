@@ -58,18 +58,18 @@ make install
 
 #### What are the next big steps?
 
-- Add tests
-- Add an [API client for GitHub](https://github.com/danger/danger-swift/issues/17)
-- Improve error handling
-- Write docs for end-users with examples
-- Look into the `Class SwiftObject is implemented in both [x], [y]` runtime error, [probably this](https://bugs.swift.org/browse/SR-1060)
+* Add tests
+* Add an [API client for GitHub](https://github.com/danger/danger-swift/issues/17)
+* Improve error handling
+* Write docs for end-users with examples
+* Look into the `Class SwiftObject is implemented in both [x], [y]` runtime error, [probably this](https://bugs.swift.org/browse/SR-1060)
 
 ### Dangerfile.swift
 
-Setting up: 
+Setting up:
 
 1. Install Danger Swift: `brew install danger/tap/danger-swift`.
-1. Edit the dangerfile: `danger-swift edit`. 
+1. Edit the dangerfile: `danger-swift edit`.
 
 This will make a `Dangerfile.swift` for you., then pop up a temporary Xcode project set up for editing a Swift Dangerfile.
 
@@ -135,8 +135,8 @@ swift build && cat fixtures/eidolon_609.json | ./.build/debug/danger-swift
 #### Deploying
 
 1. Update the CHANGELOG entry
-1. Commit the changes
 1. Edit the makefile with the version
+1. Commit the changes
 1. Create a git tag for the version
 1. Wait a second, run `make get_sha` to grab the SHA
 1. Edit the [brew formula](https://github.com/danger/homebrew-tap/edit/master/danger-swift.rb) with the new SHA/version
