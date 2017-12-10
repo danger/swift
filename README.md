@@ -75,15 +75,31 @@ This will make a `Dangerfile.swift` for you., then pop up a temporary Xcode proj
 
 #### Plugins
 
-There aren't any plugins yet, but there is infrastructure for them. By suffixing `package: [url]` to an import,
-you can directly import Swift PM package as a dependency, which is basically how plugins will work.
+Infrastructure exists to support plugins, which can help you avoid repeating the same Danger rules across separate repos. By
+suffixing `package: [url]` to an import, you can directly import Swift PM package as a dependency(through [Marathon][m]), which is basically how plugins work.
 
-So, one of these days:
+For example, a plugin could be used by the following.
 
 ```swift
-import SwiftLint // package: https://github.com/danger/DangerSwiftLint.git
+// Dangerfile.swift
 
-SwiftLint.lint(danger)
+import DangerPlugin // package: https://github.com/username/DangerPlugin.git
+
+DangerPlugin.doYourThing()
+```
+
+And could be implemented with the following.
+
+```swift
+// DangerPlugin.swift
+import Danger
+
+public struct DangerPlugin {
+    static let danger = Danger()
+    public static func doYourThing() {
+        // Code goes here
+    }
+}
 ```
 
 #### How it works
@@ -130,6 +146,6 @@ swift build && cat fixtures/eidolon_609.json | ./.build/debug/danger-swift
 
 I, orta, only plan on bootstrapping this project, as I won't be using this in production. I'm happy to help support others who want to own this idea and really make it shine though! So if you're interested in helping out, make a few PRs and I'll give you org access.
 
-[m]: https://github.com/JohnSundell/Marathon/issues/59
+[m]: https://github.com/JohnSundell/Marathon
 [spm-lr]: http://bhargavg.com/swift/2016/06/11/how-swiftpm-parses-manifest-file.html
 [dsl]: https://github.com/danger/danger-js/pull/341
