@@ -1,6 +1,5 @@
 {
   "danger": {
-    "danger": {
       "git": {
         "modified_files": [
           ".travis.yml",
@@ -2045,5 +2044,4 @@
         "cliArgs": {}
       }
     }
-  }
 }
