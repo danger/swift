@@ -34,7 +34,19 @@ private final class DangerRunner {
         }
 
         do {
+            let string = String(data: dslJSONContents, encoding: .utf8)
+            print(string!)
+
             let decoder = JSONDecoder()
+            if #available(OSX 10.12, *) {
+                decoder.dateDecodingStrategy = .iso8601
+            } else {
+                let dateFormatter = DateFormatter()
+                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+                dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
+                decoder.dateDecodingStrategy = .formatted(dateFormatter)
+            }
             dsl = try decoder.decode(DSL.self, from: dslJSONContents).danger
 
         } catch let error {

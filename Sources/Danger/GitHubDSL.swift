@@ -44,6 +44,7 @@ public struct GitHubPR: Decodable {
         case user
         case assignee
         case assignees
+        case milestone
         case additions
         case deletions
         case state
@@ -91,17 +92,17 @@ public struct GitHubPR: Decodable {
     /// The users who are assigned to the pull request.
     public let assignees: [GitHubUser]
 
-    /// The ISO6801 date string for when the pull request was created.
-    public let createdAt: String
+    /// The ISO8601 date string for when the pull request was created.
+    public let createdAt: Date
 
-    /// The ISO6801 date string for when the pull request was updated.
-    public let updatedAt: String
+    /// The ISO8601 date string for when the pull request was updated.
+    public let updatedAt: Date
 
-    /// The ISO6801 date string for when the pull request was closed.
-    public let closedAt: String?
+    /// The ISO8601 date string for when the pull request was closed.
+    public let closedAt: Date?
 
-    /// The ISO6801 date string for when the pull request was merged.
-    public let mergedAt: String?
+    /// The ISO8601 date string for when the pull request was merged.
+    public let mergedAt: Date?
 
     /// The merge reference for the _other_ repo.
     public let head: GitHubMergeRef
@@ -135,6 +136,9 @@ public struct GitHubPR: Decodable {
 
     /// The number of files changed in the pull request.
     public let changedFiles: Int
+
+    /// The milestone of the pull request
+    public let milestone: GitHubMilestone?
 
 }
 
@@ -311,12 +315,14 @@ public struct GitHubIssue: Decodable {
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
+        case id
         case number
         case title
         case user
         case state
         case assignee
         case assignees
+        case milestone
         case body
         case labels
         case commentCount = "comments"
@@ -335,6 +341,9 @@ public struct GitHubIssue: Decodable {
     }
 
     // MARK: - Properties
+
+    /// The id number of the issue
+    public let id: Int
 
     /// The number of the issue.
     public let number: Int
@@ -363,14 +372,17 @@ public struct GitHubIssue: Decodable {
     /// The users who are assigned to the issue.
     public let assignees: [GitHubUser]
 
-    /// The ISO6801 date string for when the issue was created.
-    public let createdAt: String
+    /// The milestone of this issue
+    public let milestone: GitHubMilestone?
 
-    /// The ISO6801 date string for when the issue was updated.
-    public let updatedAt: String
+    /// The ISO8601 date string for when the issue was created.
+    public let createdAt: Date
 
-    /// The ISO6801 date string for when the issue was closed.
-    public let closedAt: String?
+    /// The ISO8601 date string for when the issue was updated.
+    public let updatedAt: Date
+
+    /// The ISO8601 date string for when the issue was closed.
+    public let closedAt: Date?
 
     /// The labels associated with this issue.
     public let labels: [GitHubIssueLabel]
@@ -397,6 +409,70 @@ public struct GitHubIssueLabel: Decodable {
 
 }
 
+// MARK: - GitHubMilestone
 
+public struct GitHubMilestone: Decodable {
 
+    // MARK: - CodingKeys
 
+    enum CodingKeys: String, CodingKey {
+        case closedAt = "closed_at"
+        case closedIssues = "closed_issues"
+        case createdAt = "created_at"
+        case creator = "creator"
+        case description = "description"
+        case dueOn = "due_on"
+        case id = "id"
+        case number = "number"
+        case openIssues = "open_issues"
+        case state = "state"
+        case title = "title"
+        case updatedAt = "updated_at"
+    }
+
+    // MARK: - MilestoneState
+
+    public enum MilestoneState: String, Decodable {
+        case open
+        case closed
+        case all
+    }
+
+    // MARK: - Properties
+
+    /// The id number of this milestone
+    let id: Int
+
+    /// The number of this milestone
+    let number: Int
+
+    /// The state of this milestone: open, closed, all
+    let state: MilestoneState
+
+    /// The title of this milestone
+    let title: String
+
+    /// The description of this milestone.
+    let description: String
+
+    /// The user who created this milestone.
+    let creator: GitHubUser
+
+    /// The number of open issues in this milestone
+    let openIssues: Int
+
+    /// The number of closed issues in this milestone
+    let closedIssues: Int
+
+    /// The ISO8601 date string for when this milestone was created.
+    let createdAt: Date
+
+    /// The ISO8601 date string for when this milestone was updated.
+    let updatedAt: Date
+
+    /// The ISO8601 date string for when this milestone was closed.
+    let closedAt: Date?
+
+    /// The ISO8601 date string for the due of this milestone.
+    let dueOn: Date?
+}
