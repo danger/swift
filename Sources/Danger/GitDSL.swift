@@ -64,7 +64,7 @@ public struct GitCommitAuthor: Decodable {
     /// The email for the author.
     public let email: String
 
-    /// The ISO6801 date string for the commit.
+    /// The ISO8601 date string for the commit.
     public let date: String
 
 }

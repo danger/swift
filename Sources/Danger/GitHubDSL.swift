@@ -91,16 +91,16 @@ public struct GitHubPR: Decodable {
     /// The users who are assigned to the pull request.
     public let assignees: [GitHubUser]
 
-    /// The ISO6801 date string for when the pull request was created.
+    /// The ISO8601 date string for when the pull request was created.
     public let createdAt: Date
 
-    /// The ISO6801 date string for when the pull request was updated.
+    /// The ISO8601 date string for when the pull request was updated.
     public let updatedAt: Date
 
-    /// The ISO6801 date string for when the pull request was closed.
+    /// The ISO8601 date string for when the pull request was closed.
     public let closedAt: Date?
 
-    /// The ISO6801 date string for when the pull request was merged.
+    /// The ISO8601 date string for when the pull request was merged.
     public let mergedAt: Date?
 
     /// The merge reference for the _other_ repo.
@@ -363,14 +363,14 @@ public struct GitHubIssue: Decodable {
     /// The users who are assigned to the issue.
     public let assignees: [GitHubUser]
 
-    /// The ISO6801 date string for when the issue was created.
-    public let createdAt: String
+    /// The ISO8601 date string for when the issue was created.
+    public let createdAt: Date
 
-    /// The ISO6801 date string for when the issue was updated.
-    public let updatedAt: String
+    /// The ISO8601 date string for when the issue was updated.
+    public let updatedAt: Date
 
-    /// The ISO6801 date string for when the issue was closed.
-    public let closedAt: String?
+    /// The ISO8601 date string for when the issue was closed.
+    public let closedAt: Date?
 
     /// The labels associated with this issue.
     public let labels: [GitHubIssueLabel]
