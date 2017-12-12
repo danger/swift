@@ -468,7 +468,7 @@ public struct GitHubMilestone: Decodable {
     let createdAt: Date
 
     /// The ISO8601 date string for when this milestone was updated.
-    let updatedAt: String
+    let updatedAt: Date
 
     /// The ISO8601 date string for when this milestone was closed.
     let closedAt: Date?
