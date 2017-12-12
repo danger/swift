@@ -92,16 +92,16 @@ public struct GitHubPR: Decodable {
     public let assignees: [GitHubUser]
 
     /// The ISO6801 date string for when the pull request was created.
-    public let createdAt: String
+    public let createdAt: Date
 
     /// The ISO6801 date string for when the pull request was updated.
-    public let updatedAt: String
+    public let updatedAt: Date
 
     /// The ISO6801 date string for when the pull request was closed.
-    public let closedAt: String?
+    public let closedAt: Date?
 
     /// The ISO6801 date string for when the pull request was merged.
-    public let mergedAt: String?
+    public let mergedAt: Date?
 
     /// The merge reference for the _other_ repo.
     public let head: GitHubMergeRef
