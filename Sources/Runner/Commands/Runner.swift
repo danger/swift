@@ -86,7 +86,7 @@ func runDanger(logger: Logger) throws -> Void {
     args += [dangerfilePath] // The Dangerfile
     args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
     args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
-
+    args += Array(CommandLine.arguments.dropFirst())
 
     // This ain't optimal, but SwiftPM have _so much code_ around this.
     // So maybe there's a better way
