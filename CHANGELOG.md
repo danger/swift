@@ -4,6 +4,7 @@
   a new version if you are the first to make the section for `master`.
 * Add milestone model to issue and pull request. - d-date
 * Change date string type from `String` to `Date` using `iso8601` date decoding strategy. - d-date
+* Adds the `Logger` struct together with the `--verbose` and `--silent` arguments - rockbruno
 
 ## 0.3.1
 
