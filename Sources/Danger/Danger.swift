@@ -21,8 +21,9 @@ private final class DangerRunner {
         let isVerbose = CommandLine.arguments.contains("--verbose")
         let isSilent = CommandLine.arguments.contains("--silent")
         logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
+
         logger.logInfo("Ran with: \(CommandLine.arguments.joined(separator: " "))")
-        let cliLength = CommandLine.arguments.count
+
         let dslJSONArg: String? = CommandLine.arguments[1]
         let outputJSONPath = CommandLine.arguments[2]
 
