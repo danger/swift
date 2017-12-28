@@ -13,29 +13,32 @@ private final class DangerRunner {
 
     static let shared = DangerRunner()
 
+    let logger: Logger
     let dsl: DangerDSL
     var results = DangerResults()
 
     private init() {
-        print("Ran with: \(CommandLine.arguments.joined(separator: " "))")
+        let isVerbose = CommandLine.arguments.contains("--verbose")
+        let isSilent = CommandLine.arguments.contains("--silent")
+        logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
 
-        let cliLength = CommandLine.arguments.count
-        let dslJSONArg: String? = CommandLine.arguments[cliLength - 2]
-        let outputJSONPath = CommandLine.arguments[cliLength - 1]
+        logger.logInfo("Ran with: \(CommandLine.arguments.joined(separator: " "))")
+
+        let dslJSONArg: String? = CommandLine.arguments[1]
+        let outputJSONPath = CommandLine.arguments[2]
 
         guard let dslJSONPath = dslJSONArg else {
-            print("could not find DSL JSON arg")
+            logger.logError("could not find DSL JSON arg")
             exit(1)
         }
 
         guard let dslJSONContents = FileManager.default.contents(atPath: dslJSONPath) else {
-            print("could not find DSL JSON at path: \(dslJSONPath)")
+            logger.logError("could not find DSL JSON at path: \(dslJSONPath)")
             exit(1)
         }
-
         do {
             let string = String(data: dslJSONContents, encoding: .utf8)
-            print(string!)
+            logger.logInfo(string!, isVerbose: true)
 
             let decoder = JSONDecoder()
             if #available(OSX 10.12, *) {
@@ -50,8 +53,7 @@ private final class DangerRunner {
             dsl = try decoder.decode(DSL.self, from: dslJSONContents).danger
 
         } catch let error {
-            print("Failed to parse JSON:")
-            print(error)
+            logger.logError("Failed to parse JSON:", error)
             exit(1)
         }
 
@@ -100,20 +102,19 @@ private var dumpInfo: (danger: DangerRunner, path: String)?
 private func dumpResultsAtExit(_ runner: DangerRunner, path: String) {
     func dump() {
         guard let dumpInfo = dumpInfo else { return }
-        print("Sending results back to Danger")
+        dumpInfo.danger.logger.logInfo("Sending results back to Danger")
         do {
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted
             let data = try encoder.encode(dumpInfo.danger.results)
 
             if !FileManager.default.createFile(atPath: dumpInfo.path, contents: data, attributes: nil) {
-                print("Could not create a temporary file for the Dangerfile DSL at: \(dumpInfo.path)")
+                dumpInfo.danger.logger.logError("Could not create a temporary file for the Dangerfile DSL at: \(dumpInfo.path)")
                 exit(0)
             }
 
         } catch let error {
-            print("Failed to generate result JSON:")
-            print(error)
+            dumpInfo.danger.logger.logError("Failed to generate result JSON:", error)
             exit(1)
         }
 

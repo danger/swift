@@ -4,7 +4,7 @@ import Danger
 import Files
 import MarathonCore
 
-func runDanger() throws -> Void {
+func runDanger(logger: Logger) throws -> Void {
     // Pull in the JSON from Danger JS
     let standardInput = FileHandle.standardInput
     let input = standardInput.readDataToEndOfFile()
@@ -14,23 +14,25 @@ func runDanger() throws -> Void {
     let path = NSTemporaryDirectory()
     let dslJSONPath = path + "danger-dsl.json"
     let dangerResponsePath = path + "danger-response.json"
-
     // Create the DSL JSON file for the the runner to read from
     if !fileManager.createFile(atPath: dslJSONPath, contents: input, attributes: nil) {
-        print("Could not create a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
+        logger.logError("Could not create a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
         exit(1)
     }
 
     // Exit if a dangerfile was not found at any supported path
     guard let dangerfilePath = Runtime.getDangerfile() else {
-        print("Could not find a Dangerfile")
-        print("Please use a supported path: \(Runtime.supportedPaths)")
+        logger.logError("Could not find a Dangerfile",
+                        "Please use a supported path: \(Runtime.supportedPaths)",
+                        separator: "\n")
         exit(1)
     }
 
     guard let libDangerPath = Runtime.getLibDangerPath() else {
-        print("Could not find a libDanger to link against at any of: \(Runtime.potentialLibraryFolders)")
-        print("Or via Homebrew, or Marathon")
+        let potentialFolders = Runtime.potentialLibraryFolders
+        logger.logError("Could not find a libDanger to link against at any of: \(potentialFolders)",
+                        "Or via Homebrew, or Marathon",
+                        separator: "\n")
         exit(1)
     }
 
@@ -84,7 +86,7 @@ func runDanger() throws -> Void {
     args += [dangerfilePath] // The Dangerfile
     args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
     args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
-
+    args += Array(CommandLine.arguments.dropFirst())
 
     // This ain't optimal, but SwiftPM have _so much code_ around this.
     // So maybe there's a better way
@@ -92,7 +94,7 @@ func runDanger() throws -> Void {
     let swiftCPath = supportedSwiftCPaths.first { fileManager.fileExists(atPath: $0) }
     let swiftC = swiftCPath != nil ? swiftCPath! : "swiftc"
 
-    print("Running: \(swiftC) \(args.joined(separator: " "))")
+    logger.logInfo("Running: \(swiftC) \(args.joined(separator: " "))")
 
     // Create a process to eval the Swift file
     let proc = Process()
@@ -107,12 +109,12 @@ func runDanger() throws -> Void {
     proc.waitUntilExit()
 
     if (proc.terminationStatus != 0) {
-        print("Dangerfile eval failed at \(dangerfilePath)")
+        logger.logError("Dangerfile eval failed at \(dangerfilePath)")
     }
 
     // Pull out the results JSON that the Danger eval should generate
     guard let results = fileManager.contents(atPath: dangerResponsePath) else {
-        print("Could not get the results JSON file at \(dangerResponsePath)")
+        logger.logError("Could not get the results JSON file at \(dangerResponsePath)")
         // Clean up after ourselves
         try? fileManager.removeItem(atPath: dslJSONPath)
         try? fileManager.removeItem(atPath: dangerResponsePath)

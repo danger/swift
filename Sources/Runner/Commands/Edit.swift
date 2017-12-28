@@ -4,7 +4,7 @@ import Danger
 import Files
 import MarathonCore
 
-func editDanger() throws -> Void {
+func editDanger(logger: Logger) throws -> Void {
 
     let createDangerfile = { () -> String in
         do {
@@ -12,7 +12,7 @@ func editDanger() throws -> Void {
             let data = template.data(using: .utf8)!
             return try FileSystem().createFile(at: "Dangerfile.swift", contents: data).path
         } catch {
-            print("Could not find or generate a Dangerfile")
+            logger.logError("Could not find or generate a Dangerfile")
             exit(1)
         }
     }
@@ -21,8 +21,10 @@ func editDanger() throws -> Void {
     let dangerfilePath = Runtime.getDangerfile() ?? createDangerfile()
 
     guard let libPath = Runtime.getLibDangerPath() else {
-        print("Could not find a libDanger to link against at any of: \(Runtime.potentialLibraryFolders)")
-        print("Or via Homebrew, or Marathon")
+        let potentialFolders = Runtime.potentialLibraryFolders
+        logger.logError("Could not find a libDanger to link against at any of: \(potentialFolders)",
+                        "Or via Homebrew, or Marathon",
+                        separator: "\n")
         exit(1)
     }
 
