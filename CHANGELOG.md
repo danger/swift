@@ -1,7 +1,17 @@
-## master
+<!--
 
-* Add your own contributions to the next release on the line below this, please include your name too. Please don't set
-  a new version if you are the first to make the section for `master`.
+// Please add your own contribution below inside the Master section, no need to 
+// set a version number, that happens during a deploy.
+//
+// These docs are aimed at users rather than danger developers, so please limit technical
+// terminology in here.
+
+-->
+
+## Master
+
+## 0.3.2
+
 * Add milestone model to issue and pull request. - d-date
 * Change date string type from `String` to `Date` using `iso8601` date decoding strategy. - d-date
 * Adds the `Logger` struct together with the `--verbose` and `--silent` arguments - rockbruno
