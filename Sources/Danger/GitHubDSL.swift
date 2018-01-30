@@ -27,7 +27,7 @@ public struct GitHub: Decodable {
 
     public let reviews: [GitHubReview]
 
-    public let requestedReviewers: [GitHubUser]
+    public let requestedReviewers: GitHubRequestedReviewers
 
 }
 
@@ -173,6 +173,48 @@ public struct GitHubUser: Decodable {
     /// The type of user: user or organization.
     public let userType: UserType
 
+}
+
+// MARK: - GitHubTeam
+
+/// A GitHub team.
+public struct GitHubTeam: Decodable {
+
+    // MARK: - CodingKeys
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+    }
+
+    // MARK: - Properties
+
+    /// The UUID for the team.
+    public let id: Int
+
+    /// The team name
+    public let name: String
+}
+
+// MARK: - GitHubRequestedReviewers
+
+/// Represents the payload for a PR's requested reviewers value.
+public struct GitHubRequestedReviewers: Decodable {
+
+    // MARK: - CodingKeys
+
+    enum CodingKeys: String, CodingKey {
+        case users
+        case teams
+    }
+
+    // MARK: - Properties
+
+    /// The list of users of whom a review has been requested.
+    public let users: [GitHubUser]
+
+    /// The list of teams of whom a review has been requested.
+    public let teams: [GitHubTeam]
 }
 
 // MARK: - GitHubMergeRef

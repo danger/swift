@@ -5,6 +5,7 @@
 * Add milestone model to issue and pull request. - d-date
 * Change date string type from `String` to `Date` using `iso8601` date decoding strategy. - d-date
 * Adds the `Logger` struct together with the `--verbose` and `--silent` arguments - rockbruno
+* Add support for GitHub's new review requests payload. - hirad
 
 ## 0.3.1
 
