@@ -189,10 +189,10 @@ public struct GitHubTeam: Decodable {
 
     // MARK: - Properties
 
-    // The UUID for the team.
+    /// The UUID for the team.
     public let id: Int
 
-    // The team name
+    /// The team name
     public let name: String
 }
 
@@ -210,8 +210,11 @@ public struct GitHubRequestedReviewers: Decodable {
 
     // MARK: - Properties
 
-    let users: [GitHubUser]
-    let teams: [GitHubTeam]
+    /// The list of users of whom a review has been requested.
+    public let users: [GitHubUser]
+
+    /// The list of teams of whom a review has been requested.
+    public let teams: [GitHubTeam]
 }
 
 // MARK: - GitHubMergeRef
