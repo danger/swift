@@ -38,7 +38,7 @@ private final class DangerRunner {
         }
         do {
             let string = String(data: dslJSONContents, encoding: .utf8)
-            logger.logInfo(string!, isVerbose: true)
+            logger.logInfo(string!, isVerbose: false)
 
             let decoder = JSONDecoder()
             if #available(OSX 10.12, *) {
