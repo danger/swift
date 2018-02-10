@@ -10,6 +10,10 @@
 
 ## Master
 
+## 0.3.3
+
+* Fixes for the CLI arg order from danger-js - sunshinejr
+
 ## 0.3.2
 
 * Add milestone model to issue and pull request. - d-date
