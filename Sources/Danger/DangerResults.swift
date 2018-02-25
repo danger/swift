@@ -6,6 +6,14 @@ import Foundation
 struct Violation: Codable {
 
     let message: String
+    let file: String?
+    let line: Int?
+
+    init(message: String, file: String? = nil, line: Int? = nil) {
+        self.message = message
+        self.file = file
+        self.line = line
+    }
 }
 
 // MARK: - Results

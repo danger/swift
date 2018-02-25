@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/JohnSundell/Marathon.git",
         "state": {
           "branch": null,
-          "revision": "5bd186ec7a78f3c978ce72041aa9bea006868454",
-          "version": "2.0.1"
+          "revision": "10d4ae98c9e97ec76d01453781763b2be1cfcec1",
+          "version": "2.0.2"
         }
       },
       {
@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/JohnSundell/ShellOut.git",
         "state": {
           "branch": null,
-          "revision": "479a89d9bfa7585496bd4a3e4faffac5b01af37f",
-          "version": "2.0.0"
+          "revision": "f1c253a34a40df4bfd268b09fdb101b059f6d52d",
+          "version": "2.1.0"
         }
       },
       {
