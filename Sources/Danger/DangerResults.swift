@@ -31,6 +31,6 @@ struct DangerResults: Codable {
     var messages = [Violation]()
 
     /// Markdown messages to attach at the bottom of the comment.
-    var markdowns = [String]()
+    var markdowns = [Violation]()
 
 }
