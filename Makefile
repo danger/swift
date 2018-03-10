@@ -8,7 +8,7 @@ BUILD_PATH = .build/release/$(TOOL_NAME)
 LIB_INSTALL_PATH = $(PREFIX)/lib/danger
 TAR_FILENAME = $(TOOL_NAME)-$(VERSION).tar.gz
 
-SWIFT_LIB_FILES = .build/release/libDanger.dylib .build/release/Danger.swiftdoc .build/release/Danger.swiftmodule
+SWIFT_LIB_FILES = .build/release/libDanger.* .build/release/Danger.swiftdoc .build/release/Danger.swiftmodule
 
 install: build
 	mkdir -p $(PREFIX)/bin
@@ -18,7 +18,7 @@ install: build
 
 build:
 	swift package clean
-	swift build --disable-sandbox -c release -Xswiftc -static-stdlib
+	swift build --disable-sandbox -c release --static-swift-stdlib
 
 uninstall:
 	rm -f $(INSTALL_PATH)
