@@ -26,3 +26,5 @@ if !isTrivial && !changelogChanged && sourceChanges != nil {
 if danger.github.pullRequest.title.contains("WIP") {
     warn("PR is classed as Work in Progress")
 }
+
+message("It works!")
