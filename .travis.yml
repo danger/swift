@@ -13,4 +13,5 @@ install:
 script:
   - swift test
   - danger process .build/x86_64-unknown-linux/debug/danger-swift
+  - sudo chmod -R a+rwx /usr/local/
   - make install
