@@ -10,6 +10,8 @@
 
 ## Master
 
+* Reordering how Runner args are routed to Danger - rockbruno
+
 ## 0.3.3
 
 * Fixes for the CLI arg order from danger-js - sunshinejr
