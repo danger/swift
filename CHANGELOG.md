@@ -10,6 +10,8 @@
 
 ## Master
 
+## 0.3.4
+
 * Reordering how Runner args are routed to Danger - rockbruno
 
 ## 0.3.3
