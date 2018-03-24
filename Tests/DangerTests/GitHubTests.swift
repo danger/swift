@@ -21,13 +21,7 @@ class GitHubTests: XCTestCase {
     }
     
     func test_GitHubMilestone_decodeWithSomeParameters() throws {
-        // This is only a temporary hack
-        // TODO: move Danger.swift's date formatter to Date extension
-        // with its own test
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
+        let dateFormatter = DateFormatter.defaultDateFormatter
         
         guard let data = GitHubMilestoneJSONWithSomeParameters.data(using: .utf8),
         let createdAt = dateFormatter.date(from: "2018-01-20T16:29:28Z"),
@@ -42,6 +36,7 @@ class GitHubTests: XCTestCase {
         let milestone: GitHubMilestone = try decoder.decode(GitHubMilestone.self, from: data)
         let creator = GitHubUser(id: 739696, login: "rnystrom", userType: .user)
         
+        // Make milestone conform to autoequatable to get rid of this rubbish
         XCTAssertNil(milestone.closedAt)
         XCTAssertEqual(milestone.closedIssues, 2)
         XCTAssertEqual(milestone.createdAt, createdAt)
