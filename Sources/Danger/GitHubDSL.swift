@@ -483,38 +483,38 @@ public struct GitHubMilestone: Decodable {
     // MARK: - Properties
 
     /// The id number of this milestone
-    let id: Int
+    public let id: Int
 
     /// The number of this milestone
-    let number: Int
+    public let number: Int
 
     /// The state of this milestone: open, closed, all
-    let state: MilestoneState
+    public let state: MilestoneState
 
     /// The title of this milestone
-    let title: String
+    public let title: String
 
     /// The description of this milestone.
-    let description: String
+    public let description: String
 
     /// The user who created this milestone.
-    let creator: GitHubUser
+    public let creator: GitHubUser
 
     /// The number of open issues in this milestone
-    let openIssues: Int
+    public let openIssues: Int
 
     /// The number of closed issues in this milestone
-    let closedIssues: Int
+    public let closedIssues: Int
 
     /// The ISO8601 date string for when this milestone was created.
-    let createdAt: Date
+    public let createdAt: Date
 
     /// The ISO8601 date string for when this milestone was updated.
-    let updatedAt: Date
+    public let updatedAt: Date
 
     /// The ISO8601 date string for when this milestone was closed.
-    let closedAt: Date?
+    public let closedAt: Date?
 
     /// The ISO8601 date string for the due of this milestone.
-    let dueOn: Date?
+    public let dueOn: Date?
 }

@@ -56,12 +56,17 @@ class GitHubTests: XCTestCase {
     }
 }
 
-// TODO: Delete this implementation when Swift 4.1 comes out
-extension GitHubUser: Equatable {
-    public static func ==(lhs: GitHubUser, rhs: GitHubUser) -> Bool {
-        return
-            lhs.id == rhs.id &&
-            lhs.userType == rhs.userType &&
-            lhs.login == rhs.login
-    }
-}
+public protocol AutoEquatable {}
+
+extension GitHubUser: AutoEquatable {}
+extension GitHubMilestone: AutoEquatable {}
+extension GitHub: AutoEquatable {}
+extension GitHubPR: AutoEquatable {}
+extension GitHubTeam: AutoEquatable {}
+extension GitHubRequestedReviewers: AutoEquatable {}
+extension GitHubMergeRef: AutoEquatable {}
+extension GitHubRepo: AutoEquatable {}
+extension GitHubReview: AutoEquatable {}
+extension GitHubCommit: AutoEquatable {}
+extension GitHubIssue: AutoEquatable {}
+extension GitHubIssueLabel: AutoEquatable {}
