@@ -33,22 +33,23 @@ class GitHubTests: XCTestCase {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .formatted(dateFormatter)
         
-        let milestone: GitHubMilestone = try decoder.decode(GitHubMilestone.self, from: data)
         let creator = GitHubUser(id: 739696, login: "rnystrom", userType: .user)
+        let correctMilestone = GitHubMilestone(id: 3050458,
+                                               number: 11,
+                                               state: .open,
+                                               title: "1.19.0",
+                                               description: "kdsjfls",
+                                               creator: creator,
+                                               openIssues: 0,
+                                               closedIssues: 2,
+                                               createdAt: createdAt,
+                                               updatedAt: updatedAt,
+                                               closedAt: nil,
+                                               dueOn: nil)
         
-        // Make milestone conform to autoequatable to get rid of this rubbish
-        XCTAssertNil(milestone.closedAt)
-        XCTAssertEqual(milestone.closedIssues, 2)
-        XCTAssertEqual(milestone.createdAt, createdAt)
-        XCTAssertEqual(milestone.creator, creator)
-        XCTAssertEqual(milestone.description, "kdsjfls")
-        XCTAssertNil(milestone.dueOn)
-        XCTAssertEqual(milestone.id, 3050458)
-        XCTAssertEqual(milestone.number, 11)
-        XCTAssertEqual(milestone.openIssues, 0)
-        XCTAssertEqual(milestone.state, GitHubMilestone.MilestoneState.open)
-        XCTAssertEqual(milestone.title, "1.19.0")
-        XCTAssertEqual(milestone.updatedAt, updatedAt)
+        let testMilestone: GitHubMilestone = try decoder.decode(GitHubMilestone.self, from: data)
+        
+        XCTAssertEqual(testMilestone, correctMilestone)
     }
     
     func test_GitHubMilestone_decodeWithAllParameters() throws {
