@@ -7,6 +7,18 @@ class GitHubTests: XCTestCase {
         ("test_GitHubMilestone_decodeWithSomeParameters", test_GitHubMilestone_decodeWithSomeParameters),
         ("test_GitHubMilestone_decodeWithAllParameters", test_GitHubMilestone_decodeWithAllParameters),
     ]
+
+    private let dateFormatter = DateFormatter.defaultDateFormatter
+    private var decoder: JSONDecoder!
+    
+    override func setUp() {
+        decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+    }
+    
+    override func tearDown() {
+        decoder = nil
+    }
     
     func test_GitHubUser_decode() throws {
         guard let data = GitHubUserJSON.data(using: .utf8) else {
@@ -21,17 +33,12 @@ class GitHubTests: XCTestCase {
     }
     
     func test_GitHubMilestone_decodeWithSomeParameters() throws {
-        let dateFormatter = DateFormatter.defaultDateFormatter
-        
         guard let data = GitHubMilestoneJSONWithSomeParameters.data(using: .utf8),
         let createdAt = dateFormatter.date(from: "2018-01-20T16:29:28Z"),
             let updatedAt = dateFormatter.date(from: "2018-02-27T06:23:58Z") else {
             XCTFail("Cannot generate data")
             return
         }
-        
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted(dateFormatter)
         
         let creator = GitHubUser(id: 739696, login: "rnystrom", userType: .user)
         let correctMilestone = GitHubMilestone(id: 3050458,
@@ -53,21 +60,31 @@ class GitHubTests: XCTestCase {
     }
     
     func test_GitHubMilestone_decodeWithAllParameters() throws {
+        guard let data = GitHubMilestoneJSONWithAllParameters.data(using: .utf8),
+            let createdAt = dateFormatter.date(from: "2018-01-20T16:29:28Z"),
+            let updatedAt = dateFormatter.date(from: "2018-02-27T06:23:58Z"),
+            let closedAt = dateFormatter.date(from: "2018-03-20T09:46:21Z"),
+            let dueOn = dateFormatter.date(from: "2018-03-27T07:10:01Z") else {
+                XCTFail("Cannot generate data")
+                return
+        }
         
+        let creator = GitHubUser(id: 739696, login: "rnystrom", userType: .user)
+        let correctMilestone = GitHubMilestone(id: 3050458,
+                                               number: 11,
+                                               state: .open,
+                                               title: "1.19.0",
+                                               description: "kdsjfls",
+                                               creator: creator,
+                                               openIssues: 0,
+                                               closedIssues: 2,
+                                               createdAt: createdAt,
+                                               updatedAt: updatedAt,
+                                               closedAt: closedAt,
+                                               dueOn: dueOn)
+        
+        let testMilestone: GitHubMilestone = try decoder.decode(GitHubMilestone.self, from: data)
+        
+        XCTAssertEqual(testMilestone, correctMilestone)
     }
 }
-
-public protocol AutoEquatable {}
-
-extension GitHubUser: AutoEquatable {}
-extension GitHubMilestone: AutoEquatable {}
-extension GitHub: AutoEquatable {}
-extension GitHubPR: AutoEquatable {}
-extension GitHubTeam: AutoEquatable {}
-extension GitHubRequestedReviewers: AutoEquatable {}
-extension GitHubMergeRef: AutoEquatable {}
-extension GitHubRepo: AutoEquatable {}
-extension GitHubReview: AutoEquatable {}
-extension GitHubCommit: AutoEquatable {}
-extension GitHubIssue: AutoEquatable {}
-extension GitHubIssueLabel: AutoEquatable {}

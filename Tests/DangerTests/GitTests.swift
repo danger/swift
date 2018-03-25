@@ -12,7 +12,3 @@ class GitTests: XCTestCase {
     }
     
 }
-
-extension Git: AutoEquatable {}
-extension GitCommit: AutoEquatable {}
-extension GitCommitAuthor: AutoEquatable {}
