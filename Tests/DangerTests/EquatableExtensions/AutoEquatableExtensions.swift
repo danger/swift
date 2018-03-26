@@ -1,6 +1,8 @@
 // This file simply declares the AutoEquatable protocol,
 // which tells Sourcery to generate equatable extensions.
 
+import Danger
+
 public protocol AutoEquatable {}
 
 extension Git: AutoEquatable {}
