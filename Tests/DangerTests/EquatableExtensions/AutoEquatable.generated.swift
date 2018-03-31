@@ -137,7 +137,7 @@ public func == (lhs: GitHubPR, rhs: GitHubPR) -> Bool {
     guard lhs.body == rhs.body else { return false }
     guard lhs.user == rhs.user else { return false }
     guard compareOptionals(lhs: lhs.assignee, rhs: rhs.assignee, compare: ==) else { return false }
-    guard lhs.assignees == rhs.assignees else { return false }
+    guard compareOptionals(lhs: lhs.assignees, rhs: rhs.assignees, compare: ==) else { return false }
     guard lhs.createdAt == rhs.createdAt else { return false }
     guard lhs.updatedAt == rhs.updatedAt else { return false }
     guard compareOptionals(lhs: lhs.closedAt, rhs: rhs.closedAt, compare: ==) else { return false }
@@ -146,13 +146,13 @@ public func == (lhs: GitHubPR, rhs: GitHubPR) -> Bool {
     guard lhs.base == rhs.base else { return false }
     guard lhs.state == rhs.state else { return false }
     guard lhs.isLocked == rhs.isLocked else { return false }
-    guard lhs.isMerged == rhs.isMerged else { return false }
-    guard lhs.commitCount == rhs.commitCount else { return false }
-    guard lhs.commentCount == rhs.commentCount else { return false }
-    guard lhs.reviewCommentCount == rhs.reviewCommentCount else { return false }
-    guard lhs.additions == rhs.additions else { return false }
-    guard lhs.deletions == rhs.deletions else { return false }
-    guard lhs.changedFiles == rhs.changedFiles else { return false }
+    guard compareOptionals(lhs: lhs.isMerged, rhs: rhs.isMerged, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.commitCount, rhs: rhs.commitCount, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.commentCount, rhs: rhs.commentCount, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.reviewCommentCount, rhs: rhs.reviewCommentCount, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.additions, rhs: rhs.additions, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.deletions, rhs: rhs.deletions, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.changedFiles, rhs: rhs.changedFiles, compare: ==) else { return false }
     guard compareOptionals(lhs: lhs.milestone, rhs: rhs.milestone, compare: ==) else { return false }
     return true
 }

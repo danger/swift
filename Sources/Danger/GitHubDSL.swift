@@ -90,7 +90,7 @@ public struct GitHubPR: Decodable {
     public let assignee: GitHubUser?
 
     /// The users who are assigned to the pull request.
-    public let assignees: [GitHubUser]
+    public let assignees: [GitHubUser]?
 
     /// The ISO8601 date string for when the pull request was created.
     public let createdAt: Date
@@ -117,25 +117,25 @@ public struct GitHubPR: Decodable {
     public let isLocked: Bool
 
     /// A boolean indicating if the pull request has been merged.
-    public let isMerged: Bool
+    public let isMerged: Bool?
 
     /// The number of commits in the pull request.
-    public let commitCount: Int
+    public let commitCount: Int?
 
     /// The number of comments in the pull request.
-    public let commentCount: Int
+    public let commentCount: Int?
 
     /// The number of review-specific comments in the pull request.
-    public let reviewCommentCount: Int
+    public let reviewCommentCount: Int?
 
     /// The number of added lines in the pull request.
-    public let additions: Int
+    public let additions: Int?
 
     /// The number of deleted lines in the pull request.
-    public let deletions: Int
+    public let deletions: Int?
 
     /// The number of files changed in the pull request.
-    public let changedFiles: Int
+    public let changedFiles: Int?
 
     /// The milestone of the pull request
     public let milestone: GitHubMilestone?
@@ -219,6 +219,7 @@ public struct GitHubRequestedReviewers: Decodable {
 
 // MARK: - GitHubMergeRef
 
+/// Represents 'head' in PR
 public struct GitHubMergeRef: Decodable {
 
     // MARK: - Properties
