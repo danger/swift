@@ -9,9 +9,10 @@ matrix:
         - swift build 
       script:
         - swift test
-        - danger process .build/x86_64-apple-macosx10.10/debug/danger-swift
+        - DEBUG="*" danger process .build/x86_64-apple-macosx10.10/debug/danger-swift
         - sudo chmod -R a+rwx /usr/local/
         - make install
+
     - os: linux
       language: generic
       sudo: required
