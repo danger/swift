@@ -10,6 +10,11 @@
 
 ## Master
 
+## 0.3.5
+
+* DSL improvments - yhkaplan
+* You can now `warn`, `fail`, `message` and `markdown` - sunshinejr
+
 ## 0.3.4
 
 * Reordering how Runner args are routed to Danger - rockbruno

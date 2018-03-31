@@ -1,6 +1,6 @@
 TOOL_NAME = danger-swift
-# Get this from the package.swift
-VERSION = 0.3.4
+# Get this from the package.swift someday
+VERSION = 0.3.5
 
 PREFIX = /usr/local
 INSTALL_PATH = $(PREFIX)/bin/$(TOOL_NAME)
