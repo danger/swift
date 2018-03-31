@@ -70,11 +70,21 @@ public func warn(_ message: String) {
     DangerRunner.shared.results.warnings.append(Violation(message: message))
 }
 
+/// Adds an inline warning message to the Danger report
+public func warn(message: String, file: String, line: Int) {
+    DangerRunner.shared.results.warnings.append(Violation(message: message, file: file, line: line))
+}
+
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func fail(_ message: String) {
     DangerRunner.shared.results.fails.append(Violation(message: message))
+}
+
+/// Adds an inline fail message to the Danger report
+public func fail(message: String, file: String, line: Int) {
+    DangerRunner.shared.results.fails.append(Violation(message: message, file: file, line: line))
 }
 
 /// Adds a warning message to the Danger report
@@ -84,11 +94,21 @@ public func message(_ message: String) {
     DangerRunner.shared.results.messages.append(Violation(message: message))
 }
 
+/// Adds an inline message to the Danger report
+public func message(message: String, file: String, line: Int) {
+    DangerRunner.shared.results.messages.append(Violation(message: message, file: file, line: line))
+}
+
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func markdown(_ message: String) {
-    DangerRunner.shared.results.markdowns.append(message)
+    DangerRunner.shared.results.markdowns.append(Violation(message: message))
+}
+
+/// Adds an inline message to the Danger report
+public func markdown(message: String, file: String, line: Int) {
+    DangerRunner.shared.results.markdowns.append(Violation(message: message, file: file, line: line))
 }
 
 // MARK: - Private Functions
