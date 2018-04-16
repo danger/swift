@@ -84,9 +84,9 @@ func runDanger(logger: Logger) throws -> Void {
     args += ["-lDanger"] // Eval the code with the Target Danger added
     args += libArgs
     args += [dangerfilePath] // The Dangerfile
-    args += Array(CommandLine.arguments.dropFirst()) // Arguments sent to Danger
     args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
     args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
+    args += Array(CommandLine.arguments.dropFirst())
 
     // This ain't optimal, but SwiftPM have _so much code_ around this.
     // So maybe there's a better way

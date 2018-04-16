@@ -90,7 +90,7 @@ public struct GitHubPR: Decodable {
     public let assignee: GitHubUser?
 
     /// The users who are assigned to the pull request.
-    public let assignees: [GitHubUser]?
+    public let assignees: [GitHubUser]
 
     /// The ISO8601 date string for when the pull request was created.
     public let createdAt: Date
@@ -117,25 +117,25 @@ public struct GitHubPR: Decodable {
     public let isLocked: Bool
 
     /// A boolean indicating if the pull request has been merged.
-    public let isMerged: Bool?
+    public let isMerged: Bool
 
     /// The number of commits in the pull request.
-    public let commitCount: Int?
+    public let commitCount: Int
 
     /// The number of comments in the pull request.
-    public let commentCount: Int?
+    public let commentCount: Int
 
     /// The number of review-specific comments in the pull request.
-    public let reviewCommentCount: Int?
+    public let reviewCommentCount: Int
 
     /// The number of added lines in the pull request.
-    public let additions: Int?
+    public let additions: Int
 
     /// The number of deleted lines in the pull request.
-    public let deletions: Int?
+    public let deletions: Int
 
     /// The number of files changed in the pull request.
-    public let changedFiles: Int?
+    public let changedFiles: Int
 
     /// The milestone of the pull request
     public let milestone: GitHubMilestone?
@@ -219,7 +219,6 @@ public struct GitHubRequestedReviewers: Decodable {
 
 // MARK: - GitHubMergeRef
 
-/// Represents 'head' in PR
 public struct GitHubMergeRef: Decodable {
 
     // MARK: - Properties
@@ -484,38 +483,38 @@ public struct GitHubMilestone: Decodable {
     // MARK: - Properties
 
     /// The id number of this milestone
-    public let id: Int
+    let id: Int
 
     /// The number of this milestone
-    public let number: Int
+    let number: Int
 
     /// The state of this milestone: open, closed, all
-    public let state: MilestoneState
+    let state: MilestoneState
 
     /// The title of this milestone
-    public let title: String
+    let title: String
 
     /// The description of this milestone.
-    public let description: String
+    let description: String
 
     /// The user who created this milestone.
-    public let creator: GitHubUser
+    let creator: GitHubUser
 
     /// The number of open issues in this milestone
-    public let openIssues: Int
+    let openIssues: Int
 
     /// The number of closed issues in this milestone
-    public let closedIssues: Int
+    let closedIssues: Int
 
     /// The ISO8601 date string for when this milestone was created.
-    public let createdAt: Date
+    let createdAt: Date
 
     /// The ISO8601 date string for when this milestone was updated.
-    public let updatedAt: Date
+    let updatedAt: Date
 
     /// The ISO8601 date string for when this milestone was closed.
-    public let closedAt: Date?
+    let closedAt: Date?
 
     /// The ISO8601 date string for the due of this milestone.
-    public let dueOn: Date?
+    let dueOn: Date?
 }

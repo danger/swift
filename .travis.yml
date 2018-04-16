@@ -1,30 +1,15 @@
+os: linux
 language: generic
-matrix:
-  include:
-    - os: osx
-      osx_image: xcode9.2
-      install:
-        - node -v
-        - npm install -g danger
-        - swift build 
-      script:
-        - swift test
-        - DEBUG="*" danger process .build/x86_64-apple-macosx10.10/debug/danger-swift
-        - sudo chmod -R a+rwx /usr/local/
-        - make install
+sudo: required
+dist: trusty
 
-    - os: linux
-      language: generic
-      sudo: required
-      dist: trusty
-      install:
-        - node -v
-        - npm install -g danger
-        - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
-        - swiftenv global 4.0
-        - swift build 
-      script:
-        - swift test
-        - danger process .build/x86_64-unknown-linux/debug/danger-swift
-        - sudo chmod -R a+rwx /usr/local/
-        - make install
+install:
+  - node -v
+  - npm install -g danger
+  - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+  - swiftenv global 4.0
+  - swift build 
+
+script:
+  - swift test
+  - danger process .build/x86_64-unknown-linux/debug/danger-swift

@@ -1,7 +1,0 @@
-sources:
-  - Sources/
-  - Tests/DangerTests/
-templates:
-  - Sources/Templates/
-output:
-  Tests/DangerTests/EquatableExtensions/
