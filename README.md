@@ -131,6 +131,13 @@ If you want to emulate how DangerJS's `process` will work entirely, then use:
 ```sh
 swift build && cat fixtures/eidolon_609.json | ./.build/debug/danger-swift
 ```
+To add to or regenerate Equatable extensions for model tests, please:
+1. Install Sourcery via Homebrew: ``$ brew install sourcery``
+For more about Sourcery, see: https://github.com/krzysztofzablocki/Sourcery
+1. Make sure any new model conforms to 'AutoEquatable', a procotol used to tell Sourcery which models to generate extensions for
+``NewModel: AutoEquatable {}``
+1. In the top directory of danger-swift, run: ``$ sourcery --config .sourcery.yml``
+To change Sourcery settings, edit the yml file and/or the template in Sources/Templates
 
 #### Deploying
 
