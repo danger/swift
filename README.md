@@ -142,7 +142,7 @@ To change Sourcery settings, edit the yml file and/or the template in Sources/Te
 #### Deploying
 
 1. Update the CHANGELOG entry
-1. Edit the makefile with the version
+1. Edit the `Makefile` and `Sources/Danger/Danger.swift` with the version
 1. Commit the changes
 1. Create a git tag for the version
 1. Wait a second, run `make get_sha` to grab the SHA
