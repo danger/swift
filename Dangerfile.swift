@@ -26,3 +26,8 @@ if !isTrivial && !changelogChanged && sourceChanges != nil {
 if danger.github.pullRequest.title.contains("WIP") {
     warn("PR is classed as Work in Progress")
 }
+
+warn(message: "Hello world", file: "Sources/Danger/Danger.swift", line: 11)
+warn(message: "Hello world2", file: "Sources/Danger/Danger.swift", line: 13)
+warn(message: "Hello world3", file: "Sources/Danger/Danger.swift", line: 15)
+warn(message: "Hello world5", file: "Sources/Danger/Danger.swift", line: 17)

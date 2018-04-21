@@ -9,7 +9,7 @@ import Foundation
 // MARK: - DangerRunner
 
 private final class DangerRunner {
-    let version = "0.3.0"
+    let version = "0.3.5"
 
     static let shared = DangerRunner()
 
@@ -38,17 +38,13 @@ private final class DangerRunner {
         }
         do {
             let string = String(data: dslJSONContents, encoding: .utf8)
-            logger.logInfo(string!, isVerbose: false)
+            logger.logInfo(string!, isVerbose: true)
 
             let decoder = JSONDecoder()
             if #available(OSX 10.12, *) {
                 decoder.dateDecodingStrategy = .iso8601
             } else {
-                let dateFormatter = DateFormatter()
-                dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-                dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-                dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZ"
-                decoder.dateDecodingStrategy = .formatted(dateFormatter)
+                decoder.dateDecodingStrategy = .formatted(DateFormatter.defaultDateFormatter)
             }
             dsl = try decoder.decode(DSL.self, from: dslJSONContents).danger
 
@@ -74,11 +70,21 @@ public func warn(_ message: String) {
     DangerRunner.shared.results.warnings.append(Violation(message: message))
 }
 
+/// Adds an inline warning message to the Danger report
+public func warn(message: String, file: String, line: Int) {
+    DangerRunner.shared.results.warnings.append(Violation(message: message, file: file, line: line))
+}
+
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func fail(_ message: String) {
     DangerRunner.shared.results.fails.append(Violation(message: message))
+}
+
+/// Adds an inline fail message to the Danger report
+public func fail(message: String, file: String, line: Int) {
+    DangerRunner.shared.results.fails.append(Violation(message: message, file: file, line: line))
 }
 
 /// Adds a warning message to the Danger report
@@ -88,11 +94,21 @@ public func message(_ message: String) {
     DangerRunner.shared.results.messages.append(Violation(message: message))
 }
 
+/// Adds an inline message to the Danger report
+public func message(message: String, file: String, line: Int) {
+    DangerRunner.shared.results.messages.append(Violation(message: message, file: file, line: line))
+}
+
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func markdown(_ message: String) {
-    DangerRunner.shared.results.markdowns.append(message)
+    DangerRunner.shared.results.markdowns.append(Violation(message: message))
+}
+
+/// Adds an inline message to the Danger report
+public func markdown(message: String, file: String, line: Int) {
+    DangerRunner.shared.results.markdowns.append(Violation(message: message, file: file, line: line))
 }
 
 // MARK: - Private Functions
