@@ -10,6 +10,10 @@
 
 ## Master
 
+## 0.3.6
+
+* Add Swift 4.1 support - sunshinejr
+
 ## 0.3.5
 
 * DSL improvments - yhkaplan
