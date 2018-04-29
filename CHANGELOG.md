@@ -10,7 +10,7 @@
 
 ## Master
 
-* Add Support from Bitbucket Server
+* Add Support for Bitbucket Server - thomasraith
 
 ## 0.3.6
 
