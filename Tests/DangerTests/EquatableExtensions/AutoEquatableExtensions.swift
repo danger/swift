@@ -21,3 +21,19 @@ extension GitHubReview: AutoEquatable {}
 extension GitHubCommit: AutoEquatable {}
 extension GitHubIssue: AutoEquatable {}
 extension GitHubIssueLabel: AutoEquatable {}
+
+extension BitBucketServerUser: AutoEquatable {}
+extension BitBucketServerActivity: AutoEquatable {}
+extension BitBucketServerPR: AutoEquatable {}
+extension BitBucketServerRepo: AutoEquatable {}
+extension BitBucketServerProject: AutoEquatable {}
+extension BitBucketServerComment: AutoEquatable {}
+extension BitBucketServerMergeRef: AutoEquatable {}
+extension BitBucketServerMetadata: AutoEquatable {}
+extension BitBucketServer: AutoEquatable {}
+extension BitBucketServerCommit: AutoEquatable {}
+extension BitBucketServerCommit.BitBucketServerCommitParent: AutoEquatable {}
+extension BitBucketServerPR.BitBucketServerAuthor: AutoEquatable {}
+extension BitBucketServerComment.BitBucketServerCommentInner: AutoEquatable {}
+extension BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentInnerProperties: AutoEquatable {}
+extension BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentTask: AutoEquatable {}

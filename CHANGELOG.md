@@ -10,6 +10,8 @@
 
 ## Master
 
+* Add Support from Bitbucket Server
+
 ## 0.3.6
 
 * Add Swift 4.1 support - sunshinejr

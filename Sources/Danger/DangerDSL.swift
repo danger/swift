@@ -12,7 +12,7 @@ public struct DSL: Decodable {
 public struct DangerDSL: Decodable {
     public let git: Git
 
-    public let github: GitHub
+    public let github: GitHub!
 
-    // TODO: public let bitbucket_server: BitBucketServer
+    public let bitbucket_server: BitBucketServer!
 }
