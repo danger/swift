@@ -10,7 +10,7 @@ matrix:
       script:
         - swift test
         - DEBUG="*" danger process .build/x86_64-apple-macosx10.10/debug/danger-swift
-        - sudo chmod -R a+rwx /usr/local/
+        - sudo chmod -R a+rwx /usr/local/Cellar/
         - make install
 
     - os: linux
