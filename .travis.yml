@@ -2,7 +2,7 @@ language: generic
 matrix:
   include:
     - os: osx
-      osx_image: xcode9.2
+      osx_image: xcode9.3
       install:
         - node -v
         - npm install -g danger
@@ -10,7 +10,7 @@ matrix:
       script:
         - swift test
         - DEBUG="*" danger process .build/x86_64-apple-macosx10.10/debug/danger-swift
-        - sudo chmod -R a+rwx /usr/local/
+        - sudo chmod -R a+rwx /usr/local/Cellar/
         - make install
 
     - os: linux
@@ -25,6 +25,6 @@ matrix:
         - swift build 
       script:
         - swift test
-        - danger process .build/x86_64-unknown-linux/debug/danger-swift
+        - DEBUG="*" danger process .build/x86_64-unknown-linux/debug/danger-swift
         - sudo chmod -R a+rwx /usr/local/
         - make install

@@ -6,4 +6,5 @@ import XCTest
 XCTMain([
     testCase(GitHubTests.allTests),
     testCase(GitTests.allTests),
+    testCase(BitBucketServerTests.allTests)
 ])

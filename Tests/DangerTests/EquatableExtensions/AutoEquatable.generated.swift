@@ -1,4 +1,4 @@
-// Generated using Sourcery 0.10.1 — https://github.com/krzysztofzablocki/Sourcery
+// Generated using Sourcery 0.11.2 — https://github.com/krzysztofzablocki/Sourcery
 // DO NOT EDIT
 
 import Danger
@@ -26,6 +26,167 @@ fileprivate func compareArrays<T>(lhs: [T], rhs: [T], compare: (_ lhs: T, _ rhs:
 
 
 // MARK: - AutoEquatable for classes, protocols, structs
+// MARK: - BitBucketServer AutoEquatable
+extension BitBucketServer: Equatable {}
+public func == (lhs: BitBucketServer, rhs: BitBucketServer) -> Bool {
+    guard lhs.metadata == rhs.metadata else { return false }
+    guard lhs.pullRequest == rhs.pullRequest else { return false }
+    guard lhs.commits == rhs.commits else { return false }
+    guard lhs.comments == rhs.comments else { return false }
+    guard lhs.activities == rhs.activities else { return false }
+    return true
+}
+// MARK: - BitBucketServerActivity AutoEquatable
+extension BitBucketServerActivity: Equatable {}
+public func == (lhs: BitBucketServerActivity, rhs: BitBucketServerActivity) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.createdDate == rhs.createdDate else { return false }
+    guard lhs.user == rhs.user else { return false }
+    guard lhs.action == rhs.action else { return false }
+    guard compareOptionals(lhs: lhs.commentAction, rhs: rhs.commentAction, compare: ==) else { return false }
+    return true
+}
+// MARK: - BitBucketServerComment AutoEquatable
+extension BitBucketServerComment: Equatable {}
+public func == (lhs: BitBucketServerComment, rhs: BitBucketServerComment) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.createdDate == rhs.createdDate else { return false }
+    guard lhs.user == rhs.user else { return false }
+    guard lhs.action == rhs.action else { return false }
+    guard compareOptionals(lhs: lhs.fromHash, rhs: rhs.fromHash, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.previousFromHash, rhs: rhs.previousFromHash, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.toHash, rhs: rhs.toHash, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.previousToHash, rhs: rhs.previousToHash, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.commentAction, rhs: rhs.commentAction, compare: ==) else { return false }
+    guard compareOptionals(lhs: lhs.comment, rhs: rhs.comment, compare: ==) else { return false }
+    return true
+}
+// MARK: - BitBucketServerComment.BitBucketServerCommentInner AutoEquatable
+extension BitBucketServerComment.BitBucketServerCommentInner: Equatable {}
+public func == (lhs: BitBucketServerComment.BitBucketServerCommentInner, rhs: BitBucketServerComment.BitBucketServerCommentInner) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.version == rhs.version else { return false }
+    guard lhs.text == rhs.text else { return false }
+    guard lhs.author == rhs.author else { return false }
+    guard lhs.createdAt == rhs.createdAt else { return false }
+    guard lhs.updatedAt == rhs.updatedAt else { return false }
+    guard lhs.comments == rhs.comments else { return false }
+    guard lhs.properties == rhs.properties else { return false }
+    guard lhs.tasks == rhs.tasks else { return false }
+    return true
+}
+// MARK: - BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentInnerProperties AutoEquatable
+extension BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentInnerProperties: Equatable {}
+public func == (lhs: BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentInnerProperties, rhs: BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentInnerProperties) -> Bool {
+    guard lhs.repositoryId == rhs.repositoryId else { return false }
+    guard compareOptionals(lhs: lhs.issues, rhs: rhs.issues, compare: ==) else { return false }
+    return true
+}
+// MARK: - BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentTask AutoEquatable
+extension BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentTask: Equatable {}
+public func == (lhs: BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentTask, rhs: BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentTask) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.createdDate == rhs.createdDate else { return false }
+    guard lhs.text == rhs.text else { return false }
+    guard lhs.state == rhs.state else { return false }
+    guard lhs.author == rhs.author else { return false }
+    return true
+}
+// MARK: - BitBucketServerCommit AutoEquatable
+extension BitBucketServerCommit: Equatable {}
+public func == (lhs: BitBucketServerCommit, rhs: BitBucketServerCommit) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.displayId == rhs.displayId else { return false }
+    guard lhs.author == rhs.author else { return false }
+    guard lhs.authorTimestamp == rhs.authorTimestamp else { return false }
+    guard lhs.committer == rhs.committer else { return false }
+    guard lhs.committerTimestamp == rhs.committerTimestamp else { return false }
+    guard lhs.message == rhs.message else { return false }
+    guard lhs.parents == rhs.parents else { return false }
+    return true
+}
+// MARK: - BitBucketServerCommit.BitBucketServerCommitParent AutoEquatable
+extension BitBucketServerCommit.BitBucketServerCommitParent: Equatable {}
+public func == (lhs: BitBucketServerCommit.BitBucketServerCommitParent, rhs: BitBucketServerCommit.BitBucketServerCommitParent) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.displayId == rhs.displayId else { return false }
+    return true
+}
+// MARK: - BitBucketServerMergeRef AutoEquatable
+extension BitBucketServerMergeRef: Equatable {}
+public func == (lhs: BitBucketServerMergeRef, rhs: BitBucketServerMergeRef) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.displayId == rhs.displayId else { return false }
+    guard lhs.latestCommit == rhs.latestCommit else { return false }
+    guard lhs.repository == rhs.repository else { return false }
+    return true
+}
+// MARK: - BitBucketServerMetadata AutoEquatable
+extension BitBucketServerMetadata: Equatable {}
+public func == (lhs: BitBucketServerMetadata, rhs: BitBucketServerMetadata) -> Bool {
+    guard lhs.pullRequestID == rhs.pullRequestID else { return false }
+    guard lhs.repoSlug == rhs.repoSlug else { return false }
+    return true
+}
+// MARK: - BitBucketServerPR AutoEquatable
+extension BitBucketServerPR: Equatable {}
+public func == (lhs: BitBucketServerPR, rhs: BitBucketServerPR) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.version == rhs.version else { return false }
+    guard lhs.title == rhs.title else { return false }
+    guard lhs.description == rhs.description else { return false }
+    guard lhs.state == rhs.state else { return false }
+    guard lhs.open == rhs.open else { return false }
+    guard lhs.closed == rhs.closed else { return false }
+    guard lhs.createdAt == rhs.createdAt else { return false }
+    guard compareOptionals(lhs: lhs.updatedAt, rhs: rhs.updatedAt, compare: ==) else { return false }
+    guard lhs.fromRef == rhs.fromRef else { return false }
+    guard lhs.toRef == rhs.toRef else { return false }
+    guard lhs.isLocked == rhs.isLocked else { return false }
+    guard lhs.author == rhs.author else { return false }
+    guard lhs.reviewers == rhs.reviewers else { return false }
+    guard lhs.participants == rhs.participants else { return false }
+    return true
+}
+// MARK: - BitBucketServerPR.BitBucketServerAuthor AutoEquatable
+extension BitBucketServerPR.BitBucketServerAuthor: Equatable {}
+public func == (lhs: BitBucketServerPR.BitBucketServerAuthor, rhs: BitBucketServerPR.BitBucketServerAuthor) -> Bool {
+    guard lhs.user == rhs.user else { return false }
+    return true
+}
+// MARK: - BitBucketServerProject AutoEquatable
+extension BitBucketServerProject: Equatable {}
+public func == (lhs: BitBucketServerProject, rhs: BitBucketServerProject) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.key == rhs.key else { return false }
+    guard lhs.name == rhs.name else { return false }
+    guard lhs.isPublic == rhs.isPublic else { return false }
+    guard lhs.type == rhs.type else { return false }
+    return true
+}
+// MARK: - BitBucketServerRepo AutoEquatable
+extension BitBucketServerRepo: Equatable {}
+public func == (lhs: BitBucketServerRepo, rhs: BitBucketServerRepo) -> Bool {
+    guard compareOptionals(lhs: lhs.name, rhs: rhs.name, compare: ==) else { return false }
+    guard lhs.slug == rhs.slug else { return false }
+    guard lhs.scmId == rhs.scmId else { return false }
+    guard lhs.isPublic == rhs.isPublic else { return false }
+    guard lhs.forkable == rhs.forkable else { return false }
+    guard lhs.project == rhs.project else { return false }
+    return true
+}
+// MARK: - BitBucketServerUser AutoEquatable
+extension BitBucketServerUser: Equatable {}
+public func == (lhs: BitBucketServerUser, rhs: BitBucketServerUser) -> Bool {
+    guard lhs.id == rhs.id else { return false }
+    guard lhs.name == rhs.name else { return false }
+    guard lhs.displayName == rhs.displayName else { return false }
+    guard lhs.emailAddress == rhs.emailAddress else { return false }
+    guard lhs.active == rhs.active else { return false }
+    guard lhs.slug == rhs.slug else { return false }
+    guard lhs.type == rhs.type else { return false }
+    return true
+}
 // MARK: - Git AutoEquatable
 extension Git: Equatable {}
 public func == (lhs: Git, rhs: Git) -> Bool {
