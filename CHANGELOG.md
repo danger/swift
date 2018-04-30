@@ -10,6 +10,8 @@
 
 ## Master
 
+## 0.4.0
+
 * Add Support for Bitbucket Server - thomasraith
 
 ## 0.3.6
