@@ -58,10 +58,7 @@ make install
 
 #### What are the next big steps?
 
-* Add tests
-* Add an [API client for GitHub](https://github.com/danger/danger-swift/issues/17)
-* Improve error handling
-* Write docs for end-users with examples
+* [Roadmap to 1.0](https://github.com/danger/danger-swift/issues/67)
 * Look into the `Class SwiftObject is implemented in both [x], [y]` runtime error, [probably this](https://bugs.swift.org/browse/SR-1060)
 
 ### Dangerfile.swift
