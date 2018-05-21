@@ -276,7 +276,7 @@ public struct GitHubRepo: Decodable {
     public let isPrivate: Bool
 
     /// A textual description of the repo.
-    public let description: String
+    public let description: String?
 
     /// A boolean stating whether the repo is a fork.
     public let isFork: Bool
