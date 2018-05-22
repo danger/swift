@@ -2,6 +2,12 @@
 
 Write your Dangerfiles in Swift 4+.
 
+### Requirements
+
+Latest version requires Swift 4.1.
+
+If you are using Swift 4.0, Use v0.3.5 .
+
 ### What it looks like today
 
 You can make a Dangerfile that looks through PR metadata, it's fully typed.
