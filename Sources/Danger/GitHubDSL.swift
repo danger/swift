@@ -347,7 +347,7 @@ public struct GitHubCommit: Decodable {
     public let author: GitHubUser?
 
     /// The GitHub user who shipped the code.
-    public let committer: GitHubUser
+    public let committer: GitHubUser?
 
 }
 
