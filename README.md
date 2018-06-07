@@ -15,6 +15,7 @@ You can make a Dangerfile that looks through PR metadata, it's fully typed.
 ```swift
 import Danger
 
+let danger = Danger()
 let allSourceFiles = danger.git.modifiedFiles + danger.git.createdFiles
 
 let changelogChanged = allSourceFiles.contains("CHANGELOG.md")
