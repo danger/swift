@@ -5,7 +5,7 @@ import Foundation
 // MARK: - GitHub
 
 /// The GitHub metadata for your pull request.
-public struct GitHub: Decodable {
+public struct GitHub: Decodable, Equatable {
 
     // MARK: - CodingKeys
 
@@ -33,7 +33,7 @@ public struct GitHub: Decodable {
 
 // MARK: - GitHubPR
 
-public struct GitHubPR: Decodable {
+public struct GitHubPR: Decodable, Equatable {
 
     // MARK: - CodingKeys
 
@@ -145,7 +145,7 @@ public struct GitHubPR: Decodable {
 // MARK: - GitHubUser
 
 /// A GitHub user account.
-public struct GitHubUser: Decodable {
+public struct GitHubUser: Decodable, Equatable {
 
     // MARK: - CodingKeys
 
@@ -178,7 +178,7 @@ public struct GitHubUser: Decodable {
 // MARK: - GitHubTeam
 
 /// A GitHub team.
-public struct GitHubTeam: Decodable {
+public struct GitHubTeam: Decodable, Equatable {
 
     // MARK: - CodingKeys
 
@@ -199,7 +199,7 @@ public struct GitHubTeam: Decodable {
 // MARK: - GitHubRequestedReviewers
 
 /// Represents the payload for a PR's requested reviewers value.
-public struct GitHubRequestedReviewers: Decodable {
+public struct GitHubRequestedReviewers: Decodable, Equatable {
 
     // MARK: - CodingKeys
 
@@ -220,7 +220,7 @@ public struct GitHubRequestedReviewers: Decodable {
 // MARK: - GitHubMergeRef
 
 /// Represents 'head' in PR
-public struct GitHubMergeRef: Decodable {
+public struct GitHubMergeRef: Decodable, Equatable {
 
     // MARK: - Properties
 
@@ -243,7 +243,7 @@ public struct GitHubMergeRef: Decodable {
 
 // MARK: - GitHubRepo
 
-public struct GitHubRepo: Decodable {
+public struct GitHubRepo: Decodable, Equatable {
 
     // MARK: - CodingKeys
 
@@ -288,7 +288,7 @@ public struct GitHubRepo: Decodable {
 
 // MARK: - GitHubReview
 
-public struct GitHubReview: Decodable {
+public struct GitHubReview: Decodable, Equatable {
 
     // MARK: - CodingKeys
 
@@ -330,7 +330,7 @@ public struct GitHubReview: Decodable {
 // MARK: - GitHubCommit
 
 /// A GitHub specific implementation of a git commit.
-public struct GitHubCommit: Decodable {
+public struct GitHubCommit: Decodable, Equatable {
 
     // MARK: - Properties
 
@@ -353,7 +353,7 @@ public struct GitHubCommit: Decodable {
 
 // MARK: - GitHubIssue
 
-public struct GitHubIssue: Decodable {
+public struct GitHubIssue: Decodable, Equatable {
 
     // MARK: - CodingKeys
 
@@ -434,7 +434,7 @@ public struct GitHubIssue: Decodable {
 
 // MARK: - GitHubIssueLabel
 
-public struct GitHubIssueLabel: Decodable {
+public struct GitHubIssueLabel: Decodable, Equatable {
 
     // MARK: - Properties
 
@@ -454,7 +454,7 @@ public struct GitHubIssueLabel: Decodable {
 
 // MARK: - GitHubMilestone
 
-public struct GitHubMilestone: Decodable {
+public struct GitHubMilestone: Decodable, Equatable {
 
     // MARK: - CodingKeys
 

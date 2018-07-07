@@ -2,7 +2,7 @@ import Foundation
 
 // MARK: - BitBucketServer
 
-public struct BitBucketServer: Decodable {
+public struct BitBucketServer: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case metadata
@@ -32,7 +32,7 @@ public struct BitBucketServer: Decodable {
 
 // MARK: - BitBucketServerActivity
 
-public struct BitBucketServerActivity: Decodable {
+public struct BitBucketServerActivity: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -61,7 +61,7 @@ public struct BitBucketServerActivity: Decodable {
 
 // MARK: - BitBucketServerMetadata
 
-public struct BitBucketServerMetadata: Decodable {
+public struct BitBucketServerMetadata: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case pullRequestID
@@ -78,7 +78,7 @@ public struct BitBucketServerMetadata: Decodable {
 
 // MARK: - BitBucketServerComment
 
-public struct BitBucketServerComment: Decodable {
+public struct BitBucketServerComment: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -125,7 +125,7 @@ public struct BitBucketServerComment: Decodable {
     
     // MARK: - BitBucketServerCommentInner
     
-    public struct BitBucketServerCommentInner: Decodable {
+    public struct BitBucketServerCommentInner: Decodable, Equatable {
         
         enum CodingKeys: String, CodingKey {
             case id
@@ -169,7 +169,7 @@ public struct BitBucketServerComment: Decodable {
         
         // MARK: - BitBucketServerCommentTask
         
-        public struct BitBucketServerCommentTask: Decodable {
+        public struct BitBucketServerCommentTask: Decodable, Equatable {
             
             enum CodingKeys: String, CodingKey {
                 case id
@@ -199,7 +199,7 @@ public struct BitBucketServerComment: Decodable {
         
         // MARK: - BitBucketServerCommentInnerProperties
         
-        public struct BitBucketServerCommentInnerProperties: Decodable {
+        public struct BitBucketServerCommentInnerProperties: Decodable, Equatable {
             
             enum CodingKeys: String, CodingKey {
                 case repositoryId
@@ -220,7 +220,7 @@ public struct BitBucketServerComment: Decodable {
 
 // MARK: - BitBucketServerCommit
 
-public struct BitBucketServerCommit: Decodable {
+public struct BitBucketServerCommit: Decodable, Equatable {
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -260,7 +260,7 @@ public struct BitBucketServerCommit: Decodable {
     
     // MARK: - BitBucketServerCommitParent
     
-    public struct BitBucketServerCommitParent: Decodable {
+    public struct BitBucketServerCommitParent: Decodable, Equatable {
         
         enum CodingKeys: String, CodingKey {
             case id
@@ -280,7 +280,7 @@ public struct BitBucketServerCommit: Decodable {
 
 // MARK: - BitBucketServerPR
 
-public struct BitBucketServerPR: Decodable {
+public struct BitBucketServerPR: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -348,7 +348,7 @@ public struct BitBucketServerPR: Decodable {
     
     // MARK: - BitBucketServerAuthor
     
-    public struct BitBucketServerAuthor: Decodable {
+    public struct BitBucketServerAuthor: Decodable, Equatable {
         
         enum CodingKeys: String, CodingKey {
             case user
@@ -363,7 +363,7 @@ public struct BitBucketServerPR: Decodable {
 
 // MARK: - BitBucketServerMergeRef
 
-public struct BitBucketServerMergeRef: Decodable {
+public struct BitBucketServerMergeRef: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -389,7 +389,7 @@ public struct BitBucketServerMergeRef: Decodable {
 
 // MARK: - BitBucketServerRepo
 
-public struct BitBucketServerRepo: Decodable {
+public struct BitBucketServerRepo: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -422,7 +422,7 @@ public struct BitBucketServerRepo: Decodable {
 
 // MARK: - BitBucketServerProject
 
-public struct BitBucketServerProject: Decodable {
+public struct BitBucketServerProject: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -452,7 +452,7 @@ public struct BitBucketServerProject: Decodable {
 
 // MARK: - BitBucketServerUser
 
-public struct BitBucketServerUser: Decodable {
+public struct BitBucketServerUser: Decodable, Equatable {
     
     enum CodingKeys: String, CodingKey {
         case id
