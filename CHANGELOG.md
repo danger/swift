@@ -1,6 +1,6 @@
 <!--
 
-// Please add your own contribution below inside the Master section, no need to 
+// Please add your own contribution below inside the Master section, no need to
 // set a version number, that happens during a deploy.
 //
 // These docs are aimed at users rather than danger developers, so please limit technical
@@ -9,6 +9,10 @@
 -->
 
 ## Master
+
+## 0.4.1
+
+* Remove Sourcery-based code generation in favor of Swift 4.1's native Equatable conformance generation - yhkaplan
 
 ## 0.4.0
 
