@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Git
 
 /// The git specific metadata for a pull request.
-public struct Git: Decodable {
+public struct Git: Decodable, Equatable {
 
     // MARK: - CodingKeys
 
@@ -29,7 +29,7 @@ public struct Git: Decodable {
 // MARK: - GitCommit
 
 /// A platform agnostic reference to a git commit.
-public struct GitCommit: Decodable {
+public struct GitCommit: Decodable, Equatable {
 
     // MARK: - Properties
 
@@ -56,7 +56,7 @@ public struct GitCommit: Decodable {
 // MARK: - GitCommitAuthor
 
 /// The author of a commit.
-public struct GitCommitAuthor: Decodable {
+public struct GitCommitAuthor: Decodable, Equatable {
 
     /// The display name for the author.
     public let name: String
