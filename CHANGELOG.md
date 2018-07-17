@@ -14,6 +14,11 @@
 
 * Remove Sourcery-based code generation in favor of Swift 4.1's native Equatable conformance generation - yhkaplan
 
+### Changed
+* [BitbucketServer] Make description, commiter and committerTimestamp optional. [#79](https://github.com/danger/danger-swift/pull/79) by [@acecilia](https://github.com/acecilia)
+* [Github] Make repository description optional. [#73](https://github.com/danger/danger-swift/pull/73) by [@hiragram](https://github.com/hiragram)
+* [Github] Make commit author and committer optional. [#75](https://github.com/danger/danger-swift/pull/75) by [@Sega-Zero](https://github.com/Sega-Zero)
+
 ## 0.4.0
 
 * Add Support for Bitbucket Server - thomasraith
