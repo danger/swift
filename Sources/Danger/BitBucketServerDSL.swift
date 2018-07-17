@@ -240,16 +240,16 @@ public struct BitBucketServerCommit: Decodable, Equatable {
     public let displayId: String
     
     /// The author of the commit, assumed to be the person who wrote the code.
-    public let author: BitBucketServerUser
+    public let author: BitBucketServerUser?
     
     /// The UNIX timestamp for when the commit was authored
     public let authorTimestamp: Int
     
     /// The author of the commit, assumed to be the person who commited/merged the code into a project.
-    public let committer: BitBucketServerUser
+    public let committer: BitBucketServerUser?
     
     /// When the commit was commited to the project
-    public let committerTimestamp: Int
+    public let committerTimestamp: Int?
     
     /// The commit's message
     public let message: String
@@ -309,8 +309,8 @@ public struct BitBucketServerPR: Decodable, Equatable {
     /// Title of the pull request.
     public let title: String
     
-    /// The creator of the PR
-    public let description: String
+    /// The description of the PR
+    public let description: String?
     
     /// The pull request's current status.
     public let state: String
