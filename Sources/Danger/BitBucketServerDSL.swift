@@ -240,7 +240,7 @@ public struct BitBucketServerCommit: Decodable, Equatable {
     public let displayId: String
     
     /// The author of the commit, assumed to be the person who wrote the code.
-    public let author: BitBucketServerUser?
+    public let author: BitBucketServerUser
     
     /// The UNIX timestamp for when the commit was authored
     public let authorTimestamp: Int
