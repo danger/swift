@@ -28,7 +28,7 @@ public enum FileType: String, Equatable {
     }
 }
 
-// MARK: - Public extensions
+// MARK: - FileType extensions
 
 extension FileType {
 
