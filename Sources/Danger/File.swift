@@ -10,12 +10,16 @@ extension File {
     public var fileType: FileType? {
         return FileType(from: self)
     }
+    
+    public var name: String {
+        return String(self)
+    }
 
 }
 
 // MARK: - FileType
 
-public enum FileType: String {
+public enum FileType: String, Equatable {
     case h, json, m, markdown = "md", pbxproj, plist, storyboard, swift
 
     @available(swift, deprecated: 4.2, message: "Replace with CaseIterable conformance")
@@ -32,16 +36,17 @@ extension FileType {
         return rawValue
     }
 
-    public init?(from fileName: String) {
+    public init?(from file: File) {
         let allCasesDelimited = FileType.allCases.map { $0.extension }.joined(separator: "|")
 
         guard
             let pattern = try? NSRegularExpression(pattern: "\\.(\(allCasesDelimited))$"),
-            let rawValue = pattern.firstMatchingString(in: fileName)
+            let match = pattern.firstMatchingString(in: file.name)
         else {
             return nil
         }
-
+        
+        let rawValue = match.replacingOccurrences(of: ".", with: "")
         self.init(rawValue: rawValue)
     }
 
