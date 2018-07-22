@@ -35,16 +35,13 @@ extension FileType {
     public init?(from fileName: String) {
         let allCasesDelimited = FileType.allCases.map { $0.extension }.joined(separator: "|")
 
-        // TODO: move ugly regex stuff to tested extension where it belongs, write tests
         guard
-            let regex = try? NSRegularExpression(pattern: "\\.(\(allCasesDelimited))$", options: []),
-            let match = regex.firstMatch(in: fileName, options: [], range: NSRange(location: 0, length: fileName.count)),
-            let range = Range(match.range, in: fileName)
+            let pattern = try? NSRegularExpression(pattern: "\\.(\(allCasesDelimited))$"),
+            let rawValue = pattern.firstMatchingString(in: fileName)
         else {
             return nil
         }
 
-        let rawValue = String(fileName[range])
         self.init(rawValue: rawValue)
     }
 
