@@ -8,10 +8,14 @@ class FileTests: XCTestCase {
         ("test_fileType_forJSON", test_fileType_forJSON),
         ("test_fileType_forM", test_fileType_forM),
         ("test_fileType_forMarkdown", test_fileType_forMarkdown),
+        ("test_fileType_forMM", test_fileType_forMM),
         ("test_fileType_forPbxproj", test_fileType_forPbxproj),
         ("test_fileType_forPlist", test_fileType_forPlist),
         ("test_fileType_forStoryboard", test_fileType_forStoryboard),
         ("test_fileType_forSwift", test_fileType_forSwift),
+        ("test_fileType_forXCScheme", test_fileType_forXCScheme),
+        ("test_fileType_forYAML", test_fileType_forYAML),
+        ("test_fileType_forYML", test_fileType_forYML),
     ]
     
     func test_fileType_forHFile() {
@@ -53,6 +57,16 @@ class FileTests: XCTestCase {
         XCTAssertEqual(file.fileType, expectedType)
         XCTAssertNil(unknownFile.fileType)
     }
+    
+    func test_fileType_forMM() {
+        let file: File = "CoreLib.mm"
+        let unknownFile: File = "CoreLib.mmm"
+        
+        let expectedType: FileType = .mm
+        
+        XCTAssertEqual(file.fileType, expectedType)
+        XCTAssertNil(unknownFile.fileType)
+    }
 
     func test_fileType_forPbxproj() {
         let file: File = "project.pbxproj"
@@ -89,6 +103,36 @@ class FileTests: XCTestCase {
         let unknownFile: File = "ViewController.swiftz"
         
         let expectedType: FileType = .swift
+        
+        XCTAssertEqual(file.fileType, expectedType)
+        XCTAssertNil(unknownFile.fileType)
+    }
+    
+    func test_fileType_forXCScheme() {
+        let file: File = "project.xcscheme"
+        let unknownFile: File = "project.xcschemes"
+        
+        let expectedType: FileType = .xcscheme
+        
+        XCTAssertEqual(file.fileType, expectedType)
+        XCTAssertNil(unknownFile.fileType)
+    }
+    
+    func test_fileType_forYAML() {
+        let file: File = "config.yaml"
+        let unknownFile: File = "config.yamll"
+        
+        let expectedType: FileType = .yaml
+        
+        XCTAssertEqual(file.fileType, expectedType)
+        XCTAssertNil(unknownFile.fileType)
+    }
+    
+    func test_fileType_forYML() {
+        let file: File = ".swiftlint.yml"
+        let unknownFile: File = ".swiftlint.ymll"
+        
+        let expectedType: FileType = .yml
         
         XCTAssertEqual(file.fileType, expectedType)
         XCTAssertNil(unknownFile.fileType)
