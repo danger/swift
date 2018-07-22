@@ -20,11 +20,11 @@ extension File {
 // MARK: - FileType
 
 public enum FileType: String, Equatable {
-    case h, json, m, markdown = "md", pbxproj, plist, storyboard, swift
+    case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
 
     @available(swift, deprecated: 4.2, message: "Replace with CaseIterable conformance")
     static internal var allCases: [FileType] {
-        return [.h, .json, .m, .markdown, .pbxproj, .plist, .storyboard, .swift]
+        return [.h, .json, .m, .markdown, .mm, .pbxproj, .plist, .storyboard, .swift, .xcscheme, yaml, yml]
     }
 }
 
