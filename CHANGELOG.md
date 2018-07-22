@@ -10,9 +10,8 @@
 
 ## Master
 
-## 0.4.1
-
-* Remove Sourcery-based code generation in favor of Swift 4.1's native Equatable conformance generation - yhkaplan
+* Change modifiedFiles, createdFiles, deletedFiles to be of type `File`, adding Name and FileType properties - [#81](https://github.com/danger/danger-swift/pull/81) by [yhkaplan](https://github.com/yhkaplan)
+* Remove Sourcery-based code generation in favor of Swift 4.1's native Equatable conformance generation - [#78](https://github.com/danger/danger-swift/pull/78) by [yhkaplan](https://github.com/yhkaplan)
 
 ### Changed
 * [BitbucketServer] Make description, commiter and committerTimestamp optional. [#79](https://github.com/danger/danger-swift/pull/79) by [@acecilia](https://github.com/acecilia)
