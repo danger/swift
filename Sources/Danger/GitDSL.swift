@@ -16,13 +16,13 @@ public struct Git: Decodable, Equatable {
     // MARK: - Properties
 
     /// Modified filepaths relative to the git root.
-    public let modifiedFiles: [String]
+    public let modifiedFiles: [File]
 
     /// Newly created filepaths relative to the git root.
-    public let createdFiles: [String]
+    public let createdFiles: [File]
 
     /// Removed filepaths relative to the git root.
-    public let deletedFiles: [String]
+    public let deletedFiles: [File]
 
 }
 
