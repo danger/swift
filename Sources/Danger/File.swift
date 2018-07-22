@@ -36,7 +36,7 @@ extension FileType {
         return rawValue
     }
 
-    public init?(from file: File) {
+    init?(from file: File) {
         let allCasesDelimited = FileType.allCases.map { $0.extension }.joined(separator: "|")
 
         guard
