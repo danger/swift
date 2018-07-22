@@ -10,7 +10,7 @@
 
 ## Master
 
-* Change modifiedFiles, createdFiles, deletedFiles to be of type `File`, adding Name and FileType properties - [#80](https://github.com/danger/danger-swift/pull/80) by [yhkaplan](https://github.com/yhkaplan)
+* Change modifiedFiles, createdFiles, deletedFiles to be of type `File`, adding Name and FileType properties - [#81](https://github.com/danger/danger-swift/pull/81) by [yhkaplan](https://github.com/yhkaplan)
 * Remove Sourcery-based code generation in favor of Swift 4.1's native Equatable conformance generation - [#78](https://github.com/danger/danger-swift/pull/78) by [yhkaplan](https://github.com/yhkaplan)
 
 ### Changed
