@@ -10,6 +10,8 @@
 
 ## Master
 
+* Use CaseIterable to take advantage of compiler-generated `allCases` in enum by [yhkaplan](https://github.com/yhkaplan)
+
 ## 0.4.0
 
 * Change modifiedFiles, createdFiles, deletedFiles to be of type `File`, adding Name and FileType properties - [#81](https://github.com/danger/danger-swift/pull/81) by [yhkaplan](https://github.com/yhkaplan)
