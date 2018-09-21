@@ -2,7 +2,7 @@ language: generic
 matrix:
   include:
     - os: osx
-      osx_image: xcode10.0
+      osx_image: xcode10
       install:
         - node -v
         - npm install -g danger
