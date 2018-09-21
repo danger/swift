@@ -10,7 +10,7 @@
 
 ## Master
 
-* Use CaseIterable to take advantage of compiler-generated `allCases` in enum by [yhkaplan](https://github.com/yhkaplan)
+* Use CaseIterable to take advantage of compiler-generated `allCases` in enum by [yhkaplan](https://github.com/yhkaplan) (requires Swift 4.2)
 
 ## 0.4.0
 
