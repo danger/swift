@@ -4,9 +4,10 @@ Write your Dangerfiles in Swift 4+.
 
 ### Requirements
 
-Latest version requires Swift 4.1.
+Latest version requires Swift 4.2
 
-If you are using Swift 4.0, Use v0.3.5 .
+- If you are using Swift 4.1 use v0.3.6
+- If you are using Swift 4.0, Use v0.3.5
 
 ### What it looks like today
 
