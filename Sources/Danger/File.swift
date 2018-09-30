@@ -10,7 +10,7 @@ extension File {
     public var fileType: FileType? {
         return FileType(from: self)
     }
-    
+
     public var name: String {
         return String(self)
     }
@@ -21,12 +21,17 @@ extension File {
 
 public enum FileType: String, Equatable {
     case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
-
-    @available(swift, deprecated: 4.2, message: "Replace with CaseIterable conformance")
-    static internal var allCases: [FileType] {
-        return [.h, .json, .m, .markdown, .mm, .pbxproj, .plist, .storyboard, .swift, .xcscheme, yaml, yml]
-    }
 }
+
+#if swift(>=4.2)  // Use compiler-generated allCases when available
+    extension FileType: CaseIterable {}
+#else
+    extension FileType {
+        static var allCases: [FileType] {
+            return [.h, .json, .m, .markdown, .mm, .pbxproj, .plist, .storyboard, .swift, .xcscheme, .yaml, .yml]
+        }
+    }
+#endif
 
 // MARK: - FileType extensions
 
@@ -45,7 +50,7 @@ extension FileType {
         else {
             return nil
         }
-        
+
         let rawValue = match.replacingOccurrences(of: ".", with: "")
         self.init(rawValue: rawValue)
     }

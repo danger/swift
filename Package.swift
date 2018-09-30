@@ -11,7 +11,7 @@ let package = Package(
         .executable(name: "danger-swift", targets: ["Runner"])
     ],
     dependencies: [
-        .package(url: "https://github.com/JohnSundell/Marathon.git", from: "3.0.0"),
+        .package(url: "https://github.com/JohnSundell/Marathon.git", from: "3.1.0"),
     ],
     targets: [
         .target(name: "Danger", dependencies: []),

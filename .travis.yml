@@ -2,11 +2,11 @@ language: generic
 matrix:
   include:
     - os: osx
-      osx_image: xcode9.3
+      osx_image: xcode10
       install:
         - node -v
         - npm install -g danger
-        - swift build 
+        - swift build
       script:
         - swift test
         - DEBUG="*" danger process .build/x86_64-apple-macosx10.10/debug/danger-swift
@@ -21,8 +21,8 @@ matrix:
         - node -v
         - npm install -g danger
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
-        - swiftenv global 4.1
-        - swift build 
+        - swiftenv global 4.2
+        - swift build
       script:
         - swift test
         - DEBUG="*" danger process .build/x86_64-unknown-linux/debug/danger-swift
