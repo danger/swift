@@ -123,15 +123,6 @@ func runDanger(logger: Logger) throws -> Void {
 
     // Support the upcoming danger results-url
     standardOutput.write("danger-results:/\(dangerResponsePath)".data(using: .utf8)!)
-    // Blank line just to make sure the json has
-    standardOutput.write("\n\n".data(using: .utf8)!)
-    standardOutput.synchronizeFile()
-
-    // Take JSON and pipe it back to SDTOUT for DangerJS to read
-    standardOutput.write(results)
-
-
-    standardOutput.write("\n\n".data(using: .utf8)!)
 
     // Clean up after ourselves
     try? fileManager.removeItem(atPath: dslJSONPath)
