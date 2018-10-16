@@ -10,6 +10,13 @@
 
 ## Master
 
+Adds two new commands: 
+
+- `danger-swift ci` - handles running Danger
+- `danger-swift pr [https://github.com/Moya/Harvey/pull/23]` - Let's you run Danger against a PR locally
+
+This updates depends on Danger 5.0 - orta
+
 ## 0.4.1
 
 * Use CaseIterable to take advantage of compiler-generated `allCases` in enum by [yhkaplan](https://github.com/yhkaplan) (requires Swift 4.2)

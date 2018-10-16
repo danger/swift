@@ -4,5 +4,9 @@
     "**/.DS_Store": true,
     "**/.build": true,
     "**/danger-swift.xcodeproj": true
-  }
+  },
+  "cSpell.words": [
+    "Xcode",
+    "struct"
+  ]
 }
