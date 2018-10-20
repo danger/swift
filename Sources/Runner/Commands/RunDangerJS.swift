@@ -1,7 +1,7 @@
 import Foundation
 import Danger
 
-func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throws -> Void {
+func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throws -> Int32 {
     let dangerJS = try getDangerJSPath()
 
     let proc = Process()
@@ -20,4 +20,6 @@ func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throw
     logger.logInfo("Running: \(proc.launchPath!) \(proc.arguments!.joined(separator: " ")) ")
     proc.launch()
     proc.waitUntilExit()
+
+    return proc.terminationStatus
 }
