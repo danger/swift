@@ -10,6 +10,8 @@
 
 ## Master
 
+## 0.5.0
+
 - Adds three new commands: 
 
     - `danger-swift ci` - Runs Danger using CI detection, and working to find a PR

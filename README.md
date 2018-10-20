@@ -49,6 +49,7 @@ Xcode project set up for editing a Swift Dangerfile.
 - `danger-swift ci` - Is the command for running on CI
 - `danger-swift pr https://github.com/Moya/Harvey/pull/23` - Is the command for running a PR locally
 - `danger-swift edit` - Creates a temporary Xcode project for working on a Dangerfile
+- `danger-swift local` - Runs Danger by comparing the difference between your current branch and master
 
 #### Plugins
 
@@ -109,7 +110,7 @@ npm install -g danger
 danger-swift ci
 ```
 
-With Docker coming soon.
+With Docker support available if you grab the version from this repo.
 
 #### What are the next big steps?
 
