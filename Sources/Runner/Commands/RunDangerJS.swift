@@ -9,7 +9,7 @@ func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throw
     proc.launchPath = dangerJS
 
     let unusedArgs = CommandLine.arguments.filter { arg in
-        arg !== "danger-swift" && arg !== command
+        arg != "danger-swift" && arg != command
     }
     proc.arguments =  [ command, "--process", "danger-swift" ] + unusedArgs
 
