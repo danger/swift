@@ -19,6 +19,8 @@ func runDanger(logger: Logger) throws -> Void {
         logger.logError("Could not create a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
         exit(1)
     }
+    logger.logInfo("Created a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
+
 
     // Exit if a dangerfile was not found at any supported path
     guard let dangerfilePath = Runtime.getDangerfile() else {
@@ -27,6 +29,8 @@ func runDanger(logger: Logger) throws -> Void {
                         separator: "\n")
         exit(1)
     }
+    logger.logInfo("Running Dangerfile at: \(dangerfilePath)")
+
 
     guard let libDangerPath = Runtime.getLibDangerPath() else {
         let potentialFolders = Runtime.potentialLibraryFolders
@@ -45,6 +49,8 @@ func runDanger(logger: Logger) throws -> Void {
     let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") }
 
     if (importExternalDeps.count > 0) {
+        logger.logInfo("Getting inline dependencies: \(importExternalDeps.joined(separator: ", "))")
+
         try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
         let tempDangerfile = try File(path: "_dangerfile_imports.swift")
         try tempDangerfile.write(string: importExternalDeps.joined(separator: "\n"))
@@ -108,12 +114,14 @@ func runDanger(logger: Logger) throws -> Void {
     proc.launch()
     proc.waitUntilExit()
 
+    logger.logInfo("Completed evaluation")
+
     if (proc.terminationStatus != 0) {
         logger.logError("Dangerfile eval failed at \(dangerfilePath)")
     }
 
     // Pull out the results JSON that the Danger eval should generate
-    guard let results = fileManager.contents(atPath: dangerResponsePath) else {
+    guard fileManager.contents(atPath: dangerResponsePath) != nil else {
         logger.logError("Could not get the results JSON file at \(dangerResponsePath)")
         // Clean up after ourselves
         try? fileManager.removeItem(atPath: dslJSONPath)
@@ -123,6 +131,7 @@ func runDanger(logger: Logger) throws -> Void {
 
     // Support the upcoming danger results-url
     standardOutput.write("danger-results:/\(dangerResponsePath)".data(using: .utf8)!)
+    logger.logInfo("Saving and storing the results at \(dangerResponsePath)")
 
     // Clean up after ourselves
     try? fileManager.removeItem(atPath: dslJSONPath)

@@ -5,7 +5,6 @@ import Files
 import MarathonCore
 
 func editDanger(logger: Logger) throws -> Void {
-
     let createDangerfile = { () -> String in
         do {
             let template = "import Danger \n let danger = Danger()"

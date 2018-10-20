@@ -26,7 +26,6 @@ if !changelogChanged && sourceChanges != nil {
   warn("No CHANGELOG entry added.")
 }
 
-
 // You can use these functions to send feedback:
 message("Highlight something in the table")
 warn("Something pretty bad, but not important enough to fail the build")
@@ -35,53 +34,28 @@ fail("Something that must be changed")
 markdown("Free-form markdown that goes under the table, so you can do whatever.")
 ```
 
-### CI Configuration
+### Getting Started
 
-In your CI:
-
-```sh
-# Setup
-npm install -g danger                 # Get DangerJS
-brew install danger/tap/danger-swift  # Install danger-swift locally
-
-# Script
-danger process danger-swift           # Run Danger
-```
-
-### Local installation
-
-#### Homebrew
-
-```sh
-brew install danger/tap/danger-swift
-```
-
-#### Manual install
-
-```sh
-git clone https://github.com/danger/danger-swift.git
-cd danger-swift
-make install
-```
-
-#### What are the next big steps?
-
-* [Roadmap to 1.0](https://github.com/danger/danger-swift/issues/67)
-* Look into the `Class SwiftObject is implemented in both [x], [y]` runtime error, [probably this](https://bugs.swift.org/browse/SR-1060)
-
-### Dangerfile.swift
-
-Setting up:
+Using Danger in Swift
 
 1. Install Danger Swift: `brew install danger/tap/danger-swift`.
 1. Edit the dangerfile: `danger-swift edit`.
 
-This will make a `Dangerfile.swift` for you., then pop up a temporary Xcode project set up for editing a Swift Dangerfile.
+This will make a `Dangerfile.swift` for you. then pop up a temporary 
+Xcode project set up for editing a Swift Dangerfile.
+
+### Commands
+
+- `danger-swift ci` - Is the command for running on CI
+- `danger-swift pr https://github.com/Moya/Harvey/pull/23` - Is the command for running a PR locally
+- `danger-swift edit` - Creates a temporary Xcode project for working on a Dangerfile
 
 #### Plugins
 
-Infrastructure exists to support plugins, which can help you avoid repeating the same Danger rules across separate repos. By
-suffixing `package: [url]` to an import, you can directly import Swift PM package as a dependency(through [Marathon][m]), which is basically how plugins work.
+Infrastructure exists to support plugins, which can help you avoid repeating 
+the same Danger rules across separate repos. By suffixing `package: [url]` to an 
+import, you can directly import Swift PM package as a dependency(through 
+[Marathon][m]).
 
 For example, a plugin could be used by the following.
 
@@ -93,7 +67,7 @@ import DangerPlugin // package: https://github.com/username/DangerPlugin.git
 DangerPlugin.doYourThing()
 ```
 
-And could be implemented with the following.
+And could be implemented with the following in that repo.
 
 ```swift
 // DangerPlugin.swift
@@ -107,6 +81,42 @@ public struct DangerPlugin {
 }
 ```
 
+You can see an [example danger-swift plugin](https://github.com/ashfurrow/danger-swiftlint#danger-swiftlint).
+
+### Setup
+
+For a Mac:
+
+```sh
+# Install danger-swift, and a bundled danger-js locally
+brew install danger/tap/danger-swift  
+ # Run danger
+danger-swift ci
+```
+
+For Linux:
+
+```sh
+# Install danger-swift
+git clone https://github.com/danger/danger-swift.git
+cd danger-swift
+make install
+
+# Install danger-js
+npm install -g danger
+
+ # Run danger
+danger-swift ci
+```
+
+With Docker coming soon.
+
+#### What are the next big steps?
+
+* [Roadmap to 1.0](https://github.com/danger/danger-swift/issues/67)
+* Look into the `Class SwiftObject is implemented in both [x], [y]` runtime error, [probably this](https://bugs.swift.org/browse/SR-1060)
+
+
 #### How it works
 
 This project takes its ideas from how the Swift Package Manager handles package manifests. You can get the [long story here][spm-lr], but the TLDR is that there is a runner project which compiles and executes a runtime lib which exports its data out into JSON when the libs process is over.
@@ -115,7 +125,7 @@ So this project will export a lib `libDanger` and a CLI tool `danger-swift` whic
 
 #### Dev
 
-You need to be using Xcode 9.
+You need to be using Xcode 10.
 
 ```sh
 git clone https://github.com/danger/danger-swift.git
