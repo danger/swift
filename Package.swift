@@ -12,9 +12,10 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/JohnSundell/Marathon.git", from: "3.1.0"),
+        .package(url: "https://github.com/JohnSundell/ShellOut.git", from: "2.1.0"),
     ],
     targets: [
-        .target(name: "Danger", dependencies: []),
+        .target(name: "Danger", dependencies: ["ShellOut"]),
         .target(name: "Runner", dependencies: ["Danger", "MarathonCore"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger"]),
     ],
