@@ -5,7 +5,7 @@ matrix:
       osx_image: xcode10
       install:
         - node -v
-        - npm install -g danger
+        - npm install -g danger@beta
         - swift build
       script:
         - swift test
@@ -19,7 +19,7 @@ matrix:
       dist: trusty
       install:
         - node -v
-        - npm install -g danger
+        - npm install -g danger@beta
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
         - swiftenv global 4.2
         - swift build

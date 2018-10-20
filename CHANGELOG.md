@@ -10,12 +10,11 @@
 
 ## Master
 
-Adds two new commands: 
+- Adds two new commands: 
+    - `danger-swift ci` - handles running Danger
+    - `danger-swift pr [https://github.com/Moya/Harvey/pull/23]` - Let's you run Danger against a PR locally
 
-- `danger-swift ci` - handles running Danger
-- `danger-swift pr [https://github.com/Moya/Harvey/pull/23]` - Let's you run Danger against a PR locally
-
-This updates depends on Danger 5.0 - orta
+* Prepares for Danger JS 5.0 - [#84](https://github.com/danger/danger-swift/pull/84) by [orta](https://github.com/orta)
 
 ## 0.4.1
 
