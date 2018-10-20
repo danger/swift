@@ -12,9 +12,14 @@
 
 * Restored danger-swift edit functionality - [#90](https://github.com/danger/danger-swift/pull/90) by [f-meloni](https://github.com/f-meloni)
 * Expose Danger report results - [#89](https://github.com/danger/danger-swift/pull/89) by [f-meloni](https://github.com/f-meloni)
-- Adds two new commands: 
-    - `danger-swift ci` - handles running Danger
+
+## 0.5.0
+
+- Adds three new commands: 
+
+    - `danger-swift ci` - Runs Danger using CI detection, and working to find a PR
     - `danger-swift pr [https://github.com/Moya/Harvey/pull/23]` - Let's you run Danger against a PR locally
+    - `danger-swift local - Let's you run Danger against a the changes from your master branch
 
 * Prepares for Danger JS 5.0 - [#84](https://github.com/danger/danger-swift/pull/84) by [orta](https://github.com/orta)
 
