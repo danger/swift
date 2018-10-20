@@ -5,6 +5,7 @@ func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throw
     let dangerJS = try getDangerJSPath()
 
     let proc = Process()
+    proc.environment = ProcessInfo.processInfo.environment
     proc.launchPath = dangerJS
     proc.arguments =  [ command, "--process", "danger-swift" ] + CommandLine.arguments
 
@@ -12,6 +13,7 @@ func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throw
     proc.standardOutput = standardOutput
     proc.standardError = standardOutput
 
+    logger.logInfo("Running: \(proc.launchPath!) \(proc.arguments!.joined(separator: " ")) ")
     proc.launch()
     proc.waitUntilExit()
 }
