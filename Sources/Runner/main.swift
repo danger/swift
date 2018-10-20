@@ -7,14 +7,14 @@ do {
     let isSilent = CommandLine.arguments.contains("--silent")
     let logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
 
-    if cliLength > 1 && "edit" == CommandLine.arguments[1] {
-        try editDanger(logger: logger)
-    } else if cliLength > 1 && "ci" == CommandLine.arguments[1] {
-        try runDangerJSToRunDangerSwift(logger: logger)
-    } else if cliLength > 1 && "pr" == CommandLine.arguments[1] {
-        try runDangerJSPRToRunDangerSwift(logger: logger)
+    if cliLength > 1 {
+        switch(CommandLine.arguments[1]) {
+        case "ci", "local", "pr":
+            try runDangerJSCommandToRunDangerSwift(CommandLine.arguments[1], logger: logger)
+        default:
+            fatalError("Danger Swift does not support this argument, it only handl;es ci, local & pr'")
+        }
     } else {
-        // TODO: Deprecate
         try runDanger(logger: logger)
     }
 } catch {

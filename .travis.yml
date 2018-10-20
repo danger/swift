@@ -5,11 +5,12 @@ matrix:
       osx_image: xcode10
       install:
         - node -v
-        - npm install -g danger@beta
+        - npm install -g danger
         - swift build
       script:
         - swift test
         - DEBUG="*" danger process .build/x86_64-apple-macosx10.10/debug/danger-swift
+        - DEBUG="*" danger ci --process .build/x86_64-apple-macosx10.10/debug/danger-swift
         - sudo chmod -R a+rwx /usr/local/Cellar/
         - make install
 
@@ -19,7 +20,7 @@ matrix:
       dist: trusty
       install:
         - node -v
-        - npm install -g danger@beta
+        - npm install -g danger
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
         - swiftenv global 4.2
         - swift build
