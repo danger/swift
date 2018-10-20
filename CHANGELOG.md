@@ -10,6 +10,8 @@
 
 ## Master
 
+* Prepares for Danger JS 5.0 - [#84](https://github.com/danger/danger-swift/pull/84) by [orta](https://github.com/orta)
+
 ## 0.4.1
 
 * Use CaseIterable to take advantage of compiler-generated `allCases` in enum by [yhkaplan](https://github.com/yhkaplan) (requires Swift 4.2)

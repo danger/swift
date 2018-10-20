@@ -121,12 +121,11 @@ func runDanger(logger: Logger) throws -> Void {
         exit(1)
     }
 
-    // Take JSON and pipe it back to SDTOUT for DangerJS to read
-    standardOutput.write(results)
+    // Support the upcoming danger results-url
+    standardOutput.write("danger-results:/\(dangerResponsePath)".data(using: .utf8)!)
 
     // Clean up after ourselves
     try? fileManager.removeItem(atPath: dslJSONPath)
-    try? fileManager.removeItem(atPath: dangerResponsePath)
 
     // Return the same error code as the compilation
     exit(proc.terminationStatus)
