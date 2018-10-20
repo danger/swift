@@ -10,9 +10,11 @@
 
 ## Master
 
-- Adds two new commands: 
-    - `danger-swift ci` - handles running Danger
+- Adds three new commands: 
+
+    - `danger-swift ci` - Runs Danger using CI detection, and working to find a PR
     - `danger-swift pr [https://github.com/Moya/Harvey/pull/23]` - Let's you run Danger against a PR locally
+    - `danger-swift local` - Runs Danger by comparing the difference between your current branch and master
 
 * Prepares for Danger JS 5.0 - [#84](https://github.com/danger/danger-swift/pull/84) by [orta](https://github.com/orta)
 
