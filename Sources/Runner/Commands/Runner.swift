@@ -113,7 +113,7 @@ func runDanger(logger: Logger) throws -> Void {
     }
 
     // Pull out the results JSON that the Danger eval should generate
-    guard let results = fileManager.contents(atPath: dangerResponsePath) else {
+    guard fileManager.contents(atPath: dangerResponsePath) != nil else {
         logger.logError("Could not get the results JSON file at \(dangerResponsePath)")
         // Clean up after ourselves
         try? fileManager.removeItem(atPath: dslJSONPath)
