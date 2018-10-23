@@ -63,6 +63,26 @@ public func Danger() -> DangerDSL {
     return DangerRunner.shared.dsl
 }
 
+/// Fails on the Danger report
+public var fails: [Violation] {
+    return DangerRunner.shared.results.fails
+}
+
+/// Warnings on the Danger report
+public var warnings: [Violation] {
+    return DangerRunner.shared.results.warnings
+}
+
+/// Messages on the Danger report
+public var messages: [Violation] {
+    return DangerRunner.shared.results.messages
+}
+
+/// Markdowns on the Danger report
+public var markdowns: [Violation] {
+    return DangerRunner.shared.results.markdowns
+}
+
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
