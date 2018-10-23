@@ -10,6 +10,7 @@
 
 ## Master
 
+* Expose Danger report results - [#89](https://github.com/danger/danger-swift/pull/89) by [f-meloni](https://github.com/f-meloni)
 - Adds two new commands: 
     - `danger-swift ci` - handles running Danger
     - `danger-swift pr [https://github.com/Moya/Harvey/pull/23]` - Let's you run Danger against a PR locally
