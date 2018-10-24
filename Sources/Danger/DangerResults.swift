@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Violation
 
 /// The result of a warn, message, or fail.
-struct Violation: Codable {
+public struct Violation: Codable {
 
     let message: String
     let file: String?
