@@ -10,6 +10,8 @@
 
 ## Master
 
+## 0.5.1
+
 * Restored danger-swift edit functionality - [#90](https://github.com/danger/danger-swift/pull/90) by [f-meloni](https://github.com/f-meloni)
 * Expose Danger report results - [#89](https://github.com/danger/danger-swift/pull/89) by [f-meloni](https://github.com/f-meloni)
 
