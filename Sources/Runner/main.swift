@@ -12,8 +12,10 @@ do {
         case "ci", "local", "pr":
             let exitCode = try runDangerJSCommandToRunDangerSwift(CommandLine.arguments[1], logger: logger)
             exit(exitCode)
+        case "edit":
+            try editDanger(logger: logger)
         default:
-            fatalError("Danger Swift does not support this argument, it only handl;es ci, local & pr'")
+            fatalError("Danger Swift does not support this argument, it only handles ci, local, pr & edit'")
         }
     } else {
         try runDanger(logger: logger)
