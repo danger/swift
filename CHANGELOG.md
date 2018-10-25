@@ -10,6 +10,7 @@
 
 ## Master
 
+* Added Shellout files on the Makefile [#91](https://github.com/danger/danger-swift/pull/91) by [f-meloni](https://github.com/f-meloni)
 * Restored danger-swift edit functionality - [#90](https://github.com/danger/danger-swift/pull/90) by [f-meloni](https://github.com/f-meloni)
 * Expose Danger report results - [#89](https://github.com/danger/danger-swift/pull/89) by [f-meloni](https://github.com/f-meloni)
 - Adds two new commands: 
