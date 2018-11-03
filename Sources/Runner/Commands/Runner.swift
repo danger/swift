@@ -70,6 +70,10 @@ func runDanger(logger: Logger) throws -> Void {
             libArgs += ["-lMarathonDependencies"]
         }
     }
+    
+    let tempDangerfilePath = path + "_tmp_dangerfile.swift"
+    let generator = DangerFileGenerator()
+    try generator.generateDangerFile(fromContent: importsOnly, fileName: tempDangerfilePath, logger: logger)
 
     // Example commands:
     //
@@ -89,7 +93,7 @@ func runDanger(logger: Logger) throws -> Void {
     args += ["-I", libDangerPath] // Find libs inside this folder
     args += ["-lDanger"] // Eval the code with the Target Danger added
     args += libArgs
-    args += [dangerfilePath] // The Dangerfile
+    args += [tempDangerfilePath] // The Dangerfile
     args += Array(CommandLine.arguments.dropFirst()) // Arguments sent to Danger
     args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
     args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
@@ -125,6 +129,7 @@ func runDanger(logger: Logger) throws -> Void {
         logger.logError("Could not get the results JSON file at \(dangerResponsePath)")
         // Clean up after ourselves
         try? fileManager.removeItem(atPath: dslJSONPath)
+        try? fileManager.removeItem(atPath: tempDangerfilePath)
         try? fileManager.removeItem(atPath: dangerResponsePath)
         exit(1)
     }
@@ -135,6 +140,7 @@ func runDanger(logger: Logger) throws -> Void {
 
     // Clean up after ourselves
     try? fileManager.removeItem(atPath: dslJSONPath)
+    try? fileManager.removeItem(atPath: tempDangerfilePath)
 
     // Return the same error code as the compilation
     exit(proc.terminationStatus)
