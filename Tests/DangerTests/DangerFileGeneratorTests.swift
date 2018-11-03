@@ -11,7 +11,13 @@ import Foundation
 
 final class DangerFileGeneratorTests: XCTestCase {
     static var allTests = [
-        ("testItGeneratesTheCorrectFileWhenThereAreNoImports", testItGeneratesTheCorrectFileWhenThereAreNoImports)
+        ("testItGeneratesTheCorrectFileWhenThereAreNoImports", testItGeneratesTheCorrectFileWhenThereAreNoImports),
+        ("testItGeneratesTheCorrectFileWhenThereIsASingleImport",
+            testItGeneratesTheCorrectFileWhenThereIsASingleImport),
+        ("testItGeneratesTheCorrectFileWhenThereIsAreMultipleImports",
+         testItGeneratesTheCorrectFileWhenThereIsAreMultipleImports),
+        ("testItGeneratesTheCorrectFileWhenOneOfTheImportedFilesIsMissing",
+         testItGeneratesTheCorrectFileWhenOneOfTheImportedFilesIsMissing)
     ]
     
     private let logger = Logger()
