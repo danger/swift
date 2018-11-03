@@ -102,7 +102,7 @@ func runDanger(logger: Logger) throws -> Void {
     // So maybe there's a better way
     let supportedSwiftCPaths = ["/home/travis/.swiftenv/shims/swiftc", "/usr/bin/swiftc"]
     let swiftCPath = supportedSwiftCPaths.first { fileManager.fileExists(atPath: $0) }
-    let swiftC = swiftCPath != nil ? swiftCPath! : "swiftc"
+    let swiftC = swiftCPath ?? "swiftc"
 
     logger.logInfo("Running: \(swiftC) \(args.joined(separator: " "))")
 
