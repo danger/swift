@@ -27,15 +27,24 @@ func editDanger(logger: Logger) throws -> Void {
         exit(1)
     }
 
+    guard let dangerfileContent = try? File(path: dangerfilePath).readAsString() else {
+        logger.logError("Could not read the dangerPath")
+        exit(1)
+    }
+
+    let importsFinder = ImportsFinder()
+    let importedFiles = importsFinder.findImports(inString: dangerfileContent)
+    
     let absoluteLibPath = try Folder(path: libPath).path
 
     let arguments = CommandLine.arguments
     let scriptManager = try getScriptManager()
     let script = try scriptManager.script(atPath: dangerfilePath, allowRemote: true)
-    let xcodeprojPath = try script.setupForEdit(arguments: arguments)
+    
+    let xcodeprojPath = try script.setupForEdit(arguments: arguments, importedFiles: importedFiles)
 
     // Amends the Xcodeproj to include our build paths
     try addLibPathToXcodeProj(xcodeprojPath: xcodeprojPath, lib: absoluteLibPath)
 
-    try script.watch(arguments: arguments)
+    try script.watch(arguments: arguments, importedFiles: importedFiles)
 }
