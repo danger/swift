@@ -2,7 +2,7 @@ import Foundation
 import Danger
 
 func runDangerJSToRunDangerSwift(logger: Logger) throws -> Void {
-    let dangerJS = try getDangerJSPath()
+    let dangerJS = try getDangerJSPath(logger)
 
     let proc = Process()
     proc.launchPath = dangerJS
