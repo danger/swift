@@ -2,7 +2,7 @@
 //  DangerFileGeneratorTests.swift
 //  DangerTests
 //
-//  Created by Franco on 01/11/2018.
+//  Created by Franco Meloni on 01/11/2018.
 //
 
 import XCTest
