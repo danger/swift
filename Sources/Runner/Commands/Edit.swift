@@ -41,10 +41,12 @@ func editDanger(logger: Logger) throws -> Void {
     let scriptManager = try getScriptManager()
     let script = try scriptManager.script(atPath: dangerfilePath, allowRemote: true)
     
-    let xcodeprojPath = try script.setupForEdit(arguments: arguments, importedFiles: importedFiles)
-
-    // Amends the Xcodeproj to include our build paths
-    try addLibPathToXcodeProj(xcodeprojPath: xcodeprojPath, lib: absoluteLibPath)
+    let path = NSTemporaryDirectory()
+    let configPath = path + "config.xcconfig"
+    
+    try createConfig(atPath: configPath, lib: absoluteLibPath)
+    
+    try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
 
     try script.watch(arguments: arguments, importedFiles: importedFiles)
 }
