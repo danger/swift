@@ -7,13 +7,14 @@ matrix:
         - node -v
         - npm install -g danger
         - swift build
+        - make install
       script:
         - swift test
         # - DEBUG="*" danger process .build/x86_64-apple-macosx10.10/debug/danger-swift
         # - DEBUG="*" danger ci --process .build/x86_64-apple-macosx10.10/debug/danger-swift
-        - sudo chmod -R a+rwx /usr/local/Cellar/
-        - make install
-        - DEBUG="*" danger-swift ci
+        # - sudo chmod -R a+rwx /usr/local/Cellar/
+        # - DEBUG="*" danger-swift ci
+        - DEBUG="*" .build/x86_64-apple-macosx10.10/debug/danger-swift ci
 
     - os: linux
       language: generic
@@ -27,7 +28,6 @@ matrix:
         - swift build
       script:
         - swift test
-        - DEBUG="*" danger process .build/x86_64-unknown-linux/debug/danger-swift
         - sudo chmod -R a+rwx /usr/local/
         - make install
         - DEBUG="*" danger-swift ci
