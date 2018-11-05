@@ -26,6 +26,12 @@ private final class DangerRunner {
         logger.logInfo("Ran with: \(CommandLine.arguments.joined(separator: " "))")
         
         let cliLength = CommandLine.arguments.count
+        
+        guard cliLength - 2 > 0 else {
+            logger.logError("To execute Danger run danger-swift ci , danger-swift pr or danger-swift local on your terminal")
+            exit(1)
+        }
+        
         let dslJSONArg: String? = CommandLine.arguments[cliLength - 2]
         let outputJSONPath = CommandLine.arguments[cliLength - 1]
 
