@@ -6,11 +6,13 @@ import Foundation
     import Darwin.C
 #endif
 
+/// Version for showing in verbose mode
+
+public let DangerVersion = "0.5.1"
+
 // MARK: - DangerRunner
 
 private final class DangerRunner {
-    let version = "0.4.2"
-
     static let shared = DangerRunner()
 
     let logger: Logger
@@ -18,7 +20,7 @@ private final class DangerRunner {
     var results = DangerResults()
 
     private init() {
-        let isVerbose = CommandLine.arguments.contains("--verbose")
+        let isVerbose = CommandLine.arguments.contains("--verbose") || (ProcessInfo.processInfo.environment["DEBUG"] != nil)
         let isSilent = CommandLine.arguments.contains("--silent")
         logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
         logger.logInfo("Ran with: \(CommandLine.arguments.joined(separator: " "))")

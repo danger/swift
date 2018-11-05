@@ -8,6 +8,7 @@ do {
     let logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
 
     if cliLength > 1 {
+        logger.logInfo("Launching Danger Swift \(CommandLine.arguments[1]) (v\(DangerVersion))")
         switch(CommandLine.arguments[1]) {
         case "ci", "local", "pr":
             let exitCode = try runDangerJSCommandToRunDangerSwift(CommandLine.arguments[1], logger: logger)
