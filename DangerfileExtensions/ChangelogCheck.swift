@@ -6,7 +6,7 @@ func checkChangelog() {
     let isTrivial = danger.github.pullRequest.title.contains("#trivial")
     
     if !isTrivial && !changelogChanged && sourceChanges != nil {
-        warn("""
+        danger.warn("""
      Any changes to library code should be reflected in the Changelog.
 
      Please consider adding a note there and adhere to the [Changelog Guidelines](https://github.com/Moya/contributors/blob/master/Changelog%20Guidelines.md).
