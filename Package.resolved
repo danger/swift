@@ -20,12 +20,30 @@
         }
       },
       {
+        "package": "OctoKit",
+        "repositoryURL": "https://github.com/nerdishbynature/octokit.swift",
+        "state": {
+          "branch": "master",
+          "revision": "dd7b4872de2ed9d4655ef3617c8b4cc50c9265d8",
+          "version": null
+        }
+      },
+      {
         "package": "Releases",
         "repositoryURL": "https://github.com/JohnSundell/Releases.git",
         "state": {
           "branch": null,
           "revision": "e74f0895855b56147cb96f2d45aba3ec37da64fb",
           "version": "3.0.0"
+        }
+      },
+      {
+        "package": "RequestKit",
+        "repositoryURL": "https://github.com/nerdishbynature/RequestKit.git",
+        "state": {
+          "branch": null,
+          "revision": "defcc7cb005995f261b47e357874a539f3b5c679",
+          "version": "2.3.0"
         }
       },
       {
