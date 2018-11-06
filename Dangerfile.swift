@@ -16,8 +16,6 @@ if danger.github.pullRequest.title.contains("WIP") {
     warn("PR is classed as Work in Progress")
 }
 
-let group = DispatchGroup()
-group.enter()
 _ = danger.github.api.me { response in
     switch response {
     case .success(let user):
@@ -25,8 +23,4 @@ _ = danger.github.api.me { response in
     case .failure:
         break
     }
-    
-    group.leave()
 }
-
-group.wait()
