@@ -8,7 +8,7 @@ BUILD_PATH = .build/release/$(TOOL_NAME)
 LIB_INSTALL_PATH = $(PREFIX)/lib/danger
 TAR_FILENAME = $(TOOL_NAME)-$(VERSION).tar.gz
 
-SWIFT_LIB_FILES = .build/release/libDanger.* .build/release/Danger.swiftdoc .build/release/Danger.swiftmodule .build/release/ShellOut.swiftmodule .build/release/ShellOut.swiftdoc
+SWIFT_LIB_FILES = .build/release/libDanger.* .build/release/Danger.swiftdoc .build/release/Danger.swiftmodule .build/release/ShellOut.swiftmodule .build/release/ShellOut.swiftdoc .build/release/OctoKit.swiftdoc .build/release/OctoKit.swiftmodule .build/release/RequestKit.swiftdoc .build/release/RequestKit.swiftmodule
 
 install: build
 	mkdir -p $(PREFIX)/bin
