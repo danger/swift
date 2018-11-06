@@ -24,7 +24,7 @@
         "repositoryURL": "https://github.com/f-meloni/octokit.swift",
         "state": {
           "branch": "add_objc_imports",
-          "revision": "7a31dc1e09fd3a69b3e9b0bac5d37b970df36926",
+          "revision": "659988ab5dcc65a82045b5091807d9c2906e43dd",
           "version": null
         }
       },
