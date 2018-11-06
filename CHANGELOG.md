@@ -10,6 +10,7 @@
 
 ## Master
 
+* Improve danger-swift edit [#94](https://github.com/danger/danger-swift/pull/94) by [f-meloni](https://github.com/f-meloni)
 * Ability to import files on the Dangerfile [#93](https://github.com/danger/danger-swift/pull/93) by [f-meloni](https://github.com/f-meloni)
 * Added Shellout files on the Makefile [#91](https://github.com/danger/danger-swift/pull/91) by [f-meloni](https://github.com/f-meloni)
 * Restored danger-swift edit functionality - [#90](https://github.com/danger/danger-swift/pull/90) by [f-meloni](https://github.com/f-meloni)

@@ -1,27 +1,14 @@
 import Foundation
 import Files
 
-/// Before:
-///    OTHER_SWIFT_FLAGS = (
-///        "-DXcode",
-///    );
-///
-/// After:
-///    OTHER_SWIFT_FLAGS = (
-///        "-I",
-///        "/Users/orta/dev/projects/danger/danger-swift/.build/debug",
-///        "-L",
-///        "/Users/orta/dev/projects/danger/danger-swift/.build/debug",
-///        "-DXcode",
-///    );
-///
 
-func addLibPathToXcodeProj(xcodeprojPath: String, lib: String) throws -> Void {
-    let pbxproj = try File(path: xcodeprojPath  + "project.pbxproj")
-    let content = try pbxproj.readAsString()
-    let before = "-DXcode\","
-    let after = "-DXcode\", \"-I\", \"\(lib)\", \"-L\", \"\(lib)\""
-    let newContent = content.replacingOccurrences(of: before, with: after)
-
-    try pbxproj.write(string:newContent)
+// Creates an xcconfig file that can be used to correctly link danger library to the xcodeproj
+func createConfig(atPath configPath: String, lib: String) throws -> Void {
+    let config = """
+    LIBRARY_SEARCH_PATHS = \(lib)
+    OTHER_SWIFT_FLAGS = -DXcode -I \(lib) -L \(lib)
+    OTHER_LDFLAGS = -l danger
+    """
+    
+    try config.write(toFile: configPath, atomically: false, encoding: .utf8)
 }

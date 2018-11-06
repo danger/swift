@@ -9,13 +9,21 @@ import MarathonCore
 
 import Files
 import Foundation
+import ShellOut
 
 extension Script {
     @discardableResult
-    public func setupForEdit(arguments: [String], importedFiles: [String]) throws -> String {
+    public func setupForEdit(arguments: [String], importedFiles: [String], configPath: String) throws -> String {
         importedFiles.forEach {
             try! FileManager.default.copyItem(atPath: $0, toPath: sourcesImportPath(forImportPath: $0))
         }
+        
+        // Generate xcodeproj with the passed config
+        try generateXCodeProjWithConfig(configPath: configPath)
+        
+        // Avoid Marathon to generate again the xcodeproj
+        var arguments = arguments
+        arguments.append("--no-xcode")
         
         return try setupForEdit(arguments: arguments)
     }
@@ -50,6 +58,24 @@ extension Script {
     private func sourcesImportPath(forImportPath importPath: String) -> String {
         let fileName = importPath.split(separator: "/").last
         return folder.path + "Sources/\(name)/\(fileName ?? "")"
+    }
+    
+    private func generateXCodeProjWithConfig(configPath: String) throws {
+        try shellOutToSwiftCommand("package generate-xcodeproj --xcconfig-overrides \(configPath)", in: folder)
+    }
+    
+    func shellOutToSwiftCommand(_ command: String,
+                                in folder: Folder) throws {
+        func resolveSwiftPath() -> String {
+            #if os(Linux)
+            return "swift"
+            #else
+            return "/usr/bin/env xcrun --sdk macosx swift"
+            #endif
+        }
+        
+        let swiftPath = resolveSwiftPath()
+        try shellOut(to: "\(swiftPath) \(command)", at: folder.path)
     }
 }
 

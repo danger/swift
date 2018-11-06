@@ -30,8 +30,7 @@ func runDanger(logger: Logger) throws -> Void {
         exit(1)
     }
     logger.logInfo("Running Dangerfile at: \(dangerfilePath)")
-
-
+    
     guard let libDangerPath = Runtime.getLibDangerPath() else {
         let potentialFolders = Runtime.potentialLibraryFolders
         logger.logError("Could not find a libDanger to link against at any of: \(potentialFolders)",
