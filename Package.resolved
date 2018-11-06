@@ -23,8 +23,8 @@
         "package": "OctoKit",
         "repositoryURL": "https://github.com/f-meloni/octokit.swift",
         "state": {
-          "branch": "add_objc_imports",
-          "revision": "e01802bb927c0def89e70ce766fe47a65e212773",
+          "branch": "work_with_linux",
+          "revision": "4da4c34b7da872d1a8124b668c21ab8c801e723d",
           "version": null
         }
       },

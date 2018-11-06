@@ -13,7 +13,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/JohnSundell/Marathon.git", from: "3.1.0"),
         .package(url: "https://github.com/JohnSundell/ShellOut.git", from: "2.1.0"),
-        .package(url: "https://github.com/f-meloni/octokit.swift", .branch("add_objc_imports"))
+        .package(url: "https://github.com/f-meloni/octokit.swift", .branch("work_with_linux"))
     ],
     targets: [
         .target(name: "Danger", dependencies: ["ShellOut", "OctoKit"]),
