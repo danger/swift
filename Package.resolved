@@ -21,11 +21,11 @@
       },
       {
         "package": "OctoKit",
-        "repositoryURL": "https://github.com/f-meloni/octokit.swift",
+        "repositoryURL": "https://github.com/nerdishbynature/octokit.swift",
         "state": {
-          "branch": "work_with_linux",
-          "revision": "4da4c34b7da872d1a8124b668c21ab8c801e723d",
-          "version": null
+          "branch": null,
+          "revision": "b63f2ec1b55f26c8e94159d81ad695aeb92f3d4e",
+          "version": "0.9.0"
         }
       },
       {
