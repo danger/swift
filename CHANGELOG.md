@@ -1,26 +1,32 @@
 <!--
 
 // Please add your own contribution below inside the Master section, no need to
-// set a version number, that happens during a deploy.
+// set a version number, that happens during a deploy. Thanks!
 //
 // These docs are aimed at users rather than danger developers, so please limit technical
 // terminology in here.
+
+// Note: if this is your first PR, you'll need to add your URL to the footnotes
+//       see the bottom of this file
 
 -->
 
 ## Master
 
-* Add Github API client [#95](https://github.com/danger/danger-swift/pull/95) by [f-meloni](https://github.com/f-meloni)
-* Improve danger-swift edit [#94](https://github.com/danger/danger-swift/pull/94) by [f-meloni](https://github.com/f-meloni)
-* Ability to import files on the Dangerfile [#93](https://github.com/danger/danger-swift/pull/93) by [f-meloni](https://github.com/f-meloni)
-* Added Shellout files on the Makefile [#91](https://github.com/danger/danger-swift/pull/91) by [f-meloni](https://github.com/f-meloni)
-* Restored danger-swift edit functionality - [#90](https://github.com/danger/danger-swift/pull/90) by [f-meloni](https://github.com/f-meloni)
-* Expose Danger report results - [#89](https://github.com/danger/danger-swift/pull/89) by [f-meloni](https://github.com/f-meloni)
-- Adds two new commands: 
-    - `danger-swift ci` - handles running Danger
-    - `danger-swift pr [https://github.com/Moya/Harvey/pull/23]` - Let's you run Danger against a PR locally
+* Add Github API client [#95](https://github.com/danger/danger-swift/pull/95) by [@f-meloni][]
+* Improve danger-swift edit [#94](https://github.com/danger/danger-swift/pull/94) by [@f-meloni][]
+* Ability to import files on the Dangerfile [#93](https://github.com/danger/danger-swift/pull/93) by [@f-meloni][]
+* Added Shellout files on the Makefile [#91](https://github.com/danger/danger-swift/pull/91) by [@f-meloni][]
+* Restored danger-swift edit functionality - [#90](https://github.com/danger/danger-swift/pull/90) by [@f-meloni][]
+* Expose Danger report results - [#89](https://github.com/danger/danger-swift/pull/89) by [@f-meloni][]
 
-* Prepares for Danger JS 5.0 - [#84](https://github.com/danger/danger-swift/pull/84) by [orta](https://github.com/orta)
+- Adds three new commands: 
+    - `danger-swift ci` - handles running Danger
+    - `danger-swift pr [https://github.com/Moya/Harvey/pull/23]` - Let's you run Danger against a PR for local dev
+    - `danger-swift local - Let's you run Danger against the diff from your branch to master
+
+* Prepares for Danger JS 5.0 - [#84](https://github.com/danger/danger-swift/pull/84) by [@orta][]
+* When working on danger, you cna now use `swift run danger-swift xx` to try commands - [@orta][]
 
 ## 0.4.1
 
@@ -68,8 +74,8 @@
 
 ## 0.3.0
 
-* Supports the command: `danger-swift edit` to generate an Xcodeproj which you can edit your Dangerfile in - orta
-* Adds plugin infrastructure to `danger-swift` - orta
+* Supports the command: `danger-swift edit` to generate an Xcodeproj which you can edit your Dangerfile in - [@orta][]
+* Adds plugin infrastructure to `danger-swift` - [@orta][]
 
   There aren't any plugins yet, but there is infrastructure for them. By suffixing `package: [url]` to any import, you
   can directly import Swift PM package as a dependency, which is basically how plugins will work.
@@ -84,11 +90,11 @@
 
 ## 0.2.0
 
-* Support the beta formatting of the JSON DSL ( it now is `{ "danger": { [DSL] }}`, instead of a root element) - orta
+* Support the beta formatting of the JSON DSL ( it now is `{ "danger": { [DSL] }}`, instead of a root element) - [@orta][]
 
 ## 0.1.1
 
-* Fix install paths for libDanger when using homebrew - orta
+* Fix install paths for libDanger when using homebrew - [@orta][]
 
 ## 0.1.0
 
@@ -97,9 +103,13 @@
 ## 0.0.2
 
 * Supports a Dangerfile in both: "/Dangerfile.swift", "/danger/Dangerfile.swift" or "/Danger/Dangerfile.swift" to handle
-  SPM rules on Swift files in the root - orta
-* Adds a CHANGELOG, renames project to danger-swift - orta
+  SPM rules on Swift files in the root - [@orta][]
+* Adds a CHANGELOG, renames project to danger-swift - [@orta][]
 
 ## 0.0.1
 
-* Initialish versions - orta, SD10
+* Initialish versions - [@orta][], SD10
+
+
+[@f-meloni]: https://github.com/f-meloni
+[@orta]: https://github.com/orta

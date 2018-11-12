@@ -23,7 +23,7 @@ private final class DangerRunner {
         let isVerbose = CommandLine.arguments.contains("--verbose") || (ProcessInfo.processInfo.environment["DEBUG"] != nil)
         let isSilent = CommandLine.arguments.contains("--silent")
         logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
-        logger.logInfo("Ran with: \(CommandLine.arguments.joined(separator: " "))")
+        logger.debug("Ran with: \(CommandLine.arguments.joined(separator: " "))")
         
         let cliLength = CommandLine.arguments.count
         
@@ -46,7 +46,7 @@ private final class DangerRunner {
         }
         do {
             let string = String(data: dslJSONContents, encoding: .utf8)
-            logger.logInfo(string!, isVerbose: true)
+            logger.debug(string!)
 
             let decoder = JSONDecoder()
             if #available(OSX 10.12, *) {
@@ -216,7 +216,7 @@ private var dumpInfo: (danger: DangerRunner, path: String)?
 private func dumpResultsAtExit(_ runner: DangerRunner, path: String) {
     func dump() {
         guard let dumpInfo = dumpInfo else { return }
-        dumpInfo.danger.logger.logInfo("Sending results back to Danger")
+        dumpInfo.danger.logger.debug("Sending results back to Danger")
         do {
             let encoder = JSONEncoder()
             encoder.outputFormatting = .prettyPrinted

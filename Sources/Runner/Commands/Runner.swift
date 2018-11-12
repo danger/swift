@@ -19,7 +19,7 @@ func runDanger(logger: Logger) throws -> Void {
         logger.logError("Could not create a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
         exit(1)
     }
-    logger.logInfo("Created a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
+    logger.debug("Created a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
 
 
     // Exit if a dangerfile was not found at any supported path
@@ -29,7 +29,7 @@ func runDanger(logger: Logger) throws -> Void {
                         separator: "\n")
         exit(1)
     }
-    logger.logInfo("Running Dangerfile at: \(dangerfilePath)")
+    logger.debug("Running Dangerfile at: \(dangerfilePath)")
     
     guard let libDangerPath = Runtime.getLibDangerPath() else {
         let potentialFolders = Runtime.potentialLibraryFolders
@@ -48,7 +48,7 @@ func runDanger(logger: Logger) throws -> Void {
     let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") }
 
     if (importExternalDeps.count > 0) {
-        logger.logInfo("Getting inline dependencies: \(importExternalDeps.joined(separator: ", "))")
+        logger.debug("Getting inline dependencies: \(importExternalDeps.joined(separator: ", "))")
 
         try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
         let tempDangerfile = try File(path: "_dangerfile_imports.swift")
@@ -103,7 +103,7 @@ func runDanger(logger: Logger) throws -> Void {
     let swiftCPath = supportedSwiftCPaths.first { fileManager.fileExists(atPath: $0) }
     let swiftC = swiftCPath ?? "swiftc"
 
-    logger.logInfo("Running: \(swiftC) \(args.joined(separator: " "))")
+    logger.debug("Running: \(swiftC) \(args.joined(separator: " "))")
 
     // Create a process to eval the Swift file
     let proc = Process()
@@ -117,7 +117,7 @@ func runDanger(logger: Logger) throws -> Void {
     proc.launch()
     proc.waitUntilExit()
 
-    logger.logInfo("Completed evaluation")
+    logger.debug("Completed evaluation")
 
     if (proc.terminationStatus != 0) {
         logger.logError("Dangerfile eval failed at \(dangerfilePath)")
@@ -135,7 +135,7 @@ func runDanger(logger: Logger) throws -> Void {
 
     // Support the upcoming danger results-url
     standardOutput.write("danger-results:/\(dangerResponsePath)".data(using: .utf8)!)
-    logger.logInfo("Saving and storing the results at \(dangerResponsePath)")
+    logger.debug("Saving and storing the results at \(dangerResponsePath)")
 
     // Clean up after ourselves
     try? fileManager.removeItem(atPath: dslJSONPath)
