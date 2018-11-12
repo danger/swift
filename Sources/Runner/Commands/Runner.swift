@@ -55,7 +55,7 @@ func runDanger(logger: Logger) throws -> Void {
         try tempDangerfile.write(string: importExternalDeps.joined(separator: "\n"))
         defer { try? tempDangerfile.delete() }
 
-        let scriptManager = try getScriptManager()
+        let scriptManager = try getScriptManager(logger)
         let script = try scriptManager.script(atPath: tempDangerfile.path, allowRemote: true)
 
         try script.build()

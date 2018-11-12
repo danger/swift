@@ -38,7 +38,7 @@ func editDanger(logger: Logger) throws -> Void {
     let absoluteLibPath = try Folder(path: libPath).path
 
     let arguments = CommandLine.arguments
-    let scriptManager = try getScriptManager()
+    let scriptManager = try getScriptManager(logger)
     let script = try scriptManager.script(atPath: dangerfilePath, allowRemote: true)
     
     let path = NSTemporaryDirectory()

@@ -18,7 +18,9 @@ if danger.github.pullRequest.title.contains("WIP") {
     warn("PR is classed as Work in Progress")
 }
 
+print("HI")
 _ = danger.github.api.me { response in
+    print("OK")
     switch response {
     case .success(let user):
         message(user.name ?? "")
