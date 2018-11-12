@@ -15,3 +15,12 @@ if (danger.git.createdFiles.count + danger.git.modifiedFiles.count - danger.git.
 if danger.github.pullRequest.title.contains("WIP") {
     warn("PR is classed as Work in Progress")
 }
+
+_ = danger.github.api.me { response in
+    switch response {
+    case .success(let user):
+        message(user.name ?? "")
+    case .failure:
+        break
+    }
+}

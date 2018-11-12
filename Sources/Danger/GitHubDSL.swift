@@ -1,11 +1,12 @@
 import Foundation
+import OctoKit
 
 // http://benscheirman.com/2017/06/ultimate-guide-to-json-parsing-with-swift-4/
 
 // MARK: - GitHub
 
 /// The GitHub metadata for your pull request.
-public struct GitHub: Decodable, Equatable {
+public struct GitHub: Decodable {
 
     // MARK: - CodingKeys
 
@@ -28,7 +29,8 @@ public struct GitHub: Decodable, Equatable {
     public let reviews: [GitHubReview]
 
     public let requestedReviewers: GitHubRequestedReviewers
-
+    
+    internal(set) public var api: Octokit!
 }
 
 // MARK: - GitHubPR
