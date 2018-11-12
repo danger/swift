@@ -46,8 +46,9 @@ Xcode project set up for editing a Swift Dangerfile.
 
 ### Commands
 
-- `danger-swift ci` - Is the command for running on CI
-- `danger-swift pr https://github.com/Moya/Harvey/pull/23` - Is the command for running a PR locally
+- `danger-swift ci` - Use this on CI
+- `danger-swift pr https://github.com/Moya/Harvey/pull/23` - Use thi9s to build your Dangerfile
+- `danger-swift local - Use this to run danger against your local changes from master
 - `danger-swift edit` - Creates a temporary Xcode project for working on a Dangerfile
 
 #### Plugins
@@ -135,10 +136,10 @@ swift package generate-xcodeproj
 open Danger.xcodeproj
 ```
 
-Then I tend to run it by eval the Dangerfile with:
+Then I tend to run `danger-swift` using `swift run`:
 
 ```sh
-swift build && swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json fixtures/response_data.json
+swift run danger-swift pr https://github.com/danger/swift/pull/95
 ```
 
 If you want to emulate how DangerJS's `process` will work entirely, then use:

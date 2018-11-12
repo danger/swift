@@ -46,6 +46,13 @@ public struct Runtime {
                 fileManager.fileExists(atPath: path + "/libDanger.so")        // Linux
         }
 
-        return libPaths.first(where: isTheDangerLibPath)
+        guard let path = libPaths.first(where: isTheDangerLibPath) else { return nil }
+
+        // Always return an absolute path
+        if path.starts(with: "/") {
+            return path
+        }
+
+        return fileManager.currentDirectoryPath + "/" + path
     }
 }

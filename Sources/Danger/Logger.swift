@@ -16,6 +16,11 @@ public struct Logger {
         self.isSilent = isSilent
     }
 
+    public func debug(_ items: Any..., separator: String = " ", terminator: String = "\n", isVerbose: Bool = true) {
+        let message = items.joinedDescription(separator: separator)
+        print(message, terminator: terminator, isVerbose: isVerbose)
+    }
+
     public func logInfo(_ items: Any..., separator: String = " ", terminator: String = "\n", isVerbose: Bool = false) {
         let message = items.joinedDescription(separator: separator)
         print(message, terminator: terminator, isVerbose: isVerbose)

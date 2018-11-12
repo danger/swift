@@ -1,11 +1,14 @@
 import Files
+import Danger
 import MarathonCore
 
-func getScriptManager() throws -> ScriptManager {
+func getScriptManager(_ logger: Logger) throws -> ScriptManager {
+    
     let folder = "~/.danger-swift"
     let printFunction = { print($0) }
+
     let vPrintFunction = { (messageExpression: () -> String) in
-        print(messageExpression())
+        logger.debug(messageExpression())
     }
     
     let printer = Printer(
