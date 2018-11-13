@@ -14,7 +14,7 @@ matrix:
         # - DEBUG="*" danger ci --process .build/x86_64-apple-macosx10.10/debug/danger-swift
         # - sudo chmod -R a+rwx /usr/local/Cellar/
         # - DEBUG="*" danger-swift ci
-        - DEBUG="*" .build/x86_64-apple-macosx10.10/debug/danger-swift ci
+        - DEBUG="*" .build/x86_64-apple-macosx10.10/debug/danger-swift ci --dangerfile Dangerfile2.swift
 
     - os: linux
       language: generic
@@ -30,4 +30,4 @@ matrix:
         - swift test
         - sudo chmod -R a+rwx /usr/local/
         - make install
-        - DEBUG="*" danger-swift ci
+        - DEBUG="*" danger-swift ci --dangerfile Dangerfile2.swift
