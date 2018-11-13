@@ -9,6 +9,9 @@ Latest version requires Swift 4.2
 - If you are using Swift 4.1 use v0.4.1
 - If you are using Swift 4.0, Use v0.3.6
 
+Because this project recommends homebrew right now, this only works with the most recent version
+of danger-swift. Ideally we'll document how to use swiftpm to version danger correctly.
+
 ### What it looks like today
 
 You can make a Dangerfile that looks through PR metadata, it's fully typed.
@@ -110,7 +113,7 @@ npm install -g danger
 danger-swift ci
 ```
 
-With Docker coming soon.
+With Docker support ready for GitHub Actions.
 
 #### What are the next big steps?
 

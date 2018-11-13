@@ -8,7 +8,7 @@ import Foundation
 
 /// Version for showing in verbose mode
 
-public let DangerVersion = "0.5.1"
+public let DangerVersion = "0.6.0"
 
 // MARK: - DangerRunner
 

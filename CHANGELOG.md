@@ -13,9 +13,15 @@
 
 ## Master
 
+## 0.6.0
+
 * --dangerfile argument support [#100](https://github.com/danger/danger-swift/pull/100) by [@f-meloni][]
 * Add Github API client [#95](https://github.com/danger/danger-swift/pull/95) by [@f-meloni][]
 * Improve danger-swift edit [#94](https://github.com/danger/danger-swift/pull/94) by [@f-meloni][]
+* When working on danger, you cna now use `swift run danger-swift xx` to try commands - [@orta][]
+
+## 0.5.1
+
 * Ability to import files on the Dangerfile [#93](https://github.com/danger/danger-swift/pull/93) by [@f-meloni][]
 * Added Shellout files on the Makefile [#91](https://github.com/danger/danger-swift/pull/91) by [@f-meloni][]
 * Restored danger-swift edit functionality - [#90](https://github.com/danger/danger-swift/pull/90) by [@f-meloni][]
@@ -27,7 +33,6 @@
     - `danger-swift local - Let's you run Danger against the diff from your branch to master
 
 * Prepares for Danger JS 5.0 - [#84](https://github.com/danger/danger-swift/pull/84) by [@orta][]
-* When working on danger, you cna now use `swift run danger-swift xx` to try commands - [@orta][]
 
 ## 0.4.1
 
