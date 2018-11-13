@@ -13,6 +13,7 @@
 
 ## Master
 
+* --dangerfile argument support [#100](https://github.com/danger/danger-swift/pull/100) by [@f-meloni][]
 * Add Github API client [#95](https://github.com/danger/danger-swift/pull/95) by [@f-meloni][]
 * Improve danger-swift edit [#94](https://github.com/danger/danger-swift/pull/94) by [@f-meloni][]
 * Ability to import files on the Dangerfile [#93](https://github.com/danger/danger-swift/pull/93) by [@f-meloni][]
