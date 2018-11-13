@@ -19,11 +19,19 @@ func runDanger(logger: Logger) throws -> Void {
         logger.logError("Could not create a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
         exit(1)
     }
+
     logger.debug("Created a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
-
-
+    
+    guard let dslJSONData = try? Data(contentsOf: URL(fileURLWithPath: dslJSONPath)) else {
+        logger.logError("Invalid DSL JSON data")
+        exit(1)
+    }
+    
+    let parser = CliArgsParser()
+    let cliArgs = parser.parseCli(fromData: dslJSONData)
+    
     // Exit if a dangerfile was not found at any supported path
-    guard let dangerfilePath = Runtime.getDangerfile() else {
+    guard let dangerfilePath = cliArgs?.dangerfile ?? Runtime.getDangerfile() else {
         logger.logError("Could not find a Dangerfile",
                         "Please use a supported path: \(Runtime.supportedPaths)",
                         separator: "\n")
