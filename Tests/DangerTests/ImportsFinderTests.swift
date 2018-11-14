@@ -12,7 +12,8 @@ final class ImportsFinderTests: XCTestCase {
     static var allTests = [
         ("testItRetunsTheCorrectFilePathsWhenThePassedStringContainsImports", testItRetunsTheCorrectFilePathsWhenThePassedStringContainsImports),
         ("testItRetunsAnEmptyListWhenThePassedStringDoesntContainImports",
-         testItRetunsAnEmptyListWhenThePassedStringDoesntContainImports)
+         testItRetunsAnEmptyListWhenThePassedStringDoesntContainImports),
+        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
     ]
     
     var importsFinder: ImportsFinder!
@@ -28,6 +29,15 @@ final class ImportsFinderTests: XCTestCase {
 
     func testItRetunsAnEmptyListWhenThePassedStringDoesntContainImports() {
         checkReturnsTheCorrectFilePaths(string: stringWithoutImports, expectedResult: [])
+    }
+    
+    func testLinuxTestSuiteIncludesAllTests() {
+        #if !os(Linux)
+        let thisClass = type(of: self)
+        let linuxCount = thisClass.allTests.count
+        let darwinCount = thisClass.defaultTestSuite.tests.count
+        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
+        #endif
     }
 }
 

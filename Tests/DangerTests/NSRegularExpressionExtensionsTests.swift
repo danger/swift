@@ -5,7 +5,8 @@ class NSRegularExpressionExtensionsTests: XCTestCase {
     
     static var allTests = [
         ("test_firstMatchingString_passingRegex", test_firstMatchingString_passingRegex),
-        ("test_firstMatchingString_failingRegex", test_firstMatchingString_failingRegex)
+        ("test_firstMatchingString_failingRegex", test_firstMatchingString_failingRegex),
+        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
     ]
     
     let string = "Dogs and cats were wearing hats"
@@ -36,4 +37,12 @@ class NSRegularExpressionExtensionsTests: XCTestCase {
         XCTAssertNil(testMatch)
     }
     
+    func testLinuxTestSuiteIncludesAllTests() {
+        #if !os(Linux)
+        let thisClass = type(of: self)
+        let linuxCount = thisClass.allTests.count
+        let darwinCount = thisClass.defaultTestSuite.tests.count
+        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
+        #endif
+    }
 }

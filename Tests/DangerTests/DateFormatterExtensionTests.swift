@@ -4,7 +4,8 @@ import XCTest
 class DateFormatterExtensionTests: XCTestCase {
     static var allTests = [
         ("test_DateFormatter_dateFromString", test_DateFormatter_dateFromString),
-        ("test_DateFormatter_nilFromInvalidString", test_DateFormatter_nilFromInvalidString)
+        ("test_DateFormatter_nilFromInvalidString", test_DateFormatter_nilFromInvalidString),
+        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
     ]
     
     private let dateFormatter = DateFormatter.defaultDateFormatter
@@ -32,5 +33,14 @@ class DateFormatterExtensionTests: XCTestCase {
     
     func test_DateFormatter_nilFromInvalidString() {
         XCTAssertNil(dateFormatter.date(from: "2020-0d-24T23:13:08Z"))
+    }
+    
+    func testLinuxTestSuiteIncludesAllTests() {
+        #if !os(Linux)
+        let thisClass = type(of: self)
+        let linuxCount = thisClass.allTests.count
+        let darwinCount = thisClass.defaultTestSuite.tests.count
+        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
+        #endif
     }
 }

@@ -1,7 +1,7 @@
 import XCTest
 @testable import Danger
 
-class FileTests: XCTestCase {
+final class FileTests: XCTestCase {
     
     static var allTests = [
         ("test_fileType_forHFile", test_fileType_forHFile),
@@ -16,6 +16,7 @@ class FileTests: XCTestCase {
         ("test_fileType_forXCScheme", test_fileType_forXCScheme),
         ("test_fileType_forYAML", test_fileType_forYAML),
         ("test_fileType_forYML", test_fileType_forYML),
+        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
     ]
     
     func test_fileType_forHFile() {
@@ -136,5 +137,14 @@ class FileTests: XCTestCase {
         
         XCTAssertEqual(file.fileType, expectedType)
         XCTAssertNil(unknownFile.fileType)
+    }
+    
+    func testLinuxTestSuiteIncludesAllTests() {
+        #if !os(Linux)
+        let thisClass = type(of: self)
+        let linuxCount = thisClass.allTests.count
+        let darwinCount = thisClass.defaultTestSuite.tests.count
+        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
+        #endif
     }
 }

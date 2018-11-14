@@ -1,14 +1,17 @@
 import XCTest
 import Danger
 
-class GitTests: XCTestCase {
+final class GitTests: XCTestCase {
     static var allTests = [
-        ("testExample", testExample),
+        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
     ]
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testLinuxTestSuiteIncludesAllTests() {
+        #if !os(Linux)
+        let thisClass = type(of: self)
+        let linuxCount = thisClass.allTests.count
+        let darwinCount = thisClass.defaultTestSuite.tests.count
+        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
+        #endif
     }
-    
 }

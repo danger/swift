@@ -17,7 +17,8 @@ final class DangerFileGeneratorTests: XCTestCase {
         ("testItGeneratesTheCorrectFileWhenThereIsAreMultipleImports",
          testItGeneratesTheCorrectFileWhenThereIsAreMultipleImports),
         ("testItGeneratesTheCorrectFileWhenOneOfTheImportedFilesIsMissing",
-         testItGeneratesTheCorrectFileWhenOneOfTheImportedFilesIsMissing)
+         testItGeneratesTheCorrectFileWhenOneOfTheImportedFilesIsMissing),
+        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
     ]
     
     private let logger = Logger()
@@ -84,6 +85,15 @@ final class DangerFileGeneratorTests: XCTestCase {
         let expectedResult = file2Content + "\n\n" + "// fileImport: " + file3Path + "\n" + file1Content + "\n" + contentWithoutImports
         
         XCTAssert(generatedContent == expectedResult)
+    }
+    
+    func testLinuxTestSuiteIncludesAllTests() {
+        #if !os(Linux)
+        let thisClass = type(of: self)
+        let linuxCount = thisClass.allTests.count
+        let darwinCount = thisClass.defaultTestSuite.tests.count
+        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
+        #endif
     }
 }
 

@@ -3,10 +3,11 @@ import XCTest
 
 import XCTest
 
-class FileTypeTests: XCTestCase {
+final class FileTypeTests: XCTestCase {
     
     static var allTests = [
         ("test_extension_matchesRawValue", test_extension_matchesRawValue),
+        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
     ]
 
     func test_extension_matchesRawValue() {
@@ -15,4 +16,12 @@ class FileTypeTests: XCTestCase {
         }
     }
     
+    func testLinuxTestSuiteIncludesAllTests() {
+        #if !os(Linux)
+        let thisClass = type(of: self)
+        let linuxCount = thisClass.allTests.count
+        let darwinCount = thisClass.defaultTestSuite.tests.count
+        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
+        #endif
+    }
 }
