@@ -2,7 +2,7 @@ import Foundation
 import Danger
 
 func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throws -> Int32 {
-    let dangerJS = try getDangerJSPath(logger)
+    let dangerJS = try getDangerCommandPath(command, logger: logger)
 
     let proc = Process()
     proc.environment = ProcessInfo.processInfo.environment
