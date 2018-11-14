@@ -1,11 +1,12 @@
 import XCTest
 @testable import Danger
 
-class BitBucketServerTests: XCTestCase {
+final class BitBucketServerTests: XCTestCase {
     static var allTests = [
         ("test_BitBucketServerUser_decode", test_BitBucketServerUser_decoder),
         ("test_BitBucketServerProject_decode", test_BitBucketServerProject_decoder),
-        ("test_BitBucketServerRepo_decode", test_BitBucketServerRepo_decoder)
+        ("test_BitBucketServerRepo_decode", test_BitBucketServerRepo_decoder),
+        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
     ]
     
     private var decoder: JSONDecoder!
@@ -59,6 +60,12 @@ class BitBucketServerTests: XCTestCase {
         XCTAssertEqual(testRepo, correctRepo)
     }
     
-    
-    
+    func testLinuxTestSuiteIncludesAllTests() {
+        #if !os(Linux)
+        let thisClass = type(of: self)
+        let linuxCount = thisClass.allTests.count
+        let darwinCount = thisClass.defaultTestSuite.tests.count
+        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
+        #endif
+    }
 }

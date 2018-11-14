@@ -9,6 +9,12 @@ import XCTest
 @testable import Danger
 
 final class DangerDSLTests: XCTestCase {
+    static var allTests = [
+        ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithub", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithub),
+        ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise),
+        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
+    ]
+    
     var decoder: JSONDecoder!
     
     override func setUp() {
@@ -44,5 +50,14 @@ final class DangerDSLTests: XCTestCase {
         XCTAssertNotNil(danger.git)
         XCTAssert(danger.github.api.configuration.accessToken == "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf")
         XCTAssert(danger.github.api.configuration.apiEndpoint == "https://base.url.io")
+    }
+    
+    func testLinuxTestSuiteIncludesAllTests() {
+        #if !os(Linux)
+        let thisClass = type(of: self)
+        let linuxCount = thisClass.allTests.count
+        let darwinCount = thisClass.defaultTestSuite.tests.count
+        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
+        #endif
     }
 }

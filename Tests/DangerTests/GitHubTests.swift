@@ -1,7 +1,7 @@
 import XCTest
 @testable import Danger
 
-class GitHubTests: XCTestCase {
+final class GitHubTests: XCTestCase {
     static var allTests = [
         ("test_GitHubUser_decode", test_GitHubUser_decode),
         ("test_GitHubMilestone_decodeWithSomeParameters", test_GitHubMilestone_decodeWithSomeParameters),
@@ -14,7 +14,8 @@ class GitHubTests: XCTestCase {
         ("test_GitHubIssueLabel_decode", test_GitHubIssueLabel_decode),
         ("test_GitHubIssue_decode", test_GitHubIssue_decode),
         ("test_GitHubPR_decode", test_GitHubPR_decode),
-        ("test_GitHub_decode", test_GitHub_decode)
+        ("test_GitHub_decode", test_GitHub_decode),
+        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
     ]
 
     private let dateFormatter = DateFormatter.defaultDateFormatter
@@ -172,4 +173,13 @@ class GitHubTests: XCTestCase {
     func test_GitHubPR_decode() throws {}
     
     func test_GitHub_decode() throws {}
+    
+    func testLinuxTestSuiteIncludesAllTests() {
+        #if !os(Linux)
+        let thisClass = type(of: self)
+        let linuxCount = thisClass.allTests.count
+        let darwinCount = thisClass.defaultTestSuite.tests.count
+        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
+        #endif
+    }
 }
