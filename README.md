@@ -50,8 +50,9 @@ Xcode project set up for editing a Swift Dangerfile.
 ### Commands
 
 - `danger-swift ci` - Use this on CI
+- `danger-swift local` - Use this to run danger against your local changes from master
 - `danger-swift pr https://github.com/Moya/Harvey/pull/23` - Use this to build your Dangerfile
-- `danger-swift local - Use this to run danger against your local changes from master
+- `danger-swift local` - Use this to run danger against your local changes from master
 - `danger-swift edit` - Creates a temporary Xcode project for working on a Dangerfile
 
 #### Plugins
