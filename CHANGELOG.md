@@ -13,6 +13,8 @@
 
 ## Master
 
+* Use danger-command for calls instead of danger command [#105](https://github.com/danger/danger-swift/pull/105) by [@f-meloni][]
+
 ## 0.6.0
 
 * --dangerfile argument support [#100](https://github.com/danger/danger-swift/pull/100) by [@f-meloni][]
