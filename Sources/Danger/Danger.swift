@@ -5,6 +5,7 @@ import Foundation
 #else
     import Darwin.C
 #endif
+import Logger
 
 /// Version for showing in verbose mode
 

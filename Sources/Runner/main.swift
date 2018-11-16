@@ -1,5 +1,6 @@
 import Foundation
 import Danger
+import Logger
 
 let cliLength = ProcessInfo.processInfo.arguments.count
 do {

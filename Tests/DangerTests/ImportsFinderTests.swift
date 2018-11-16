@@ -6,7 +6,7 @@
 //
 
 import XCTest
-import Danger
+import RunnerLib
 
 final class ImportsFinderTests: XCTestCase {
     static var allTests = [

@@ -6,7 +6,8 @@
 //
 
 import XCTest
-@testable import Danger
+@testable import RunnerLib
+import Logger
 import Foundation
 
 final class DangerFileGeneratorTests: XCTestCase {

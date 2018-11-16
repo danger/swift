@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Logger
 
 public final class DangerFileGenerator {
     public init() {}

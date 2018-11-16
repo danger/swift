@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import Danger
+@testable import RunnerLib
 
 final class CliParserTests: XCTestCase {
     static var allTests = [

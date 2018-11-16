@@ -16,9 +16,12 @@ let package = Package(
         .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0")
     ],
     targets: [
-        .target(name: "Danger", dependencies: ["ShellOut", "OctoKit"]),
-        .target(name: "Runner", dependencies: ["Danger", "MarathonCore"]),
+        .target(name: "Logger", dependencies: []),
+        .target(name: "Danger", dependencies: ["ShellOut", "OctoKit", "Logger"]),
+        .target(name: "RunnerLib", dependencies: ["Logger"]),
+        .target(name: "Runner", dependencies: ["Danger", "RunnerLib", "MarathonCore", "Logger"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger"]),
+        .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib"]),
     ],
     swiftLanguageVersions: [4]
 )

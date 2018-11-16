@@ -1,6 +1,7 @@
 import Files
 import Danger
 import MarathonCore
+import Logger
 
 func getScriptManager(_ logger: Logger) throws -> ScriptManager {
     
