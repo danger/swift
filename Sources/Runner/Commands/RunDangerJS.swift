@@ -1,5 +1,6 @@
 import Foundation
-import Danger
+import RunnerLib
+import Logger
 
 func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throws -> Int32 {
     let dangerJS = try getDangerCommandPath(command, logger: logger)

@@ -5,10 +5,7 @@ import Foundation
 #else
     import Darwin.C
 #endif
-
-/// Version for showing in verbose mode
-
-public let DangerVersion = "0.6.0"
+import Logger
 
 // MARK: - DangerRunner
 

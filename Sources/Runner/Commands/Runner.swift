@@ -1,8 +1,9 @@
 import Foundation
-import Danger
 
 import Files
 import MarathonCore
+import Logger
+import RunnerLib
 
 func runDanger(logger: Logger) throws -> Void {
     // Pull in the JSON from Danger JS

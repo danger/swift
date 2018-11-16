@@ -13,6 +13,7 @@
 
 ## Master
 
+* Separate the Danger library from the Runner [#109](https://github.com/danger/danger-swift/pull/109) by [@f-meloni][]
 * Use danger-command for calls instead of danger command [#105](https://github.com/danger/danger-swift/pull/105) by [@f-meloni][]
 
 ## 0.6.0

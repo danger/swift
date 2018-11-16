@@ -1,5 +1,8 @@
 import Foundation
-import Danger
+import Logger
+
+/// Version for showing in verbose mode
+let DangerVersion = "0.6.0"
 
 let cliLength = ProcessInfo.processInfo.arguments.count
 do {
