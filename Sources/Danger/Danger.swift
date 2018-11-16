@@ -7,10 +7,6 @@ import Foundation
 #endif
 import Logger
 
-/// Version for showing in verbose mode
-
-public let DangerVersion = "0.6.0"
-
 // MARK: - DangerRunner
 
 private final class DangerRunner {

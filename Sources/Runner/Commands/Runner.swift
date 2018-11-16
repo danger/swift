@@ -1,5 +1,4 @@
 import Foundation
-import Danger
 
 import Files
 import MarathonCore
