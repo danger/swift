@@ -2,6 +2,7 @@
 
 import XCTest
 @testable import DangerTests
+@testable import RunnerLibTests
 
 XCTMain([
     testCase(CliParserTests.allTests),
