@@ -32,7 +32,7 @@ public struct DangerDSL: Decodable {
         
         let settings = try container.decode(Settings.self, forKey: .settings)
         
-        if github != nil {
+        if runningOnGithub {
             let config: TokenConfiguration
             
             if let baseURL = settings.github.baseURL {
@@ -43,5 +43,19 @@ public struct DangerDSL: Decodable {
             
             github.api = Octokit(config)
         }
+    }
+}
+
+extension DangerDSL {
+    var runningOnGithub: Bool {
+        return github != nil
+    }
+    
+    var runningOnBitbucketServer: Bool {
+        return bitbucket_server != nil
+    }
+    
+    var supportsSuggestions: Bool {
+        return runningOnGithub
     }
 }
