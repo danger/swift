@@ -10,7 +10,7 @@ import Logger
 // MARK: - DangerRunner
 
 private final class DangerRunner {
-    static let shared = DangerRunner()
+    fileprivate static let shared = DangerRunner()
 
     let logger: Logger
     let dsl: DangerDSL
