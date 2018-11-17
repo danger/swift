@@ -137,13 +137,19 @@ extension DangerDSL {
         DangerRunner.shared.results.markdowns.append(Violation(message: message, file: file, line: line))
     }
 
-    /// Adds an inline suggestion to the Danger report
+    /// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
     public func suggestion(code: String, file: String, line: Int) {
-        let message = """
-        ```suggestion
-        \(code)
-        ```
-        """
+        let message: String
+        
+        if DangerRunner.shared.dsl.supportsSuggestions {
+            message = """
+            ```suggestion
+            \(code)
+            ```
+            """
+        } else {
+            message = code
+        }
         
         DangerRunner.shared.results.markdowns.append(Violation(message: message, file: file, line: line))
     }
@@ -218,7 +224,7 @@ public func markdown(message: String, file: String, line: Int) {
     DangerRunner.shared.dsl.markdown(message: message, file: file, line: line)
 }
 
-/// Adds an inline suggestion to the Danger report
+/// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
 public func suggestion(code: String, file: String, line: Int) {
     DangerRunner.shared.dsl.suggestion(code: code, file: file, line: line)
 }
