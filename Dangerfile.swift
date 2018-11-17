@@ -18,6 +18,8 @@ if danger.github.pullRequest.title.contains("WIP") {
     warn("PR is classed as Work in Progress")
 }
 
+suggestion(code: "Test Suggestion", file: "Sources/Danger/Danger.swift", line: 222)
+
 print("HI")
 _ = danger.github.api.me { response in
     print("OK")
