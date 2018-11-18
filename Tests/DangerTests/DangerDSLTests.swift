@@ -33,6 +33,8 @@ final class DangerDSLTests: XCTestCase {
         
         XCTAssertNil(danger.bitbucket_server)
         XCTAssertNotNil(danger.github)
+        XCTAssertTrue(danger.runningOnGithub)
+        XCTAssertTrue(danger.supportsSuggestions)
         XCTAssertNotNil(danger.git)
         XCTAssert(danger.github.api.configuration.accessToken == "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf")
     }
@@ -47,6 +49,8 @@ final class DangerDSLTests: XCTestCase {
         
         XCTAssertNil(danger.bitbucket_server)
         XCTAssertNotNil(danger.github)
+        XCTAssertTrue(danger.runningOnGithub)
+        XCTAssertTrue(danger.supportsSuggestions)
         XCTAssertNotNil(danger.git)
         XCTAssert(danger.github.api.configuration.accessToken == "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf")
         XCTAssert(danger.github.api.configuration.apiEndpoint == "https://base.url.io")

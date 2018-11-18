@@ -10,7 +10,7 @@ import Logger
 // MARK: - DangerRunner
 
 private final class DangerRunner {
-    static let shared = DangerRunner()
+    fileprivate static let shared = DangerRunner()
 
     let logger: Logger
     let dsl: DangerDSL
@@ -136,6 +136,24 @@ extension DangerDSL {
     public func markdown(message: String, file: String, line: Int) {
         DangerRunner.shared.results.markdowns.append(Violation(message: message, file: file, line: line))
     }
+
+    /// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
+    public func suggestion(code: String, file: String, line: Int) {
+        let message: String
+        
+        if DangerRunner.shared.dsl.supportsSuggestions {
+            message = """
+            ```suggestion
+            \(code)
+            ```
+            """
+        } else {
+            message = code
+        }
+        
+        DangerRunner.shared.results.markdowns.append(Violation(message: message, file: file, line: line))
+    }
+
 }
 
 /// Fails on the Danger report
@@ -204,6 +222,11 @@ public func markdown(_ message: String) {
 /// Adds an inline message to the Danger report
 public func markdown(message: String, file: String, line: Int) {
     DangerRunner.shared.dsl.markdown(message: message, file: file, line: line)
+}
+
+/// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
+public func suggestion(code: String, file: String, line: Int) {
+    DangerRunner.shared.dsl.suggestion(code: code, file: file, line: line)
 }
 
 // MARK: - Private Functions
