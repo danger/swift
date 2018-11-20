@@ -153,7 +153,7 @@ swift run danger-swift pr https://github.com/danger/swift/pull/95
 If you want to emulate how DangerJS's `process` will work entirely, then use:
 
 ```sh
-swift build && cat fixtures/eidolon_609.json | ./.build/debug/danger-swift
+swift build && cat Fixtures/eidolon_609.json | ./.build/debug/danger-swift
 ```
 #### Deploying
 

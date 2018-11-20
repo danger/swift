@@ -1,0 +1,6 @@
+**EXTENSION**
+
+# `FileType`
+
+## Properties
+### `extension`

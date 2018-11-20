@@ -2,6 +2,24 @@
   "object": {
     "pins": [
       {
+        "package": "Commandant",
+        "repositoryURL": "https://github.com/Carthage/Commandant.git",
+        "state": {
+          "branch": null,
+          "revision": "07cad52573bad19d95844035bf0b25acddf6b0f6",
+          "version": "0.15.0"
+        }
+      },
+      {
+        "package": "Curry",
+        "repositoryURL": "https://github.com/thoughtbot/Curry.git",
+        "state": {
+          "branch": null,
+          "revision": "b6bf27ec9d711f607a8c7da9ca69ee9eaa201a22",
+          "version": "4.0.1"
+        }
+      },
+      {
         "package": "Files",
         "repositoryURL": "https://github.com/JohnSundell/Files.git",
         "state": {
@@ -20,12 +38,48 @@
         }
       },
       {
+        "package": "MarkdownGenerator",
+        "repositoryURL": "https://github.com/eneko/MarkdownGenerator.git",
+        "state": {
+          "branch": null,
+          "revision": "1fc31be6b66245187c3f87f35d86b6aeac6dfe7f",
+          "version": "0.5.0"
+        }
+      },
+      {
+        "package": "Nimble",
+        "repositoryURL": "https://github.com/Quick/Nimble.git",
+        "state": {
+          "branch": null,
+          "revision": "cd6dfb86f496fcd96ce0bc6da962cd936bf41903",
+          "version": "7.3.1"
+        }
+      },
+      {
         "package": "OctoKit",
         "repositoryURL": "https://github.com/nerdishbynature/octokit.swift",
         "state": {
           "branch": null,
           "revision": "b63f2ec1b55f26c8e94159d81ad695aeb92f3d4e",
           "version": "0.9.0"
+        }
+      },
+      {
+        "package": "Quick",
+        "repositoryURL": "https://github.com/Quick/Quick.git",
+        "state": {
+          "branch": null,
+          "revision": "5fbf13871d185526993130c3a1fad0b70bfe37ce",
+          "version": "1.3.2"
+        }
+      },
+      {
+        "package": "Rainbow",
+        "repositoryURL": "https://github.com/onevcat/Rainbow",
+        "state": {
+          "branch": null,
+          "revision": "797a68d0a642609424b08f11eb56974a54d5f6e2",
+          "version": "3.1.4"
         }
       },
       {
@@ -56,12 +110,48 @@
         }
       },
       {
+        "package": "Result",
+        "repositoryURL": "https://github.com/antitypical/Result.git",
+        "state": {
+          "branch": null,
+          "revision": "8fc088dcf72802801efeecba76ea8fb041fb773d",
+          "version": "4.0.0"
+        }
+      },
+      {
         "package": "ShellOut",
         "repositoryURL": "https://github.com/JohnSundell/ShellOut.git",
         "state": {
           "branch": null,
           "revision": "f1c253a34a40df4bfd268b09fdb101b059f6d52d",
           "version": "2.1.0"
+        }
+      },
+      {
+        "package": "SourceDocs",
+        "repositoryURL": "https://github.com/eneko/SourceDocs.git",
+        "state": {
+          "branch": null,
+          "revision": "951606c945f4a9d3b0b8c2a37fa28ac2c99d25bb",
+          "version": "0.5.1"
+        }
+      },
+      {
+        "package": "SourceKitten",
+        "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
+        "state": {
+          "branch": null,
+          "revision": "79ca340f609adee48defa966e6a3dd0e0acbeb08",
+          "version": "0.21.3"
+        }
+      },
+      {
+        "package": "SWXMLHash",
+        "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
+        "state": {
+          "branch": null,
+          "revision": "b130217d81833cecd7ddf78b76d60200f1070d98",
+          "version": "4.7.4"
         }
       },
       {
@@ -80,6 +170,15 @@
           "branch": null,
           "revision": "8085c925060b84a1fc0caef444c130da2c8154c3",
           "version": "3.0.1"
+        }
+      },
+      {
+        "package": "Yams",
+        "repositoryURL": "https://github.com/jpsim/Yams.git",
+        "state": {
+          "branch": null,
+          "revision": "26ab35f50ea891e8edefcc9d975db2f6b67e1d68",
+          "version": "1.0.1"
         }
       }
     ]

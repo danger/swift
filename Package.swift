@@ -13,7 +13,9 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/JohnSundell/Marathon.git", from: "3.1.0"),
         .package(url: "https://github.com/JohnSundell/ShellOut.git", from: "2.1.0"),
-        .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0")
+        .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0"),
+        // Dev dependencies
+        .package(url: "https://github.com/eneko/SourceDocs.git", from: "0.5.1"),
     ],
     targets: [
         .target(name: "Logger", dependencies: []),
