@@ -47,6 +47,10 @@ Using Danger in Swift
 This will make a `Dangerfile.swift` for you. then pop up a temporary 
 Xcode project set up for editing a Swift Dangerfile.
 
+### Documentation
+
+Full documentation is available [here](Documentation/Reference/README.md).
+
 ### Commands
 
 - `danger-swift ci` - Use this on CI
