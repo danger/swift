@@ -19,12 +19,14 @@ do {
         case "edit":
             try editDanger(logger: logger)
         case "runner":
-            try runDanger(logger: logger)
+            try getDSLData(logger: logger, runDanger)
+
         default:
             fatalError("Danger Swift does not support this argument, it only handles ci, local, pr & edit'")
         }
     } else {
-        try runDanger(logger: logger)
+        try getDSLData(logger: logger, runDanger)
+
     }
 } catch {
     exit(1)

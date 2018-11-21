@@ -5,10 +5,7 @@ import MarathonCore
 import Logger
 import RunnerLib
 
-func runDanger(logger: Logger) throws -> Void {
-    // Pull in the JSON from Danger JS
-    let standardInput = FileHandle.standardInput
-    let input = standardInput.readDataToEndOfFile()
+func runDanger(logger: Logger, dslData: Data) throws -> Void {
     let fileManager = FileManager.default
 
     // Set up some example paths for us to work with
@@ -16,7 +13,7 @@ func runDanger(logger: Logger) throws -> Void {
     let dslJSONPath = path + "danger-dsl.json"
     let dangerResponsePath = path + "danger-response.json"
     // Create the DSL JSON file for the the runner to read from
-    if !fileManager.createFile(atPath: dslJSONPath, contents: input, attributes: nil) {
+    if !fileManager.createFile(atPath: dslJSONPath, contents: dslData, attributes: nil) {
         logger.logError("Could not create a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
         exit(1)
     }

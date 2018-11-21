@@ -123,7 +123,6 @@ With Docker support ready for GitHub Actions.
 #### What are the next big steps?
 
 * [Roadmap to 1.0](https://github.com/danger/danger-swift/issues/67)
-* Look into the `Class SwiftObject is implemented in both [x], [y]` runtime error, [probably this](https://bugs.swift.org/browse/SR-1060)
 
 
 #### How it works
@@ -142,6 +141,13 @@ cd danger-swift
 swift build
 swift package generate-xcodeproj
 open Danger.xcodeproj
+```
+
+Have node, and danger-js installed:
+
+```sh
+brew install node
+npm install -g danger
 ```
 
 Then I tend to run `danger-swift` using `swift run`:

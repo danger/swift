@@ -22,9 +22,9 @@ func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throw
 
     proc.arguments =  [ command, "--process", dangerSwiftCommand ] + unusedArgs
 
-    let standardOutput = FileHandle.standardOutput
-    proc.standardOutput = standardOutput
-    proc.standardError = standardOutput
+    proc.standardOutput = FileHandle.standardOutput
+    proc.standardInput = FileHandle.standardInput
+    proc.standardError = FileHandle.standardOutput
 
     logger.debug("Running: \(proc.launchPath!) \(proc.arguments!.joined(separator: " ")) ")
     proc.launch()
