@@ -23,6 +23,7 @@ uninstall:
 	rm -f $(INSTALL_PATH)
 
 deploy:
+	if [[ -z "$(NEW_VERSION)" ]]; then echo "Please add a value to the NEW_VERSION variable"; exit 1; fi
 	export NEW_VERSION=$(NEW_VERSION)
 	export TOOL_NAME=$(TOOL_NAME)
 	`Scripts/update_makefile.sh`
