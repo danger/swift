@@ -90,10 +90,10 @@ func runDanger(logger: Logger) throws -> Void {
     // swift build; env DANGER_GITHUB_API_TOKEN='MY_TOKEN' DANGER_FAKE_CI="YEP" DANGER_TEST_REPO='artsy/eigen' DANGER_TEST_PR='2408' danger process .build/debug/danger-swift --verbose --text-only
     //
     // ## Run compilation and eval of the Dangerfile:
-    // swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift fixtures/eidolon_609.json fixtures/response_data.json
+    // swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift Fixtures/eidolon_609.json Fixtures/response_data.json
     //
     // ## Run Danger Swift with a fixture'd JSON file
-    // swift build; cat fixtures/eidolon_609.json  | ./.build/debug/danger-swift
+    // swift build; cat Fixtures/eidolon_609.json  | ./.build/debug/danger-swift
 
     var args = [String]()
     args += ["--driver-mode=swift"] // Eval in swift mode, I think?

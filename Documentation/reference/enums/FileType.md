@@ -1,0 +1,6 @@
+**ENUM**
+
+# `FileType`
+
+## Cases
+### `h`
