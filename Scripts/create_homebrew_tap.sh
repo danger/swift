@@ -35,6 +35,6 @@ echo "  end" >> danger-swift.rb
 echo "end" >> danger-swift.rb
 
 #Commit changes
-git add danger-swift.rb
+git add danger-swift.rb 2> /dev/null
 git commit -m "Releasing danger-swift version $NEW_VERSION" --quiet
-#git push origin master
+git push origin master
