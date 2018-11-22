@@ -8,8 +8,6 @@ wget "https://github.com/danger/$TOOL_NAME/archive/$NEW_VERSION.tar.gz" -O "$TAR
 SHA=`shasum -a 256 "$TAR_FILENAME" | head -n1 | cut -d " " -f1`
 rm "$TAR_FILENAME"
 
-echo "$SHA"
-
 # git config user.name danger
 # git config user.email danger@users.noreply.github.com
 
