@@ -1,4 +1,5 @@
-#!/bin/bash# Clone tap repo
+#!/bin/bash
+# Clone tap repo
 HOMEBREW_TAP_TMPDIR=$(mktemp -d)
 git clone --depth 1 git@github.com:danger/homebrew-tap.git "$HOMEBREW_TAP_TMPDIR"
 cd "$HOMEBREW_TAP_TMPDIR" || exit 1
