@@ -1,13 +1,16 @@
 #!/bin/bash
 # Clone tap repo
+
+TOOL_NAME=danger-swift
+
 HOMEBREW_TAP_TMPDIR=$(mktemp -d)
 git clone --depth 1 git@github.com:danger/homebrew-tap.git "$HOMEBREW_TAP_TMPDIR"
 cd "$HOMEBREW_TAP_TMPDIR" || exit 1
 
 TAR_FILENAME="$TOOL_NAME-$NEW_VERSION.tar.gz"
-wget "https://github.com/danger/$TOOL_NAME/archive/$NEW_VERSION.tar.gz" -O "$TAR_FILENAME"
+wget "https://github.com/danger/$TOOL_NAME/archive/$NEW_VERSION.tar.gz" -O "$TAR_FILENAME" 2> /dev/null
 SHA=`shasum -a 256 "$TAR_FILENAME" | head -n1 | cut -d " " -f1`
-rm "$TAR_FILENAME"
+rm "$TAR_FILENAME" 2> /dev/null
 
 # git config user.name danger
 # git config user.email danger@users.noreply.github.com
@@ -31,7 +34,7 @@ echo "    system \"make\", \"install\", \"PREFIX=#{prefix}\"" >> danger-swift.rb
 echo "  end" >> danger-swift.rb
 echo "end" >> danger-swift.rb
 
-# Commit changes
+#Commit changes
 git add danger-swift.rb
-git commit -m "Releasing danger-swift version $NEW_VERSION"
-git push origin master
+git commit -m "Releasing danger-swift version $NEW_VERSION" --quiet
+#git push origin master
