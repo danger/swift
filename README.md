@@ -49,7 +49,7 @@ Xcode project set up for editing a Swift Dangerfile.
 
 ### Documentation
 
-Full documentation is available [here](Documentation/Reference/README.md).
+Full documentation is available [here](Documentation).
 
 ### Commands
 
