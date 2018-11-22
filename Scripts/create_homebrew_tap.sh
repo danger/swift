@@ -30,7 +30,7 @@ echo "    system \"make\", \"install\", \"PREFIX=#{prefix}\"" >> danger-swift.rb
 echo "  end" >> danger-swift.rb
 echo "end" >> danger-swift.rb
 
-# # Commit changes
+# Commit changes
 git add danger-swift.rb
-git commit -m "Releasing danger-swift version ${NEW_VERSION}"
+git commit -m "Releasing danger-swift version $NEW_VERSION"
 git push origin master
