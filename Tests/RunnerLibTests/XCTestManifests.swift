@@ -23,6 +23,12 @@ extension DangerFileGeneratorTests {
     ]
 }
 
+extension HelpMessagePresenterTests {
+    static let __allTests = [
+        ("testIsShowsTheCommandListWhenThereIsNoCommand", testIsShowsTheCommandListWhenThereIsNoCommand),
+    ]
+}
+
 extension ImportsFinderTests {
     static let __allTests = [
         ("testItRetunsAnEmptyListWhenThePassedStringDoesntContainImports", testItRetunsAnEmptyListWhenThePassedStringDoesntContainImports),
@@ -36,6 +42,7 @@ public func __allTests() -> [XCTestCaseEntry] {
         testCase(CliParserTests.__allTests),
         testCase(DangerCommandTests.__allTests),
         testCase(DangerFileGeneratorTests.__allTests),
+        testCase(HelpMessagePresenterTests.__allTests),
         testCase(ImportsFinderTests.__allTests),
     ]
 }
