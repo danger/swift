@@ -1,19 +1,20 @@
 import Foundation
 
+fileprivate enum Colors: String {
+    case `default` = "\u{001B}[0;0m"
+    case red = "\u{001B}[31m"
+    case yellow = "\u{001B}[33m"
+}
+
 public struct Logger {
-
-    private enum Colors: String {
-        case `default` = "\u{001B}[0;0m"
-        case red = "\u{001B}[31m"
-        case yellow = "\u{001B}[33m"
-    }
-
     public let isVerbose: Bool
     public let isSilent: Bool
+    private let printer: Printing
 
-    public init(isVerbose: Bool = false, isSilent: Bool = false) {
+    public init(isVerbose: Bool = false, isSilent: Bool = false, printer: Printing = Printer()) {
         self.isVerbose = isVerbose
         self.isSilent = isSilent
+        self.printer = printer
     }
 
     public func debug(_ items: Any..., separator: String = " ", terminator: String = "\n", isVerbose: Bool = true) {
@@ -45,6 +46,18 @@ public struct Logger {
         guard isVerbose == false || (isVerbose && self.isVerbose) else {
             return
         }
+        printer.print(message, terminator: terminator)
+    }
+}
+
+public protocol Printing {
+    func print(_ message: String, terminator: String)
+}
+
+public struct Printer: Printing {
+    public init() {}
+    
+    public func print(_ message: String, terminator: String) {
         Swift.print(message, terminator: terminator)
         Swift.print(Colors.default.rawValue, terminator: "")
     }
