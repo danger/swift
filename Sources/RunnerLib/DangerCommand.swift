@@ -22,9 +22,9 @@ public enum DangerCommand: String, CaseIterable {
         case .local:
             return "Use this to run danger against your local changes from master"
         case .pr:
-            return "Use this to build your Dangerfile"
+            return "Run danger-swift locally against a PR"
         case .runner:
-            return "Use this to trigger the dangerfile evaluation"
+            return "Use this to trigger the Dangerfile evaluation"
         case .help:
             return "Show the commands list"
         }
