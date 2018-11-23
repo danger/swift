@@ -2,23 +2,6 @@ import XCTest
 @testable import Danger
 
 final class FileTests: XCTestCase {
-    
-    static var allTests = [
-        ("test_fileType_forHFile", test_fileType_forHFile),
-        ("test_fileType_forJSON", test_fileType_forJSON),
-        ("test_fileType_forM", test_fileType_forM),
-        ("test_fileType_forMarkdown", test_fileType_forMarkdown),
-        ("test_fileType_forMM", test_fileType_forMM),
-        ("test_fileType_forPbxproj", test_fileType_forPbxproj),
-        ("test_fileType_forPlist", test_fileType_forPlist),
-        ("test_fileType_forStoryboard", test_fileType_forStoryboard),
-        ("test_fileType_forSwift", test_fileType_forSwift),
-        ("test_fileType_forXCScheme", test_fileType_forXCScheme),
-        ("test_fileType_forYAML", test_fileType_forYAML),
-        ("test_fileType_forYML", test_fileType_forYML),
-        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
-    ]
-    
     func test_fileType_forHFile() {
         let file: File = "bridging-header.h"
         let unknownFile: File = "bridging-header.hm"
@@ -137,14 +120,5 @@ final class FileTests: XCTestCase {
         
         XCTAssertEqual(file.fileType, expectedType)
         XCTAssertNil(unknownFile.fileType)
-    }
-    
-    func testLinuxTestSuiteIncludesAllTests() {
-        #if !os(Linux)
-        let thisClass = type(of: self)
-        let linuxCount = thisClass.allTests.count
-        let darwinCount = thisClass.defaultTestSuite.tests.count
-        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
-        #endif
     }
 }

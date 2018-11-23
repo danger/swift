@@ -2,7 +2,7 @@ import Foundation
 import RunnerLib
 import Logger
 
-func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throws -> Int32 {
+func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger) throws -> Int32 {
     let dangerJS = try getDangerCommandPath(command, logger: logger)
 
     let proc = Process()
@@ -10,7 +10,7 @@ func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throw
     proc.launchPath = dangerJS
 
     let unusedArgs = CommandLine.arguments.filter { arg in
-        !arg.contains("danger-swift") && arg != command
+        !arg.contains("danger-swift") && arg != command.rawValue
     }
 
     var dangerSwiftCommand = "danger-swift"
@@ -20,7 +20,7 @@ func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throw
         dangerSwiftCommand = ".build/debug/danger-swift"
     }
 
-    proc.arguments =  [ command, "--process", dangerSwiftCommand ] + unusedArgs
+    proc.arguments =  [ command.rawValue, "--process", dangerSwiftCommand ] + unusedArgs
 
     let standardOutput = FileHandle.standardOutput
     proc.standardOutput = standardOutput
