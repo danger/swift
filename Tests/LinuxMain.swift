@@ -1,19 +1,10 @@
-// https://github.com/apple/swift-corelibs-xctest/blob/master/Documentation/Linux.md
-
 import XCTest
-@testable import DangerTests
-@testable import RunnerLibTests
 
-XCTMain([
-    testCase(CliParserTests.allTests),
-    testCase(GitHubTests.allTests),
-    testCase(GitTests.allTests),
-    testCase(BitBucketServerTests.allTests),
-    testCase(DangerDSLTests.allTests),
-    testCase(DangerFileGeneratorTests.allTests),
-    testCase(DateFormatterExtensionTests.allTests),
-    testCase(FileTests.allTests),
-    testCase(FileTypeTests.allTests),
-    testCase(ImportsFinderTests.allTests),
-    testCase(NSRegularExpressionExtensionsTests.allTests)
-])
+import DangerTests
+import RunnerLibTests
+
+var tests = [XCTestCaseEntry]()
+tests += DangerTests.__allTests()
+tests += RunnerLibTests.__allTests()
+
+XCTMain(tests)
