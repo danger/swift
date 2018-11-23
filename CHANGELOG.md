@@ -13,7 +13,7 @@
 
 ## Master
 
-*Add help command to danger-swift [#122](https://github.com/danger/danger-swift/pull/122) by [@f-meloni][]
+*Add --help option support to danger-swift [#122](https://github.com/danger/danger-swift/pull/122) by [@f-meloni][]
 
 ## 0.7.1
 
