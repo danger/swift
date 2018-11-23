@@ -18,6 +18,10 @@ DerivedData/
 !default.perspectivev3
 xcuserdata/
 
+## Linux Main
+XCTestManifests.swift
+LinuxMain.swift
+
 ## Other
 *.moved-aside
 *.xccheckout

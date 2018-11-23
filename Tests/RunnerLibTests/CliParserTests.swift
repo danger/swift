@@ -9,13 +9,6 @@ import XCTest
 @testable import RunnerLib
 
 final class CliParserTests: XCTestCase {
-    static var allTests = [
-        ("testItReturnsTheCliArgsIfTheJSONIsCorrect", testItReturnsTheCliArgsIfTheJSONIsCorrect),
-        ("testItReturnsTheCliArgsIfTheJSONIsCorrectButDoesntContainAllTheFields", testItReturnsTheCliArgsIfTheJSONIsCorrectButDoesntContainAllTheFields),
-        ("testItReturnsNilIfTheJSONDoesntContainCliArgs", testItReturnsNilIfTheJSONDoesntContainCliArgs),
-        ("testLinuxTestSuiteIncludesAllTests", testLinuxTestSuiteIncludesAllTests)
-    ]
-    
     private var parser: CliArgsParser!
 
     override func setUp() {
@@ -54,15 +47,6 @@ final class CliParserTests: XCTestCase {
         let cli = parser.parseCli(fromData: jsonWithoutCliArgs.data(using: .utf8)!)
         
         XCTAssertNil(cli)
-    }
-    
-    func testLinuxTestSuiteIncludesAllTests() {
-        #if !os(Linux)
-        let thisClass = type(of: self)
-        let linuxCount = thisClass.allTests.count
-        let darwinCount = thisClass.defaultTestSuite.tests.count
-        XCTAssertEqual(linuxCount, darwinCount, "\(darwinCount - linuxCount) tests are missing from allTests")
-        #endif
     }
 }
 
