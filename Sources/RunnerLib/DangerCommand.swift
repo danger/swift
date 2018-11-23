@@ -11,7 +11,6 @@ public enum DangerCommand: String, CaseIterable {
     case pr
     case edit
     case runner
-    case help
     
     var commandDescription: String {
         switch self {
@@ -25,8 +24,6 @@ public enum DangerCommand: String, CaseIterable {
             return "Run danger-swift locally against a PR"
         case .runner:
             return "Use this to trigger the Dangerfile evaluation"
-        case .help:
-            return "Show the commands list"
         }
     }
     
@@ -34,7 +31,7 @@ public enum DangerCommand: String, CaseIterable {
         switch self {
         case .pr:
             return "prURL"
-        case .ci, .edit, .local, .runner, .help:
+        case .ci, .edit, .local, .runner:
             return nil
         }
     }
