@@ -11,9 +11,7 @@ import XCTest
 final class DangerCommandTests: XCTestCase {
     func testItReturnsTheCorrectCommandsListText() {
         let expectedResult = DangerCommand.allCases.reduce("") { (result, command) -> String in
-            let parameterText = command.parameterName != nil ? "\t" + command.parameterName! : ""
-            
-            return result + command.rawValue + parameterText + "\t" + command.commandDescription + "\n"
+            return result + command.rawValue + command.commandDescription + "\n"
         }
         
         XCTAssertEqual(DangerCommand.commandsListText, expectedResult)

@@ -41,9 +41,7 @@ public enum DangerCommand: String, CaseIterable {
     
     public static var commandsListText: String {
         return allCases.reduce("") { (result, command) -> String in
-            let parameterText = command.parameterName != nil ? "\t" + command.parameterName! : ""
-            
-            return result + command.rawValue + parameterText + "\t" + command.commandDescription + "\n"
+            return result + command.rawValue + "\t" + command.commandDescription + "\n"
         }
     }
 }
