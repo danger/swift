@@ -13,8 +13,9 @@
 
 ## Master
 
+* Adds `danger.utils` which has `danger.utils.readFile(file: File)` to make it easy to filter files - [@orta][]
 * Danger Swift can request the DSL from Danger JS under the hood, and listens async for STDIN - [@orta][]
-*Add --help option support to danger-swift [#122](https://github.com/danger/danger-swift/pull/122) by [@f-meloni][]
+* Adds --help option support to danger-swift [#122](https://github.com/danger/danger-swift/pull/122) by [@f-meloni][]
 
 ## 0.7.1
 
