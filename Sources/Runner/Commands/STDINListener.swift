@@ -14,7 +14,7 @@ func getDSLData(logger: Logger, _ runner: @escaping  (Logger, Data) throws -> Vo
 
     // Send a poke to danger-js to resend the DSL, if we've somehow missed it
     DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-        if (foundDSL) { return }
+        if foundDSL { return }
 
         logger.debug("Asking for the DSL as it's been 1s and Danger Swift hasn't seen it yet in the stdin")
 
