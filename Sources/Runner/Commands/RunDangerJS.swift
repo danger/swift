@@ -24,7 +24,7 @@ func runDangerJSCommandToRunDangerSwift(_ command: String, logger: Logger) throw
 
     proc.standardOutput = FileHandle.standardOutput
     proc.standardInput = FileHandle.standardInput
-    proc.standardError = FileHandle.standardOutput
+    proc.standardError = FileHandle.standardError
 
     logger.debug("Running: \(proc.launchPath!) \(proc.arguments!.joined(separator: " ")) ")
     proc.launch()

@@ -13,6 +13,8 @@
 
 ## Master
 
+* Danger Swift can request the DSL from Danger JS under the hood, and listens async for STDIN - [@orta][]
+
 ## 0.7.1
 
 Move report logic on a separate file [#111](https://github.com/danger/danger-swift/pull/111) by [@f-meloni][]
