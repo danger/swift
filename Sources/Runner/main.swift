@@ -8,7 +8,7 @@ let DangerVersion = "0.7.1"
 fileprivate func runCommand(_ command: DangerCommand, logger: Logger) throws {
     switch command {
     case .ci, .local, .pr:
-        let exitCode = try runDangerJSCommandToRunDangerSwift(CommandLine.arguments[1], logger: logger)
+        let exitCode = try runDangerJSCommandToRunDangerSwift(command, logger: logger)
         exit(exitCode)
     case .edit:
         try editDanger(logger: logger)
