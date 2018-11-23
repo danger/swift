@@ -13,6 +13,8 @@
 
 ## Master
 
+## 0.7.1
+
 Move report logic on a separate file [#111](https://github.com/danger/danger-swift/pull/111) by [@f-meloni][]
 
 ## 0.7.0

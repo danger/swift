@@ -1,14 +1,16 @@
 TOOL_NAME = danger-swift
 # Get this from the Danger.swift someday
-VERSION = 0.7.0
+VERSION = 0.7.1
 
 PREFIX = /usr/local
 INSTALL_PATH = $(PREFIX)/bin/$(TOOL_NAME)
 BUILD_PATH = .build/release/$(TOOL_NAME)
 LIB_INSTALL_PATH = $(PREFIX)/lib/danger
-TAR_FILENAME = $(TOOL_NAME)-$(VERSION).tar.gz
 
 SWIFT_LIB_FILES = .build/release/libDanger.* .build/release/Danger.swiftdoc .build/release/Danger.swiftmodule .build/release/ShellOut.swiftmodule .build/release/ShellOut.swiftdoc .build/release/OctoKit.swiftdoc .build/release/OctoKit.swiftmodule .build/release/RequestKit.swiftdoc .build/release/RequestKit.swiftmodule .build/release/Logger.swiftdoc .build/release/Logger.swiftmodule
+
+docs: 
+	swift run sourcedocs generate --spm-module Danger --output-folder Documentation/reference
 
 install: build
 	mkdir -p $(PREFIX)/bin
@@ -23,7 +25,10 @@ build:
 uninstall:
 	rm -f $(INSTALL_PATH)
 
-get_sha:
-	wget https://github.com/danger/$(TOOL_NAME)/archive/$(VERSION).tar.gz -O $(TAR_FILENAME)
-	shasum -a 256 $(TAR_FILENAME)
-	rm $(TAR_FILENAME)
+deploy:
+	if [[ -z "$(NEW_VERSION)" ]]; then echo "Please add a value to the NEW_VERSION variable"; exit 1; fi
+	`Scripts/update_makefile.sh`
+	`Scripts/update_danger_version.sh`
+	`Scripts/update_changelog.sh`
+	`Scripts/commit_new_version.sh`
+	`Scripts/create_homebrew_tap.sh`
