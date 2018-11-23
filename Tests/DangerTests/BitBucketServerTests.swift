@@ -25,6 +25,10 @@ final class BitBucketServerTests: XCTestCase {
         XCTAssertEqual(testUser, correctUser)
     }
     
+    func test_BitBucketServerUser_decoder2() {
+    
+    }
+    
     func test_BitBucketServerProject_decoder() throws {
         guard let data = BitBucketServerProjectJSON.data(using: .utf8) else {
             XCTFail("Could not generate data")
