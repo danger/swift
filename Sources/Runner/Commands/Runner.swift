@@ -12,8 +12,16 @@ func runDanger(logger: Logger) throws -> Void {
     var json: String = ""
     while let line = Swift.readLine(strippingNewline: false) {
         json += line
+        logger.logInfo(line)
     }
     let input = json.data(using: .utf8)!
+    
+    logger.logInfo("json", json, separator: "=")
+    
+    guard !json.isEmpty else {
+        logger.logError("Empty json")
+        exit(1)
+    }
 
     // Set up some example paths for us to work with
     let path = NSTemporaryDirectory()
