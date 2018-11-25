@@ -30,5 +30,6 @@ deploy:
 	`Scripts/update_makefile.sh`
 	`Scripts/update_danger_version.sh`
 	`Scripts/update_changelog.sh`
+	make docs
 	`Scripts/commit_new_version.sh`
 	`Scripts/create_homebrew_tap.sh`
