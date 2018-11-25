@@ -5,29 +5,30 @@ import MarathonCore
 import Logger
 import RunnerLib
 
-func runDanger(logger: Logger) throws -> Void {
-    // Pull in the JSON from Danger JS
+func runDanger(logger: Logger) throws {
     let standardInput = FileHandle.standardInput
-    let input = standardInput.readDataToEndOfFile()
     let fileManager = FileManager.default
+    let tmpPath = NSTemporaryDirectory()
+    let dangerResponsePath = tmpPath + "danger-response.json"
 
-    // Set up some example paths for us to work with
-    let path = NSTemporaryDirectory()
-    let dslJSONPath = path + "danger-dsl.json"
-    let dangerResponsePath = path + "danger-response.json"
-    // Create the DSL JSON file for the the runner to read from
-    if !fileManager.createFile(atPath: dslJSONPath, contents: input, attributes: nil) {
-        logger.logError("Could not create a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
+    // Pull in the JSON from Danger JS
+    guard let dangerDSLURL = String(data: standardInput.readDataToEndOfFile(), encoding: .utf8) else {
+        logger.logError("Could get the Dangerfile DSL URL from STDing")
         exit(1)
     }
+    // Extract the url from something like:
+    //  danger://dsl//var/folders/gv/h3hr2l6102l0q6q5kn02kcnr0000gq/T/danger-dsl.json
+    //
+    let dslJSONPath = dangerDSLURL.components(separatedBy: "danger://dsl/").last!
+    logger.debug("Got URL for JSON: \(dslJSONPath)")
 
-    logger.debug("Created a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
-    
+    // Pull our the JSON data so we can extract settings
     guard let dslJSONData = try? Data(contentsOf: URL(fileURLWithPath: dslJSONPath)) else {
         logger.logError("Invalid DSL JSON data")
         exit(1)
     }
     
+    // Grab our args
     let parser = CliArgsParser()
     let cliArgs = parser.parseCli(fromData: dslJSONData)
     
@@ -78,8 +79,10 @@ func runDanger(logger: Logger) throws -> Void {
             libArgs += ["-lMarathonDependencies"]
         }
     }
-    
-    let tempDangerfilePath = path + "_tmp_dangerfile.swift"
+
+    logger.debug("Preparing to compile")
+    let tempDangerfilePath = tmpPath + "_tmp_dangerfile.swift"
+
     let generator = DangerFileGenerator()
     try generator.generateDangerFile(fromContent: importsOnly, fileName: tempDangerfilePath, logger: logger)
 
