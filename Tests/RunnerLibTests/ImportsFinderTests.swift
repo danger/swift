@@ -5,17 +5,17 @@
 //  Created by Franco Meloni on 04/11/2018.
 //
 
-import XCTest
 import RunnerLib
+import XCTest
 
 final class ImportsFinderTests: XCTestCase {
     var importsFinder: ImportsFinder!
-    
+
     override func setUp() {
         super.setUp()
         importsFinder = ImportsFinder()
     }
-    
+
     func testItRetunsTheCorrectFilePathsWhenThePassedStringContainsImports() {
         checkReturnsTheCorrectFilePaths(string: stringWithImports, expectedResult: ["File1", "File2"])
     }
@@ -35,7 +35,7 @@ extension ImportsFinderTests {
         // fileImport: File2
         """
     }
-    
+
     private var stringWithoutImports: String {
         return """
         // comment
@@ -45,7 +45,7 @@ extension ImportsFinderTests {
         more text
         """
     }
-    
+
     private func checkReturnsTheCorrectFilePaths(string: String, expectedResult: [String]) {
         let files = importsFinder.findImports(inString: string)
         XCTAssertEqual(files, expectedResult)

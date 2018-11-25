@@ -15,7 +15,7 @@ public struct Runtime {
         ".build/debug", // Working in Xcode / CLI
         ".build/x86_64-unknown-linux/debug", // Danger Swift's CI
         ".build/release", // Testing prod
-        "/usr/local/lib/danger", // Homebrew installs lib stuff to here
+        "/usr/local/lib/danger" // Homebrew installs lib stuff to here
     ]
 
     /// Finds a path to add at runtime to the compiler, which links
@@ -42,8 +42,8 @@ public struct Runtime {
         let libPaths = potentialLibraryFolders + depManagerDangerLibPaths
 
         func isTheDangerLibPath(path: String) -> Bool {
-            return fileManager.fileExists(atPath: path + "/libDanger.dylib")  || // OSX
-                fileManager.fileExists(atPath: path + "/libDanger.so")        // Linux
+            return fileManager.fileExists(atPath: path + "/libDanger.dylib") || // OSX
+                fileManager.fileExists(atPath: path + "/libDanger.so") // Linux
         }
 
         guard let path = libPaths.first(where: isTheDangerLibPath) else { return nil }

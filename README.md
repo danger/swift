@@ -139,6 +139,7 @@ You need to be using Xcode 10.
 git clone https://github.com/danger/danger-swift.git
 cd danger-swift
 swift build
+swift run komondor install
 swift package generate-xcodeproj
 open Danger.xcodeproj
 ```

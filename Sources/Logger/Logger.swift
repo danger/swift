@@ -1,6 +1,6 @@
 import Foundation
 
-fileprivate enum Colors: String {
+private enum Colors: String {
     case `default` = "\u{001B}[0;0m"
     case red = "\u{001B}[31m"
     case yellow = "\u{001B}[33m"
@@ -27,7 +27,7 @@ public struct Logger {
         print(message, terminator: terminator, isVerbose: isVerbose)
     }
 
-    public func logWarning(_ items: Any..., separator: String = " ", terminator: String = "\n", isVerbose: Bool = false) {
+    public func logWarning(_ items: Any..., separator: String = " ", terminator: String = "\n", isVerbose _: Bool = false) {
         let yellowWarning = Colors.yellow.rawValue + "WARNING:"
         let message = yellowWarning + " " + items.joinedDescription(separator: separator)
         Swift.print(message, terminator: terminator)
@@ -56,7 +56,7 @@ public protocol Printing {
 
 public struct Printer: Printing {
     public init() {}
-    
+
     public func print(_ message: String, terminator: String) {
         Swift.print(message, terminator: terminator)
         Swift.print(Colors.default.rawValue, terminator: "")

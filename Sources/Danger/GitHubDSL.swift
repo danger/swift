@@ -7,14 +7,13 @@ import OctoKit
 
 /// The GitHub metadata for your pull request.
 public struct GitHub: Decodable {
-
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
-        case issue = "issue"
+        case issue
         case pullRequest = "pr"
-        case commits = "commits"
-        case reviews = "reviews"
+        case commits
+        case reviews
         case requestedReviewers = "requested_reviewers"
     }
 
@@ -29,14 +28,13 @@ public struct GitHub: Decodable {
     public let reviews: [GitHubReview]
 
     public let requestedReviewers: GitHubRequestedReviewers
-    
-    internal(set) public var api: Octokit!
+
+    public internal(set) var api: Octokit!
 }
 
 // MARK: - GitHubPR
 
 public struct GitHubPR: Decodable, Equatable {
-
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
@@ -62,7 +60,6 @@ public struct GitHubPR: Decodable, Equatable {
         case commentCount = "comments"
         case reviewCommentCount = "review_comments"
         case changedFiles = "changed_files"
-
     }
 
     // MARK: - PullRequestState
@@ -141,14 +138,12 @@ public struct GitHubPR: Decodable, Equatable {
 
     /// The milestone of the pull request
     public let milestone: GitHubMilestone?
-
 }
 
 // MARK: - GitHubUser
 
 /// A GitHub user account.
 public struct GitHubUser: Decodable, Equatable {
-
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
@@ -174,14 +169,12 @@ public struct GitHubUser: Decodable, Equatable {
 
     /// The type of user: user or organization.
     public let userType: UserType
-
 }
 
 // MARK: - GitHubTeam
 
 /// A GitHub team.
 public struct GitHubTeam: Decodable, Equatable {
-
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
@@ -202,7 +195,6 @@ public struct GitHubTeam: Decodable, Equatable {
 
 /// Represents the payload for a PR's requested reviewers value.
 public struct GitHubRequestedReviewers: Decodable, Equatable {
-
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
@@ -223,7 +215,6 @@ public struct GitHubRequestedReviewers: Decodable, Equatable {
 
 /// Represents 'head' in PR
 public struct GitHubMergeRef: Decodable, Equatable {
-
     // MARK: - Properties
 
     /// The human display name for the merge reference, e.g. "artsy:master".
@@ -240,13 +231,11 @@ public struct GitHubMergeRef: Decodable, Equatable {
 
     /// The repo from which the reference comes from
     public let repo: GitHubRepo
-
 }
 
 // MARK: - GitHubRepo
 
 public struct GitHubRepo: Decodable, Equatable {
-
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
@@ -285,13 +274,11 @@ public struct GitHubRepo: Decodable, Equatable {
 
     /// The root web URL for the repo, e.g. https://github.com/artsy/emission
     public let htmlURL: String
-
 }
 
 // MARK: - GitHubReview
 
 public struct GitHubReview: Decodable, Equatable {
-
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
@@ -326,14 +313,12 @@ public struct GitHubReview: Decodable, Equatable {
 
     /// The state of the review (if a review was made).
     public let state: ReviewState?
-
 }
 
 // MARK: - GitHubCommit
 
 /// A GitHub specific implementation of a git commit.
 public struct GitHubCommit: Decodable, Equatable {
-
     // MARK: - Properties
 
     /// The SHA for the commit.
@@ -350,13 +335,11 @@ public struct GitHubCommit: Decodable, Equatable {
 
     /// The GitHub user who shipped the code.
     public let committer: GitHubUser?
-
 }
 
 // MARK: - GitHubIssue
 
 public struct GitHubIssue: Decodable, Equatable {
-
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
@@ -431,13 +414,11 @@ public struct GitHubIssue: Decodable, Equatable {
 
     /// The labels associated with this issue.
     public let labels: [GitHubIssueLabel]
-
 }
 
 // MARK: - GitHubIssueLabel
 
 public struct GitHubIssueLabel: Decodable, Equatable {
-
     // MARK: - Properties
 
     /// The id number of this label.
@@ -451,27 +432,25 @@ public struct GitHubIssueLabel: Decodable, Equatable {
 
     /// The color associated with this label.
     public let color: String
-
 }
 
 // MARK: - GitHubMilestone
 
 public struct GitHubMilestone: Decodable, Equatable {
-
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
         case closedAt = "closed_at"
         case closedIssues = "closed_issues"
         case createdAt = "created_at"
-        case creator = "creator"
-        case description = "description"
+        case creator
+        case description
         case dueOn = "due_on"
-        case id = "id"
-        case number = "number"
+        case id
+        case number
         case openIssues = "open_issues"
-        case state = "state"
-        case title = "title"
+        case state
+        case title
         case updatedAt = "updated_at"
     }
 

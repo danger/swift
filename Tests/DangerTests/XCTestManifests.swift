@@ -76,16 +76,16 @@ extension NSRegularExpressionExtensionsTests {
 }
 
 #if !os(macOS)
-public func __allTests() -> [XCTestCaseEntry] {
-    return [
-        testCase(BitBucketServerTests.__allTests),
-        testCase(DangerDSLTests.__allTests),
-        testCase(DateFormatterExtensionTests.__allTests),
-        testCase(FileTests.__allTests),
-        testCase(FileTypeTests.__allTests),
-        testCase(GitHubTests.__allTests),
-        testCase(GitTests.__allTests),
-        testCase(NSRegularExpressionExtensionsTests.__allTests),
-    ]
-}
+    public func __allTests() -> [XCTestCaseEntry] {
+        return [
+            testCase(BitBucketServerTests.__allTests),
+            testCase(DangerDSLTests.__allTests),
+            testCase(DateFormatterExtensionTests.__allTests),
+            testCase(FileTests.__allTests),
+            testCase(FileTypeTests.__allTests),
+            testCase(GitHubTests.__allTests),
+            testCase(GitTests.__allTests),
+            testCase(NSRegularExpressionExtensionsTests.__allTests),
+        ]
+    }
 #endif

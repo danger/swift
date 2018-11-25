@@ -1,5 +1,5 @@
-import XCTest
 @testable import Danger
+import XCTest
 
 import XCTest
 

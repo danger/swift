@@ -1,11 +1,11 @@
 import Foundation
 
 import Files
-import MarathonCore
 import Logger
+import MarathonCore
 import RunnerLib
 
-func runDanger(logger: Logger) throws -> Void {
+func runDanger(logger: Logger) throws {
     // Pull in the JSON from Danger JS
     let standardInput = FileHandle.standardInput
     let input = standardInput.readDataToEndOfFile()
@@ -22,15 +22,15 @@ func runDanger(logger: Logger) throws -> Void {
     }
 
     logger.debug("Created a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
-    
+
     guard let dslJSONData = try? Data(contentsOf: URL(fileURLWithPath: dslJSONPath)) else {
         logger.logError("Invalid DSL JSON data")
         exit(1)
     }
-    
+
     let parser = CliArgsParser()
     let cliArgs = parser.parseCli(fromData: dslJSONData)
-    
+
     // Exit if a dangerfile was not found at any supported path
     guard let dangerfilePath = cliArgs?.dangerfile ?? Runtime.getDangerfile() else {
         logger.logError("Could not find a Dangerfile",
@@ -39,7 +39,7 @@ func runDanger(logger: Logger) throws -> Void {
         exit(1)
     }
     logger.debug("Running Dangerfile at: \(dangerfilePath)")
-    
+
     guard let libDangerPath = Runtime.getLibDangerPath() else {
         let potentialFolders = Runtime.potentialLibraryFolders
         logger.logError("Could not find a libDanger to link against at any of: \(potentialFolders)",
@@ -53,10 +53,10 @@ func runDanger(logger: Logger) throws -> Void {
     libArgs += ["-I", libDangerPath] // Find libDanger inside this folder
 
     // Set up plugin infra
-    let importsOnly =  try File(path: dangerfilePath).readAsString()
+    let importsOnly = try File(path: dangerfilePath).readAsString()
     let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") }
 
-    if (importExternalDeps.count > 0) {
+    if importExternalDeps.count > 0 {
         logger.debug("Getting inline dependencies: \(importExternalDeps.joined(separator: ", "))")
 
         try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
@@ -71,14 +71,14 @@ func runDanger(logger: Logger) throws -> Void {
         let marathonPath = script.folder.path
         let artifactPaths = [".build/debug", ".build/release"]
 
-        let marathonLibPath = artifactPaths.first(where: { fileManager.fileExists(atPath: marathonPath + $0 ) })
+        let marathonLibPath = artifactPaths.first(where: { fileManager.fileExists(atPath: marathonPath + $0) })
         if marathonLibPath != nil {
             libArgs += ["-L", marathonPath + marathonLibPath!]
             libArgs += ["-I", marathonPath + marathonLibPath!]
             libArgs += ["-lMarathonDependencies"]
         }
     }
-    
+
     let tempDangerfilePath = path + "_tmp_dangerfile.swift"
     let generator = DangerFileGenerator()
     try generator.generateDangerFile(fromContent: importsOnly, fileName: tempDangerfilePath, logger: logger)
@@ -128,7 +128,7 @@ func runDanger(logger: Logger) throws -> Void {
 
     logger.debug("Completed evaluation")
 
-    if (proc.terminationStatus != 0) {
+    if proc.terminationStatus != 0 {
         logger.logError("Dangerfile eval failed at \(dangerfilePath)")
     }
 

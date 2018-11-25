@@ -1,8 +1,6 @@
-import XCTest
 import Danger
+import XCTest
 
 final class GitTests: XCTestCase {
-    func test() {
-        
-    }
+    func test() {}
 }

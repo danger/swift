@@ -11,7 +11,7 @@ public enum DangerCommand: String, CaseIterable {
     case pr
     case edit
     case runner
-    
+
     var commandDescription: String {
         switch self {
         case .ci:
@@ -26,7 +26,7 @@ public enum DangerCommand: String, CaseIterable {
             return "Use this to trigger the Dangerfile evaluation"
         }
     }
-    
+
     var parameterName: String? {
         switch self {
         case .pr:
@@ -35,10 +35,10 @@ public enum DangerCommand: String, CaseIterable {
             return nil
         }
     }
-    
+
     public static var commandsListText: String {
         return allCases.reduce("") { (result, command) -> String in
-            return result + command.rawValue + "\t" + command.commandDescription + "\n"
+            result + command.rawValue + "\t" + command.commandDescription + "\n"
         }
     }
 }

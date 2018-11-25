@@ -1,32 +1,32 @@
-import XCTest
 @testable import Danger
+import XCTest
 
 final class NSRegularExpressionExtensionsTests: XCTestCase {
     let string = "Dogs and cats were wearing hats"
-    
+
     func test_firstMatchingString_passingRegex() {
         let pattern = "(cats|hats)$"
         let expectedMatch = "hats"
-        
+
         guard
             let expression = try? NSRegularExpression(pattern: pattern),
             let testMatch = expression.firstMatchingString(in: string)
         else {
             XCTFail(); return
         }
-        
+
         XCTAssertEqual(testMatch, expectedMatch)
     }
-    
+
     func test_firstMatchingString_failingRegex() {
         let pattern = "^(cats|hats)"
-        
+
         guard let expression = try? NSRegularExpression(pattern: pattern) else {
-                XCTFail(); return
+            XCTFail(); return
         }
-        
+
         let testMatch = expression.firstMatchingString(in: string)
-        
+
         XCTAssertNil(testMatch)
     }
 }

@@ -6,7 +6,6 @@ import Foundation
 public typealias File = String
 
 extension File {
-
     public var fileType: FileType? {
         return FileType(from: self)
     }
@@ -14,7 +13,6 @@ extension File {
     public var name: String {
         return String(self)
     }
-
 }
 
 // MARK: - FileType
@@ -23,7 +21,7 @@ public enum FileType: String, Equatable {
     case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
 }
 
-#if swift(>=4.2)  // Use compiler-generated allCases when available
+#if swift(>=4.2) // Use compiler-generated allCases when available
     extension FileType: CaseIterable {}
 #else
     extension FileType {
@@ -36,7 +34,6 @@ public enum FileType: String, Equatable {
 // MARK: - FileType extensions
 
 extension FileType {
-
     public var `extension`: String {
         return rawValue
     }
@@ -54,5 +51,4 @@ extension FileType {
         let rawValue = match.replacingOccurrences(of: ".", with: "")
         self.init(rawValue: rawValue)
     }
-
 }
