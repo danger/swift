@@ -13,7 +13,8 @@
 
 ## Master
 
-*Add --help option support to danger-swift [#122](https://github.com/danger/danger-swift/pull/122) by [@f-meloni][]
+* Adds `danger.utils` which has `danger.utils.readFile(file: File)` to make it easy to filter files - [@orta][]
+* Adds --help option support to danger-swift [#122](https://github.com/danger/danger-swift/pull/122) by [@f-meloni][]
 
 ## 0.7.1
 

@@ -1,10 +1,3 @@
-//
-//  DangerDSLTests.swift
-//  DangerTests
-//
-//  Created by Franco Meloni on 06/11/2018.
-//
-
 import XCTest
 @testable import Danger
 
