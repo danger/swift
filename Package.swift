@@ -1,4 +1,4 @@
-// swift-tools-version:4.0
+// swift-tools-version:4.2
 
 import PackageDescription
 
@@ -27,8 +27,7 @@ let package = Package(
         .target(name: "Runner", dependencies: ["RunnerLib", "MarathonCore", "Logger"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger"]),
         .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib"]),
-    ],
-    swiftLanguageVersions: [4]
+    ]
 )
 
 #if canImport(PackageConfig)
