@@ -7,9 +7,13 @@ import RunnerLib
 
 func runDanger(logger: Logger) throws -> Void {
     // Pull in the JSON from Danger JS
-    let standardInput = FileHandle.standardInput
-    let input = standardInput.readDataToEndOfFile()
     let fileManager = FileManager.default
+    
+    var json: String = ""
+    while let line = Swift.readLine(strippingNewline: false) {
+        json += line
+    }
+    let input = json.data(using: .utf8)!
 
     // Set up some example paths for us to work with
     let path = NSTemporaryDirectory()
