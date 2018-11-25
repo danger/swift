@@ -17,7 +17,7 @@ public struct DangerDSL: Decodable {
 
     public let bitbucket_server: BitBucketServer!
 
-    public let utils: DangerUtils!
+    public let utils = DangerUtils()
 
     enum CodingKeys: String, CodingKey {
         case git
@@ -31,7 +31,6 @@ public struct DangerDSL: Decodable {
         self.git = try container.decode(Git.self, forKey: .git)
         self.github = try container.decodeIfPresent(GitHub.self, forKey: .github)
         self.bitbucket_server = try container.decodeIfPresent(BitBucketServer.self, forKey: .bitbucket_server)
-        self.utils = DangerUtils()
 
         let settings = try container.decode(Settings.self, forKey: .settings)
         

@@ -2,7 +2,7 @@ import Foundation
 
 /// Utility functions that make Dangerfiles easier to write
 
-struct DangerUtils {
+public struct DangerUtils {
     /// Let's you go from a file path to the contents of the file
     /// with less hassle.
 
@@ -12,7 +12,7 @@ struct DangerUtils {
     ///
     /// - Parameter file: the file reference from git.modified/creasted/deleted etc
     /// - Returns: the file contents, or bails
-    func readFile(file: File) -> String {
+    public func readFile(_ file: File) -> String {
         guard let data = FileManager.default.contents(atPath: file) else {
             print("Could not get the contents of '\(file)', failing the Dangerfile evaluation.")
             exit(1)

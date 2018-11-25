@@ -1,10 +1,3 @@
-//
-//  DangerDSLGitHubEnterprise.swift
-//  Danger
-//
-//  Created by Franco Meloni on 06/11/2018.
-//
-
 public let DSLGitHubEnterpriseJSON = """
 
 {
