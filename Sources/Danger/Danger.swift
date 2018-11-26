@@ -21,14 +21,14 @@ final class DangerRunner {
         let isSilent = CommandLine.arguments.contains("--silent")
         logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
         logger.debug("Ran with: \(CommandLine.arguments.joined(separator: " "))")
-        
+
         let cliLength = CommandLine.arguments.count
-        
+
         guard cliLength - 2 > 0 else {
             logger.logError("To execute Danger run danger-swift ci , danger-swift pr or danger-swift local on your terminal")
             exit(1)
         }
-        
+
         let dslJSONArg: String? = CommandLine.arguments[cliLength - 2]
         let outputJSONPath = CommandLine.arguments[cliLength - 1]
 
@@ -89,7 +89,6 @@ private func dumpResultsAtExit(_ runner: DangerRunner, path: String) {
             dumpInfo.danger.logger.logError("Failed to generate result JSON:", error)
             exit(1)
         }
-
     }
     dumpInfo = (runner, path)
     atexit(dump)

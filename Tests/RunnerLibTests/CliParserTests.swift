@@ -5,8 +5,8 @@
 //  Created by Franco Meloni on 12/11/2018.
 //
 
-import XCTest
 @testable import RunnerLib
+import XCTest
 
 final class CliParserTests: XCTestCase {
     private var parser: CliArgsParser!
@@ -23,7 +23,7 @@ final class CliParserTests: XCTestCase {
 
     func testItReturnsTheCliArgsIfTheJSONIsCorrect() {
         let cli = parser.parseCli(fromData: correctJSON.data(using: .utf8)!)
-        
+
         XCTAssertEqual(cli?.id, "testId")
         XCTAssertEqual(cli?.base, "testBase")
         XCTAssertEqual(cli?.verbose, "testVerbose")
@@ -31,10 +31,10 @@ final class CliParserTests: XCTestCase {
         XCTAssertEqual(cli?.textOnly, "testTextOnly")
         XCTAssertEqual(cli?.dangerfile, "testDangerfile")
     }
-    
+
     func testItReturnsTheCliArgsIfTheJSONIsCorrectButDoesntContainAllTheFields() {
         let cli = parser.parseCli(fromData: correctJSONWithOnlyDangerfile.data(using: .utf8)!)
-        
+
         XCTAssertNil(cli?.id)
         XCTAssertNil(cli?.base)
         XCTAssertNil(cli?.verbose)
@@ -42,10 +42,10 @@ final class CliParserTests: XCTestCase {
         XCTAssertNil(cli?.textOnly)
         XCTAssertEqual(cli?.dangerfile, "testDangerfile")
     }
-    
+
     func testItReturnsNilIfTheJSONDoesntContainCliArgs() {
         let cli = parser.parseCli(fromData: jsonWithoutCliArgs.data(using: .utf8)!)
-        
+
         XCTAssertNil(cli)
     }
 }
@@ -69,7 +69,7 @@ extension CliParserTests {
         }
         """
     }
-    
+
     private var correctJSONWithOnlyDangerfile: String {
         return """
         {
@@ -83,7 +83,7 @@ extension CliParserTests {
         }
         """
     }
-    
+
     private var jsonWithoutCliArgs: String {
         return """
         {

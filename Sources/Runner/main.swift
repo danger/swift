@@ -1,11 +1,11 @@
 import Foundation
-import RunnerLib
 import Logger
+import RunnerLib
 
 /// Version for showing in verbose mode
 let DangerVersion = "0.7.1"
 
-fileprivate func runCommand(_ command: DangerCommand, logger: Logger) throws {
+private func runCommand(_ command: DangerCommand, logger: Logger) throws {
     switch command {
     case .ci, .local, .pr:
         let exitCode = try runDangerJSCommandToRunDangerSwift(command, logger: logger)
@@ -25,14 +25,14 @@ do {
 
     if cliLength > 1 {
         logger.debug("Launching Danger Swift \(CommandLine.arguments[1]) (v\(DangerVersion))")
-        
+
         let command = DangerCommand(rawValue: CommandLine.arguments[1])
-        
+
         guard !CommandLine.arguments.contains("--help") else {
             HelpMessagePresenter.showHelpMessage(command: command, logger: logger)
             exit(0)
         }
-        
+
         if command != nil {
             try runCommand(command!, logger: logger)
         } else {

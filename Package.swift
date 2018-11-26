@@ -1,4 +1,4 @@
-// swift-tools-version:4.0
+// swift-tools-version:4.2
 
 import PackageDescription
 
@@ -8,14 +8,17 @@ let package = Package(
     name: "danger-swift",
     products: [
         .library(name: "Danger", type: .dynamic, targets: ["Danger"]),
-        .executable(name: "danger-swift", targets: ["Runner"])
+        .executable(name: "danger-swift", targets: ["Runner"]),
     ],
     dependencies: [
         .package(url: "https://github.com/JohnSundell/Marathon.git", from: "3.1.0"),
         .package(url: "https://github.com/JohnSundell/ShellOut.git", from: "2.1.0"),
         .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0"),
         // Dev dependencies
-        .package(url: "https://github.com/eneko/SourceDocs.git", from: "0.5.1"),
+        .package(url: "https://github.com/eneko/SourceDocs.git", from: "0.5.1"), // dev
+        .package(url: "https://github.com/orta/Komondor.git", from: "1.0.0"), // dev
+        .package(url: "https://github.com/nicklockwood/SwiftFormat.git", from: "0.35.8"), // dev
+        .package(url: "https://github.com/Realm/SwiftLint.git", from: "0.28.1"), // dev
     ],
     targets: [
         .target(name: "Logger", dependencies: []),
@@ -24,6 +27,22 @@ let package = Package(
         .target(name: "Runner", dependencies: ["RunnerLib", "MarathonCore", "Logger"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger"]),
         .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib"]),
-    ],
-    swiftLanguageVersions: [4]
+    ]
 )
+
+#if canImport(PackageConfig)
+    import PackageConfig
+
+    let config = PackageConfig([
+        "komondor": [
+            "pre-push": "swift test",
+            "pre-commit": [
+                "swift test",
+                "swift test --generate-linuxmain",
+                "swift run swiftFormat .",
+                "swift run swiftlint autocorrect --path Sources/",
+                "git add .",
+            ],
+        ],
+    ])
+#endif

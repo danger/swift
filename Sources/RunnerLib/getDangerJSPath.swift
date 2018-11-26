@@ -1,6 +1,6 @@
 import Foundation
-import ShellOut
 import Logger
+import ShellOut
 
 public func getDangerCommandPath(_ command: DangerCommand, logger: Logger) throws -> String {
     logger.debug("Finding out where the danger executable is")

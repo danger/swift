@@ -2,10 +2,10 @@ import Foundation
 import RunnerLib
 
 import Files
-import MarathonCore
 import Logger
+import MarathonCore
 
-func editDanger(logger: Logger) throws -> Void {
+func editDanger(logger: Logger) throws {
     let createDangerfile = { () -> String in
         do {
             let template = "import Danger \n let danger = Danger()"
@@ -35,18 +35,18 @@ func editDanger(logger: Logger) throws -> Void {
 
     let importsFinder = ImportsFinder()
     let importedFiles = importsFinder.findImports(inString: dangerfileContent)
-    
+
     let absoluteLibPath = try Folder(path: libPath).path
 
     let arguments = CommandLine.arguments
     let scriptManager = try getScriptManager(logger)
     let script = try scriptManager.script(atPath: dangerfilePath, allowRemote: true)
-    
+
     let path = NSTemporaryDirectory()
     let configPath = path + "config.xcconfig"
-    
+
     try createConfig(atPath: configPath, lib: absoluteLibPath)
-    
+
     try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
 
     try script.watch(arguments: arguments, importedFiles: importedFiles)

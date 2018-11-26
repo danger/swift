@@ -4,7 +4,6 @@ import Foundation
 
 /// The result of a warn, message, or fail.
 public struct Violation: Codable {
-
     let message: String
     let file: String?
     let line: Int?
@@ -20,7 +19,6 @@ public struct Violation: Codable {
 
 /// The representation of what running a Dangerfile generates.
 struct DangerResults: Codable {
-
     /// Failed messages.
     var fails = [Violation]()
 
@@ -32,5 +30,4 @@ struct DangerResults: Codable {
 
     /// Markdown messages to attach at the bottom of the comment.
     var markdowns = [Violation]()
-
 }

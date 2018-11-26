@@ -1,9 +1,6 @@
 #!/bin/bash
 
-git add Makefile
-git add CHANGELOG.md
-git add Sources/Runner/main.swift
-git add Documentation
+git add Makefile CHANGELOG.md Sources/Runner/main.swift Documentation Package.swift
 git commit -m "Version $NEW_VERSION"
 git tag "$NEW_VERSION"
 git push origin master --tags

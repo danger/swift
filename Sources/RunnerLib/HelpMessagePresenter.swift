@@ -13,7 +13,7 @@ public final class HelpMessagePresenter {
             showCommandsList(logger: logger)
         }
     }
-    
+
     private static func showCommandsList(logger: Logger) {
         logger.logInfo("danger-swift [command]")
         logger.logInfo("")

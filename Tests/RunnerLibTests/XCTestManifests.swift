@@ -37,13 +37,13 @@ extension ImportsFinderTests {
 }
 
 #if !os(macOS)
-public func __allTests() -> [XCTestCaseEntry] {
-    return [
-        testCase(CliParserTests.__allTests),
-        testCase(DangerCommandTests.__allTests),
-        testCase(DangerFileGeneratorTests.__allTests),
-        testCase(HelpMessagePresenterTests.__allTests),
-        testCase(ImportsFinderTests.__allTests),
-    ]
-}
+    public func __allTests() -> [XCTestCaseEntry] {
+        return [
+            testCase(CliParserTests.__allTests),
+            testCase(DangerCommandTests.__allTests),
+            testCase(DangerFileGeneratorTests.__allTests),
+            testCase(HelpMessagePresenterTests.__allTests),
+            testCase(ImportsFinderTests.__allTests),
+        ]
+    }
 #endif
