@@ -11,15 +11,6 @@
         }
       },
       {
-        "package": "CryptoSwift",
-        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "f2ca9c377d4b44596a131e37eeb908221fb6e6be",
-          "version": "0.8.3"
-        }
-      },
-      {
         "package": "Curry",
         "repositoryURL": "https://github.com/thoughtbot/Curry.git",
         "state": {
@@ -35,15 +26,6 @@
           "branch": null,
           "revision": "06f95bd1bf4f8d5f50bc6bb30b808c253acd4c88",
           "version": "2.2.1"
-        }
-      },
-      {
-        "package": "Komondor",
-        "repositoryURL": "https://github.com/orta/Komondor.git",
-        "state": {
-          "branch": null,
-          "revision": "9f417d554fb8232f088cf42d9a833f10f692c7ed",
-          "version": "1.0.0"
         }
       },
       {
@@ -80,15 +62,6 @@
           "branch": null,
           "revision": "b63f2ec1b55f26c8e94159d81ad695aeb92f3d4e",
           "version": "0.9.0"
-        }
-      },
-      {
-        "package": "PackageConfig",
-        "repositoryURL": "https://github.com/orta/PackageConfig.git",
-        "state": {
-          "branch": null,
-          "revision": "5aa8c836b577b3312e5bee6ff15c61cd7d649804",
-          "version": "0.0.1"
         }
       },
       {
@@ -170,33 +143,6 @@
           "branch": null,
           "revision": "79ca340f609adee48defa966e6a3dd0e0acbeb08",
           "version": "0.21.3"
-        }
-      },
-      {
-        "package": "SwiftFormat",
-        "repositoryURL": "https://github.com/nicklockwood/SwiftFormat.git",
-        "state": {
-          "branch": null,
-          "revision": "50a16859b38348ec31dce8b0e328b7df54c4a76f",
-          "version": "0.35.8"
-        }
-      },
-      {
-        "package": "SwiftLint",
-        "repositoryURL": "https://github.com/Realm/SwiftLint.git",
-        "state": {
-          "branch": null,
-          "revision": "4cee9376edea33bbb3c22f4fb536788058744229",
-          "version": "0.28.2"
-        }
-      },
-      {
-        "package": "SwiftyTextTable",
-        "repositoryURL": "https://github.com/scottrhoyt/SwiftyTextTable.git",
-        "state": {
-          "branch": null,
-          "revision": "7b8661865f0d9590a4b7c146237fecd99f3d8406",
-          "version": "0.8.2"
         }
       },
       {
