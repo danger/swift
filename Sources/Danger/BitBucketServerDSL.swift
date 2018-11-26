@@ -30,11 +30,19 @@ public struct BitBucketServer: Decodable, Equatable {
 // MARK: - BitBucketServerActivity
 
 public struct BitBucketServerActivity: Decodable, Equatable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case createdAt = "createdDate"
+        case user
+        case action
+        case commentAction
+    }
+
     /// The activity's ID
     public let id: Int
 
     /// Date activity created as number of mili seconds since the unix epoch
-    public let createdDate: Int
+    public let createdAt: Int
 
     /// The user that triggered the activity.
     public let user: BitBucketServerUser
@@ -70,11 +78,24 @@ public struct BitBucketServerMetadata: Decodable, Equatable {
 // MARK: - BitBucketServerComment
 
 public struct BitBucketServerComment: Decodable, Equatable {
+    enum CodingKeys: String, CodingKey {
+        case id
+        case createdAt = "createdDate"
+        case user
+        case action
+        case fromHash
+        case previousFromHash
+        case toHash
+        case previousToHash
+        case commentAction
+        case comment
+    }
+
     /// The comment's id
     public let id: Int
 
     /// Date comment created as number of mili seconds since the unix epoch
-    public let createdDate: Int
+    public let createdAt: Int
 
     /// The comment's author
     public let user: BitBucketServerUser
@@ -98,11 +119,11 @@ public struct BitBucketServerComment: Decodable, Equatable {
     public let commentAction: String?
 
     /// Detailed data of the comment
-    public let comment: BitBucketServerCommentInner?
+    public let comment: CommentDetail?
 
     // MARK: - BitBucketServerCommentInner
 
-    public struct BitBucketServerCommentInner: Decodable, Equatable {
+    public struct CommentDetail: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case id
             case version
@@ -134,10 +155,10 @@ public struct BitBucketServerComment: Decodable, Equatable {
         public let updatedAt: Int
 
         /// Replys to the comment
-        public let comments: [BitBucketServerCommentInner]
+        public let comments: [CommentDetail]
 
         /// Properties associated with the comment
-        public let properties: BitBucketServerCommentInnerProperties
+        public let properties: InnerProperties
 
         /// Tasks associated with the comment
         public let tasks: [BitBucketServerCommentTask]
@@ -145,11 +166,19 @@ public struct BitBucketServerComment: Decodable, Equatable {
         // MARK: - BitBucketServerCommentTask
 
         public struct BitBucketServerCommentTask: Decodable, Equatable {
+            enum CodingKeys: String, CodingKey {
+                case id
+                case createdAt = "createdDate"
+                case text
+                case state
+                case author
+            }
+
             /// The tasks ID
             public let id: Int
 
             /// Date activity created as number of mili seconds since the unix epoch
-            public let createdDate: Int
+            public let createdAt: Int
 
             /// The text of the task
             public let text: String
@@ -163,7 +192,7 @@ public struct BitBucketServerComment: Decodable, Equatable {
 
         // MARK: - BitBucketServerCommentInnerProperties
 
-        public struct BitBucketServerCommentInnerProperties: Decodable, Equatable {
+        public struct InnerProperties: Decodable, Equatable {
             /// The ID of the repo
             public let repositoryId: Int
 

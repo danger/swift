@@ -5,7 +5,7 @@ final class BitBucketServerTests: XCTestCase {
     private var decoder: JSONDecoder = JSONDecoder()
     private lazy var bitBucketServer: BitBucketServer = {
         let data = DSLBitBucketServerJSON.data(using: .utf8)!
-        return try! decoder.decode(DSL.self, from: data).danger.bitbucket_server
+        return try! decoder.decode(DSL.self, from: data).danger.bitbucketServer
     }()
 
     func testItParsesTheBitBucketPullRequest() {
@@ -53,9 +53,9 @@ final class BitBucketServerTests: XCTestCase {
         let comments = bitBucketServer.comments
         let expectedUser = BitBucketServerUser(id: 2, name: "danger", displayName: "DangerCI", emailAddress: "foo@bar.com", active: true, slug: "danger", type: "NORMAL")
         let commentText = "Text"
-        let expectedProperty = BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentInnerProperties(repositoryId: 1, issues: nil)
-        let expectedCommentDetail = BitBucketServerComment.BitBucketServerCommentInner(id: 10, version: 23, text: commentText, author: expectedUser, createdAt: 1_518_939_353_345, updatedAt: 1_519_449_132_488, comments: [], properties: expectedProperty, tasks: [])
-        let expectedComment = BitBucketServerComment(id: 52, createdDate: 1_518_939_353_345, user: expectedUser, action: "COMMENTED", fromHash: nil, previousFromHash: nil, toHash: nil, previousToHash: nil, commentAction: "ADDED", comment: expectedCommentDetail)
+        let expectedProperty = BitBucketServerComment.CommentDetail.InnerProperties(repositoryId: 1, issues: nil)
+        let expectedCommentDetail = BitBucketServerComment.CommentDetail(id: 10, version: 23, text: commentText, author: expectedUser, createdAt: 1_518_939_353_345, updatedAt: 1_519_449_132_488, comments: [], properties: expectedProperty, tasks: [])
+        let expectedComment = BitBucketServerComment(id: 52, createdAt: 1_518_939_353_345, user: expectedUser, action: "COMMENTED", fromHash: nil, previousFromHash: nil, toHash: nil, previousToHash: nil, commentAction: "ADDED", comment: expectedCommentDetail)
 
         XCTAssertEqual(comments[1], expectedComment)
         XCTAssertEqual(comments.count, 7)
@@ -71,7 +71,7 @@ final class BitBucketServerTests: XCTestCase {
         let activities = bitBucketServer.activities
 
         let expectedUser = BitBucketServerUser(id: 1, name: "test", displayName: "test", emailAddress: "foo@bar.com", active: true, slug: "test", type: "NORMAL")
-        let expectedActivity = BitBucketServerActivity(id: 61, createdDate: 1_519_442_356_495, user: expectedUser, action: "RESCOPED", commentAction: nil)
+        let expectedActivity = BitBucketServerActivity(id: 61, createdAt: 1_519_442_356_495, user: expectedUser, action: "RESCOPED", commentAction: nil)
 
         XCTAssertEqual(activities.first, expectedActivity)
         XCTAssertEqual(activities.count, 7)

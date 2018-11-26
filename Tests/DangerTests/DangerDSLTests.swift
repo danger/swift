@@ -18,7 +18,7 @@ final class DangerDSLTests: XCTestCase {
 
         let danger: DangerDSL = try decoder.decode(DSL.self, from: data).danger
 
-        XCTAssertNil(danger.bitbucket_server)
+        XCTAssertNil(danger.bitbucketServer)
         XCTAssertNotNil(danger.github)
         XCTAssertTrue(danger.runningOnGithub)
         XCTAssertTrue(danger.supportsSuggestions)
@@ -34,7 +34,7 @@ final class DangerDSLTests: XCTestCase {
 
         let danger: DangerDSL = try decoder.decode(DSL.self, from: data).danger
 
-        XCTAssertNil(danger.bitbucket_server)
+        XCTAssertNil(danger.bitbucketServer)
         XCTAssertNotNil(danger.github)
         XCTAssertTrue(danger.runningOnGithub)
         XCTAssertTrue(danger.supportsSuggestions)
@@ -51,7 +51,7 @@ final class DangerDSLTests: XCTestCase {
 
         let danger: DangerDSL = try! decoder.decode(DSL.self, from: data).danger
 
-        XCTAssertNotNil(danger.bitbucket_server)
+        XCTAssertNotNil(danger.bitbucketServer)
         XCTAssertNil(danger.github)
         XCTAssertFalse(danger.runningOnGithub)
         XCTAssertFalse(danger.supportsSuggestions)
