@@ -13,7 +13,7 @@
 
 ## Master
 
-
+* Fix BitbuckerServer JSON parsing [#129](https://github.com/danger/danger-swift/pull/129) by [@f-meloni][]
 * Uses Danger JS's new `--passURLForDSL` for grabbing the DSL JSON  - [@orta][]
 * Adds `danger.utils` which has `danger.utils.readFile(file: File)` to make it easy to filter files - [@orta][]
 * Adds --help option support to danger-swift [#122](https://github.com/danger/danger-swift/pull/122) by [@f-meloni][]
