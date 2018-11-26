@@ -42,15 +42,13 @@ final class DangerRunner {
             exit(1)
         }
         do {
-            let string = String(data: dslJSONContents, encoding: .utf8)
-            logger.debug(string!)
-
             let decoder = JSONDecoder()
             if #available(OSX 10.12, *) {
                 decoder.dateDecodingStrategy = .iso8601
             } else {
                 decoder.dateDecodingStrategy = .formatted(DateFormatter.defaultDateFormatter)
             }
+            logger.debug("Decoding the DSL into Swift types")
             dsl = try decoder.decode(DSL.self, from: dslJSONContents).danger
 
         } catch let error {
@@ -58,6 +56,7 @@ final class DangerRunner {
             exit(1)
         }
 
+        logger.debug("Setting up to dump results")
         dumpResultsAtExit(self, path: outputJSONPath)
     }
 }

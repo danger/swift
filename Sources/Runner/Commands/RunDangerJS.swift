@@ -20,7 +20,7 @@ func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger
         dangerSwiftCommand = ".build/debug/danger-swift"
     }
 
-    proc.arguments = [command.rawValue, "--process", dangerSwiftCommand] + unusedArgs
+    proc.arguments = [command.rawValue, "--process", dangerSwiftCommand, "--passURLForDSL"] + unusedArgs
 
     let standardOutput = FileHandle.standardOutput
     proc.standardOutput = standardOutput

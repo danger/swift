@@ -1,5 +1,11 @@
 import Foundation
 
+#if os(Linux)
+    import Glibc
+#else
+    import Darwin.C
+#endif
+
 private enum Colors: String {
     case `default` = "\u{001B}[0;0m"
     case red = "\u{001B}[31m"
@@ -20,6 +26,7 @@ public struct Logger {
     public func debug(_ items: Any..., separator: String = " ", terminator: String = "\n", isVerbose: Bool = true) {
         let message = items.joinedDescription(separator: separator)
         print(message, terminator: terminator, isVerbose: isVerbose)
+        fflush(stdout)
     }
 
     public func logInfo(_ items: Any..., separator: String = " ", terminator: String = "\n", isVerbose: Bool = false) {

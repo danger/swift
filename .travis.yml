@@ -14,15 +14,8 @@ matrix:
         # - DEBUG="*" danger ci --process .build/x86_64-apple-macosx10.10/debug/danger-swift
         # - sudo chmod -R a+rwx /usr/local/Cellar/
         # - DEBUG="*" danger-swift ci
-        - DEBUG="*" .build/x86_64-apple-macosx10.10/debug/danger-swift ci
-
-    - os: osx
-      name: Tests sync
-      osx_image: xcode10
-      install:
-        swift test --generate-linuxmain
-      script:
-        git diff --exit-code
+        # - DEBUG="*" .build/x86_64-apple-macosx10.10/debug/danger-swift ci
+        - .build/x86_64-apple-macosx10.10/debug/danger-swift ci
 
     - os: linux
       language: generic
