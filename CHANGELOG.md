@@ -13,12 +13,14 @@
 
 ## Master
 
+
+* Uses Danger JS's new `--passURLForDSL` for grabbing the DSL JSON  - [@orta][]
 * Adds `danger.utils` which has `danger.utils.readFile(file: File)` to make it easy to filter files - [@orta][]
 * Adds --help option support to danger-swift [#122](https://github.com/danger/danger-swift/pull/122) by [@f-meloni][]
 
 ## 0.7.1
 
-*Move report logic on a separate file [#111](https://github.com/danger/danger-swift/pull/111) by [@f-meloni][]
+* Move report logic on a separate file [#111](https://github.com/danger/danger-swift/pull/111) by [@f-meloni][]
 
 ## 0.7.0
 
