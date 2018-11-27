@@ -73,7 +73,7 @@ let DSLBitBucketServerJSON = """
         },
         "closed": false,
         "createdDate": 1518863923273,
-        "fromRef": {
+        "toRef": {
           "displayId": "foo",
           "id": "refs/heads/foo",
           "latestCommit": "d6725486c38d46a33e76f622cf24b9a388c8d13d",
@@ -155,7 +155,7 @@ let DSLBitBucketServerJSON = """
         "reviewers": [],
         "state": "OPEN",
         "title": "Pull request title",
-        "toRef": {
+        "fromRef": {
           "displayId": "master",
           "id": "refs/heads/master",
           "latestCommit": "8942a1f75e4c95df836f19ef681d20a87da2ee20",
