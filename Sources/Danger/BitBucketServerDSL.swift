@@ -32,7 +32,7 @@ public struct BitBucketServer: Decodable, Equatable {
 public struct BitBucketServerActivity: Decodable, Equatable {
     enum CodingKeys: String, CodingKey {
         case id
-        case createdDate
+        case createdAt = "createdDate"
         case user
         case action
         case commentAction
@@ -42,7 +42,7 @@ public struct BitBucketServerActivity: Decodable, Equatable {
     public let id: Int
 
     /// Date activity created as number of mili seconds since the unix epoch
-    public let createdDate: Int
+    public let createdAt: Int
 
     /// The user that triggered the activity.
     public let user: BitBucketServerUser
@@ -57,16 +57,22 @@ public struct BitBucketServerActivity: Decodable, Equatable {
 // MARK: - BitBucketServerMetadata
 
 public struct BitBucketServerMetadata: Decodable, Equatable {
-    enum CodingKeys: String, CodingKey {
-        case pullRequestID
-        case repoSlug
+    /// The PR's ID
+    public var pullRequestID: String {
+        return env.pr
     }
 
-    /// The PR's ID
-    public let pullRequestID: String
-
     /// The complete repo slug including project slug.
-    public let repoSlug: String
+    public var repoSlug: String {
+        return env.repo
+    }
+
+    let env: Env
+
+    struct Env: Decodable, Equatable {
+        let repo: String
+        let pr: String
+    }
 }
 
 // MARK: - BitBucketServerComment
@@ -74,7 +80,7 @@ public struct BitBucketServerMetadata: Decodable, Equatable {
 public struct BitBucketServerComment: Decodable, Equatable {
     enum CodingKeys: String, CodingKey {
         case id
-        case createdDate
+        case createdAt = "createdDate"
         case user
         case action
         case fromHash
@@ -89,7 +95,7 @@ public struct BitBucketServerComment: Decodable, Equatable {
     public let id: Int
 
     /// Date comment created as number of mili seconds since the unix epoch
-    public let createdDate: Int
+    public let createdAt: Int
 
     /// The comment's author
     public let user: BitBucketServerUser
@@ -113,11 +119,11 @@ public struct BitBucketServerComment: Decodable, Equatable {
     public let commentAction: String?
 
     /// Detailed data of the comment
-    public let comment: BitBucketServerCommentInner?
+    public let comment: CommentDetail?
 
     // MARK: - BitBucketServerCommentInner
 
-    public struct BitBucketServerCommentInner: Decodable, Equatable {
+    public struct CommentDetail: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case id
             case version
@@ -149,10 +155,10 @@ public struct BitBucketServerComment: Decodable, Equatable {
         public let updatedAt: Int
 
         /// Replys to the comment
-        public let comments: [BitBucketServerCommentInner]
+        public let comments: [CommentDetail]
 
         /// Properties associated with the comment
-        public let properties: BitBucketServerCommentInnerProperties
+        public let properties: InnerProperties
 
         /// Tasks associated with the comment
         public let tasks: [BitBucketServerCommentTask]
@@ -162,7 +168,7 @@ public struct BitBucketServerComment: Decodable, Equatable {
         public struct BitBucketServerCommentTask: Decodable, Equatable {
             enum CodingKeys: String, CodingKey {
                 case id
-                case createdDate
+                case createdAt = "createdDate"
                 case text
                 case state
                 case author
@@ -172,7 +178,7 @@ public struct BitBucketServerComment: Decodable, Equatable {
             public let id: Int
 
             /// Date activity created as number of mili seconds since the unix epoch
-            public let createdDate: Int
+            public let createdAt: Int
 
             /// The text of the task
             public let text: String
@@ -186,12 +192,7 @@ public struct BitBucketServerComment: Decodable, Equatable {
 
         // MARK: - BitBucketServerCommentInnerProperties
 
-        public struct BitBucketServerCommentInnerProperties: Decodable, Equatable {
-            enum CodingKeys: String, CodingKey {
-                case repositoryId
-                case issues
-            }
-
+        public struct InnerProperties: Decodable, Equatable {
             /// The ID of the repo
             public let repositoryId: Int
 
@@ -204,17 +205,6 @@ public struct BitBucketServerComment: Decodable, Equatable {
 // MARK: - BitBucketServerCommit
 
 public struct BitBucketServerCommit: Decodable, Equatable {
-    enum CodingKeys: String, CodingKey {
-        case id
-        case displayId
-        case author
-        case authorTimestamp
-        case committer
-        case committerTimestamp
-        case message
-        case parents
-    }
-
     /// The SHA for the commit
     public let id: String
 
@@ -242,11 +232,6 @@ public struct BitBucketServerCommit: Decodable, Equatable {
     // MARK: - BitBucketServerCommitParent
 
     public struct BitBucketServerCommitParent: Decodable, Equatable {
-        enum CodingKeys: String, CodingKey {
-            case id
-            case displayId
-        }
-
         /// The SHA for the commit
         public let id: String
 
@@ -306,7 +291,7 @@ public struct BitBucketServerPR: Decodable, Equatable {
     /// The PR submittor's reference
     public let fromRef: BitBucketServerMergeRef
 
-    /// The repo Danger is sunning on
+    /// The repo Danger is running on
     public let toRef: BitBucketServerMergeRef
 
     /// Is the PR locked?
@@ -319,7 +304,7 @@ public struct BitBucketServerPR: Decodable, Equatable {
     public let reviewers: [BitBucketServerUser]
 
     /// People who have participated in the PR
-    public let participants: [BitBucketServerUser]
+    public let participants: [BitBucketServerAuthor]
 
     // MARK: - BitBucketServerAuthor
 
@@ -336,13 +321,6 @@ public struct BitBucketServerPR: Decodable, Equatable {
 // MARK: - BitBucketServerMergeRef
 
 public struct BitBucketServerMergeRef: Decodable, Equatable {
-    enum CodingKeys: String, CodingKey {
-        case id
-        case displayId
-        case latestCommit
-        case repository
-    }
-
     /// The branch name
     public let id: String
 
@@ -417,16 +395,6 @@ public struct BitBucketServerProject: Decodable, Equatable {
 // MARK: - BitBucketServerUser
 
 public struct BitBucketServerUser: Decodable, Equatable {
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case displayName
-        case emailAddress
-        case active
-        case slug
-        case type
-    }
-
     /// The unique user ID
     public let id: Int
 

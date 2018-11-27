@@ -2,14 +2,17 @@ import XCTest
 
 extension BitBucketServerTests {
     static let __allTests = [
-        ("test_BitBucketServerProject_decoder", test_BitBucketServerProject_decoder),
-        ("test_BitBucketServerRepo_decoder", test_BitBucketServerRepo_decoder),
-        ("test_BitBucketServerUser_decoder", test_BitBucketServerUser_decoder),
+        ("testItParsesTheBitBucketActivities", testItParsesTheBitBucketActivities),
+        ("testItParsesTheBitBucketComments", testItParsesTheBitBucketComments),
+        ("testItParsesTheBitBucketCommits", testItParsesTheBitBucketCommits),
+        ("testItParsesTheBitBucketMetadata", testItParsesTheBitBucketMetadata),
+        ("testItParsesTheBitBucketPullRequest", testItParsesTheBitBucketPullRequest),
     ]
 }
 
 extension DangerDSLTests {
     static let __allTests = [
+        ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnBitBucketServer", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnBitBucketServer),
         ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithub", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithub),
         ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise),
     ]

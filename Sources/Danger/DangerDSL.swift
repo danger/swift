@@ -15,14 +15,14 @@ public struct DangerDSL: Decodable {
 
     public let github: GitHub!
 
-    public let bitbucket_server: BitBucketServer!
+    public let bitbucketServer: BitBucketServer!
 
     public let utils = DangerUtils()
 
     enum CodingKeys: String, CodingKey {
         case git
         case github
-        case bitbucket_server
+        case bitbucketServer = "bitbucket_server"
         case settings
     }
 
@@ -30,7 +30,7 @@ public struct DangerDSL: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         git = try container.decode(Git.self, forKey: .git)
         github = try container.decodeIfPresent(GitHub.self, forKey: .github)
-        bitbucket_server = try container.decodeIfPresent(BitBucketServer.self, forKey: .bitbucket_server)
+        bitbucketServer = try container.decodeIfPresent(BitBucketServer.self, forKey: .bitbucketServer)
 
         let settings = try container.decode(Settings.self, forKey: .settings)
 
@@ -54,7 +54,7 @@ extension DangerDSL {
     }
 
     var runningOnBitbucketServer: Bool {
-        return bitbucket_server != nil
+        return bitbucketServer != nil
     }
 
     var supportsSuggestions: Bool {

@@ -18,7 +18,7 @@ final class DangerDSLTests: XCTestCase {
 
         let danger: DangerDSL = try decoder.decode(DSL.self, from: data).danger
 
-        XCTAssertNil(danger.bitbucket_server)
+        XCTAssertNil(danger.bitbucketServer)
         XCTAssertNotNil(danger.github)
         XCTAssertTrue(danger.runningOnGithub)
         XCTAssertTrue(danger.supportsSuggestions)
@@ -34,12 +34,27 @@ final class DangerDSLTests: XCTestCase {
 
         let danger: DangerDSL = try decoder.decode(DSL.self, from: data).danger
 
-        XCTAssertNil(danger.bitbucket_server)
+        XCTAssertNil(danger.bitbucketServer)
         XCTAssertNotNil(danger.github)
         XCTAssertTrue(danger.runningOnGithub)
         XCTAssertTrue(danger.supportsSuggestions)
         XCTAssertNotNil(danger.git)
         XCTAssert(danger.github.api.configuration.accessToken == "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf")
         XCTAssert(danger.github.api.configuration.apiEndpoint == "https://base.url.io")
+    }
+
+    func testItParsesCorrectlyTheDangerDSLWhenThePRIsOnBitBucketServer() throws {
+        guard let data = DSLBitBucketServerJSON.data(using: .utf8) else {
+            XCTFail("Could not generate data")
+            return
+        }
+
+        let danger: DangerDSL = try! decoder.decode(DSL.self, from: data).danger
+
+        XCTAssertNotNil(danger.bitbucketServer)
+        XCTAssertNil(danger.github)
+        XCTAssertFalse(danger.runningOnGithub)
+        XCTAssertFalse(danger.supportsSuggestions)
+        XCTAssertNotNil(danger.git)
     }
 }
