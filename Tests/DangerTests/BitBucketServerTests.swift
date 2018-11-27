@@ -15,11 +15,11 @@ final class BitBucketServerTests: XCTestCase {
 
         let expectedProject = BitBucketServerProject(id: 1, key: "PROJ", name: "Project", isPublic: false, type: "NORMAL")
         let expectedRepo = BitBucketServerRepo(name: "Repo", slug: "repo", scmId: "git", isPublic: false, forkable: true, project: expectedProject)
-        let expectedBase = BitBucketServerMergeRef(id: "refs/heads/foo", displayId: "foo", latestCommit: "d6725486c38d46a33e76f622cf24b9a388c8d13d", repository: expectedRepo)
-        XCTAssertEqual(pullRequest.fromRef, expectedBase)
+        let expectedHead = BitBucketServerMergeRef(id: "refs/heads/foo", displayId: "foo", latestCommit: "d6725486c38d46a33e76f622cf24b9a388c8d13d", repository: expectedRepo)
+        XCTAssertEqual(pullRequest.head, expectedHead)
 
-        let expectedHead = BitBucketServerMergeRef(id: "refs/heads/master", displayId: "master", latestCommit: "8942a1f75e4c95df836f19ef681d20a87da2ee20", repository: expectedRepo)
-        XCTAssertEqual(pullRequest.toRef, expectedHead)
+        let expectedBase = BitBucketServerMergeRef(id: "refs/heads/master", displayId: "master", latestCommit: "8942a1f75e4c95df836f19ef681d20a87da2ee20", repository: expectedRepo)
+        XCTAssertEqual(pullRequest.base, expectedBase)
 
         let expectedPartecipant = BitBucketServerUser(id: 2, name: "danger", displayName: "DangerCI", emailAddress: "user@email.com", active: true, slug: "danger", type: "NORMAL")
         XCTAssertEqual(pullRequest.participants.count, 1)

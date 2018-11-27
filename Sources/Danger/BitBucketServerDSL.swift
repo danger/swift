@@ -253,8 +253,8 @@ public struct BitBucketServerPR: Decodable, Equatable {
         case closed
         case createdAt = "createdDate"
         case updatedAt = "updatedDate"
-        case fromRef
-        case toRef
+        case base = "fromRef"
+        case head = "toRef"
         case isLocked = "locked"
         case author
         case reviewers
@@ -289,10 +289,10 @@ public struct BitBucketServerPR: Decodable, Equatable {
     public let updatedAt: Int?
 
     /// The PR submittor's reference
-    public let fromRef: BitBucketServerMergeRef
+    public let base: BitBucketServerMergeRef
 
     /// The repo Danger is running on
-    public let toRef: BitBucketServerMergeRef
+    public let head: BitBucketServerMergeRef
 
     /// Is the PR locked?
     public let isLocked: Bool
