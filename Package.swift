@@ -11,6 +11,7 @@ let package = Package(
         .executable(name: "danger-swift", targets: ["Runner"]),
     ],
     dependencies: [
+        .package(url: "https://github.com/f-meloni/Logger", from: "0.1.0"),
         .package(url: "https://github.com/JohnSundell/Marathon.git", from: "3.1.0"),
         .package(url: "https://github.com/JohnSundell/ShellOut.git", from: "2.1.0"),
         .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0"),
@@ -21,7 +22,6 @@ let package = Package(
         .package(url: "https://github.com/Realm/SwiftLint.git", from: "0.28.1"), // dev
     ],
     targets: [
-        .target(name: "Logger", dependencies: []),
         .target(name: "Danger", dependencies: ["ShellOut", "OctoKit", "Logger"]),
         .target(name: "RunnerLib", dependencies: ["Logger", "ShellOut"]),
         .target(name: "Runner", dependencies: ["RunnerLib", "MarathonCore", "Logger"]),
