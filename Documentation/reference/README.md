@@ -8,8 +8,6 @@ This Reference Documentation has been generated with
 -   [BitBucketServerActivity](structs/BitBucketServerActivity.md)
 -   [BitBucketServerAuthor](structs/BitBucketServerAuthor.md)
 -   [BitBucketServerComment](structs/BitBucketServerComment.md)
--   [BitBucketServerCommentInner](structs/BitBucketServerCommentInner.md)
--   [BitBucketServerCommentInnerProperties](structs/BitBucketServerCommentInnerProperties.md)
 -   [BitBucketServerCommentTask](structs/BitBucketServerCommentTask.md)
 -   [BitBucketServerCommit](structs/BitBucketServerCommit.md)
 -   [BitBucketServerCommitParent](structs/BitBucketServerCommitParent.md)
@@ -19,8 +17,10 @@ This Reference Documentation has been generated with
 -   [BitBucketServerProject](structs/BitBucketServerProject.md)
 -   [BitBucketServerRepo](structs/BitBucketServerRepo.md)
 -   [BitBucketServerUser](structs/BitBucketServerUser.md)
+-   [CommentDetail](structs/CommentDetail.md)
 -   [DSL](structs/DSL.md)
 -   [DangerDSL](structs/DangerDSL.md)
+-   [DangerUtils](structs/DangerUtils.md)
 -   [Git](structs/Git.md)
 -   [GitCommit](structs/GitCommit.md)
 -   [GitCommitAuthor](structs/GitCommitAuthor.md)
@@ -36,6 +36,7 @@ This Reference Documentation has been generated with
 -   [GitHubReview](structs/GitHubReview.md)
 -   [GitHubTeam](structs/GitHubTeam.md)
 -   [GitHubUser](structs/GitHubUser.md)
+-   [InnerProperties](structs/InnerProperties.md)
 -   [Violation](structs/Violation.md)
 
 ## Enums
