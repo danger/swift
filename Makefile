@@ -24,14 +24,3 @@ build:
 
 uninstall:
 	rm -f $(INSTALL_PATH)
-
-deploy:
-	if [[ -z "$(NEW_VERSION)" ]]; then echo "Please add a value to the NEW_VERSION variable"; exit 1; fi
-	make docs
-	`Scripts/update_makefile.sh`
-	`Scripts/dev_deps_hide.rb`
-	`Scripts/update_danger_version.sh`
-	`Scripts/update_changelog.sh`
-	`Scripts/commit_new_version.sh`
-	`Scripts/create_homebrew_tap.sh`
-	`Scripts/dev_deps_unhide.rb`
