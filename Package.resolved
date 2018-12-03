@@ -155,6 +155,15 @@
         }
       },
       {
+        "package": "Rocket",
+        "repositoryURL": "https://github.com/f-meloni/Rocket",
+        "state": {
+          "branch": null,
+          "revision": "3a0a763efabaa4e7d3dff394e67176d17bf71114",
+          "version": "0.3.1"
+        }
+      },
+      {
         "package": "ShellOut",
         "repositoryURL": "https://github.com/JohnSundell/ShellOut.git",
         "state": {

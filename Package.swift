@@ -20,6 +20,7 @@ let package = Package(
         .package(url: "https://github.com/orta/Komondor.git", from: "1.0.0"), // dev
         .package(url: "https://github.com/nicklockwood/SwiftFormat.git", from: "0.35.8"), // dev
         .package(url: "https://github.com/Realm/SwiftLint.git", from: "0.28.1"), // dev
+        .package(url: "https://github.com/f-meloni/Rocket", from: "0.3.1"), // dev
     ],
     targets: [
         .target(name: "Danger", dependencies: ["ShellOut", "OctoKit", "Logger"]),
