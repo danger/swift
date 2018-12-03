@@ -45,5 +45,20 @@ let package = Package(
                 "git add .",
             ],
         ],
+        "rocket": [
+            ["script": ["content": "make docs"]],
+            ["script": ["content": "Scripts/update_makefile.sh"]],
+            ["script": ["content": "Scripts/update_danger_version.sh"]],
+            ["script": ["content": "Scripts/update_changelog.sh"]],
+            "hide_dev_dependencies",
+            ["git_add": ["paths": ["Makefile", "CHANGELOG.md", "Sources/Runner/main.swift", "Documentation", "Package.swift"]]],
+            ["commit": ["no_verify": true]],
+            "tag",
+            "unhide_dev_dependencies",
+            ["git_add": ["paths": ["Package.swift"]]],
+            ["commit": ["message": "Unhide dev dependencies", "no_verify": true]],
+            "push",
+            ["script": ["content": "Scripts/create_homebrew_tap.sh"]],
+        ],
     ])
 #endif
