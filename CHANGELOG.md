@@ -13,6 +13,8 @@
 
 ## Master
 
+* Add html_url support on GitHub PR [#135](https://github.com/danger/danger-swift/pull/135) by [@f-meloni][]
+
 ## 0.7.2
 
 * Fix BitbuckerServer JSON parsing [#129](https://github.com/danger/danger-swift/pull/129) by [@f-meloni][]
