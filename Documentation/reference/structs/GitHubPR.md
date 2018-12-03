@@ -182,3 +182,9 @@ public let milestone: GitHubMilestone?
 ```
 
 > The milestone of the pull request
+
+### `htmlUrl`
+
+```swift
+public let htmlUrl: String
+```

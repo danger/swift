@@ -13,6 +13,8 @@
 
 ## Master
 
+## 0.7.3
+
 * Add html_url support on GitHub PR [#135](https://github.com/danger/danger-swift/pull/135) by [@f-meloni][]
 
 ## 0.7.2
