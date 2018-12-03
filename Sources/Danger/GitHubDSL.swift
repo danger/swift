@@ -60,6 +60,7 @@ public struct GitHubPR: Decodable, Equatable {
         case commentCount = "comments"
         case reviewCommentCount = "review_comments"
         case changedFiles = "changed_files"
+        case htmlUrl = "html_url"
     }
 
     // MARK: - PullRequestState
@@ -138,6 +139,9 @@ public struct GitHubPR: Decodable, Equatable {
 
     /// The milestone of the pull request
     public let milestone: GitHubMilestone?
+
+    // The link back to this PR as user-facing
+    public let htmlUrl: String
 }
 
 // MARK: - GitHubUser
