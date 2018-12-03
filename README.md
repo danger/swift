@@ -157,7 +157,7 @@ swift build && cat Fixtures/eidolon_609.json | ./.build/debug/danger-swift
 ```
 #### Deploying
 
-Run `make deploy NEW_VERSION=$VERSION` on `master` e.g. `make deploy NEW_VERSION=1.0.0`
+Run `swift run rocket $VERSION` on `master` e.g. `swift run rocket 1.0.0`
 
 ### Long-term
 
