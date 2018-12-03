@@ -182,6 +182,15 @@
         }
       },
       {
+        "package": "SnapshotTesting",
+        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
+        "state": {
+          "branch": null,
+          "revision": "85e8ac2a2fd884856732922065dc175ca70b1de4",
+          "version": "1.0.0"
+        }
+      },
+      {
         "package": "SwiftFormat",
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat.git",
         "state": {

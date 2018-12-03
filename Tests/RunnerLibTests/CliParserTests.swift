@@ -7,6 +7,7 @@
 
 @testable import RunnerLib
 import XCTest
+import SnapshotTesting
 
 final class CliParserTests: XCTestCase {
     private var parser: CliArgsParser!

@@ -20,13 +20,14 @@ let package = Package(
         .package(url: "https://github.com/orta/Komondor.git", from: "1.0.0"), // dev
         .package(url: "https://github.com/nicklockwood/SwiftFormat.git", from: "0.35.8"), // dev
         .package(url: "https://github.com/Realm/SwiftLint.git", from: "0.28.1"), // dev
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.0.0"), // dev
     ],
     targets: [
         .target(name: "Danger", dependencies: ["ShellOut", "OctoKit", "Logger"]),
         .target(name: "RunnerLib", dependencies: ["Logger", "ShellOut"]),
         .target(name: "Runner", dependencies: ["RunnerLib", "MarathonCore", "Logger"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger"]),
-        .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib"]),
+        .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib", "SnapshotTesting"]),
     ]
 )
 

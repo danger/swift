@@ -9,16 +9,17 @@ import Foundation
 import Logger
 @testable import RunnerLib
 import XCTest
+import SnapshotTesting
 
 final class DangerFileGeneratorTests: XCTestCase {
     private let logger = Logger()
     private var createdFiles: [String] = []
     private var generator: DangerFileGenerator!
 
-    private let generatedFilePath = "GeneredTestDangerfile.swift"
-    private let file1Path = "GeneredTestFile1.swift"
-    private let file2Path = "GeneredTestFile2.swift"
-    private let file3Path = "GeneredTestFile3.swift"
+    private let generatedFilePath = "GeneratedTestDangerfile.swift"
+    private let file1Path = "GeneratedTestFile1.swift"
+    private let file2Path = "GeneratedTestFile2.swift"
+    private let file3Path = "GeneratedTestFile3.swift"
 
     override func setUp() {
         super.setUp()
@@ -60,6 +61,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         let expectedResult = file2Content + "\n\n" + file3Content + "\n" + file1Content + "\n" + contentWithoutImports
 
+
         XCTAssert(generatedContent == expectedResult)
     }
 
@@ -73,8 +75,9 @@ final class DangerFileGeneratorTests: XCTestCase {
         try generator.generateDangerFile(fromContent: contentWithMultipleImports, fileName: generatedFilePath, logger: logger)
 
         let expectedResult = file2Content + "\n\n" + "// fileImport: " + file3Path + "\n" + file1Content + "\n" + contentWithoutImports
+        assertSnapshot(matching: expectedResult, as: .lines)
 
-        XCTAssert(generatedContent == expectedResult)
+//        XCTAssert(generatedContent == expectedResult)
     }
 }
 
