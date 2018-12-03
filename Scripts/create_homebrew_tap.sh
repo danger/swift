@@ -7,8 +7,8 @@ HOMEBREW_TAP_TMPDIR=$(mktemp -d)
 git clone --depth 1 git@github.com:danger/homebrew-tap.git "$HOMEBREW_TAP_TMPDIR"
 cd "$HOMEBREW_TAP_TMPDIR" || exit 1
 
-TAR_FILENAME="$TOOL_NAME-$NEW_VERSION.tar.gz"
-wget "https://github.com/danger/$TOOL_NAME/archive/$NEW_VERSION.tar.gz" -O "$TAR_FILENAME" 2> /dev/null
+TAR_FILENAME="$TOOL_NAME-$VERSION.tar.gz"
+wget "https://github.com/danger/$TOOL_NAME/archive/$VERSION.tar.gz" -O "$TAR_FILENAME" 2> /dev/null
 SHA=`shasum -a 256 "$TAR_FILENAME" | head -n1 | cut -d " " -f1`
 rm "$TAR_FILENAME" 2> /dev/null
 
