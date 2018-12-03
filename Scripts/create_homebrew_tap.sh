@@ -19,7 +19,7 @@ rm "$TAR_FILENAME" 2> /dev/null
 echo "class DangerSwift < Formula" > danger-swift.rb
 echo "  desc \"Write your Dangerfiles in Swift\"" >> danger-swift.rb
 echo "  homepage \"https://github.com/danger/danger-swift\"" >> danger-swift.rb
-echo "  version \"$NEW_VERSION\"" >> danger-swift.rb
+echo "  version \"$VERSION\"" >> danger-swift.rb
 echo "  url \"https://github.com/danger/danger-swift/archive/#{version}.tar.gz\"" >> danger-swift.rb
 echo "  sha256 \"${SHA}\"" >> danger-swift.rb
 echo "  head \"https://github.com/danger/danger-swift.git\""  >> danger-swift.rb
@@ -36,5 +36,5 @@ echo "end" >> danger-swift.rb
 
 #Commit changes
 git add danger-swift.rb 2> /dev/null
-git commit -m "Releasing danger-swift version $NEW_VERSION" --quiet
+git commit -m "Releasing danger-swift version $VERSION" --quiet
 git push origin master
