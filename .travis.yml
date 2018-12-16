@@ -15,7 +15,6 @@ matrix:
       install:
         - node -v
         - npm install -g danger
-        - swift build
         - make install
       script:
         - swift test
@@ -35,7 +34,6 @@ matrix:
         - npm install -g danger
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
         - swiftenv global 4.2
-        - swift build
       script:
         - swift test
         - sudo chmod -R a+rwx /usr/local/
