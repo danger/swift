@@ -4,16 +4,15 @@ import MarathonCore
 
 func getScriptManager(_ logger: Logger) throws -> ScriptManager {
     let folder = "~/.danger-swift"
-    let printFunction = { print($0) }
 
-    let vPrintFunction = { (messageExpression: () -> String) in
-        logger.debug(messageExpression())
-    }
+    let printFunction: PrintFunction = { logger.logInfo($0) }
+    let progressFunc = makeProgressPrintingFunction(logger: logger)
+    let verbosePrint = makeVerbosePrintingFunction(logger)
 
     let printer = Printer(
         outputFunction: printFunction,
-        progressFunction: vPrintFunction,
-        verboseFunction: vPrintFunction
+        progressFunction: progressFunc,
+        verboseFunction: verbosePrint
     )
     let fileSystem = FileSystem()
 
@@ -25,4 +24,18 @@ func getScriptManager(_ logger: Logger) throws -> ScriptManager {
     let config = ScriptManager.Config(prefix: "package: ", file: "Dangerplugins")
 
     return try ScriptManager(folder: scriptFolder, packageManager: packageManager, printer: printer, config: config)
+}
+
+private func makeProgressPrintingFunction(logger: Logger) -> VerbosePrintFunction {
+    return { (messageExpression: () -> String) in
+        let message = messageExpression()
+        logger.debug(message)
+    }
+}
+
+private func makeVerbosePrintingFunction(_ logger: Logger) -> VerbosePrintFunction {
+    return { (messageExpression: () -> String) in
+        let message = "\u{001B}[0;3m\(messageExpression())\u{001B}[0;23m"
+        logger.debug(message)
+    }
 }

@@ -1,4 +1,9 @@
+cache:
+  directories:
+  - .build
+
 language: generic
+
 matrix:
   include:
     - os: osx
