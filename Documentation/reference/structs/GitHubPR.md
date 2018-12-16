@@ -188,3 +188,5 @@ public let milestone: GitHubMilestone?
 ```swift
 public let htmlUrl: String
 ```
+
+> The link back to this PR as user-facing
