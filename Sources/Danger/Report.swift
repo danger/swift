@@ -1,10 +1,3 @@
-//
-//  Report.swift
-//  Danger
-//
-//  Created by Franco Meloni on 19/11/2018.
-//
-
 private var dangerRunner: DangerRunner {
     return DangerRunner.shared
 }
