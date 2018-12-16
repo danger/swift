@@ -1,10 +1,3 @@
-//
-//  NSRegularExpression+FilesImport.swift
-//  Danger
-//
-//  Created by Franco Meloni on 01/11/2018.
-//
-
 import Foundation
 
 extension NSRegularExpression {

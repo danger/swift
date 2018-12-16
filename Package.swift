@@ -21,6 +21,7 @@ let package = Package(
         .package(url: "https://github.com/orta/Komondor", from: "1.0.0"), // dev
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"), // dev
         .package(url: "https://github.com/Realm/SwiftLint", from: "0.28.1"), // dev
+        .package(url: "https://github.com/f-meloni/Rocket", from: "0.3.2"), // dev
     ],
     targets: [
         .target(name: "Danger", dependencies: ["ShellOut", "OctoKit", "Logger"]),
@@ -43,6 +44,23 @@ let package = Package(
                 "swift run swiftformat .",
                 "swift run swiftlint autocorrect --path Sources/",
                 "git add .",
+            ],
+        ],
+        "rocket": [
+            "steps": [
+                ["script": ["content": "make docs"]],
+                ["script": ["content": "Scripts/update_makefile.sh"]],
+                ["script": ["content": "Scripts/update_danger_version.sh"]],
+                ["script": ["content": "Scripts/update_changelog.sh"]],
+                "hide_dev_dependencies",
+                ["git_add": ["paths": ["Makefile", "CHANGELOG.md", "Sources/Runner/main.swift", "Documentation", "Package.swift"]]],
+                ["commit": ["no_verify": true]],
+                "tag",
+                "unhide_dev_dependencies",
+                ["git_add": ["paths": ["Package.swift"]]],
+                ["commit": ["message": "Unhide dev dependencies", "no_verify": true]],
+                "push",
+                ["script": ["content": "Scripts/create_homebrew_tap.sh"]],
             ],
         ],
     ])

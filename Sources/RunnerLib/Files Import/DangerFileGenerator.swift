@@ -1,10 +1,3 @@
-//
-//  FilesImporter.swift
-//  Runner
-//
-//  Created by Franco Meloni on 29/10/2018.
-//
-
 import Foundation
 import Logger
 
@@ -16,7 +9,7 @@ public final class DangerFileGenerator {
         let importsRegex = NSRegularExpression.filesImportRegex
 
         importsRegex.enumerateMatches(in: content, options: [], range: NSRange(location: 0, length: content.count), using: { result, _, _ in
-            // Adjust the result to have the correct range also after dangerContent is modificated
+            // Adjust the result to have the correct range also after dangerContent is modified
             guard let result = result?.adjustingRanges(offset: dangerContent.count - content.count) else { return }
             let url = importsRegex.replacementString(for: result, in: dangerContent, offset: 0, template: "$1")
 

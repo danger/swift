@@ -1,10 +1,3 @@
-//
-//  HelpMessagePresenter.swift
-//  RunnerLib
-//
-//  Created by Franco Meloni on 23/11/2018.
-//
-
 import Logger
 
 public final class HelpMessagePresenter {

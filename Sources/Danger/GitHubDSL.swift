@@ -140,7 +140,7 @@ public struct GitHubPR: Decodable, Equatable {
     /// The milestone of the pull request
     public let milestone: GitHubMilestone?
 
-    // The link back to this PR as user-facing
+    /// The link back to this PR as user-facing
     public let htmlUrl: String
 }
 

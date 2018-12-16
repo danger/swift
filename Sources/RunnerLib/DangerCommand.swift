@@ -1,10 +1,3 @@
-//
-//  DangerCommand.swift
-//  RunnerLib
-//
-//  Created by Franco Meloni on 23/11/2018.
-//
-
 public enum DangerCommand: String, CaseIterable {
     case ci
     case local
