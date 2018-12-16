@@ -75,3 +75,6 @@ Fixtures/response_data.json
 Scripts/data/request.yml
 Scripts/tmp/*
 !Scripts/tmp/.gitkeep
+
+yarn.lock
+node_modules

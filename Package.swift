@@ -8,6 +8,7 @@ let package = Package(
     name: "danger-swift",
     products: [
         .library(name: "Danger", type: .dynamic, targets: ["Danger"]),
+        .library(name: "DangerFixtures", type: .dynamic, targets: ["DangerFixtures"]),
         .executable(name: "danger-swift", targets: ["Runner"]),
     ],
     dependencies: [
@@ -27,8 +28,9 @@ let package = Package(
         .target(name: "Danger", dependencies: ["ShellOut", "OctoKit", "Logger"]),
         .target(name: "RunnerLib", dependencies: ["Logger", "ShellOut"]),
         .target(name: "Runner", dependencies: ["RunnerLib", "MarathonCore", "Logger"]),
-        .testTarget(name: "DangerTests", dependencies: ["Danger"]),
+        .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures"]),
         .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib"]),
+        .target(name: "DangerFixtures", dependencies: ["Danger"]),
     ]
 )
 

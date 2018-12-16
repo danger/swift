@@ -17,13 +17,16 @@ public struct DangerDSL: Decodable {
 
     public let bitbucketServer: BitBucketServer!
 
-    public let utils = DangerUtils()
+    public let utils: DangerUtils
 
     enum CodingKeys: String, CodingKey {
         case git
         case github
         case bitbucketServer = "bitbucket_server"
         case settings
+        // Used by plugin testing only
+        // See: githubJSONWithFiles
+        case fileMap
     }
 
     public init(from decoder: Decoder) throws {
@@ -34,6 +37,18 @@ public struct DangerDSL: Decodable {
 
         let settings = try container.decode(Settings.self, forKey: .settings)
 
+        // File map is used so that libraries can make tests without
+        // doing a lot of internal hacking for danger, or weird DI in their
+        // own code. A bit of a trade-off in complexity for Danger Swift, but I
+        // think if it leads to more tested plugins, it's a good spot to be in.
+        do {
+            let fileMap = try container.decode([String: String].self, forKey: .fileMap)
+            utils = DangerUtils(fileMap: fileMap)
+        } catch {
+            utils = DangerUtils(fileMap: [:])
+        }
+
+        // Setup the OctoKit once all other
         if runningOnGithub {
             let config: TokenConfiguration
 
