@@ -71,3 +71,7 @@ Danger/.build
 *.xcodeproj
 .build
 Fixtures/response_data.json
+
+Scripts/data/request.yml
+Scripts/tmp/*
+!Scripts/tmp/.gitkeep
