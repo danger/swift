@@ -4,6 +4,7 @@ import XCTest
 
 final class DangerDSLTests: XCTestCase {
     override func setUp() {
+        print(ProcessInfo.processInfo.processName)
         resetDangerResults()
     }
 
