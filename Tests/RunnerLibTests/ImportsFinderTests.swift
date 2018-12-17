@@ -1,10 +1,3 @@
-//
-//  ImportsFinderTests.swift
-//  DangerTests
-//
-//  Created by Franco Meloni on 04/11/2018.
-//
-
 import RunnerLib
 import XCTest
 

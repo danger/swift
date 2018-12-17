@@ -1,10 +1,3 @@
-//
-//  CliParserTests.swift
-//  DangerTests
-//
-//  Created by Franco Meloni on 12/11/2018.
-//
-
 @testable import RunnerLib
 import XCTest
 
