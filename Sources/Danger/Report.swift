@@ -55,9 +55,7 @@ extension DangerDSL {
     ///
     /// - Parameter message: A markdown-ish
     public func warn(_ message: String) {
-        print(globalResults)
         globalResults.warnings.append(Violation(message: message))
-        print(globalResults)
     }
 
     /// Adds an inline warning message to the Danger report

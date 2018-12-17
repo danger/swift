@@ -39,8 +39,4 @@ struct DangerResults: Codable {
 
     /// Information to pass back to Danger JS about the runtime
     let meta = Meta()
-
-    init() {
-        print("restuukts:")
-    }
 }
