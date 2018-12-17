@@ -37,5 +37,6 @@ struct DangerResults: Codable {
     /// Markdown messages to attach at the bottom of the comment.
     var markdowns = [Violation]()
 
+    /// Information to pass back to Danger JS about the runtime
     let meta = Meta()
 }

@@ -6,7 +6,7 @@ func checkChangelog() {
 
     let isTrivial = (danger.github != nil) && danger.github.pullRequest.title.contains("#trivial")
 
-    if !isTrivial && !changelogChanged && sourceChanges != nil {
+    if !isTrivial, !changelogChanged, sourceChanges != nil {
         danger.warn("""
          Any changes to library code should be reflected in the Changelog.
 
