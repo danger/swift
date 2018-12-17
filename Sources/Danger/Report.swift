@@ -14,7 +14,7 @@ private var testingResults = DangerResults()
 /// controlled by DangerRunner, but in tests they
 /// are accessible from the DangerResults object.
 var globalResults: DangerResults = {
-    if ProcessInfo.processInfo.processName == "xctest" {
+    if ProcessInfo.processInfo.processName.hasSuffix("xctest") {
         return testingResults
     } else {
         return DangerRunner.shared.results
