@@ -35,7 +35,7 @@ public let githubFixtureDSL = parseDangerDSL(with: DSLGitHubJSON)
 public let githubEnterpriseFixtureDSL = parseDangerDSL(with: DSLGitHubEnterpriseJSON)
 /// An example DSL using BitBucket
 public let bitbucketFixtureDSL = parseDangerDSL(with: DSLBitBucketServerJSON)
-/// An example DSL using BitBucket
+/// An example DSL using GitHub
 public func githubWithFilesDSL(created: [File] = [], modified: [File] = [], deleted: [File] = [], fileMap: [String: String] = [:]) -> DangerDSL {
     return parseDangerDSL(with: githubJSONWithFiles(created: created, modified: modified, deleted: deleted, fileMap: fileMap))
 }
