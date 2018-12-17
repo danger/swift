@@ -24,7 +24,7 @@ Edit your `Package.swift` to add a reference to the two Danger libraries:
         .testTarget(
             name: "DangerNoCopyrightsTests",
 -           dependencies: ["DangerNoCopyrights"]),
-+           dependencies: ["DangerNoCopyrights", "Danger", "DangerFixtures"]),
++           dependencies: ["DangerNoCopyrights", "DangerFixtures"]),
     ]
 )
 ```
