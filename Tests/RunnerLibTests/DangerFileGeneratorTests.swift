@@ -1,10 +1,3 @@
-//
-//  DangerFileGeneratorTests.swift
-//  DangerTests
-//
-//  Created by Franco Meloni on 01/11/2018.
-//
-
 import Foundation
 import Logger
 @testable import RunnerLib

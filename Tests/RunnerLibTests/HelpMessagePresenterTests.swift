@@ -1,10 +1,3 @@
-//
-//  HelpMessagePresenterTests.swift
-//  DangerTests
-//
-//  Created by Franco on 23/11/2018.
-//
-
 import Logger
 import RunnerLib
 import XCTest

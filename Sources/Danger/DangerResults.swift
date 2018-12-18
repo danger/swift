@@ -15,6 +15,12 @@ public struct Violation: Codable {
     }
 }
 
+/// Meta information for showing in the text info
+public struct Meta: Codable {
+    let runtimeName = "Danger Swift"
+    let runtimeHref = "https://danger.systems"
+}
+
 // MARK: - Results
 
 /// The representation of what running a Dangerfile generates.
@@ -30,4 +36,7 @@ struct DangerResults: Codable {
 
     /// Markdown messages to attach at the bottom of the comment.
     var markdowns = [Violation]()
+
+    /// Information to pass back to Danger JS about the runtime
+    let meta = Meta()
 }

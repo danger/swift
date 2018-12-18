@@ -51,7 +51,7 @@ final class DangerRunner {
             logger.debug("Decoding the DSL into Swift types")
             dsl = try decoder.decode(DSL.self, from: dslJSONContents).danger
 
-        } catch let error {
+        } catch {
             logger.logError("Failed to parse JSON:", error)
             exit(1)
         }
@@ -85,7 +85,7 @@ private func dumpResultsAtExit(_ runner: DangerRunner, path: String) {
                 exit(0)
             }
 
-        } catch let error {
+        } catch {
             dumpInfo.danger.logger.logError("Failed to generate result JSON:", error)
             exit(1)
         }

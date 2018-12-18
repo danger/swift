@@ -37,6 +37,7 @@ This Reference Documentation has been generated with
 -   [GitHubTeam](structs/GitHubTeam.md)
 -   [GitHubUser](structs/GitHubUser.md)
 -   [InnerProperties](structs/InnerProperties.md)
+-   [Meta](structs/Meta.md)
 -   [Violation](structs/Violation.md)
 
 ## Enums

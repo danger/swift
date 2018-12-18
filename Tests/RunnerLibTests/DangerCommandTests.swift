@@ -1,10 +1,3 @@
-//
-//  DangerCommandTests.swift
-//  DangerTests
-//
-//  Created by Franco on 23/11/2018.
-//
-
 @testable import RunnerLib
 import XCTest
 

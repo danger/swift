@@ -1,4 +1,4 @@
-let DSLBitBucketServerJSON = """
+public let DSLBitBucketServerJSON = """
 {
   "danger": {
     "git": {

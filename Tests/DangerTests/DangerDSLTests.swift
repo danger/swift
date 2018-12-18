@@ -1,22 +1,29 @@
 @testable import Danger
+import DangerFixtures
 import XCTest
 
 final class DangerDSLTests: XCTestCase {
-    var decoder: JSONDecoder!
-
     override func setUp() {
-        super.setUp()
-        decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .formatted(DateFormatter.defaultDateFormatter)
+        resetDangerResults()
     }
 
-    func testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithub() throws {
-        guard let data = DSLGitHubJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
+    func testFileMapWorksCorrectly() throws {
+        let fileContent = "123easfsfasd"
+        let danger = githubWithFilesDSL(created: ["file.swift"], fileMap: ["file.swift": fileContent])
+        let file = danger.utils.readFile("file.swift")
+        XCTAssertEqual(fileContent, file)
+    }
 
-        let danger: DangerDSL = try decoder.decode(DSL.self, from: data).danger
+    func testDangerfileResults() throws {
+        let danger = githubFixtureDSL
+        danger.warn("Warning")
+        danger.fail("Fail")
+        XCTAssert(globalResults.warnings.count == 1)
+        XCTAssert(globalResults.fails.count == 1)
+    }
+
+    func testGithubFixtureDSL() throws {
+        let danger: DangerDSL = githubFixtureDSL
 
         XCTAssertNil(danger.bitbucketServer)
         XCTAssertNotNil(danger.github)
@@ -27,12 +34,7 @@ final class DangerDSLTests: XCTestCase {
     }
 
     func testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise() throws {
-        guard let data = DSLGitHubEnterpriseJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
-
-        let danger: DangerDSL = try decoder.decode(DSL.self, from: data).danger
+        let danger: DangerDSL = githubEnterpriseFixtureDSL
 
         XCTAssertNil(danger.bitbucketServer)
         XCTAssertNotNil(danger.github)
@@ -44,12 +46,7 @@ final class DangerDSLTests: XCTestCase {
     }
 
     func testItParsesCorrectlyTheDangerDSLWhenThePRIsOnBitBucketServer() throws {
-        guard let data = DSLBitBucketServerJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
-
-        let danger: DangerDSL = try! decoder.decode(DSL.self, from: data).danger
+        let danger: DangerDSL = bitbucketFixtureDSL
 
         XCTAssertNotNil(danger.bitbucketServer)
         XCTAssertNil(danger.github)

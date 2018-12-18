@@ -12,8 +12,10 @@ extension BitBucketServerTests {
 
 extension DangerDSLTests {
     static let __allTests = [
+        ("testDangerfileResults", testDangerfileResults),
+        ("testFileMapWorksCorrectly", testFileMapWorksCorrectly),
+        ("testGithubFixtureDSL", testGithubFixtureDSL),
         ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnBitBucketServer", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnBitBucketServer),
-        ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithub", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithub),
         ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise),
     ]
 }

@@ -182,3 +182,11 @@ public let milestone: GitHubMilestone?
 ```
 
 > The milestone of the pull request
+
+### `htmlUrl`
+
+```swift
+public let htmlUrl: String
+```
+
+> The link back to this PR as user-facing

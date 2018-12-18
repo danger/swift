@@ -1,11 +1,11 @@
 @testable import Danger
+import DangerFixtures
 import XCTest
 
 final class BitBucketServerTests: XCTestCase {
     private var decoder: JSONDecoder = JSONDecoder()
     private lazy var bitBucketServer: BitBucketServer = {
-        let data = DSLBitBucketServerJSON.data(using: .utf8)!
-        return try! decoder.decode(DSL.self, from: data).danger.bitbucketServer
+        bitbucketFixtureDSL.bitbucketServer
     }()
 
     func testItParsesTheBitBucketPullRequest() {
