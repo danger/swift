@@ -10,6 +10,9 @@ let package = Package(
         .library(name: "Danger", type: .dynamic, targets: ["Danger"]),
         .library(name: "DangerFixtures", type: .dynamic, targets: ["DangerFixtures"]),
         .executable(name: "danger-swift", targets: ["Runner"]),
+        // Convience executable for `swift run danger`, all other docs  assume that
+        // you will be using `danger-swift`.
+        .executable(name: "danger", targets: ["Runner"]),
     ],
     dependencies: [
         .package(url: "https://github.com/f-meloni/Logger", from: "0.1.0"),
