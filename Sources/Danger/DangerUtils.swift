@@ -39,9 +39,8 @@ public struct DangerUtils {
     /// output without having to mess around
     ///
     /// It generally assumes that the command will pass, as you only get
-    /// a string reference at the end and not the process' exit code.
-    ///
-    /// I'm open to this changing if people want that info.
+    /// a string of the STDOUT. If you think your command could/should fail
+    /// then you want to use `spawn` instead.
     ///
     /// - Parameter command: The first part of the command
     /// - Parameter arguments: An optional array of arguements to pass in extra
@@ -49,5 +48,17 @@ public struct DangerUtils {
     public func exec(_ command: String, arguments: [String] = []) -> String {
         let shellExecutor = ShellExecutor()
         return shellExecutor.execute(command, arguments: arguments)
+    }
+
+    /// Gives you the ability to cheaply run a command and read the
+    /// output without having to mess around too much, and exposes
+    /// command errors in a pretty elegant way.
+    ///
+    /// - Parameter command: The first part of the command
+    /// - Parameter arguments: An optional array of arguements to pass in extra
+    /// - Returns: the stdout from the command
+    public func spawn(_ command: String, arguments: [String] = []) throws -> String {
+        let shellExecutor = ShellExecutor()
+        return try shellExecutor.spawn(command, arguments: arguments)
     }
 }

@@ -30,8 +30,13 @@
 
   This revises the way in which you can write tests in Danger plugins. Should be much easier now.
 
-- Adds a func for doing one-off commands in the terminal, `danger.utils.exec` which will return the string of 
-  the STDOUT outputted by that command by [@orta][]
+- Adds some utils functions for doing one-off commands in the terminal by [@orta][]
+  
+  `danger.utils.exec` will return the string of the STDOUT outputted by that command, use this for things you're sure
+  aren't going to fail.
+  
+  `danger.utils.spawn` is a throwable version of the above which includes all the essential error information if the 
+  command fails. 
 
 ## 0.7.3
 
