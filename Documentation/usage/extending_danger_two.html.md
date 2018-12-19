@@ -36,8 +36,6 @@ your consumers, edit your `DangerNoCopyrights.swift`:
 import Danger
 import Foundation
 
-public func checkForCopyrightHeaders() -> Void {
-
 /// Public facing
 public func checkForCopyrightHeaders() -> Void {
 +     let danger = Danger()
