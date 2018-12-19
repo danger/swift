@@ -5,13 +5,9 @@ import Foundation
 public struct DangerUtils {
     let fileMap: [String: String]
 
-//    init(fileMap: [String: String]) {
-//        self.dsl = unowned
-//    }
-
     /// Let's you go from a file path to the contents of the file
     /// with less hassle.
-
+    ///
     /// It specifically assumes golden path code so Dangerfiles
     /// don't have to include error handlings - an error will
     /// exit evaluation entirely as it should only happen at dev-time.
@@ -37,5 +33,21 @@ public struct DangerUtils {
         }
 
         return stringy
+    }
+
+    /// Gives you the ability to cheaply run a command and read the
+    /// output without having to mess around
+    ///
+    /// It generally assumes that the command will pass, as you only get
+    /// a string reference at the end and not the process' exit code.
+    ///
+    /// I'm open to this changing if people want that info.
+    ///
+    /// - Parameter command: The first part of the command
+    /// - Parameter arguments: An optional array of arguements to pass in extra
+    /// - Returns: the stdout from the command
+    public func exec(_ command: String, arguments: [String] = []) -> String {
+        let shellExecutor = ShellExecutor()
+        return shellExecutor.execute(command, arguments: arguments)
     }
 }

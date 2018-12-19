@@ -30,6 +30,9 @@
 
   This revises the way in which you can write tests in Danger plugins. Should be much easier now.
 
+- Adds a func for doing one-off commands in the terminal, `danger.utils.exec` which will return the string of 
+  the STDOUT outputted by that command by [@orta][]
+
 ## 0.7.3
 
 - Add html_url support on GitHub PR [#135](https://github.com/danger/danger-swift/pull/135) by [@f-meloni][]
