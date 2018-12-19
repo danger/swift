@@ -13,6 +13,8 @@
 
 ## Master
 
+## 0.8.0
+
 - Whoah! The SwiftLint plugin has been merged into Danger by [@orta][]
 
   This is not my work, really, it's the work of the contributors to the Danger SwiftLint plugin (which, yes, I am a

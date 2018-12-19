@@ -18,11 +18,11 @@ let package = Package(
         .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0"),
         // Danger Plugins
         // Dev dependencies
-        .package(url: "https://github.com/eneko/SourceDocs", from: "0.5.1"), // dev
-        .package(url: "https://github.com/orta/Komondor", from: "1.0.0"), // dev
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"), // dev
-        .package(url: "https://github.com/Realm/SwiftLint", from: "0.28.1"), // dev
-        .package(url: "https://github.com/f-meloni/Rocket", from: "0.3.2"), // dev
+//        .package(url: "https://github.com/eneko/SourceDocs", from: "0.5.1"), // dev
+//        .package(url: "https://github.com/orta/Komondor", from: "1.0.0"), // dev
+//        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"), // dev
+//        .package(url: "https://github.com/Realm/SwiftLint", from: "0.28.1"), // dev
+//        .package(url: "https://github.com/f-meloni/Rocket", from: "0.3.2"), // dev
     ],
     targets: [
         .target(name: "Danger", dependencies: ["ShellOut", "OctoKit", "Logger"]),

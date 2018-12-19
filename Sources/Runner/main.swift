@@ -3,7 +3,7 @@ import Logger
 import RunnerLib
 
 /// Version for showing in verbose mode
-let DangerVersion = "0.7.3"
+let DangerVersion = "0.8.0"
 
 private func runCommand(_ command: DangerCommand, logger: Logger) throws {
     switch command {
