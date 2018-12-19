@@ -13,8 +13,22 @@
 
 ## Master
 
+- Whoah! The SwiftLint plugin has been merged into Danger by [@orta][]
+
+  This is not my work, really, it's the work of the contributors to the Danger SwiftLint plugin (which, yes, I am a
+  contributor, so...) - but it's mainly the work of [@ashfurrow][] [@sunshinejr][] [@Killectro][] and [@thii][].
+
+  This is discussed in https://github.com/ashfurrow/danger-swiftlint/issues/17 where I pitched that maybe we should just
+  inline this dependency because so many people are going to use this. The Swift community is likely the only community
+  using Danger Swift, so why not make this version have a bit more focus on what people are doing with it?
+
 - Docs, lots of lots of docs by [@orta][]
+
+  This is a blocker on 1.0ing Danger Swift. So, we're getting there now.
+
 - Internal faffing, and splitting of some test-related code so that Plugins can have an elegant test API by [@orta][]
+
+  This revises the way in which you can write tests in Danger plugins. Should be much easier now.
 
 ## 0.7.3
 
@@ -151,3 +165,7 @@
 
 [@f-meloni]: https://github.com/f-meloni
 [@orta]: https://github.com/orta
+[@ashfurrow]: https://github.com/ashfurrow
+[@sunshinejr]: https://github.com/sunshinejr
+[@killectro]: https://github.com/Killectro
+[@thii]: https://github.com/thii
