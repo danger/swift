@@ -42,7 +42,7 @@ public func checkForCopyrightHeaders() -> Void {
 +     checkForCopyrightHeaders(danger: danger)
 + }
 +
-+ /// Private function for facing
++ /// Private function for testing
 + func checkForCopyrightHeaders(danger: DangerDSL) -> Void {
     let swiftFilesWithCopyright = danger.git.createdFiles.filter {
         $0.fileType == .swift
