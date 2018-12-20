@@ -6,11 +6,28 @@ order: 3
 blurb: Common questions that come up in our GitHub issues.
 ---
 
+## Danger Swift takes a real long time to run
+
+First off, make sure you have build caching turned on for:
+
+- `./build` - for Swift PM, and compilation
+- `~/.danger-swift` - for Danger Swift's Dangerfile and dependency compilation
+
+Danger Swift has to compile code etc, which you want to be doing incrementally.
+
+Second, getting and using plugins does more work than you'd think. There is one key reason here:
+
+- As of Swift 4.2, including any dependency will clone every related dependency. Think of it as "I include Danger in my 
+  dependency tree, and suddenly I have to clone ~12 repos (~6 unrelated to danger) on every build." 
+  
+  This is currently the Swift PM dependency resolver being naive, and should get fixed in the future, build caching
+  will work around it.  We've got some code in Danger to try speed that up though.
+
 ## Can I use the same Dangerfile across many repos?
 
 Ish, it's currently quite complex to set up, but work is on-going on [Danger/Peril][peril]. This is a hosted version of
-Danger which does not need to run on CI. Using Peril you can use Dangerfiles to reply to basically any GitHub webhook
-type.
+Danger which does not need to run on CI. Using Peril you can use TypeScript Dangerfiles to reply to basically any GitHub 
+webhook.
 
 ## I only want to run Danger for internal contributors
 

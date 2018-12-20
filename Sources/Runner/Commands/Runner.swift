@@ -61,7 +61,7 @@ func runDanger(logger: Logger) throws {
     let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") }
 
     if importExternalDeps.count > 0 {
-        logger.debug("Getting inline dependencies: \(importExternalDeps.joined(separator: ", "))")
+        print("Cloning and building inline dependencies: \(importExternalDeps.joined(separator: ", ")), this might take some time.")
 
         try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
         let tempDangerfile = try File(path: "_dangerfile_imports.swift")

@@ -11,6 +11,7 @@ SWIFT_LIB_FILES = .build/release/libDanger.* .build/release/Danger.swiftdoc .bui
 
 docs: 
 	swift run sourcedocs generate --spm-module Danger --output-folder Documentation/reference
+	./Scripts/update_docs.rb
 
 install: build
 	mkdir -p $(PREFIX)/bin
