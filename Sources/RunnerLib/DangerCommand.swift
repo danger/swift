@@ -20,15 +20,6 @@ public enum DangerCommand: String, CaseIterable {
         }
     }
 
-    var parameterName: String? {
-        switch self {
-        case .pr:
-            return "prURL"
-        case .ci, .edit, .local, .runner:
-            return nil
-        }
-    }
-
     public static var commandsListText: String {
         return allCases.reduce("") { (result, command) -> String in
             result + command.rawValue + "\t" + command.commandDescription + "\n"
