@@ -7,8 +7,8 @@ public struct SwiftLint {
     internal static let danger = Danger()
     internal static let shellExecutor = ShellExecutor()
 
-    /// This is the main entry point for linting Swift in PRs using Danger-Swift.
-    /// Call this function anywhere from within your Dangerfile.swift.
+    /// This is the main entry point for linting Swift in PRs.
+
     @discardableResult
     public static func lint(inline: Bool = false, directory: String? = nil,
                             configFile: String? = nil, lintAllFiles: Bool = false,

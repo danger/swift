@@ -13,6 +13,8 @@
 
 ## Master
 
+- More docs by [@orta][]
+
 ## 0.8.0
 
 - Whoah! The SwiftLint plugin has been merged into Danger by [@orta][]

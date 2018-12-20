@@ -27,7 +27,7 @@ Where `danger ci` uses information from the Pull Request to figure out what has 
 local differences in git from master to the current commit to derive the runtime environment. This is naive because if
 you don't keep your master branch in-sync, then it will be checking across potentially many branches.
 
-Inside a Dangerfile `danger.github` and `danger.bitbucketServer` will be `nil`, so you can share a Dangerfile between
+Inside a Dangerfile `danger.github` and `danger.bitbucketServer` will be `nil`, so you can share a Dangerhttps://github.com/Moya/Harvey/blob/master/Dangerfile.swiftfile between
 `danger local` and `danger ci` as long as you verify that these objects exist before using them.
 
 When I thought about how I wanted to use `danger local` on repos in the Danger org, I opted to make a separate

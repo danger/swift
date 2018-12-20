@@ -8,5 +8,4 @@
 ## Methods
 ### `lint(inline:directory:configFile:lintAllFiles:swiftlintPath:)`
 
-> This is the main entry point for linting Swift in PRs using Danger-Swift.
-> Call this function anywhere from within your Dangerfile.swift.
+> This is the main entry point for linting Swift in PRs.

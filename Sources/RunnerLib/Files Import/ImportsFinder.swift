@@ -1,10 +1,3 @@
-//
-//  ImportsFinder.swift
-//  Danger
-//
-//  Created by Franco Meloni on 04/11/2018.
-//
-
 import Foundation
 
 public final class ImportsFinder {

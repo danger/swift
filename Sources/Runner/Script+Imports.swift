@@ -1,10 +1,3 @@
-//
-//  Script+Imports.swift
-//  Danger
-//
-//  Created by Franco Meloni on 04/11/2018.
-//
-
 import MarathonCore
 
 import Files
@@ -64,8 +57,7 @@ extension Script {
         try shellOutToSwiftCommand("package generate-xcodeproj --xcconfig-overrides \(configPath)", in: folder)
     }
 
-    func shellOutToSwiftCommand(_ command: String,
-                                in folder: Folder) throws {
+    func shellOutToSwiftCommand(_ command: String, in folder: Folder) throws {
         func resolveSwiftPath() -> String {
             #if os(Linux)
                 return "swift"
