@@ -13,6 +13,9 @@
 
 ## Master
 
+## 0.8.1
+
+- Fix danger report system by [@f-meloni][]
 - More docs by [@orta][]
 - Fixes for people installing via homebrew (thanks [@f-meloni][]) by [@orta][]
 
