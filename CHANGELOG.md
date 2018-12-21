@@ -14,6 +14,7 @@
 ## Master
 
 - More docs by [@orta][]
+- Fixes for people installing via homebrew (thanks [@f-meloni][]) by [@orta][]
 
 ## 0.8.0
 
@@ -35,12 +36,12 @@
   This revises the way in which you can write tests in Danger plugins. Should be much easier now.
 
 - Adds some utils functions for doing one-off commands in the terminal by [@orta][]
-  
+
   `danger.utils.exec` will return the string of the STDOUT outputted by that command, use this for things you're sure
   aren't going to fail.
-  
-  `danger.utils.spawn` is a throwable version of the above which includes all the essential error information if the 
-  command fails. 
+
+  `danger.utils.spawn` is a throwable version of the above which includes all the essential error information if the
+  command fails.
 
 ## 0.7.3
 

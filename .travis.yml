@@ -1,10 +1,9 @@
 cache:
   directories:
-  # General SwiftPM
-  - .build
-  # Danger Swift plugins
-  - ~/.danger-swift
-
+    # General SwiftPM
+    - .build
+    # Danger Swift plugins
+    - ~/.danger-swift
 
 language: generic
 
@@ -24,6 +23,14 @@ matrix:
         # - DEBUG="*" danger-swift ci
         # - DEBUG="*" .build/x86_64-apple-macosx10.10/debug/danger-swift ci
         - .build/x86_64-apple-macosx10.10/debug/danger-swift ci
+
+    - os: osx
+      osx_image: xcode10
+      install:
+        - echo "Installing and testing via homebrew"
+        - brew install danger/tap/danger-swift
+      script:
+        - danger-swift pr https://github.com/danger/swift/pull/153
 
     - os: linux
       language: generic
