@@ -13,13 +13,22 @@ private var testingResults = DangerResults()
 /// in the app all results are stored in a singleton,
 /// controlled by DangerRunner, but in tests they
 /// are accessible from the DangerResults object.
-var globalResults: DangerResults = {
-    if ProcessInfo.processInfo.processName.hasSuffix("xctest") {
-        return testingResults
-    } else {
-        return DangerRunner.shared.results
+var globalResults: DangerResults {
+    get {
+        if ProcessInfo.processInfo.processName.hasSuffix("xctest") {
+            return testingResults
+        } else {
+            return DangerRunner.shared.results
+        }
     }
-}()
+    set {
+        if ProcessInfo.processInfo.processName.hasSuffix("xctest") {
+            testingResults = newValue
+        } else {
+            DangerRunner.shared.results = newValue
+        }
+    }
+}
 
 /// Resets the results array, useful for having in
 /// setup functions for testing
