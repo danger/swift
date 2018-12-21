@@ -43,7 +43,7 @@ public struct DangerUtils {
     public func lines(for string: String, inFile file: File) -> [Int] {
         var result: [Int] = []
         
-        let lines = readFile(file).split(separator: "\n")
+        let lines = readFile(file).components(separatedBy: .newlines)
         
         for i in 0..<lines.count {
             let line = lines[i]
