@@ -34,6 +34,27 @@ public struct DangerUtils {
 
         return stringy
     }
+    
+    /// Returns the line number of the lines that contain a specific string in a file
+    ///
+    /// - Parameter string: The string you want to search
+    /// - Parameter file: The file path of the file where you want to search the string
+    /// - Returns: the line number of the lines where the passed string is contained
+    public func lines(for string: String, inFile file: File) -> [Int] {
+        var result: [Int] = []
+        
+        let lines = readFile(file).split(separator: "\n")
+        
+        for i in 0..<lines.count {
+            let line = lines[i]
+            
+            if line.contains(string) {
+                result.append(i+1)
+            }
+        }
+        
+        return result
+    }
 
     /// Gives you the ability to cheaply run a command and read the
     /// output without having to mess around
