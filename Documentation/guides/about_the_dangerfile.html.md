@@ -39,7 +39,7 @@ export DANGER_BITBUCKETSERVER_HOST='xxxx' DANGER_BITBUCKETSERVER_USERNAME='yyyy'
 
 Then the danger CLI will use authenticated API calls, which don't get hit by API limits.
 
-### Using `danger pr`
+### Using danger pr
 
 The command `danger-swift pr` expects an argument of a PR url, e.g:
 
@@ -107,9 +107,9 @@ Which makes it simple to easily create a few filtered arrays of files upfront de
 
 ## Utils
 
-Because you're working in a scripting-ish environment, `danger.utils` provides a space for functions which are useful
-in the context of making Dangerfiles. Currently these are functions that can let you skip some of the more verbose parts 
-of the Swift language in favour of Danger just crashing and failing the run.
+Because you're working in a scripting-ish environment, `danger.utils` provides a space for functions which are useful in
+the context of making Dangerfiles. Currently these are functions that can let you skip some of the more verbose parts of
+the Swift language in favour of Danger just crashing and failing the run.
 
 ## Finding more info
 

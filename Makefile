@@ -13,6 +13,14 @@ docs:
 	swift run sourcedocs generate --spm-module Danger --output-folder Documentation/reference
 	./Scripts/update_docs.rb
 
+version:
+	Scripts/update_makefile.sh
+	Scripts/update_danger_version.sh
+	Scripts/update_changelog.sh
+
+deploy_tap:
+	Scripts/create_homebrew_tap.sh
+
 install: build
 	mkdir -p $(PREFIX)/bin
 	mkdir -p $(PREFIX)/lib/danger
