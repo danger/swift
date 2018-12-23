@@ -20,10 +20,6 @@ if swiftFilesWithCopyright.count > 0 {
     warn("In Danger JS we don't include copyright headers, found them in: \(files)")
 }
 
-// Test
-let testFile = "Tests/DangerTests/DangerUtilsLineSearchTests.swift"
-danger.utils.lines(for: "match", inFile: testFile).forEach { fail(message: "Match found", file: testFile, line: $0) }
-
 // Support running via `danger local`
 if danger.github != nil {
     // These checks only happen on a PR

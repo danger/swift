@@ -34,7 +34,7 @@ public struct DangerUtils {
 
         return stringy
     }
-    
+
     /// Returns the line number of the lines that contain a specific string in a file
     ///
     /// - Parameter string: The string you want to search
@@ -42,17 +42,17 @@ public struct DangerUtils {
     /// - Returns: the line number of the lines where the passed string is contained
     public func lines(for string: String, inFile file: File) -> [Int] {
         var result: [Int] = []
-        
+
         let lines = readFile(file).components(separatedBy: .newlines)
-        
-        for i in 0..<lines.count {
+
+        for i in 0 ..< lines.count {
             let line = lines[i]
-            
+
             if line.contains(string) {
-                result.append(i+1)
+                result.append(i + 1)
             }
         }
-        
+
         return result
     }
 
