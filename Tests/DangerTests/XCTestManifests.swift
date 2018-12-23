@@ -37,6 +37,13 @@ extension DangerSwiftLintTests {
     ]
 }
 
+extension DangerUtilsLineSearchTests {
+    static let __allTests = [
+        ("testItReturnsAnEmptyArrayIfNoResultsAreFound", testItReturnsAnEmptyArrayIfNoResultsAreFound),
+        ("testItReturnsTheCorrectResultsIfTheSearchedStringIsPresent", testItReturnsTheCorrectResultsIfTheSearchedStringIsPresent),
+    ]
+}
+
 extension DateFormatterExtensionTests {
     static let __allTests = [
         ("test_DateFormatter_dateFromString", test_DateFormatter_dateFromString),
@@ -109,6 +116,7 @@ extension ViolnationTests {
             testCase(BitBucketServerTests.__allTests),
             testCase(DangerDSLTests.__allTests),
             testCase(DangerSwiftLintTests.__allTests),
+            testCase(DangerUtilsLineSearchTests.__allTests),
             testCase(DateFormatterExtensionTests.__allTests),
             testCase(FileTests.__allTests),
             testCase(FileTypeTests.__allTests),
