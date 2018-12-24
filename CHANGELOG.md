@@ -13,6 +13,7 @@
 
 ## Master
 
+- Fail if danger-js version is below the minimum supported version by [@f-meloni][]
 - Add method to get all the lines that contain a word on a file by [@f-meloni][]
 
 ## 0.8.1

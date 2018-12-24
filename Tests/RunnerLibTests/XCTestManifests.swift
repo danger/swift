@@ -23,6 +23,12 @@ extension DangerFileGeneratorTests {
     ]
 }
 
+extension DangerJSVersionFinderTests {
+    static let __allTests = [
+        ("testItSendsTheCorrectCommandAndReturnsTheCorrectResult", testItSendsTheCorrectCommandAndReturnsTheCorrectResult),
+    ]
+}
+
 extension HelpMessagePresenterTests {
     static let __allTests = [
         ("testIsShowsTheCommandListWhenThereIsNoCommand", testIsShowsTheCommandListWhenThereIsNoCommand),
@@ -42,6 +48,7 @@ extension ImportsFinderTests {
             testCase(CliParserTests.__allTests),
             testCase(DangerCommandTests.__allTests),
             testCase(DangerFileGeneratorTests.__allTests),
+            testCase(DangerJSVersionFinderTests.__allTests),
             testCase(HelpMessagePresenterTests.__allTests),
             testCase(ImportsFinderTests.__allTests),
         ]
