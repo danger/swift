@@ -4,6 +4,12 @@ import RunnerLib
 
 func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger) throws -> Int32 {
     let dangerJS = try getDangerCommandPath(logger: logger)
+    let dangerJSVersion = try DangerJSVersionFinder.findDangerJSVersion(dangerJSPath: dangerJS)
+
+    guard dangerJSVersion.compare(MinimumDangerJSVersion, options: .numeric) != .orderedAscending else {
+        logger.logError("The installed danger-js version is below the minimum supported version", "Current version = \(dangerJSVersion)", "Minimum supported version = \(MinimumDangerJSVersion)", separator: "\n")
+        exit(1)
+    }
 
     let proc = Process()
     proc.environment = ProcessInfo.processInfo.environment
