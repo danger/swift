@@ -13,6 +13,7 @@
 
 ## Master
 
+- Improve invalid DSL error message [@f-meloni][]
 - Fail if danger-js version is below the minimum supported version by [@f-meloni][]
 - Add method to get all the lines that contain a word on a file by [@f-meloni][]
 
