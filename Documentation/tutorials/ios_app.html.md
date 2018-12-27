@@ -11,13 +11,14 @@ blurb: How to use Danger on an iOS app
 This tutorial continues after "Getting Started" - it's not required that you have Danger Swift running on your CI
 though, but assumes some familiarity.
 
-# CHANGELOG Entries
+## CHANGELOG Entries
 
-This is basically the "Hello world" of Danger. You want to make a check for whether someone has made a change to your 
+This is basically the "Hello world" of Danger. You want to make a check for whether someone has made a change to your
 app's code but not checked whether a particular file has changed.
 
-First up you're going to want to get a list of changes code which lives inside your app. You can do this by combining 
-both `danger.git.modifiedFiles` and `danger.git.createdFiles`, then filtering those strings for a particular folder structure:
+First up you're going to want to get a list of changes code which lives inside your app. You can do this by combining
+both `danger.git.modifiedFiles` and `danger.git.createdFiles`, then filtering those strings for a particular folder
+structure:
 
 ```swift
 import Danger
@@ -33,12 +34,12 @@ This is good, we can make it better by only including Swift / Objective-C implem
 let editedFiles = danger.git.modifiedFiles + danger.git.createdFiles
 let editedAppFiles = editedFiles.filter {
     ($0.fileType == .swift  || $0.fileType == .m) &&
-    $0.contains("/App") 
+    $0.contains("/App")
 }
 ```
 
 Now if the length of `editedAppFiles` does not equal zero, then we know there needs to be a CHANGELOG entry. This can be
-detected by looking at whether  `danger.git.modifiedFiles` includes the path for your changelog.
+detected by looking at whether `danger.git.modifiedFiles` includes the path for your changelog.
 
 ```swift
 let hasChangelogEntry = danger.git.modifiedFiles.contains("CHANGELOG.md")
@@ -52,12 +53,12 @@ if editedAppFiles.count > 0 && !hasChangelogEntry {
 }
 ```
 
-I like this, it's nice and simple. Unfortunately you're not strictly working with just computers (well, not really, 
-people are alright I guess) and you're going to have PRs where there is an app modification that just doesn't need a 
+I like this, it's nice and simple. Unfortunately you're not strictly working with just computers (well, not really,
+people are alright I guess) and you're going to have PRs where there is an app modification that just doesn't need a
 CHANGELOG entry. Ideally, you don't want to be using Danger to impose an iron will others, so you can offer a get-out
 clause. We do this regularly in production at Artsy.
 
-One of our common tactics is too allow people to write little hashtags in the text body, or using labels on a PR to 
+One of our common tactics is too allow people to write little hashtags in the text body, or using labels on a PR to
 indicate some kind difference in this PR.
 
 ```swift
@@ -73,7 +74,7 @@ or
 let skipChangelogLabel = danger.github.issue.labels.first { $0.name == "Skip Changelog" }
 ```
 
-So, wrapping that all together: 
+So, wrapping that all together:
 
 ```swift
 import Danger
@@ -97,10 +98,10 @@ if editedAppFiles.count > 0 && !skipCheck {
 
 10/10 - cool beans
 
-# SwiftLint for the greater good
+## SwiftLint for the greater good
 
-For Danger Swift, we figured that so many people would want to use [SwiftLint][] that we built that into Danger
-instead of having it as a separate plugin. That makes this section real short.
+For Danger Swift, we figured that so many people would want to use [SwiftLint][] that we built that into Danger instead
+of having it as a separate plugin. That makes this section real short.
 
 ```swift
 import Danger
@@ -132,19 +133,17 @@ SwiftLint.lint(swiftlintPath: "Pods/SwiftLint/swiftlint")
 
 This is mainly the work of [Ash Furrow][ash] and [Łukasz Mróz][sun] over at [danger-swiftlint][].
 
-# Next steps
+## Next steps
 
 - Read the [Culture doc][culture] on how to introduce new rules without annoying teammates
 - Think about code that always has to be changed in pairs in your code base, and try make a rule for that
 - Explore writing a test that checks for a particular string inside a file
 - Read the Dangerfile for [artsy/eigen][eigen] and [moya/harvey][moya]
 
-
-[SwiftLint]: https://github.com/realm/SwiftLint/
+[swiftlint]: https://github.com/realm/SwiftLint/
 [danger-swiftlint]: https://github.com/ashfurrow/danger-swiftlint/
 [ash]: https://ashfurrow.com
 [sun]: https://sunshinejr.com
 [culture]: https://danger.systems/swift/usage/culture.html
 [migen]: https://github.com/artsy/eigen/blob/master/Dangerfile.swift
 [moya]: https://github.com/Moya/Harvey/blob/master/Dangerfile.swift
-
