@@ -2,7 +2,7 @@
 title: Extending Danger extended
 subtitle: Plugin engineering
 layout: guide_sw
-order: 0
+order: 2
 blurb: Get your plugin tested
 ---
 
