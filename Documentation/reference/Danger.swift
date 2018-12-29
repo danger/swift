@@ -371,7 +371,6 @@ extension DangerDSL {
 public struct DangerUtils {
     /// Let's you go from a file path to the contents of the file
     /// with less hassle.
-    ///
     /// It specifically assumes golden path code so Dangerfiles
     /// don't have to include error handlings - an error will
     /// exit evaluation entirely as it should only happen at dev-time.
@@ -379,27 +378,6 @@ public struct DangerUtils {
     /// - Parameter file: the file reference from git.modified/creasted/deleted etc
     /// - Returns: the file contents, or bails
     public func readFile(_ file: File) -> String
-
-    /// Gives you the ability to cheaply run a command and read the
-    /// output without having to mess around
-    ///
-    /// It generally assumes that the command will pass, as you only get
-    /// a string of the STDOUT. If you think your command could/should fail
-    /// then you want to use `spawn` instead.
-    ///
-    /// - Parameter command: The first part of the command
-    /// - Parameter arguments: An optional array of arguements to pass in extra
-    /// - Returns: the stdout from the command
-    public func exec(_ command: String, arguments: [String] = default) -> String
-
-    /// Gives you the ability to cheaply run a command and read the
-    /// output without having to mess around too much, and exposes
-    /// command errors in a pretty elegant way.
-    ///
-    /// - Parameter command: The first part of the command
-    /// - Parameter arguments: An optional array of arguements to pass in extra
-    /// - Returns: the stdout from the command
-    public func spawn(_ command: String, arguments: [String] = default) throws -> String
 }
 
 /// A simple typealias for strings representing files
@@ -823,14 +801,11 @@ public struct GitHubUser: Decodable, Equatable {
 /// Meta information for showing in the text info
 public struct Meta: Codable {}
 
-public enum SpawnError: Error {
-    case commandFailed(exitCode: Int32, stdout: String, stderr: String, task: Process)
-}
-
 /// The SwiftLint plugin has been embedded inside Danger, making
 /// it usable out of the box.
 public struct SwiftLint {
-    /// This is the main entry point for linting Swift in PRs.
+    /// This is the main entry point for linting Swift in PRs using Danger-Swift.
+    /// Call this function anywhere from within your Dangerfile.swift.
     public static func lint(inline: Bool = default, directory: String? = default, configFile: String? = default, lintAllFiles: Bool = default, swiftlintPath: String = default) -> [Danger.SwiftLintViolation]
 }
 
@@ -849,13 +824,13 @@ public struct SwiftLintViolation: Codable {
 /// The result of a warn, message, or fail.
 public struct Violation: Codable {}
 
-/// Adds an inline fail message to the Danger report
-public func fail(message: String, file: String, line: Int)
-
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func fail(_ message: String)
+
+/// Adds an inline fail message to the Danger report
+public func fail(message: String, file: String, line: Int)
 
 /// Fails on the Danger report
 public var fails: [Danger.Violation] { get }
@@ -871,13 +846,13 @@ public func markdown(message: String, file: String, line: Int)
 /// Markdowns on the Danger report
 public var markdowns: [Danger.Violation] { get }
 
-/// Adds an inline message to the Danger report
-public func message(message: String, file: String, line: Int)
-
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func message(_ message: String)
+
+/// Adds an inline message to the Danger report
+public func message(message: String, file: String, line: Int)
 
 /// Messages on the Danger report
 public var messages: [Danger.Violation] { get }
@@ -885,13 +860,13 @@ public var messages: [Danger.Violation] { get }
 /// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
 public func suggestion(code: String, file: String, line: Int)
 
+/// Adds an inline warning message to the Danger report
+public func warn(message: String, file: String, line: Int)
+
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func warn(_ message: String)
-
-/// Adds an inline warning message to the Danger report
-public func warn(message: String, file: String, line: Int)
 
 /// Warnings on the Danger report
 public var warnings: [Danger.Violation] { get }

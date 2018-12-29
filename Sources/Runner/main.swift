@@ -3,7 +3,7 @@ import Logger
 import RunnerLib
 
 /// Version for showing in verbose mode
-let DangerVersion = "0.8.1"
+let DangerVersion = "1.0.0"
 let MinimumDangerJSVersion = "6.1.6"
 
 private func runCommand(_ command: DangerCommand, logger: Logger) throws {
