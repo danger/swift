@@ -13,8 +13,6 @@
 
 ## Master
 
-## 1.0.0
-
 It's time, Danger Swift now has enough to be useful to nearly everyone and is in use in production environments today.
 
 As of 1.0.0, Danger Swift is fully documented at https://danger.systems/swift and sits as a peer with Ruby and
