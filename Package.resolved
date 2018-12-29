@@ -42,8 +42,8 @@
         "repositoryURL": "https://github.com/f-meloni/Logger",
         "state": {
           "branch": null,
-          "revision": "cdb2adb8aadfae75e2a0eb82318b5980b5d5eba5",
-          "version": "0.1.0"
+          "revision": "ca5703dd05cabad21ee6cd77023a7bb7d5c9eeba",
+          "version": "0.2.1"
         }
       },
       {
@@ -150,8 +150,8 @@
         "repositoryURL": "https://github.com/f-meloni/Rocket",
         "state": {
           "branch": null,
-          "revision": "445a2dcae927871ee64b9317325bddbbc86dfa72",
-          "version": "0.3.2"
+          "revision": "dee2900896fc9831f6169752784f82b707a150bf",
+          "version": "0.4.0"
         }
       },
       {
@@ -186,8 +186,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
           "branch": null,
-          "revision": "d2b261b5e1d35c8326e825456a4d0329b7e6ad8f",
-          "version": "0.37.0"
+          "revision": "67219a30460f0459bfbe4b21e8bb55cc70bcbf50",
+          "version": "0.37.1"
         }
       },
       {
@@ -195,8 +195,8 @@
         "repositoryURL": "https://github.com/Realm/SwiftLint",
         "state": {
           "branch": null,
-          "revision": "c3d23ea771dd067519749e870d36c7626e8a0094",
-          "version": "0.29.1"
+          "revision": "a21a8b3344d24a19f396270e5a5f4fda9967f66d",
+          "version": "0.29.2"
         }
       },
       {
