@@ -2,7 +2,7 @@
 title: Extending Danger
 subtitle: Plugin creation
 layout: guide_sw
-order: 0
+order: 1
 blurb: How to take your rules, and make them accessible to more people by writing a Danger plugin.
 ---
 

@@ -13,6 +13,25 @@
 
 ## Master
 
+## 1.0.0
+
+It's time, Danger Swift now has enough to be useful to nearly everyone and is in use in production environments today.
+
+As of 1.0.0, Danger Swift is fully documented at https://danger.systems/swift and sits as a peer with Ruby and
+JavaScript. Most of the documentation lives here in this repo, and the reference is auto-generated.
+
+It's been over a year of work, so I'm (orta) really glad to see this get out and be a first-class citizen for the iOS
+community.
+
+There are still some big upcoming features planned:
+
+- A revised version of the plugin system ([#139][139])
+- A synchronous GitHub API client ([#99][99])
+
+- [@orta][] and [@f-meloni][]
+
+This release also includes:
+
 - Improve invalid DSL error message [@f-meloni][]
 - Fail if danger-js version is below the minimum supported version by [@f-meloni][]
 - Add method to get all the lines that contain a word on a file by [@f-meloni][]
@@ -189,3 +208,5 @@
 [@sunshinejr]: https://github.com/sunshinejr
 [@killectro]: https://github.com/Killectro
 [@thii]: https://github.com/thii
+[139]: https://github.com/danger/swift/issues/139
+[99]: https://github.com/danger/swift/issues/99
