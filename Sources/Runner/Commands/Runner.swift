@@ -28,7 +28,7 @@ func runDanger(logger: Logger) throws {
 
     // Pull our the JSON data so we can extract settings
     guard let dslJSONData = try? Data(contentsOf: URL(fileURLWithPath: dslJSONPath)) else {
-        logger.logError("Invalid DSL JSON data", "if you are running danger-swift by using danger command --process danger-swift please run danger-swift command instead", separator: "\n")
+        logger.logError("Invalid DSL JSON data", "If you are running danger-swift by using danger command --process danger-swift please run danger-swift command instead", separator: "\n")
         exit(1)
     }
 
