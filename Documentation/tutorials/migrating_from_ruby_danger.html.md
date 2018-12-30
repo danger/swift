@@ -1,4 +1,4 @@
-g---
+---
 title: Migrating from Ruby Danger
 subtitle: Moving closer to the metal
 layout: guide_sw
