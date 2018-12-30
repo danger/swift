@@ -8,7 +8,7 @@ blurb: How to migrate an existing Danger installation
 
 ## Before we get started
 
-This tutorial assumes you already have a working setup for Danger Ruby n your CI. We'll effectively be re-creating PR
+This tutorial assumes you already have a working setup for Danger Ruby on your CI. We'll effectively be re-creating PR
 [#2750 to artsy/Eigen](https://github.com/artsy/eigen/pull/2750).
 
 ## Removing the old Danger setup
