@@ -12,22 +12,22 @@ public struct SwiftLint {
     @discardableResult
     public static func lint(inline: Bool = false, directory: String? = nil,
                             configFile: String? = nil, lintAllFiles: Bool = false,
-                            swiftlintPath: String = "swiftlint") -> [SwiftLintViolation] {
-        return lint(danger: danger, shellExecutor: shellExecutor, inline: inline, directory: directory,
-                    configFile: configFile, lintAllFiles: lintAllFiles, swiftlintPath: swiftlintPath)
+                            swiftlintPath: String? = nil) -> [SwiftLintViolation] {
+        return lint(danger: danger, shellExecutor: shellExecutor, swiftlintPath: swiftlintPath ?? SwiftLint.swiftlintDefaultPath(packagePath: "Package.swift"), inline: inline, directory: directory,
+                    configFile: configFile, lintAllFiles: lintAllFiles)
     }
 }
 
 /// This extension is for internal workings of the plugin. It is marked as internal for unit testing.
-internal extension SwiftLint {
+extension SwiftLint {
     static func lint(
         danger: DangerDSL,
         shellExecutor: ShellExecutor,
+        swiftlintPath: String,
         inline: Bool = false,
         directory: String? = nil,
         configFile: String? = nil,
         lintAllFiles: Bool = false,
-        swiftlintPath: String = "swiftlint",
         currentPathProvider: CurrentPathProvider = DefaultCurrentPathProvider(),
         markdownAction: (String) -> Void = markdown,
         failAction: (String) -> Void = fail,
@@ -106,6 +106,16 @@ internal extension SwiftLint {
         } catch {
             failAction("Error deserializing SwiftLint JSON response (\(response)): \(error)")
             return []
+        }
+    }
+
+    static func swiftlintDefaultPath(packagePath: String) -> String {
+        if let packageContent = try? String(contentsOfFile: packagePath),
+            let regex = try? NSRegularExpression(pattern: "\\.package\\(.*SwiftLint.*", options: .allowCommentsAndWhitespace),
+            regex.firstMatchingString(in: packageContent) != nil {
+            return "swift run swiftlint"
+        } else {
+            return "swiftlint"
         }
     }
 }
