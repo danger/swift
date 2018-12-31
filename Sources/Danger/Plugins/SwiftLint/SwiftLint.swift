@@ -13,7 +13,7 @@ public struct SwiftLint {
     public static func lint(inline: Bool = false, directory: String? = nil,
                             configFile: String? = nil, lintAllFiles: Bool = false,
                             swiftlintPath: String? = nil) -> [SwiftLintViolation] {
-        return lint(danger: danger, shellExecutor: shellExecutor, swiftlintPath: swiftlintPath ?? SwiftLint.swiftlintDefaultPath(packagePath: "Package.swift"), inline: inline, directory: directory,
+        return lint(danger: danger, shellExecutor: shellExecutor, swiftlintPath: swiftlintPath ?? SwiftLint.swiftlintDefaultPath(), inline: inline, directory: directory,
                     configFile: configFile, lintAllFiles: lintAllFiles)
     }
 }
@@ -109,7 +109,7 @@ extension SwiftLint {
         }
     }
 
-    static func swiftlintDefaultPath(packagePath: String) -> String {
+    static func swiftlintDefaultPath(packagePath: String = "Package.swift") -> String {
         if let packageContent = try? String(contentsOfFile: packagePath),
             let regex = try? NSRegularExpression(pattern: "\\.package\\(.*SwiftLint.*", options: .allowCommentsAndWhitespace),
             regex.firstMatchingString(in: packageContent) != nil {
