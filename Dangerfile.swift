@@ -20,7 +20,7 @@ if swiftFilesWithCopyright.count > 0 {
     warn("In Danger JS we don't include copyright headers, found them in: \(files)")
 }
 
-SwiftLint.lint()
+SwiftLint.lint(inline: true)
 
 // Support running via `danger local`
 if danger.github != nil {
