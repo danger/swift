@@ -104,6 +104,13 @@ extension NSRegularExpressionExtensionsTests {
     ]
 }
 
+extension SwiftlintDefaultPathTests {
+    static let __allTests = [
+        ("testItReturnsTheSPMCommandIfThePackageContainsTheSwiftlintDependency", testItReturnsTheSPMCommandIfThePackageContainsTheSwiftlintDependency),
+        ("testItReturnsTheSwiftlintCLICommandIfThePackageContainsTheSwiftlintDependency", testItReturnsTheSwiftlintCLICommandIfThePackageContainsTheSwiftlintDependency),
+    ]
+}
+
 extension ViolnationTests {
     static let __allTests = [
         ("testDecoding", testDecoding),
@@ -123,6 +130,7 @@ extension ViolnationTests {
             testCase(GitHubTests.__allTests),
             testCase(GitTests.__allTests),
             testCase(NSRegularExpressionExtensionsTests.__allTests),
+            testCase(SwiftlintDefaultPathTests.__allTests),
             testCase(ViolnationTests.__allTests),
         ]
     }

@@ -5,6 +5,7 @@ import Logger
 import MarathonCore
 import RunnerLib
 
+// swiftlint:disable:next function_body_length
 func runDanger(logger: Logger) throws {
     // Pull in the JSON from Danger JS
 
@@ -28,7 +29,10 @@ func runDanger(logger: Logger) throws {
 
     // Pull our the JSON data so we can extract settings
     guard let dslJSONData = try? Data(contentsOf: URL(fileURLWithPath: dslJSONPath)) else {
-        logger.logError("Invalid DSL JSON data", "If you are running danger-swift by using danger command --process danger-swift please run danger-swift command instead", separator: "\n")
+        logger.logError("Invalid DSL JSON data",
+                        "If you are running danger-swift by using danger command --process danger-swift" +
+                            "please run danger-swift command instead",
+                        separator: "\n")
         exit(1)
     }
 
@@ -58,10 +62,12 @@ func runDanger(logger: Logger) throws {
 
     // Set up plugin infra
     let importsOnly = try File(path: dangerfilePath).readAsString()
-    let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") }
+    let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") } // swiftlint:disable:this line_length
 
     if importExternalDeps.count > 0 {
-        print("Cloning and building inline dependencies: \(importExternalDeps.joined(separator: ", ")), this might take some time.")
+        logger.logInfo("Cloning and building inline dependencies:",
+                       "\(importExternalDeps.joined(separator: ", ")),",
+                       "this might take some time.")
 
         try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
         let tempDangerfile = try File(path: "_dangerfile_imports.swift")
@@ -89,17 +95,20 @@ func runDanger(logger: Logger) throws {
     let generator = DangerFileGenerator()
     try generator.generateDangerFile(fromContent: importsOnly, fileName: tempDangerfilePath, logger: logger)
 
+    // swiftlint:disable line_length
     // Example commands:
     //
     //
     // ## Run the full system:
-    // swift build; env DANGER_GITHUB_API_TOKEN='MY_TOKEN' DANGER_FAKE_CI="YEP" DANGER_TEST_REPO='artsy/eigen' DANGER_TEST_PR='2408' danger process .build/debug/danger-swift --verbose --text-only
+    // swift build;
+    // env DANGER_GITHUB_API_TOKEN='MY_TOKEN' DANGER_FAKE_CI="YEP" DANGER_TEST_REPO='artsy/eigen' DANGER_TEST_PR='2408' danger process .build/debug/danger-swift --verbose --text-only
     //
     // ## Run compilation and eval of the Dangerfile:
     // swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift Fixtures/eidolon_609.json Fixtures/response_data.json
     //
     // ## Run Danger Swift with a fixture'd JSON file
     // swift build; cat Fixtures/eidolon_609.json  | ./.build/debug/danger-swift
+    // swiftlint:enable line_length
 
     var args = [String]()
     args += ["--driver-mode=swift"] // Eval in swift mode, I think?

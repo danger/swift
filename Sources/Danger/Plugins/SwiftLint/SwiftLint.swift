@@ -12,22 +12,28 @@ public struct SwiftLint {
     @discardableResult
     public static func lint(inline: Bool = false, directory: String? = nil,
                             configFile: String? = nil, lintAllFiles: Bool = false,
-                            swiftlintPath: String = "swiftlint") -> [SwiftLintViolation] {
-        return lint(danger: danger, shellExecutor: shellExecutor, inline: inline, directory: directory,
-                    configFile: configFile, lintAllFiles: lintAllFiles, swiftlintPath: swiftlintPath)
+                            swiftlintPath: String? = nil) -> [SwiftLintViolation] {
+        return lint(danger: danger,
+                    shellExecutor: shellExecutor,
+                    swiftlintPath: swiftlintPath ?? SwiftLint.swiftlintDefaultPath(),
+                    inline: inline,
+                    directory: directory,
+                    configFile: configFile,
+                    lintAllFiles: lintAllFiles)
     }
 }
 
 /// This extension is for internal workings of the plugin. It is marked as internal for unit testing.
-internal extension SwiftLint {
+extension SwiftLint {
+    // swiftlint:disable:next function_body_length
     static func lint(
         danger: DangerDSL,
         shellExecutor: ShellExecutor,
+        swiftlintPath: String,
         inline: Bool = false,
         directory: String? = nil,
         configFile: String? = nil,
         lintAllFiles: Bool = false,
-        swiftlintPath: String = "swiftlint",
         currentPathProvider: CurrentPathProvider = DefaultCurrentPathProvider(),
         markdownAction: (String) -> Void = markdown,
         failAction: (String) -> Void = fail,
@@ -47,7 +53,6 @@ internal extension SwiftLint {
             }
             let outputJSON = shellExecutor.execute(swiftlintPath, arguments: arguments)
             violations = makeViolations(from: outputJSON, failAction: failAction)
-
         } else {
             // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
             var files = danger.git.createdFiles + danger.git.modifiedFiles
@@ -106,6 +111,17 @@ internal extension SwiftLint {
         } catch {
             failAction("Error deserializing SwiftLint JSON response (\(response)): \(error)")
             return []
+        }
+    }
+
+    static func swiftlintDefaultPath(packagePath: String = "Package.swift") -> String {
+        let swiftPackageDepPattern = "\\.package\\(.*SwiftLint.*"
+        if let packageContent = try? String(contentsOfFile: packagePath),
+            let regex = try? NSRegularExpression(pattern: swiftPackageDepPattern, options: .allowCommentsAndWhitespace),
+            regex.firstMatchingString(in: packageContent) != nil {
+            return "swift run swiftlint"
+        } else {
+            return "swiftlint"
         }
     }
 }
