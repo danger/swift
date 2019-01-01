@@ -175,8 +175,8 @@ class DangerSwiftLintTests: XCTestCase {
         """
     }
 
-    func writeMarkdown(_ m: String) {
-        markdownMessage = m
+    func writeMarkdown(_ message: String) {
+        markdownMessage = message
     }
 
     static var allTests = [
