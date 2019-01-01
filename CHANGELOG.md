@@ -13,6 +13,8 @@
 
 ## Master
 
+- Run Swiftlint from SPM by default when available [@f-meloni][]
+
 ## 1.0.0
 
 It's time, Danger Swift now has enough to be useful to nearly everyone and is in use in production environments today.
