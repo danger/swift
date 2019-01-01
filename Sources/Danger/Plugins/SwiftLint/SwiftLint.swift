@@ -13,13 +13,19 @@ public struct SwiftLint {
     public static func lint(inline: Bool = false, directory: String? = nil,
                             configFile: String? = nil, lintAllFiles: Bool = false,
                             swiftlintPath: String? = nil) -> [SwiftLintViolation] {
-        return lint(danger: danger, shellExecutor: shellExecutor, swiftlintPath: swiftlintPath ?? SwiftLint.swiftlintDefaultPath(), inline: inline, directory: directory,
-                    configFile: configFile, lintAllFiles: lintAllFiles)
+        return lint(danger: danger,
+                    shellExecutor: shellExecutor,
+                    swiftlintPath: swiftlintPath ?? SwiftLint.swiftlintDefaultPath(),
+                    inline: inline,
+                    directory: directory,
+                    configFile: configFile,
+                    lintAllFiles: lintAllFiles)
     }
 }
 
 /// This extension is for internal workings of the plugin. It is marked as internal for unit testing.
 extension SwiftLint {
+    // swiftlint:disable:next function_body_length
     static func lint(
         danger: DangerDSL,
         shellExecutor: ShellExecutor,
@@ -47,7 +53,6 @@ extension SwiftLint {
             }
             let outputJSON = shellExecutor.execute(swiftlintPath, arguments: arguments)
             violations = makeViolations(from: outputJSON, failAction: failAction)
-
         } else {
             // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
             var files = danger.git.createdFiles + danger.git.modifiedFiles
@@ -110,8 +115,9 @@ extension SwiftLint {
     }
 
     static func swiftlintDefaultPath(packagePath: String = "Package.swift") -> String {
+        let swiftPackageDepPattern = "\\.package\\(.*SwiftLint.*"
         if let packageContent = try? String(contentsOfFile: packagePath),
-            let regex = try? NSRegularExpression(pattern: "\\.package\\(.*SwiftLint.*", options: .allowCommentsAndWhitespace),
+            let regex = try? NSRegularExpression(pattern: swiftPackageDepPattern, options: .allowCommentsAndWhitespace),
             regex.firstMatchingString(in: packageContent) != nil {
             return "swift run swiftlint"
         } else {
