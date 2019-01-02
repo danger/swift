@@ -11,6 +11,10 @@ public struct SwiftLintViolation: Codable {
     let severity: Severity
     let type: String
 
+    var messageText: String {
+        return reason + " (\(ruleID))"
+    }
+
     private(set) var file: String
 
     enum CodingKeys: String, CodingKey {
@@ -31,7 +35,7 @@ public struct SwiftLintViolation: Codable {
 
     public func toMarkdown() -> String {
         let formattedFile = file.split(separator: "/").last! + ":\(line)"
-        return "\(severity.rawValue) | \(formattedFile) | \(reason) |"
+        return "\(severity.rawValue) | \(formattedFile) | \(messageText) |"
     }
 
     mutating func update(file: String) {
