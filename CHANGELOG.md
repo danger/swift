@@ -13,6 +13,7 @@
 
 ## Master
 
+- Append Swiftlint rule id to the Swiftlint danger messages [@f-meloni][]
 - Run Swiftlint from SPM by default when available [@f-meloni][]
 
 ## 1.0.0

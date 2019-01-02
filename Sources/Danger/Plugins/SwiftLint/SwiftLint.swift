@@ -83,9 +83,9 @@ extension SwiftLint {
                 violations.forEach { violation in
                     switch violation.severity {
                     case .error:
-                        failInlineAction(violation.reason, violation.file, violation.line)
+                        failInlineAction(violation.messageText, violation.file, violation.line)
                     case .warning:
-                        warnInlineAction(violation.reason, violation.file, violation.line)
+                        warnInlineAction(violation.messageText, violation.file, violation.line)
                     }
                 }
             } else {
