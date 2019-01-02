@@ -38,11 +38,11 @@ class DangerSwiftLintTests: XCTestCase {
 
         _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", inline: true, currentPathProvider: fakePathProvider, failInlineAction: failAction, warnInlineAction: warnAction)
 
-        XCTAssertEqual(warns.first?.0, "Opening braces should be preceded by a single space and on the same line as the declaration. (opening_brace)")
+        XCTAssertEqual(warns.first?.0, "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")
         XCTAssertEqual(warns.first?.1, "SomeFile.swift")
         XCTAssertEqual(warns.first?.2, 8)
 
-        XCTAssertEqual(fails.first?.0, "Line should be 120 characters or less: currently 211 characters (line_length)")
+        XCTAssertEqual(fails.first?.0, "Line should be 120 characters or less: currently 211 characters (`line_length`)")
         XCTAssertEqual(fails.first?.1, "AnotherFile.swift")
         XCTAssertEqual(fails.first?.2, 10)
     }
@@ -141,7 +141,7 @@ class DangerSwiftLintTests: XCTestCase {
         _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", currentPathProvider: fakePathProvider, markdownAction: writeMarkdown)
         XCTAssertNotNil(markdownMessage)
         XCTAssertTrue(markdownMessage!.contains("SwiftLint found issues"))
-        XCTAssertTrue(markdownMessage!.contains("Opening braces should be preceded by a single space and on the same line as the declaration. (opening_brace)")) // swiftlint:disable:this line_length
+        XCTAssertTrue(markdownMessage!.contains("Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")) // swiftlint:disable:this line_length
     }
 
     func testQuotesPathArguments() {

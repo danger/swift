@@ -12,7 +12,7 @@ public struct SwiftLintViolation: Codable {
     let type: String
 
     var messageText: String {
-        return reason + " (\(ruleID))"
+        return reason + " (`\(ruleID)`)"
     }
 
     private(set) var file: String
