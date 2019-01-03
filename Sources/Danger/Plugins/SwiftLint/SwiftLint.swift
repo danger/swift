@@ -8,6 +8,10 @@ public struct SwiftLint {
     internal static let shellExecutor = ShellExecutor()
 
     /// This is the main entry point for linting Swift in PRs.
+    ///
+    /// When the swiftlintPath is not specified,
+    /// it uses by default swift run swiftlint if the Package.swift contains swiftlint as dependency,
+    /// otherwise calls directly the swiftlint command
 
     @discardableResult
     public static func lint(inline: Bool = false, directory: String? = nil,
