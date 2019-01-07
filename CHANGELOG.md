@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.1.0
+
 - Make globalResults private by [@f-meloni][]
 - Make swiftlint rule id code on the message by [@f-meloni][]
 - Append Swiftlint rule id to the Swiftlint danger messages by [@f-meloni][]

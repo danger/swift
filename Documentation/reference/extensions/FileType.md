@@ -4,3 +4,7 @@
 
 ## Properties
 ### `extension`
+
+```swift
+public var `extension`: String
+```
