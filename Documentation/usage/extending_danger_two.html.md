@@ -73,13 +73,13 @@ final class DangerNoCopyrightsTests: XCTestCase {
         // Act against running our check
         checkForCopyrightHeaders(danger: danger)
         // Assert the number of warnings has increased
-        XCTAssertEqual(globalResults.warnings.count, 1)
+        XCTAssertEqual(danger.warnings.count, 1)
     }
 
     func testDoesNotWarnWhenNoCreatedAt() {
         let danger = githubWithFilesDSL(created: ["file.swift"], fileMap: ["file.swift": "{}"])
         checkForCopyrightHeaders(danger: danger)
-        XCTAssertEqual(globalResults.warnings.count, 0)
+        XCTAssertEqual(danger.warnings.count, 0)
     }
 
     static var allTests = [
