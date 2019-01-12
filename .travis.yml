@@ -54,7 +54,7 @@ matrix:
         - node -v
         - npm install -g danger
       script:
-        - swift run danger-swift
+        - swift run danger-swift ci
 
     - os: linux
       name: Danger with SPM
@@ -67,4 +67,4 @@ matrix:
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
         - swiftenv global 4.2
       script:
-        - swift run danger-swift
+        - swift run danger-swift ci
