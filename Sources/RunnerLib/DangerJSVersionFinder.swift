@@ -14,10 +14,13 @@ public final class DangerJSVersionFinder {
 }
 
 public protocol ShellOutExecuting {
+    @discardableResult
     func shellOut(command: String) throws -> String
 }
 
 public struct ShellOutExecutor: ShellOutExecuting {
+    public init() {}
+
     public func shellOut(command: String) throws -> String {
         return try ShellOut.shellOut(to: command)
     }
