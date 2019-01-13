@@ -49,19 +49,14 @@ func editDanger(logger: Logger) throws {
     let importedFiles = importsFinder.findImports(inString: dangerfileContent)
 
     let arguments = CommandLine.arguments
-    logger.logInfo("Script manager")
     let scriptManager = try getScriptManager(logger)
-    logger.logInfo("Create script")
     let script = try scriptManager.script(atPath: dangerfilePath, allowRemote: true)
 
-    let path = NSTemporaryDirectory()
-    let configPath = path + "config.xcconfig"
+    let configPath = NSTemporaryDirectory() + "config.xcconfig"
 
     try createConfig(atPath: configPath, libPath: absoluteLibPath, libName: libName)
-    logger.logInfo("Config created at \(configPath)")
 
     try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
-    logger.logInfo("Edit")
 
     try script.watch(arguments: arguments, importedFiles: importedFiles)
 }
