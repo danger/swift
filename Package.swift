@@ -27,7 +27,7 @@ let package = Package(
         .package(url: "https://github.com/jpsim/Yams.git", from: "1.0.0"), // dev
     ],
     targets: [
-        .target(name: "Danger-Swift", dependencies: ["Danger", "Yams"], path: "Sources/Danger-Swift", sources: ["Fake.swift"]), // dev
+        .target(name: "Danger-Swift", dependencies: ["Danger", "Yams"]), // dev
         .target(name: "Danger", dependencies: ["ShellOut", "OctoKit", "Logger"]),
         .target(name: "RunnerLib", dependencies: ["Logger", "ShellOut"]),
         .target(name: "Runner", dependencies: ["RunnerLib", "MarathonCore", "Logger"]),
