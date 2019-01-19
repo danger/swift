@@ -13,6 +13,8 @@
 
 ## Master
 
+- Support a full Danger SPM usage [#174](https://github.com/danger/danger-swift/pull/174) by [@f-meloni][]
+
 ## 1.1.0
 
 - Make globalResults private by [@f-meloni][]
