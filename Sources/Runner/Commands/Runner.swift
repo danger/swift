@@ -55,8 +55,8 @@ func runDanger(logger: Logger) throws {
 
     if SPMDanger.isSPMDanger() {
         SPMDanger.buildDepsIfNeeded()
-        libArgs += ["-L", ".build/debug"] // Link to libDanger inside this folder
-        libArgs += ["-I", ".build/debug"] // Find libDanger inside this folder
+        libArgs += ["-L", SPMDanger.buildFolder] // Link to libDanger inside this folder
+        libArgs += ["-I", SPMDanger.buildFolder] // Find libDanger inside this folder
         libArgs += [SPMDanger.libImport]
     } else {
         guard let libDangerPath = Runtime.getLibDangerPath() else {
