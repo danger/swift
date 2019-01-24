@@ -9,7 +9,7 @@ public enum SPMDanger {
             return false
         }
 
-        return packageContent.contains(".library(name: \"\(depsLibName)\"")
+        return packageContent.contains(".library(name: \"\(depsLibName)")
     }
 
     public static func buildDepsIfNeeded(executor: ShellOutExecuting = ShellOutExecutor(),

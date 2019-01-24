@@ -20,6 +20,14 @@ final class SPMDangerTests: XCTestCase {
         try? FileManager.default.removeItem(atPath: testPackage)
     }
 
+    func testItAcceptsAnythingStartsWithDangerDeps() {
+        try! ".library(name: \"DangerDepsEigen\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
+
+        XCTAssertTrue(SPMDanger.isSPMDanger(packagePath: testPackage))
+
+        try? FileManager.default.removeItem(atPath: testPackage)
+    }
+
     func testItReturnsFalseWhenThePackageHasNotTheDangerLib() {
         try! "".write(toFile: testPackage, atomically: false, encoding: .utf8)
 
