@@ -1,5 +1,5 @@
-public struct SwiftLintViolation: Codable {
-    enum Severity: String, Codable {
+public struct SwiftLintViolation: Decodable {
+    enum Severity: String, Decodable {
         case warning = "Warning"
         case error = "Error"
     }
