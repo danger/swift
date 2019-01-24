@@ -13,6 +13,8 @@
 
 ## Master
 
+- Replace codable where was not needed by [@f-meloni][] - [#177](https://github.com/danger/swift/pull/177)
+
 ## 1.1.0
 
 - Make globalResults private by [@f-meloni][]
