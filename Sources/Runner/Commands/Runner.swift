@@ -48,45 +48,56 @@ func runDanger(logger: Logger) throws {
     }
     logger.debug("Running Dangerfile at: \(dangerfilePath)")
 
-    guard let libDangerPath = Runtime.getLibDangerPath() else {
-        let potentialFolders = Runtime.potentialLibraryFolders
-        logger.logError("Could not find a libDanger to link against at any of: \(potentialFolders)",
-                        "Or via Homebrew, or Marathon",
-                        separator: "\n")
-        exit(1)
-    }
-
     var libArgs: [String] = []
-    libArgs += ["-L", libDangerPath] // Link to libDanger inside this folder
-    libArgs += ["-I", libDangerPath] // Find libDanger inside this folder
 
     // Set up plugin infra
     let importsOnly = try File(path: dangerfilePath).readAsString()
-    let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") } // swiftlint:disable:this line_length
 
-    if importExternalDeps.count > 0 {
-        logger.logInfo("Cloning and building inline dependencies:",
-                       "\(importExternalDeps.joined(separator: ", ")),",
-                       "this might take some time.")
-
-        try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
-        let tempDangerfile = try File(path: "_dangerfile_imports.swift")
-        try tempDangerfile.write(string: importExternalDeps.joined(separator: "\n"))
-        defer { try? tempDangerfile.delete() }
-
-        let scriptManager = try getScriptManager(logger)
-        let script = try scriptManager.script(atPath: tempDangerfile.path, allowRemote: true)
-
-        try script.build()
-        let marathonPath = script.folder.path
-        let artifactPaths = [".build/debug", ".build/release"]
-
-        let marathonLibPath = artifactPaths.first(where: { fileManager.fileExists(atPath: marathonPath + $0) })
-        if marathonLibPath != nil {
-            libArgs += ["-L", marathonPath + marathonLibPath!]
-            libArgs += ["-I", marathonPath + marathonLibPath!]
-            libArgs += ["-lMarathonDependencies"]
+    if let spmDanger = SPMDanger() {
+        spmDanger.buildDepsIfNeeded()
+        libArgs += ["-L", SPMDanger.buildFolder]
+        libArgs += ["-I", SPMDanger.buildFolder]
+        libArgs += [spmDanger.libImport]
+    } else {
+        guard let libDangerPath = Runtime.getLibDangerPath() else {
+            let potentialFolders = Runtime.potentialLibraryFolders
+            logger.logError("Could not find a libDanger to link against at any of: \(potentialFolders)",
+                            "Or via Homebrew, or Marathon",
+                            separator: "\n")
+            exit(1)
         }
+
+        libArgs += ["-L", libDangerPath] // Link to libDanger inside this folder
+        libArgs += ["-I", libDangerPath] // Find libDanger inside this folder
+
+        let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") } // swiftlint:disable:this line_length
+
+        if importExternalDeps.count > 0 {
+            logger.logInfo("Cloning and building inline dependencies:",
+                           "\(importExternalDeps.joined(separator: ", ")),",
+                           "this might take some time.")
+
+            try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
+            let tempDangerfile = try File(path: "_dangerfile_imports.swift")
+            try tempDangerfile.write(string: importExternalDeps.joined(separator: "\n"))
+            defer { try? tempDangerfile.delete() }
+
+            let scriptManager = try getScriptManager(logger)
+            let script = try scriptManager.script(atPath: tempDangerfile.path, allowRemote: true)
+
+            try script.build()
+            let marathonPath = script.folder.path
+            let artifactPaths = [".build/debug", ".build/release"]
+
+            let marathonLibPath = artifactPaths.first(where: { fileManager.fileExists(atPath: marathonPath + $0) })
+            if marathonLibPath != nil {
+                libArgs += ["-L", marathonPath + marathonLibPath!]
+                libArgs += ["-I", marathonPath + marathonLibPath!]
+                libArgs += ["-lMarathonDependencies"]
+            }
+        }
+
+        libArgs += ["-lDanger"] // Eval the code with the Target Danger added
     }
 
     logger.debug("Preparing to compile")
@@ -112,9 +123,6 @@ func runDanger(logger: Logger) throws {
 
     var args = [String]()
     args += ["--driver-mode=swift"] // Eval in swift mode, I think?
-    args += ["-L", libDangerPath] // Find libs inside this folder
-    args += ["-I", libDangerPath] // Find libs inside this folder
-    args += ["-lDanger"] // Eval the code with the Target Danger added
     args += libArgs
     args += [tempDangerfilePath] // The Dangerfile
     args += Array(CommandLine.arguments.dropFirst()) // Arguments sent to Danger

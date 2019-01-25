@@ -42,6 +42,18 @@ extension ImportsFinderTests {
     ]
 }
 
+extension SPMDangerTests {
+    static let __allTests = [
+        ("testItAcceptsAnythingStartsWithDangerDeps", testItAcceptsAnythingStartsWithDangerDeps),
+        ("testItBuildsTheDependenciesIfTheDepsLibIsNotPresent", testItBuildsTheDependenciesIfTheDepsLibIsNotPresent),
+        ("testItDoesntBuildTheDependenciesIfTheDepsLibIsPresent", testItDoesntBuildTheDependenciesIfTheDepsLibIsPresent),
+        ("testItReturnsFalseWhenThePackageHasNotTheDangerLib", testItReturnsFalseWhenThePackageHasNotTheDangerLib),
+        ("testItReturnsFalseWhenThereIsNoPackage", testItReturnsFalseWhenThereIsNoPackage),
+        ("testItReturnsTheCorrectDepsImport", testItReturnsTheCorrectDepsImport),
+        ("testItReturnsTrueWhenThePackageHasTheDangerLib", testItReturnsTrueWhenThePackageHasTheDangerLib),
+    ]
+}
+
 #if !os(macOS)
     public func __allTests() -> [XCTestCaseEntry] {
         return [
@@ -51,6 +63,7 @@ extension ImportsFinderTests {
             testCase(DangerJSVersionFinderTests.__allTests),
             testCase(HelpMessagePresenterTests.__allTests),
             testCase(ImportsFinderTests.__allTests),
+            testCase(SPMDangerTests.__allTests),
         ]
     }
 #endif
