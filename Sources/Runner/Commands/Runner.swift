@@ -53,11 +53,11 @@ func runDanger(logger: Logger) throws {
     // Set up plugin infra
     let importsOnly = try File(path: dangerfilePath).readAsString()
 
-    if SPMDanger.isSPMDanger() {
-        SPMDanger.buildDepsIfNeeded()
+    if let spmDanger = SPMDanger() {
+        spmDanger.buildDepsIfNeeded()
         libArgs += ["-L", SPMDanger.buildFolder]
         libArgs += ["-I", SPMDanger.buildFolder]
-        libArgs += [SPMDanger.libImport]
+        libArgs += [spmDanger.libImport]
     } else {
         guard let libDangerPath = Runtime.getLibDangerPath() else {
             let potentialFolders = Runtime.potentialLibraryFolders
