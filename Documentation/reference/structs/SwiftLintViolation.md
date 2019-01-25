@@ -3,7 +3,7 @@
 # `SwiftLintViolation`
 
 ```swift
-public struct SwiftLintViolation: Codable
+public struct SwiftLintViolation: Decodable
 ```
 
 ## Methods
