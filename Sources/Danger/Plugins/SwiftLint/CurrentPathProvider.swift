@@ -6,6 +6,6 @@ internal protocol CurrentPathProvider {
 
 internal final class DefaultCurrentPathProvider: CurrentPathProvider {
     var currentPath: String {
-        return ShellExecutor().execute("pwd")
+        return ShellExecutor().execute("pwd").trimmingCharacters(in: .newlines)
     }
 }
