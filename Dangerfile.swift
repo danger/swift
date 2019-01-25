@@ -1,12 +1,7 @@
 import Danger
 import Foundation
-import Yams // package: https://github.com/jpsim/Yams.git
 
 let danger = Danger()
-
-let travisYaml = try! String(contentsOfFile: ".travis.yml")
-let travis = try! Yams.load(yaml: travisYaml) as! [String: Any]
-message(travis.description)
 
 // fileImport: DangerfileExtensions/ChangelogCheck.swift
 checkChangelog()
