@@ -59,7 +59,7 @@ extension SwiftLint {
             violations = makeViolations(from: outputJSON, failAction: failAction)
         } else {
             // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
-            var files = (danger.git.createdFiles + danger.git.modifiedFiles).filter { $0.hasSuffix(".swift") }
+            var files = (danger.git.createdFiles + danger.git.modifiedFiles).filter { $0.fileType == .swift }
             if let directory = directory {
                 files = files.filter { $0.hasPrefix(directory) }
             }
