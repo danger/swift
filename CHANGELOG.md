@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix excluded Swiftlint paths [@absolute-heike][] - [#180](https://github.com/danger/swift/pull/180)
+
 ## 1.2.0
 
 - Support a full Danger SPM usage [#174](https://github.com/danger/danger-swift/pull/174) by [@f-meloni][]
