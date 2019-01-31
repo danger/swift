@@ -58,21 +58,9 @@ public struct BitBucketServerActivity: Decodable, Equatable {
 
 public struct BitBucketServerMetadata: Decodable, Equatable {
     /// The PR's ID
-    public var pullRequestID: String {
-        return env.pr
-    }
-
+    public var pullRequestID: String
     /// The complete repo slug including project slug.
-    public var repoSlug: String {
-        return env.repo
-    }
-
-    let env: Env
-
-    struct Env: Decodable, Equatable {
-        let repo: String
-        let pr: String
-    }
+    public var repoSlug: String
 }
 
 // MARK: - BitBucketServerComment
@@ -298,23 +286,42 @@ public struct BitBucketServerPR: Decodable, Equatable {
     public let isLocked: Bool
 
     /// The creator of the PR
-    public let author: BitBucketServerAuthor
+    public let author: Participant
 
     /// People requested as reviewers
-    public let reviewers: [BitBucketServerUser]
+    public let reviewers: [Reviewer]
 
     /// People who have participated in the PR
-    public let participants: [BitBucketServerAuthor]
+    public let participants: [Participant]
 
     // MARK: - BitBucketServerAuthor
 
-    public struct BitBucketServerAuthor: Decodable, Equatable {
+    /// A user that is parecipating in the PR
+    public struct Participant: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case user
         }
 
         /// The BitBucket Server User
         public let user: BitBucketServerUser
+    }
+
+    /// A user that reviewed the PR
+    public struct Reviewer: Decodable, Equatable {
+        enum CodingKeys: String, CodingKey {
+            case user
+            case lastReviewedCommit
+            case approved
+        }
+
+        /// The BitBucket Server User
+        public let user: BitBucketServerUser
+
+        /// The approval status
+        public let approved: Bool
+
+        /// The commit SHA for the latest commit that was reviewed
+        public let lastReviewedCommit: String?
     }
 }
 
