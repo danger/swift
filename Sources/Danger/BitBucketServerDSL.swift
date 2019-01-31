@@ -1,5 +1,9 @@
 import Foundation
 
+// swiftlint:disable file_length
+// swiftlint:disable nesting
+// swiftlint:disable identifier_name
+
 // MARK: - BitBucketServer
 
 public struct BitBucketServer: Decodable, Equatable {
@@ -298,7 +302,6 @@ public struct BitBucketServerPR: Decodable, Equatable {
 
     /// A user that is parecipating in the PR
     public struct Participant: Decodable, Equatable {
-        // swiftlint:disable:next nesting
         enum CodingKeys: String, CodingKey {
             case user
         }
@@ -309,7 +312,6 @@ public struct BitBucketServerPR: Decodable, Equatable {
 
     /// A user that reviewed the PR
     public struct Reviewer: Decodable, Equatable {
-        // swiftlint:disable:next nesting
         enum CodingKeys: String, CodingKey {
             case user
             case lastReviewedCommit
