@@ -302,22 +302,12 @@ public struct BitBucketServerPR: Decodable, Equatable {
 
     /// A user that is parecipating in the PR
     public struct Participant: Decodable, Equatable {
-        enum CodingKeys: String, CodingKey {
-            case user
-        }
-
         /// The BitBucket Server User
         public let user: BitBucketServerUser
     }
 
     /// A user that reviewed the PR
     public struct Reviewer: Decodable, Equatable {
-        enum CodingKeys: String, CodingKey {
-            case user
-            case lastReviewedCommit
-            case approved
-        }
-
         /// The BitBucket Server User
         public let user: BitBucketServerUser
 
