@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.2.1
+
 ## 1.2.0
 
 - Fix BitBucketServer DSL parsing by [@f-meloni][] - [#181](https://github.com/danger/swift/pull/181)
