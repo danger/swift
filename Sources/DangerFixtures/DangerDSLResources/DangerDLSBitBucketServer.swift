@@ -1,3 +1,5 @@
+// swiftlint:disable file_length
+
 public let DSLBitBucketServerJSON = """
 {
   "danger": {
@@ -44,10 +46,8 @@ public let DSLBitBucketServerJSON = """
     },
     "bitbucket_server": {
       "metadata": {
-        "env": {
-          "repo": "artsy/emission",
-          "pr": "327"
-        }
+        "repoSlug": "artsy/emission",
+        "pullRequestID": "327"
       },
       "pr": {
         "author": {
@@ -152,7 +152,28 @@ public let DSLBitBucketServerJSON = """
             }
           }
         ],
-        "reviewers": [],
+        "reviewers": [
+          {
+            "user": {
+              "active": true,
+              "displayName": "DangerCI",
+              "emailAddress": "foo@bar.com",
+              "id": 2,
+              "links": {
+                "self": [
+                  {
+                    "href": "http://localhost:7990/users/danger"
+                  }
+                ]
+              },
+              "name": "danger",
+              "slug": "danger",
+              "type": "NORMAL"
+            },
+            "lastReviewedCommit": "8942a1f75e4c95df836f19ef681d20a87da2ee20",
+            "approved": true
+          }
+        ],
         "state": "OPEN",
         "title": "Pull request title",
         "fromRef": {
