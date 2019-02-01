@@ -1,3 +1,5 @@
+// swiftlint:disable file_length
+
 public let DSLBitBucketServerJSON = """
 {
   "danger": {
