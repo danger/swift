@@ -13,8 +13,78 @@
 
 ## Master
 
+## 1.2.1
+
+- Fix BitBucketServer DSL parsing by [@f-meloni][] - [#181](https://github.com/danger/swift/pull/181)
+
+## 1.2.0
+
+- Support a full Danger SPM usage [#174](https://github.com/danger/danger-swift/pull/174) by [@f-meloni][]
+- Replace codable where was not needed by [@f-meloni][] - [#177](https://github.com/danger/swift/pull/177)
+- Fix malformed Swiftlint inline paths by [@absolute-heike][] - [#176](https://github.com/danger/swift/pull/176)
+
+## 1.1.0
+
+- Make globalResults private by [@f-meloni][]
+- Make swiftlint rule id code on the message by [@f-meloni][]
+- Append Swiftlint rule id to the Swiftlint danger messages by [@f-meloni][]
+- Run Swiftlint from SPM by default when available by [@f-meloni][]
+
+## 1.0.0
+
+It's time, Danger Swift now has enough to be useful to nearly everyone and is in use in production environments today.
+
+As of 1.0.0, Danger Swift is fully documented at https://danger.systems/swift and sits as a peer with Ruby and
+JavaScript. Most of the documentation lives here in this repo, and the reference is auto-generated.
+
+It's been over a year of work, so I'm (orta) really glad to see this get out and be a first-class citizen for the iOS
+community.
+
+There are still some big upcoming features planned:
+
+- A revised version of the plugin system ([#139][139])
+- A synchronous GitHub API client ([#99][99])
+
+- [@orta][] and [@f-meloni][]
+
+This release also includes:
+
+- Improve invalid DSL error message [@f-meloni][]
+- Fail if danger-js version is below the minimum supported version by [@f-meloni][]
+- Add method to get all the lines that contain a word on a file by [@f-meloni][]
+
+## 0.8.1
+
+- Fix danger report system by [@f-meloni][]
+- More docs by [@orta][]
+- Fixes for people installing via homebrew (thanks [@f-meloni][]) by [@orta][]
+
+## 0.8.0
+
+- Whoah! The SwiftLint plugin has been merged into Danger by [@orta][]
+
+  This is not my work, really, it's the work of the contributors to the Danger SwiftLint plugin (which, yes, I am a
+  contributor, so...) - but it's mainly the work of [@ashfurrow][] [@sunshinejr][] [@Killectro][] and [@thii][].
+
+  This is discussed in https://github.com/ashfurrow/danger-swiftlint/issues/17 where I pitched that maybe we should just
+  inline this dependency because so many people are going to use this. The Swift community is likely the only community
+  using Danger Swift, so why not make this version have a bit more focus on what people are doing with it?
+
 - Docs, lots of lots of docs by [@orta][]
+
+  This is a blocker on 1.0ing Danger Swift. So, we're getting there now.
+
 - Internal faffing, and splitting of some test-related code so that Plugins can have an elegant test API by [@orta][]
+
+  This revises the way in which you can write tests in Danger plugins. Should be much easier now.
+
+- Adds some utils functions for doing one-off commands in the terminal by [@orta][]
+
+  `danger.utils.exec` will return the string of the STDOUT outputted by that command, use this for things you're sure
+  aren't going to fail.
+
+  `danger.utils.spawn` is a throwable version of the above which includes all the essential error information if the
+  command fails.
 
 ## 0.7.3
 
@@ -151,3 +221,9 @@
 
 [@f-meloni]: https://github.com/f-meloni
 [@orta]: https://github.com/orta
+[@ashfurrow]: https://github.com/ashfurrow
+[@sunshinejr]: https://github.com/sunshinejr
+[@killectro]: https://github.com/Killectro
+[@thii]: https://github.com/thii
+[139]: https://github.com/danger/swift/issues/139
+[99]: https://github.com/danger/swift/issues/99

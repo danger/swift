@@ -3,7 +3,8 @@ import Logger
 import RunnerLib
 
 /// Version for showing in verbose mode
-let DangerVersion = "0.7.3"
+let DangerVersion = "1.2.1" // swiftlint:disable:this identifier_name
+let MinimumDangerJSVersion = "6.1.6" // swiftlint:disable:this identifier_name
 
 private func runCommand(_ command: DangerCommand, logger: Logger) throws {
     switch command {
@@ -18,11 +19,11 @@ private func runCommand(_ command: DangerCommand, logger: Logger) throws {
 }
 
 let cliLength = ProcessInfo.processInfo.arguments.count
-do {
-    let isVerbose = CommandLine.arguments.contains("--verbose") || (ProcessInfo.processInfo.environment["DEBUG"] != nil)
-    let isSilent = CommandLine.arguments.contains("--silent")
-    let logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
+let isVerbose = CommandLine.arguments.contains("--verbose") || (ProcessInfo.processInfo.environment["DEBUG"] != nil)
+let isSilent = CommandLine.arguments.contains("--silent")
+let logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
 
+do {
     if cliLength > 1 {
         logger.debug("Launching Danger Swift \(CommandLine.arguments[1]) (v\(DangerVersion))")
 
@@ -42,5 +43,6 @@ do {
         try runDanger(logger: logger)
     }
 } catch {
+    logger.logError(error)
     exit(1)
 }

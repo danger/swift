@@ -106,7 +106,7 @@ public let isLocked: Bool
 ### `author`
 
 ```swift
-public let author: BitBucketServerAuthor
+public let author: Participant
 ```
 
 > The creator of the PR
@@ -114,7 +114,7 @@ public let author: BitBucketServerAuthor
 ### `reviewers`
 
 ```swift
-public let reviewers: [BitBucketServerUser]
+public let reviewers: [Reviewer]
 ```
 
 > People requested as reviewers
@@ -122,7 +122,7 @@ public let reviewers: [BitBucketServerUser]
 ### `participants`
 
 ```swift
-public let participants: [BitBucketServerAuthor]
+public let participants: [Participant]
 ```
 
 > People who have participated in the PR

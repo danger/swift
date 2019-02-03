@@ -2,7 +2,7 @@
 title: Cultural Changes
 subtitle: Cultural Changes
 layout: guide_sw
-order: 2
+order: 0
 blurb:
   Discussing introducing Danger into a team, how you can use it to provide positive feedback and encourage adoption of
   new rules.
@@ -39,7 +39,7 @@ You should use Danger to provide impartial feedback. Consider how these messages
 The first feels like a statement that someone has intentionally done something wrong, and Danger has caught them in the
 act.
 
-The second aims to feel a like like a testing framework telling you "Test Suites: 104 passed, 2 failures".
+The second aims to feel a lot like a testing framework telling you "Test Suites: 104 passed, 2 failures".
 
 The third if done consistently can work out well. Terse entries can work well when you have a large series of rules, as
 it feels like a check list to do.

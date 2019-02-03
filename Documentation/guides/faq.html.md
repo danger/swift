@@ -6,11 +6,43 @@ order: 3
 blurb: Common questions that come up in our GitHub issues.
 ---
 
+## Danger Swift takes a real long time to run
+
+First off, make sure you have build caching turned on for:
+
+- `./build` - for Swift PM, and compilation
+- `~/.danger-swift` - for Danger Swift's Dangerfile and dependency compilation
+
+Danger Swift has to compile code etc, which you want to be doing incrementally.
+
+Second, getting and using plugins does more work than you'd think. There is one key reason:
+
+- As of Swift 4.2, including any dependency will clone every related dependency. Think of it as "I include Danger in my
+  dependency tree, and suddenly I have to clone ~12 repos (~6 unrelated to danger) on every build."
+
+  This is currently the Swift PM dependency resolver being naive, and should get fixed in the future, build caching will
+  work around it. We've got some code in Danger to try speed that up though.
+
+## What's with the weird Swift PM stuff?
+
+Well, if SPM is the future of native build tools - we should be using it. It's just that Danger's use-case isn't quite
+supported yet. Here's some reasoning:
+
+- `swift run` relies on `swift build` which has to have a build target. If you want to just use external tools via SPM,
+  then you'll need to have a fake target.
+
+- `danger-swift` relies on `libDanger` existing in your build folders (or somewhere known for homebrew etc). This means
+  that you will have to compile your build target before running `swift run danger-swift`.
+
+- You can't have a build target that has no source files, so you'll need to reference a single file.
+
+These do add up to being a bit of a weird experience, but I've spec'd out what a Danger Swift v2 could look like to work
+around some of these oddities in [danger/swift#139](https://github.com/danger/swift/issues/139).
+
 ## Can I use the same Dangerfile across many repos?
 
-Ish, it's currently quite complex to set up, but work is on-going on [Danger/Peril][peril]. This is a hosted version of
-Danger which does not need to run on CI. Using Peril you can use Dangerfiles to reply to basically any GitHub webhook
-type.
+Nope, but if this is something you care about [Danger/Peril][peril] could support Swift Dangerfiles. I'm unlikely to
+write this support myself, but someone else could add it.
 
 ## I only want to run Danger for internal contributors
 

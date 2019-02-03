@@ -11,7 +11,7 @@ final class HelpMessagePresenterTests: XCTestCase {
     }
 }
 
-private final class SpyPrinter: Printing {
+final class SpyPrinter: Printing {
     private(set) var printedMessages: [String] = []
 
     func print(_ message: String, terminator _: String) {

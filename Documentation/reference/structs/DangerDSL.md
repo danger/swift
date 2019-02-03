@@ -28,7 +28,7 @@ public let bitbucketServer: BitBucketServer!
 ### `utils`
 
 ```swift
-public let utils = DangerUtils()
+public let utils: DangerUtils
 ```
 
 ## Methods

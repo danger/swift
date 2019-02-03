@@ -3,7 +3,7 @@
 # `Meta`
 
 ```swift
-public struct Meta: Codable
+public struct Meta: Encodable
 ```
 
 > Meta information for showing in the text info

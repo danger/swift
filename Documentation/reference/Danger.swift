@@ -3,6 +3,7 @@ import Darwin.C
 import Foundation
 import Logger
 import OctoKit
+import ShellOut
 import SwiftOnoneSupport
 
 public struct BitBucketServer: Decodable, Equatable {
@@ -27,7 +28,7 @@ public struct BitBucketServerActivity: Decodable, Equatable {
     public let id: Int
 
     /// Date activity created as number of mili seconds since the unix epoch
-    public let createdDate: Int
+    public let createdAt: Int
 
     /// The user that triggered the activity.
     public let user: Danger.BitBucketServerUser
@@ -44,7 +45,7 @@ public struct BitBucketServerComment: Decodable, Equatable {
     public let id: Int
 
     /// Date comment created as number of mili seconds since the unix epoch
-    public let createdDate: Int
+    public let createdAt: Int
 
     /// The comment's author
     public let user: Danger.BitBucketServerUser
@@ -68,9 +69,9 @@ public struct BitBucketServerComment: Decodable, Equatable {
     public let commentAction: String?
 
     /// Detailed data of the comment
-    public let comment: Danger.BitBucketServerComment.BitBucketServerCommentInner?
+    public let comment: Danger.BitBucketServerComment.CommentDetail?
 
-    public struct BitBucketServerCommentInner: Decodable, Equatable {
+    public struct CommentDetail: Decodable, Equatable {
         /// The comment's id
         public let id: Int
 
@@ -90,20 +91,20 @@ public struct BitBucketServerComment: Decodable, Equatable {
         public let updatedAt: Int
 
         /// Replys to the comment
-        public let comments: [Danger.BitBucketServerComment.BitBucketServerCommentInner]
+        public let comments: [Danger.BitBucketServerComment.CommentDetail]
 
         /// Properties associated with the comment
-        public let properties: Danger.BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentInnerProperties
+        public let properties: Danger.BitBucketServerComment.CommentDetail.InnerProperties
 
         /// Tasks associated with the comment
-        public let tasks: [Danger.BitBucketServerComment.BitBucketServerCommentInner.BitBucketServerCommentTask]
+        public let tasks: [Danger.BitBucketServerComment.CommentDetail.BitBucketServerCommentTask]
 
         public struct BitBucketServerCommentTask: Decodable, Equatable {
             /// The tasks ID
             public let id: Int
 
             /// Date activity created as number of mili seconds since the unix epoch
-            public let createdDate: Int
+            public let createdAt: Int
 
             /// The text of the task
             public let text: String
@@ -115,7 +116,7 @@ public struct BitBucketServerComment: Decodable, Equatable {
             public let author: Danger.BitBucketServerUser
         }
 
-        public struct BitBucketServerCommentInnerProperties: Decodable, Equatable {
+        public struct InnerProperties: Decodable, Equatable {
             /// The ID of the repo
             public let repositoryId: Int
 
@@ -175,10 +176,10 @@ public struct BitBucketServerMergeRef: Decodable, Equatable {
 
 public struct BitBucketServerMetadata: Decodable, Equatable {
     /// The PR's ID
-    public let pullRequestID: String
+    public var pullRequestID: String
 
     /// The complete repo slug including project slug.
-    public let repoSlug: String
+    public var repoSlug: String
 }
 
 public struct BitBucketServerPR: Decodable, Equatable {
@@ -212,24 +213,37 @@ public struct BitBucketServerPR: Decodable, Equatable {
     /// The PR submittor's reference
     public let fromRef: Danger.BitBucketServerMergeRef
 
-    /// The repo Danger is sunning on
+    /// The repo Danger is running on
     public let toRef: Danger.BitBucketServerMergeRef
 
     /// Is the PR locked?
     public let isLocked: Bool
 
     /// The creator of the PR
-    public let author: Danger.BitBucketServerPR.BitBucketServerAuthor
+    public let author: Danger.BitBucketServerPR.Participant
 
     /// People requested as reviewers
-    public let reviewers: [Danger.BitBucketServerUser]
+    public let reviewers: [Danger.BitBucketServerPR.Reviewer]
 
     /// People who have participated in the PR
-    public let participants: [Danger.BitBucketServerUser]
+    public let participants: [Danger.BitBucketServerPR.Participant]
 
-    public struct BitBucketServerAuthor: Decodable, Equatable {
+    /// A user that is parecipating in the PR
+    public struct Participant: Decodable, Equatable {
         /// The BitBucket Server User
         public let user: Danger.BitBucketServerUser
+    }
+
+    /// A user that reviewed the PR
+    public struct Reviewer: Decodable, Equatable {
+        /// The BitBucket Server User
+        public let user: Danger.BitBucketServerUser
+
+        /// The approval status
+        public let approved: Bool
+
+        /// The commit SHA for the latest commit that was reviewed
+        public let lastReviewedCommit: String?
     }
 }
 
@@ -304,7 +318,7 @@ public struct DangerDSL: Decodable {
 
     public let github: Danger.GitHub!
 
-    public let bitbucket_server: Danger.BitBucketServer!
+    public let bitbucketServer: Danger.BitBucketServer!
 
     public let utils: Danger.DangerUtils
 
@@ -370,13 +384,42 @@ extension DangerDSL {
 public struct DangerUtils {
     /// Let's you go from a file path to the contents of the file
     /// with less hassle.
-    /// Tt specifically assumes golden path code so Dangerfiles
+    ///
+    /// It specifically assumes golden path code so Dangerfiles
     /// don't have to include error handlings - an error will
     /// exit evaluation entirely as it should only happen at dev-time.
     ///
     /// - Parameter file: the file reference from git.modified/creasted/deleted etc
     /// - Returns: the file contents, or bails
     public func readFile(_ file: File) -> String
+
+    /// Returns the line number of the lines that contain a specific string in a file
+    ///
+    /// - Parameter string: The string you want to search
+    /// - Parameter file: The file path of the file where you want to search the string
+    /// - Returns: the line number of the lines where the passed string is contained
+    public func lines(for string: String, inFile file: File) -> [Int]
+
+    /// Gives you the ability to cheaply run a command and read the
+    /// output without having to mess around
+    ///
+    /// It generally assumes that the command will pass, as you only get
+    /// a string of the STDOUT. If you think your command could/should fail
+    /// then you want to use `spawn` instead.
+    ///
+    /// - Parameter command: The first part of the command
+    /// - Parameter arguments: An optional array of arguements to pass in extra
+    /// - Returns: the stdout from the command
+    public func exec(_ command: String, arguments: [String] = default) -> String
+
+    /// Gives you the ability to cheaply run a command and read the
+    /// output without having to mess around too much, and exposes
+    /// command errors in a pretty elegant way.
+    ///
+    /// - Parameter command: The first part of the command
+    /// - Parameter arguments: An optional array of arguements to pass in extra
+    /// - Returns: the stdout from the command
+    public func spawn(_ command: String, arguments: [String] = default) throws -> String
 }
 
 /// A simple typealias for strings representing files
@@ -407,6 +450,8 @@ public enum FileType: String, Equatable {
 
     case yml
 }
+
+extension FileType: CaseIterable {}
 
 extension FileType {
     public var `extension`: String { get }
@@ -699,6 +744,9 @@ public struct GitHubPR: Decodable, Equatable {
 
     /// The milestone of the pull request
     public let milestone: Danger.GitHubMilestone?
+
+    /// The link back to this PR as user-facing
+    public let htmlUrl: String
 }
 
 public struct GitHubRepo: Decodable, Equatable {
@@ -792,16 +840,46 @@ public struct GitHubUser: Decodable, Equatable {
     public let userType: Danger.GitHubUser.UserType
 }
 
+/// Meta information for showing in the text info
+public struct Meta: Encodable {}
+
+public enum SpawnError: Error {
+    case commandFailed(exitCode: Int32, stdout: String, stderr: String, task: Process)
+}
+
+/// The SwiftLint plugin has been embedded inside Danger, making
+/// it usable out of the box.
+public struct SwiftLint {
+    /// This is the main entry point for linting Swift in PRs.
+    ///
+    /// When the swiftlintPath is not specified,
+    /// it uses by default swift run swiftlint if the Package.swift contains swiftlint as dependency,
+    /// otherwise calls directly the swiftlint command
+    public static func lint(inline: Bool = default, directory: String? = default, configFile: String? = default, lintAllFiles: Bool = default, swiftlintPath: String? = default) -> [Danger.SwiftLintViolation]
+}
+
+public struct SwiftLintViolation: Decodable {
+    /// Creates a new instance by decoding from the given decoder.
+    ///
+    /// This initializer throws an error if reading from the decoder fails, or
+    /// if the data read is corrupted or otherwise invalid.
+    ///
+    /// - Parameter decoder: The decoder to read data from.
+    public init(from decoder: Decoder) throws
+
+    public func toMarkdown() -> String
+}
+
 /// The result of a warn, message, or fail.
-public struct Violation: Codable {}
+public struct Violation: Encodable {}
+
+/// Adds an inline fail message to the Danger report
+public func fail(message: String, file: String, line: Int)
 
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func fail(_ message: String)
-
-/// Adds an inline fail message to the Danger report
-public func fail(message: String, file: String, line: Int)
 
 /// Fails on the Danger report
 public var fails: [Danger.Violation] { get }
@@ -817,13 +895,13 @@ public func markdown(message: String, file: String, line: Int)
 /// Markdowns on the Danger report
 public var markdowns: [Danger.Violation] { get }
 
+/// Adds an inline message to the Danger report
+public func message(message: String, file: String, line: Int)
+
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func message(_ message: String)
-
-/// Adds an inline message to the Danger report
-public func message(message: String, file: String, line: Int)
 
 /// Messages on the Danger report
 public var messages: [Danger.Violation] { get }
@@ -831,13 +909,13 @@ public var messages: [Danger.Violation] { get }
 /// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
 public func suggestion(code: String, file: String, line: Int)
 
-/// Adds an inline warning message to the Danger report
-public func warn(message: String, file: String, line: Int)
-
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func warn(_ message: String)
+
+/// Adds an inline warning message to the Danger report
+public func warn(message: String, file: String, line: Int)
 
 /// Warnings on the Danger report
 public var warnings: [Danger.Violation] { get }

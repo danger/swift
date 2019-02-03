@@ -28,3 +28,6 @@ interface = JSON.parse(response)
 
 # Write just the interface all to a file, in theory we can make a HTML version of this in the future
 File.write("Documentation/Reference/Danger.swift", interface["key.sourcetext"])
+
+# Format the updated file
+`swift run swiftformat Documentation/Reference/Danger.swift`

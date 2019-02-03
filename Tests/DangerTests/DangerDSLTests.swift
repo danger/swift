@@ -18,8 +18,8 @@ final class DangerDSLTests: XCTestCase {
         let danger = githubFixtureDSL
         danger.warn("Warning")
         danger.fail("Fail")
-        XCTAssert(globalResults.warnings.count == 1)
-        XCTAssert(globalResults.fails.count == 1)
+        XCTAssert(danger.warnings.count == 1)
+        XCTAssert(danger.fails.count == 1)
     }
 
     func testGithubFixtureDSL() throws {

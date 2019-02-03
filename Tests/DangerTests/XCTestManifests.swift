@@ -20,6 +20,30 @@ extension DangerDSLTests {
     ]
 }
 
+extension DangerSwiftLintTests {
+    static let __allTests = [
+        ("testExecutesSwiftLintWhenLintingAllFiles", testExecutesSwiftLintWhenLintingAllFiles),
+        ("testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed", testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed),
+        ("testExecutesSwiftLintWithConfigWhenPassed", testExecutesSwiftLintWithConfigWhenPassed),
+        ("testExecutesSwiftLintWithDirectoryPassed", testExecutesSwiftLintWithDirectoryPassed),
+        ("testExecutesTheShell", testExecutesTheShell),
+        ("testExecutesTheShellWithCustomSwiftLintPath", testExecutesTheShellWithCustomSwiftLintPath),
+        ("testExecuteSwiftLintInInlineMode", testExecuteSwiftLintInInlineMode),
+        ("testFiltersOnSwiftFiles", testFiltersOnSwiftFiles),
+        ("testMarkdownReporting", testMarkdownReporting),
+        ("testPrintsNoMarkdownIfNoViolations", testPrintsNoMarkdownIfNoViolations),
+        ("testQuotesPathArguments", testQuotesPathArguments),
+        ("testViolations", testViolations),
+    ]
+}
+
+extension DangerUtilsLineSearchTests {
+    static let __allTests = [
+        ("testItReturnsAnEmptyArrayIfNoResultsAreFound", testItReturnsAnEmptyArrayIfNoResultsAreFound),
+        ("testItReturnsTheCorrectResultsIfTheSearchedStringIsPresent", testItReturnsTheCorrectResultsIfTheSearchedStringIsPresent),
+    ]
+}
+
 extension DateFormatterExtensionTests {
     static let __allTests = [
         ("test_DateFormatter_dateFromString", test_DateFormatter_dateFromString),
@@ -80,17 +104,34 @@ extension NSRegularExpressionExtensionsTests {
     ]
 }
 
+extension SwiftlintDefaultPathTests {
+    static let __allTests = [
+        ("testItReturnsTheSPMCommandIfThePackageContainsTheSwiftlintDependency", testItReturnsTheSPMCommandIfThePackageContainsTheSwiftlintDependency),
+        ("testItReturnsTheSwiftlintCLICommandIfThePackageContainsTheSwiftlintDependency", testItReturnsTheSwiftlintCLICommandIfThePackageContainsTheSwiftlintDependency),
+    ]
+}
+
+extension ViolnationTests {
+    static let __allTests = [
+        ("testDecoding", testDecoding),
+    ]
+}
+
 #if !os(macOS)
     public func __allTests() -> [XCTestCaseEntry] {
         return [
             testCase(BitBucketServerTests.__allTests),
             testCase(DangerDSLTests.__allTests),
+            testCase(DangerSwiftLintTests.__allTests),
+            testCase(DangerUtilsLineSearchTests.__allTests),
             testCase(DateFormatterExtensionTests.__allTests),
             testCase(FileTests.__allTests),
             testCase(FileTypeTests.__allTests),
             testCase(GitHubTests.__allTests),
             testCase(GitTests.__allTests),
             testCase(NSRegularExpressionExtensionsTests.__allTests),
+            testCase(SwiftlintDefaultPathTests.__allTests),
+            testCase(ViolnationTests.__allTests),
         ]
     }
 #endif

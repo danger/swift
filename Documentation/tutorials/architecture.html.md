@@ -20,15 +20,15 @@ Danger JS first gets all the CI and Platform metadata, then passes that to Dange
 your Swift rules back to Danger JS.
 
 ```
-+-----------------------------------+          +----------------------+          +--------------------+
-|                                   |          |                      |          |                    |
-| ## Danger JS                      |          | ## Danger Swift      |          | ## Danger JS       |
-|                                   |          |                      |          |                    |
-|  Get GitHub/BitBucket/etc Details |  +---->  |  Setup plugins       |  +---->  |  Update GitHub/etc |
-|                                   |          |                      |          |                    |
-|  Transform into JSON              |          |  Evaluate Dangerfile |          |                    |
-|                                   |          |                      |          |                    |
-+-----------------------------------+          +----------------------+          +--------------------+
++--------------------------------+          +----------------------+          +--------------------+
+|                                |          |                      |          |                    |
+| ## Danger JS                   |          | ## Danger Swift      |          | ## Danger JS       |
+|                                |          |                      |          |                    |
+|  Get GitHub/BitBucket/etc info |  +---->  |  Setup plugins       |  +---->  |  Update PR info    |
+|                                |          |                      |          |                    |
+|  Transform into JSON           |          |  Evaluate Dangerfile |          |  Pass / fail build |
+|                                |          |                      |          |                    |
++--------------------------------+          +----------------------+          +--------------------+
 ```
 
 **Step 1: CI**. Danger JS needs to figure out what CI we're running on. You can see them all [in
@@ -42,7 +42,7 @@ GitHub and BitBucket Server, but maybe GitLab is around the corner.
 Danger Swift.
 
 **Step 4: Swift Plugin Setup**. Danger has to prepare your code to be compiled, so any plugins need to be set up before
-evaluation.
+compilation and runtime evaluation.
 
 **Step 5: Evaluation**. Most of the Danger Swift setup occurs when you run, `let danger = Danger()` in your
 `Dangerfile.swift` - it's nearly all smart JSON parsing into real Swift-y objects. The dangerfile uses `markdown`,
@@ -51,7 +51,7 @@ evaluation.
 **Step 6: Passing Results**. The results from the evaluation are turned into JSON, and then passed back to Danger JS.
 
 **Step 6: Feedback**. Danger JS reads the results, then chooses whether to create/delete/edit any messages in the code
-review site.
+review site. From the results of the run, Danger JS will then pass or fail the build.
 
 [provs]: https://github.com/danger/danger-js/tree/master/source/ci_source/providers
 [dangerdsl]: https://github.com/danger/danger-js/blob/master/sourformace/dsl/DangerDSL.ts

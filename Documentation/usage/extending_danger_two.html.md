@@ -2,7 +2,7 @@
 title: Extending Danger extended
 subtitle: Plugin engineering
 layout: guide_sw
-order: 0
+order: 2
 blurb: Get your plugin tested
 ---
 
@@ -32,11 +32,9 @@ Edit your `Package.swift` to add a reference to the two Danger libraries:
 You want to be able to inject in a different DSL to your function somehow, let's avoid exposing our testing functions to
 your consumers, edit your `DangerNoCopyrights.swift`:
 
-```swift
+```diff
 import Danger
 import Foundation
-
-public func checkForCopyrightHeaders() -> Void {
 
 /// Public facing
 public func checkForCopyrightHeaders() -> Void {
@@ -44,7 +42,7 @@ public func checkForCopyrightHeaders() -> Void {
 +     checkForCopyrightHeaders(danger: danger)
 + }
 +
-+ /// Private function for facing
++ /// Private function for testing
 + func checkForCopyrightHeaders(danger: DangerDSL) -> Void {
     let swiftFilesWithCopyright = danger.git.createdFiles.filter {
         $0.fileType == .swift
@@ -75,13 +73,13 @@ final class DangerNoCopyrightsTests: XCTestCase {
         // Act against running our check
         checkForCopyrightHeaders(danger: danger)
         // Assert the number of warnings has increased
-        XCTAssertEqual(globalResults.warnings.count, 1)
+        XCTAssertEqual(danger.warnings.count, 1)
     }
 
     func testDoesNotWarnWhenNoCreatedAt() {
         let danger = githubWithFilesDSL(created: ["file.swift"], fileMap: ["file.swift": "{}"])
         checkForCopyrightHeaders(danger: danger)
-        XCTAssertEqual(globalResults.warnings.count, 0)
+        XCTAssertEqual(danger.warnings.count, 0)
     }
 
     static var allTests = [

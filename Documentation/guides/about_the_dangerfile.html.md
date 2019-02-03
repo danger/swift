@@ -15,7 +15,7 @@ exploration can be done inside Xcode. This document aims to give you some high l
 ## Editing your Dangerfile
 
 Because there's a bit of runtime trickery when evaluating your Dangerfile, and because Xcode works on projects, not
-files: there is a command for editing your Dangerfile.
+files: there is a command for editing your Dangerfile in a sandbox'd environment (including all plugins too).
 
 ```sh
 [swift run] danger-swift edit
@@ -39,7 +39,7 @@ export DANGER_BITBUCKETSERVER_HOST='xxxx' DANGER_BITBUCKETSERVER_USERNAME='yyyy'
 
 Then the danger CLI will use authenticated API calls, which don't get hit by API limits.
 
-### Using `danger pr`
+### Using danger pr
 
 The command `danger-swift pr` expects an argument of a PR url, e.g:
 
@@ -97,19 +97,19 @@ if swiftFilesWithCopyright.count > 0 {
 }
 ```
 
-You can use `$0.` filetype with any of the following types:
+You can use `$0.filetype` with any of the following enum types:
 
 ```sh
 .h, .json, .m, .markdown, .mm, .pbxproj, .plist, .storyboard, .swift, .xcscheme, .yaml, .yml
 ```
 
-Which makes it simple to do
+Which makes it simple to easily create a few filtered arrays of files upfront depending on your needs.
 
 ## Utils
 
-Because you're working in a scripting0-ish environment, `danger.utils` provides a space for functions which are useful
-in the context or making Dangerfiles. Right now, this is just an easy way to read a file and skip all error handling,
-but maybe you can add some more functions to it!
+Because you're working in a scripting-ish environment, `danger.utils` provides a space for functions which are useful in
+the context of making Dangerfiles. Currently these are functions that can let you skip some of the more verbose parts of
+the Swift language in favour of Danger just crashing and failing the run.
 
 ## Finding more info
 

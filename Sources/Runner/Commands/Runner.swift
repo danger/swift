@@ -5,6 +5,7 @@ import Logger
 import MarathonCore
 import RunnerLib
 
+// swiftlint:disable:next function_body_length
 func runDanger(logger: Logger) throws {
     // Pull in the JSON from Danger JS
 
@@ -28,7 +29,10 @@ func runDanger(logger: Logger) throws {
 
     // Pull our the JSON data so we can extract settings
     guard let dslJSONData = try? Data(contentsOf: URL(fileURLWithPath: dslJSONPath)) else {
-        logger.logError("Invalid DSL JSON data")
+        logger.logError("Invalid DSL JSON data",
+                        "If you are running danger-swift by using danger command --process danger-swift" +
+                            "please run danger-swift command instead",
+                        separator: "\n")
         exit(1)
     }
 
@@ -44,43 +48,56 @@ func runDanger(logger: Logger) throws {
     }
     logger.debug("Running Dangerfile at: \(dangerfilePath)")
 
-    guard let libDangerPath = Runtime.getLibDangerPath() else {
-        let potentialFolders = Runtime.potentialLibraryFolders
-        logger.logError("Could not find a libDanger to link against at any of: \(potentialFolders)",
-                        "Or via Homebrew, or Marathon",
-                        separator: "\n")
-        exit(1)
-    }
-
     var libArgs: [String] = []
-    libArgs += ["-L", libDangerPath] // Link to libDanger inside this folder
-    libArgs += ["-I", libDangerPath] // Find libDanger inside this folder
 
     // Set up plugin infra
     let importsOnly = try File(path: dangerfilePath).readAsString()
-    let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") }
 
-    if importExternalDeps.count > 0 {
-        logger.debug("Getting inline dependencies: \(importExternalDeps.joined(separator: ", "))")
-
-        try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
-        let tempDangerfile = try File(path: "_dangerfile_imports.swift")
-        try tempDangerfile.write(string: importExternalDeps.joined(separator: "\n"))
-        defer { try? tempDangerfile.delete() }
-
-        let scriptManager = try getScriptManager(logger)
-        let script = try scriptManager.script(atPath: tempDangerfile.path, allowRemote: true)
-
-        try script.build()
-        let marathonPath = script.folder.path
-        let artifactPaths = [".build/debug", ".build/release"]
-
-        let marathonLibPath = artifactPaths.first(where: { fileManager.fileExists(atPath: marathonPath + $0) })
-        if marathonLibPath != nil {
-            libArgs += ["-L", marathonPath + marathonLibPath!]
-            libArgs += ["-I", marathonPath + marathonLibPath!]
-            libArgs += ["-lMarathonDependencies"]
+    if let spmDanger = SPMDanger() {
+        spmDanger.buildDepsIfNeeded()
+        libArgs += ["-L", SPMDanger.buildFolder]
+        libArgs += ["-I", SPMDanger.buildFolder]
+        libArgs += [spmDanger.libImport]
+    } else {
+        guard let libDangerPath = Runtime.getLibDangerPath() else {
+            let potentialFolders = Runtime.potentialLibraryFolders
+            logger.logError("Could not find a libDanger to link against at any of: \(potentialFolders)",
+                            "Or via Homebrew, or Marathon",
+                            separator: "\n")
+            exit(1)
         }
+
+        libArgs += ["-L", libDangerPath] // Link to libDanger inside this folder
+        libArgs += ["-I", libDangerPath] // Find libDanger inside this folder
+
+        let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") } // swiftlint:disable:this line_length
+
+        if importExternalDeps.count > 0 {
+            logger.logInfo("Cloning and building inline dependencies:",
+                           "\(importExternalDeps.joined(separator: ", ")),",
+                           "this might take some time.")
+
+            try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
+            let tempDangerfile = try File(path: "_dangerfile_imports.swift")
+            try tempDangerfile.write(string: importExternalDeps.joined(separator: "\n"))
+            defer { try? tempDangerfile.delete() }
+
+            let scriptManager = try getScriptManager(logger)
+            let script = try scriptManager.script(atPath: tempDangerfile.path, allowRemote: true)
+
+            try script.build()
+            let marathonPath = script.folder.path
+            let artifactPaths = [".build/debug", ".build/release"]
+
+            let marathonLibPath = artifactPaths.first(where: { fileManager.fileExists(atPath: marathonPath + $0) })
+            if marathonLibPath != nil {
+                libArgs += ["-L", marathonPath + marathonLibPath!]
+                libArgs += ["-I", marathonPath + marathonLibPath!]
+                libArgs += ["-lMarathonDependencies"]
+            }
+        }
+
+        libArgs += ["-lDanger"] // Eval the code with the Target Danger added
     }
 
     logger.debug("Preparing to compile")
@@ -89,23 +106,23 @@ func runDanger(logger: Logger) throws {
     let generator = DangerFileGenerator()
     try generator.generateDangerFile(fromContent: importsOnly, fileName: tempDangerfilePath, logger: logger)
 
+    // swiftlint:disable line_length
     // Example commands:
     //
     //
     // ## Run the full system:
-    // swift build; env DANGER_GITHUB_API_TOKEN='MY_TOKEN' DANGER_FAKE_CI="YEP" DANGER_TEST_REPO='artsy/eigen' DANGER_TEST_PR='2408' danger process .build/debug/danger-swift --verbose --text-only
+    // swift build;
+    // env DANGER_GITHUB_API_TOKEN='MY_TOKEN' DANGER_FAKE_CI="YEP" DANGER_TEST_REPO='artsy/eigen' DANGER_TEST_PR='2408' danger process .build/debug/danger-swift --verbose --text-only
     //
     // ## Run compilation and eval of the Dangerfile:
     // swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift Fixtures/eidolon_609.json Fixtures/response_data.json
     //
     // ## Run Danger Swift with a fixture'd JSON file
     // swift build; cat Fixtures/eidolon_609.json  | ./.build/debug/danger-swift
+    // swiftlint:enable line_length
 
     var args = [String]()
     args += ["--driver-mode=swift"] // Eval in swift mode, I think?
-    args += ["-L", libDangerPath] // Find libs inside this folder
-    args += ["-I", libDangerPath] // Find libs inside this folder
-    args += ["-lDanger"] // Eval the code with the Target Danger added
     args += libArgs
     args += [tempDangerfilePath] // The Dangerfile
     args += Array(CommandLine.arguments.dropFirst()) // Arguments sent to Danger

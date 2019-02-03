@@ -6,7 +6,6 @@ This Reference Documentation has been generated with
 
 -   [BitBucketServer](structs/BitBucketServer.md)
 -   [BitBucketServerActivity](structs/BitBucketServerActivity.md)
--   [BitBucketServerAuthor](structs/BitBucketServerAuthor.md)
 -   [BitBucketServerComment](structs/BitBucketServerComment.md)
 -   [BitBucketServerCommentTask](structs/BitBucketServerCommentTask.md)
 -   [BitBucketServerCommit](structs/BitBucketServerCommit.md)
@@ -38,6 +37,10 @@ This Reference Documentation has been generated with
 -   [GitHubUser](structs/GitHubUser.md)
 -   [InnerProperties](structs/InnerProperties.md)
 -   [Meta](structs/Meta.md)
+-   [Participant](structs/Participant.md)
+-   [Reviewer](structs/Reviewer.md)
+-   [SwiftLint](structs/SwiftLint.md)
+-   [SwiftLintViolation](structs/SwiftLintViolation.md)
 -   [Violation](structs/Violation.md)
 
 ## Enums
@@ -47,6 +50,7 @@ This Reference Documentation has been generated with
 -   [MilestoneState](enums/MilestoneState.md)
 -   [PullRequestState](enums/PullRequestState.md)
 -   [ReviewState](enums/ReviewState.md)
+-   [SpawnError](enums/SpawnError.md)
 -   [UserType](enums/UserType.md)
 
 ## Extensions

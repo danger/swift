@@ -23,6 +23,12 @@ extension DangerFileGeneratorTests {
     ]
 }
 
+extension DangerJSVersionFinderTests {
+    static let __allTests = [
+        ("testItSendsTheCorrectCommandAndReturnsTheCorrectResult", testItSendsTheCorrectCommandAndReturnsTheCorrectResult),
+    ]
+}
+
 extension HelpMessagePresenterTests {
     static let __allTests = [
         ("testIsShowsTheCommandListWhenThereIsNoCommand", testIsShowsTheCommandListWhenThereIsNoCommand),
@@ -36,14 +42,28 @@ extension ImportsFinderTests {
     ]
 }
 
+extension SPMDangerTests {
+    static let __allTests = [
+        ("testItAcceptsAnythingStartsWithDangerDeps", testItAcceptsAnythingStartsWithDangerDeps),
+        ("testItBuildsTheDependenciesIfTheDepsLibIsNotPresent", testItBuildsTheDependenciesIfTheDepsLibIsNotPresent),
+        ("testItDoesntBuildTheDependenciesIfTheDepsLibIsPresent", testItDoesntBuildTheDependenciesIfTheDepsLibIsPresent),
+        ("testItReturnsFalseWhenThePackageHasNotTheDangerLib", testItReturnsFalseWhenThePackageHasNotTheDangerLib),
+        ("testItReturnsFalseWhenThereIsNoPackage", testItReturnsFalseWhenThereIsNoPackage),
+        ("testItReturnsTheCorrectDepsImport", testItReturnsTheCorrectDepsImport),
+        ("testItReturnsTrueWhenThePackageHasTheDangerLib", testItReturnsTrueWhenThePackageHasTheDangerLib),
+    ]
+}
+
 #if !os(macOS)
     public func __allTests() -> [XCTestCaseEntry] {
         return [
             testCase(CliParserTests.__allTests),
             testCase(DangerCommandTests.__allTests),
             testCase(DangerFileGeneratorTests.__allTests),
+            testCase(DangerJSVersionFinderTests.__allTests),
             testCase(HelpMessagePresenterTests.__allTests),
             testCase(ImportsFinderTests.__allTests),
+            testCase(SPMDangerTests.__allTests),
         ]
     }
 #endif

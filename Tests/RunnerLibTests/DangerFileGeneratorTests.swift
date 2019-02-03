@@ -5,7 +5,7 @@ import XCTest
 import SnapshotTesting
 
 final class DangerFileGeneratorTests: XCTestCase {
-    private let logger = Logger()
+    private let logger = Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
     private var createdFiles: [String] = []
     private var generator: DangerFileGenerator!
 

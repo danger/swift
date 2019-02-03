@@ -1,10 +1,3 @@
-//
-//  CliArgs.swift
-//  Danger
-//
-//  Created by Franco Meloni on 12/11/2018.
-//
-
 // Describes the possible arguments that could be used when calling the CLI
 public struct CliArgs {
     // So you can have many danger runs in one code review

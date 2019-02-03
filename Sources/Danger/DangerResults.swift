@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Violation
 
 /// The result of a warn, message, or fail.
-public struct Violation: Codable {
+public struct Violation: Encodable {
     let message: String
     let file: String?
     let line: Int?
@@ -16,7 +16,7 @@ public struct Violation: Codable {
 }
 
 /// Meta information for showing in the text info
-public struct Meta: Codable {
+public struct Meta: Encodable {
     let runtimeName = "Danger Swift"
     let runtimeHref = "https://danger.systems"
 }
@@ -24,7 +24,7 @@ public struct Meta: Codable {
 // MARK: - Results
 
 /// The representation of what running a Dangerfile generates.
-struct DangerResults: Codable {
+struct DangerResults: Encodable {
     /// Failed messages.
     var fails = [Violation]()
 
