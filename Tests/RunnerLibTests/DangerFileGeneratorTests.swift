@@ -1,8 +1,8 @@
 import Foundation
 import Logger
 @testable import RunnerLib
-import XCTest
 import SnapshotTesting
+import XCTest
 
 final class DangerFileGeneratorTests: XCTestCase {
     private let logger = Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
@@ -28,7 +28,7 @@ final class DangerFileGeneratorTests: XCTestCase {
     func testItGeneratesTheCorrectFileWhenThereAreNoImports() throws {
         try generator.generateDangerFile(fromContent: contentWithoutImports, fileName: generatedFilePath, logger: logger)
 
-        XCTAssert(generatedContent == contentWithoutImports)
+        assertSnapshot(matching: generatedContent, as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenThereIsASingleImport() throws {
@@ -38,7 +38,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithOneImport, fileName: generatedFilePath, logger: logger)
 
-        XCTAssert(generatedContent == file1Content + "\n" + contentWithoutImports)
+        assertSnapshot(matching: generatedContent, as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenThereIsAreMultipleImports() throws {
@@ -52,10 +52,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithMultipleImports, fileName: generatedFilePath, logger: logger)
 
-        let expectedResult = file2Content + "\n\n" + file3Content + "\n" + file1Content + "\n" + contentWithoutImports
-
-
-        XCTAssert(generatedContent == expectedResult)
+        assertSnapshot(matching: generatedContent, as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenOneOfTheImportedFilesIsMissing() throws {
@@ -67,10 +64,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithMultipleImports, fileName: generatedFilePath, logger: logger)
 
-        let expectedResult = file2Content + "\n\n" + "// fileImport: " + file3Path + "\n" + file1Content + "\n" + contentWithoutImports
-        assertSnapshot(matching: expectedResult, as: .lines)
-
-//        XCTAssert(generatedContent == expectedResult)
+        assertSnapshot(matching: generatedContent, as: .lines)
     }
 }
 
