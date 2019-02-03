@@ -4,7 +4,13 @@ import Logger
 import SnapshotTesting
 import XCTest
 
-final class DangerFileGeneratorTests: XCTestCase {
+#if os(Linux)
+    typealias SnapshotTest = SnapshotTestCase
+#else
+    typealias SnapshotTest = XCTestCase
+#endif
+
+final class DangerFileGeneratorTests: SnapshotTest {
     private let logger = Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
     private var createdFiles: [String] = []
     private var generator: DangerFileGenerator!
