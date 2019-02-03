@@ -28,7 +28,8 @@ matrix:
       osx_image: xcode10
       install:
         - echo "Installing and testing via homebrew"
-        - brew install danger/tap/danger-swift
+        - brew tap danger/tap
+        - brew install danger-swift
       script:
         - danger-swift pr https://github.com/danger/swift/pull/153
 

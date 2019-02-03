@@ -1,17 +1,22 @@
 import Foundation
 import Logger
 @testable import RunnerLib
+import SnapshotTesting
 import XCTest
 
-final class DangerFileGeneratorTests: XCTestCase {
+#if !os(Linux)
+    typealias SnapshotTestCase = XCTestCase
+#endif
+
+final class DangerFileGeneratorTests: SnapshotTestCase {
     private let logger = Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
     private var createdFiles: [String] = []
     private var generator: DangerFileGenerator!
 
-    private let generatedFilePath = "GeneredTestDangerfile.swift"
-    private let file1Path = "GeneredTestFile1.swift"
-    private let file2Path = "GeneredTestFile2.swift"
-    private let file3Path = "GeneredTestFile3.swift"
+    private let generatedFilePath = "GeneratedTestDangerfile.swift"
+    private let file1Path = "GeneratedTestFile1.swift"
+    private let file2Path = "GeneratedTestFile2.swift"
+    private let file3Path = "GeneratedTestFile3.swift"
 
     override func setUp() {
         super.setUp()
@@ -27,7 +32,7 @@ final class DangerFileGeneratorTests: XCTestCase {
     func testItGeneratesTheCorrectFileWhenThereAreNoImports() throws {
         try generator.generateDangerFile(fromContent: contentWithoutImports, fileName: generatedFilePath, logger: logger)
 
-        XCTAssert(generatedContent == contentWithoutImports)
+        assertSnapshot(matching: generatedContent, as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenThereIsASingleImport() throws {
@@ -37,7 +42,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithOneImport, fileName: generatedFilePath, logger: logger)
 
-        XCTAssert(generatedContent == file1Content + "\n" + contentWithoutImports)
+        assertSnapshot(matching: generatedContent, as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenThereIsAreMultipleImports() throws {
@@ -51,9 +56,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithMultipleImports, fileName: generatedFilePath, logger: logger)
 
-        let expectedResult = file2Content + "\n\n" + file3Content + "\n" + file1Content + "\n" + contentWithoutImports
-
-        XCTAssert(generatedContent == expectedResult)
+        assertSnapshot(matching: generatedContent, as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenOneOfTheImportedFilesIsMissing() throws {
@@ -65,9 +68,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithMultipleImports, fileName: generatedFilePath, logger: logger)
 
-        let expectedResult = file2Content + "\n\n" + "// fileImport: " + file3Path + "\n" + file1Content + "\n" + contentWithoutImports
-
-        XCTAssert(generatedContent == expectedResult)
+        assertSnapshot(matching: generatedContent, as: .lines)
     }
 }
 

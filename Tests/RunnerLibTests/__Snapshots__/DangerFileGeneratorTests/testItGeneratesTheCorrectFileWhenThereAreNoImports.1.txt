@@ -1,0 +1,2 @@
+message("Text")
+message("Another Text")
