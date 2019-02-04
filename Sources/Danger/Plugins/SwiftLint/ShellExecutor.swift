@@ -8,8 +8,10 @@ public enum SpawnError: Error {
 }
 
 internal class ShellExecutor {
-    func execute(_ command: String, arguments: [String] = []) -> String {
-        let script = "\(command) \(arguments.joined(separator: " "))"
+    func execute(_ command: String, arguments: [String] = [], environmentVariables: [String] = []) -> String {
+        let script = [environmentVariables.joined(separator: " "),
+                      command,
+                      arguments.joined(separator: " ")].filter { !$0.isEmpty }.joined(separator: " ")
         print("Executing \(script)")
 
         var env = ProcessInfo.processInfo.environment
@@ -29,8 +31,10 @@ internal class ShellExecutor {
 
     // Similar to above, but can throw, and throws with most of
     // what you'd probably need in a scripting environment
-    func spawn(_ command: String, arguments: [String] = []) throws -> String {
-        let script = "\(command) \(arguments.joined(separator: " "))"
+    func spawn(_ command: String, arguments: [String] = [], environmentVariables: [String] = []) throws -> String {
+        let script = [environmentVariables.joined(separator: " "),
+                      command,
+                      arguments.joined(separator: " ")].filter { !$0.isEmpty }.joined(separator: " ")
 
         var env = ProcessInfo.processInfo.environment
         let task = Process()

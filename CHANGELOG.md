@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix excluded Swiftlint paths [@absolute-heike][] - [#180](https://github.com/danger/swift/pull/180)
+
 ## 1.2.1
 
 - Fix BitBucketServer DSL parsing by [@f-meloni][] - [#181](https://github.com/danger/swift/pull/181)
@@ -225,5 +227,6 @@ This release also includes:
 [@sunshinejr]: https://github.com/sunshinejr
 [@killectro]: https://github.com/Killectro
 [@thii]: https://github.com/thii
+[@absolute-heike]: https://github.com/absolute-heike
 [139]: https://github.com/danger/swift/issues/139
 [99]: https://github.com/danger/swift/issues/99

@@ -22,6 +22,7 @@ extension DangerDSLTests {
 
 extension DangerSwiftLintTests {
     static let __allTests = [
+        ("testDoNotExecuteSwiftlintWhenNoFilesToCheck", testDoNotExecuteSwiftlintWhenNoFilesToCheck),
         ("testExecutesSwiftLintWhenLintingAllFiles", testExecutesSwiftLintWhenLintingAllFiles),
         ("testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed", testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed),
         ("testExecutesSwiftLintWithConfigWhenPassed", testExecutesSwiftLintWithConfigWhenPassed),
