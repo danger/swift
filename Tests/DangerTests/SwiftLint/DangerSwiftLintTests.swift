@@ -29,6 +29,19 @@ class DangerSwiftLintTests: XCTestCase {
         XCTAssertEqual(executor.invocations.first?.command, "Pods/SwiftLint/swiftlint")
     }
 
+    func testDoNotExecuteSwiftlintWhenNoFilesToCheck() {
+        let modified = [
+            "CHANGELOG.md",
+            "Harvey/SomeOtherFile.m",
+            "circle.yml",
+        ]
+
+        danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
+
+        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint")
+        XCTAssertEqual(executor.invocations.count, 0, "If there are no files to lint, Swiftlint should not be executed")
+    }
+
     func testExecuteSwiftLintInInlineMode() {
         mockViolationJSON()
         var warns = [(String, String, Int)]()

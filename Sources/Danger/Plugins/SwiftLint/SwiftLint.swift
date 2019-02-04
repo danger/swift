@@ -64,6 +64,11 @@ extension SwiftLint {
                 files = files.filter { $0.hasPrefix(directory) }
             }
 
+            // Only run Swiftlint, if there are files to lint
+            guard files.count > 0 else {
+                return []
+            }
+
             var arguments = ["lint", "--quiet", "--use-script-input-files", "--force-exclude", "--reporter json"]
             if let configFile = configFile {
                 arguments.append("--config \"\(configFile)\"")
