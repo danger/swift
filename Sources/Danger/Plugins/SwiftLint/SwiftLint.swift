@@ -76,7 +76,9 @@ extension SwiftLint {
                 inputFiles.append("SCRIPT_INPUT_FILE_\(index)=\"\(file)\"")
             }
 
-            let outputJSON = shellExecutor.execute(swiftlintPath, arguments: arguments, environmentVariables: inputFiles)
+            let outputJSON = shellExecutor.execute(swiftlintPath,
+                                                   arguments: arguments,
+                                                   environmentVariables: inputFiles)
             violations = makeViolations(from: outputJSON, failAction: failAction)
         }
 
