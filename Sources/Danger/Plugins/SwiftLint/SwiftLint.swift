@@ -64,20 +64,19 @@ extension SwiftLint {
                 files = files.filter { $0.hasPrefix(directory) }
             }
 
-            // swiftlint takes input files in the format:
-            // `SCRIPT_INPUT_FILE_COUNT=2 SCRIPT_INPUT_FILE_0="file1" SCRIPT_INPUT_FILE_1="file2" swiftlint lint`
-            var inputFiles = "SCRIPT_INPUT_FILE_COUNT=\(files.count)"
-            for (index, file) in files.enumerated() {
-                inputFiles.append(" SCRIPT_INPUT_FILE_\(index)=\"\(file)\"")
-            }
-
             var arguments = ["lint", "--quiet", "--use-script-input-files", "--force-exclude", "--reporter json"]
             if let configFile = configFile {
                 arguments.append("--config \"\(configFile)\"")
             }
 
-            let command = [inputFiles, swiftlintPath].joined(separator: " ")
-            let outputJSON = shellExecutor.execute(command, arguments: arguments)
+            // swiftlint takes input files in the format:
+            // `SCRIPT_INPUT_FILE_COUNT=2 SCRIPT_INPUT_FILE_0="file1" SCRIPT_INPUT_FILE_1="file2" swiftlint lint`
+            var inputFiles = ["SCRIPT_INPUT_FILE_COUNT=\(files.count)"]
+            for (index, file) in files.enumerated() {
+                inputFiles.append("SCRIPT_INPUT_FILE_\(index)=\"\(file)\"")
+            }
+
+            let outputJSON = shellExecutor.execute(swiftlintPath, arguments: arguments, environmentVariables: inputFiles)
             violations = makeViolations(from: outputJSON, failAction: failAction)
         }
 
