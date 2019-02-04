@@ -54,7 +54,7 @@ func runDanger(logger: Logger) throws {
     let importsOnly = try File(path: dangerfilePath).readAsString()
 
     if let spmDanger = SPMDanger() {
-        spmDanger.buildDepsIfNeeded()
+        spmDanger.buildDependencies()
         libArgs += ["-L", SPMDanger.buildFolder]
         libArgs += ["-I", SPMDanger.buildFolder]
         libArgs += [spmDanger.libImport]

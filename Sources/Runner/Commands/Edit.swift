@@ -24,7 +24,7 @@ func editDanger(logger: Logger) throws {
     let libName: String
 
     if let spmDanger = SPMDanger() {
-        spmDanger.buildDepsIfNeeded()
+        spmDanger.buildDependencies()
         absoluteLibPath = FileManager.default.currentDirectoryPath + "/" + SPMDanger.buildFolder
         libName = spmDanger.depsLibName
     } else {

@@ -22,12 +22,9 @@ public struct SPMDanger {
         }
     }
 
-    public func buildDepsIfNeeded(executor: ShellOutExecuting = ShellOutExecutor(),
-                                  fileManager: FileManager = .default) {
-        if !fileManager.fileExists(atPath: "\(SPMDanger.buildFolder)/lib\(depsLibName).dylib"), // OSX
-            !fileManager.fileExists(atPath: "\(SPMDanger.buildFolder)/lib\(depsLibName).so") { // Linux
-            _ = try? executor.shellOut(command: "swift build --product \(depsLibName)")
-        }
+    public func buildDependencies(executor: ShellOutExecuting = ShellOutExecutor(),
+                                  fileManager _: FileManager = .default) {
+        _ = try? executor.shellOut(command: "swift build --product \(depsLibName)")
     }
 
     public var libImport: String {

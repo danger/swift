@@ -33,25 +33,15 @@ final class SPMDangerTests: XCTestCase {
         XCTAssertNil(SPMDanger(packagePath: testPackage))
     }
 
-    func testItBuildsTheDependenciesIfTheDepsLibIsNotPresent() {
+    func testItBuildsTheDependencies() {
         let executor = MockedExecutor()
         let fileManager = StubbedFileManager()
         fileManager.stubbedFileExists = false
 
         try! ".library(name: \"DangerDeps\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
-        SPMDanger(packagePath: testPackage)?.buildDepsIfNeeded(executor: executor, fileManager: fileManager)
+        SPMDanger(packagePath: testPackage)?.buildDependencies(executor: executor, fileManager: fileManager)
 
         XCTAssertTrue(executor.receivedCommand == "swift build --product DangerDeps")
-    }
-
-    func testItDoesntBuildTheDependenciesIfTheDepsLibIsPresent() {
-        let executor = MockedExecutor()
-        let fileManager = StubbedFileManager()
-        fileManager.stubbedFileExists = true
-
-        SPMDanger(packagePath: testPackage)?.buildDepsIfNeeded(executor: executor, fileManager: fileManager)
-
-        XCTAssertTrue(executor.receivedCommand == nil)
     }
 
     func testItReturnsTheCorrectDepsImport() {
