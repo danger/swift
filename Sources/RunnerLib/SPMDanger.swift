@@ -8,7 +8,8 @@ public struct SPMDanger {
     public init?(packagePath: String = "Package.swift") {
         let packageContent = (try? String(contentsOfFile: packagePath)) ?? ""
 
-        let regex = try? NSRegularExpression(pattern: "\\.library\\(name:[\\ ]?\"(\(SPMDanger.dangerDepsPrefix)[A-Za-z]*)",
+        let regexPattern = "\\.library\\(name:[\\ ]?\"(\(SPMDanger.dangerDepsPrefix)[A-Za-z]*)"
+        let regex = try? NSRegularExpression(pattern: regexPattern,
                                              options: .allowCommentsAndWhitespace)
         let firstMatch = regex?.firstMatch(in: packageContent,
                                            options: .withTransparentBounds,
