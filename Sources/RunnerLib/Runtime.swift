@@ -31,7 +31,7 @@ public struct Runtime {
 
         if marathonScripts != nil {
             // TODO: Support running from a fork?
-            let dangerSwiftPath = marathonScripts!.first { return $0.contains("danger-swift") }
+            let dangerSwiftPath = marathonScripts!.first { $0.contains("danger-swift") }
             if dangerSwiftPath != nil {
                 let path = marathonDangerDLDir + dangerSwiftPath! + "/clone/.build/release"
                 depManagerDangerLibPaths.append(path)

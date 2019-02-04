@@ -1,0 +1,7 @@
+file2Content
+
+// fileImport: GeneratedTestFile3.swift
+file1Content
+secondLine
+message("Text")
+message("Another Text")

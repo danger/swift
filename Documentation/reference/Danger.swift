@@ -176,10 +176,10 @@ public struct BitBucketServerMergeRef: Decodable, Equatable {
 
 public struct BitBucketServerMetadata: Decodable, Equatable {
     /// The PR's ID
-    public var pullRequestID: String { get }
+    public var pullRequestID: String
 
     /// The complete repo slug including project slug.
-    public var repoSlug: String { get }
+    public var repoSlug: String
 }
 
 public struct BitBucketServerPR: Decodable, Equatable {
@@ -220,17 +220,30 @@ public struct BitBucketServerPR: Decodable, Equatable {
     public let isLocked: Bool
 
     /// The creator of the PR
-    public let author: Danger.BitBucketServerPR.BitBucketServerAuthor
+    public let author: Danger.BitBucketServerPR.Participant
 
     /// People requested as reviewers
-    public let reviewers: [Danger.BitBucketServerUser]
+    public let reviewers: [Danger.BitBucketServerPR.Reviewer]
 
     /// People who have participated in the PR
-    public let participants: [Danger.BitBucketServerPR.BitBucketServerAuthor]
+    public let participants: [Danger.BitBucketServerPR.Participant]
 
-    public struct BitBucketServerAuthor: Decodable, Equatable {
+    /// A user that is parecipating in the PR
+    public struct Participant: Decodable, Equatable {
         /// The BitBucket Server User
         public let user: Danger.BitBucketServerUser
+    }
+
+    /// A user that reviewed the PR
+    public struct Reviewer: Decodable, Equatable {
+        /// The BitBucket Server User
+        public let user: Danger.BitBucketServerUser
+
+        /// The approval status
+        public let approved: Bool
+
+        /// The commit SHA for the latest commit that was reviewed
+        public let lastReviewedCommit: String?
     }
 }
 
@@ -828,7 +841,7 @@ public struct GitHubUser: Decodable, Equatable {
 }
 
 /// Meta information for showing in the text info
-public struct Meta: Codable {}
+public struct Meta: Encodable {}
 
 public enum SpawnError: Error {
     case commandFailed(exitCode: Int32, stdout: String, stderr: String, task: Process)
@@ -845,7 +858,7 @@ public struct SwiftLint {
     public static func lint(inline: Bool = default, directory: String? = default, configFile: String? = default, lintAllFiles: Bool = default, swiftlintPath: String? = default) -> [Danger.SwiftLintViolation]
 }
 
-public struct SwiftLintViolation: Codable {
+public struct SwiftLintViolation: Decodable {
     /// Creates a new instance by decoding from the given decoder.
     ///
     /// This initializer throws an error if reading from the decoder fails, or
@@ -858,7 +871,7 @@ public struct SwiftLintViolation: Codable {
 }
 
 /// The result of a warn, message, or fail.
-public struct Violation: Codable {}
+public struct Violation: Encodable {}
 
 /// Adds an inline fail message to the Danger report
 public func fail(message: String, file: String, line: Int)

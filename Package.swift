@@ -19,12 +19,13 @@ let package = Package(
         .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0"),
         // Danger Plugins
         // Dev dependencies
-        .package(url: "https://github.com/eneko/SourceDocs", from: "0.5.1"), // dev
         .package(url: "https://github.com/orta/Komondor", from: "1.0.0"), // dev
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"), // dev
         .package(url: "https://github.com/Realm/SwiftLint", from: "0.28.1"), // dev
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.0.0"), // dev
         .package(url: "https://github.com/f-meloni/Rocket", from: "0.4.0"), // dev
         .package(url: "https://github.com/jpsim/Yams.git", from: "1.0.0"), // dev
+        .package(url: "https://github.com/eneko/SourceDocs", from: "0.5.1"), // dev
     ],
     targets: [
         .target(name: "Danger-Swift", dependencies: ["Danger", "Yams"]), // dev
@@ -32,8 +33,8 @@ let package = Package(
         .target(name: "RunnerLib", dependencies: ["Logger", "ShellOut"]),
         .target(name: "Runner", dependencies: ["RunnerLib", "MarathonCore", "Logger"]),
         .target(name: "DangerFixtures", dependencies: ["Danger"]),
-        .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures"]),
-        .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib"]),
+        .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]), // dev
+        .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib", "SnapshotTesting"]), // dev
     ]
 )
 

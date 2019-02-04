@@ -1,4 +1,5 @@
 @testable import RunnerLib
+import SnapshotTesting
 import XCTest
 
 final class CliParserTests: XCTestCase {

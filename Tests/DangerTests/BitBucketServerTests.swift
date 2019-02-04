@@ -25,6 +25,9 @@ final class BitBucketServerTests: XCTestCase {
         XCTAssertEqual(pullRequest.participants.count, 1)
         XCTAssertEqual(pullRequest.participants.first?.user, expectedPartecipant)
 
+        let expectedReviewer = BitBucketServerUser(id: 2, name: "danger", displayName: "DangerCI", emailAddress: "foo@bar.com", active: true, slug: "danger", type: "NORMAL")
+        XCTAssertEqual(pullRequest.reviewers, [BitBucketServerPR.Reviewer(user: expectedReviewer, approved: true, lastReviewedCommit: "8942a1f75e4c95df836f19ef681d20a87da2ee20")])
+
         XCTAssertEqual(pullRequest.closed, false)
         XCTAssertEqual(pullRequest.createdAt, 1_518_863_923_273)
         XCTAssertEqual(pullRequest.isLocked, false)
