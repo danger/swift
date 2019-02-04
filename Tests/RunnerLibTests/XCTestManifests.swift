@@ -45,8 +45,7 @@ extension ImportsFinderTests {
 extension SPMDangerTests {
     static let __allTests = [
         ("testItAcceptsAnythingStartsWithDangerDeps", testItAcceptsAnythingStartsWithDangerDeps),
-        ("testItBuildsTheDependenciesIfTheDepsLibIsNotPresent", testItBuildsTheDependenciesIfTheDepsLibIsNotPresent),
-        ("testItDoesntBuildTheDependenciesIfTheDepsLibIsPresent", testItDoesntBuildTheDependenciesIfTheDepsLibIsPresent),
+        ("testItBuildsTheDependencies", testItBuildsTheDependencies),
         ("testItReturnsFalseWhenThePackageHasNotTheDangerLib", testItReturnsFalseWhenThePackageHasNotTheDangerLib),
         ("testItReturnsFalseWhenThereIsNoPackage", testItReturnsFalseWhenThereIsNoPackage),
         ("testItReturnsTheCorrectDepsImport", testItReturnsTheCorrectDepsImport),
