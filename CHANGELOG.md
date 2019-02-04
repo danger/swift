@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.2.2
+
 - Leave SPM decide if rebuild or not the dependencies library [@f-meloni][]  - [#183](https://github.com/danger/swift/pull/183)
 - Fix excluded Swiftlint paths [@absolute-heike][] - [#180](https://github.com/danger/swift/pull/180)
 
