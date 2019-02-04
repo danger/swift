@@ -120,7 +120,7 @@ class DangerSwiftLintTests: XCTestCase {
         let swiftlintCommand = executor.invocations.filter { $0.command == "swiftlint" }.first
         XCTAssertNotNil(swiftlintCommand)
         XCTAssertEqual(swiftlintCommand!.environmentVariables.count, 0)
-        XCTAssertTrue(swiftlintCommand!.environmentVariables.dropFirst().allSatisfy { !$0.contains("Tests/SomeFile.swift") })
+        XCTAssertFalse(swiftlintCommand!.environmentVariables.contains { $0.contains("Tests/SomeFile.swift") })
         XCTAssertTrue(swiftlintCommand!.arguments.contains("--path \"Tests\""))
     }
 
