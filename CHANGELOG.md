@@ -13,6 +13,8 @@
 
 ## Master
 
+- Accept dangerfile parameter on edit command  [@f-meloni][]  - [#189](https://github.com/danger/swift/pull/189)
+
 ## 1.2.2
 
 - Leave SPM decide if rebuild or not the dependencies library [@f-meloni][]  - [#183](https://github.com/danger/swift/pull/183)
