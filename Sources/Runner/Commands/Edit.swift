@@ -6,24 +6,13 @@ import Logger
 import MarathonCore
 
 func editDanger(logger: Logger) throws {
-    let createDangerfile: (String) -> String = { dangerfilePath in
-        do {
-            let template = "import Danger \nlet danger = Danger()"
-            let data = template.data(using: .utf8)!
-            return try FileSystem().createFile(at: dangerfilePath, contents: data).path
-        } catch {
-            logger.logError("Could not find or generate a Dangerfile")
-            exit(1)
-        }
-    }
-
     let dangerfilePath: String
 
     if let dangerfileArgumentPath = DangerfilePathFinder.dangerfilePath() {
         dangerfilePath = dangerfileArgumentPath
 
         if !FileManager.default.fileExists(atPath: dangerfileArgumentPath) {
-            _ = createDangerfile(dangerfileArgumentPath)
+            createDangerfile(dangerfileArgumentPath)
         }
 
     } else {
@@ -69,4 +58,16 @@ func editDanger(logger: Logger) throws {
     try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
 
     try script.watch(arguments: arguments, importedFiles: importedFiles)
+}
+
+@discardableResult
+private func createDangerfile(_ dangerfilePath: String) -> String {
+    do {
+        let template = "import Danger \nlet danger = Danger()"
+        let data = template.data(using: .utf8)!
+        return try FileSystem().createFile(at: dangerfilePath, contents: data).path
+    } catch {
+        logger.logError("Could not find or generate a Dangerfile")
+        exit(1)
+    }
 }
