@@ -64,9 +64,66 @@ Full documentation is available [here](Documentation).
 #### Plugins
 
 Infrastructure exists to support plugins, which can help you avoid repeating 
-the same Danger rules across separate repos. By suffixing `package: [url]` to an 
-import, you can directly import Swift PM package as a dependency(through 
-[Marathon][m]).
+the same Danger rules across separate repos.
+
+e.g. A plugin implemented with the following at https://github.com/username/DangerPlugin.git.
+
+```swift
+// DangerPlugin.swift
+import Danger
+
+public struct DangerPlugin {
+    let danger = Danger()
+    public static func doYourThing() {
+        // Code goes here
+    }
+}
+```
+
+#### Swift Package Manager (More performant)
+You can SPM to install both `danger-swift` and plugins:
+
+- Add to your `Package.swift`:
+
+```swift
+let package = Package(
+    ...
+    products: [
+        ...
+        .library(name: "DangerDeps[Product name (optional)]", type: .dynamic, targets: ["DangerDependencies"]), // dev
+        ...
+    ],
+    dependencies: [
+        ...
+        .package(url: "https://github.com/danger/swift.git", from: "1.0.0"), // dev
+        // Danger Plugins
+        .package(url: "https://github.com/username/DangerPlugin.git", from: "0.1.0") // dev
+        ...
+    ],
+    targets: [
+        .target(name: "DangerDependencies", dependencies: ["Danger", "DangerPlugin"]), // dev
+        ...
+    ]
+)
+```
+
+- Add the correct import to your `Dangerfile.swift`:
+```swift
+import DangerPlugin
+
+DangerPlugin.doYourThing()
+```
+
+- Create a folder called `DangerDependencies` on `Sources` with an empty file inside like [Fake.swift](Sources/DangerDependencies/Fake.swift)
+- To run `Danger` use `swift run danger-swift command`
+- **(Recommended)** If you are using SPM to distribute your framework, use [Rocket](https://github.com/f-meloni/Rocket), or a similar tool, to comment out all the dev depencencies from your `Package.swift`.
+This prevents the dev dependencies to be downloaded and compiled with your framework.
+- **(Recommended)** cache the `.build` folder on your repo
+
+#### Marathon (Easy to use)
+
+By suffixing `package: [url]` to an 
+import, you can directly import Swift PM package as a dependency
 
 For example, a plugin could be used by the following.
 
@@ -78,21 +135,9 @@ import DangerPlugin // package: https://github.com/username/DangerPlugin.git
 DangerPlugin.doYourThing()
 ```
 
-And could be implemented with the following in that repo.
-
-```swift
-// DangerPlugin.swift
-import Danger
-
-public struct DangerPlugin {
-    static let danger = Danger()
-    public static func doYourThing() {
-        // Code goes here
-    }
-}
-```
-
 You can see an [example danger-swift plugin](https://github.com/ashfurrow/danger-swiftlint#danger-swiftlint).
+
+**(Recommended)** Cache the `~/.danger-swift` folder
 
 ### Setup
 
