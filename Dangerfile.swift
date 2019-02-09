@@ -15,7 +15,7 @@ let swiftFilesWithCopyright = danger.git.createdFiles.filter {
         && danger.utils.readFile($0).contains("//  Created by")
 }
 
-if swiftFilesWithCopyright.count > 0 {
+if !swiftFilesWithCopyright.isEmpty {
     let files = swiftFilesWithCopyright.joined(separator: ", ")
     warn("In Danger JS we don't include copyright headers, found them in: \(files)")
 }

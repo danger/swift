@@ -66,7 +66,7 @@ class DangerSwiftLintTests: XCTestCase {
         _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", configFile: configFile, currentPathProvider: fakePathProvider)
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
-        XCTAssertTrue(swiftlintCommands.count > 0)
+        XCTAssertTrue(!swiftlintCommands.isEmpty)
         swiftlintCommands.forEach { _, arguments, _ in
             XCTAssertTrue(arguments.contains("--config \"\(configFile)\""))
         }

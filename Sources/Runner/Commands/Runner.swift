@@ -72,7 +72,7 @@ func runDanger(logger: Logger) throws {
 
         let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") } // swiftlint:disable:this line_length
 
-        if importExternalDeps.count > 0 {
+        if !importExternalDeps.isEmpty {
             logger.logInfo("Cloning and building inline dependencies:",
                            "\(importExternalDeps.joined(separator: ", ")),",
                            "this might take some time.")
