@@ -65,7 +65,7 @@ extension SwiftLint {
             }
 
             // Only run Swiftlint, if there are files to lint
-            guard files.count > 0 else {
+            guard !files.isEmpty else {
                 return []
             }
 
