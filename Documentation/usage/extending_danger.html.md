@@ -115,5 +115,4 @@ You can find all the informations about how to add plugins to a Dangerfile at
 
 ### Part Two
 
-This is enough to get started, if you want to move it up a level check out
-[Extending Danger Two](extending_danger_two.html).
+This is enough to get started, if you want to move it up a level check out [Extending Danger Two](extending_danger_two.html).
