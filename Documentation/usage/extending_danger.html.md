@@ -83,33 +83,35 @@ public func checkForCopyrightHeaders() -> Void {
 
 ### Writing your Plugin
 
-Danger Swift doesn't have a good way to use a plugin locally yet, so you'll need to make a release of your module to try
-it in your local.
+If you write a plugin you can import danger directly on the `Package.swift`, this will make easier to test the plugin
 
-Do that by committing your changes, and making a git tag.
-
-```sh
-git init
-git add .
-git remote add origin [your repo]
-git tag 0.0.1
-git push --tags
+```swift
+let package = Package(
+    ...
+    products: [
+        ...
+        .library(name: "DangerPlugin", targets: ["DangerPlugin"]),
+        .library(name: "DangerDeps", type: .dynamic, targets: ["DangerPlugin"]), // dev
+        ...
+    ],
+    dependencies: [
+        ...
+        .package(url: "https://github.com/danger/swift.git", from: "1.0.0"), // dev
+    ],
+    targets: [
+        .target(name: "DangerPlugin", dependencies: ["Danger"]),
+        ...
+    ]
+)
 ```
+
+**(Recommended)** Use [Rocket](https://github.com/f-meloni/Rocket), or a similar tool, to comment out the DangerDeps library from the `Package.swift`. 
+This prevents the DangerDeps library compiled with your plugin by users.
 
 ### Adding it to your Dangerfile
 
-You need to provide two bits of information in your Dangerfile, the name of your library and where it can be found:
-
-```diff
-import Danger
-import Foundation
-// Reference your library, then note to Danger where it can be found
-+ import DangerNoCopyrights // package: https://[your repo].git
-
-+ checkForCopyrightHeaders()
-```
-
-Danger will download and set up your plugin before running your `Dangerfile.swift`.
+You can find all the informations about how to add plugins to a Dangerfile at
+[Plugins](https://danger.systems/swift/guides/about_the_dangerfile.html#plugins)
 
 ### Part Two
 
