@@ -1,9 +1,9 @@
 <p align="center">
-<img src="https://danger.systems/images/js/danger-js-sw-logo-hero-cachable@2x.png" width=250 /></br>
+<img src="https://danger.systems/images/js/danger-js-sw-logo-hero-cachable@2x.png" width=350 /></br>
 Formalize your Pull Request etiquette.
 </p>
 
-Write your Dangerfiles in Swift 4+.
+Write your Dangerfiles in Swift.
 
 ### Requirements
 
@@ -11,9 +11,6 @@ Latest version requires Swift 4.2
 
 - If you are using Swift 4.1 use v0.4.1
 - If you are using Swift 4.0, Use v0.3.6
-
-Because this project recommends homebrew right now, this only works with the most recent version
-of danger-swift. Ideally we'll document how to use swiftpm to version danger correctly.
 
 ### What it looks like today
 
@@ -40,19 +37,9 @@ fail("Something that must be changed")
 markdown("Free-form markdown that goes under the table, so you can do whatever.")
 ```
 
-### Getting Started
+### Using Danger Swift
 
-Using Danger in Swift
-
-1. Install Danger Swift: `brew install danger/tap/danger-swift`.
-1. Edit the dangerfile: `danger-swift edit`.
-
-This will make a `Dangerfile.swift` for you. then pop up a temporary 
-Xcode project set up for editing a Swift Dangerfile.
-
-### Documentation
-
-Full documentation is available [here](Documentation).
+All of the docs are on the user-facing website: https://danger.systems/swift/
 
 ### Commands
 
@@ -63,10 +50,71 @@ Full documentation is available [here](Documentation).
 
 #### Plugins
 
-Infrastructure exists to support plugins, which can help you avoid repeating 
-the same Danger rules across separate repos. By suffixing `package: [url]` to an 
-import, you can directly import Swift PM package as a dependency(through 
-[Marathon][m]).
+Infrastructure exists to support plugins, which can help you avoid repeating the same Danger rules across separate
+repos.
+
+e.g. A plugin implemented with the following at https://github.com/username/DangerPlugin.git.
+
+```swift
+// DangerPlugin.swift
+import Danger
+
+public struct DangerPlugin {
+    let danger = Danger()
+    public static func doYourThing() {
+        // Code goes here
+    }
+}
+```
+
+#### Swift Package Manager (More performant)
+
+You can use Swift PM to install both `danger-swift` and your plugins:
+
+- Add to your `Package.swift`:
+
+  ```swift
+  let package = Package(
+      ...
+      products: [
+          ...
+          .library(name: "DangerDeps[Product name (optional)]", type: .dynamic, targets: ["DangerDependencies"]), // dev
+          ...
+      ],
+      dependencies: [
+          ...
+          .package(url: "https://github.com/danger/swift.git", from: "1.0.0"), // dev
+          // Danger Plugins
+          .package(url: "https://github.com/username/DangerPlugin.git", from: "0.1.0") // dev
+          ...
+      ],
+      targets: [
+          .target(name: "DangerDependencies", dependencies: ["Danger", "DangerPlugin"]), // dev
+          ...
+      ]
+  )
+  ```
+
+- Add the correct import to your `Dangerfile.swift`:
+
+  ```swift
+  import DangerPlugin
+
+  DangerPlugin.doYourThing()
+  ```
+
+- Create a folder called `DangerDependencies` in `Sources` with an empty file inside like
+  [Fake.swift](Sources/Sources/Danger-Swift/Fake.swift)
+- To run `Danger` use `swift run danger-swift command`
+- **(Recommended)** If you are using Swift PM to distribute your framework, use
+  [Rocket](https://github.com/f-meloni/Rocket), or a similar tool, to comment out all the dev dependencies from your
+  `Package.swift`. This prevents these dev dependencies from being downloaded and compiled with your framework by
+  consumers.
+- **(Recommended)** cache the `.build` folder on your repo
+
+#### Marathon (Easy to use)
+
+By suffixing `package: [url]` to an import, you can directly import Swift PM package as a dependency
 
 For example, a plugin could be used by the following.
 
@@ -78,21 +126,9 @@ import DangerPlugin // package: https://github.com/username/DangerPlugin.git
 DangerPlugin.doYourThing()
 ```
 
-And could be implemented with the following in that repo.
-
-```swift
-// DangerPlugin.swift
-import Danger
-
-public struct DangerPlugin {
-    static let danger = Danger()
-    public static func doYourThing() {
-        // Code goes here
-    }
-}
-```
-
 You can see an [example danger-swift plugin](https://github.com/ashfurrow/danger-swiftlint#danger-swiftlint).
+
+**(Recommended)** Cache the `~/.danger-swift` folder
 
 ### Setup
 
@@ -100,7 +136,7 @@ For a Mac:
 
 ```sh
 # Install danger-swift, and a bundled danger-js locally
-brew install danger/tap/danger-swift  
+brew install danger/tap/danger-swift
  # Run danger
 danger-swift ci
 ```
@@ -121,18 +157,6 @@ danger-swift ci
 ```
 
 With Docker support ready for GitHub Actions.
-
-#### What are the next big steps?
-
-* [Roadmap to 1.0](https://github.com/danger/danger-swift/issues/67)
-* Look into the `Class SwiftObject is implemented in both [x], [y]` runtime error, [probably this](https://bugs.swift.org/browse/SR-1060)
-
-
-#### How it works
-
-This project takes its ideas from how the Swift Package Manager handles package manifests. You can get the [long story here][spm-lr], but the TLDR is that there is a runner project which compiles and executes a runtime lib which exports its data out into JSON when the libs process is over.
-
-So this project will export a lib `libDanger` and a CLI tool `danger-swift` which is the runner. `danger-swift` handles turning the Danger DSL JSON [message from DangerJS][dsl] and passing that into the eval'd `Dangerfile.swift`. When that process is finished it's expected that the Swift `Danger` object would post the results into a place where they can easily be passed back to DangerJS.
 
 #### Dev
 
@@ -158,13 +182,16 @@ If you want to emulate how DangerJS's `process` will work entirely, then use:
 ```sh
 swift build && cat Fixtures/eidolon_609.json | ./.build/debug/danger-swift
 ```
+
 #### Deploying
 
 Run `swift run rocket $VERSION` on `master` e.g. `swift run rocket 1.0.0`
 
 ### Long-term
 
-I, orta, only plan on bootstrapping this project, as I won't be using this in production. I'm happy to help support others who want to own this idea and really make it shine though! So if you're interested in helping out, make a few PRs and I'll give you org access.
+I, orta, only plan on bootstrapping this project, as I won't be using this in production. I'm happy to help support
+others who want to own this idea and really make it shine though! So if you're interested in helping out, make a few PRs
+and I'll give you org access.
 
 [m]: https://github.com/JohnSundell/Marathon
 [spm-lr]: http://bhargavg.com/swift/2016/06/11/how-swiftpm-parses-manifest-file.html
