@@ -96,7 +96,7 @@ let package = Package(
     ],
     dependencies: [
         ...
-        .package(url: "https://github.com/danger/swift.git", from: "1.0.0"), // dev
+        .package(url: "https://github.com/danger/swift.git", from: "1.0.0"),
     ],
     targets: [
         .target(name: "DangerPlugin", dependencies: ["Danger"]),
