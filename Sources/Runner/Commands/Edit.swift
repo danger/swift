@@ -6,19 +6,18 @@ import Logger
 import MarathonCore
 
 func editDanger(logger: Logger) throws {
-    let createDangerfile = { () -> String in
-        do {
-            let template = "import Danger \n let danger = Danger()"
-            let data = template.data(using: .utf8)!
-            return try FileSystem().createFile(at: "Dangerfile.swift", contents: data).path
-        } catch {
-            logger.logError("Could not find or generate a Dangerfile")
-            exit(1)
-        }
-    }
+    let dangerfilePath: String
 
-    // If dangerfile was not found, attempt to create one at Dangerfile.swift
-    let dangerfilePath = Runtime.getDangerfile() ?? createDangerfile()
+    if let dangerfileArgumentPath = DangerfilePathFinder.dangerfilePath() {
+        dangerfilePath = dangerfileArgumentPath
+
+        if !FileManager.default.fileExists(atPath: dangerfileArgumentPath) {
+            createDangerfile(dangerfileArgumentPath)
+        }
+
+    } else {
+        dangerfilePath = Runtime.getDangerfile() ?? createDangerfile("Dangerfile.swift")
+    }
 
     let absoluteLibPath: String
     let libName: String
@@ -59,4 +58,16 @@ func editDanger(logger: Logger) throws {
     try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
 
     try script.watch(arguments: arguments, importedFiles: importedFiles)
+}
+
+@discardableResult
+private func createDangerfile(_ dangerfilePath: String) -> String {
+    do {
+        let template = "import Danger \nlet danger = Danger()"
+        let data = template.data(using: .utf8)!
+        return try FileSystem().createFile(at: dangerfilePath, contents: data).path
+    } catch {
+        logger.logError("Could not find or generate a Dangerfile")
+        exit(1)
+    }
 }
