@@ -77,6 +77,68 @@ DANGER_TEST_PR='1234' [swift run] danger-swift ci
 Assuming that your local file-system matches up to that branch for your code review, this will be a good approximation
 of how danger will work when you integrate it into your CI system. Note: this **will** leave a comment on the PR.
 
+### Plugins
+
+#### Swift Package Manager (More performant)
+
+You can use Swift PM to install both `danger-swift` and your plugins:
+
+- Add to your `Package.swift`:
+
+```swift
+let package = Package(
+...
+products: [
+    ...
+    .library(name: "DangerDeps[Product name (optional)]", type: .dynamic, targets: ["DangerDependencies"]), // dev
+    ...
+    ],
+    dependencies: [
+        ...
+        .package(url: "https://github.com/danger/swift.git", from: "1.0.0"), // dev
+        // Danger Plugins
+        .package(url: "https://github.com/username/DangerPlugin.git", from: "0.1.0") // dev
+        ...
+    ],
+    targets: [
+        .target(name: "DangerDependencies", dependencies: ["Danger", "DangerPlugin"]), // dev
+        ...
+    ]
+)
+```
+
+- Add the correct import to your `Dangerfile.swift`:
+
+```swift
+    import DangerPlugin
+    
+    DangerPlugin.doYourThing()
+```
+
+- Create a folder called `DangerDependencies` in `Sources` with an empty file inside like
+[Fake.swift](https://github.com/danger/swift/Sources/Sources/Danger-Swift/Fake.swift)
+- To run `Danger` use `swift run danger-swift command`
+- **(Recommended)** If you are using Swift PM to distribute your framework, use
+[Rocket](https://github.com/f-meloni/Rocket), or a similar tool, to comment out all the dev dependencies from your
+`Package.swift`. This prevents these dev dependencies from being downloaded and compiled with your framework by
+consumers.
+- **(Recommended)** cache the `.build` folder on your repo
+
+#### Marathon (Easy to use)
+
+By suffixing `package: [url]` to an import, you can directly import Swift PM package as a dependency
+
+For example, a plugin could be used by the following.
+
+```swift
+    // Dangerfile.swift
+    import DangerPlugin // package: https://github.com/username/DangerPlugin.git
+    
+    DangerPlugin.doYourThing()
+```
+
+**(Recommended)** Cache the `~/.danger-swift` folder
+
 ## Working with files
 
 There are a few helper functions for working with files in Danger Swift.
