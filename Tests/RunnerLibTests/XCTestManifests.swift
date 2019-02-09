@@ -29,6 +29,13 @@ extension DangerJSVersionFinderTests {
     ]
 }
 
+extension DangerfilePathFinderTests {
+    static let __allTests = [
+        ("testItReturnsNilIfTheArgumentsDoesntContainTheDangerfileArg", testItReturnsNilIfTheArgumentsDoesntContainTheDangerfileArg),
+        ("testItReturnsTheCorrectPathIfTheArgumentsContainsTheDangerfileArg", testItReturnsTheCorrectPathIfTheArgumentsContainsTheDangerfileArg),
+    ]
+}
+
 extension HelpMessagePresenterTests {
     static let __allTests = [
         ("testIsShowsTheCommandListWhenThereIsNoCommand", testIsShowsTheCommandListWhenThereIsNoCommand),
@@ -60,6 +67,7 @@ extension SPMDangerTests {
             testCase(DangerCommandTests.__allTests),
             testCase(DangerFileGeneratorTests.__allTests),
             testCase(DangerJSVersionFinderTests.__allTests),
+            testCase(DangerfilePathFinderTests.__allTests),
             testCase(HelpMessagePresenterTests.__allTests),
             testCase(ImportsFinderTests.__allTests),
             testCase(SPMDangerTests.__allTests),
