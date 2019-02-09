@@ -114,7 +114,7 @@ import DangerPlugin
 DangerPlugin.doYourThing()
 ```
 
-- Create a folder called `DangerDependencies` on `Sources` with an empty file inside like [Fake.swift](Sources/DangerDependencies/Fake.swift)
+- Create a folder called `DangerDependencies` on `Sources` with an empty file inside like [Fake.swift](Sources/Sources/Danger-Swift/Fake.swift)
 - To run `Danger` use `swift run danger-swift command`
 - **(Recommended)** If you are using SPM to distribute your framework, use [Rocket](https://github.com/f-meloni/Rocket), or a similar tool, to comment out all the dev depencencies from your `Package.swift`.
 This prevents the dev dependencies to be downloaded and compiled with your framework.
