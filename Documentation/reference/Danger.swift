@@ -316,7 +316,7 @@ public func Danger() -> Danger.DangerDSL
 public struct DangerDSL: Decodable {
     public let git: Danger.Git
 
-    public let github: Danger.GitHub!
+    public private(set) var github: Danger.GitHub!
 
     public let bitbucketServer: Danger.BitBucketServer!
 
