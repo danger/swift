@@ -60,7 +60,6 @@ let package = Package(
                 "Scripts/update_changelog.sh",
             ],
             "after": [
-                "push",
                 "Scripts/create_homebrew_tap.sh",
             ],
         ],
