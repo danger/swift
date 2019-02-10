@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
           "branch": null,
-          "revision": "9a281b1cfa1c53d1e8bd92e1798e4e473af8d263",
-          "version": "7.3.3"
+          "revision": "e9d769113660769a4d9dd3afb855562c0b7ae7b0",
+          "version": "7.3.4"
         }
       },
       {
@@ -150,8 +150,8 @@
         "repositoryURL": "https://github.com/f-meloni/Rocket",
         "state": {
           "branch": null,
-          "revision": "6e5ad004c8f488b81a44639a6690b19098f4e408",
-          "version": "0.5.0"
+          "revision": "9fc5ab27ae2af5c40366afae858e86d87fe64b11",
+          "version": "0.8.0"
         }
       },
       {
@@ -206,6 +206,15 @@
           "branch": null,
           "revision": "b2d428a4e24abd4f7cfeb0cd610b1656fb48c4a9",
           "version": "0.30.1"
+        }
+      },
+      {
+        "package": "SwiftShell",
+        "repositoryURL": "https://github.com/kareman/SwiftShell",
+        "state": {
+          "branch": null,
+          "revision": "beebe43c986d89ea5359ac3adcb42dac94e5e08a",
+          "version": "4.1.2"
         }
       },
       {
