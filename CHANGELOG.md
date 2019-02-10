@@ -13,6 +13,8 @@
 
 ## Master
 
+- Set github as var to make danger compile with swift 5 [@f-meloni][]  - [#191](https://github.com/danger/swift/pull/191)
+
 ## 1.3.0
 
 - Accept dangerfile parameter on edit command  [@f-meloni][]  - [#189](https://github.com/danger/swift/pull/189)
