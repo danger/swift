@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.3.0
+
 - Accept dangerfile parameter on edit command  [@f-meloni][]  - [#189](https://github.com/danger/swift/pull/189)
 
 ## 1.2.2
