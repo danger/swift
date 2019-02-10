@@ -36,7 +36,7 @@ func resetDangerResults() {
     globalResults.messages = []
     globalResults.fails = []
     globalResults.warnings = []
-    globalResults.messages = []
+    globalResults.markdowns = []
 }
 
 extension DangerDSL {
