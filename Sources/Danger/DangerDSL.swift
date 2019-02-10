@@ -13,7 +13,7 @@ public struct DSL: Decodable {
 public struct DangerDSL: Decodable {
     public let git: Git
 
-    private(set) public var github: GitHub!
+    public private(set) var github: GitHub!
 
     public let bitbucketServer: BitBucketServer!
 
