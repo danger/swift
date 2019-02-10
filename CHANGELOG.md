@@ -13,6 +13,8 @@
 
 ## Master
 
+- Reset markdowns on the resetDangerResults method [@f-meloni][]  - [#192](https://github.com/danger/swift/pull/191)
+
 ## 1.3.1
 
 - Set github as var to make danger compile with swift 5 [@f-meloni][]  - [#191](https://github.com/danger/swift/pull/191)
