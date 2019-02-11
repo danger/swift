@@ -397,23 +397,23 @@ public struct BitBucketServerProject: Decodable, Equatable {
 
 public struct BitBucketServerUser: Decodable, Equatable {
     /// The unique user ID
-    public let id: Int
+    public let id: Int?
 
     /// The name of the user
     public let name: String
 
     /// The name to use when referencing the user
-    public let displayName: String
+    public let displayName: String?
 
     /// The email for the user
     public let emailAddress: String
 
     /// Is the account active
-    public let active: Bool
+    public let active: Bool?
 
     /// The user's slug for URLs
-    public let slug: String
+    public let slug: String?
 
     /// The type of a user, "NORMAL" being a typical user3
-    public let type: String
+    public let type: String?
 }
