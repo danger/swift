@@ -259,23 +259,13 @@ public let DSLBitBucketServerJSON = """
         },
         {
           "author": {
-            "active": true,
-            "displayName": "DangerCI",
             "emailAddress": "foo@bar.com",
-            "id": 2,
-            "name": "danger",
-            "slug": "danger",
-            "type": "NORMAL"
+            "name": "danger"
           },
           "authorTimestamp": 1518863882000,
           "committer": {
-            "active": true,
-            "displayName": "DangerCI",
             "emailAddress": "foo@bar.com",
-            "id": 2,
             "name": "danger",
-            "slug": "danger",
-            "type": "NORMAL"
           },
           "committerTimestamp": 1518863882000,
           "displayId": "c62ada76533",
