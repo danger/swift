@@ -13,7 +13,8 @@
 
 ## Master
 
-- Reset markdowns on the resetDangerResults method [@f-meloni][]  - [#192](https://github.com/danger/swift/pull/191)
+- Support unregistered users on BitbucketServer [@f-meloni][]  - [#193](https://github.com/danger/swift/pull/193)
+- Reset markdowns on the resetDangerResults method [@f-meloni][]  - [#192](https://github.com/danger/swift/pull/192)
 
 ## 1.3.1
 
