@@ -16,7 +16,7 @@ public let git: Git
 ### `github`
 
 ```swift
-private(set) public var github: GitHub!
+public private(set) var github: GitHub!
 ```
 
 ### `bitbucketServer`
