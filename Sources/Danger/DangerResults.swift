@@ -18,7 +18,7 @@ public struct Violation: Encodable {
 /// Meta information for showing in the text info
 public struct Meta: Encodable {
     let runtimeName = "Danger Swift"
-    let runtimeHref = "https://danger.systems"
+    let runtimeHref = "https://danger.systems/swift"
 }
 
 // MARK: - Results
