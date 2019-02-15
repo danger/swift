@@ -4,18 +4,17 @@ public struct SwiftLintViolation: Decodable {
         case error = "Error"
     }
 
-    let ruleID: String
-    let reason: String
-    let line: Int
-    let character: Int?
-    let severity: Severity
-    let type: String
+    var ruleID: String
+    var reason: String
+    var line: Int
+    var character: Int?
+    var severity: Severity
+    var type: String
+    var file: String
 
     var messageText: String {
         return reason + " (`\(ruleID)`)"
     }
-
-    private(set) var file: String
 
     enum CodingKeys: String, CodingKey {
         case ruleID = "rule_id"
@@ -36,10 +35,6 @@ public struct SwiftLintViolation: Decodable {
     public func toMarkdown() -> String {
         let formattedFile = file.split(separator: "/").last! + ":\(line)"
         return "\(severity.rawValue) | \(formattedFile) | \(messageText) |"
-    }
-
-    mutating func update(file: String) {
-        self.file = file
     }
 }
 
