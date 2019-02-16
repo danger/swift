@@ -46,84 +46,113 @@ extension SwiftLint {
         failInlineAction: (String, String, Int) -> Void = fail,
         warnInlineAction: (String, String, Int) -> Void = warn
     ) -> [SwiftLintViolation] {
-        var violations: [SwiftLintViolation]
-
         var arguments = ["lint", "--quiet", "--reporter json"]
 
         if let configFile = configFile {
             arguments.append("--config \"\(configFile)\"")
         }
 
+        var violations: [SwiftLintViolation]
         if lintAllFiles {
             // Allow folks to lint all the potential files
-            if let directory = directory {
-                arguments.append("--path \"\(directory)\"")
-            }
-
-            let outputJSON = shellExecutor.execute(swiftlintPath, arguments: arguments)
-            violations = makeViolations(from: outputJSON, failAction: failAction)
+            violations = lintAll(directory: directory,
+                                 arguments: &arguments,
+                                 shellExecutor: shellExecutor,
+                                 swiftlintPath: swiftlintPath,
+                                 failAction: failAction)
         } else {
-            // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
-            var files = (danger.git.createdFiles + danger.git.modifiedFiles).filter { $0.fileType == .swift }
-            if let directory = directory {
-                files = files.filter { $0.hasPrefix(directory) }
-            }
+            violations = lintModifiedAndCreated(danger: danger,
+                                                directory: directory,
+                                                arguments: &arguments,
+                                                shellExecutor: shellExecutor,
+                                                swiftlintPath: swiftlintPath,
+                                                failAction: failAction)
+        }
 
-            // Only run Swiftlint, if there are files to lint
-            guard !files.isEmpty else {
-                return []
-            }
-
-            arguments.append("--use-script-input-files")
-            arguments.append("--force-exclude")
-
-            // swiftlint takes input files in the format:
-            // `SCRIPT_INPUT_FILE_COUNT=2 SCRIPT_INPUT_FILE_0="file1" SCRIPT_INPUT_FILE_1="file2" swiftlint lint`
-            var inputFiles = ["SCRIPT_INPUT_FILE_COUNT=\(files.count)"]
-            for (index, file) in files.enumerated() {
-                inputFiles.append("SCRIPT_INPUT_FILE_\(index)=\"\(file)\"")
-            }
-
-            let outputJSON = shellExecutor.execute(swiftlintPath,
-                                                   arguments: arguments,
-                                                   environmentVariables: inputFiles)
-            violations = makeViolations(from: outputJSON, failAction: failAction)
+        guard !violations.isEmpty else {
+            return []
         }
 
         let currentPath = currentPathProvider.currentPath
         violations = violations.map { violation in
-            let updatedPath = violation.file.deletingPrefix(currentPath).deletingPrefix("/")
             var violation = violation
+
+            let updatedPath = violation.file.deletingPrefix(currentPath).deletingPrefix("/")
             violation.file = updatedPath
+
             if strict {
                 violation.severity = .error
             }
             return violation
         }
 
-        if !violations.isEmpty {
-            if inline {
-                violations.forEach { violation in
-                    switch violation.severity {
-                    case .error:
-                        failInlineAction(violation.messageText, violation.file, violation.line)
-                    case .warning:
-                        warnInlineAction(violation.messageText, violation.file, violation.line)
-                    }
+        if inline {
+            violations.forEach { violation in
+                switch violation.severity {
+                case .error:
+                    failInlineAction(violation.messageText, violation.file, violation.line)
+                case .warning:
+                    warnInlineAction(violation.messageText, violation.file, violation.line)
                 }
-            } else {
-                var markdownMessage = """
-                ### SwiftLint found issues
-
-                | Severity | File | Reason |
-                | -------- | ---- | ------ |\n
-                """
-                markdownMessage += violations.map { $0.toMarkdown() }.joined(separator: "\n")
-                markdownAction(markdownMessage)
             }
+        } else {
+            var markdownMessage = """
+            ### SwiftLint found issues
+
+            | Severity | File | Reason |
+            | -------- | ---- | ------ |\n
+            """
+            markdownMessage += violations.map { $0.toMarkdown() }.joined(separator: "\n")
+            markdownAction(markdownMessage)
         }
 
         return violations
+    }
+
+    private static func lintAll(directory: String?,
+                                arguments: inout [String],
+                                shellExecutor: ShellExecutor,
+                                swiftlintPath: String,
+                                failAction: (String) -> Void) -> [SwiftLintViolation] {
+        if let directory = directory {
+            arguments.append("--path \"\(directory)\"")
+        }
+
+        let outputJSON = shellExecutor.execute(swiftlintPath, arguments: arguments)
+        return makeViolations(from: outputJSON, failAction: failAction)
+    }
+
+    private static func lintModifiedAndCreated(danger: DangerDSL,
+                                               directory: String?,
+                                               arguments: inout [String],
+                                               shellExecutor: ShellExecutor,
+                                               swiftlintPath: String,
+                                               failAction: (String) -> Void) -> [SwiftLintViolation] {
+        // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
+        var files = (danger.git.createdFiles + danger.git.modifiedFiles).filter { $0.fileType == .swift }
+        if let directory = directory {
+            files = files.filter { $0.hasPrefix(directory) }
+        }
+
+        // Only run Swiftlint, if there are files to lint
+        guard !files.isEmpty else {
+            return []
+        }
+
+        arguments.append("--use-script-input-files")
+        arguments.append("--force-exclude")
+
+        // swiftlint takes input files in the format:
+        // `SCRIPT_INPUT_FILE_COUNT=2 SCRIPT_INPUT_FILE_0="file1" SCRIPT_INPUT_FILE_1="file2" swiftlint lint`
+        var inputFiles = ["SCRIPT_INPUT_FILE_COUNT=\(files.count)"]
+        for (index, file) in files.enumerated() {
+            inputFiles.append("SCRIPT_INPUT_FILE_\(index)=\"\(file)\"")
+        }
+
+        let outputJSON = shellExecutor.execute(swiftlintPath,
+                                               arguments: arguments,
+                                               environmentVariables: inputFiles)
+        return makeViolations(from: outputJSON, failAction: failAction)
     }
 
     private static func makeViolations(from response: String, failAction: (String) -> Void) -> [SwiftLintViolation] {
