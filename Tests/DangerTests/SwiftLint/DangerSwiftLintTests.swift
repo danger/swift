@@ -60,6 +60,27 @@ class DangerSwiftLintTests: XCTestCase {
         XCTAssertEqual(fails.first?.2, 10)
     }
 
+    func testExecuteSwiftWithStructAndInlineMode() {
+        mockViolationJSON()
+        var warns = [(String, String, Int)]()
+        let warnAction: (String, String, Int) -> Void = { warns.append(($0, $1, $2)) }
+        var fails = [(String, String, Int)]()
+        let failAction: (String, String, Int) -> Void = { fails.append(($0, $1, $2)) }
+
+        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", inline: true, strict: true, currentPathProvider: fakePathProvider, failInlineAction: failAction, warnInlineAction: warnAction)
+
+        XCTAssertTrue(warns.isEmpty)
+        XCTAssertEqual(fails.count, 2)
+
+        XCTAssertEqual(fails[0].0, "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")
+        XCTAssertEqual(fails[0].1, "SomeFile.swift")
+        XCTAssertEqual(fails[0].2, 8)
+
+        XCTAssertEqual(fails[1].0, "Line should be 120 characters or less: currently 211 characters (`line_length`)")
+        XCTAssertEqual(fails[1].1, "AnotherFile.swift")
+        XCTAssertEqual(fails[1].2, 10)
+    }
+
     func testExecutesSwiftLintWithConfigWhenPassed() {
         let configFile = "/Path/to/config/.swiftlint.yml"
 
@@ -156,6 +177,16 @@ class DangerSwiftLintTests: XCTestCase {
         XCTAssertNotNil(markdownMessage)
         XCTAssertTrue(markdownMessage!.contains("SwiftLint found issues"))
         XCTAssertTrue(markdownMessage!.contains("Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")) // swiftlint:disable:this line_length
+    }
+
+    func testMarkdownReportingInStrictMode() {
+        mockViolationJSON()
+        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", strict: true, currentPathProvider: fakePathProvider, markdownAction: writeMarkdown)
+        XCTAssertNotNil(markdownMessage)
+
+        let lines = markdownMessage!.split(separator: "\n")
+        XCTAssertEqual(lines[3], "Error | SomeFile.swift:8 | Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`) |")
+        XCTAssertEqual(lines[4], "Error | AnotherFile.swift:10 | Line should be 120 characters or less: currently 211 characters (`line_length`) |")
     }
 
     func testQuotesPathArguments() {

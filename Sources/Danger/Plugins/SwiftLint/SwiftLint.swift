@@ -15,7 +15,7 @@ public struct SwiftLint {
 
     @discardableResult
     public static func lint(inline: Bool = false, directory: String? = nil,
-                            configFile: String? = nil, lintAllFiles: Bool = false,
+                            configFile: String? = nil, strict: Bool = false, lintAllFiles: Bool = false,
                             swiftlintPath: String? = nil) -> [SwiftLintViolation] {
         return lint(danger: danger,
                     shellExecutor: shellExecutor,
@@ -23,6 +23,7 @@ public struct SwiftLint {
                     inline: inline,
                     directory: directory,
                     configFile: configFile,
+                    strict: strict,
                     lintAllFiles: lintAllFiles)
     }
 }
@@ -37,6 +38,7 @@ extension SwiftLint {
         inline: Bool = false,
         directory: String? = nil,
         configFile: String? = nil,
+        strict: Bool = false,
         lintAllFiles: Bool = false,
         currentPathProvider: CurrentPathProvider = DefaultCurrentPathProvider(),
         markdownAction: (String) -> Void = markdown,
@@ -46,15 +48,18 @@ extension SwiftLint {
     ) -> [SwiftLintViolation] {
         var violations: [SwiftLintViolation]
 
+        var arguments = ["lint", "--quiet", "--reporter json"]
+
+        if let configFile = configFile {
+            arguments.append("--config \"\(configFile)\"")
+        }
+
         if lintAllFiles {
             // Allow folks to lint all the potential files
-            var arguments = ["lint", "--quiet", "--reporter json"]
             if let directory = directory {
                 arguments.append("--path \"\(directory)\"")
             }
-            if let configFile = configFile {
-                arguments.append("--config \"\(configFile)\"")
-            }
+
             let outputJSON = shellExecutor.execute(swiftlintPath, arguments: arguments)
             violations = makeViolations(from: outputJSON, failAction: failAction)
         } else {
@@ -69,10 +74,8 @@ extension SwiftLint {
                 return []
             }
 
-            var arguments = ["lint", "--quiet", "--use-script-input-files", "--force-exclude", "--reporter json"]
-            if let configFile = configFile {
-                arguments.append("--config \"\(configFile)\"")
-            }
+            arguments.append("--use-script-input-files")
+            arguments.append("--force-exclude")
 
             // swiftlint takes input files in the format:
             // `SCRIPT_INPUT_FILE_COUNT=2 SCRIPT_INPUT_FILE_0="file1" SCRIPT_INPUT_FILE_1="file2" swiftlint lint`
@@ -91,7 +94,10 @@ extension SwiftLint {
         violations = violations.map { violation in
             let updatedPath = violation.file.deletingPrefix(currentPath).deletingPrefix("/")
             var violation = violation
-            violation.update(file: updatedPath)
+            violation.file = updatedPath
+            if strict {
+                violation.severity = .error
+            }
             return violation
         }
 
