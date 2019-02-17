@@ -12,7 +12,7 @@ public struct SPMDanger {
         let regex = try? NSRegularExpression(pattern: regexPattern,
                                              options: .allowCommentsAndWhitespace)
         let firstMatch = regex?.firstMatch(in: packageContent,
-                                           options: .withTransparentBounds,
+                                           options: [],
                                            range: NSRange(location: 0, length: packageContent.count))
 
         if let depsLibNameRange = firstMatch?.range(at: 1),

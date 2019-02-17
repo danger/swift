@@ -18,6 +18,7 @@ extension File {
 // MARK: - FileType
 
 public enum FileType: String, Equatable {
+    // swiftlint:disable:next identifier_name
     case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
 }
 
@@ -39,16 +40,13 @@ extension FileType {
     }
 
     init?(from file: File) {
-        let allCasesDelimited = FileType.allCases.map { $0.extension }.joined(separator: "|")
+        let splittedPath = file.split(separator: ".")
 
-        guard
-            let pattern = try? NSRegularExpression(pattern: "\\.(\(allCasesDelimited))$"),
-            let match = pattern.firstMatchingString(in: file.name)
-        else {
+        guard let fileTypeString = splittedPath.last,
+            splittedPath.count > 1 else {
             return nil
         }
 
-        let rawValue = match.replacingOccurrences(of: ".", with: "")
-        self.init(rawValue: rawValue)
+        self.init(rawValue: String(fileTypeString))
     }
 }

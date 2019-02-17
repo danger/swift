@@ -3,8 +3,9 @@ import DangerFixtures
 import XCTest
 
 final class DangerDSLTests: XCTestCase {
-    override func setUp() {
+    override func tearDown() {
         resetDangerResults()
+        super.tearDown()
     }
 
     func testFileMapWorksCorrectly() throws {
@@ -16,8 +17,10 @@ final class DangerDSLTests: XCTestCase {
 
     func testDangerfileResults() throws {
         let danger = githubFixtureDSL
+        danger.message("Message")
         danger.warn("Warning")
         danger.fail("Fail")
+        XCTAssert(danger.messages.count == 1)
         XCTAssert(danger.warnings.count == 1)
         XCTAssert(danger.fails.count == 1)
     }

@@ -68,6 +68,7 @@ extension FileTests {
         ("test_fileType_forXCScheme", test_fileType_forXCScheme),
         ("test_fileType_forYAML", test_fileType_forYAML),
         ("test_fileType_forYML", test_fileType_forYML),
+        ("test_fileType_withMultipleDots", test_fileType_withMultipleDots),
     ]
 }
 
