@@ -56,14 +56,14 @@ extension SwiftLint {
         if lintAllFiles {
             // Allow folks to lint all the potential files
             violations = lintAll(directory: directory,
-                                 arguments: &arguments,
+                                 arguments: arguments,
                                  shellExecutor: shellExecutor,
                                  swiftlintPath: swiftlintPath,
                                  failAction: failAction)
         } else {
             violations = lintModifiedAndCreated(danger: danger,
                                                 directory: directory,
-                                                arguments: &arguments,
+                                                arguments: arguments,
                                                 shellExecutor: shellExecutor,
                                                 swiftlintPath: swiftlintPath,
                                                 failAction: failAction)
@@ -110,10 +110,12 @@ extension SwiftLint {
     }
 
     private static func lintAll(directory: String?,
-                                arguments: inout [String],
+                                arguments: [String],
                                 shellExecutor: ShellExecutor,
                                 swiftlintPath: String,
                                 failAction: (String) -> Void) -> [SwiftLintViolation] {
+        var arguments = arguments
+
         if let directory = directory {
             arguments.append("--path \"\(directory)\"")
         }
@@ -122,9 +124,10 @@ extension SwiftLint {
         return makeViolations(from: outputJSON, failAction: failAction)
     }
 
+    // swiftlint:disable function_parameter_count
     private static func lintModifiedAndCreated(danger: DangerDSL,
                                                directory: String?,
-                                               arguments: inout [String],
+                                               arguments: [String],
                                                shellExecutor: ShellExecutor,
                                                swiftlintPath: String,
                                                failAction: (String) -> Void) -> [SwiftLintViolation] {
@@ -139,6 +142,7 @@ extension SwiftLint {
             return []
         }
 
+        var arguments = arguments
         arguments.append("--use-script-input-files")
         arguments.append("--force-exclude")
 
