@@ -18,6 +18,7 @@ extension File {
 // MARK: - FileType
 
 public enum FileType: String, Equatable {
+    // swiftlint:disable:next identifier_name
     case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
 }
 
