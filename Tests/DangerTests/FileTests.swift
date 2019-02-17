@@ -121,4 +121,12 @@ final class FileTests: XCTestCase {
         XCTAssertEqual(file.fileType, expectedType)
         XCTAssertNil(unknownFile.fileType)
     }
+
+    func test_fileType_withMultipleDots() {
+        let file: File = "/Sources.Danger/Configuration.Danger/Configuration.swift"
+
+        let expectedType: FileType = .swift
+
+        XCTAssertEqual(file.fileType, expectedType)
+    }
 }
