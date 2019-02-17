@@ -13,6 +13,10 @@
 
 ## Master
 
+- Improve file type parsing [@f-meloni][]  - [#197](https://github.com/danger/swift/pull/197)
+- Refactor code to fix SwiftLint warnings [@ChaosCoder][] - [#196](https://github.com/danger/swift/pull/196)
+- Add ability to run swiftlint in strict mode [@FabioTacke][] - [#195](https://github.com/danger/swift/pull/195)
+
 ## 1.3.2
 
 - Support unregistered users on BitbucketServer [@f-meloni][]  - [#193](https://github.com/danger/swift/pull/193)
@@ -244,5 +248,7 @@ This release also includes:
 [@killectro]: https://github.com/Killectro
 [@thii]: https://github.com/thii
 [@absolute-heike]: https://github.com/absolute-heike
+[@ChaosCoder]: https://github.com/ChaosCoder
+[@FabioTacke]: https://github.com/FabioTacke
 [139]: https://github.com/danger/swift/issues/139
 [99]: https://github.com/danger/swift/issues/99
