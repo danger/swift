@@ -10,7 +10,8 @@ public final class DangerFileGenerator {
 
         importsRegex.enumerateMatches(in: content, options: [], range: NSRange(location: 0, length: content.count), using: { result, _, _ in
             // Adjust the result to have the correct range also after dangerContent is modified
-            guard let result = result?.adjustingRanges(offset: dangerContent.endIndex.encodedOffset - content.endIndex.encodedOffset) else { return }
+            guard let result = result?.adjustingRanges(offset:
+                dangerContent.endIndex.encodedOffset - content.endIndex.encodedOffset) else { return }
             let url = importsRegex.replacementString(for: result, in: dangerContent, offset: 0, template: "$1")
 
             guard let fileContent = try? String(contentsOfFile: url),
