@@ -22,6 +22,7 @@ final class DangerFileGeneratorTests: SnapshotTestCase {
         super.setUp()
         createdFiles = [generatedFilePath]
         generator = DangerFileGenerator()
+        record = false
     }
 
     override func tearDown() {
@@ -91,20 +92,20 @@ extension DangerFileGeneratorTests {
 
     private var file1Content: String {
         return """
-        file1Content
+        file1Content 👍🏻
         secondLine
         """
     }
 
     private var file2Content: String {
         return """
-        file2Content
+        file2Content ⚠️
         """
     }
 
     private var file3Content: String {
         return """
-        file3Content
+        file3Content 👩‍👩‍👦‍👦
         secondLine
         really really really really really really really really really really really really really really really really really really really really really really long text
         """
