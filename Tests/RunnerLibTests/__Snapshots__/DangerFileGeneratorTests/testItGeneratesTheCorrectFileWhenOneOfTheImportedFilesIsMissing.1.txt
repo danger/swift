@@ -1,7 +1,7 @@
-file2Content
+file2Content ⚠️
 
 // fileImport: GeneratedTestFile3.swift
-file1Content
+file1Content 👍🏻
 secondLine
 message("Text")
 message("Another Text")
