@@ -7,8 +7,11 @@ import ShellOut
 extension Script {
     @discardableResult
     public func setupForEdit(arguments: [String], importedFiles: [String], configPath: String) throws -> String {
-        importedFiles.forEach {
-            try! FileManager.default.copyItem(atPath: $0, toPath: sourcesImportPath(forImportPath: $0))
+        try importedFiles.forEach {
+            if !FileManager.default.fileExists(atPath: $0) {
+                FileManager.default.createFile(atPath: $0, contents: Data(), attributes: nil)
+            }
+            try FileManager.default.copyItem(atPath: $0, toPath: sourcesImportPath(forImportPath: $0))
         }
 
         // Generate xcodeproj with the passed config
@@ -43,7 +46,7 @@ extension Script {
 
     private func copyImports(_ imports: [String]) throws {
         try imports.forEach { importPath in
-            let data = try! File(path: sourcesImportPath(forImportPath: importPath)).read()
+            let data = try File(path: sourcesImportPath(forImportPath: importPath)).read()
             try File(path: importPath).write(data: data)
         }
     }
