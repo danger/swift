@@ -13,6 +13,7 @@
 
 ## Master
 
+- Create imported files if not present on edit command [@f-meloni][] - [#202](https://github.com/danger/swift/pull/202)
 - Import correctly the files when one of the files contains an emoji [@f-meloni][] - [#198](https://github.com/danger/swift/pull/198)
 - Improve file type parsing [@f-meloni][] - [#197](https://github.com/danger/swift/pull/197)
 - Refactor code to fix SwiftLint warnings [@ChaosCoder][] - [#196](https://github.com/danger/swift/pull/196)
