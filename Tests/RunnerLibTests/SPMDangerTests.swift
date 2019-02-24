@@ -44,9 +44,20 @@ final class SPMDangerTests: XCTestCase {
         XCTAssertTrue(executor.receivedCommand == "swift build --product DangerDeps")
     }
 
-    func testItReturnsTheCorrectDepsImport() {
+    func testItReturnsTheCorrectDepsImportWhenThereIsNoDangerLib() {
         try! ".library(name: \"DangerDepsEigen\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
-        XCTAssertEqual(SPMDanger(packagePath: testPackage)?.libImport, "-lDangerDepsEigen")
+        let fileManager = StubbedFileManager()
+        fileManager.stubbedFileExists = false
+
+        XCTAssertEqual(SPMDanger(packagePath: testPackage, fileManager: fileManager)?.libsImports, ["-lDangerDepsEigen"])
+    }
+
+    func testItReturnsTheCorrectDepsImportWhenThereIsTheDangerLib() {
+        try! ".library(name: \"DangerDepsEigen\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
+        let fileManager = StubbedFileManager()
+        fileManager.stubbedFileExists = true
+
+        XCTAssertEqual(SPMDanger(packagePath: testPackage, fileManager: fileManager)?.libsImports, ["-lDangerDepsEigen", "-lDanger"])
     }
 }
 

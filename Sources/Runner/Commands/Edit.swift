@@ -20,12 +20,12 @@ func editDanger(logger: Logger) throws {
     }
 
     let absoluteLibPath: String
-    let libName: String
+    let libsImport: [String]
 
     if let spmDanger = SPMDanger() {
         spmDanger.buildDependencies()
         absoluteLibPath = FileManager.default.currentDirectoryPath + "/" + SPMDanger.buildFolder
-        libName = spmDanger.depsLibName
+        libsImport = spmDanger.libsImports
     } else {
         guard let libPath = Runtime.getLibDangerPath() else {
             let potentialFolders = Runtime.potentialLibraryFolders
@@ -36,7 +36,7 @@ func editDanger(logger: Logger) throws {
         }
 
         absoluteLibPath = try Folder(path: libPath).path
-        libName = "Danger"
+        libsImport = ["-lDanger"]
     }
 
     guard let dangerfileContent = try? File(path: dangerfilePath).readAsString() else {
@@ -53,7 +53,7 @@ func editDanger(logger: Logger) throws {
 
     let configPath = NSTemporaryDirectory() + "config.xcconfig"
 
-    try createConfig(atPath: configPath, libPath: absoluteLibPath, libName: libName)
+    try createConfig(atPath: configPath, libPath: absoluteLibPath, libsImport: libsImport)
 
     try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
 

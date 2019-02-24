@@ -55,7 +55,8 @@ extension SPMDangerTests {
         ("testItBuildsTheDependencies", testItBuildsTheDependencies),
         ("testItReturnsFalseWhenThePackageHasNotTheDangerLib", testItReturnsFalseWhenThePackageHasNotTheDangerLib),
         ("testItReturnsFalseWhenThereIsNoPackage", testItReturnsFalseWhenThereIsNoPackage),
-        ("testItReturnsTheCorrectDepsImport", testItReturnsTheCorrectDepsImport),
+        ("testItReturnsTheCorrectDepsImportWhenThereIsNoDangerLib", testItReturnsTheCorrectDepsImportWhenThereIsNoDangerLib),
+        ("testItReturnsTheCorrectDepsImportWhenThereIsTheDangerLib", testItReturnsTheCorrectDepsImportWhenThereIsTheDangerLib),
         ("testItReturnsTrueWhenThePackageHasTheDangerLib", testItReturnsTrueWhenThePackageHasTheDangerLib),
     ]
 }

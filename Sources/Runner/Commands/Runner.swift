@@ -57,7 +57,7 @@ func runDanger(logger: Logger) throws {
         spmDanger.buildDependencies()
         libArgs += ["-L", SPMDanger.buildFolder]
         libArgs += ["-I", SPMDanger.buildFolder]
-        libArgs += [spmDanger.libImport]
+        libArgs += spmDanger.libsImports
     } else {
         guard let libDangerPath = Runtime.getLibDangerPath() else {
             let potentialFolders = Runtime.potentialLibraryFolders
