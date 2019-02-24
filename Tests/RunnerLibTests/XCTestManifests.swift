@@ -8,6 +8,12 @@ extension CliParserTests {
     ]
 }
 
+extension CreateConfigTests {
+    static let __allTests = [
+        ("testItCreatesTheCorrectConfig", testItCreatesTheCorrectConfig),
+    ]
+}
+
 extension DangerCommandTests {
     static let __allTests = [
         ("testItReturnsTheCorrectCommandsListText", testItReturnsTheCorrectCommandsListText),
@@ -55,7 +61,9 @@ extension SPMDangerTests {
         ("testItBuildsTheDependencies", testItBuildsTheDependencies),
         ("testItReturnsFalseWhenThePackageHasNotTheDangerLib", testItReturnsFalseWhenThePackageHasNotTheDangerLib),
         ("testItReturnsFalseWhenThereIsNoPackage", testItReturnsFalseWhenThereIsNoPackage),
-        ("testItReturnsTheCorrectDepsImport", testItReturnsTheCorrectDepsImport),
+        ("testItReturnsTheCorrectSwiftcDepsImport", testItReturnsTheCorrectSwiftcDepsImport),
+        ("testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib", testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib),
+        ("testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsTheDangerLib", testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsTheDangerLib),
         ("testItReturnsTrueWhenThePackageHasTheDangerLib", testItReturnsTrueWhenThePackageHasTheDangerLib),
     ]
 }
@@ -64,6 +72,7 @@ extension SPMDangerTests {
     public func __allTests() -> [XCTestCaseEntry] {
         return [
             testCase(CliParserTests.__allTests),
+            testCase(CreateConfigTests.__allTests),
             testCase(DangerCommandTests.__allTests),
             testCase(DangerFileGeneratorTests.__allTests),
             testCase(DangerJSVersionFinderTests.__allTests),

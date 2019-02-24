@@ -1,9 +1,8 @@
-import Foundation
-import RunnerLib
-
 import Files
+import Foundation
 import Logger
 import MarathonCore
+import RunnerLib
 
 func editDanger(logger: Logger) throws {
     let dangerfilePath: String
@@ -20,12 +19,12 @@ func editDanger(logger: Logger) throws {
     }
 
     let absoluteLibPath: String
-    let libName: String
+    let libsImport: [String]
 
     if let spmDanger = SPMDanger() {
         spmDanger.buildDependencies()
         absoluteLibPath = FileManager.default.currentDirectoryPath + "/" + SPMDanger.buildFolder
-        libName = spmDanger.depsLibName
+        libsImport = spmDanger.xcodeImportFlags
     } else {
         guard let libPath = Runtime.getLibDangerPath() else {
             let potentialFolders = Runtime.potentialLibraryFolders
@@ -36,7 +35,7 @@ func editDanger(logger: Logger) throws {
         }
 
         absoluteLibPath = try Folder(path: libPath).path
-        libName = "Danger"
+        libsImport = ["-l Danger"]
     }
 
     guard let dangerfileContent = try? File(path: dangerfilePath).readAsString() else {
@@ -53,7 +52,7 @@ func editDanger(logger: Logger) throws {
 
     let configPath = NSTemporaryDirectory() + "config.xcconfig"
 
-    try createConfig(atPath: configPath, libPath: absoluteLibPath, libName: libName)
+    try createConfig(atPath: configPath, libPath: absoluteLibPath, libsImport: libsImport)
 
     try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
 

@@ -9,7 +9,7 @@ extension Script {
     public func setupForEdit(arguments: [String], importedFiles: [String], configPath: String) throws -> String {
         try importedFiles.forEach {
             if !FileManager.default.fileExists(atPath: $0) {
-                FileManager.default.createFile(atPath: $0, contents: Data(), attributes: nil)
+                _ = FileManager.default.createFile(atPath: $0, contents: Data(), attributes: nil)
             }
             try FileManager.default.copyItem(atPath: $0, toPath: sourcesImportPath(forImportPath: $0))
         }

@@ -17,7 +17,7 @@ public struct DangerUtils {
     public func readFile(_ file: File) -> String {
         // Allows tests to map out their filesystem
         // via a dictionary
-        if (fileMap[file]) != nil {
+        if fileMap[file] != nil {
             return fileMap[file]!
         }
 
@@ -45,6 +45,7 @@ public struct DangerUtils {
 
         let lines = readFile(file).components(separatedBy: .newlines)
 
+        // swiftlint:disable:next identifier_name
         for i in 0 ..< lines.count {
             let line = lines[i]
 
