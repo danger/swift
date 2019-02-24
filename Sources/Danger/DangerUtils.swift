@@ -45,6 +45,7 @@ public struct DangerUtils {
 
         let lines = readFile(file).components(separatedBy: .newlines)
 
+        // swiftlint:disable:next identifier_name
         for i in 0 ..< lines.count {
             let line = lines[i]
 
