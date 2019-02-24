@@ -17,7 +17,7 @@ public struct DangerUtils {
     public func readFile(_ file: File) -> String {
         // Allows tests to map out their filesystem
         // via a dictionary
-        if (fileMap[file]) != nil {
+        if fileMap[file] != nil {
             return fileMap[file]!
         }
 

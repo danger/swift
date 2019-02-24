@@ -1,9 +1,8 @@
-import Foundation
-import RunnerLib
-
 import Files
+import Foundation
 import Logger
 import MarathonCore
+import RunnerLib
 
 func editDanger(logger: Logger) throws {
     let dangerfilePath: String

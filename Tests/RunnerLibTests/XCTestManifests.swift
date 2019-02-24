@@ -8,6 +8,12 @@ extension CliParserTests {
     ]
 }
 
+extension CreateConfigTests {
+    static let __allTests = [
+        ("testItCreatesTheCorrectConfig", testItCreatesTheCorrectConfig),
+    ]
+}
+
 extension DangerCommandTests {
     static let __allTests = [
         ("testItReturnsTheCorrectCommandsListText", testItReturnsTheCorrectCommandsListText),
@@ -65,6 +71,7 @@ extension SPMDangerTests {
     public func __allTests() -> [XCTestCaseEntry] {
         return [
             testCase(CliParserTests.__allTests),
+            testCase(CreateConfigTests.__allTests),
             testCase(DangerCommandTests.__allTests),
             testCase(DangerFileGeneratorTests.__allTests),
             testCase(DangerJSVersionFinderTests.__allTests),
