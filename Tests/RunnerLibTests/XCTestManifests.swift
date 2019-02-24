@@ -61,8 +61,9 @@ extension SPMDangerTests {
         ("testItBuildsTheDependencies", testItBuildsTheDependencies),
         ("testItReturnsFalseWhenThePackageHasNotTheDangerLib", testItReturnsFalseWhenThePackageHasNotTheDangerLib),
         ("testItReturnsFalseWhenThereIsNoPackage", testItReturnsFalseWhenThereIsNoPackage),
-        ("testItReturnsTheCorrectDepsImportWhenThereIsNoDangerLib", testItReturnsTheCorrectDepsImportWhenThereIsNoDangerLib),
-        ("testItReturnsTheCorrectDepsImportWhenThereIsTheDangerLib", testItReturnsTheCorrectDepsImportWhenThereIsTheDangerLib),
+        ("testItReturnsTheCorrectSwiftcDepsImport", testItReturnsTheCorrectSwiftcDepsImport),
+        ("testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib", testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib),
+        ("testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsTheDangerLib", testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsTheDangerLib),
         ("testItReturnsTrueWhenThePackageHasTheDangerLib", testItReturnsTrueWhenThePackageHasTheDangerLib),
     ]
 }

@@ -44,20 +44,25 @@ final class SPMDangerTests: XCTestCase {
         XCTAssertTrue(executor.receivedCommand == "swift build --product DangerDeps")
     }
 
-    func testItReturnsTheCorrectDepsImportWhenThereIsNoDangerLib() {
+    func testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib() {
         try! ".library(name: \"DangerDepsEigen\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
         let fileManager = StubbedFileManager()
         fileManager.stubbedFileExists = false
 
-        XCTAssertEqual(SPMDanger(packagePath: testPackage, fileManager: fileManager)?.libsImports, ["-lDangerDepsEigen"])
+        XCTAssertEqual(SPMDanger(packagePath: testPackage, fileManager: fileManager)?.xcodeImportFlags, ["-l DangerDepsEigen"])
     }
 
-    func testItReturnsTheCorrectDepsImportWhenThereIsTheDangerLib() {
+    func testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsTheDangerLib() {
         try! ".library(name: \"DangerDepsEigen\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
         let fileManager = StubbedFileManager()
         fileManager.stubbedFileExists = true
 
-        XCTAssertEqual(SPMDanger(packagePath: testPackage, fileManager: fileManager)?.libsImports, ["-lDangerDepsEigen", "-lDanger"])
+        XCTAssertEqual(SPMDanger(packagePath: testPackage, fileManager: fileManager)?.xcodeImportFlags, ["-l DangerDepsEigen", "-l Danger"])
+    }
+
+    func testItReturnsTheCorrectSwiftcDepsImport() {
+        try! ".library(name: \"DangerDepsEigen\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
+        XCTAssertEqual(SPMDanger(packagePath: testPackage)?.swiftcLibImport, "-lDangerDepsEigen")
     }
 }
 

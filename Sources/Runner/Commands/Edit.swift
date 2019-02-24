@@ -24,7 +24,7 @@ func editDanger(logger: Logger) throws {
     if let spmDanger = SPMDanger() {
         spmDanger.buildDependencies()
         absoluteLibPath = FileManager.default.currentDirectoryPath + "/" + SPMDanger.buildFolder
-        libsImport = spmDanger.libsImports
+        libsImport = spmDanger.xcodeImportFlags
     } else {
         guard let libPath = Runtime.getLibDangerPath() else {
             let potentialFolders = Runtime.potentialLibraryFolders
@@ -35,7 +35,7 @@ func editDanger(logger: Logger) throws {
         }
 
         absoluteLibPath = try Folder(path: libPath).path
-        libsImport = ["-lDanger"]
+        libsImport = ["-l Danger"]
     }
 
     guard let dangerfileContent = try? File(path: dangerfilePath).readAsString() else {

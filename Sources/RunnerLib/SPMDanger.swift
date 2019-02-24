@@ -30,14 +30,18 @@ public struct SPMDanger {
         _ = try? executor.shellOut(command: "swift build --product \(depsLibName)")
     }
 
-    public var libsImports: [String] {
-        let libsImport = ["-l\(depsLibName)"]
+    public var swiftcLibImport: String {
+        return "-l\(depsLibName)"
+    }
+
+    public var xcodeImportFlags: [String] {
+        let libsImport = ["-l \(depsLibName)"]
 
         // The danger lib is not always generated, this mainly happens on the danger repo,
         // where the DangerDeps library and Danger.swiftmodule are enough
         if fileManager.fileExists(atPath: SPMDanger.buildFolder + "/libDanger.dylib") ||
             fileManager.fileExists(atPath: SPMDanger.buildFolder + "/libDanger.so") {
-            return libsImport + ["-lDanger"]
+            return libsImport + ["-l Danger"]
         } else {
             return libsImport
         }
