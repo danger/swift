@@ -1,4 +1,3 @@
-import Files
 import Foundation
 
 // Creates an xcconfig file that can be used to correctly link danger library to the xcodeproj
