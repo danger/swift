@@ -10,11 +10,11 @@ public struct SwiftLint
 > it usable out of the box.
 
 ## Methods
-### `lint(inline:directory:configFile:lintAllFiles:swiftlintPath:)`
+### `lint(inline:directory:configFile:strict:lintAllFiles:swiftlintPath:)`
 
 ```swift
 public static func lint(inline: Bool = false, directory: String? = nil,
-                        configFile: String? = nil, lintAllFiles: Bool = false,
+                        configFile: String? = nil, strict: Bool = false, lintAllFiles: Bool = false,
                         swiftlintPath: String? = nil) -> [SwiftLintViolation]
 ```
 

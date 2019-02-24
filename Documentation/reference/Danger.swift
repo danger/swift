@@ -855,7 +855,7 @@ public struct SwiftLint {
     /// When the swiftlintPath is not specified,
     /// it uses by default swift run swiftlint if the Package.swift contains swiftlint as dependency,
     /// otherwise calls directly the swiftlint command
-    public static func lint(inline: Bool = default, directory: String? = default, configFile: String? = default, lintAllFiles: Bool = default, swiftlintPath: String? = default) -> [Danger.SwiftLintViolation]
+    public static func lint(inline: Bool = default, directory: String? = default, configFile: String? = default, strict: Bool = default, lintAllFiles: Bool = default, swiftlintPath: String? = default) -> [Danger.SwiftLintViolation]
 }
 
 public struct SwiftLintViolation: Decodable {
