@@ -36,7 +36,7 @@ import PackageDescription
 let package = Package(
     name: "[Your App]",
     dependencies: [
-      .package(url: "https://github.com/danger/swift.git", from: "0.8.0")
+      .package(url: "https://github.com/danger/swift.git", from: "1.4.0")
     ],
     targets: [
         // This is just an arbitrary Swift file in our app, that has
