@@ -12,6 +12,7 @@
 -->
 
 ## Master
+- Support custom danger-js path [@f-meloni][] - [#206](https://github.com/danger/swift/pull/206)
 
 ## 1.4.0
 - Make danger edit compile in the projects that are not the Danger main project [@f-meloni][] - [#204](https://github.com/danger/swift/pull/204)
