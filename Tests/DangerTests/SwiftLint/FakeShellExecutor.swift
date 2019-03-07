@@ -1,12 +1,12 @@
 @testable import Danger
 
 class FakeShellExecutor: ShellExecutor {
-    typealias Invocation = (command: String, arguments: [String], environmentVariables: [String])
+    typealias Invocation = (command: String, arguments: [String], environmentVariables: [String: String])
 
     var invocations = [Invocation]() /// All of the invocations received by this instance.
     var output = "[]" /// This is returned by `execute` as the process' standard output. We default to an empty JSON array.
 
-    override func execute(_ command: String, arguments: [String], environmentVariables: [String]) -> String {
+    override func execute(_ command: String, arguments: [String], environmentVariables: [String: String]) -> String {
         invocations.append((command: command, arguments: arguments, environmentVariables: environmentVariables))
         return output
     }

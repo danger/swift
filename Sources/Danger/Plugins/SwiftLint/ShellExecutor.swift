@@ -8,9 +8,8 @@ public enum SpawnError: Error {
 }
 
 internal class ShellExecutor {
-    func execute(_ command: String, arguments: [String] = [], environmentVariables: [String] = []) -> String {
-        let script = [environmentVariables.joined(separator: " "),
-                      command,
+    func execute(_ command: String, arguments: [String] = [], environmentVariables: [String: String] = [:]) -> String {
+        let script = [command,
                       arguments.joined(separator: " ")].filter { !$0.isEmpty }.joined(separator: " ")
         print("Executing \(script)")
 
@@ -18,6 +17,7 @@ internal class ShellExecutor {
         let task = Process()
         task.launchPath = env["SHELL"]
         task.arguments = ["-l", "-c", script]
+        task.environment = environmentVariables
         task.currentDirectoryPath = FileManager.default.currentDirectoryPath
 
         let pipe = Pipe()

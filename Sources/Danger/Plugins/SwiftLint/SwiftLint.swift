@@ -146,11 +146,10 @@ extension SwiftLint {
         arguments.append("--use-script-input-files")
         arguments.append("--force-exclude")
 
-        // swiftlint takes input files in the format:
-        // `SCRIPT_INPUT_FILE_COUNT=2 SCRIPT_INPUT_FILE_0="file1" SCRIPT_INPUT_FILE_1="file2" swiftlint lint`
-        var inputFiles = ["SCRIPT_INPUT_FILE_COUNT=\(files.count)"]
+        // swiftlint takes input files via environment variables
+        var inputFiles = ["SCRIPT_INPUT_FILE_COUNT": "\(files.count)"]
         for (index, file) in files.enumerated() {
-            inputFiles.append("SCRIPT_INPUT_FILE_\(index)=\"\(file)\"")
+            inputFiles["SCRIPT_INPUT_FILE_\(index)"] = "\"\(file)\""
         }
 
         let outputJSON = shellExecutor.execute(swiftlintPath,
