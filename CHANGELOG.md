@@ -12,6 +12,8 @@
 -->
 
 ## Master
+
+## 1.4.1
 - Support custom danger-js path [@f-meloni][] - [#206](https://github.com/danger/swift/pull/206)
 
 ## 1.4.0
