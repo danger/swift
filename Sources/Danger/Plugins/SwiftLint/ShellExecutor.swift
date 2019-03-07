@@ -1,5 +1,6 @@
 import Foundation
 
+// swiftlint:disable:next todo
 // TODO: Get a logger into here this is real tricky
 // because of the decoding from JSON nature of DangerDSL
 
@@ -62,6 +63,9 @@ internal class ShellExecutor {
         let stderrData = stdout.fileHandleForReading.readDataToEndOfFile()
         let stderrString = String(data: stderrData, encoding: String.Encoding.utf8)!
 
-        throw SpawnError.commandFailed(exitCode: task.terminationStatus, stdout: stdoutString, stderr: stderrString, task: task)
+        throw SpawnError.commandFailed(exitCode: task.terminationStatus,
+                                       stdout: stdoutString,
+                                       stderr: stderrString,
+                                       task: task)
     }
 }
