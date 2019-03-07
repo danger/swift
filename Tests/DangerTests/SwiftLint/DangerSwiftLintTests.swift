@@ -107,7 +107,7 @@ class DangerSwiftLintTests: XCTestCase {
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables, ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "\"Tests/SomeFile.swift\""])
+        XCTAssertEqual(swiftlintCommands.first!.environmentVariables, ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Tests/SomeFile.swift"])
     }
 
     func testExecutesSwiftLintWhenLintingAllFiles() {
@@ -203,7 +203,7 @@ class DangerSwiftLintTests: XCTestCase {
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
 
         XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables["SCRIPT_INPUT_FILE_2"], "\"Test Dir/SomeThirdFile.swift\"")
+        XCTAssertEqual(swiftlintCommands.first!.environmentVariables["SCRIPT_INPUT_FILE_2"], "Test Dir/SomeThirdFile.swift")
     }
 
     func mockViolationJSON() {

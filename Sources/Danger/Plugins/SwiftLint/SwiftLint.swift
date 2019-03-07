@@ -149,7 +149,7 @@ extension SwiftLint {
         // swiftlint takes input files via environment variables
         var inputFiles = ["SCRIPT_INPUT_FILE_COUNT": "\(files.count)"]
         for (index, file) in files.enumerated() {
-            inputFiles["SCRIPT_INPUT_FILE_\(index)"] = "\"\(file)\""
+            inputFiles["SCRIPT_INPUT_FILE_\(index)"] = file
         }
 
         let outputJSON = shellExecutor.execute(swiftlintPath,

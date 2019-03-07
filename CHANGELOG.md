@@ -15,6 +15,7 @@
 
 ## 1.4.1
 - Support custom danger-js path [@f-meloni][] - [#206](https://github.com/danger/swift/pull/206)
+- Fix running SwiftLint plugin when system shell is fish [@JosephDuffy][] - [#207](https://github.com/danger/swift/pull/207)
 
 ## 1.4.0
 - Make danger edit compile in the projects that are not the Danger main project [@f-meloni][] - [#204](https://github.com/danger/swift/pull/204)
@@ -257,5 +258,6 @@ This release also includes:
 [@absolute-heike]: https://github.com/absolute-heike
 [@ChaosCoder]: https://github.com/ChaosCoder
 [@FabioTacke]: https://github.com/FabioTacke
+[@JosephDuffy]: https://github.com/JosephDuffy
 [139]: https://github.com/danger/swift/issues/139
 [99]: https://github.com/danger/swift/issues/99
