@@ -12,7 +12,7 @@ internal class ShellExecutor {
     func execute(_ command: String, arguments: [String] = [], environmentVariables: [String: String] = [:]) -> String {
         let script = [command,
                       arguments.joined(separator: " ")].filter { !$0.isEmpty }.joined(separator: " ")
-        print("Executing \(script)")
+        print("Executing `\(script)` with environment variables \(environmentVariables)")
 
         var env = ProcessInfo.processInfo.environment
         let task = Process()
