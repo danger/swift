@@ -47,7 +47,6 @@ matrix:
         - sudo chmod -R a+rwx /usr/local/
         - make install
         - DEBUG="*" danger-swift ci
-        - cat /tmp/danger-response.json
 
     - os: osx
       name: Danger with SPM
@@ -70,4 +69,3 @@ matrix:
         - swiftenv global 4.2
       script:
         - swift run danger-swift ci
-        - cat /tmp/danger-response.json
