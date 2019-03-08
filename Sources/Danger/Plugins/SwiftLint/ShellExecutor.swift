@@ -1,6 +1,5 @@
 import Foundation
 
-// swiftlint:disable:next todo
 // TODO: Get a logger into here this is real tricky
 // because of the decoding from JSON nature of DangerDSL
 
