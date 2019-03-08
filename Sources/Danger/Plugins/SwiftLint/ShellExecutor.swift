@@ -18,7 +18,7 @@ internal class ShellExecutor {
         let task = Process()
         task.launchPath = env["SHELL"]
         task.arguments = ["-l", "-c", script]
-        task.environment = environmentVariables
+        task.environment = mergeEnvs(localEnv: environmentVariables, processEnv: env)
         task.currentDirectoryPath = FileManager.default.currentDirectoryPath
 
         let pipe = Pipe()
@@ -67,5 +67,11 @@ internal class ShellExecutor {
                                        stdout: stdoutString,
                                        stderr: stderrString,
                                        task: task)
+    }
+
+    private func mergeEnvs(localEnv: [String: String], processEnv: [String: String]) -> [String: String] {
+        return localEnv.merging(processEnv, uniquingKeysWith: { (_, envString) -> String in
+            envString
+        })
     }
 }
