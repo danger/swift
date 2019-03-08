@@ -107,7 +107,7 @@ class DangerSwiftLintTests: XCTestCase {
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables, ["SCRIPT_INPUT_FILE_COUNT=1", "SCRIPT_INPUT_FILE_0=\"Tests/SomeFile.swift\""])
+        XCTAssertEqual(swiftlintCommands.first!.environmentVariables, ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Tests/SomeFile.swift"])
     }
 
     func testExecutesSwiftLintWhenLintingAllFiles() {
@@ -141,7 +141,7 @@ class DangerSwiftLintTests: XCTestCase {
         let swiftlintCommand = executor.invocations.filter { $0.command == "swiftlint" }.first
         XCTAssertNotNil(swiftlintCommand)
         XCTAssertEqual(swiftlintCommand!.environmentVariables.count, 0)
-        XCTAssertFalse(swiftlintCommand!.environmentVariables.contains { $0.contains("Tests/SomeFile.swift") })
+        XCTAssertFalse(swiftlintCommand!.environmentVariables.values.contains { $0.contains("Tests/SomeFile.swift") })
         XCTAssertTrue(swiftlintCommand!.arguments.contains("--path \"Tests\""))
     }
 
@@ -149,7 +149,7 @@ class DangerSwiftLintTests: XCTestCase {
         _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", currentPathProvider: fakePathProvider)
 
         let quoteCharacterSet = CharacterSet(charactersIn: "\"")
-        let filesExtensions = Set(executor.invocations.first!.environmentVariables.dropFirst().compactMap { $0.split(separator: ".").last?.trimmingCharacters(in: quoteCharacterSet) })
+        let filesExtensions = Set(executor.invocations.first!.environmentVariables.filter { $0.key != "SCRIPT_INPUT_FILE_COUNT" }.values.compactMap { $0.split(separator: ".").last?.trimmingCharacters(in: quoteCharacterSet) })
         XCTAssertEqual(filesExtensions, ["swift"])
     }
 
@@ -203,7 +203,7 @@ class DangerSwiftLintTests: XCTestCase {
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
 
         XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertTrue(swiftlintCommands.first!.environmentVariables.contains("SCRIPT_INPUT_FILE_2=\"Test Dir/SomeThirdFile.swift\""))
+        XCTAssertEqual(swiftlintCommands.first!.environmentVariables["SCRIPT_INPUT_FILE_2"], "Test Dir/SomeThirdFile.swift")
     }
 
     func mockViolationJSON() {

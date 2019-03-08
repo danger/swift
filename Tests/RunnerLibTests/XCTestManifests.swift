@@ -42,6 +42,13 @@ extension DangerfilePathFinderTests {
     ]
 }
 
+extension GetDangerJSPathTests {
+    static let __allTests = [
+        ("testItSearchesForDangerJSIfTheDangerJSPathOptionIsNotPresent", testItSearchesForDangerJSIfTheDangerJSPathOptionIsNotPresent),
+        ("testItUsesTheDangerJSPathOptionIfPresent", testItUsesTheDangerJSPathOptionIfPresent),
+    ]
+}
+
 extension HelpMessagePresenterTests {
     static let __allTests = [
         ("testIsShowsTheCommandListWhenThereIsNoCommand", testIsShowsTheCommandListWhenThereIsNoCommand),
@@ -77,6 +84,7 @@ extension SPMDangerTests {
             testCase(DangerFileGeneratorTests.__allTests),
             testCase(DangerJSVersionFinderTests.__allTests),
             testCase(DangerfilePathFinderTests.__allTests),
+            testCase(GetDangerJSPathTests.__allTests),
             testCase(HelpMessagePresenterTests.__allTests),
             testCase(ImportsFinderTests.__allTests),
             testCase(SPMDangerTests.__allTests),
