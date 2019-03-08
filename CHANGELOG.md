@@ -14,6 +14,8 @@
 ## Master
 
 ## 1.4.1
+
+## 1.4.1
 - Support custom danger-js path [@f-meloni][] - [#206](https://github.com/danger/swift/pull/206)
 - Fix running SwiftLint plugin when system shell is fish [@JosephDuffy][] - [#207](https://github.com/danger/swift/pull/207)
 
