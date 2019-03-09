@@ -1,6 +1,12 @@
 #!/bin/bash
 # Clone tap repo
 
+GIT_ORIGIN_NAME=`git remote get-url origin`
+if [[ $GIT_ORIGIN_NAME != *"danger/"* ]]; then
+  echo "Not creating homebrew tap because the git remote 'origin' is not in the danger organisation"
+  exit
+fi
+
 TOOL_NAME=danger-swift
 
 HOMEBREW_TAP_TMPDIR=$(mktemp -d)
