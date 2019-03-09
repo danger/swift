@@ -158,9 +158,10 @@ danger-swift ci
 
 With Docker support ready for GitHub Actions.
 
-#### Compiled danger-js copy
+#### Local compiled danger-js
 
 To use a local compiled copy of danger-js use the `danger-js-path` argument:
+
 ```
 danger-swift command --danger-js-path path/to/danger-js
 ```
