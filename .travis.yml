@@ -17,7 +17,7 @@ matrix:
         - make install
       script:
         - swift test
-        - .build/x86_64-apple-macosx10.10/debug/danger-swift ci
+        - danger-swift ci
 
     - os: osx
       name: Swift 5.0
@@ -28,7 +28,7 @@ matrix:
         - make install
       script:
         - swift test
-        - .build/x86_64-apple-macosx10.10/debug/danger-swift ci
+        - danger-swift ci
 
     - os: osx
       osx_image: xcode10
