@@ -13,6 +13,8 @@
 
 ## Master
 
+- Support swift 5.0 on OSX [@f-meloni][] - [#210](https://github.com/danger/swift/pull/210)
+
 ## 1.5.0
 - Support custom danger-js path [@f-meloni][] - [#206](https://github.com/danger/swift/pull/206)
 - Fix running SwiftLint plugin when system shell is fish [@JosephDuffy][] - [#207](https://github.com/danger/swift/pull/207)
