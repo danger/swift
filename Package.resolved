@@ -15,8 +15,8 @@
         "repositoryURL": "https://github.com/thoughtbot/Curry.git",
         "state": {
           "branch": null,
-          "revision": "b6bf27ec9d711f607a8c7da9ca69ee9eaa201a22",
-          "version": "4.0.1"
+          "revision": "4331dd50bc1db007db664a23f32e6f3df93d4e1a",
+          "version": "4.0.2"
         }
       },
       {
@@ -195,8 +195,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
           "branch": null,
-          "revision": "8e0f9569415605082d0b6306f0b3dbde4facb74d",
-          "version": "0.39.3"
+          "revision": "543df82383ebfae4696c70809ae36ff3df63e9c6",
+          "version": "0.39.5"
         }
       },
       {
@@ -204,8 +204,8 @@
         "repositoryURL": "https://github.com/Realm/SwiftLint",
         "state": {
           "branch": null,
-          "revision": "b2d428a4e24abd4f7cfeb0cd610b1656fb48c4a9",
-          "version": "0.30.1"
+          "revision": "26c0048cf4567f0e96f97e2c567ce1c05209e476",
+          "version": "0.31.0"
         }
       },
       {
@@ -231,8 +231,8 @@
         "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
         "state": {
           "branch": null,
-          "revision": "9ba116841126f6c63435beef21a4cd247c32d2e7",
-          "version": "4.7.6"
+          "revision": "0d6bb315528888edde0dafe93564f074669c44e9",
+          "version": "4.8.0"
         }
       },
       {

@@ -17,12 +17,18 @@ matrix:
         - make install
       script:
         - swift test
-        # - DEBUG="*" danger process .build/x86_64-apple-macosx10.10/debug/danger-swift
-        # - DEBUG="*" danger ci --process .build/x86_64-apple-macosx10.10/debug/danger-swift
-        # - sudo chmod -R a+rwx /usr/local/Cellar/
-        # - DEBUG="*" danger-swift ci
-        # - DEBUG="*" .build/x86_64-apple-macosx10.10/debug/danger-swift ci
-        - .build/x86_64-apple-macosx10.10/debug/danger-swift ci
+        - danger-swift ci
+
+    - os: osx
+      name: Swift 5.0
+      osx_image: xcode10.2
+      install:
+        - node -v
+        - npm install -g danger
+        - make install
+      script:
+        - swift test
+        - danger-swift ci
 
     - os: osx
       osx_image: xcode10
