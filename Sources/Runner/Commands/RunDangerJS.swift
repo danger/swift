@@ -32,7 +32,7 @@ func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger
             return nil
         }
 
-        if arg.contains("danger-swift"), arg == command.rawValue {
+        if arg.contains("danger-swift") || arg == command.rawValue {
             return nil
         }
 
