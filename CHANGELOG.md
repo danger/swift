@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix danger-swift parameters filter [@f-meloni][] - [#216](https://github.com/danger/swift/pull/216)
+
 ## 1.5.1
 
 - Support danger swift options and don't pass them to danger ci [@f-meloni][] - [#215](https://github.com/danger/swift/pull/215)
