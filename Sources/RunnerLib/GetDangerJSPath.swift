@@ -3,7 +3,7 @@ import Logger
 import ShellOut
 
 public func getDangerCommandPath(logger: Logger, args: [String] = CommandLine.arguments, shellOutExecutor: ShellOutExecuting = ShellOutExecutor()) throws -> String {
-    if let dangerJSPathOptionIndex = args.firstIndex(of: "--danger-js-path"),
+    if let dangerJSPathOptionIndex = args.firstIndex(of: DangerSwiftOptions.dangerJSPath.rawValue),
         dangerJSPathOptionIndex + 1 < args.count {
         return args[dangerJSPathOptionIndex + 1]
     } else {

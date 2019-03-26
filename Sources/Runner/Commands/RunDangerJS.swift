@@ -18,8 +18,19 @@ func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger
     proc.environment = ProcessInfo.processInfo.environment
     proc.launchPath = dangerJS
 
-    let unusedArgs = CommandLine.arguments.filter { arg in
-        !arg.contains("danger-swift") && arg != command.rawValue
+    let dangerOptionsIndexes = DangerSwiftOptions.allCases
+        .compactMap { ($0, CommandLine.arguments.firstIndex(of: $0.rawValue)) }
+
+    let unusedArgs = CommandLine.arguments.enumerated().compactMap { index, arg -> String? in
+        if dangerOptionsIndexes.contains(where: { index == $0.1 || ($0.0.hasParameter && index + 1 == $0.1) }) {
+            return nil
+        }
+
+        if arg.contains("danger-swift"), arg == command.rawValue {
+            return nil
+        }
+
+        return arg
     }
 
     var dangerSwiftCommand = "danger-swift"
