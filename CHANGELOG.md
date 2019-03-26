@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.5.2
+
 - Fix danger-swift parameters filter [@f-meloni][] - [#216](https://github.com/danger/swift/pull/216)
 
 ## 1.5.1

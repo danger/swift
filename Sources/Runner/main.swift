@@ -3,7 +3,7 @@ import Logger
 import RunnerLib
 
 /// Version for showing in verbose mode
-let DangerVersion = "1.5.1" // swiftlint:disable:this identifier_name
+let DangerVersion = "1.5.2" // swiftlint:disable:this identifier_name
 let MinimumDangerJSVersion = "6.1.6" // swiftlint:disable:this identifier_name
 
 private func runCommand(_ command: DangerCommand, logger: Logger) throws {
