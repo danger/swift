@@ -7,6 +7,5 @@ if danger.git.createdFiles.count + danger.git.modifiedFiles.count - danger.git.d
 
 SwiftLint.lint(inline: true, directory: "Sources")
 
-if let title = danger.bitbucketServer?.pullRequest.title {
-  danger.message(title)
-}
+let files = danger.git.modifiedFiles
+danger.message(files.joined(separator: " "))
