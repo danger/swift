@@ -7,7 +7,7 @@ import Foundation
 #endif
 import Logger
 
-let runner = DangerRunner()
+public let runner = DangerRunner()
 
 public var danger: DangerDSL {
     return runner.dsl
@@ -15,9 +15,9 @@ public var danger: DangerDSL {
 
 // MARK: - DangerRunner
 
-final class DangerRunner {
+public final class DangerRunner {
     let logger: Logger
-    let dsl: DangerDSL
+    public let dsl: DangerDSL
     var results = DangerResults()
 
     fileprivate init() {
