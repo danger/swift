@@ -7,5 +7,7 @@ if danger.git.createdFiles.count + danger.git.modifiedFiles.count - danger.git.d
 
 SwiftLint.lint(inline: true, directory: "Sources")
 
-let title = danger.github.pullRequest.title
-danger.message(title)
+if case let .github(github) = danger.remote {
+  let title = github.pullRequest.title
+  danger.message(title)
+}
