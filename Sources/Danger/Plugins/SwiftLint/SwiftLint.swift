@@ -4,7 +4,6 @@ import ShellOut
 /// The SwiftLint plugin has been embedded inside Danger, making
 /// it usable out of the box.
 public struct SwiftLint {
-    internal static let danger = Danger()
     internal static let shellExecutor = ShellExecutor()
 
     /// This is the main entry point for linting Swift in PRs.

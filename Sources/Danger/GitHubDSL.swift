@@ -28,8 +28,6 @@ public struct GitHub: Decodable {
     public let reviews: [GitHubReview]
 
     public let requestedReviewers: GitHubRequestedReviewers
-
-    public internal(set) var api: Octokit!
 }
 
 // MARK: - GitHubPR

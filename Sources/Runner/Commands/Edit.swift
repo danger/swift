@@ -4,6 +4,12 @@ import Logger
 import MarathonCore
 import RunnerLib
 
+#if os(Linux)
+import Glibc
+#else
+import Darwin.C
+#endif
+
 func editDanger(logger: Logger) throws {
     let dangerfilePath: String
 

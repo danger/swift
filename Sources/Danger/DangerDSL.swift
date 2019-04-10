@@ -13,7 +13,7 @@ public struct DSL: Decodable {
 public struct DangerDSL: Decodable {
     public let git: Git
 
-    public private(set) var github: GitHub!
+    public private(set) var github: GitHub?
 
     public let bitbucketServer: BitBucketServer!
 
@@ -35,8 +35,6 @@ public struct DangerDSL: Decodable {
         github = try container.decodeIfPresent(GitHub.self, forKey: .github)
         bitbucketServer = try container.decodeIfPresent(BitBucketServer.self, forKey: .bitbucketServer)
 
-        let settings = try container.decode(Settings.self, forKey: .settings)
-
         // File map is used so that libraries can make tests without
         // doing a lot of internal hacking for danger, or weird DI in their
         // own code. A bit of a trade-off in complexity for Danger Swift, but I
@@ -46,19 +44,6 @@ public struct DangerDSL: Decodable {
             utils = DangerUtils(fileMap: fileMap)
         } catch {
             utils = DangerUtils(fileMap: [:])
-        }
-
-        // Setup the OctoKit once all other
-        if runningOnGithub {
-            let config: TokenConfiguration
-
-            if let baseURL = settings.github.baseURL {
-                config = TokenConfiguration(settings.github.accessToken, url: baseURL)
-            } else {
-                config = TokenConfiguration(settings.github.accessToken)
-            }
-
-            github.api = Octokit(config)
         }
     }
 }

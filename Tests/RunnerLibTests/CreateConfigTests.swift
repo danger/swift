@@ -1,8 +1,9 @@
+#if !os(Linux)
 import RunnerLib
 import SnapshotTesting
 import XCTest
 
-final class CreateConfigTests: SnapshotTestCase {
+final class CreateConfigTests: XCTestCase {
     func testItCreatesTheCorrectConfig() throws {
         record = false
         let testPath = "test"
@@ -15,3 +16,4 @@ final class CreateConfigTests: SnapshotTestCase {
         try? FileManager.default.removeItem(atPath: testPath)
     }
 }
+#endif

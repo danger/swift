@@ -1,7 +1,7 @@
 import Foundation
 
 private var dangerRunner: DangerRunner {
-    return DangerRunner.shared
+    return runner
 }
 
 /// Results available if you're doing @testable on
@@ -18,14 +18,14 @@ private var globalResults: DangerResults {
         if ProcessInfo.processInfo.processName.hasSuffix("xctest") {
             return testingResults
         } else {
-            return DangerRunner.shared.results
+            return runner.results
         }
     }
     set {
         if ProcessInfo.processInfo.processName.hasSuffix("xctest") {
             testingResults = newValue
         } else {
-            DangerRunner.shared.results = newValue
+            runner.results = newValue
         }
     }
 }
@@ -150,51 +150,51 @@ public var markdowns: [Violation] {
 ///
 /// - Parameter message: A markdown-ish
 public func warn(_ message: String) {
-    dangerRunner.dsl.warn(message)
+    danger.warn(message)
 }
 
 /// Adds an inline warning message to the Danger report
 public func warn(message: String, file: String, line: Int) {
-    dangerRunner.dsl.warn(message: message, file: file, line: line)
+    danger.warn(message: message, file: file, line: line)
 }
 
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func fail(_ message: String) {
-    dangerRunner.dsl.fail(message)
+    danger.fail(message)
 }
 
 /// Adds an inline fail message to the Danger report
 public func fail(message: String, file: String, line: Int) {
-    dangerRunner.dsl.fail(message: message, file: file, line: line)
+    danger.fail(message: message, file: file, line: line)
 }
 
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func message(_ message: String) {
-    dangerRunner.dsl.message(message)
+    danger.message(message)
 }
 
 /// Adds an inline message to the Danger report
 public func message(message: String, file: String, line: Int) {
-    dangerRunner.dsl.message(message: message, file: file, line: line)
+    danger.message(message: message, file: file, line: line)
 }
 
 /// Adds a warning message to the Danger report
 ///
 /// - Parameter message: A markdown-ish
 public func markdown(_ message: String) {
-    dangerRunner.dsl.markdown(message)
+    danger.markdown(message)
 }
 
 /// Adds an inline message to the Danger report
 public func markdown(message: String, file: String, line: Int) {
-    dangerRunner.dsl.markdown(message: message, file: file, line: line)
+    danger.markdown(message: message, file: file, line: line)
 }
 
 /// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
 public func suggestion(code: String, file: String, line: Int) {
-    dangerRunner.dsl.suggestion(code: code, file: file, line: line)
+    danger.suggestion(code: code, file: file, line: line)
 }

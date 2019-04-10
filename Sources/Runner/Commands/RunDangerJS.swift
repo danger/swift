@@ -2,6 +2,12 @@ import Foundation
 import Logger
 import RunnerLib
 
+#if os(Linux)
+import Glibc
+#else
+import Darwin.C
+#endif
+
 func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger) throws -> Int32 {
     let dangerJS = try getDangerCommandPath(logger: logger)
     let dangerJSVersion = try DangerJSVersionFinder.findDangerJSVersion(dangerJSPath: dangerJS)

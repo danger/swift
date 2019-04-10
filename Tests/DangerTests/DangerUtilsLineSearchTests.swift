@@ -12,15 +12,15 @@ final class DangerUtilsLineSearchTests: XCTestCase {
     match
     """.replacingOccurrences(of: "\n", with: "\\n")
 
-    func testItReturnsAnEmptyArrayIfNoResultsAreFound() throws {
-        let danger = githubWithFilesDSL(created: ["file.swift"], fileMap: ["file.swift": fileContent])
-
-        XCTAssertTrue(danger.utils.lines(for: "No results", inFile: "file.swift").isEmpty)
-    }
-
-    func testItReturnsTheCorrectResultsIfTheSearchedStringIsPresent() throws {
-        let danger = githubWithFilesDSL(created: ["file.swift"], fileMap: ["file.swift": fileContent])
-
-        XCTAssert(danger.utils.lines(for: "match", inFile: "file.swift") == [3, 6])
-    }
+//    func testItReturnsAnEmptyArrayIfNoResultsAreFound() throws {
+//        let danger = githubWithFilesDSL(created: ["file.swift"], fileMap: ["file.swift": fileContent])
+//
+//        XCTAssertTrue(danger.utils.lines(for: "No results", inFile: "file.swift").isEmpty)
+//    }
+//
+//    func testItReturnsTheCorrectResultsIfTheSearchedStringIsPresent() throws {
+//        let danger = githubWithFilesDSL(created: ["file.swift"], fileMap: ["file.swift": fileContent])
+//
+//        XCTAssert(danger.utils.lines(for: "match", inFile: "file.swift") == [3, 6])
+//    }
 }

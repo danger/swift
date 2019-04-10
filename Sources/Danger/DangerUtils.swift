@@ -1,5 +1,11 @@
 import Foundation
 
+#if os(Linux)
+import Glibc
+#else
+import Darwin.C
+#endif
+
 /// Utility functions that make Dangerfiles easier to write
 
 public struct DangerUtils {

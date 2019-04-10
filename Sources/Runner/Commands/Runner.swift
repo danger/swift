@@ -5,6 +5,12 @@ import Logger
 import MarathonCore
 import RunnerLib
 
+#if os(Linux)
+import Glibc
+#else
+import Darwin.C
+#endif
+
 // swiftlint:disable:next function_body_length
 func runDanger(logger: Logger) throws {
     // Pull in the JSON from Danger JS

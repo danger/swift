@@ -24,8 +24,8 @@
         "repositoryURL": "https://github.com/JohnSundell/Files.git",
         "state": {
           "branch": null,
-          "revision": "06f95bd1bf4f8d5f50bc6bb30b808c253acd4c88",
-          "version": "2.2.1"
+          "revision": "a84615f4558151fab52ac38df697ce2442991f93",
+          "version": "2.3.0"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/orta/PackageConfig.git",
         "state": {
           "branch": null,
-          "revision": "5aa8c836b577b3312e5bee6ff15c61cd7d649804",
-          "version": "0.0.1"
+          "revision": "9c8b95d295b15dc5307503064f3ee87772bc5d17",
+          "version": "0.9.0"
         }
       },
       {
@@ -105,8 +105,8 @@
         "repositoryURL": "https://github.com/onevcat/Rainbow",
         "state": {
           "branch": null,
-          "revision": "797a68d0a642609424b08f11eb56974a54d5f6e2",
-          "version": "3.1.4"
+          "revision": "9c52c1952e9b2305d4507cf473392ac2d7c9b155",
+          "version": "3.1.5"
         }
       },
       {
@@ -186,8 +186,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
           "branch": null,
-          "revision": "0ea1b40921766767856790fae046f57ce489b922",
-          "version": "1.2.0"
+          "revision": "883f0b0623ae55f41f42e2399dab428017896448",
+          "version": "1.5.0"
         }
       },
       {
@@ -195,8 +195,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
           "branch": null,
-          "revision": "543df82383ebfae4696c70809ae36ff3df63e9c6",
-          "version": "0.39.5"
+          "revision": "5e81f810ef2402574bdb3dee4a5100a139fe8bea",
+          "version": "0.40.4"
         }
       },
       {
@@ -231,8 +231,8 @@
         "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
         "state": {
           "branch": null,
-          "revision": "0d6bb315528888edde0dafe93564f074669c44e9",
-          "version": "4.8.0"
+          "revision": "f43166a8e18fdd0857f29e303b1bb79a5428bca0",
+          "version": "4.9.0"
         }
       },
       {
@@ -258,8 +258,8 @@
         "repositoryURL": "https://github.com/jpsim/Yams.git",
         "state": {
           "branch": null,
-          "revision": "26ab35f50ea891e8edefcc9d975db2f6b67e1d68",
-          "version": "1.0.1"
+          "revision": "b08dba4bcea978bf1ad37703a384097d3efce5af",
+          "version": "1.0.2"
         }
       }
     ]

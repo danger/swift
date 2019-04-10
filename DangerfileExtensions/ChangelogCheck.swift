@@ -4,7 +4,7 @@ func checkChangelog() {
     let changelogChanged = allSourceFiles.contains("CHANGELOG.md")
     let sourceChanges = allSourceFiles.first(where: { $0.hasPrefix("Sources") })
 
-    let isTrivial = (danger.github != nil) && danger.github.pullRequest.title.contains("#trivial")
+    let isTrivial = danger.github?.pullRequest.title.contains("#trivial") ?? false
 
     if !isTrivial, !changelogChanged, sourceChanges != nil {
         danger.warn("""

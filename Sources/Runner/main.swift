@@ -2,6 +2,12 @@ import Foundation
 import Logger
 import RunnerLib
 
+#if os(Linux)
+import Glibc
+#else
+import Darwin.C
+#endif
+
 /// Version for showing in verbose mode
 let DangerVersion = "1.5.2" // swiftlint:disable:this identifier_name
 let MinimumDangerJSVersion = "6.1.6" // swiftlint:disable:this identifier_name

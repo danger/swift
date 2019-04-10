@@ -7,16 +7,20 @@ import Foundation
 #endif
 import Logger
 
+let runner = DangerRunner()
+
+public var danger: DangerDSL {
+    return runner.dsl
+}
+
 // MARK: - DangerRunner
 
 final class DangerRunner {
-    static let shared = DangerRunner()
-
     let logger: Logger
     let dsl: DangerDSL
     var results = DangerResults()
 
-    private init() {
+    fileprivate init() {
         let isVerbose = CommandLine.arguments.contains("--verbose") || (ProcessInfo.processInfo.environment["DEBUG"] != nil)
         let isSilent = CommandLine.arguments.contains("--silent")
         logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
@@ -64,7 +68,7 @@ final class DangerRunner {
 // MARK: - Public Functions
 
 public func Danger() -> DangerDSL {
-    return DangerRunner.shared.dsl
+    return danger
 }
 
 // MARK: - Private Functions

@@ -1,10 +1,11 @@
+#if !os(Linux)
 import Foundation
 import Logger
 @testable import RunnerLib
 import SnapshotTesting
 import XCTest
 
-final class DangerFileGeneratorTests: SnapshotTestCase {
+final class DangerFileGeneratorTests: XCTestCase {
     private let logger = Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
     private var createdFiles: [String] = []
     private var generator: DangerFileGenerator!
@@ -111,3 +112,4 @@ extension DangerFileGeneratorTests {
         return try! String(contentsOfFile: generatedFilePath)
     }
 }
+#endif
