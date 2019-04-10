@@ -7,5 +7,5 @@ if danger.git.createdFiles.count + danger.git.modifiedFiles.count - danger.git.d
 
 SwiftLint.lint(inline: true, directory: "Sources")
 
-let files = danger.git.modifiedFiles
-danger.message(files.joined(separator: " "))
+let title = danger.github.pullRequest.title
+danger.message(title)

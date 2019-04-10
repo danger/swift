@@ -20,7 +20,7 @@ public final class DangerRunner {
     public let dsl: DangerDSL
     var results = DangerResults()
 
-    fileprivate init() {
+    public init() {
         let isVerbose = CommandLine.arguments.contains("--verbose") || (ProcessInfo.processInfo.environment["DEBUG"] != nil)
         let isSilent = CommandLine.arguments.contains("--silent")
         logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
