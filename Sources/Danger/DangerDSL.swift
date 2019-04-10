@@ -37,13 +37,13 @@ public struct DangerDSL: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         git = try container.decode(Git.self, forKey: .git)
         
-        if let github = try container.decodeIfPresent(GitHub.self, forKey: .github) {
-            remote = .github(github)
-        } else if let bitbucketServer = try container.decodeIfPresent(BitBucketServer.self, forKey: .bitbucketServer) {
-            remote = .bitbucketServer(bitbucketServer)
-        } else {
+//        if let github = try container.decodeIfPresent(GitHub.self, forKey: .github) {
+//            remote = .github(github)
+//        } else if let bitbucketServer = try container.decodeIfPresent(BitBucketServer.self, forKey: .bitbucketServer) {
+//            remote = .bitbucketServer(bitbucketServer)
+//        } else {
             remote = .unknown
-        }
+//        }
 
         // File map is used so that libraries can make tests without
         // doing a lot of internal hacking for danger, or weird DI in their
