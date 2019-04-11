@@ -41,10 +41,9 @@ public struct DangerDSL: Decodable {
         // doing a lot of internal hacking for danger, or weird DI in their
         // own code. A bit of a trade-off in complexity for Danger Swift, but I
         // think if it leads to more tested plugins, it's a good spot to be in.
-        do {
-            let fileMap = try container.decode([String: String].self, forKey: .fileMap)
+        if let fileMap = try container.decodeIfPresent([String: String].self, forKey: .fileMap) {
             utils = DangerUtils(fileMap: fileMap)
-        } catch {
+        } else {
             utils = DangerUtils(fileMap: [:])
         }
 
