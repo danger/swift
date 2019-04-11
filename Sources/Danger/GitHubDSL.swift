@@ -10,10 +10,10 @@ public struct GitHub: Decodable {
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
-        case issue
+        case issue = "issue"
         case pullRequest = "pr"
-        case commits
-        case reviews
+        case commits = "commits"
+        case reviews = "reviews"
         case requestedReviewers = "requested_reviewers"
     }
 
@@ -36,18 +36,18 @@ public struct GitHubPR: Decodable, Equatable {
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
-        case number
-        case title
-        case body
-        case user
-        case assignee
-        case assignees
-        case milestone
-        case additions
-        case deletions
-        case state
-        case head
-        case base
+        case number = "number"
+        case title = "title"
+        case body = "body"
+        case user = "user"
+        case assignee = "assignee"
+        case assignees = "assignees"
+        case milestone = "milestone"
+        case additions = "additions"
+        case deletions = "deletions"
+        case state = "state"
+        case head = "head"
+        case base = "base"
         case isLocked = "locked"
         case isMerged = "merged"
         case createdAt = "created_at"
@@ -64,10 +64,10 @@ public struct GitHubPR: Decodable, Equatable {
     // MARK: - PullRequestState
 
     public enum PullRequestState: String, Decodable {
-        case open
-        case closed
-        case merged
-        case locked
+        case open = "open"
+        case closed = "closed"
+        case merged = "merged"
+        case locked = "locked"
     }
 
     // MARK: - Properties
@@ -149,8 +149,8 @@ public struct GitHubUser: Decodable, Equatable {
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
-        case id
-        case login
+        case id = "id"
+        case login = "login"
         case userType = "type"
     }
 
@@ -180,8 +180,8 @@ public struct GitHubTeam: Decodable, Equatable {
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
-        case id
-        case name
+        case id = "id"
+        case name = "name"
     }
 
     // MARK: - Properties
@@ -200,8 +200,8 @@ public struct GitHubRequestedReviewers: Decodable, Equatable {
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
-        case users
-        case teams
+        case users = "users"
+        case teams = "teams"
     }
 
     // MARK: - Properties
@@ -241,10 +241,10 @@ public struct GitHubRepo: Decodable, Equatable {
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case owner
-        case description
+        case id = "id"
+        case name = "name"
+        case owner = "owner"
+        case description = "description"
         case fullName = "full_name"
         case isPrivate = "private"
         case isFork = "fork"
@@ -284,10 +284,10 @@ public struct GitHubReview: Decodable, Equatable {
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
-        case user
-        case id
-        case body
-        case state
+        case user = "user"
+        case id = "id"
+        case body = "body"
+        case state = "state"
         case commitId = "commit_id"
     }
 
@@ -345,16 +345,16 @@ public struct GitHubIssue: Decodable, Equatable {
     // MARK: - CodingKeys
 
     enum CodingKeys: String, CodingKey {
-        case id
-        case number
-        case title
-        case user
-        case state
-        case assignee
-        case assignees
-        case milestone
-        case body
-        case labels
+        case id = "id"
+        case number = "number"
+        case title = "title"
+        case user = "user"
+        case state = "state"
+        case assignee = "assignee"
+        case assignees = "assignees"
+        case milestone = "milestone"
+        case body = "body"
+        case labels = "labels"
         case commentCount = "comments"
         case isLocked = "locked"
         case createdAt = "created_at"
@@ -365,9 +365,9 @@ public struct GitHubIssue: Decodable, Equatable {
     // MARK: - IssueState
 
     public enum IssueState: String, Decodable {
-        case open
-        case closed
-        case locked
+        case open = "open"
+        case closed = "closed"
+        case locked = "locked"
     }
 
     // MARK: - Properties
@@ -445,23 +445,23 @@ public struct GitHubMilestone: Decodable, Equatable {
         case closedAt = "closed_at"
         case closedIssues = "closed_issues"
         case createdAt = "created_at"
-        case creator
-        case description
+        case creator = "creator"
+        case description = "description"
         case dueOn = "due_on"
-        case id
-        case number
+        case id = "id"
+        case number = "number"
         case openIssues = "open_issues"
-        case state
-        case title
+        case state = "state"
+        case title = "title"
         case updatedAt = "updated_at"
     }
 
     // MARK: - MilestoneState
 
     public enum MilestoneState: String, Decodable {
-        case open
-        case closed
-        case all
+        case open = "open"
+        case closed = "closed"
+        case all = "all"
     }
 
     // MARK: - Properties
