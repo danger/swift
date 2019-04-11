@@ -13,6 +13,8 @@
 
 ## Master
 
+- Use if let instead of try catch to decode fileMap  [@f-meloni][] - [#223](https://github.com/danger/swift/pull/223)
+
 ## 1.5.2
 
 - Fix danger-swift parameters filter [@f-meloni][] - [#216](https://github.com/danger/swift/pull/216)
