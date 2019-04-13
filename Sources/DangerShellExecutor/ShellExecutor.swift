@@ -47,7 +47,7 @@ public struct ShellExecutor: ShellExecuting {
         task.waitUntilExit()
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        return String(data: data, encoding: String.Encoding.utf8)!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        return String(data: data, encoding: .utf8)!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 
     // Similar to above, but can throw, and throws with most of
@@ -66,7 +66,7 @@ public struct ShellExecutor: ShellExecuting {
 
         // Pull out the STDOUT as a string because we'll need that regardless
         let stdoutData = stdout.fileHandleForReading.readDataToEndOfFile()
-        let stdoutString = String(data: stdoutData, encoding: String.Encoding.utf8)!
+        let stdoutString = String(data: stdoutData, encoding: .utf8)!
 
         // 0 is no problems in unix land
         if task.terminationStatus == 0 {
@@ -75,7 +75,7 @@ public struct ShellExecutor: ShellExecuting {
 
         // OK, so it failed, raise a new error with all the useful metadata
         let stderrData = stdout.fileHandleForReading.readDataToEndOfFile()
-        let stderrString = String(data: stderrData, encoding: String.Encoding.utf8)!
+        let stderrString = String(data: stderrData, encoding: .utf8)!
 
         throw SpawnError.commandFailed(command: command,
                                        exitCode: task.terminationStatus,
@@ -86,8 +86,7 @@ public struct ShellExecutor: ShellExecuting {
     private func makeTask(for command: String,
                           with arguments: [String],
                           environmentVariables: [String: String]) -> Process {
-        let script = [command,
-                      arguments.joined(separator: " ")].filter { !$0.isEmpty }.joined(separator: " ")
+        let script = "\(command) \(arguments.joined(separator: " "))"
         let processEnv = ProcessInfo.processInfo.environment
         let task = Process()
         task.launchPath = processEnv["SHELL"]
