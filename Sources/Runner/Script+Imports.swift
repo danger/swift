@@ -1,8 +1,7 @@
-import MarathonCore
-
+import DangerExecutor
 import Files
 import Foundation
-import ShellOut
+import MarathonCore
 
 extension Script {
     @discardableResult
@@ -57,10 +56,10 @@ extension Script {
     }
 
     private func generateXCodeProjWithConfig(configPath: String) throws {
-        try shellOutToSwiftCommand("package generate-xcodeproj --xcconfig-overrides \(configPath)", in: folder)
+        try executeSwiftCommand("package generate-xcodeproj --xcconfig-overrides \(configPath)", in: folder)
     }
 
-    func shellOutToSwiftCommand(_ command: String, in folder: Folder) throws {
+    func executeSwiftCommand(_ command: String, in folder: Folder) throws {
         func resolveSwiftPath() -> String {
             #if os(Linux)
                 return "swift"
@@ -70,6 +69,7 @@ extension Script {
         }
 
         let swiftPath = resolveSwiftPath()
-        try shellOut(to: "\(swiftPath) \(command)", at: folder.path)
+        let executor = ShellExecutor()
+        try executor.spawn("cd \(folder.path) && \(swiftPath) \(command)", arguments: [])
     }
 }

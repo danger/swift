@@ -1,3 +1,4 @@
+import DangerExecutor
 import Foundation
 
 /// Utility functions that make Dangerfiles easier to write
