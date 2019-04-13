@@ -1,8 +1,5 @@
 import Foundation
 
-// TODO: Get a logger into here this is real tricky
-// because of the decoding from JSON nature of DangerDSL
-
 public enum SpawnError: Error {
     case commandFailed(command: String, exitCode: Int32, stdout: String, stderr: String)
 }
