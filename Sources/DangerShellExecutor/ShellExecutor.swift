@@ -1,16 +1,41 @@
 import Foundation
 
-// TODO: Get a logger into here this is real tricky
-// because of the decoding from JSON nature of DangerDSL
-
 public enum SpawnError: Error {
-    case commandFailed(exitCode: Int32, stdout: String, stderr: String, task: Process)
+    case commandFailed(command: String, exitCode: Int32, stdout: String, stderr: String)
 }
 
-internal class ShellExecutor {
+public protocol ShellExecuting {
+    @discardableResult
     func execute(_ command: String,
-                 arguments: [String] = [],
-                 environmentVariables: [String: String] = [:]) -> String {
+                 arguments: [String],
+                 environmentVariables: [String: String]) -> String
+
+    @discardableResult
+    func spawn(_ command: String,
+               arguments: [String],
+               environmentVariables: [String: String]) throws -> String
+}
+
+extension ShellExecuting {
+    @discardableResult
+    public func execute(_ command: String,
+                        arguments: [String]) -> String {
+        return execute(command, arguments: arguments, environmentVariables: [:])
+    }
+
+    @discardableResult
+    public func spawn(_ command: String,
+                      arguments: [String]) throws -> String {
+        return try spawn(command, arguments: arguments, environmentVariables: [:])
+    }
+}
+
+public struct ShellExecutor: ShellExecuting {
+    public init() {}
+
+    public func execute(_ command: String,
+                        arguments: [String],
+                        environmentVariables: [String: String]) -> String {
         let task = makeTask(for: command, with: arguments, environmentVariables: environmentVariables)
 
         let pipe = Pipe()
@@ -19,14 +44,14 @@ internal class ShellExecutor {
         task.waitUntilExit()
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        return String(data: data, encoding: String.Encoding.utf8)!
+        return String(data: data, encoding: .utf8)!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 
     // Similar to above, but can throw, and throws with most of
     // what you'd probably need in a scripting environment
-    func spawn(_ command: String,
-               arguments: [String] = [],
-               environmentVariables: [String: String] = [:]) throws -> String {
+    public func spawn(_ command: String,
+                      arguments: [String],
+                      environmentVariables: [String: String]) throws -> String {
         let task = makeTask(for: command, with: arguments, environmentVariables: environmentVariables)
 
         let stdout = Pipe()
@@ -38,28 +63,27 @@ internal class ShellExecutor {
 
         // Pull out the STDOUT as a string because we'll need that regardless
         let stdoutData = stdout.fileHandleForReading.readDataToEndOfFile()
-        let stdoutString = String(data: stdoutData, encoding: String.Encoding.utf8)!
+        let stdoutString = String(data: stdoutData, encoding: .utf8)!
 
         // 0 is no problems in unix land
         if task.terminationStatus == 0 {
-            return stdoutString
+            return stdoutString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         }
 
         // OK, so it failed, raise a new error with all the useful metadata
         let stderrData = stdout.fileHandleForReading.readDataToEndOfFile()
-        let stderrString = String(data: stderrData, encoding: String.Encoding.utf8)!
+        let stderrString = String(data: stderrData, encoding: .utf8)!
 
-        throw SpawnError.commandFailed(exitCode: task.terminationStatus,
+        throw SpawnError.commandFailed(command: command,
+                                       exitCode: task.terminationStatus,
                                        stdout: stdoutString,
-                                       stderr: stderrString,
-                                       task: task)
+                                       stderr: stderrString)
     }
 
     private func makeTask(for command: String,
                           with arguments: [String],
                           environmentVariables: [String: String]) -> Process {
-        let script = [command,
-                      arguments.joined(separator: " ")].filter { !$0.isEmpty }.joined(separator: " ")
+        let script = "\(command) \(arguments.joined(separator: " "))"
         let processEnv = ProcessInfo.processInfo.environment
         let task = Process()
         task.launchPath = processEnv["SHELL"]

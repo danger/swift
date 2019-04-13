@@ -13,7 +13,8 @@
 
 ## Master
 
-- Use if let instead of try catch to decode fileMap  [@f-meloni][] - [#223](https://github.com/danger/swift/pull/223)
+- Use danger shell executor instead of ShellOut [@f-meloni][] - [#224](https://github.com/danger/swift/pull/224)
+- Use if let instead of try catch to decode fileMap [@f-meloni][] - [#223](https://github.com/danger/swift/pull/223)
 
 ## 1.5.2
 

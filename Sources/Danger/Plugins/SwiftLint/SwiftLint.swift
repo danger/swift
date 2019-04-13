@@ -1,5 +1,5 @@
+import DangerShellExecutor
 import Foundation
-import ShellOut
 
 /// The SwiftLint plugin has been embedded inside Danger, making
 /// it usable out of the box.
@@ -33,7 +33,7 @@ extension SwiftLint {
     // swiftlint:disable:next function_body_length
     static func lint(
         danger: DangerDSL,
-        shellExecutor: ShellExecutor,
+        shellExecutor: ShellExecuting,
         swiftlintPath: String,
         inline: Bool = false,
         directory: String? = nil,
@@ -111,7 +111,7 @@ extension SwiftLint {
 
     private static func lintAll(directory: String?,
                                 arguments: [String],
-                                shellExecutor: ShellExecutor,
+                                shellExecutor: ShellExecuting,
                                 swiftlintPath: String,
                                 failAction: (String) -> Void) -> [SwiftLintViolation] {
         var arguments = arguments
@@ -128,7 +128,7 @@ extension SwiftLint {
     private static func lintModifiedAndCreated(danger: DangerDSL,
                                                directory: String?,
                                                arguments: [String],
-                                               shellExecutor: ShellExecutor,
+                                               shellExecutor: ShellExecuting,
                                                swiftlintPath: String,
                                                failAction: (String) -> Void) -> [SwiftLintViolation] {
         // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.

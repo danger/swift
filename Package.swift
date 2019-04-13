@@ -15,7 +15,6 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/f-meloni/Logger", from: "0.1.0"),
         .package(url: "https://github.com/JohnSundell/Marathon", from: "3.1.0"),
-        .package(url: "https://github.com/JohnSundell/ShellOut", from: "2.1.0"),
         .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0"),
         // Danger Plugins
         // Dev dependencies
@@ -29,8 +28,9 @@ let package = Package(
     ],
     targets: [
         .target(name: "Danger-Swift", dependencies: ["Danger", "Yams"]), // dev
-        .target(name: "Danger", dependencies: ["ShellOut", "OctoKit", "Logger"]),
-        .target(name: "RunnerLib", dependencies: ["Logger", "ShellOut"]),
+        .target(name: "DangerShellExecutor"),
+        .target(name: "Danger", dependencies: ["OctoKit", "Logger", "DangerShellExecutor"]),
+        .target(name: "RunnerLib", dependencies: ["Logger", "DangerShellExecutor"]),
         .target(name: "Runner", dependencies: ["RunnerLib", "MarathonCore", "Logger"]),
         .target(name: "DangerFixtures", dependencies: ["Danger"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]), // dev
