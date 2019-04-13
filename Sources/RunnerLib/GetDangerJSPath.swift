@@ -2,7 +2,9 @@ import DangerShellExecutor
 import Foundation
 import Logger
 
-public func getDangerCommandPath(logger: Logger, args: [String] = CommandLine.arguments, shellOutExecutor: ShellExecuting = ShellExecutor()) throws -> String {
+public func getDangerCommandPath(logger: Logger,
+                                 args: [String] = CommandLine.arguments,
+                                 shellOutExecutor: ShellExecuting = ShellExecutor()) throws -> String {
     if let dangerJSPathOptionIndex = args.firstIndex(of: DangerSwiftOption.dangerJSPath.rawValue),
         dangerJSPathOptionIndex + 1 < args.count {
         return args[dangerJSPathOptionIndex + 1]
