@@ -1,4 +1,4 @@
-import DangerExecutor
+import DangerShellExecutor
 import Files
 import Foundation
 import MarathonCore

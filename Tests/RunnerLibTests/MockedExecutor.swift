@@ -1,4 +1,4 @@
-import DangerExecutor
+import DangerShellExecutor
 import RunnerLib
 
 final class MockedExecutor: ShellExecuting {

@@ -28,9 +28,9 @@ let package = Package(
     ],
     targets: [
         .target(name: "Danger-Swift", dependencies: ["Danger", "Yams"]), // dev
-        .target(name: "DangerExecutor"),
-        .target(name: "Danger", dependencies: ["OctoKit", "Logger", "DangerExecutor"]),
-        .target(name: "RunnerLib", dependencies: ["Logger", "DangerExecutor"]),
+        .target(name: "DangerShellExecutor"),
+        .target(name: "Danger", dependencies: ["OctoKit", "Logger", "DangerShellExecutor"]),
+        .target(name: "RunnerLib", dependencies: ["Logger", "DangerShellExecutor"]),
         .target(name: "Runner", dependencies: ["RunnerLib", "MarathonCore", "Logger"]),
         .target(name: "DangerFixtures", dependencies: ["Danger"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]), // dev

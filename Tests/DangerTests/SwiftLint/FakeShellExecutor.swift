@@ -1,5 +1,5 @@
 @testable import Danger
-import DangerExecutor
+import DangerShellExecutor
 
 final class FakeShellExecutor: ShellExecuting {
     typealias Invocation = (command: String, arguments: [String], environmentVariables: [String: String])

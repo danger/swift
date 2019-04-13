@@ -1,4 +1,4 @@
-import DangerExecutor
+import DangerShellExecutor
 import Foundation
 
 /// The SwiftLint plugin has been embedded inside Danger, making

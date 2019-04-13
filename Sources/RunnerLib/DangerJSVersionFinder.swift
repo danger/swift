@@ -1,4 +1,4 @@
-import DangerExecutor
+import DangerShellExecutor
 import Logger
 
 public final class DangerJSVersionFinder {

@@ -1,4 +1,4 @@
-import DangerExecutor
+import DangerShellExecutor
 import Foundation
 
 public struct SPMDanger {
