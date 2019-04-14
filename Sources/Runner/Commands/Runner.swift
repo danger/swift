@@ -1,6 +1,6 @@
-import Foundation
-
+import DangerShellExecutor
 import Files
+import Foundation
 import Logger
 import MarathonCore
 import RunnerLib
@@ -129,11 +129,8 @@ func runDanger(logger: Logger) throws {
     args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
     args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
 
-    // This ain't optimal, but SwiftPM have _so much code_ around this.
-    // So maybe there's a better way
-    let supportedSwiftCPaths = ["/home/travis/.swiftenv/shims/swiftc", "/usr/bin/swiftc"]
-    let swiftCPath = supportedSwiftCPaths.first { fileManager.fileExists(atPath: $0) }
-    let swiftC = swiftCPath ?? "swiftc"
+    let swiftCPath = ShellExecutor().execute("which swiftc", arguments: [])
+    let swiftC = swiftCPath.isEmpty ? "swiftc" : swiftCPath
 
     logger.debug("Running: \(swiftC) \(args.joined(separator: " "))")
 
