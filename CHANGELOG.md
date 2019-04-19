@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.5.4
+
 - Copy DangerExecutor dependency file when installing with make - [#229](https://github.com/danger/swift/pull/229)
 
 ## 1.5.3
