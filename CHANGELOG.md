@@ -13,6 +13,8 @@
 
 ## Master
 
+- Copy DangerExecutor dependency file when installing with make - [#229](https://github.com/danger/swift/pull/229)
+
 ## 1.5.3
 
 - Use executor to find swiftc path [@f-meloni][] - [#225](https://github.com/danger/swift/pull/225)
