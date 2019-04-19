@@ -50,7 +50,6 @@ This Reference Documentation has been generated with
 -   [MilestoneState](enums/MilestoneState.md)
 -   [PullRequestState](enums/PullRequestState.md)
 -   [ReviewState](enums/ReviewState.md)
--   [SpawnError](enums/SpawnError.md)
 -   [UserType](enums/UserType.md)
 
 ## Extensions
