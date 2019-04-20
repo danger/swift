@@ -52,9 +52,10 @@ func runDanger(logger: Logger) throws {
 
     // Set up plugin infra
     let importsOnly = try File(path: dangerfilePath).readAsString()
+    let executor = ShellExecutor()
 
     if let spmDanger = SPMDanger() {
-        spmDanger.buildDependencies()
+        spmDanger.buildDependencies(executor: executor)
         libArgs += ["-L", SPMDanger.buildFolder]
         libArgs += ["-I", SPMDanger.buildFolder]
         libArgs += [spmDanger.swiftcLibImport]
@@ -129,7 +130,7 @@ func runDanger(logger: Logger) throws {
     args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
     args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
 
-    let swiftC = try ShellExecutor().spawn("which swiftc", arguments: [])
+    let swiftC = try executor.spawn("which swiftc", arguments: [])
 
     logger.debug("Running: \(swiftC) \(args.joined(separator: " "))")
 

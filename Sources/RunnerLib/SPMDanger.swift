@@ -28,7 +28,7 @@ public struct SPMDanger {
 
     public func buildDependencies(executor: ShellExecuting = ShellExecutor(),
                                   fileManager _: FileManager = .default) {
-        _ = executor.execute("swift build", arguments: ["--product \(depsLibName)"])
+        executor.execute("swift build", arguments: ["--product \(depsLibName)"])
     }
 
     public var swiftcLibImport: String {
