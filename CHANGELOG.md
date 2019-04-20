@@ -13,9 +13,11 @@
 
 ## Master
 
+- Re use the same executor on the runner [@f-meloni][] - [#230](https://github.com/danger/swift/pull/230)
+
 ## 1.5.4
 
-- Copy DangerExecutor dependency file when installing with make - [#229](https://github.com/danger/swift/pull/229)
+- Copy DangerExecutor dependency file when installing with make [@f-meloni][] - [#229](https://github.com/danger/swift/pull/229)
 
 ## 1.5.3
 
