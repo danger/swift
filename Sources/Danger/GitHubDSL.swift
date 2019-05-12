@@ -179,15 +179,6 @@ public struct GitHubUser: Decodable, Equatable {
 
 /// A GitHub team.
 public struct GitHubTeam: Decodable, Equatable {
-    // MARK: - CodingKeys
-
-    enum CodingKeys: String, CodingKey {
-        case id
-        case name
-    }
-
-    // MARK: - Properties
-
     /// The UUID for the team.
     public let id: Int
 
@@ -199,15 +190,6 @@ public struct GitHubTeam: Decodable, Equatable {
 
 /// Represents the payload for a PR's requested reviewers value.
 public struct GitHubRequestedReviewers: Decodable, Equatable {
-    // MARK: - CodingKeys
-
-    enum CodingKeys: String, CodingKey {
-        case users
-        case teams
-    }
-
-    // MARK: - Properties
-
     /// The list of users of whom a review has been requested.
     public let users: [GitHubUser]
 
@@ -219,8 +201,6 @@ public struct GitHubRequestedReviewers: Decodable, Equatable {
 
 /// Represents 'head' in PR
 public struct GitHubMergeRef: Decodable, Equatable {
-    // MARK: - Properties
-
     /// The human display name for the merge reference, e.g. "artsy:master".
     public let label: String
 
