@@ -13,6 +13,7 @@
 
 ## Master
 
+- Remove not needed coding keys [@f-meloni][] - [#233](https://github.com/danger/swift/pull/233)
 - Re use the same executor on the runner [@f-meloni][] - [#230](https://github.com/danger/swift/pull/230)
 
 ## 1.5.4
