@@ -47,6 +47,12 @@ extension DangerUtilsLineSearchTests {
     ]
 }
 
+extension DangerUtilsTests {
+    static let __allTests = [
+        ("testLinesForStringReturnsTheCorrectResult", testLinesForStringReturnsTheCorrectResult),
+    ]
+}
+
 extension DateFormatterExtensionTests {
     static let __allTests = [
         ("test_DateFormatter_dateFromString", test_DateFormatter_dateFromString),
@@ -128,6 +134,7 @@ extension ViolnationTests {
             testCase(DangerDSLTests.__allTests),
             testCase(DangerSwiftLintTests.__allTests),
             testCase(DangerUtilsLineSearchTests.__allTests),
+            testCase(DangerUtilsTests.__allTests),
             testCase(DateFormatterExtensionTests.__allTests),
             testCase(FileTests.__allTests),
             testCase(FileTypeTests.__allTests),
