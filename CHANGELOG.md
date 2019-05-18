@@ -13,6 +13,7 @@
 
 ## Master
 
+- Use enumerated to improve lines(for:, inFile:) function [@f-meloni][] - [#235](https://github.com/danger/swift/pull/235)
 - Remove not needed force unwrap [@f-meloni][] - [#234](https://github.com/danger/swift/pull/234)
 - Remove not needed coding keys [@f-meloni][] - [#233](https://github.com/danger/swift/pull/233)
 - Re use the same executor on the runner [@f-meloni][] - [#230](https://github.com/danger/swift/pull/230)
@@ -37,10 +38,12 @@
 - Support swift 5.0 on OSX [@f-meloni][] - [#210](https://github.com/danger/swift/pull/210)
 
 ## 1.5.0
+
 - Support custom danger-js path [@f-meloni][] - [#206](https://github.com/danger/swift/pull/206)
 - Fix running SwiftLint plugin when system shell is fish [@JosephDuffy][] - [#207](https://github.com/danger/swift/pull/207)
 
 ## 1.4.0
+
 - Make danger edit compile in the projects that are not the Danger main project [@f-meloni][] - [#204](https://github.com/danger/swift/pull/204)
 - Create imported files if not present on edit command [@f-meloni][] - [#202](https://github.com/danger/swift/pull/202)
 - Import correctly the files when one of the files contains an emoji [@f-meloni][] - [#198](https://github.com/danger/swift/pull/198)
