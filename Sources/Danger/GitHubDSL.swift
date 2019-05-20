@@ -81,7 +81,7 @@ public struct GitHubPR: Decodable, Equatable {
     public let title: String
 
     /// The markdown body message of the pull request.
-    public let body: String
+    public let body: String?
 
     /// The user who submitted the pull request.
     public let user: GitHubUser
@@ -373,7 +373,7 @@ public struct GitHubIssue: Decodable, Equatable {
     public let isLocked: Bool
 
     /// The markdown body message of the issue.
-    public let body: String
+    public let body: String?
 
     /// The comment number of comments for the issue.
     public let commentCount: Int
