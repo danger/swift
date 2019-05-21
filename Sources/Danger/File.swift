@@ -17,20 +17,10 @@ extension File {
 
 // MARK: - FileType
 
-public enum FileType: String, Equatable {
+public enum FileType: String, Equatable, CaseIterable {
     // swiftlint:disable:next identifier_name
     case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
 }
-
-#if swift(>=4.2) // Use compiler-generated allCases when available
-    extension FileType: CaseIterable {}
-#else
-    extension FileType {
-        static var allCases: [FileType] {
-            return [.h, .json, .m, .markdown, .mm, .pbxproj, .plist, .storyboard, .swift, .xcscheme, .yaml, .yml]
-        }
-    }
-#endif
 
 // MARK: - FileType extensions
 
