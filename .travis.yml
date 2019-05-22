@@ -30,5 +30,4 @@ matrix:
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
         - swiftenv global 5.1-DEVELOPMENT-SNAPSHOT-2019-05-09-a
       script:
-        - swift build
-        #- DEBUG='*' swift run danger-swift ci
+        - DEBUG='*' swift run danger-swift ci
