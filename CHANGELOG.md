@@ -17,6 +17,7 @@
 - Remove not needed force unwrap [@f-meloni][] - [#234](https://github.com/danger/swift/pull/234)
 - Remove not needed coding keys [@f-meloni][] - [#233](https://github.com/danger/swift/pull/233)
 - Re use the same executor on the runner [@f-meloni][] - [#230](https://github.com/danger/swift/pull/230)
+- Fix Danger crashing when PR has no description [@davdroman][] - [#237](https://github.com/danger/swift/pull/237)
 
 ## 1.5.4
 
@@ -285,5 +286,6 @@ This release also includes:
 [@ChaosCoder]: https://github.com/ChaosCoder
 [@FabioTacke]: https://github.com/FabioTacke
 [@JosephDuffy]: https://github.com/JosephDuffy
+[@davdroman]: https://github.com/davdroman
 [139]: https://github.com/danger/swift/issues/139
 [99]: https://github.com/danger/swift/issues/99
