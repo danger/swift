@@ -3,7 +3,7 @@
 # `FileType`
 
 ```swift
-public enum FileType: String, Equatable
+public enum FileType: String, Equatable, CaseIterable
 ```
 
 ## Cases

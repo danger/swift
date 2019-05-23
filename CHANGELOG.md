@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.5.5
+
 - Remove swift 4.0 CaseIterable implementation [@f-meloni][] - [#235](https://github.com/danger/swift/pull/238)
 - Use enumerated to improve lines(for:, inFile:) function [@f-meloni][] - [#235](https://github.com/danger/swift/pull/235)
 - Remove not needed force unwrap [@f-meloni][] - [#234](https://github.com/danger/swift/pull/234)
