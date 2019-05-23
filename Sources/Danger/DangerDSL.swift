@@ -16,7 +16,6 @@ public struct DangerDSL: Decodable {
     public private(set) var github: GitHub!
 
     public let bitbucketServer: BitBucketServer!
- mutating
     
     public let utils: DangerUtils
 
