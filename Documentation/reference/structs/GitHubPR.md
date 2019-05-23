@@ -26,7 +26,7 @@ public let title: String
 ### `body`
 
 ```swift
-public let body: String
+public let body: String?
 ```
 
 > The markdown body message of the pull request.

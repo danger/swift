@@ -149,7 +149,65 @@ final class GitHubTests: XCTestCase {
 
     func test_GitHubIssueLabel_decode() throws {}
 
-    func test_GitHubIssue_decode() throws {}
+    func test_GitHubIssue_decode() throws {
+        guard let data = GitHubIssueJSON.data(using: .utf8) else {
+            XCTFail("Could not generate data")
+            return
+        }
+
+        let user = GitHubUser(id: 2538074, login: "davdroman", userType: .user)
+        let correctIssue = GitHubIssue(
+            id: 447_357_592,
+            number: 96,
+            title: "Some commit that modifies a Swift file",
+            user: user,
+            state: .closed,
+            isLocked: false,
+            body: "Some body for the issue",
+            commentCount: 1,
+            assignee: nil,
+            assignees: [],
+            milestone: nil,
+            createdAt: Date(timeIntervalSince1970: 1558561570),
+            updatedAt: Date(timeIntervalSince1970: 1558566949),
+            closedAt: Date(timeIntervalSince1970: 1558566946),
+            labels: []
+        )
+
+        let testIssue = try decoder.decode(GitHubIssue.self, from: data)
+
+        XCTAssertEqual(testIssue, correctIssue)
+    }
+
+    func test_GitHubIssue_emptyBody_decode() throws {
+        guard let data = GitHubEmptyBodyIssueJSON.data(using: .utf8) else {
+            XCTFail("Could not generate data")
+            return
+        }
+
+        let user = GitHubUser(id: 2538074, login: "davdroman", userType: .user)
+        let correctIssue = GitHubIssue(
+            id: 447_357_592,
+            number: 96,
+            title: "Some commit that modifies a Swift file",
+            user: user,
+            state: .closed,
+            isLocked: false,
+            body: nil,
+            commentCount: 1,
+            assignee: nil,
+            assignees: [],
+            milestone: nil,
+            createdAt: Date(timeIntervalSince1970: 1558561570),
+            updatedAt: Date(timeIntervalSince1970: 1558566949),
+            closedAt: Date(timeIntervalSince1970: 1558566946),
+            labels: []
+        )
+
+        let testIssue = try decoder.decode(GitHubIssue.self, from: data)
+
+        XCTAssertEqual(testIssue, correctIssue)
+    }
 
     func test_GitHubPR_decode() throws {}
 
