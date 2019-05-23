@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.5.6
+
 ## 1.5.5
 
 - Remove swift 4.0 CaseIterable implementation [@f-meloni][] - [#235](https://github.com/danger/swift/pull/238)
