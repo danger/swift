@@ -15,6 +15,8 @@
 
 ## 1.5.6
 
+- Remove free floating "mutating" keyword from DangerDSL [@sunshinejr][] - [#241](https://github.com/danger/swift/pull/241)
+
 ## 1.5.5
 
 - Remove swift 4.0 CaseIterable implementation [@f-meloni][] - [#235](https://github.com/danger/swift/pull/238)
