@@ -28,15 +28,4 @@ if danger.github != nil {
     if danger.github.pullRequest.title.contains("WIP") {
         warn("PR is classed as Work in Progress")
     }
-
-    // TODO: We're still figuring this out
-    _ = danger.github.api.me { response in
-        print("OK")
-        switch response {
-        case let .success(user):
-            message(user.name ?? "")
-        case .failure:
-            break
-        }
-    }
 }
