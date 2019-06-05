@@ -1,5 +1,4 @@
 import Foundation
-import OctoKit
 
 // http://danger.systems/js/reference.html
 
@@ -45,19 +44,6 @@ public struct DangerDSL: Decodable {
             utils = DangerUtils(fileMap: fileMap)
         } else {
             utils = DangerUtils(fileMap: [:])
-        }
-
-        // Setup the OctoKit once all other
-        if runningOnGithub {
-            let config: TokenConfiguration
-
-            if let baseURL = settings.github.baseURL {
-                config = TokenConfiguration(settings.github.accessToken, url: baseURL)
-            } else {
-                config = TokenConfiguration(settings.github.accessToken)
-            }
-
-            github.api = Octokit(config)
         }
     }
 }

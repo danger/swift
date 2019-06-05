@@ -74,15 +74,6 @@
         }
       },
       {
-        "package": "OctoKit",
-        "repositoryURL": "https://github.com/nerdishbynature/octokit.swift",
-        "state": {
-          "branch": null,
-          "revision": "b63f2ec1b55f26c8e94159d81ad695aeb92f3d4e",
-          "version": "0.9.0"
-        }
-      },
-      {
         "package": "Quick",
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {
@@ -107,15 +98,6 @@
           "branch": null,
           "revision": "ea62f33a429185b0ed21344c2355862c5bc4fcce",
           "version": "4.0.0"
-        }
-      },
-      {
-        "package": "RequestKit",
-        "repositoryURL": "https://github.com/nerdishbynature/RequestKit.git",
-        "state": {
-          "branch": null,
-          "revision": "defcc7cb005995f261b47e357874a539f3b5c679",
-          "version": "2.3.0"
         }
       },
       {
