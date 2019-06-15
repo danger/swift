@@ -16,13 +16,16 @@ public struct DangerDSL: Decodable {
     public private(set) var github: GitHub!
 
     public let bitbucketServer: BitBucketServer!
-    
+
+    public let gitLab: GitLab!
+
     public let utils: DangerUtils
 
     enum CodingKeys: String, CodingKey {
         case git
         case github
         case bitbucketServer = "bitbucket_server"
+        case gitlab
         case settings
         // Used by plugin testing only
         // See: githubJSONWithFiles
@@ -34,6 +37,7 @@ public struct DangerDSL: Decodable {
         git = try container.decode(Git.self, forKey: .git)
         github = try container.decodeIfPresent(GitHub.self, forKey: .github)
         bitbucketServer = try container.decodeIfPresent(BitBucketServer.self, forKey: .bitbucketServer)
+        gitLab = try container.decodeIfPresent(GitLab.self, forKey: .gitlab)
 
         let settings = try container.decode(Settings.self, forKey: .settings)
 
