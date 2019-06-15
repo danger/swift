@@ -1,4 +1,4 @@
-import Cocoa
+import Foundation
 
 public struct GitLab: Decodable {
     public enum CodingKeys: String, CodingKey {
