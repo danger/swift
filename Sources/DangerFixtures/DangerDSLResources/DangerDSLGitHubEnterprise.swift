@@ -1,3 +1,5 @@
+// swiftlint:disable line_length file_length
+
 public let DSLGitHubEnterpriseJSON = """
 
 {

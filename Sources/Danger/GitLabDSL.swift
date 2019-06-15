@@ -1,5 +1,7 @@
 import Foundation
 
+// swiftlint:disable nesting
+
 public struct GitLab: Decodable {
     public enum CodingKeys: String, CodingKey {
         case mergeRequest = "mr"
@@ -28,7 +30,7 @@ public struct GitLabMergeRequest: Decodable, Equatable {
             case createdAt = "created_at"
             case description
             case dueDate = "due_date"
-            case id
+            case id // swiftlint:disable:this identifier_name
             case iid
             case projectId = "project_id"
             case startDate = "start_date"
@@ -45,7 +47,7 @@ public struct GitLabMergeRequest: Decodable, Equatable {
         public let createdAt: Date
         public let description: String
         public let dueDate: Date
-        public let id: Int
+        public let id: Int // swiftlint:disable:this identifier_name
         public let iid: Int
         public let projectId: Int
         public let startDate: Date
@@ -95,14 +97,14 @@ public struct GitLabMergeRequest: Decodable, Equatable {
         }
 
         public enum CodingKeys: String, CodingKey {
-            case id
+            case id // swiftlint:disable:this identifier_name
             case ref
             case sha
             case status
             case webUrl = "web_url"
         }
 
-        public let id: Int
+        public let id: Int // swiftlint:disable:this identifier_name
         public let ref: String
         public let sha: String
         public let status: Status
@@ -123,7 +125,7 @@ public struct GitLabMergeRequest: Decodable, Equatable {
         case downvotes
         case firstDeployedToProductionAt = "first_deployed_to_production_at"
         case forceRemoveSourceBranch = "force_remove_source_branch"
-        case id
+        case id // swiftlint:disable:this identifier_name
         case iid
         case latestBuildStartedAt = "latest_build_started_at"
         case latestBuildFinishedAt = "latest_build_finished_at"
@@ -165,7 +167,7 @@ public struct GitLabMergeRequest: Decodable, Equatable {
     public let downvotes: Int
     public let firstDeployedToProductionAt: Date?
     public let forceRemoveSourceBranch: Bool
-    public let id: Int
+    public let id: Int // swiftlint:disable:this identifier_name
     public let iid: Int
     public let latestBuildFinishedAt: Date?
     public let latestBuildStartedAt: Date?
@@ -202,7 +204,7 @@ public struct GitLabMergeRequest: Decodable, Equatable {
 public struct GitLabUser: Decodable, Equatable {
     public enum CodingKeys: String, CodingKey {
         case avatarUrl = "avatar_url"
-        case id
+        case id // swiftlint:disable:this identifier_name
         case name
         case state
         case username
@@ -214,7 +216,7 @@ public struct GitLabUser: Decodable, Equatable {
     }
 
     public let avatarUrl: String?
-    public let id: Int
+    public let id: Int // swiftlint:disable:this identifier_name
     public let name: String
     public let state: State
     public let username: String

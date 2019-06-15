@@ -1,3 +1,5 @@
+// swiftlint:disable line_length
+
 public let DSLGitLabJSON = """
 {
   "danger": {
