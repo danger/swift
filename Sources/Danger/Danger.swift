@@ -43,14 +43,9 @@ final class DangerRunner {
         }
         do {
             let decoder = JSONDecoder()
-            if #available(OSX 10.12, *) {
-                decoder.dateDecodingStrategy = .iso8601
-            } else {
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.defaultDateFormatter)
-            }
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.defaultDateFormatter)
             logger.debug("Decoding the DSL into Swift types")
             dsl = try decoder.decode(DSL.self, from: dslJSONContents).danger
-
         } catch {
             logger.logError("Failed to parse JSON:", error)
             exit(1)
