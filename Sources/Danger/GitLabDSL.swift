@@ -2,12 +2,12 @@ import Cocoa
 
 public struct GitLab: Decodable {
     public enum CodingKeys: String, CodingKey {
-        case metadata
         case mergeRequest = "mr"
+        case metadata
     }
 
-    public let metadata: GitLabMetadata
     public let mergeRequest: GitLabMergeRequest
+    public let metadata: GitLabMetadata
 }
 
 public struct GitLabMetadata: Decodable, Equatable {
@@ -18,23 +18,23 @@ public struct GitLabMetadata: Decodable, Equatable {
 public struct GitLabMergeRequest: Decodable, Equatable {
     public enum State: String, Decodable {
         case closed
-        case open
         case locked
         case merged
+        case open
     }
 
     public struct Milestone: Decodable, Equatable {
         public enum CodingKeys: String, CodingKey {
+            case createdAt = "created_at"
+            case description
+            case dueDate = "due_date"
             case id
             case iid
             case projectId = "project_id"
-            case title
-            case description
-            case state
-            case createdAt = "created_at"
-            case updatedAt = "updated_at"
-            case dueDate = "due_date"
             case startDate = "start_date"
+            case state
+            case title
+            case updatedAt = "updated_at"
             case webUrl = "web_url"
         }
 
@@ -42,31 +42,31 @@ public struct GitLabMergeRequest: Decodable, Equatable {
             case closed
         }
 
+        public let createdAt: Date
+        public let description: String
+        public let dueDate: Date
         public let id: Int
         public let iid: Int
         public let projectId: Int
-        public let title: String
-        public let description: String
-        public let state: State
-        public let createdAt: Date
-        public let updatedAt: Date
-        public let dueDate: Date
         public let startDate: Date
+        public let state: State
+        public let title: String
+        public let updatedAt: Date
         public let webUrl: String
     }
 
     public struct TimeStats: Decodable, Equatable {
         public enum CodingKeys: String, CodingKey {
-            case timeEstimate = "time_estimate"
-            case totalTimeSpent = "total_time_spent"
             case humanTimeEstimate = "human_time_estimate"
             case humanTimeSpent = "human_total_time_spent"
+            case timeEstimate = "time_estimate"
+            case totalTimeSpent = "total_time_spent"
         }
 
-        public let timeEstimate: Int
-        public let totalTimeSpent: Int
         public let humanTimeEstimate: Int?
         public let humanTimeSpent: Int?
+        public let timeEstimate: Int
+        public let totalTimeSpent: Int
     }
 
     struct UserMergeData: Decodable, Equatable {
@@ -96,15 +96,15 @@ public struct GitLabMergeRequest: Decodable, Equatable {
 
         public enum CodingKeys: String, CodingKey {
             case id
-            case sha
             case ref
+            case sha
             case status
             case webUrl = "web_url"
         }
 
         public let id: Int
-        public let sha: String
         public let ref: String
+        public let sha: String
         public let status: Status
         public let webUrl: String
     }
@@ -201,11 +201,11 @@ public struct GitLabMergeRequest: Decodable, Equatable {
 
 public struct GitLabUser: Decodable, Equatable {
     public enum CodingKeys: String, CodingKey {
+        case avatarUrl = "avatar_url"
         case id
         case name
-        case username
         case state
-        case avatarUrl = "avatar_url"
+        case username
         case webUrl = "web_url"
     }
 
@@ -213,10 +213,10 @@ public struct GitLabUser: Decodable, Equatable {
         case active
     }
 
+    public let avatarUrl: String?
     public let id: Int
     public let name: String
-    public let username: String
     public let state: State
-    public let avatarUrl: String?
+    public let username: String
     public let webUrl: String
 }
