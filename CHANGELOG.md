@@ -13,6 +13,8 @@
 
 ## Master
 
+- GitLab support [@f-meloni][] - [#246](https://github.com/danger/swift/pull/246)
+
 ## 1.5.6
 
 - Remove free floating "mutating" keyword from DangerDSL [@sunshinejr][] - [#241](https://github.com/danger/swift/pull/241)
