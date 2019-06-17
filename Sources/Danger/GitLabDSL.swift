@@ -41,6 +41,7 @@ public struct GitLabMergeRequest: Decodable, Equatable {
         }
 
         public enum State: String, Decodable {
+            case active
             case closed
         }
 
@@ -93,6 +94,11 @@ public struct GitLabMergeRequest: Decodable, Equatable {
 
     public struct Pipeline: Decodable, Equatable {
         public enum Status: String, Decodable {
+            case canceled
+            case failed
+            case pending
+            case running
+            case skipped
             case success
         }
 
@@ -213,6 +219,7 @@ public struct GitLabUser: Decodable, Equatable {
 
     public enum State: String, Decodable {
         case active
+        case blocked
     }
 
     public let avatarUrl: String?
