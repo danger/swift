@@ -60,6 +60,13 @@ extension DateFormatterExtensionTests {
     ]
 }
 
+extension DefaultDateFormatterTests {
+    static let __allTests = [
+        ("testParsesDateWithMilliseconds", testParsesDateWithMilliseconds),
+        ("testParsesDateWithoutMilliseconds", testParsesDateWithoutMilliseconds),
+    ]
+}
+
 extension FileTests {
     static let __allTests = [
         ("test_fileType_forHFile", test_fileType_forHFile),
@@ -144,6 +151,7 @@ extension ViolnationTests {
             testCase(DangerUtilsLineSearchTests.__allTests),
             testCase(DangerUtilsTests.__allTests),
             testCase(DateFormatterExtensionTests.__allTests),
+            testCase(DefaultDateFormatterTests.__allTests),
             testCase(FileTests.__allTests),
             testCase(FileTypeTests.__allTests),
             testCase(GitHubTests.__allTests),
