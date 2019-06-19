@@ -183,7 +183,7 @@ public struct GitLabMergeRequest: Decodable, Equatable {
     public let mergedBy: GitLabUser?
     public let mergeOnPipelineSuccess: Bool
     public let milestone: Milestone?
-    public let pipeline: Pipeline
+    public let pipeline: Pipeline?
     public let projectId: Int
     public let sha: String
     public let shouldRemoveSourceBranch: Bool?
