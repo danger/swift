@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.6.0
+
 - GitLab support [@f-meloni][] - [#246](https://github.com/danger/swift/pull/246)
 
 ## 1.5.6

@@ -25,6 +25,12 @@ public private(set) var github: GitHub!
 public let bitbucketServer: BitBucketServer!
 ```
 
+### `gitLab`
+
+```swift
+public let gitLab: GitLab!
+```
+
 ### `utils`
 
 ```swift
