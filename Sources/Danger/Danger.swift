@@ -17,7 +17,8 @@ final class DangerRunner {
     var results = DangerResults()
 
     private init() {
-        let isVerbose = CommandLine.arguments.contains("--verbose") || (ProcessInfo.processInfo.environment["DEBUG"] != nil)
+        let isVerbose = CommandLine.arguments.contains("--verbose")
+            || (ProcessInfo.processInfo.environment["DEBUG"] != nil)
         let isSilent = CommandLine.arguments.contains("--silent")
         logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
         logger.debug("Ran with: \(CommandLine.arguments.joined(separator: " "))")
@@ -25,7 +26,8 @@ final class DangerRunner {
         let cliLength = CommandLine.arguments.count
 
         guard cliLength - 2 > 0 else {
-            logger.logError("To execute Danger run danger-swift ci , danger-swift pr or danger-swift local on your terminal")
+            logger.logError("To execute Danger run danger-swift ci, " +
+                "danger-swift pr or danger-swift local on your terminal")
             exit(1)
         }
 
@@ -43,14 +45,9 @@ final class DangerRunner {
         }
         do {
             let decoder = JSONDecoder()
-            if #available(OSX 10.12, *) {
-                decoder.dateDecodingStrategy = .iso8601
-            } else {
-                decoder.dateDecodingStrategy = .formatted(DateFormatter.defaultDateFormatter)
-            }
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.defaultDateFormatter)
             logger.debug("Decoding the DSL into Swift types")
             dsl = try decoder.decode(DSL.self, from: dslJSONContents).danger
-
         } catch {
             logger.logError("Failed to parse JSON:", error)
             exit(1)
@@ -63,6 +60,7 @@ final class DangerRunner {
 
 // MARK: - Public Functions
 
+// swiftlint:disable:next identifier_name
 public func Danger() -> DangerDSL {
     return DangerRunner.shared.dsl
 }
@@ -80,8 +78,11 @@ private func dumpResultsAtExit(_ runner: DangerRunner, path: String) {
             encoder.outputFormatting = .prettyPrinted
             let data = try encoder.encode(dumpInfo.danger.results)
 
-            if !FileManager.default.createFile(atPath: dumpInfo.path, contents: data, attributes: nil) {
-                dumpInfo.danger.logger.logError("Could not create a temporary file for the Dangerfile DSL at: \(dumpInfo.path)")
+            if !FileManager.default.createFile(atPath: dumpInfo.path,
+                                               contents: data,
+                                               attributes: nil) {
+                dumpInfo.danger.logger.logError("Could not create a temporary file " +
+                    "for the Dangerfile DSL at: \(dumpInfo.path)")
                 exit(0)
             }
 

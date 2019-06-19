@@ -60,6 +60,13 @@ extension DateFormatterExtensionTests {
     ]
 }
 
+extension DefaultDateFormatterTests {
+    static let __allTests = [
+        ("testParsesDateWithMilliseconds", testParsesDateWithMilliseconds),
+        ("testParsesDateWithoutMilliseconds", testParsesDateWithoutMilliseconds),
+    ]
+}
+
 extension FileTests {
     static let __allTests = [
         ("test_fileType_forHFile", test_fileType_forHFile),
@@ -89,6 +96,7 @@ extension GitHubTests {
         ("test_GitHub_decode", test_GitHub_decode),
         ("test_GitHubCommit_decode", test_GitHubCommit_decode),
         ("test_GitHubIssue_decode", test_GitHubIssue_decode),
+        ("test_GitHubIssue_emptyBody_decode", test_GitHubIssue_emptyBody_decode),
         ("test_GitHubIssueLabel_decode", test_GitHubIssueLabel_decode),
         ("test_GitHubMergeRef_decode", test_GitHubMergeRef_decode),
         ("test_GitHubMilestone_decodeWithAllParameters", test_GitHubMilestone_decodeWithAllParameters),
@@ -98,6 +106,13 @@ extension GitHubTests {
         ("test_GitHubReview_decode", test_GitHubReview_decode),
         ("test_GitHubTeam_decode", test_GitHubTeam_decode),
         ("test_GitHubUser_decode", test_GitHubUser_decode),
+    ]
+}
+
+extension GitLabTests {
+    static let __allTests = [
+        ("testParsesCorrectlyMetadata", testParsesCorrectlyMetadata),
+        ("testParsesMergeRequest", testParsesMergeRequest),
     ]
 }
 
@@ -136,9 +151,11 @@ extension ViolnationTests {
             testCase(DangerUtilsLineSearchTests.__allTests),
             testCase(DangerUtilsTests.__allTests),
             testCase(DateFormatterExtensionTests.__allTests),
+            testCase(DefaultDateFormatterTests.__allTests),
             testCase(FileTests.__allTests),
             testCase(FileTypeTests.__allTests),
             testCase(GitHubTests.__allTests),
+            testCase(GitLabTests.__allTests),
             testCase(GitTests.__allTests),
             testCase(NSRegularExpressionExtensionsTests.__allTests),
             testCase(SwiftlintDefaultPathTests.__allTests),

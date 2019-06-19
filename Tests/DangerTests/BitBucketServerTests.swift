@@ -3,10 +3,9 @@ import DangerFixtures
 import XCTest
 
 final class BitBucketServerTests: XCTestCase {
-    private var decoder: JSONDecoder = JSONDecoder()
-    private lazy var bitBucketServer: BitBucketServer = {
-        bitbucketFixtureDSL.bitbucketServer
-    }()
+    private var bitBucketServer: BitBucketServer {
+        return bitbucketFixtureDSL.bitbucketServer
+    }
 
     func testItParsesTheBitBucketPullRequest() {
         let pullRequest = bitBucketServer.pullRequest

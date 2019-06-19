@@ -155,7 +155,7 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let user = GitHubUser(id: 2538074, login: "davdroman", userType: .user)
+        let user = GitHubUser(id: 2_538_074, login: "davdroman", userType: .user)
         let correctIssue = GitHubIssue(
             id: 447_357_592,
             number: 96,
@@ -168,9 +168,9 @@ final class GitHubTests: XCTestCase {
             assignee: nil,
             assignees: [],
             milestone: nil,
-            createdAt: Date(timeIntervalSince1970: 1558561570),
-            updatedAt: Date(timeIntervalSince1970: 1558566949),
-            closedAt: Date(timeIntervalSince1970: 1558566946),
+            createdAt: Date(timeIntervalSince1970: 1_558_561_570),
+            updatedAt: Date(timeIntervalSince1970: 1_558_566_949),
+            closedAt: Date(timeIntervalSince1970: 1_558_566_946),
             labels: []
         )
 
@@ -185,7 +185,7 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let user = GitHubUser(id: 2538074, login: "davdroman", userType: .user)
+        let user = GitHubUser(id: 2_538_074, login: "davdroman", userType: .user)
         let correctIssue = GitHubIssue(
             id: 447_357_592,
             number: 96,
@@ -198,9 +198,9 @@ final class GitHubTests: XCTestCase {
             assignee: nil,
             assignees: [],
             milestone: nil,
-            createdAt: Date(timeIntervalSince1970: 1558561570),
-            updatedAt: Date(timeIntervalSince1970: 1558566949),
-            closedAt: Date(timeIntervalSince1970: 1558566946),
+            createdAt: Date(timeIntervalSince1970: 1_558_561_570),
+            updatedAt: Date(timeIntervalSince1970: 1_558_566_949),
+            closedAt: Date(timeIntervalSince1970: 1_558_566_946),
             labels: []
         )
 
