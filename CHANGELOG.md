@@ -19,7 +19,7 @@
 
 ## 1.6.0
 
-- GitLab support [@f-meloni][] - [#246](https://github.com/danger/swift/pull/246) (Requires DangerJS 8.0.0+)
+- GitLab support [@f-meloni][] - [#246](https://github.com/danger/swift/pull/246) (Requires DangerJS 8.0.0+, remember to export the `DANGER_GITLAB_API_TOKEN` before use it)
 
 ## 1.5.6
 
