@@ -148,7 +148,7 @@ public let milestone: Milestone?
 ### `pipeline`
 
 ```swift
-public let pipeline: Pipeline
+public let pipeline: Pipeline?
 ```
 
 ### `projectId`

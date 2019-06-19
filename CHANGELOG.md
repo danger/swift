@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.6.1
+
 - Make GitLab pipeline optional [@f-meloni][] - [#248](https://github.com/danger/swift/pull/248)
 
 ## 1.6.0
