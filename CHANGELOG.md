@@ -13,6 +13,8 @@
 
 ## Master
 
+- Update Architecture documentation [@mollyIV][] - [#250](https://github.com/danger/swift/pull/250)
+
 ## 1.6.1
 
 - Make GitLab pipeline optional [@f-meloni][] - [#248](https://github.com/danger/swift/pull/248)
@@ -304,3 +306,4 @@ This release also includes:
 [@davdroman]: https://github.com/davdroman
 [139]: https://github.com/danger/swift/issues/139
 [99]: https://github.com/danger/swift/issues/99
+[@mollyIV]: https://github.com/mollyIV

@@ -35,8 +35,7 @@ your Swift rules back to Danger JS.
 `source/ci_source/providers`][provs]. These use ENV VARs to figure out which CI `danger ci` is running on and validate
 whether it is a pull request.
 
-**Step 2: Platform**. Next, Danger JS needs to know which platform the code review is happening in. Today it's just
-GitHub and BitBucket Server, but maybe GitLab is around the corner.
+**Step 2: Platform**. Next, Danger JS needs to know which platform the code review is happening in. Today it's GitHub, BitBucket Server and GitLab.
 
 **Step 3: JSON DSL**. All the metadata from the above two steps are transformed into a JSON file, which is passed into
 Danger Swift.
