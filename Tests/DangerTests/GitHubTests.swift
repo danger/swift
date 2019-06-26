@@ -26,6 +26,18 @@ final class GitHubTests: XCTestCase {
         XCTAssertEqual(testUser, correctUser)
     }
 
+    func test_GitHubBot_decode() throws {
+        guard let data = GitHubBotJSON.data(using: .utf8) else {
+            XCTFail("Could not generate data")
+            return
+        }
+
+        let correctUser = GitHubUser(id: 27_856_297, login: "dependabot-preview[bot]", userType: .bot)
+        let testBot = try JSONDecoder().decode(GitHubUser.self, from: data)
+
+        XCTAssertEqual(testBot, correctUser)
+    }
+
     func test_GitHubMilestone_decodeWithSomeParameters() throws {
         guard let data = GitHubMilestoneJSONWithSomeParameters.data(using: .utf8),
             let createdAt = dateFormatter.date(from: "2018-01-20T16:29:28Z"),

@@ -161,6 +161,7 @@ public struct GitHubUser: Decodable, Equatable {
     public enum UserType: String, Decodable {
         case user = "User"
         case organization = "Organization"
+        case bot = "Bot"
     }
 
     // MARK: - Properties
@@ -171,7 +172,7 @@ public struct GitHubUser: Decodable, Equatable {
     /// The handle for the user or organization.
     public let login: String
 
-    /// The type of user: user or organization.
+    /// The type of user: user, organization, or bot.
     public let userType: UserType
 }
 
