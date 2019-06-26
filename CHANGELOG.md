@@ -14,6 +14,7 @@
 ## Master
 
 - Update Architecture documentation [@mollyIV][] - [#250](https://github.com/danger/swift/pull/250)
+- Add support for GitHub bot users [@JosephDuffy][] - [#251](https://github.com/danger/swift/pull/251)
 
 ## 1.6.1
 
