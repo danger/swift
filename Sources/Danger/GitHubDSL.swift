@@ -172,7 +172,7 @@ public struct GitHubUser: Decodable, Equatable {
     /// The handle for the user or organization.
     public let login: String
 
-    /// The type of user: user or organization.
+    /// The type of user: user, organization, or bot.
     public let userType: UserType
 }
 
