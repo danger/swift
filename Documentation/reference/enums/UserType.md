@@ -18,3 +18,9 @@ case user = "User"
 ```swift
 case organization = "Organization"
 ```
+
+### `bot`
+
+```swift
+case bot = "Bot"
+```

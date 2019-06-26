@@ -1106,7 +1106,7 @@ public struct GitLabMergeRequest: Decodable, Equatable {
 
     public let milestone: Danger.GitLabMergeRequest.Milestone?
 
-    public let pipeline: Danger.GitLabMergeRequest.Pipeline
+    public let pipeline: Danger.GitLabMergeRequest.Pipeline?
 
     public let projectId: Int
 

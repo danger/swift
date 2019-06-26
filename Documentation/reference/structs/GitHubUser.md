@@ -31,4 +31,4 @@ public let login: String
 public let userType: UserType
 ```
 
-> The type of user: user or organization.
+> The type of user: user, organization, or bot.
