@@ -13,6 +13,8 @@
 
 ## Master
 
+- Handle not existing PR author and contributor [@f-meloni][] - [#252](https://github.com/danger/swift/pull/252)
+
 ## 1.6.2
 
 - Update Architecture documentation [@mollyIV][] - [#250](https://github.com/danger/swift/pull/250)
