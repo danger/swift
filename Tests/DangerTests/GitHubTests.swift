@@ -51,7 +51,7 @@ final class GitHubTests: XCTestCase {
                                                number: 11,
                                                state: .open,
                                                title: "1.19.0",
-                                               description: "kdsjfls",
+                                               description: nil,
                                                creator: creator,
                                                openIssues: 0,
                                                closedIssues: 2,
