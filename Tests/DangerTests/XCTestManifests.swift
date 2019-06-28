@@ -132,6 +132,7 @@
             ("test_GitHubIssueLabel_decode", test_GitHubIssueLabel_decode),
             ("test_GitHubMergeRef_decode", test_GitHubMergeRef_decode),
             ("test_GitHubMilestone_decodeWithAllParameters", test_GitHubMilestone_decodeWithAllParameters),
+            ("test_GitHubMilestone_decodeWithoutDescription", test_GitHubMilestone_decodeWithoutDescription),
             ("test_GitHubMilestone_decodeWithSomeParameters", test_GitHubMilestone_decodeWithSomeParameters),
             ("test_GitHubPR_decode", test_GitHubPR_decode),
             ("test_GitHubRepo_decode", test_GitHubRepo_decode),

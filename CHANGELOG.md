@@ -12,6 +12,7 @@
 -->
 
 ## Master
+- Allow nil GitHub milestone descriptions [@smalljd][] - [#253](https://github.com/danger/swift/pull/253)
 
 ## 1.6.2
 
@@ -310,3 +311,4 @@ This release also includes:
 [139]: https://github.com/danger/swift/issues/139
 [99]: https://github.com/danger/swift/issues/99
 [@mollyIV]: https://github.com/mollyIV
+[@smalljd]: https://github.com/smalljd
