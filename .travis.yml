@@ -13,7 +13,7 @@ matrix:
       osx_image: xcode10
       install:
         - node -v
-        - npm install -g danger
+        - npm install -g danger@7.1.4
         - make install
       script:
         - swift test
@@ -24,7 +24,7 @@ matrix:
       osx_image: xcode10.2
       install:
         - node -v
-        - npm install -g danger
+        - npm install -g danger@7.1.4
         - make install
       script:
         - swift test
@@ -45,7 +45,7 @@ matrix:
       dist: trusty
       install:
         - node -v
-        - npm install -g danger
+        - npm install -g danger@7.1.4
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
         - swiftenv global 4.2
       script:
@@ -59,7 +59,7 @@ matrix:
       osx_image: xcode10
       install:
         - node -v
-        - npm install -g danger
+        - npm install -g danger@7.1.4
       script:
         - swift run danger-swift ci
 
@@ -70,7 +70,7 @@ matrix:
       dist: trusty
       install:
         - node -v
-        - npm install -g danger
+        - npm install -g danger@7.1.4
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
         - swiftenv global 4.2
       script:
