@@ -15,7 +15,6 @@
 
 ## 1.6.3
 - Allow nil GitHub milestone descriptions [@smalljd][] - [#253](https://github.com/danger/swift/pull/253)
-
 - Handle not existing PR commit author and contributor [@f-meloni][] - [#252](https://github.com/danger/swift/pull/252)
 
 ## 1.6.2
