@@ -480,7 +480,7 @@ public struct GitHubMilestone: Decodable, Equatable {
     public let title: String
 
     /// The description of this milestone.
-    public let description: String
+    public let description: String?
 
     /// The user who created this milestone.
     public let creator: GitHubUser

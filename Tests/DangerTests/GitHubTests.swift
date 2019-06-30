@@ -94,6 +94,33 @@ final class GitHubTests: XCTestCase {
         XCTAssertEqual(testMilestone, correctMilestone)
     }
 
+    func test_GitHubMilestone_decodeWithoutDescription() throws {
+        guard let data = GitHubMilestoneJSONWithoutDescription.data(using: .utf8),
+            let createdAt = dateFormatter.date(from: "2018-01-20T16:29:28Z"),
+            let updatedAt = dateFormatter.date(from: "2018-02-27T06:23:58Z") else {
+            XCTFail("Could not generate data")
+            return
+        }
+
+        let creator = GitHubUser(id: 739_696, login: "rnystrom", userType: .user)
+        let correctMilestone = GitHubMilestone(id: 3_050_458,
+                                               number: 11,
+                                               state: .open,
+                                               title: "1.19.0",
+                                               description: nil,
+                                               creator: creator,
+                                               openIssues: 0,
+                                               closedIssues: 2,
+                                               createdAt: createdAt,
+                                               updatedAt: updatedAt,
+                                               closedAt: nil,
+                                               dueOn: nil)
+
+        let testMilestone: GitHubMilestone = try decoder.decode(GitHubMilestone.self, from: data)
+
+        XCTAssertEqual(testMilestone, correctMilestone)
+    }
+
     func test_GitHubTeam_decode() throws {
         guard let data = GitHubTeamJSON.data(using: .utf8) else {
             XCTFail("Could not generate data")
