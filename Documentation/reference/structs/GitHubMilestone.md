@@ -42,7 +42,7 @@ public let title: String
 ### `description`
 
 ```swift
-public let description: String
+public let description: String?
 ```
 
 > The description of this milestone.
