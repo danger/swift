@@ -127,6 +127,7 @@
             ("test_GitHub_decode", test_GitHub_decode),
             ("test_GitHubBot_decode", test_GitHubBot_decode),
             ("test_GitHubCommit_decode", test_GitHubCommit_decode),
+            ("test_GitHubCommit_decodesJSONWithEmptyAuthor", test_GitHubCommit_decodesJSONWithEmptyAuthor),
             ("test_GitHubIssue_decode", test_GitHubIssue_decode),
             ("test_GitHubIssue_emptyBody_decode", test_GitHubIssue_emptyBody_decode),
             ("test_GitHubIssueLabel_decode", test_GitHubIssueLabel_decode),

@@ -248,6 +248,27 @@ final class GitHubTests: XCTestCase {
         XCTAssertEqual(testIssue, correctIssue)
     }
 
+    func test_GitHubCommit_decodesJSONWithEmptyAuthor() throws {
+        guard let data = GitHubCommitWithEmptyAuthorJSON.data(using: .utf8) else {
+            XCTFail("Could not generate data")
+            return
+        }
+        let expectedAuthor = GitCommitAuthor(name: "Franco Meloni", email: "franco.meloni91@gmail.com", date: "2019-04-20T17:46:50Z")
+
+        let testCommit = try decoder.decode(GitHubCommit.self, from: data)
+
+        XCTAssertNil(testCommit.author)
+        XCTAssertEqual(testCommit.sha, "cad494648f773cd4fad5a9ea948c1bfabf36032a")
+        XCTAssertEqual(testCommit.url, "https://api.github.com/repos/danger/swift/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a")
+        XCTAssertEqual(testCommit.commit, GitCommit(sha: nil,
+                                                    author: expectedAuthor,
+                                                    committer: expectedAuthor,
+                                                    message: "Re use the same executor on the runner",
+                                                    parents: nil,
+                                                    url: "https://api.github.com/repos/danger/swift/git/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a"))
+        XCTAssertEqual(testCommit.committer, GitHubUser(id: 17_830_956, login: "f-meloni", userType: .user))
+    }
+
     func test_GitHubPR_decode() throws {}
 
     func test_GitHub_decode() throws {}

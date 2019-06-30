@@ -306,6 +306,14 @@ public struct GitHubReview: Decodable, Equatable {
 public struct GitHubCommit: Decodable, Equatable {
     // MARK: - Properties
 
+    enum CodingKeys: String, CodingKey {
+        case sha
+        case commit
+        case url
+        case author
+        case committer
+    }
+
     /// The SHA for the commit.
     public let sha: String
 
@@ -320,6 +328,16 @@ public struct GitHubCommit: Decodable, Equatable {
 
     /// The GitHub user who shipped the code.
     public let committer: GitHubUser?
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        sha = try container.decode(String.self, forKey: .sha)
+        commit = try container.decode(GitCommit.self, forKey: .commit)
+        url = try container.decode(String.self, forKey: .url)
+        author = (try? container.decodeIfPresent(GitHubUser.self, forKey: .author)) ?? nil
+        committer = (try? container.decodeIfPresent(GitHubUser.self, forKey: .committer)) ?? nil
+    }
 }
 
 // MARK: - GitHubIssue
