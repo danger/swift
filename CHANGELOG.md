@@ -13,7 +13,7 @@
 
 ## Master
 
-- Handle not existing PR author and contributor [@f-meloni][] - [#252](https://github.com/danger/swift/pull/252)
+- Handle not existing PR commit author and contributor [@f-meloni][] - [#252](https://github.com/danger/swift/pull/252)
 
 ## 1.6.2
 
