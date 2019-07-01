@@ -145,5 +145,5 @@ This is mainly the work of [Ash Furrow][ash] and [Łukasz Mróz][sun] over at [d
 [ash]: https://ashfurrow.com
 [sun]: https://sunshinejr.com
 [culture]: https://danger.systems/swift/usage/culture.html
-[migen]: https://github.com/artsy/eigen/blob/master/Dangerfile.swift
+[eigen]: https://github.com/artsy/eigen/blob/master/Dangerfile.swift
 [moya]: https://github.com/Moya/Harvey/blob/master/Dangerfile.swift
