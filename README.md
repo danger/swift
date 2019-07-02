@@ -176,7 +176,7 @@ cd danger-swift
 swift build
 swift run komondor install
 swift package generate-xcodeproj
-open Danger.xcodeproj
+open danger-swift.xcodeproj
 ```
 
 Then I tend to run `danger-swift` using `swift run`:
