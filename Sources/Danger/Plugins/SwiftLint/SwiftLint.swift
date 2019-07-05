@@ -145,6 +145,16 @@ extension SwiftLint {
         var arguments = arguments
         arguments.append("--use-script-input-files")
         arguments.append("--force-exclude")
+    
+        let tmpDir: String
+        
+        if #available(OSX 10.12, *) {
+            tmpDir = FileManager.default.temporaryDirectory.appendingPathComponent("swiftlintReport.json").path
+        } else {
+            tmpDir = try! FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("swiftlintReport.json").path
+        }
+        
+        arguments.append("> \(tmpDir)")
 
         // swiftlint takes input files via environment variables
         var inputFiles = ["SCRIPT_INPUT_FILE_COUNT": "\(files.count)"]
@@ -152,9 +162,12 @@ extension SwiftLint {
             inputFiles["SCRIPT_INPUT_FILE_\(index)"] = file
         }
 
-        let outputJSON = shellExecutor.execute(swiftlintPath,
-                                               arguments: arguments,
-                                               environmentVariables: inputFiles)
+        _ = shellExecutor.execute(swiftlintPath,
+                                 arguments: arguments,
+                                 environmentVariables: inputFiles)
+        
+        let outputJSON = danger.utils.readFile(tmpDir)
+        
         return makeViolations(from: outputJSON, failAction: failAction)
     }
 
