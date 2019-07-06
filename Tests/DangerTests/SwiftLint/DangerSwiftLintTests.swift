@@ -9,23 +9,39 @@ class DangerSwiftLintTests: XCTestCase {
     var markdownMessage: String?
 
     override func setUp() {
+        super.setUp()
         executor = FakeShellExecutor()
         fakePathProvider = FakeCurrentPathProvider()
         fakePathProvider.currentPath = "/Users/ash/bin"
-
         danger = githubFixtureDSL
+    }
+
+    override func tearDown() {
+        super.tearDown()
+        executor = nil
+        fakePathProvider = nil
+        danger = nil
         markdownMessage = nil
     }
 
     func testExecutesTheShell() {
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", currentPathProvider: fakePathProvider)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
         XCTAssertEqual(executor.invocations.count, 1)
         XCTAssertEqual(executor.invocations.first?.command, "swiftlint")
     }
 
     func testExecutesTheShellWithCustomSwiftLintPath() {
         _ = SwiftLint.lint(danger: danger,
-                           shellExecutor: executor, swiftlintPath: "Pods/SwiftLint/swiftlint", currentPathProvider: fakePathProvider)
+                           shellExecutor: executor,
+                           swiftlintPath: "Pods/SwiftLint/swiftlint",
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
         XCTAssertEqual(executor.invocations.count, 1)
         XCTAssertEqual(executor.invocations.first?.command, "Pods/SwiftLint/swiftlint")
     }
@@ -39,18 +55,28 @@ class DangerSwiftLintTests: XCTestCase {
 
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint")
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           readFile: mockedEmptyJSON)
         XCTAssertEqual(executor.invocations.count, 0, "If there are no files to lint, Swiftlint should not be executed")
     }
 
     func testExecuteSwiftLintInInlineMode() {
-        mockViolationJSON()
         var warns = [(String, String, Int)]()
         let warnAction: (String, String, Int) -> Void = { warns.append(($0, $1, $2)) }
         var fails = [(String, String, Int)]()
         let failAction: (String, String, Int) -> Void = { fails.append(($0, $1, $2)) }
 
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", inline: true, currentPathProvider: fakePathProvider, failInlineAction: failAction, warnInlineAction: warnAction)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           inline: true,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           failInlineAction: failAction,
+                           warnInlineAction: warnAction,
+                           readFile: mockedViolationJSON)
 
         XCTAssertEqual(warns.first?.0, "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")
         XCTAssertEqual(warns.first?.1, "SomeFile.swift")
@@ -62,13 +88,21 @@ class DangerSwiftLintTests: XCTestCase {
     }
 
     func testExecuteSwiftWithStructAndInlineMode() {
-        mockViolationJSON()
         var warns = [(String, String, Int)]()
         let warnAction: (String, String, Int) -> Void = { warns.append(($0, $1, $2)) }
         var fails = [(String, String, Int)]()
         let failAction: (String, String, Int) -> Void = { fails.append(($0, $1, $2)) }
 
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", inline: true, strict: true, currentPathProvider: fakePathProvider, failInlineAction: failAction, warnInlineAction: warnAction)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           inline: true,
+                           strict: true,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           failInlineAction: failAction,
+                           warnInlineAction: warnAction,
+                           readFile: mockedViolationJSON)
 
         XCTAssertTrue(warns.isEmpty)
         XCTAssertEqual(fails.count, 2)
@@ -85,11 +119,17 @@ class DangerSwiftLintTests: XCTestCase {
     func testExecutesSwiftLintWithConfigWhenPassed() {
         let configFile = "/Path/to/config/.swiftlint.yml"
 
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", configFile: configFile, currentPathProvider: fakePathProvider)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           configFile: configFile,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertTrue(!swiftlintCommands.isEmpty)
-        swiftlintCommands.forEach { _, arguments, _ in
+        swiftlintCommands.forEach { _, arguments, _, _ in
             XCTAssertTrue(arguments.contains("--config \"\(configFile)\""))
         }
     }
@@ -104,7 +144,13 @@ class DangerSwiftLintTests: XCTestCase {
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", directory: directory, currentPathProvider: fakePathProvider)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           directory: directory,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertEqual(swiftlintCommands.count, 1)
@@ -120,7 +166,13 @@ class DangerSwiftLintTests: XCTestCase {
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", lintAllFiles: true, currentPathProvider: fakePathProvider)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           lintAllFiles: true,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertEqual(swiftlintCommands.count, 1)
@@ -137,7 +189,14 @@ class DangerSwiftLintTests: XCTestCase {
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", directory: directory, lintAllFiles: true, currentPathProvider: fakePathProvider)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           directory: directory,
+                           lintAllFiles: true,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
 
         let swiftlintCommand = executor.invocations.filter { $0.command == "swiftlint" }.first
         XCTAssertNotNil(swiftlintCommand)
@@ -147,15 +206,26 @@ class DangerSwiftLintTests: XCTestCase {
     }
 
     func testFiltersOnSwiftFiles() {
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", currentPathProvider: fakePathProvider)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
 
         let quoteCharacterSet = CharacterSet(charactersIn: "\"")
-        let filesExtensions = Set(executor.invocations.first!.environmentVariables.filter { $0.key != "SCRIPT_INPUT_FILE_COUNT" }.values.compactMap { $0.split(separator: ".").last?.trimmingCharacters(in: quoteCharacterSet) })
+        let filesExtensions = Set(executor.invocations.first!.environmentVariables.filter { $0.key != "SCRIPT_INPUT_FILE_COUNT" }.values.compactMap { $0.split(separator: ".").last?.trimmingCharacters(in: quoteCharacterSet)
+        })
         XCTAssertEqual(filesExtensions, ["swift"])
     }
 
     func testPrintsNoMarkdownIfNoViolations() {
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", currentPathProvider: fakePathProvider)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
         XCTAssertNil(markdownMessage)
     }
 
@@ -166,23 +236,36 @@ class DangerSwiftLintTests: XCTestCase {
             "circle.yml",
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
-        mockViolationJSON()
 
-        let violations = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", currentPathProvider: fakePathProvider, markdownAction: writeMarkdown)
+        let violations = SwiftLint.lint(danger: danger,
+                                        shellExecutor: executor,
+                                        swiftlintPath: "swiftlint",
+                                        currentPathProvider: fakePathProvider,
+                                        markdownAction: writeMarkdown,
+                                        readFile: mockedViolationJSON)
         XCTAssertEqual(violations.count, 2)
     }
 
     func testMarkdownReporting() {
-        mockViolationJSON()
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", currentPathProvider: fakePathProvider, markdownAction: writeMarkdown)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           currentPathProvider: fakePathProvider,
+                           markdownAction: writeMarkdown,
+                           readFile: mockedViolationJSON)
         XCTAssertNotNil(markdownMessage)
         XCTAssertTrue(markdownMessage!.contains("SwiftLint found issues"))
         XCTAssertTrue(markdownMessage!.contains("Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")) // swiftlint:disable:this line_length
     }
 
     func testMarkdownReportingInStrictMode() {
-        mockViolationJSON()
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", strict: true, currentPathProvider: fakePathProvider, markdownAction: writeMarkdown)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           strict: true,
+                           currentPathProvider: fakePathProvider,
+                           markdownAction: writeMarkdown,
+                           readFile: mockedViolationJSON)
         XCTAssertNotNil(markdownMessage)
 
         let lines = markdownMessage!.split(separator: "\n")
@@ -199,7 +282,11 @@ class DangerSwiftLintTests: XCTestCase {
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
-        _ = SwiftLint.lint(danger: danger, shellExecutor: executor, swiftlintPath: "swiftlint", currentPathProvider: fakePathProvider)
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           currentPathProvider: fakePathProvider,
+                           readFile: mockedEmptyJSON)
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
 
@@ -207,8 +294,8 @@ class DangerSwiftLintTests: XCTestCase {
         XCTAssertEqual(swiftlintCommands.first!.environmentVariables["SCRIPT_INPUT_FILE_2"], "Test Dir/SomeThirdFile.swift")
     }
 
-    func mockViolationJSON() {
-        executor.output = """
+    func mockedViolationJSON(_: String) -> String {
+        return """
         [
             {
                 "rule_id" : "opening_brace",
@@ -230,6 +317,10 @@ class DangerSwiftLintTests: XCTestCase {
             }
         ]
         """
+    }
+
+    func mockedEmptyJSON(_: String) -> String {
+        return "[]"
     }
 
     func writeMarkdown(_ message: String) {

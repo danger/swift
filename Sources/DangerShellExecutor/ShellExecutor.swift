@@ -8,25 +8,41 @@ public protocol ShellExecuting {
     @discardableResult
     func execute(_ command: String,
                  arguments: [String],
-                 environmentVariables: [String: String]) -> String
+                 environmentVariables: [String: String],
+                 outputFile: String?) -> String
 
     @discardableResult
     func spawn(_ command: String,
                arguments: [String],
-               environmentVariables: [String: String]) throws -> String
+               environmentVariables: [String: String],
+               outputFile: String?) throws -> String
 }
 
 extension ShellExecuting {
     @discardableResult
     public func execute(_ command: String,
                         arguments: [String]) -> String {
-        return execute(command, arguments: arguments, environmentVariables: [:])
+        return execute(command, arguments: arguments, environmentVariables: [:], outputFile: nil)
+    }
+
+    @discardableResult
+    func execute(_ command: String,
+                 arguments: [String],
+                 environmentVariables: [String: String]) -> String {
+        return execute(command, arguments: arguments, environmentVariables: environmentVariables, outputFile: nil)
     }
 
     @discardableResult
     public func spawn(_ command: String,
                       arguments: [String]) throws -> String {
-        return try spawn(command, arguments: arguments, environmentVariables: [:])
+        return try spawn(command, arguments: arguments, environmentVariables: [:], outputFile: nil)
+    }
+
+    @discardableResult
+    func spawn(_ command: String,
+               arguments: [String],
+               environmentVariables: [String: String]) throws -> String {
+        return try spawn(command, arguments: arguments, environmentVariables: environmentVariables, outputFile: nil)
     }
 }
 
@@ -35,8 +51,9 @@ public struct ShellExecutor: ShellExecuting {
 
     public func execute(_ command: String,
                         arguments: [String],
-                        environmentVariables: [String: String]) -> String {
-        let task = makeTask(for: command, with: arguments, environmentVariables: environmentVariables)
+                        environmentVariables: [String: String],
+                        outputFile: String?) -> String {
+        let task = makeTask(for: command, with: arguments, environmentVariables: environmentVariables, outputFile: outputFile)
 
         let pipe = Pipe()
         task.standardOutput = pipe
@@ -44,15 +61,16 @@ public struct ShellExecutor: ShellExecuting {
         task.waitUntilExit()
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        return String(data: data, encoding: .utf8)!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        return String(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
     // Similar to above, but can throw, and throws with most of
     // what you'd probably need in a scripting environment
     public func spawn(_ command: String,
                       arguments: [String],
-                      environmentVariables: [String: String]) throws -> String {
-        let task = makeTask(for: command, with: arguments, environmentVariables: environmentVariables)
+                      environmentVariables: [String: String],
+                      outputFile: String?) throws -> String {
+        let task = makeTask(for: command, with: arguments, environmentVariables: environmentVariables, outputFile: outputFile)
 
         let stdout = Pipe()
         task.standardOutput = stdout
@@ -67,7 +85,7 @@ public struct ShellExecutor: ShellExecuting {
 
         // 0 is no problems in unix land
         if task.terminationStatus == 0 {
-            return stdoutString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            return stdoutString.trimmingCharacters(in: .whitespacesAndNewlines)
         }
 
         // OK, so it failed, raise a new error with all the useful metadata
@@ -82,8 +100,17 @@ public struct ShellExecutor: ShellExecuting {
 
     private func makeTask(for command: String,
                           with arguments: [String],
-                          environmentVariables: [String: String]) -> Process {
-        let script = "\(command) \(arguments.joined(separator: " "))"
+                          environmentVariables: [String: String],
+                          outputFile: String?) -> Process {
+        let scriptOutputFile: String
+
+        if let outputFile = outputFile {
+            scriptOutputFile = " > \(outputFile)"
+        } else {
+            scriptOutputFile = ""
+        }
+
+        let script = "\(command) \(arguments.joined(separator: " "))" + scriptOutputFile
         let processEnv = ProcessInfo.processInfo.environment
         let task = Process()
         task.launchPath = processEnv["SHELL"]
