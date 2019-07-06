@@ -134,6 +134,35 @@ class DangerSwiftLintTests: XCTestCase {
         }
     }
 
+    func testSendsOuputFileToTheExecutorWhenLintingModifiedFiles() {
+        let configFile = "/Path/to/config/.swiftlint.yml"
+
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           configFile: configFile,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
+
+        XCTAssertEqual(executor.invocations.first?.outputFile, "swiftlintReport.json")
+    }
+
+    func testSendsOuputFileToTheExecutorWhenLintingAllTheFiles() {
+        let configFile = "/Path/to/config/.swiftlint.yml"
+
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           configFile: configFile,
+                           lintAllFiles: true,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
+
+        XCTAssertEqual(executor.invocations.first?.outputFile, "swiftlintReport.json")
+    }
+
     func testExecutesSwiftLintWithDirectoryPassed() {
         let directory = "Tests"
         let modified = [

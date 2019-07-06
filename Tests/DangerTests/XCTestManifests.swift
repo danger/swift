@@ -36,6 +36,8 @@ extension DangerSwiftLintTests {
         ("testMarkdownReportingInStrictMode", testMarkdownReportingInStrictMode),
         ("testPrintsNoMarkdownIfNoViolations", testPrintsNoMarkdownIfNoViolations),
         ("testQuotesPathArguments", testQuotesPathArguments),
+        ("testSendsOuputFileToTheExecutorWhenLintingAllTheFiles", testSendsOuputFileToTheExecutorWhenLintingAllTheFiles),
+        ("testSendsOuputFileToTheExecutorWhenLintingModifiedFiles", testSendsOuputFileToTheExecutorWhenLintingModifiedFiles),
         ("testViolations", testViolations),
     ]
 }
