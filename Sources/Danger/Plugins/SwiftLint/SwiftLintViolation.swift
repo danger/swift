@@ -20,16 +20,6 @@ public struct SwiftLintViolation: Decodable {
         case reason, line, file, severity, type
     }
 
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        ruleID = try values.decode(String.self, forKey: .ruleID)
-        reason = try values.decode(String.self, forKey: .reason)
-        line = try values.decode(Int.self, forKey: .line)
-        file = try values.decode(String.self, forKey: .file)
-        severity = try values.decode(Severity.self, forKey: .severity)
-        type = try values.decode(String.self, forKey: .type)
-    }
-
     public init?(dictionary: [String: Any]) {
         guard let ruleID = dictionary[CodingKeys.ruleID.rawValue] as? String,
             let reason = dictionary[CodingKeys.reason.rawValue] as? String,
