@@ -221,7 +221,7 @@ extension SwiftLint {
         if #available(OSX 10.12, *) {
             return FileManager.default.temporaryDirectory.appendingPathComponent("swiftlintReport.json").path
         } else {
-            return try! FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("swiftlintReport.json").path
+            return NSTemporaryDirectory() + "swiftlintReport.json"
         }
     }
 }
