@@ -13,6 +13,8 @@
 
 ## Master
 
+- Optimise Swiftlint perfomances [@f-meloni][] - [#256](https://github.com/danger/swift/pull/256)
+
 ## 1.6.3
 - Allow nil GitHub milestone descriptions [@smalljd][] - [#253](https://github.com/danger/swift/pull/253)
 

@@ -53,7 +53,10 @@ public struct ShellExecutor: ShellExecuting {
                         arguments: [String],
                         environmentVariables: [String: String],
                         outputFile: String?) -> String {
-        let task = makeTask(for: command, with: arguments, environmentVariables: environmentVariables, outputFile: outputFile)
+        let task = makeTask(for: command,
+                            with: arguments,
+                            environmentVariables: environmentVariables,
+                            outputFile: outputFile)
 
         let pipe = Pipe()
         task.standardOutput = pipe
@@ -70,7 +73,10 @@ public struct ShellExecutor: ShellExecuting {
                       arguments: [String],
                       environmentVariables: [String: String],
                       outputFile: String?) throws -> String {
-        let task = makeTask(for: command, with: arguments, environmentVariables: environmentVariables, outputFile: outputFile)
+        let task = makeTask(for: command,
+                            with: arguments,
+                            environmentVariables: environmentVariables,
+                            outputFile: outputFile)
 
         let stdout = Pipe()
         task.standardOutput = stdout

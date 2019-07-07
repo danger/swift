@@ -30,7 +30,7 @@ public struct SwiftLint {
 
 /// This extension is for internal workings of the plugin. It is marked as internal for unit testing.
 extension SwiftLint {
-    // swiftlint:disable:next function_body_length
+    // swiftlint:disable:next function_body_length function_parameter_count
     static func lint(
         danger: DangerDSL,
         shellExecutor: ShellExecuting,
@@ -138,7 +138,8 @@ extension SwiftLint {
                                    environmentVariables: [:],
                                    outputFilePath: outputFilePath,
                                    shellExecutor: shellExecutor,
-                                   failAction: failAction, readFile: readFile)
+                                   failAction: failAction,
+                                   readFile: readFile)
     }
 
     // swiftlint:disable function_parameter_count
@@ -176,7 +177,8 @@ extension SwiftLint {
                                    environmentVariables: inputFiles,
                                    outputFilePath: outputFilePath,
                                    shellExecutor: shellExecutor,
-                                   failAction: failAction, readFile: readFile)
+                                   failAction: failAction,
+                                   readFile: readFile)
     }
 
     static func swiftlintDefaultPath(packagePath: String = "Package.swift") -> String {
