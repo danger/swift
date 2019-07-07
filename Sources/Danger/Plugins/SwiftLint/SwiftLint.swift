@@ -120,6 +120,7 @@ extension SwiftLint {
         return violations
     }
 
+    // swiftlint:disable:next function_parameter_count
     private static func lintAll(directory: String?,
                                 arguments: [String],
                                 shellExecutor: ShellExecuting,
