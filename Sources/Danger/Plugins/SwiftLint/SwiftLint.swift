@@ -41,7 +41,7 @@ extension SwiftLint {
         strict: Bool = false,
         lintAllFiles: Bool = false,
         currentPathProvider: CurrentPathProvider = DefaultCurrentPathProvider(),
-        outputFilePath: String = tmpSwiftflintOutputFilePath,
+        outputFilePath: String = tmpSwiftlintOutputFilePath,
         reportDeleter: SwiftlintReportDeleting = SwiftlintReportDeleter(),
         markdownAction: (String) -> Void = markdown,
         failAction: (String) -> Void = fail,
@@ -220,7 +220,7 @@ extension SwiftLint {
         }
     }
 
-    private static var tmpSwiftflintOutputFilePath: String {
+    private static var tmpSwiftlintOutputFilePath: String {
         if #available(OSX 10.12, *) {
             return FileManager.default.temporaryDirectory.appendingPathComponent("swiftlintReport.json").path
         } else {
