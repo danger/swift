@@ -18,10 +18,8 @@ class ViolnationTests: XCTestCase {
         XCTAssertEqual(subject.ruleID, "opening_brace")
         XCTAssertEqual(subject.reason, "Opening braces should be preceded by a single space and on the same line as the declaration.")
         XCTAssertEqual(subject.line, 8)
-//        XCTAssertEqual(subject.character, 39)
         XCTAssertEqual(subject.file, "/Users/ash/bin/Harvey/Sources/Harvey/Harvey.swift")
         XCTAssertEqual(subject.severity, .warning)
-        XCTAssertEqual(subject.type, "Opening Brace Spacing")
     }
 
     static var allTests = [
