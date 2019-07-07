@@ -7,9 +7,7 @@ public struct SwiftLintViolation: Decodable {
     var ruleID: String
     var reason: String
     var line: Int
-    var character: Int?
     var severity: Severity
-    var type: String
     var file: String
 
     var messageText: String {
@@ -18,18 +16,7 @@ public struct SwiftLintViolation: Decodable {
 
     enum CodingKeys: String, CodingKey {
         case ruleID = "rule_id"
-        case reason, line, character, file, severity, type
-    }
-
-    public init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        ruleID = try values.decode(String.self, forKey: .ruleID)
-        reason = try values.decode(String.self, forKey: .reason)
-        line = try values.decode(Int.self, forKey: .line)
-        character = try values.decode(Int?.self, forKey: .character)
-        file = try values.decode(String.self, forKey: .file)
-        severity = try values.decode(Severity.self, forKey: .severity)
-        type = try values.decode(String.self, forKey: .type)
+        case reason, line, file, severity
     }
 
     public func toMarkdown() -> String {

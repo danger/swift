@@ -4,8 +4,8 @@ import Foundation
 /// The SwiftLint plugin has been embedded inside Danger, making
 /// it usable out of the box.
 public struct SwiftLint {
-    internal static let danger = Danger()
-    internal static let shellExecutor = ShellExecutor()
+    static let danger = Danger()
+    static let shellExecutor = ShellExecutor()
 
     /// This is the main entry point for linting Swift in PRs.
     ///
@@ -41,15 +41,22 @@ extension SwiftLint {
         strict: Bool = false,
         lintAllFiles: Bool = false,
         currentPathProvider: CurrentPathProvider = DefaultCurrentPathProvider(),
+        outputFilePath: String = tmpSwiftlintOutputFilePath,
+        reportDeleter: SwiftlintReportDeleting = SwiftlintReportDeleter(),
         markdownAction: (String) -> Void = markdown,
         failAction: (String) -> Void = fail,
         failInlineAction: (String, String, Int) -> Void = fail,
-        warnInlineAction: (String, String, Int) -> Void = warn
+        warnInlineAction: (String, String, Int) -> Void = warn,
+        readFile: (String) -> String = danger.utils.readFile
     ) -> [SwiftLintViolation] {
         var arguments = ["lint", "--quiet", "--reporter json"]
 
         if let configFile = configFile {
             arguments.append("--config \"\(configFile)\"")
+        }
+
+        defer {
+            try? reportDeleter.deleteReport(atPath: outputFilePath)
         }
 
         var violations: [SwiftLintViolation]
@@ -59,14 +66,18 @@ extension SwiftLint {
                                  arguments: arguments,
                                  shellExecutor: shellExecutor,
                                  swiftlintPath: swiftlintPath,
-                                 failAction: failAction)
+                                 outputFilePath: outputFilePath,
+                                 failAction: failAction,
+                                 readFile: readFile)
         } else {
             violations = lintModifiedAndCreated(danger: danger,
                                                 directory: directory,
                                                 arguments: arguments,
                                                 shellExecutor: shellExecutor,
                                                 swiftlintPath: swiftlintPath,
-                                                failAction: failAction)
+                                                outputFilePath: outputFilePath,
+                                                failAction: failAction,
+                                                readFile: readFile)
         }
 
         guard !violations.isEmpty else {
@@ -109,19 +120,27 @@ extension SwiftLint {
         return violations
     }
 
+    // swiftlint:disable:next function_parameter_count
     private static func lintAll(directory: String?,
                                 arguments: [String],
                                 shellExecutor: ShellExecuting,
                                 swiftlintPath: String,
-                                failAction: (String) -> Void) -> [SwiftLintViolation] {
+                                outputFilePath: String,
+                                failAction: (String) -> Void,
+                                readFile: (String) -> String) -> [SwiftLintViolation] {
         var arguments = arguments
 
         if let directory = directory {
             arguments.append("--path \"\(directory)\"")
         }
 
-        let outputJSON = shellExecutor.execute(swiftlintPath, arguments: arguments)
-        return makeViolations(from: outputJSON, failAction: failAction)
+        return swiftlintViolations(swiftlintPath: swiftlintPath,
+                                   arguments: arguments,
+                                   environmentVariables: [:],
+                                   outputFilePath: outputFilePath,
+                                   shellExecutor: shellExecutor,
+                                   failAction: failAction,
+                                   readFile: readFile)
     }
 
     // swiftlint:disable function_parameter_count
@@ -130,7 +149,9 @@ extension SwiftLint {
                                                arguments: [String],
                                                shellExecutor: ShellExecuting,
                                                swiftlintPath: String,
-                                               failAction: (String) -> Void) -> [SwiftLintViolation] {
+                                               outputFilePath: String,
+                                               failAction: (String) -> Void,
+                                               readFile: (String) -> String) -> [SwiftLintViolation] {
         // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
         var files = (danger.git.createdFiles + danger.git.modifiedFiles).filter { $0.fileType == .swift }
         if let directory = directory {
@@ -152,9 +173,39 @@ extension SwiftLint {
             inputFiles["SCRIPT_INPUT_FILE_\(index)"] = file
         }
 
-        let outputJSON = shellExecutor.execute(swiftlintPath,
-                                               arguments: arguments,
-                                               environmentVariables: inputFiles)
+        return swiftlintViolations(swiftlintPath: swiftlintPath,
+                                   arguments: arguments,
+                                   environmentVariables: inputFiles,
+                                   outputFilePath: outputFilePath,
+                                   shellExecutor: shellExecutor,
+                                   failAction: failAction,
+                                   readFile: readFile)
+    }
+
+    static func swiftlintDefaultPath(packagePath: String = "Package.swift") -> String {
+        let swiftPackageDepPattern = "\\.package\\(.*SwiftLint.*"
+        if let packageContent = try? String(contentsOfFile: packagePath),
+            let regex = try? NSRegularExpression(pattern: swiftPackageDepPattern, options: .allowCommentsAndWhitespace),
+            regex.firstMatchingString(in: packageContent) != nil {
+            return "swift run swiftlint"
+        } else {
+            return "swiftlint"
+        }
+    }
+
+    private static func swiftlintViolations(swiftlintPath: String,
+                                            arguments: [String],
+                                            environmentVariables: [String: String],
+                                            outputFilePath: String,
+                                            shellExecutor: ShellExecuting,
+                                            failAction: (String) -> Void,
+                                            readFile: (String) -> String) -> [SwiftLintViolation] {
+        shellExecutor.execute(swiftlintPath,
+                              arguments: arguments,
+                              environmentVariables: environmentVariables,
+                              outputFile: outputFilePath)
+
+        let outputJSON = readFile(outputFilePath)
         return makeViolations(from: outputJSON, failAction: failAction)
     }
 
@@ -169,14 +220,11 @@ extension SwiftLint {
         }
     }
 
-    static func swiftlintDefaultPath(packagePath: String = "Package.swift") -> String {
-        let swiftPackageDepPattern = "\\.package\\(.*SwiftLint.*"
-        if let packageContent = try? String(contentsOfFile: packagePath),
-            let regex = try? NSRegularExpression(pattern: swiftPackageDepPattern, options: .allowCommentsAndWhitespace),
-            regex.firstMatchingString(in: packageContent) != nil {
-            return "swift run swiftlint"
+    private static var tmpSwiftlintOutputFilePath: String {
+        if #available(OSX 10.12, *) {
+            return FileManager.default.temporaryDirectory.appendingPathComponent("swiftlintReport.json").path
         } else {
-            return "swiftlint"
+            return NSTemporaryDirectory() + "swiftlintReport.json"
         }
     }
 }
