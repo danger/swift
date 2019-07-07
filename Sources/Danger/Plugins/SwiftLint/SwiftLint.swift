@@ -42,7 +42,7 @@ extension SwiftLint {
         lintAllFiles: Bool = false,
         currentPathProvider: CurrentPathProvider = DefaultCurrentPathProvider(),
         outputFilePath: String = tmpSwiftflintOutputFilePath,
-        fileManager: FileManager = .default,
+        reportDeleter: SwiftlintReportDeleting = SwiftlintReportDeleter(),
         markdownAction: (String) -> Void = markdown,
         failAction: (String) -> Void = fail,
         failInlineAction: (String, String, Int) -> Void = fail,
@@ -56,7 +56,7 @@ extension SwiftLint {
         }
 
         defer {
-            try? fileManager.removeItem(atPath: outputFilePath)
+            try? reportDeleter.deleteReport(atPath: outputFilePath)
         }
 
         var violations: [SwiftLintViolation]

@@ -22,6 +22,7 @@ extension DangerDSLTests {
 
 extension DangerSwiftLintTests {
     static let __allTests = [
+        ("testDeletesReportFile", testDeletesReportFile),
         ("testDoNotExecuteSwiftlintWhenNoFilesToCheck", testDoNotExecuteSwiftlintWhenNoFilesToCheck),
         ("testExecutesSwiftLintWhenLintingAllFiles", testExecutesSwiftLintWhenLintingAllFiles),
         ("testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed", testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed),
@@ -141,6 +142,12 @@ extension SwiftlintDefaultPathTests {
     ]
 }
 
+extension SwiftlintReportDeleterTests {
+    static let __allTests = [
+        ("testCallsRemoveItemOnFileManager", testCallsRemoveItemOnFileManager),
+    ]
+}
+
 extension ViolnationTests {
     static let __allTests = [
         ("testDecoding", testDecoding),
@@ -164,6 +171,7 @@ extension ViolnationTests {
             testCase(GitTests.__allTests),
             testCase(NSRegularExpressionExtensionsTests.__allTests),
             testCase(SwiftlintDefaultPathTests.__allTests),
+            testCase(SwiftlintReportDeleterTests.__allTests),
             testCase(ViolnationTests.__allTests),
         ]
     }

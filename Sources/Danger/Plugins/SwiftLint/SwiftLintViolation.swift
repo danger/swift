@@ -20,25 +20,6 @@ public struct SwiftLintViolation: Decodable {
         case reason, line, file, severity, type
     }
 
-    public init?(dictionary: [String: Any]) {
-        guard let ruleID = dictionary[CodingKeys.ruleID.rawValue] as? String,
-            let reason = dictionary[CodingKeys.reason.rawValue] as? String,
-            let line = dictionary[CodingKeys.line.rawValue] as? Int,
-            let file = dictionary[CodingKeys.file.rawValue] as? String,
-            let severityString = dictionary[CodingKeys.severity.rawValue] as? String,
-            let severity = Severity(rawValue: severityString),
-            let type = dictionary[CodingKeys.type.rawValue] as? String else {
-            return nil
-        }
-
-        self.ruleID = ruleID
-        self.reason = reason
-        self.line = line
-        self.severity = severity
-        self.type = type
-        self.file = file
-    }
-
     public func toMarkdown() -> String {
         let formattedFile = file.split(separator: "/").last! + ":\(line)"
         return "\(severity.rawValue) | \(formattedFile) | \(messageText) |"

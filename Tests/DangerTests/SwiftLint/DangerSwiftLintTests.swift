@@ -2,7 +2,7 @@
 import DangerFixtures
 import XCTest
 
-class DangerSwiftLintTests: XCTestCase {
+final class DangerSwiftLintTests: XCTestCase {
     var executor: FakeShellExecutor!
     var fakePathProvider: FakeCurrentPathProvider!
     var danger: DangerDSL!
@@ -323,6 +323,20 @@ class DangerSwiftLintTests: XCTestCase {
         XCTAssertEqual(swiftlintCommands.first!.environmentVariables["SCRIPT_INPUT_FILE_2"], "Test Dir/SomeThirdFile.swift")
     }
 
+    func testDeletesReportFile() {
+        let reportDeleter = SpySwiftlintReportDeleter()
+
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           reportDeleter: reportDeleter,
+                           readFile: mockedEmptyJSON)
+
+        XCTAssertEqual(reportDeleter.receivedPath, "swiftlintReport.json")
+    }
+
     func mockedViolationJSON(_: String) -> String {
         return """
         [
@@ -368,4 +382,12 @@ class DangerSwiftLintTests: XCTestCase {
         ("testMarkdownReporting", testMarkdownReporting),
         ("testQuotesPathArguments", testQuotesPathArguments),
     ]
+}
+
+private final class SpySwiftlintReportDeleter: SwiftlintReportDeleting {
+    private(set) var receivedPath: String?
+
+    func deleteReport(atPath path: String) throws {
+        receivedPath = path
+    }
 }
