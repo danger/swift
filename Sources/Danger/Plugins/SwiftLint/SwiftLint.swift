@@ -30,7 +30,7 @@ public struct SwiftLint {
 
 /// This extension is for internal workings of the plugin. It is marked as internal for unit testing.
 extension SwiftLint {
-    // swiftlint:disable:next function_body_length function_parameter_count
+    // swiftlint:disable:next function_body_length
     static func lint(
         danger: DangerDSL,
         shellExecutor: ShellExecuting,
