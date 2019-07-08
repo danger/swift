@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.6.4
+
 - Optimise Swiftlint perfomances [@f-meloni][] - [#256](https://github.com/danger/swift/pull/256)
 
 ## 1.6.3
