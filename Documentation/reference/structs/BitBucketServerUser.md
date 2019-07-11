@@ -34,7 +34,7 @@ public let displayName: String?
 ### `emailAddress`
 
 ```swift
-public let emailAddress: String
+public let emailAddress: String?
 ```
 
 > The email for the user

@@ -13,6 +13,8 @@
 
 ## Master
 
+## 1.6.5
+
 - Make BitBucketServerUser emailAddress optional [@f-meloni][] - [#257](https://github.com/danger/swift/pull/257)
 
 ## 1.6.4
