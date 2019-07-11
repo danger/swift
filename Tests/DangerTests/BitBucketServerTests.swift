@@ -78,4 +78,16 @@ final class BitBucketServerTests: XCTestCase {
         XCTAssertEqual(activities.first, expectedActivity)
         XCTAssertEqual(activities.count, 7)
     }
+
+    func testItParsesBitbucketUserWithoutEmail() throws {
+        let user = try JSONDecoder().decode(BitBucketServerUser.self, from: BitBucketServerUserWithoutEmailJSON.data(using: .utf8)!)
+
+        XCTAssertEqual(user.name, "tum-id")
+        XCTAssertEqual(user.id, 1)
+        XCTAssertEqual(user.active, true)
+        XCTAssertEqual(user.displayName, "Firstname Lastname")
+        XCTAssertEqual(user.slug, "tum-id")
+        XCTAssertEqual(user.type, "NORMAL")
+        XCTAssertNil(user.emailAddress)
+    }
 }

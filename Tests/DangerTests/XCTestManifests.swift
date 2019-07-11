@@ -2,6 +2,7 @@ import XCTest
 
 extension BitBucketServerTests {
     static let __allTests = [
+        ("testItParsesBitbucketUserWithoutEmail", testItParsesBitbucketUserWithoutEmail),
         ("testItParsesTheBitBucketActivities", testItParsesTheBitBucketActivities),
         ("testItParsesTheBitBucketComments", testItParsesTheBitBucketComments),
         ("testItParsesTheBitBucketCommits", testItParsesTheBitBucketCommits),
