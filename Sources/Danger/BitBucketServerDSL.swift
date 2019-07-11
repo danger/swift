@@ -406,7 +406,7 @@ public struct BitBucketServerUser: Decodable, Equatable {
     public let displayName: String?
 
     /// The email for the user
-    public let emailAddress: String
+    public let emailAddress: String?
 
     /// Is the account active
     public let active: Bool?
