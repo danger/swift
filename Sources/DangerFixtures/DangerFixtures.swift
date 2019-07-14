@@ -25,10 +25,12 @@ public func parseDangerDSL(with body: String) -> DangerDSL {
 public let githubFixtureDSL = parseDangerDSL(with: DSLGitHubJSON)
 /// An example DSL using GitHub Enterprise
 public let githubEnterpriseFixtureDSL = parseDangerDSL(with: DSLGitHubEnterpriseJSON)
-/// An example DSL using BitBucket
+/// An example DSL using BitBucket Server
 public let bitbucketFixtureDSL = parseDangerDSL(with: DSLBitBucketServerJSON)
 /// An example DSL using GitLab
 public let gitlabFixtureDSL = parseDangerDSL(with: DSLGitLabJSON)
+/// An example DSL using BitBucket Cloud
+public let bitbucketCloudFixtureDSL = parseDangerDSL(with: DSLBitBucketCloudJSON)
 /// An example DSL using GitHub
 public func githubWithFilesDSL(created: [File] = [],
                                modified: [File] = [],
