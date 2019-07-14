@@ -5,7 +5,7 @@ public struct BitBucketCloud: Decodable {
     public let activities: [BitBucketCloudActivity]
 
     /// The comments on the pull request
-    public let comments: [BitBucketServerComment]
+    public let comments: [BitBucketCloudComment]
 
     /// The commits associated with the pull request
     public let commits: [BitBucketCloudCommit]
@@ -177,7 +177,7 @@ public struct BitBucketCloudCommit: Decodable, Equatable {
     public let message: String
 }
 
-public struct BitBucketCloudPRComment: Decodable, Equatable {
+public struct BitBucketCloudComment: Decodable, Equatable {
     public struct Inline: Decodable, Equatable {
         public let from: Int
         public let to: Int
@@ -214,7 +214,7 @@ public struct BitBucketCloudPRComment: Decodable, Equatable {
     public let updatedOn: Date
 
     /// The user that created the comment
-    public let user: BitBucketServerUser
+    public let user: BitBucketCloudUser
 }
 
 public struct BitBucketCloudContent: Decodable, Equatable {
@@ -224,5 +224,5 @@ public struct BitBucketCloudContent: Decodable, Equatable {
 }
 
 public struct BitBucketCloudActivity: Decodable, Equatable {
-    public let comment: BitBucketCloudPRComment?
+    public let comment: BitBucketCloudComment?
 }

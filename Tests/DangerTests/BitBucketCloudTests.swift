@@ -19,7 +19,25 @@ final class BitBucketCloudTests: XCTestCase {
     func testParsesComments() {
         let comments = bitbucketCould.comments
 
-        XCTAssertEqual(comments, [])
+        XCTAssertEqual(comments, [
+            BitBucketCloudComment(
+                content: BitBucketCloudContent(html: "<p>Test Comment</p>",
+                                               markup: "markdown",
+                                               raw: "Test Comment"),
+                createdOn: Date(timeIntervalSince1970: 1_563_141_023.276),
+                deleted: false,
+                id: 109_197_958,
+                inline: nil,
+                type: "pullrequest_comment",
+                updatedOn: Date(timeIntervalSince1970: 1_563_141_023.284),
+                user: BitBucketCloudUser(
+                    accountId: "557058:cac1aa4b-db5e-4c3a-8ba3-c4880b498de8",
+                    displayName: "Franco Meloni",
+                    nickname: "Zagolo",
+                    uuid: "{bd1991e4-a3ed-45b2-be38-acea659650f1}"
+                )
+            ),
+        ])
     }
 
     func testParsesCommits() {
