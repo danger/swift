@@ -14,7 +14,7 @@ public struct BitBucketCloud: Decodable {
     public let metadata: BitBucketMetadata
 
     /// The PR metadata
-    public let pr: BitBucketCloudPR
+    public let pr: BitBucketCloudPR // swiftlint:disable:this identifier_name
 }
 
 public struct BitBucketCloudPR: Decodable {
@@ -30,7 +30,7 @@ public struct BitBucketCloudPR: Decodable {
         case createdOn = "created_on"
         case description
         case destination
-        case id
+        case id // swiftlint:disable:this identifier_name
         case participants
         case reviewers
         case source
@@ -52,7 +52,7 @@ public struct BitBucketCloudPR: Decodable {
     public let destination: BitBucketCloudMergeRef
 
     /// PR's ID
-    public let id: Int
+    public let id: Int // swiftlint:disable:this identifier_name
 
     /// People who have participated in the PR
     public let participants: [BitBucketCloudPRParticipant]
@@ -180,7 +180,7 @@ public struct BitBucketCloudCommit: Decodable, Equatable {
 public struct BitBucketCloudComment: Decodable, Equatable {
     public struct Inline: Decodable, Equatable {
         public let from: Int
-        public let to: Int
+        public let to: Int // swiftlint:disable:this identifier_name
         public let path: String
     }
 
@@ -191,7 +191,7 @@ public struct BitBucketCloudComment: Decodable, Equatable {
         case user
         case updatedOn = "updated_on"
         case type
-        case id
+        case id // swiftlint:disable:this identifier_name
         case inline
     }
 
@@ -204,7 +204,7 @@ public struct BitBucketCloudComment: Decodable, Equatable {
     /// Was the comment deleted?
     public let deleted: Bool
 
-    public let id: Int
+    public let id: Int // swiftlint:disable:this identifier_name
 
     public let inline: Inline?
 
