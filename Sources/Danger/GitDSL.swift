@@ -18,35 +18,37 @@ public struct Git: Decodable, Equatable {
     public let deletedFiles: [File]
 }
 
-/// A platform agnostic reference to a git commit.
-public struct GitCommit: Decodable, Equatable {
-    /// The SHA for the commit.
-    public let sha: String?
+extension Git {
+    /// A platform agnostic reference to a git commit.
+    public struct Commit: Decodable, Equatable {
+        /// The author of a commit.
+        public struct Author: Decodable, Equatable {
+            /// The display name for the author.
+            public let name: String
 
-    /// Who wrote the commit.
-    public let author: GitCommitAuthor
+            /// The email for the author.
+            public let email: String
 
-    /// Who shipped the code.
-    public let committer: GitCommitAuthor
+            /// The ISO8601 date string for the commit.
+            public let date: String
+        }
 
-    /// The message for the commit.
-    public let message: String
+        /// The SHA for the commit.
+        public let sha: String?
 
-    /// SHAs for the commit's parents.
-    public let parents: [String]?
+        /// Who wrote the commit.
+        public let author: Author
 
-    /// The URL for the commit.
-    public let url: String
-}
+        /// Who shipped the code.
+        public let committer: Author
 
-/// The author of a commit.
-public struct GitCommitAuthor: Decodable, Equatable {
-    /// The display name for the author.
-    public let name: String
+        /// The message for the commit.
+        public let message: String
 
-    /// The email for the author.
-    public let email: String
+        /// SHAs for the commit's parents.
+        public let parents: [String]?
 
-    /// The ISO8601 date string for the commit.
-    public let date: String
+        /// The URL for the commit.
+        public let url: String
+    }
 }

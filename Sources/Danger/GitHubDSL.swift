@@ -289,7 +289,7 @@ extension GitHub {
         public let sha: String
 
         /// The raw commit metadata.
-        public let commit: GitCommit
+        public let commit: Git.Commit
 
         /// The URL for the commit on GitHub.
         public let url: String
@@ -304,7 +304,7 @@ extension GitHub {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             sha = try container.decode(String.self, forKey: .sha)
-            commit = try container.decode(GitCommit.self, forKey: .commit)
+            commit = try container.decode(Git.Commit.self, forKey: .commit)
             url = try container.decode(String.self, forKey: .url)
             author = (try? container.decodeIfPresent(User.self, forKey: .author)) ?? nil
             committer = (try? container.decodeIfPresent(User.self, forKey: .committer)) ?? nil
