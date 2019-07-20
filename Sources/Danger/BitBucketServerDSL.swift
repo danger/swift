@@ -4,8 +4,6 @@ import Foundation
 // swiftlint:disable nesting
 // swiftlint:disable identifier_name
 
-// MARK: - BitBucketServer
-
 public struct BitBucketServer: Decodable, Equatable {
     enum CodingKeys: String, CodingKey {
         case metadata
@@ -30,8 +28,6 @@ public struct BitBucketServer: Decodable, Equatable {
     /// The activities such as OPENING, CLOSING, MERGING or UPDATING a pull request
     public let activities: [Activity]
 }
-
-// MARK: - Activity
 
 extension BitBucketServer {
     public struct Activity: Decodable, Equatable {
@@ -59,8 +55,6 @@ extension BitBucketServer {
         public let commentAction: String?
     }
 }
-
-// MARK: - Comment
 
 extension BitBucketServer {
     public struct Comment: Decodable, Equatable {
@@ -107,8 +101,6 @@ extension BitBucketServer {
         /// Detailed data of the comment
         public let comment: Detail?
 
-        // MARK: - Detail
-
         public struct Detail: Decodable, Equatable {
             enum CodingKeys: String, CodingKey {
                 case id
@@ -149,8 +141,6 @@ extension BitBucketServer {
             /// Tasks associated with the comment
             public let tasks: [Task]
 
-            // MARK: - BitBucketServerCommentTask
-
             public struct Task: Decodable, Equatable {
                 enum CodingKeys: String, CodingKey {
                     case id
@@ -176,8 +166,6 @@ extension BitBucketServer {
                 public let author: User
             }
 
-            // MARK: - BitBucketServerCommentInnerProperties
-
             public struct InnerProperties: Decodable, Equatable {
                 /// The ID of the repo
                 public let repositoryId: Int
@@ -188,8 +176,6 @@ extension BitBucketServer {
         }
     }
 }
-
-// MARK: - Commit
 
 extension BitBucketServer {
     public struct Commit: Decodable, Equatable {
@@ -217,8 +203,6 @@ extension BitBucketServer {
         /// The commit's parents
         public let parents: [Parent]
 
-        // MARK: - BitBucketServerCommitParent
-
         public struct Parent: Decodable, Equatable {
             /// The SHA for the commit
             public let id: String
@@ -228,8 +212,6 @@ extension BitBucketServer {
         }
     }
 }
-
-// MARK: - PR
 
 extension BitBucketServer {
     public struct PR: Decodable, Equatable {
@@ -296,8 +278,6 @@ extension BitBucketServer {
         /// People who have participated in the PR
         public let participants: [Participant]
 
-        // MARK: - BitBucketServerAuthor
-
         /// A user that is parecipating in the PR
         public struct Participant: Decodable, Equatable {
             /// The BitBucket Server User
@@ -318,8 +298,6 @@ extension BitBucketServer {
     }
 }
 
-// MARK: - MergeRef
-
 extension BitBucketServer {
     public struct MergeRef: Decodable, Equatable {
         /// The branch name
@@ -335,8 +313,6 @@ extension BitBucketServer {
         public let repository: Repo
     }
 }
-
-// MARK: - Repo
 
 extension BitBucketServer {
     public struct Repo: Decodable, Equatable {
@@ -369,8 +345,6 @@ extension BitBucketServer {
     }
 }
 
-// MARK: - BitBucketServerProject
-
 extension BitBucketServer {
     public struct Project: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
@@ -397,8 +371,6 @@ extension BitBucketServer {
         public let type: String
     }
 }
-
-// MARK: - User
 
 extension BitBucketServer {
     public struct User: Decodable, Equatable {
