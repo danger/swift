@@ -1,5 +1,15 @@
 import XCTest
 
+extension BitBucketCloudTests {
+    static let __allTests = [
+        ("testParsesActivities", testParsesActivities),
+        ("testParsesComments", testParsesComments),
+        ("testParsesCommits", testParsesCommits),
+        ("testParsesMetadata", testParsesMetadata),
+        ("testParsesPR", testParsesPR),
+    ]
+}
+
 extension BitBucketServerTests {
     static let __allTests = [
         ("testItParsesBitbucketUserWithoutEmail", testItParsesBitbucketUserWithoutEmail),
@@ -158,6 +168,7 @@ extension ViolnationTests {
 #if !os(macOS)
     public func __allTests() -> [XCTestCaseEntry] {
         return [
+            testCase(BitBucketCloudTests.__allTests),
             testCase(BitBucketServerTests.__allTests),
             testCase(DangerDSLTests.__allTests),
             testCase(DangerSwiftLintTests.__allTests),

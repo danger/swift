@@ -16,7 +16,7 @@ public struct BitBucketServer: Decodable, Equatable {
     }
 
     /// The pull request and repository metadata
-    public let metadata: BitBucketServerMetadata
+    public let metadata: BitBucketMetadata
 
     /// The pull request metadata
     public let pullRequest: BitBucketServerPR
@@ -60,7 +60,7 @@ public struct BitBucketServerActivity: Decodable, Equatable {
 
 // MARK: - BitBucketServerMetadata
 
-public struct BitBucketServerMetadata: Decodable, Equatable {
+public struct BitBucketMetadata: Decodable, Equatable {
     /// The PR's ID
     public var pullRequestID: String
     /// The complete repo slug including project slug.

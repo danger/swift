@@ -15,6 +15,8 @@ public struct DangerDSL: Decodable {
 
     public private(set) var github: GitHub!
 
+    public let bitbucketCloud: BitBucketCloud!
+
     public let bitbucketServer: BitBucketServer!
 
     public let gitLab: GitLab!
@@ -25,6 +27,7 @@ public struct DangerDSL: Decodable {
         case git
         case github
         case bitbucketServer = "bitbucket_server"
+        case bitbucketCloud = "bitbucket_cloud"
         case gitlab
         case settings
         // Used by plugin testing only
@@ -37,6 +40,7 @@ public struct DangerDSL: Decodable {
         git = try container.decode(Git.self, forKey: .git)
         github = try container.decodeIfPresent(GitHub.self, forKey: .github)
         bitbucketServer = try container.decodeIfPresent(BitBucketServer.self, forKey: .bitbucketServer)
+        bitbucketCloud = try container.decodeIfPresent(BitBucketCloud.self, forKey: .bitbucketCloud)
         gitLab = try container.decodeIfPresent(GitLab.self, forKey: .gitlab)
 
         let settings = try container.decode(Settings.self, forKey: .settings)
