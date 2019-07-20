@@ -1,5 +1,7 @@
 import Foundation
 
+// swiftlint:disable nesting
+
 public struct BitBucketCloud: Decodable {
     /// The activities such as OPENING, CLOSING, MERGING or UPDATING a pull request
     public let activities: [Activity]

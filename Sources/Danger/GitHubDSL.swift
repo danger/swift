@@ -1,7 +1,7 @@
 import Foundation
 import OctoKit
 
-// http://benscheirman.com/2017/06/ultimate-guide-to-json-parsing-with-swift-4/
+// swiftlint:disable nesting
 
 /// The GitHub metadata for your pull request.
 public struct GitHub: Decodable {

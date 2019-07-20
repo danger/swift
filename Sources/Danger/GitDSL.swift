@@ -1,18 +1,12 @@
 import Foundation
 
-// MARK: - Git
-
 /// The git specific metadata for a pull request.
 public struct Git: Decodable, Equatable {
-    // MARK: - CodingKeys
-
     enum CodingKeys: String, CodingKey {
         case modifiedFiles = "modified_files"
         case createdFiles = "created_files"
         case deletedFiles = "deleted_files"
     }
-
-    // MARK: - Properties
 
     /// Modified filepaths relative to the git root.
     public let modifiedFiles: [File]
@@ -24,12 +18,8 @@ public struct Git: Decodable, Equatable {
     public let deletedFiles: [File]
 }
 
-// MARK: - GitCommit
-
 /// A platform agnostic reference to a git commit.
 public struct GitCommit: Decodable, Equatable {
-    // MARK: - Properties
-
     /// The SHA for the commit.
     public let sha: String?
 
@@ -48,8 +38,6 @@ public struct GitCommit: Decodable, Equatable {
     /// The URL for the commit.
     public let url: String
 }
-
-// MARK: - GitCommitAuthor
 
 /// The author of a commit.
 public struct GitCommitAuthor: Decodable, Equatable {
