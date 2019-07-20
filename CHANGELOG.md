@@ -13,6 +13,8 @@
 
 ## Master
 
+- Bitbucket Cloud support [@f-meloni][] - [#258](https://github.com/danger/swift/pull/258)
+
 ## 1.6.5
 
 - Make BitBucketServerUser emailAddress optional [@f-meloni][] - [#257](https://github.com/danger/swift/pull/257)
