@@ -1,5 +1,7 @@
 import Foundation
 
+// swiftlint:disable nesting
+
 /// The git specific metadata for a pull request.
 public struct Git: Decodable, Equatable {
     enum CodingKeys: String, CodingKey {

@@ -163,7 +163,7 @@ extension GitHub {
     /// A GitHub team.
     public struct Team: Decodable, Equatable {
         /// The UUID for the team.
-        public let id: Int
+        public let id: Int // swiftlint:disable:this identifier_name
 
         /// The team name
         public let name: String
@@ -204,7 +204,7 @@ extension GitHub {
 extension GitHub {
     public struct Repo: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
-            case id
+            case id // swiftlint:disable:this identifier_name
             case name
             case owner
             case description
@@ -215,7 +215,7 @@ extension GitHub {
         }
 
         /// Generic UUID.
-        public let id: Int
+        public let id: Int // swiftlint:disable:this identifier_name
 
         /// The name of the repo, e.g. "danger-swift".
         public let name: String
@@ -244,7 +244,7 @@ extension GitHub {
     public struct Review: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case user
-            case id
+            case id // swiftlint:disable:this identifier_name
             case body
             case state
             case commitId = "commit_id"
@@ -262,7 +262,7 @@ extension GitHub {
         public let user: User
 
         /// The id for the review (if a review was made).
-        public let id: Int?
+        public let id: Int? // swiftlint:disable:this identifier_name
 
         /// The body of the review (if a review was made).
         public let body: String?
@@ -316,7 +316,7 @@ extension GitHub {
 extension GitHub {
     public struct Issue: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
-            case id
+            case id // swiftlint:disable:this identifier_name
             case number
             case title
             case user
