@@ -20,8 +20,8 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let correctUser = GitHubUser(id: 25_879_490, login: "yhkaplan", userType: .user)
-        let testUser: GitHubUser = try JSONDecoder().decode(GitHubUser.self, from: data)
+        let correctUser = GitHub.User(id: 25_879_490, login: "yhkaplan", userType: .user)
+        let testUser: GitHub.User = try JSONDecoder().decode(GitHub.User.self, from: data)
 
         XCTAssertEqual(testUser, correctUser)
     }
@@ -32,8 +32,8 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let correctUser = GitHubUser(id: 27_856_297, login: "dependabot-preview[bot]", userType: .bot)
-        let testBot = try JSONDecoder().decode(GitHubUser.self, from: data)
+        let correctUser = GitHub.User(id: 27_856_297, login: "dependabot-preview[bot]", userType: .bot)
+        let testBot = try JSONDecoder().decode(GitHub.User.self, from: data)
 
         XCTAssertEqual(testBot, correctUser)
     }
@@ -46,21 +46,21 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let creator = GitHubUser(id: 739_696, login: "rnystrom", userType: .user)
-        let correctMilestone = GitHubMilestone(id: 3_050_458,
-                                               number: 11,
-                                               state: .open,
-                                               title: "1.19.0",
-                                               description: "kdsjfls",
-                                               creator: creator,
-                                               openIssues: 0,
-                                               closedIssues: 2,
-                                               createdAt: createdAt,
-                                               updatedAt: updatedAt,
-                                               closedAt: nil,
-                                               dueOn: nil)
+        let creator = GitHub.User(id: 739_696, login: "rnystrom", userType: .user)
+        let correctMilestone = GitHub.Milestone(id: 3_050_458,
+                                                number: 11,
+                                                state: .open,
+                                                title: "1.19.0",
+                                                description: "kdsjfls",
+                                                creator: creator,
+                                                openIssues: 0,
+                                                closedIssues: 2,
+                                                createdAt: createdAt,
+                                                updatedAt: updatedAt,
+                                                closedAt: nil,
+                                                dueOn: nil)
 
-        let testMilestone: GitHubMilestone = try decoder.decode(GitHubMilestone.self, from: data)
+        let testMilestone: GitHub.Milestone = try decoder.decode(GitHub.Milestone.self, from: data)
 
         XCTAssertEqual(testMilestone, correctMilestone)
     }
@@ -75,21 +75,21 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let creator = GitHubUser(id: 739_696, login: "rnystrom", userType: .user)
-        let correctMilestone = GitHubMilestone(id: 3_050_458,
-                                               number: 11,
-                                               state: .open,
-                                               title: "1.19.0",
-                                               description: "kdsjfls",
-                                               creator: creator,
-                                               openIssues: 0,
-                                               closedIssues: 2,
-                                               createdAt: createdAt,
-                                               updatedAt: updatedAt,
-                                               closedAt: closedAt,
-                                               dueOn: dueOn)
+        let creator = GitHub.User(id: 739_696, login: "rnystrom", userType: .user)
+        let correctMilestone = GitHub.Milestone(id: 3_050_458,
+                                                number: 11,
+                                                state: .open,
+                                                title: "1.19.0",
+                                                description: "kdsjfls",
+                                                creator: creator,
+                                                openIssues: 0,
+                                                closedIssues: 2,
+                                                createdAt: createdAt,
+                                                updatedAt: updatedAt,
+                                                closedAt: closedAt,
+                                                dueOn: dueOn)
 
-        let testMilestone: GitHubMilestone = try decoder.decode(GitHubMilestone.self, from: data)
+        let testMilestone: GitHub.Milestone = try decoder.decode(GitHub.Milestone.self, from: data)
 
         XCTAssertEqual(testMilestone, correctMilestone)
     }
@@ -102,21 +102,21 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let creator = GitHubUser(id: 739_696, login: "rnystrom", userType: .user)
-        let correctMilestone = GitHubMilestone(id: 3_050_458,
-                                               number: 11,
-                                               state: .open,
-                                               title: "1.19.0",
-                                               description: nil,
-                                               creator: creator,
-                                               openIssues: 0,
-                                               closedIssues: 2,
-                                               createdAt: createdAt,
-                                               updatedAt: updatedAt,
-                                               closedAt: nil,
-                                               dueOn: nil)
+        let creator = GitHub.User(id: 739_696, login: "rnystrom", userType: .user)
+        let correctMilestone = GitHub.Milestone(id: 3_050_458,
+                                                number: 11,
+                                                state: .open,
+                                                title: "1.19.0",
+                                                description: nil,
+                                                creator: creator,
+                                                openIssues: 0,
+                                                closedIssues: 2,
+                                                createdAt: createdAt,
+                                                updatedAt: updatedAt,
+                                                closedAt: nil,
+                                                dueOn: nil)
 
-        let testMilestone: GitHubMilestone = try decoder.decode(GitHubMilestone.self, from: data)
+        let testMilestone: GitHub.Milestone = try decoder.decode(GitHub.Milestone.self, from: data)
 
         XCTAssertEqual(testMilestone, correctMilestone)
     }
@@ -127,9 +127,9 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let correctTeam = GitHubTeam(id: 1, name: "Justice League")
+        let correctTeam = GitHub.Team(id: 1, name: "Justice League")
 
-        let testTeam = try decoder.decode(GitHubTeam.self, from: data)
+        let testTeam = try decoder.decode(GitHub.Team.self, from: data)
 
         XCTAssertEqual(testTeam, correctTeam)
     }
@@ -140,23 +140,23 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let user = GitHubUser(id: 1, login: "octocat", userType: .user)
-        let repo = GitHubRepo(id: 1_296_269,
-                              name: "Hello-World",
-                              fullName: "octocat/Hello-World",
-                              owner: user,
-                              isPrivate: false,
-                              description: "This your first repo!",
-                              isFork: true,
-                              htmlURL: "https://github.com/octocat/Hello-World")
+        let user = GitHub.User(id: 1, login: "octocat", userType: .user)
+        let repo = GitHub.Repo(id: 1_296_269,
+                               name: "Hello-World",
+                               fullName: "octocat/Hello-World",
+                               owner: user,
+                               isPrivate: false,
+                               description: "This your first repo!",
+                               isFork: true,
+                               htmlURL: "https://github.com/octocat/Hello-World")
 
-        let correctMergeRef = GitHubMergeRef(label: "new-topic",
-                                             ref: "new-topic1",
-                                             sha: "6dcb09b5b57875f334f61aebed695e2e4193db5e",
-                                             user: user,
-                                             repo: repo)
+        let correctMergeRef = GitHub.MergeRef(label: "new-topic",
+                                              ref: "new-topic1",
+                                              sha: "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+                                              user: user,
+                                              repo: repo)
 
-        let testPR = try decoder.decode(GitHubPR.self, from: data)
+        let testPR = try decoder.decode(GitHub.PullRequest.self, from: data)
 
         XCTAssertEqual(testPR.head, correctMergeRef)
     }
@@ -167,17 +167,17 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let user = GitHubUser(id: 1, login: "octocat", userType: .user)
-        let correctRepo = GitHubRepo(id: 1_296_269,
-                                     name: "Hello-World",
-                                     fullName: "octocat/Hello-World",
-                                     owner: user,
-                                     isPrivate: false,
-                                     description: "This your first repo!",
-                                     isFork: false,
-                                     htmlURL: "https://github.com/octocat/Hello-World")
+        let user = GitHub.User(id: 1, login: "octocat", userType: .user)
+        let correctRepo = GitHub.Repo(id: 1_296_269,
+                                      name: "Hello-World",
+                                      fullName: "octocat/Hello-World",
+                                      owner: user,
+                                      isPrivate: false,
+                                      description: "This your first repo!",
+                                      isFork: false,
+                                      htmlURL: "https://github.com/octocat/Hello-World")
 
-        let testRepo = try decoder.decode(GitHubRepo.self, from: data)
+        let testRepo = try decoder.decode(GitHub.Repo.self, from: data)
 
         XCTAssertEqual(testRepo, correctRepo)
     }
@@ -194,8 +194,8 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let user = GitHubUser(id: 2_538_074, login: "davdroman", userType: .user)
-        let correctIssue = GitHubIssue(
+        let user = GitHub.User(id: 2_538_074, login: "davdroman", userType: .user)
+        let correctIssue = GitHub.Issue(
             id: 447_357_592,
             number: 96,
             title: "Some commit that modifies a Swift file",
@@ -213,7 +213,7 @@ final class GitHubTests: XCTestCase {
             labels: []
         )
 
-        let testIssue = try decoder.decode(GitHubIssue.self, from: data)
+        let testIssue = try decoder.decode(GitHub.Issue.self, from: data)
 
         XCTAssertEqual(testIssue, correctIssue)
     }
@@ -224,8 +224,8 @@ final class GitHubTests: XCTestCase {
             return
         }
 
-        let user = GitHubUser(id: 2_538_074, login: "davdroman", userType: .user)
-        let correctIssue = GitHubIssue(
+        let user = GitHub.User(id: 2_538_074, login: "davdroman", userType: .user)
+        let correctIssue = GitHub.Issue(
             id: 447_357_592,
             number: 96,
             title: "Some commit that modifies a Swift file",
@@ -243,7 +243,7 @@ final class GitHubTests: XCTestCase {
             labels: []
         )
 
-        let testIssue = try decoder.decode(GitHubIssue.self, from: data)
+        let testIssue = try decoder.decode(GitHub.Issue.self, from: data)
 
         XCTAssertEqual(testIssue, correctIssue)
     }
@@ -253,20 +253,20 @@ final class GitHubTests: XCTestCase {
             XCTFail("Could not generate data")
             return
         }
-        let expectedAuthor = GitCommitAuthor(name: "Franco Meloni", email: "franco.meloni91@gmail.com", date: "2019-04-20T17:46:50Z")
+        let expectedAuthor = Git.Commit.Author(name: "Franco Meloni", email: "franco.meloni91@gmail.com", date: "2019-04-20T17:46:50Z")
 
-        let testCommit = try decoder.decode(GitHubCommit.self, from: data)
+        let testCommit = try decoder.decode(GitHub.Commit.self, from: data)
 
         XCTAssertNil(testCommit.author)
         XCTAssertEqual(testCommit.sha, "cad494648f773cd4fad5a9ea948c1bfabf36032a")
         XCTAssertEqual(testCommit.url, "https://api.github.com/repos/danger/swift/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a")
-        XCTAssertEqual(testCommit.commit, GitCommit(sha: nil,
-                                                    author: expectedAuthor,
-                                                    committer: expectedAuthor,
-                                                    message: "Re use the same executor on the runner",
-                                                    parents: nil,
-                                                    url: "https://api.github.com/repos/danger/swift/git/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a"))
-        XCTAssertEqual(testCommit.committer, GitHubUser(id: 17_830_956, login: "f-meloni", userType: .user))
+        XCTAssertEqual(testCommit.commit, Git.Commit(sha: nil,
+                                                     author: expectedAuthor,
+                                                     committer: expectedAuthor,
+                                                     message: "Re use the same executor on the runner",
+                                                     parents: nil,
+                                                     url: "https://api.github.com/repos/danger/swift/git/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a"))
+        XCTAssertEqual(testCommit.committer, GitHub.User(id: 17_830_956, login: "f-meloni", userType: .user))
     }
 
     func test_GitHubPR_decode() throws {}

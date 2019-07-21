@@ -9,39 +9,39 @@ final class GitLabTests: XCTestCase {
 
     func testParsesMergeRequest() {
         let mergeRequest = gitLab.mergeRequest
-        let fmeloni = GitLabUser(avatarUrl: "https://secure.gravatar.com/avatar/3d90e967de2beab6d44cfadbb4976b87?s=80&d=identicon", id: 3_331_525,
-                                 name: "Franco Meloni",
-                                 state: .active,
-                                 username: "f-meloni",
-                                 webUrl: "https://gitlab.com/f-meloni")
-        let expectedTimeStats = GitLabMergeRequest.TimeStats(humanTimeEstimate: nil,
-                                                             humanTimeSpent: nil,
-                                                             timeEstimate: 0,
-                                                             totalTimeSpent: 0)
-        let orta = GitLabUser(avatarUrl: "https://secure.gravatar.com/avatar/f116cb3be23153ec08b94e8bd4dbcfeb?s=80&d=identicon",
-                              id: 377_669,
-                              name: "Orta",
-                              state: .active,
-                              username: "orta",
-                              webUrl: "https://gitlab.com/orta")
-        let expectedMilestone = GitLabMergeRequest.Milestone(createdAt: Date(timeIntervalSince1970: 1_554_933_465.346),
-                                                             description: "Test Description",
-                                                             dueDate: Date(timeIntervalSince1970: 1_560_124_800.0),
-                                                             id: 1,
-                                                             iid: 2,
-                                                             projectId: 1000,
-                                                             startDate: Date(timeIntervalSince1970: 1_554_933_465.346),
-                                                             state: .closed,
-                                                             title: "Test Milestone",
-                                                             updatedAt: Date(timeIntervalSince1970: 1_554_933_465.346),
-                                                             webUrl: "https://gitlab.com/milestone")
+        let fmeloni = GitLab.User(avatarUrl: "https://secure.gravatar.com/avatar/3d90e967de2beab6d44cfadbb4976b87?s=80&d=identicon", id: 3_331_525,
+                                  name: "Franco Meloni",
+                                  state: .active,
+                                  username: "f-meloni",
+                                  webUrl: "https://gitlab.com/f-meloni")
+        let expectedTimeStats = GitLab.MergeRequest.TimeStats(humanTimeEstimate: nil,
+                                                              humanTimeSpent: nil,
+                                                              timeEstimate: 0,
+                                                              totalTimeSpent: 0)
+        let orta = GitLab.User(avatarUrl: "https://secure.gravatar.com/avatar/f116cb3be23153ec08b94e8bd4dbcfeb?s=80&d=identicon",
+                               id: 377_669,
+                               name: "Orta",
+                               state: .active,
+                               username: "orta",
+                               webUrl: "https://gitlab.com/orta")
+        let expectedMilestone = GitLab.MergeRequest.Milestone(createdAt: Date(timeIntervalSince1970: 1_554_933_465.346),
+                                                              description: "Test Description",
+                                                              dueDate: Date(timeIntervalSince1970: 1_560_124_800.0),
+                                                              id: 1,
+                                                              iid: 2,
+                                                              projectId: 1000,
+                                                              startDate: Date(timeIntervalSince1970: 1_554_933_465.346),
+                                                              state: .closed,
+                                                              title: "Test Milestone",
+                                                              updatedAt: Date(timeIntervalSince1970: 1_554_933_465.346),
+                                                              webUrl: "https://gitlab.com/milestone")
 
-        let expectedPipeline = GitLabMergeRequest.Pipeline(id: 50,
-                                                           ref: "ef28580bb2a00d985bffe4a4ce3fe09fdb12283f",
-                                                           sha: "621bc3348549e51c5bd6ea9f094913e9e4667c7b",
-                                                           status: .success,
-                                                           webUrl: "https://gitlab.com/danger-systems/danger.systems/pipeline/621bc3348549e51c5bd6ea9f094913e9e4667c7b")
-        let expectedDiffRefs = GitLabMergeRequest.DiffRefs(baseSha: "ef28580bb2a00d985bffe4a4ce3fe09fdb12283f", headSha: "621bc3348549e51c5bd6ea9f094913e9e4667c7b", startSha: "ef28580bb2a00d985bffe4a4ce3fe09fdb12283f")
+        let expectedPipeline = GitLab.MergeRequest.Pipeline(id: 50,
+                                                            ref: "ef28580bb2a00d985bffe4a4ce3fe09fdb12283f",
+                                                            sha: "621bc3348549e51c5bd6ea9f094913e9e4667c7b",
+                                                            status: .success,
+                                                            webUrl: "https://gitlab.com/danger-systems/danger.systems/pipeline/621bc3348549e51c5bd6ea9f094913e9e4667c7b")
+        let expectedDiffRefs = GitLab.MergeRequest.DiffRefs(baseSha: "ef28580bb2a00d985bffe4a4ce3fe09fdb12283f", headSha: "621bc3348549e51c5bd6ea9f094913e9e4667c7b", startSha: "ef28580bb2a00d985bffe4a4ce3fe09fdb12283f")
 
         XCTAssertEqual(mergeRequest.allowCollaboration, false)
         XCTAssertEqual(mergeRequest.allowMaintainerToPush, false)

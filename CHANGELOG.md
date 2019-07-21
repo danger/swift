@@ -13,6 +13,7 @@
 
 ## Master
 
+- Improve Platforms' models [@f-meloni][] - [#259](https://github.com/danger/swift/pull/259)
 - Bitbucket Cloud support [@f-meloni][] - [#258](https://github.com/danger/swift/pull/258)
 
 ## 1.6.5
