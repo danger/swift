@@ -16,11 +16,11 @@ public struct BitBucketCloud: Decodable {
     public let metadata: BitBucketMetadata
 
     /// The PR metadata
-    public let pr: PR // swiftlint:disable:this identifier_name
+    public let pr: PullRequest // swiftlint:disable:this identifier_name
 }
 
 extension BitBucketCloud {
-    public struct PR: Decodable {
+    public struct PullRequest: Decodable {
         public enum State: String, Decodable {
             case declined = "DECLINED"
             case merged = "MERGED"

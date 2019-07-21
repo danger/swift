@@ -156,7 +156,7 @@ final class GitHubTests: XCTestCase {
                                               user: user,
                                               repo: repo)
 
-        let testPR = try decoder.decode(GitHub.PR.self, from: data)
+        let testPR = try decoder.decode(GitHub.PullRequest.self, from: data)
 
         XCTAssertEqual(testPR.head, correctMergeRef)
     }

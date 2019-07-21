@@ -2,6 +2,7 @@ import Foundation
 import OctoKit
 
 // swiftlint:disable nesting
+// swiftlint:disable file_length
 
 /// The GitHub metadata for your pull request.
 public struct GitHub: Decodable {
@@ -15,7 +16,7 @@ public struct GitHub: Decodable {
 
     public let issue: Issue
 
-    public let pullRequest: PR
+    public let pullRequest: PullRequest
 
     public let commits: [Commit]
 
@@ -27,7 +28,7 @@ public struct GitHub: Decodable {
 }
 
 extension GitHub {
-    public struct PR: Decodable, Equatable {
+    public struct PullRequest: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case number
             case title
@@ -136,7 +137,7 @@ extension GitHub {
     /// A GitHub user account.
     public struct User: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
-            case id
+            case id // swiftlint:disable:this identifier_name
             case login
             case userType = "type"
         }
@@ -148,7 +149,7 @@ extension GitHub {
         }
 
         /// The UUID for the user organization.
-        public let id: Int
+        public let id: Int // swiftlint:disable:this identifier_name
 
         /// The handle for the user or organization.
         public let login: String
@@ -340,7 +341,7 @@ extension GitHub {
 
         public struct Label: Decodable, Equatable {
             /// The id number of this label.
-            public let id: Int
+            public let id: Int // swiftlint:disable:this identifier_name
 
             /// The URL that links to this label.
             public let url: String
@@ -353,7 +354,7 @@ extension GitHub {
         }
 
         /// The id number of the issue
-        public let id: Int
+        public let id: Int // swiftlint:disable:this identifier_name
 
         /// The number of the issue.
         public let number: Int
@@ -408,7 +409,7 @@ extension GitHub {
             case creator
             case description
             case dueOn = "due_on"
-            case id
+            case id // swiftlint:disable:this identifier_name
             case number
             case openIssues = "open_issues"
             case state
@@ -423,7 +424,7 @@ extension GitHub {
         }
 
         /// The id number of this milestone
-        public let id: Int
+        public let id: Int // swiftlint:disable:this identifier_name
 
         /// The number of this milestone
         public let number: Int

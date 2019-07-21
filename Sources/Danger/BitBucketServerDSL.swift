@@ -1,6 +1,5 @@
 import Foundation
 
-// swiftlint:disable file_length
 // swiftlint:disable nesting
 // swiftlint:disable identifier_name
 
@@ -17,7 +16,7 @@ public struct BitBucketServer: Decodable, Equatable {
     public let metadata: BitBucketMetadata
 
     /// The pull request metadata
-    public let pullRequest: PR
+    public let pullRequest: PullRequest
 
     /// The commits associated with the pull request
     public let commits: [Commit]
@@ -214,7 +213,7 @@ extension BitBucketServer {
 }
 
 extension BitBucketServer {
-    public struct PR: Decodable, Equatable {
+    public struct PullRequest: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case id
             case version
