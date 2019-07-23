@@ -10,7 +10,7 @@ public struct BitBucketServer: Decodable, Equatable
 ### `metadata`
 
 ```swift
-public let metadata: BitBucketServerMetadata
+public let metadata: BitBucketMetadata
 ```
 
 > The pull request and repository metadata
@@ -18,7 +18,7 @@ public let metadata: BitBucketServerMetadata
 ### `pullRequest`
 
 ```swift
-public let pullRequest: BitBucketServerPR
+public let pullRequest: PullRequest
 ```
 
 > The pull request metadata
@@ -26,7 +26,7 @@ public let pullRequest: BitBucketServerPR
 ### `commits`
 
 ```swift
-public let commits: [BitBucketServerCommit]
+public let commits: [Commit]
 ```
 
 > The commits associated with the pull request
@@ -34,7 +34,7 @@ public let commits: [BitBucketServerCommit]
 ### `comments`
 
 ```swift
-public let comments: [BitBucketServerComment]
+public let comments: [Comment]
 ```
 
 > The comments on the pull request
@@ -42,7 +42,7 @@ public let comments: [BitBucketServerComment]
 ### `activities`
 
 ```swift
-public let activities: [BitBucketServerActivity]
+public let activities: [Activity]
 ```
 
 > The activities such as OPENING, CLOSING, MERGING or UPDATING a pull request

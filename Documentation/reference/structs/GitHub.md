@@ -12,31 +12,31 @@ public struct GitHub: Decodable
 ### `issue`
 
 ```swift
-public let issue: GitHubIssue
+public let issue: Issue
 ```
 
 ### `pullRequest`
 
 ```swift
-public let pullRequest: GitHubPR
+public let pullRequest: PullRequest
 ```
 
 ### `commits`
 
 ```swift
-public let commits: [GitHubCommit]
+public let commits: [Commit]
 ```
 
 ### `reviews`
 
 ```swift
-public let reviews: [GitHubReview]
+public let reviews: [Review]
 ```
 
 ### `requestedReviewers`
 
 ```swift
-public let requestedReviewers: GitHubRequestedReviewers
+public let requestedReviewers: RequestedReviewers
 ```
 
 ### `api`

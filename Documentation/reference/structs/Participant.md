@@ -12,7 +12,7 @@ public struct Participant: Decodable, Equatable
 ### `user`
 
 ```swift
-public let user: BitBucketServerUser
+public let user: User
 ```
 
 > The BitBucket Server User

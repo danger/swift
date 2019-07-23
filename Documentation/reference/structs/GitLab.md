@@ -10,11 +10,11 @@ public struct GitLab: Decodable
 ### `mergeRequest`
 
 ```swift
-public let mergeRequest: GitLabMergeRequest
+public let mergeRequest: MergeRequest
 ```
 
 ### `metadata`
 
 ```swift
-public let metadata: GitLabMetadata
+public let metadata: Metadata
 ```
