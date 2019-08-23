@@ -120,7 +120,7 @@ public struct ShellExecutor: ShellExecuting {
         let processEnv = ProcessInfo.processInfo.environment
         let task = Process()
         task.launchPath = processEnv["SHELL"]
-        task.arguments = ["-l", "-c", script]
+        task.arguments = ["-c", script]
         task.environment = mergeEnvs(localEnv: environmentVariables, processEnv: processEnv)
         task.currentDirectoryPath = FileManager.default.currentDirectoryPath
         return task

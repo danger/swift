@@ -13,6 +13,10 @@
 
 ## Master
 
+## 2.0.2
+
+- Fix not to log in to shell twice [@manicmaniac][] - [#264](https://github.com/danger/swift/pull/264)
+
 ## 2.0.0
 
 - Improve Platforms' models [@f-meloni][] - [#259](https://github.com/danger/swift/pull/259)
