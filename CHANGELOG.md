@@ -13,6 +13,8 @@
 
 ## Master
 
+## 2.0.2
+
 - Fix not to log in to shell twice [@manicmaniac][] - [#264](https://github.com/danger/swift/pull/264)
 - Use /bin/sh as command line interpreter [@manicmaniac][] - [#265](https://github.com/danger/swift/pull/265)
 
