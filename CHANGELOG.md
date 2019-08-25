@@ -16,6 +16,10 @@
 - Fix not to log in to shell twice [@manicmaniac][] - [#264](https://github.com/danger/swift/pull/264)
 - Use /bin/sh as command line interpreter [@manicmaniac][] - [#265](https://github.com/danger/swift/pull/265)
 
+## 2.0.1
+
+- Release only made for GitHub Actions - [@orta]
+
 ## 2.0.0
 
 - Improve Platforms' models [@f-meloni][] - [#259](https://github.com/danger/swift/pull/259)
