@@ -13,7 +13,7 @@
 
 ## Master
 
-- Fix not to log in to shell twice [@f-meloni][] - [#269](https://github.com/danger/swift/pull/269)
+- Use `command -v` instead of `which` [@f-meloni][] - [#269](https://github.com/danger/swift/pull/269)
 
 ## 2.0.2
 
