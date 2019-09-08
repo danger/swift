@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix not to log in to shell twice [@f-meloni][] - [#269](https://github.com/danger/swift/pull/269)
+
 ## 2.0.2
 
 - Fix not to log in to shell twice [@manicmaniac][] - [#264](https://github.com/danger/swift/pull/264)
