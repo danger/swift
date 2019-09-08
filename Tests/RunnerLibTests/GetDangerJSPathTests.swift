@@ -17,7 +17,7 @@ final class GetDangerJSPathTests: XCTestCase {
         executor.result = expectedResult
 
         let path = try getDangerCommandPath(logger: logger, args: [], shellOutExecutor: executor)
-        XCTAssertEqual(executor.receivedCommand, "which danger")
+        XCTAssertEqual(executor.receivedCommand, "command -v danger")
         XCTAssertEqual(path, expectedResult)
     }
 }
