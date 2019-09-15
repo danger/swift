@@ -12,7 +12,7 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash -
 RUN apt-get install -y nodejs
 
 # Install danger-swift globally
-RUN git clone https://github.com/danger/danger-swift.git --single-branch --depth 1 --branch 2.0.2 _danger-swift
+RUN git clone https://github.com/danger/danger-swift.git --single-branch --depth 1 --branch 2.0.3 _danger-swift
 RUN cd _danger-swift && make install
 
 # Run Danger Swift via Danger JS, allowing for custom args

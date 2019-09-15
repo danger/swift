@@ -13,6 +13,8 @@
 
 ## Master
 
+## 2.0.3
+
 - Update Marathon to a revision that supports swift 5.1 [@f-meloni][] - [#271](https://github.com/danger/swift/pull/271)
 - Optimise danger actions clone [@f-meloni][] - [#270](https://github.com/danger/swift/pull/270)
 - Use `command -v` instead of `which` [@f-meloni][] - [#269](https://github.com/danger/swift/pull/269)
