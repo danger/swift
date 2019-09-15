@@ -13,7 +13,9 @@
 
 ## Master
 
+- Optimise danger actions clone [@f-meloni][] - [#270](https://github.com/danger/swift/pull/270)
 - Use `command -v` instead of `which` [@f-meloni][] - [#269](https://github.com/danger/swift/pull/269)
+- Remove swiftlint install commands from Dockerfile [@f-meloni][] - [#268](https://github.com/danger/swift/pull/268)
 
 ## 2.0.2
 
