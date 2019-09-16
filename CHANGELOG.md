@@ -13,6 +13,8 @@
 
 ## Master
 
+- Update Marathon to 3.3.0 [@f-meloni][] - [#272](https://github.com/danger/swift/pull/272)
+
 ## 2.0.3
 
 - Update Marathon to a revision that supports swift 5.1 [@f-meloni][] - [#271](https://github.com/danger/swift/pull/271)

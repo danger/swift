@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/JohnSundell/Marathon",
         "state": {
           "branch": null,
-          "revision": "79f0561a6d31b22f1f6d87ef4c8ddae6cf39aec5",
-          "version": null
+          "revision": "35b672e05ac411fb104e462fbfd6541f995abc17",
+          "version": "3.3.0"
         }
       },
       {
