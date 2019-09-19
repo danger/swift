@@ -156,6 +156,12 @@ npm install -g danger
 danger-swift ci
 ```
 
+Mint
+
+```
+mint install danger/swift
+```
+
 With Docker support ready for GitHub Actions.
 
 #### Local compiled danger-js
