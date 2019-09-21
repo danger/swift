@@ -29,7 +29,7 @@ install: build
 
 build:
 	swift package clean
-	swift build --disable-sandbox -c release --static-swift-stdlib
+	swift build --disable-sandbox -c release
 
 uninstall:
 	rm -f $(INSTALL_PATH)
