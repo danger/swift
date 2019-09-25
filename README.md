@@ -162,7 +162,9 @@ Mint
 mint install danger/swift
 ```
 
-With Docker support ready for GitHub Actions.
+GitHub Actions
+
+You can add danger/swift as to your actions
 
 #### Local compiled danger-js
 
