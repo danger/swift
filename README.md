@@ -164,7 +164,20 @@ mint install danger/swift
 
 GitHub Actions
 
-You can add danger/swift as to your actions
+You can add danger/swift to your actions
+
+```yml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: "Run Danger"
+    steps:
+      - uses: actions/checkout@v1
+      - name: Danger
+        uses: danger/swift@2.0.3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
 
 #### Local compiled danger-js
 
