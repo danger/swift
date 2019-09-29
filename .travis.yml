@@ -27,7 +27,7 @@ matrix:
         - node -v
         - npm install -g danger@7.1.4
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
-        - swiftenv global 5.1-DEVELOPMENT-SNAPSHOT-2019-09-18-a
+        - swiftenv global 5.1
       script:
         - swift test
         - sudo chmod -R a+rwx /usr/local/
@@ -52,6 +52,6 @@ matrix:
         - node -v
         - npm install -g danger@7.1.4
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
-        - swiftenv global 5.1-DEVELOPMENT-SNAPSHOT-2019-09-18-a
+        - swiftenv global 5.1
       script:
         - swift run danger-swift ci
