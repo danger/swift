@@ -10,7 +10,7 @@ public struct Inline: Decodable, Equatable
 ### `from`
 
 ```swift
-public let from: Int
+public let from: Int?
 ```
 
 ### `to`

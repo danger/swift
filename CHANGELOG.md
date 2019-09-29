@@ -13,6 +13,8 @@
 
 ## Master
 
+## 2.0.5
+
 - Make bitbucket cloud inline comment from optional [@f-meloni][] - [#278](https://github.com/danger/swift/pull/278)
 
 ## 2.0.4
