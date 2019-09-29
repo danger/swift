@@ -13,6 +13,8 @@
 
 ## Master
 
+- Make bitbucket cloud inline comment from optional [@f-meloni][] - [#278](https://github.com/danger/swift/pull/278)
+
 ## 2.0.4
 
 - Update Marathon to 3.3.0 [@f-meloni][] - [#272](https://github.com/danger/swift/pull/272)
