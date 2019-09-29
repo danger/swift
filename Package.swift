@@ -21,7 +21,7 @@ let package = Package(
         .package(url: "https://github.com/shibapm/Komondor", from: "1.0.0"), // dev
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"), // dev
         .package(url: "https://github.com/Realm/SwiftLint", from: "0.28.1"), // dev
-        .package(url: "https://github.com/f-meloni/swift-snapshot-testing.git", .branch("master")), // dev
+        .package(url: "https://github.com/f-meloni/swift-snapshot-testing.git", .branch("foundation_network")), // dev
         .package(url: "https://github.com/shibapm/Rocket", from: "0.4.0"), // dev
         .package(url: "https://github.com/jpsim/Yams.git", from: "1.0.0"), // dev
         .package(url: "https://github.com/eneko/SourceDocs", from: "0.5.1"), // dev
