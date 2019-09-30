@@ -194,7 +194,7 @@ extension BitBucketCloud {
         public struct Inline: Decodable, Equatable {
             public let from: Int?
             public let to: Int? // swiftlint:disable:this identifier_name
-            public let path: String
+            public let path: String?
         }
 
         private enum CodingKeys: String, CodingKey {
@@ -228,22 +228,6 @@ extension BitBucketCloud {
 
         /// The user that created the comment
         public let user: User
-        
-        public init(from decoder: Decoder) throws {
-            let container = try decoder.container(keyedBy: CodingKeys.self)
-            
-            self.content = try container.decode(Content.self, forKey: .content)
-            self.createdOn = try container.decode(Date.self, forKey: .createdOn)
-            self.deleted = try container.decode(Bool.self, forKey: .deleted)
-            self.id = try container.decode(Int.self, forKey: .id)
-            // protect from "inline": {}
-            self.inline = (try? container.decodeIfPresent(Inline.self, forKey: .inline)) ?? nil
-            self.type = try container.decode(String.self, forKey: .type)
-            self.updatedOn = try container.decode(Date.self, forKey: .updatedOn)
-            self.user = try container.decode(User.self, forKey: .user)
-            
-        }
-
     }
 }
 

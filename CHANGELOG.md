@@ -13,7 +13,7 @@
 
 ## Master
 
-- Protect bitbucket cloud inline comment empty dictionary, as well as the to optional [@khoogheem][] - [#280](https://github.com/danger/swift/pull/280)
+- Protect bitbucket cloud inline comment with all options being optional [@khoogheem][] - [#280](https://github.com/danger/swift/pull/280)
 
 ## 2.0.5
 
