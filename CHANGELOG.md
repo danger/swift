@@ -13,6 +13,8 @@
 
 ## Master
 
+- Protect bitbucket cloud inline comment with all options being optional [@khoogheem][] - [#280](https://github.com/danger/swift/pull/280)
+
 ## 2.0.5
 
 - Make bitbucket cloud inline comment from optional [@f-meloni][] - [#278](https://github.com/danger/swift/pull/278)
@@ -353,3 +355,4 @@ This release also includes:
 [@mollyIV]: https://github.com/mollyIV
 [@smalljd]: https://github.com/smalljd
 [@manicmaniac]: https://github.com/manicmaniac
+[@khoogheem]: https://github.com/khoogheem

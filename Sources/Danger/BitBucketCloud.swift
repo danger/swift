@@ -193,8 +193,8 @@ extension BitBucketCloud {
     public struct Comment: Decodable, Equatable {
         public struct Inline: Decodable, Equatable {
             public let from: Int?
-            public let to: Int // swiftlint:disable:this identifier_name
-            public let path: String
+            public let to: Int? // swiftlint:disable:this identifier_name
+            public let path: String?
         }
 
         private enum CodingKeys: String, CodingKey {
