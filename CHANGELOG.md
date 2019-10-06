@@ -13,6 +13,7 @@
 
 ## Master
 
+- Fix GitLabDSL parsing (missing arguments) [@fortmarek][] - [#283](https://github.com/danger/swift/pull/283)
 - Protect bitbucket cloud inline comment with all options being optional [@khoogheem][] - [#280](https://github.com/danger/swift/pull/280)
 
 ## 2.0.5
@@ -356,3 +357,4 @@ This release also includes:
 [@smalljd]: https://github.com/smalljd
 [@manicmaniac]: https://github.com/manicmaniac
 [@khoogheem]: https://github.com/khoogheem
+[@fortmarek]: https://github.com/danger/swift/pull/283
