@@ -13,6 +13,8 @@
 
 ## Master
 
+## 2.0.6
+
 - Fix GitLabDSL parsing (missing arguments) [@fortmarek][] - [#283](https://github.com/danger/swift/pull/283)
 - Protect bitbucket cloud inline comment with all options being optional [@khoogheem][] - [#280](https://github.com/danger/swift/pull/280)
 
