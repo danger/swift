@@ -216,11 +216,9 @@ swift build && cat Fixtures/eidolon_609.json | ./.build/debug/danger-swift
 
 Run `swift run rocket $VERSION` on `master` e.g. `swift run rocket 1.0.0`
 
-### Long-term
+### Maintainer
 
-I, orta, only plan on bootstrapping this project, as I won't be using this in production. I'm happy to help support
-others who want to own this idea and really make it shine though! So if you're interested in helping out, make a few PRs
-and I'll give you org access.
+Danger Swift is maintained by [@f-meloni](https://github.com/f-meloni), and maybe you?
 
 [m]: https://github.com/JohnSundell/Marathon
 [spm-lr]: http://bhargavg.com/swift/2016/06/11/how-swiftpm-parses-manifest-file.html
