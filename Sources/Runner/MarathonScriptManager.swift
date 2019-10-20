@@ -1,19 +1,10 @@
+import DangerDependenciesResolver
 import Files
 import Logger
-import MarathonCore
 
-func getScriptManager(_ logger: Logger) throws -> ScriptManager {
+func getScriptManager(_: Logger) throws -> ScriptManager {
     let folder = "~/.danger-swift"
 
-    let printFunction: PrintFunction = { logger.logInfo($0) }
-    let progressFunc = makeProgressPrintingFunction(logger: logger)
-    let verbosePrint = makeVerbosePrintingFunction(logger)
-
-    let printer = Printer(
-        outputFunction: printFunction,
-        progressFunction: progressFunc,
-        verboseFunction: verbosePrint
-    )
     let fileSystem = FileSystem()
 
     let rootFolder = try fileSystem.createFolderIfNeeded(at: folder)
@@ -27,22 +18,7 @@ func getScriptManager(_ logger: Logger) throws -> ScriptManager {
         try localBuild.copy(to: generated)
     } catch {}
 
-    let packageManager = try PackageManager(folder: packageFolder, printer: printer)
-    let config = ScriptManager.Config(prefix: "package: ", file: "Dangerplugins")
+    let packageManager = try PackageManager(folder: packageFolder.path)
 
-    return try ScriptManager(folder: scriptFolder, packageManager: packageManager, printer: printer, config: config)
-}
-
-private func makeProgressPrintingFunction(logger: Logger) -> VerbosePrintFunction {
-    return { (messageExpression: () -> String) in
-        let message = messageExpression()
-        logger.debug(message)
-    }
-}
-
-private func makeVerbosePrintingFunction(_ logger: Logger) -> VerbosePrintFunction {
-    return { (messageExpression: () -> String) in
-        let message = "\u{001B}[0;3m\(messageExpression())\u{001B}[0;23m"
-        logger.debug(message)
-    }
+    return try ScriptManager(folder: scriptFolder.path, packageManager: packageManager)
 }

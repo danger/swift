@@ -1,8 +1,8 @@
+import DangerDependenciesResolver
 import DangerShellExecutor
 import Files
 import Foundation
 import Logger
-import MarathonCore
 import RunnerLib
 
 // swiftlint:disable:next function_body_length
@@ -84,10 +84,10 @@ func runDanger(logger: Logger) throws {
             defer { try? tempDangerfile.delete() }
 
             let scriptManager = try getScriptManager(logger)
-            let script = try scriptManager.script(atPath: tempDangerfile.path, allowRemote: true)
+            let script = try scriptManager.script(atPath: tempDangerfile.path)
 
             try script.build()
-            let marathonPath = script.folder.path
+            let marathonPath = script.folder
             let artifactPaths = [".build/debug", ".build/release"]
 
             let marathonLibPath = artifactPaths.first(where: { fileManager.fileExists(atPath: marathonPath + $0) })

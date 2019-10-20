@@ -48,15 +48,15 @@ func editDanger(logger: Logger) throws {
 
     let arguments = CommandLine.arguments
     let scriptManager = try getScriptManager(logger)
-    let script = try scriptManager.script(atPath: dangerfilePath, allowRemote: true)
+    let script = try scriptManager.script(atPath: dangerfilePath)
 
     let configPath = NSTemporaryDirectory() + "config.xcconfig"
 
     try createConfig(atPath: configPath, libPath: absoluteLibPath, libsImport: libsImport)
 
-    try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
-
-    try script.watch(arguments: arguments, importedFiles: importedFiles)
+//    try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
+//
+//    try script.watch(arguments: arguments, importedFiles: importedFiles)
 }
 
 @discardableResult
