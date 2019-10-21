@@ -13,6 +13,8 @@
 
 ## Master
 
+- Add --version support [@f-meloni][] - [#278](https://github.com/danger/swift/pull/287)
+
 ## 2.0.6
 
 - Fix GitLabDSL parsing (missing arguments) [@fortmarek][] - [#283](https://github.com/danger/swift/pull/283)
