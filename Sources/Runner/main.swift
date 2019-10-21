@@ -23,6 +23,11 @@ let isVerbose = CommandLine.arguments.contains("--verbose") || (ProcessInfo.proc
 let isSilent = CommandLine.arguments.contains("--silent")
 let logger = Logger(isVerbose: isVerbose, isSilent: isSilent)
 
+guard !CommandLine.arguments.contains("--version") else {
+    logger.logInfo(DangerVersion)
+    exit(0)
+}
+
 do {
     if cliLength > 1 {
         logger.debug("Launching Danger Swift \(CommandLine.arguments[1]) (v\(DangerVersion))")
