@@ -281,15 +281,6 @@
         }
       },
       {
-        "package": "Version",
-        "repositoryURL": "https://github.com/mxcl/Version",
-        "state": {
-          "branch": null,
-          "revision": "799aea2cf7669b6b923c32e6adc77cdb3fa4412b",
-          "version": "1.1.2"
-        }
-      },
-      {
         "package": "XcodeGen",
         "repositoryURL": "https://github.com/yonaskolb/XcodeGen.git",
         "state": {
