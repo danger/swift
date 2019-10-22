@@ -6,7 +6,7 @@ public struct ScriptManager {
         let dependencyPrefix: String
         let dependencyFile: String
 
-        public init(prefix: String = "package:", file: String = "Dangerplugins") {
+        public init(prefix: String = "package: ", file: String = "Dangerplugins") {
             dependencyPrefix = prefix
             dependencyFile = file
         }
@@ -46,7 +46,7 @@ public struct ScriptManager {
         let folder = try createFolderIfNeededForScript(withIdentifier: identifier, filePath: path)
         let script = Script(name: path.nameExcludingExtension, folder: folder)
 
-        if let scriptFile = try script.resolveScriptFile(fileName: config.dependencyFile) {
+        if let scriptFile = try script.resolveScriptFile(fileName: config.dependencyFile, onFolder: folder.fileName) {
             try packageManager.addPackagesIfNeeded(from: scriptFile.packageURLs)
             try addDependencyScripts(fromScriptFile: scriptFile, for: script)
         }
@@ -156,11 +156,7 @@ public struct ScriptManager {
         let sourcesFolder = try scriptFolder.createSubfolderIfNeeded(withName: "Sources")
         try FileManager.default.removeItem(atPath: sourcesFolder)
 
-        print("moduleFolder " + filePath.nameExcludingExtension)
-
         let moduleFolder = try sourcesFolder.createSubfolder(withName: filePath.nameExcludingExtension)
-
-        print("GERE")
 
         FileManager.default.createFile(atPath: moduleFolder.appendingPath("main.swift"),
                                        contents: try String(contentsOfFile: filePath).data(using: .utf8) ?? Data(),
@@ -184,36 +180,23 @@ public struct Script {
         self.folder = folder
     }
 
-    func resolveScriptFile(fileName _: String) throws -> ScriptFile? {
-        let scriptFile = try expandSymlink()
-
-//        guard let parentFolder = scriptFile.parent else {
-//            return nil
-//        }
-//
-//        guard let file = try? parentFolder.file(named: fileName) else {
-//            return nil
-//        }
-//
-//        let file = "\(folder)/\(fileName)"
-
-        return try ScriptFile(path: scriptFile)
-    }
-
-    private func expandSymlink() throws -> String {
-        let executor = ShellExecutor()
-        try executor.spawn("cd \(folder)", arguments: [])
-        return try executor.spawn("readlink OriginalFile", arguments: [])
+    func resolveScriptFile(fileName: String, onFolder folder: String) throws -> ScriptFile? {
+        let scriptFile = "\(folder)/\(fileName)"
+        if FileManager.default.fileExists(atPath: scriptFile) {
+            return try ScriptFile(path: scriptFile)
+        } else {
+            return nil
+        }
     }
 
     public func build(withArguments arguments: [String] = []) throws {
         let executor = ShellExecutor()
-        try executeSwiftCommand("swift build -C \(folder)", arguments: arguments, executor: executor)
+        try executeSwiftCommand("build --package-path \(folder)", arguments: arguments, executor: executor)
     }
 }
 
 @discardableResult
-func executeSwiftCommand(_ command: String, arguments: [String] = [], executor: ShellExecutor) throws -> String {
+func executeSwiftCommand(_ command: String, onFolder folder: String? = nil, arguments: [String] = [], executor: ShellExecutor) throws -> String {
     func resolveSwiftPath() -> String {
         #if os(Linux)
             return "swift"
@@ -223,7 +206,9 @@ func executeSwiftCommand(_ command: String, arguments: [String] = [], executor: 
     }
 
     let swiftPath = resolveSwiftPath()
-    return try executor.spawn("\(swiftPath) \(command)", arguments: arguments)
+    let command = folder.map { "cd \($0) && \(swiftPath) \(command)" } ?? "\(swiftPath) \(command)"
+
+    return try executor.spawn(command, arguments: arguments)
 }
 
 private extension String {
@@ -258,5 +243,9 @@ private extension String {
 
     var fileName: String {
         return components(separatedBy: "/").last ?? "script"
+    }
+
+    var folderPath: String {
+        return components(separatedBy: "/").dropLast().joined(separator: "/")
     }
 }

@@ -39,9 +39,9 @@ public struct PackageManager {
     }
 
     private func makePackageList() -> [Package] {
-        return (try? folder.files.compactMap {
-            try String(contentsOfFile: $0).data(using: .utf8)?.decoded()
-        }) ?? []
+        return folder.files.compactMap {
+            try? (String(contentsOfFile: $0).data(using: .utf8) ?? Data()).decoded()
+        }
     }
 
     @discardableResult func addPackage(at url: URL, throwIfAlreadyAdded _: Bool = true) throws -> Package {
@@ -110,7 +110,7 @@ public struct PackageManager {
 
     private func nameOfPackage(at url: URL) throws -> String {
         do {
-            if url.isForRemoteRepository {
+            guard !url.isForRemoteRepository else {
                 return try nameOfRemotePackage(at: url)
             }
 
@@ -127,9 +127,8 @@ public struct PackageManager {
 //        printer.reportProgress("Cloning \(url.absoluteString)...")
 
         let executor = ShellExecutor()
-        try executor.spawn("cd \(temporaryFolder)", arguments: [])
-        try executor.spawn("git clone", arguments: ["\(url.absoluteString)", "Clone", "-q"])
-        let clone = try temporaryFolder.createSubfolderIfNeeded(withName: "Clone")
+        try executor.spawn("git clone", arguments: ["\(url.absoluteString)", "--single-branch", "--depth 1", "\(temporaryFolder.appendingPath("Clone"))", "-q"])
+        let clone = temporaryFolder.appendingPath("Clone")
         let name = try nameOfPackage(in: clone)
         removeCloneFolder(temporaryFolder: temporaryFolder)
 
@@ -166,6 +165,7 @@ public struct PackageManager {
     func symlinkPackages(to folder: String) throws {
         let checkoutsFolder = generatedFolder.appendingPath(".build/checkouts")
         let repositoriesFolder = generatedFolder.appendingPath(".build/repositories")
+        let resolvedPackageFile = generatedFolder.appendingPath("Package.resolved")
 
         guard FileManager.default.fileExists(atPath: checkoutsFolder),
             FileManager.default.fileExists(atPath: repositoriesFolder) else {
@@ -193,7 +193,6 @@ public struct PackageManager {
 //            try buildFolder.createSymlink(to: dependenciesStateFile, at: "dependencies-state.json")
 //        }
 
-        let resolvedPackageFile = generatedFolder.appendingPath("Package.resolved")
         if !folder.containsItem(named: "Package.resolved") {
             try folder.createSymlink(to: resolvedPackageFile, at: "Package.resolved")
         }
@@ -205,7 +204,7 @@ public struct PackageManager {
             return try makePackageDescription(for: script)
         }
 
-        let toolsVersion = try resolveSwiftToolsVersion(executor: ShellExecutor())
+        let toolsVersion = try resolveSwiftToolsVersion(executor: ShellExecutor(), onFolder: generatedFolder)
         let expectedHeader = makePackageDescriptionHeader(forSwiftToolsVersion: toolsVersion)
 
         guard masterDescription.hasPrefix(expectedHeader) else {
@@ -222,10 +221,9 @@ public struct PackageManager {
         do {
             let executor = ShellExecutor()
 
-            let toolsVersion = try resolveSwiftToolsVersion(executor: executor)
+            let toolsVersion = try resolveSwiftToolsVersion(executor: executor, onFolder: generatedFolder)
             try generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion)
-            executor.execute("cd \(generatedFolder)", arguments: [])
-            try executeSwiftCommand("package update", arguments: [], executor: executor)
+            try executeSwiftCommand("package update", onFolder: generatedFolder, arguments: [], executor: executor)
             try generatedFolder.createSubfolderIfNeeded(withName: "Packages")
         } catch {
             throw Errors.failedToUpdatePackages(folder)
@@ -253,32 +251,25 @@ public struct PackageManager {
         }
 
         description.append("\n    ],\n")
+        description.append("    targets: [.target(name: \"\(masterPackageName)\", dependencies: [")
 
-        if toolsVersion.major > 3 {
-            description.append("    targets: [.target(name: \"\(masterPackageName)\", dependencies: [")
-
-            if !packages.isEmpty {
-                description.append("\"")
-                description.append(packages.map { $0.name }.joined(separator: "\", \""))
-                description.append("\"")
-            }
-
-            description.append("])],\n")
+        if !packages.isEmpty {
+            description.append("\"")
+            description.append(packages.map { $0.name }.joined(separator: "\", \""))
+            description.append("\"")
         }
 
-        if toolsVersion >= Version(major: 4, minor: 2, patch: 0) {
-            var versionString = String(toolsVersion.major)
+        description.append("])],\n")
 
-            if toolsVersion == Version(major: 4, minor: 2, patch: 0) {
-                versionString.append(".\(toolsVersion.minor)")
-            }
+        var versionString = String(toolsVersion.major)
 
-            description.append("    swiftLanguageVersions: [.version(\"\(versionString)\")]\n)")
-        } else {
-            description.append("    swiftLanguageVersions: [\(toolsVersion.major)]\n)")
+        if toolsVersion == Version(major: 4, minor: 2, patch: 0) {
+            versionString.append(".\(toolsVersion.minor)")
         }
 
-        FileManager.default.createFile(atPath: "Package.swift", contents: description.data(using: .utf8), attributes: [:])
+        description.append("    swiftLanguageVersions: [.version(\"\(versionString)\")]\n)")
+
+        FileManager.default.createFile(atPath: generatedFolder.appendingPath("Package.swift"), contents: description.data(using: .utf8), attributes: [:])
     }
 
     private func makePackageDescriptionHeader(forSwiftToolsVersion toolsVersion: Version) -> String {
@@ -286,18 +277,18 @@ public struct PackageManager {
         let generationVersion = 1
 
         return "// swift-tools-version:\(swiftVersion)\n" +
-            "// marathon-generation-version:\(generationVersion)"
+            "// generation-version:\(generationVersion)"
     }
 
-    private func resolveSwiftToolsVersion(executor: ShellExecutor) throws -> Version {
-        var versionString: String? = try executeSwiftCommand("package", arguments: ["--version"], executor: executor)
+    private func resolveSwiftToolsVersion(executor: ShellExecutor, onFolder _: String) throws -> Version {
+        var versionString: String? = try executeSwiftCommand("package", onFolder: folder, arguments: ["--version"], executor: executor)
         versionString = versionString?.components(separatedBy: " (swiftpm").first
         versionString = versionString?.components(separatedBy: "Swift Package Manager - Swift ").last
 
         let versionComponents = versionString?.components(separatedBy: ".") ?? []
 
         if versionComponents.count > 2 {
-            versionString = "\(versionComponents[0]).\(versionComponents[1])"
+            versionString = "\(versionComponents[0]).\(versionComponents[1]).\(versionComponents[2])"
         }
 
         return Version(versionString ?? "") ?? .null
@@ -336,11 +327,7 @@ public struct Package: Codable {
 }
 
 extension Package {
-    func dependencyString(forSwiftToolsVersion toolsVersion: Version) -> String {
-        if toolsVersion.major == 3 {
-            return ".Package(url: \"\(url.absoluteString)\", majorVersion: \(majorVersion))"
-        }
-
+    func dependencyString(forSwiftToolsVersion _: Version) -> String {
         return ".package(url: \"\(url.absoluteString)\", from: \"\(majorVersion).0.0\")"
     }
 }
@@ -373,7 +360,7 @@ extension String {
     }
 
     fileprivate var files: [String] {
-        return (try? fileManager.contentsOfDirectory(atPath: self).map { self.appendingPath($0) }) ?? []
+        return (try? fileManager.contentsOfDirectory(atPath: self).sorted().map { self.appendingPath($0) }) ?? []
     }
 
     @discardableResult
@@ -396,13 +383,12 @@ extension String {
 
     func createSymlink(to originalPath: String, at linkPath: String) throws {
         let executor = ShellExecutor()
-        executor.execute("cd \(self)", arguments: [])
-        try executor.spawn("ln -s \"\(originalPath)\" \"\(linkPath)\"", arguments: [])
+        try executor.spawn("cd \(self) && ln -s \"\(originalPath)\" \"\(linkPath)\"", arguments: [])
     }
 
     private func createSubfolder(folderPath: String) throws -> String {
         do {
-            try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: false, attributes: nil)
+            try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: true, attributes: nil)
             return folderPath
         } catch {
             throw Errors.creatingFolderFailed(folderPath)

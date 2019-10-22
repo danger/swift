@@ -90,11 +90,11 @@ func runDanger(logger: Logger) throws {
             let marathonPath = script.folder
             let artifactPaths = [".build/debug", ".build/release"]
 
-            let marathonLibPath = artifactPaths.first(where: { fileManager.fileExists(atPath: marathonPath + $0) })
+            let marathonLibPath = artifactPaths.lazy.map { marathonPath + "/" + $0 }.filter(fileManager.fileExists).first
             if marathonLibPath != nil {
-                libArgs += ["-L", marathonPath + marathonLibPath!]
-                libArgs += ["-I", marathonPath + marathonLibPath!]
-                libArgs += ["-lMarathonDependencies"]
+                libArgs += ["-L", marathonLibPath!]
+                libArgs += ["-I", marathonLibPath!]
+                libArgs += ["-lDangerDependencies"]
             }
         }
 
