@@ -34,7 +34,7 @@ public struct PackageManager {
                 continue
             }
 
-            try addPackage(at: url, throwIfAlreadyAdded: false)
+            try addPackage(at: url)
         }
     }
 
@@ -44,14 +44,8 @@ public struct PackageManager {
         }
     }
 
-    @discardableResult func addPackage(at url: URL, throwIfAlreadyAdded _: Bool = true) throws -> Package {
+    @discardableResult func addPackage(at url: URL) throws -> Package {
         let name = try nameOfPackage(at: url)
-
-//        if throwIfAlreadyAdded {
-//            guard (try? folder.file(named: name)) == nil else {
-//                throw Errors.packageAlreadyAdded(name)
-//            }
-//        }
 
         let latestVersion = try latestMajorVersionForPackage(at: url)
         let package = Package(name: name, url: absoluteRepositoryURL(from: url), majorVersion: latestVersion)
@@ -182,16 +176,6 @@ public struct PackageManager {
         if !buildFolder.containsItem(named: "repositories") {
             try buildFolder.createSymlink(to: repositoriesFolder, at: "repositories")
         }
-
-//        let workspaceStateFile = generatedFolder.appendingPath(".build/workspace-state.json")
-//        if !buildFolder.containsItem(named: "workspace-state.json") {
-//            try buildFolder.createSymlink(to: workspaceStateFile, at: "workspace-state.json")
-//        }
-
-//        let dependenciesStateFile = generatedFolder.appendingPath(".build/dependencies-state.json")
-//        if !buildFolder.containsItem(named: "dependencies-state.json") {
-//            try buildFolder.createSymlink(to: dependenciesStateFile, at: "dependencies-state.json")
-//        }
 
         if !folder.containsItem(named: "Package.resolved") {
             try folder.createSymlink(to: resolvedPackageFile, at: "Package.resolved")

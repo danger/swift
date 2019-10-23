@@ -46,11 +46,6 @@ public struct ScriptManager {
         let folder = try createFolderIfNeededForScript(withIdentifier: identifier, filePath: path)
         let script = Script(name: path.nameExcludingExtension, folder: folder)
 
-        if let scriptFile = try script.resolveScriptFile(fileName: config.dependencyFile, onFolder: folder.fileName) {
-            try packageManager.addPackagesIfNeeded(from: scriptFile.packageURLs)
-            try addDependencyScripts(fromScriptFile: scriptFile, for: script)
-        }
-
         try resolveInlineDependencies(fromPath: path)
 
         do {
@@ -98,22 +93,6 @@ public struct ScriptManager {
         }
 
         try packageManager.addPackagesIfNeeded(from: packageURLs)
-    }
-
-    private func addDependencyScripts(fromScriptFile file: ScriptFile, for script: Script) throws {
-        for url in file.scriptURLs {
-            do {
-                let dependencyScriptFile = url.absoluteString
-                let moduleFolder = script.folder.appendingPath("Sources").appendingPath("\(script.name)")
-
-//                let copy = try moduleFolder.createFile(named: dependencyScriptFile.name)
-//                try copy.write(data: dependencyScriptFile.read())
-
-                try FileManager.default.copyItem(atPath: dependencyScriptFile, toPath: moduleFolder.appendingPath(dependencyScriptFile.fileName))
-            } catch {
-                throw Errors.failedToAddDependencyScript(url.absoluteString)
-            }
-        }
     }
 
     private func resolveInlineDependencies(fromPath path: String) throws {
@@ -178,15 +157,6 @@ public struct Script {
     init(name: String, folder: String) {
         self.name = name
         self.folder = folder
-    }
-
-    func resolveScriptFile(fileName: String, onFolder folder: String) throws -> ScriptFile? {
-        let scriptFile = "\(folder)/\(fileName)"
-        if FileManager.default.fileExists(atPath: scriptFile) {
-            return try ScriptFile(path: scriptFile)
-        } else {
-            return nil
-        }
     }
 
     public func build(withArguments arguments: [String] = []) throws {
