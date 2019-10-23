@@ -13,7 +13,8 @@
 
 ## Master
 
-- Add --version support [@f-meloni][] - [#278](https://github.com/danger/swift/pull/287)
+- Read standard error when the shell executor fails [@f-meloni][] - [#288](https://github.com/danger/swift/pull/288)
+- Add --version support [@f-meloni][] - [#287](https://github.com/danger/swift/pull/287)
 
 ## 2.0.6
 
