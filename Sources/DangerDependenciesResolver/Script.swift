@@ -63,7 +63,7 @@ public struct ScriptManager {
         let pathExcludingExtension = path.components(separatedBy: ".swift").first
         return pathExcludingExtension?.replacingOccurrences(of: ":", with: "-")
             .replacingOccurrences(of: "/", with: "-")
-            .replacingOccurrences(of: " ", with: "-") ?? "script"
+            .replacingOccurrences(of: " ", with: "-") ?? "Dangerfile.swift"
     }
 
     private func resolveInlineDependencies(from path: String) throws {
@@ -145,8 +145,10 @@ public struct ScriptManager {
     }
 }
 
-public struct Script {
-    // MARK: - Properties
+public final class Script {
+    enum Errors: Error {
+        case watchingFailed(String)
+    }
 
     public let name: String
     public let folder: String
@@ -162,6 +164,93 @@ public struct Script {
     public func build(withArguments arguments: [String] = []) throws {
         let executor = ShellExecutor()
         try executeSwiftCommand("build --package-path \(folder)", arguments: arguments, executor: executor)
+    }
+
+    @discardableResult
+    public func setupForEdit(importedFiles: [String], configPath: String) throws -> String {
+        try importedFiles.forEach {
+            if !FileManager.default.fileExists(atPath: $0) {
+                _ = FileManager.default.createFile(atPath: $0, contents: nil, attributes: nil)
+            }
+            try FileManager.default.copyItem(atPath: $0, toPath: sourcesImportPath(forImportPath: $0))
+        }
+
+        try generateXCodeProjWithConfig(configPath: configPath)
+
+        return editingPath()
+    }
+
+    private func editingPath() -> String {
+        return folder.appendingPath(name + ".xcodeproj")
+    }
+
+    private func generateXCodeProjWithConfig(configPath: String) throws {
+        try executeSwiftCommand("package generate-xcodeproj --xcconfig-overrides \(configPath)", onFolder: folder, executor: ShellExecutor())
+    }
+
+    private func sourcesImportPath(forImportPath importPath: String) -> String {
+        return folder
+            .appendingPath("Sources")
+            .appendingPath(name)
+            .appendingPath(importPath.fileName)
+    }
+
+    public func watch(importedFiles: [String]) throws {
+        let fullPathImports = importedFiles.map { $0.fullPath }
+        try watch(imports: fullPathImports)
+        try? copyImports(fullPathImports)
+    }
+
+    public func watch(imports: [String]) throws {
+        do {
+            let path = editingPath()
+
+            try ShellExecutor().spawn("open \"\(path)\"", arguments: [])
+
+//                printer.output("\nℹ️  Marathon will keep running, in order to commit any changes you make in Xcode back to the original script file")
+//                printer.output("   Press the return key once you're done")
+
+            startCopyLoop(imports: imports)
+            _ = FileHandle.standardInput.availableData
+            try copyChangesToSymlinkedFile()
+        } catch {
+            throw Errors.watchingFailed(name)
+        }
+    }
+
+    private func startCopyLoop(imports: [String]) {
+        let dispatchQueue: DispatchQueue
+
+        if let existingQueue = copyLoopDispatchQueue {
+            dispatchQueue = existingQueue
+        } else {
+            let newQueue = DispatchQueue(label: "com.danger.fileCopyLoop")
+            copyLoopDispatchQueue = newQueue
+            dispatchQueue = newQueue
+        }
+
+        dispatchQueue.asyncAfter(deadline: .now() + .seconds(3)) { [weak self] in
+            try? self?.copyChangesToSymlinkedFile()
+            try? self?.copyImports(imports)
+            self?.startCopyLoop(imports: imports)
+        }
+    }
+
+    private func copyChangesToSymlinkedFile() throws {
+        let script = try expandSymlink()
+
+        let data = try Data(contentsOf: URL(fileURLWithPath: folder.appendingPath(localPath)))
+        try data.write(to: URL(fileURLWithPath: script))
+    }
+
+    private func expandSymlink() throws -> String {
+        return try ShellExecutor().spawn("readlink \(folder.appendingPath("OriginalFile"))", arguments: [])
+    }
+
+    private func copyImports(_ imports: [String]) throws {
+        try imports.forEach { importPath in
+            try Data(contentsOf: URL(fileURLWithPath: sourcesImportPath(forImportPath: importPath))).write(to: URL(fileURLWithPath: importPath))
+        }
     }
 }
 
@@ -183,13 +272,25 @@ func executeSwiftCommand(_ command: String, onFolder folder: String? = nil, argu
 
 private extension String {
     func asScriptPath() -> String {
-        let suffix = ".swift"
+        var value = self
 
-        guard hasSuffix(suffix) else {
-            return self + suffix
+        if !hasSuffix(".swift") {
+            value = value + ".swift"
         }
 
-        return self
+        if !hasPrefix("/") {
+            value = value.fullPath
+        }
+
+        return value
+    }
+
+    var fullPath: String {
+        if hasPrefix("/") {
+            return self
+        } else {
+            return FileManager.default.currentDirectoryPath.appendingPath(self)
+        }
     }
 
     var nameExcludingExtension: String {
@@ -212,7 +313,7 @@ private extension String {
     }
 
     var fileName: String {
-        return components(separatedBy: "/").last ?? "script"
+        return components(separatedBy: "/").last ?? "Dangerfile.swift"
     }
 
     var folderPath: String {

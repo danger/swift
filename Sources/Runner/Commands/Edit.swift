@@ -1,7 +1,7 @@
+import DangerDependenciesResolver
 import Files
 import Foundation
 import Logger
-import MarathonCore
 import RunnerLib
 
 func editDanger(logger: Logger) throws {
@@ -46,7 +46,6 @@ func editDanger(logger: Logger) throws {
     let importsFinder = ImportsFinder()
     let importedFiles = importsFinder.findImports(inString: dangerfileContent)
 
-    let arguments = CommandLine.arguments
     let scriptManager = try getScriptManager(logger)
     let script = try scriptManager.script(atPath: dangerfilePath)
 
@@ -54,9 +53,8 @@ func editDanger(logger: Logger) throws {
 
     try createConfig(atPath: configPath, libPath: absoluteLibPath, libsImport: libsImport)
 
-//    try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
-//
-//    try script.watch(arguments: arguments, importedFiles: importedFiles)
+    try script.setupForEdit(importedFiles: importedFiles, configPath: configPath)
+    try script.watch(importedFiles: importedFiles)
 }
 
 @discardableResult

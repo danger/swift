@@ -273,6 +273,8 @@ public struct PackageManager {
 
         if versionComponents.count > 2 {
             versionString = "\(versionComponents[0]).\(versionComponents[1]).\(versionComponents[2])"
+        } else if versionComponents.count > 1 {
+            versionString = "\(versionComponents[0]).\(versionComponents[1]).0"
         }
 
         return Version(versionString ?? "") ?? .null
@@ -294,12 +296,8 @@ public struct PackageManager {
         let executor = ShellExecutor()
         let lines = try executor.spawn("git ls-remote --tags \(url.absoluteString)", arguments: []).components(separatedBy: "\n")
 
-        return try lines.compactMap { line in
-            guard let tag = line.components(separatedBy: "refs/tags/").last else {
-                throw Errors.unrecognizedTagFormat(line)
-            }
-
-            return Version(tag)
+        return lines.compactMap { line in
+            line.components(separatedBy: "refs/tags/").last.flatMap(Version.init)
         }
     }
 }
