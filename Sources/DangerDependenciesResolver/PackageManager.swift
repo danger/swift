@@ -14,6 +14,8 @@ public struct PackageManager {
     private let folder: String
     private let generatedFolder: String
     private let temporaryFolder: String
+    private let packageListMaker: PackageListMaker
+    private let packageGenerator: PackageGenerator
     private var masterPackageName: String { return "PACKAGES" }
 
     // MARK: - Init
@@ -22,10 +24,12 @@ public struct PackageManager {
         self.folder = folder
         generatedFolder = try folder.createSubfolderIfNeeded(withName: "Generated")
         temporaryFolder = try folder.createSubfolderIfNeeded(withName: "Temp")
+        packageGenerator = PackageGenerator(folder: folder, generatedFolder: generatedFolder)
+        packageListMaker = PackageListMaker(folder: folder, fileManager: .default)
     }
 
     func addPackagesIfNeeded(from packageURLs: [URL]) throws {
-        let existingPackageURLs = Set(makePackageList().map { package in
+        let existingPackageURLs = Set(packageListMaker.makePackageList().map { package in
             package.url.absoluteString.lowercased()
         })
 
@@ -35,12 +39,6 @@ public struct PackageManager {
             }
 
             try addPackage(at: url)
-        }
-    }
-
-    private func makePackageList() -> [Package] {
-        return folder.files.compactMap {
-            try? (String(contentsOfFile: $0).data(using: .utf8) ?? Data()).decoded()
         }
     }
 
@@ -189,10 +187,10 @@ public struct PackageManager {
         }
 
         let toolsVersion = try resolveSwiftToolsVersion(executor: ShellExecutor(), onFolder: generatedFolder)
-        let expectedHeader = makePackageDescriptionHeader(forSwiftToolsVersion: toolsVersion)
+        let expectedHeader = packageGenerator.makePackageDescriptionHeader(forSwiftToolsVersion: toolsVersion)
 
         guard masterDescription.hasPrefix(expectedHeader) else {
-            try generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion)
+            try packageGenerator.generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion)
             return try makePackageDescription(for: script)
         }
 
@@ -206,62 +204,12 @@ public struct PackageManager {
             let executor = ShellExecutor()
 
             let toolsVersion = try resolveSwiftToolsVersion(executor: executor, onFolder: generatedFolder)
-            try generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion)
+            try packageGenerator.generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion)
             try executeSwiftCommand("package update", onFolder: generatedFolder, arguments: [], executor: executor)
             try generatedFolder.createSubfolderIfNeeded(withName: "Packages")
         } catch {
             throw Errors.failedToUpdatePackages(folder)
         }
-    }
-
-    private func generateMasterPackageDescription(forSwiftToolsVersion toolsVersion: Version) throws {
-        let header = makePackageDescriptionHeader(forSwiftToolsVersion: toolsVersion)
-        let packages = makePackageList()
-
-        var description = "\(header)\n\n" +
-            "import PackageDescription\n\n" +
-            "let package = Package(\n" +
-            "    name: \"\(masterPackageName)\",\n" +
-            "    products: [.library(name: \"DangerDependencies\", type: .dynamic, targets: [\"\(masterPackageName)\"])],\n" +
-            "    dependencies: [\n"
-
-        for (index, package) in packages.enumerated() {
-            if index > 0 {
-                description += ",\n"
-            }
-
-            let dependencyString = package.dependencyString(forSwiftToolsVersion: toolsVersion)
-            description.append("        \(dependencyString)")
-        }
-
-        description.append("\n    ],\n")
-        description.append("    targets: [.target(name: \"\(masterPackageName)\", dependencies: [")
-
-        if !packages.isEmpty {
-            description.append("\"")
-            description.append(packages.map { $0.name }.joined(separator: "\", \""))
-            description.append("\"")
-        }
-
-        description.append("])],\n")
-
-        var versionString = String(toolsVersion.major)
-
-        if toolsVersion == Version(major: 4, minor: 2, patch: 0) {
-            versionString.append(".\(toolsVersion.minor)")
-        }
-
-        description.append("    swiftLanguageVersions: [.version(\"\(versionString)\")]\n)")
-
-        FileManager.default.createFile(atPath: generatedFolder.appendingPath("Package.swift"), contents: description.data(using: .utf8), attributes: [:])
-    }
-
-    private func makePackageDescriptionHeader(forSwiftToolsVersion toolsVersion: Version) -> String {
-        let swiftVersion = toolsVersion.description.trimmingCharacters(in: .whitespaces)
-        let generationVersion = 1
-
-        return "// swift-tools-version:\(swiftVersion)\n" +
-            "// generation-version:\(generationVersion)"
     }
 
     private func resolveSwiftToolsVersion(executor: ShellExecutor, onFolder _: String) throws -> Version {
@@ -309,7 +257,7 @@ public struct Package: Codable {
 }
 
 extension Package {
-    func dependencyString(forSwiftToolsVersion _: Version) -> String {
+    var dependencyString: String {
         return ".package(url: \"\(url.absoluteString)\", from: \"\(majorVersion).0.0\")"
     }
 }
@@ -339,10 +287,6 @@ extension String {
 
     private var fileManager: FileManager {
         return .default
-    }
-
-    fileprivate var files: [String] {
-        return (try? fileManager.contentsOfDirectory(atPath: self).sorted().map { self.appendingPath($0) }) ?? []
     }
 
     @discardableResult
@@ -383,19 +327,5 @@ extension String {
         } else {
             return self + "/" + path
         }
-    }
-}
-
-private extension Data {
-    func decoded<T: Decodable>() throws -> T {
-        let decoder = JSONDecoder()
-        return try decoder.decode(T.self, from: self)
-    }
-}
-
-private extension Encodable {
-    func encoded() throws -> Data {
-        let encoder = JSONEncoder()
-        return try encoder.encode(self)
     }
 }
