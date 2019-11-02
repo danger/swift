@@ -37,6 +37,7 @@ let package = Package(
         .target(name: "DangerFixtures", dependencies: ["Danger"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]), // dev
         .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib", "SnapshotTesting"]), // dev
+        .testTarget(name: "DangerDependenciesResolverTests", dependencies: ["DangerDependenciesResolver"]), // dev
     ]
 )
 

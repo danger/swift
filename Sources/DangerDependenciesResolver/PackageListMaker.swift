@@ -3,10 +3,11 @@ import Foundation
 struct PackageListMaker {
     let folder: String
     let fileManager: FileManager
+    let dataReader: DataReading
     
     func makePackageList() -> [Package] {
         return files(onFolder: folder).compactMap {
-            try? (String(contentsOfFile: $0).data(using: .utf8) ?? Data()).decoded()
+            try? dataReader.readData(atPath: $0).decoded()
         }
     }
     

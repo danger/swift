@@ -16,7 +16,7 @@ struct PackageGenerator {
     init(folder: String, generatedFolder: String) {
         self.folder = folder
         self.generatedFolder = generatedFolder
-        packageListMaker = PackageListMaker(folder: folder, fileManager: .default)
+        packageListMaker = PackageListMaker(folder: folder, fileManager: .default, dataReader: DataReader())
     }
     
     func generateMasterPackageDescription(forSwiftToolsVersion toolsVersion: Version) throws {

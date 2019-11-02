@@ -25,7 +25,7 @@ public struct PackageManager {
         generatedFolder = try folder.createSubfolderIfNeeded(withName: "Generated")
         temporaryFolder = try folder.createSubfolderIfNeeded(withName: "Temp")
         packageGenerator = PackageGenerator(folder: folder, generatedFolder: generatedFolder)
-        packageListMaker = PackageListMaker(folder: folder, fileManager: .default)
+        packageListMaker = PackageListMaker(folder: folder, fileManager: .default, dataReader: DataReader())
     }
 
     func addPackagesIfNeeded(from packageURLs: [URL]) throws {
@@ -250,7 +250,7 @@ public struct PackageManager {
     }
 }
 
-public struct Package: Codable {
+public struct Package: Equatable, Codable {
     public let name: String
     public let url: URL
     public var majorVersion: Int
