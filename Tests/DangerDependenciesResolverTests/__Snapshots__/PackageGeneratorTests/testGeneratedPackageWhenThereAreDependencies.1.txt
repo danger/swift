@@ -1,0 +1,16 @@
+// swift-tools-version:5.0
+// danger-dependency-generator-version:1
+
+import PackageDescription
+
+let package = Package(
+    name: "PACKAGES",
+    products: [.library(name: "DangerDependencies", type: .dynamic, targets: ["PACKAGES"])],
+    dependencies: [
+        .package(url: "https://github.com/danger/dependency1", from: "1.0.0"),
+        .package(url: "https://github.com/danger/dependency2", from: "2.0.0"),
+        .package(url: "https://github.com/danger/dependency3", from: "3.0.0")
+    ],
+    targets: [.target(name: "PACKAGES", dependencies: ["Dependency1", "Dependency2", "Dependency3"])],
+    swiftLanguageVersions: [.version("5")]
+)

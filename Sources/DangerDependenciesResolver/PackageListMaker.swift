@@ -1,6 +1,10 @@
 import Foundation
 
-struct PackageListMaker {
+protocol PackageListMaking {
+    func makePackageList() -> [Package]
+}
+
+struct PackageListMaker: PackageListMaking {
     let folder: String
     let fileManager: FileManager
     let dataReader: DataReading

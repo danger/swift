@@ -3,20 +3,28 @@ import Version
 import DangerShellExecutor
 
 struct PackageGenerator {
-    let packageListMaker: PackageListMaker
-    
     enum Errors: Error {
         case failedToUpdatePackages(String)
     }
     
     let folder: String
     let generatedFolder: String
+    let packageListMaker: PackageListMaking
+    let fileCreator: FileCreating
     private var masterPackageName: String { return "PACKAGES" }
     
-    init(folder: String, generatedFolder: String) {
+    init(folder: String,
+         generatedFolder: String,
+         packageListMaker: PackageListMaking? = nil,
+         fileCreator: FileCreating = FileCreator()) {
         self.folder = folder
         self.generatedFolder = generatedFolder
-        packageListMaker = PackageListMaker(folder: folder, fileManager: .default, dataReader: DataReader())
+        self.fileCreator = fileCreator
+        if let packageListMaker = packageListMaker {
+            self.packageListMaker = packageListMaker
+        } else {
+            self.packageListMaker = PackageListMaker(folder: folder, fileManager: .default, dataReader: DataReader())
+        }
     }
     
     func generateMasterPackageDescription(forSwiftToolsVersion toolsVersion: Version) throws {
@@ -57,14 +65,14 @@ struct PackageGenerator {
         
         description.append("    swiftLanguageVersions: [.version(\"\(versionString)\")]\n)")
         
-        FileManager.default.createFile(atPath: generatedFolder.appendingPath("Package.swift"), contents: description.data(using: .utf8), attributes: [:])
+        fileCreator.createFile(atPath: generatedFolder.appendingPath("Package.swift"), contents: description.data(using: .utf8))
     }
     
     func makePackageDescriptionHeader(forSwiftToolsVersion toolsVersion: Version) -> String {
-        let swiftVersion = toolsVersion.description.trimmingCharacters(in: .whitespaces)
+        let swiftVersion = "\(toolsVersion.major).\(toolsVersion.minor)"
         let generationVersion = 1
         
         return "// swift-tools-version:\(swiftVersion)\n" +
-        "// generation-version:\(generationVersion)"
+        "// danger-dependency-generator-version:\(generationVersion)"
     }
 }
