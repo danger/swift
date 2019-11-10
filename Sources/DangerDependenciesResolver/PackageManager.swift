@@ -50,7 +50,7 @@ public struct PackageManager {
         try save(package: package)
 
         try updatePackages()
-        addMissingPackageFiles()
+        try addMissingPackageFiles()
 
         return package
     }
@@ -59,22 +59,20 @@ public struct PackageManager {
         try FileManager.default.createFile(atPath: folder + package.name, contents: package.encoded(), attributes: [:])
     }
 
-    private func addMissingPackageFiles() {
-        do {
-            for pinnedPackage in try resolvePinnedPackages() {
-                guard !folder.containsItem(named: pinnedPackage.name) else {
-                    continue
-                }
-
-                let package = Package(
-                    name: pinnedPackage.name,
-                    url: pinnedPackage.url,
-                    majorVersion: pinnedPackage.state.version.major
-                )
-
-                try save(package: package)
+    private func addMissingPackageFiles() throws {
+        for pinnedPackage in try resolvePinnedPackages() {
+            guard !folder.containsItem(named: pinnedPackage.name) else {
+                continue
             }
-        } catch {}
+            
+            let package = Package(
+                name: pinnedPackage.name,
+                url: pinnedPackage.url,
+                majorVersion: pinnedPackage.state.version.major
+            )
+            
+            try save(package: package)
+        }
     }
 
     private func resolvePinnedPackages() throws -> [Package.Pinned] {
@@ -86,7 +84,7 @@ public struct PackageManager {
             let object: Object
         }
 
-        let data = try String(contentsOfFile: generatedFolder + "Package.resolved").data(using: .utf8) ?? Data()
+        let data = try String(contentsOfFile: generatedFolder.appendingPath("Package.resolved")).data(using: .utf8) ?? Data()
         let state = try data.decoded() as ResolvedPackagesState
         return state.object.pins
     }
@@ -254,30 +252,6 @@ public struct Package: Equatable, Codable {
     public let name: String
     public let url: URL
     public var majorVersion: Int
-}
-
-extension Package {
-    var dependencyString: String {
-        return ".package(url: \"\(url.absoluteString)\", from: \"\(majorVersion).0.0\")"
-    }
-}
-
-extension Package {
-    struct Pinned: Decodable {
-        enum CodingKeys: String, CodingKey {
-            case name = "package"
-            case url = "repositoryURL"
-            case state
-        }
-
-        struct State: Decodable {
-            let version: Version
-        }
-
-        let name: String
-        let url: URL
-        let state: State
-    }
 }
 
 extension String {
