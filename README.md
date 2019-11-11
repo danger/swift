@@ -83,7 +83,7 @@ You can use Swift PM to install both `danger-swift` and your plugins:
       ],
       dependencies: [
           ...
-          .package(url: "https://github.com/danger/swift.git", from: "1.0.0"), // dev
+          .package(url: "https://github.com/danger/swift.git", from: "2.0.0"), // dev
           // Danger Plugins
           .package(url: "https://github.com/username/DangerPlugin.git", from: "0.1.0") // dev
           ...
