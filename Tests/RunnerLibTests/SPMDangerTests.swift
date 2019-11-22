@@ -2,11 +2,13 @@
 import XCTest
 
 final class SPMDangerTests: XCTestCase {
-    let testPackage = "testPackage.swift"
+    var testPackage: String {
+        return "testPackage.swift"
+    }
 
     override func tearDown() {
-        super.tearDown()
         try? FileManager.default.removeItem(atPath: testPackage)
+        super.tearDown()
     }
 
     func testItReturnsTrueWhenThePackageHasTheDangerLib() {
