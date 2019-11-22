@@ -2,7 +2,10 @@
 import XCTest
 
 final class GitHubTests: XCTestCase {
-    private let dateFormatter = DateFormatter.defaultDateFormatter
+    private var dateFormatter: DateFormatter {
+        return DateFormatter.defaultDateFormatter
+    }
+
     private var decoder: JSONDecoder!
 
     override func setUp() {
@@ -12,6 +15,7 @@ final class GitHubTests: XCTestCase {
 
     override func tearDown() {
         decoder = nil
+        super.tearDown()
     }
 
     func test_GitHubUser_decode() throws {

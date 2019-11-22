@@ -3,7 +3,9 @@ import Logger
 import XCTest
 
 final class GetDangerJSPathTests: XCTestCase {
-    private let logger = Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
+    private var logger: Logger {
+        return Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
+    }
 
     func testItUsesTheDangerJSPathOptionIfPresent() throws {
         let expectedResult = "/franco/test/danger-js"
