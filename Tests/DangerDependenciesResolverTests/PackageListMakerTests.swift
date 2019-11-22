@@ -36,11 +36,3 @@ final class StubbedFileManager: FileManager {
         return stubbedContent
     }
 }
-
-struct StubbedDataReader: DataReading {
-    var stubbedReadData: ((String) -> Data)!
-    
-    func readData(atPath path: String) throws -> Data {
-        return stubbedReadData(path)
-    }
-}

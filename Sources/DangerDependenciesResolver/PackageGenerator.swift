@@ -23,7 +23,7 @@ struct PackageGenerator {
         if let packageListMaker = packageListMaker {
             self.packageListMaker = packageListMaker
         } else {
-            self.packageListMaker = PackageListMaker(folder: folder, fileManager: .default, dataReader: DataReader())
+            self.packageListMaker = PackageListMaker(folder: folder, fileManager: .default, dataReader: FileReader())
         }
     }
     

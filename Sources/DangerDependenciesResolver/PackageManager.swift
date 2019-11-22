@@ -16,16 +16,26 @@ public struct PackageManager {
     private let temporaryFolder: String
     private let packageListMaker: PackageListMaker
     private let packageGenerator: PackageGenerator
+    private let fileCreator: FileCreating
+    private let fileReader: FileReading
     private var masterPackageName: String { return "PACKAGES" }
 
     // MARK: - Init
 
     public init(folder: String) throws {
+        try self.init(folder: folder, fileReader: FileReader(), fileCreator: FileCreator())
+    }
+    
+    init(folder: String,
+         fileReader: FileReading,
+         fileCreator: FileCreating) throws {
         self.folder = folder
+        self.fileReader = fileReader
+        self.fileCreator = fileCreator
         generatedFolder = try folder.createSubfolderIfNeeded(withName: "Generated")
         temporaryFolder = try folder.createSubfolderIfNeeded(withName: "Temp")
         packageGenerator = PackageGenerator(folder: folder, generatedFolder: generatedFolder)
-        packageListMaker = PackageListMaker(folder: folder, fileManager: .default, dataReader: DataReader())
+        packageListMaker = PackageListMaker(folder: folder, fileManager: .default, dataReader: FileReader())
     }
 
     func addPackagesIfNeeded(from packageURLs: [URL]) throws {
@@ -56,7 +66,7 @@ public struct PackageManager {
     }
 
     private func save(package: Package) throws {
-        try FileManager.default.createFile(atPath: folder + package.name, contents: package.encoded(), attributes: [:])
+        try fileCreator.createFile(atPath: folder.appendingPath(package.name), contents: package.encoded())
     }
 
     private func addMissingPackageFiles() throws {
@@ -132,7 +142,7 @@ public struct PackageManager {
     private func nameOfPackage(in folder: String) throws -> String {
         let packageFile = folder.appendingPath("Package.swift")
 
-        for line in try String(contentsOfFile: packageFile).components(separatedBy: .newlines) {
+        for line in try fileReader.readText(atPath: packageFile).components(separatedBy: .newlines) {
             guard let nameTokenRange = line.range(of: "name:") else {
                 continue
             }
@@ -213,25 +223,20 @@ public struct PackageManager {
     private func resolveSwiftToolsVersion(executor: ShellExecutor, onFolder _: String) throws -> Version {
         var versionString: String? = try executeSwiftCommand("package", onFolder: folder, arguments: ["--version"], executor: executor)
         versionString = versionString?.components(separatedBy: " (swiftpm").first
-        versionString = versionString?.components(separatedBy: "Swift Package Manager - Swift ").last
+        versionString = versionString?.deletingPrefix("Apple Swift Package Manager - Swift ")
 
         let versionComponents = versionString?.components(separatedBy: ".") ?? []
 
         if versionComponents.count > 2 {
             versionString = "\(versionComponents[0]).\(versionComponents[1]).\(versionComponents[2])"
-        } else if versionComponents.count > 1 {
-            versionString = "\(versionComponents[0]).\(versionComponents[1]).0"
         }
 
         return Version(versionString ?? "") ?? .null
     }
 
     private func latestMajorVersionForPackage(at url: URL) throws -> Int {
-        guard let releases = try? versions(for: url) else {
-            throw Errors.failedToResolveLatestVersion(url)
-        }
-
-        guard let latestVersion = releases.sorted().last else {
+        guard let releases = try? versions(for: url),
+            let latestVersion = releases.sorted().last else {
             throw Errors.failedToResolveLatestVersion(url)
         }
 
@@ -240,7 +245,7 @@ public struct PackageManager {
 
     private func versions(for url: URL) throws -> [Version] {
         let executor = ShellExecutor()
-        let lines = try executor.spawn("git ls-remote --tags \(url.absoluteString)", arguments: []).components(separatedBy: "\n")
+        let lines = try executor.spawn("git ls-remote", arguments: ["--tags", "\(url.absoluteString)"]).components(separatedBy: .newlines)
 
         return lines.compactMap { line in
             line.components(separatedBy: "refs/tags/").last.flatMap(Version.init)
@@ -256,7 +261,7 @@ public struct Package: Equatable, Codable {
 
 extension String {
     private enum Errors: Error {
-        case creatingFolderFailed(String)
+        case folderCreationFailed(String)
     }
 
     private var fileManager: FileManager {
@@ -291,7 +296,7 @@ extension String {
             try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: true, attributes: nil)
             return folderPath
         } catch {
-            throw Errors.creatingFolderFailed(folderPath)
+            throw Errors.folderCreationFailed(folderPath)
         }
     }
 
@@ -301,5 +306,10 @@ extension String {
         } else {
             return self + "/" + path
         }
+    }
+    
+    fileprivate func deletingPrefix(_ prefix: String) -> String {
+        guard hasPrefix(prefix) else { return self }
+        return String(dropFirst(prefix.count))
     }
 }

@@ -7,7 +7,7 @@ protocol PackageListMaking {
 struct PackageListMaker: PackageListMaking {
     let folder: String
     let fileManager: FileManager
-    let dataReader: DataReading
+    let dataReader: FileReading
     
     func makePackageList() -> [Package] {
         return files(onFolder: folder).compactMap {
