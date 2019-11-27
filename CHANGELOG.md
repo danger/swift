@@ -13,7 +13,8 @@
 
 ## Master
 
-- Add error message when danger js is not installed [@f-meloni][] - [#288](https://github.com/danger/swift/pull/295)
+- Use enums as namespace [@f-meloni][] - [#296](htts://github.com/danger/swift/pull/296) 
+- Add error message when danger js is not installed [@f-meloni][] - [#295](https://github.com/danger/swift/pull/295)
 - Read standard error when the shell executor fails [@f-meloni][] - [#288](https://github.com/danger/swift/pull/288)
 - Add --version support [@f-meloni][] - [#287](https://github.com/danger/swift/pull/287)
 

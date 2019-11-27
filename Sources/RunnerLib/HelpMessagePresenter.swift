@@ -1,6 +1,6 @@
 import Logger
 
-public final class HelpMessagePresenter {
+public enum HelpMessagePresenter {
     public static func showHelpMessage(command: DangerCommand?, logger: Logger) {
         if command == nil {
             showCommandsList(logger: logger)

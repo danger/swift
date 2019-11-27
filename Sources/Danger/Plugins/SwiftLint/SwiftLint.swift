@@ -3,7 +3,7 @@ import Foundation
 
 /// The SwiftLint plugin has been embedded inside Danger, making
 /// it usable out of the box.
-public struct SwiftLint {
+public enum SwiftLint {
     static let danger = Danger()
     static let shellExecutor = ShellExecutor()
 

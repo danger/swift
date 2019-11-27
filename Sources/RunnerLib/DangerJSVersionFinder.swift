@@ -1,7 +1,7 @@
 import DangerShellExecutor
 import Logger
 
-public final class DangerJSVersionFinder {
+public enum DangerJSVersionFinder {
     public static func findDangerJSVersion(dangerJSPath: String) -> String {
         return findDangerJSVersion(dangerJSPath: dangerJSPath, executor: ShellExecutor())
     }
