@@ -1,6 +1,5 @@
 import DangerDependenciesResolver
 import DangerShellExecutor
-import Files
 import Foundation
 import Logger
 import RunnerLib
@@ -51,7 +50,7 @@ func runDanger(logger: Logger) throws {
     var libArgs: [String] = []
 
     // Set up plugin infra
-    let importsOnly = try File(path: dangerfilePath).readAsString()
+    let importsOnly = try String(contentsOfFile: dangerfilePath)
     let executor = ShellExecutor()
 
     if let spmDanger = SPMDanger() {
@@ -78,13 +77,13 @@ func runDanger(logger: Logger) throws {
                            "\(importExternalDeps.joined(separator: ", ")),",
                            "this might take some time.")
 
-            try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
-            let tempDangerfile = try File(path: "_dangerfile_imports.swift")
-            try tempDangerfile.write(string: importExternalDeps.joined(separator: "\n"))
-            defer { try? tempDangerfile.delete() }
+            let tempDangerfile = "_dangerfile_imports.swift"
+            try importExternalDeps.joined(separator: "\n").write(toFile: tempDangerfile, atomically: false, encoding: .utf8)
+
+            defer { try? FileManager.default.removeItem(atPath: tempDangerfile) }
 
             let scriptManager = try getScriptManager(logger)
-            let script = try scriptManager.script(atPath: tempDangerfile.path)
+            let script = try scriptManager.script(atPath: tempDangerfile)
 
             try script.build()
             let marathonPath = script.folder

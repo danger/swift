@@ -14,11 +14,11 @@ extension Package {
             case url = "repositoryURL"
             case state
         }
-        
+
         struct State: Decodable {
             let version: Version
         }
-        
+
         let name: String
         let url: URL
         let state: State

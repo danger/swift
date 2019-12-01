@@ -1,21 +1,21 @@
-import XCTest
 @testable import DangerDependenciesResolver
-import Logger
 import DangerShellExecutor
+import Logger
+import XCTest
 
 final class PackageDataProviderTests: XCTestCase {
     var fileReader: StubbedDataReader!
     var packageDataProvider: PackageDataProvider!
     var executor: MockedExecutor!
-    
+
     override func setUp() {
         super.setUp()
         fileReader = StubbedDataReader(stubbedReadText: { _ in
-            return self.packageText
+            self.packageText
         })
-        
+
         executor = MockedExecutor()
-        
+
         packageDataProvider = PackageDataProvider(
             temporaryFolder: "tmp",
             fileReader: fileReader,
@@ -28,23 +28,23 @@ final class PackageDataProviderTests: XCTestCase {
         fileReader = nil
         packageDataProvider = nil
         executor = nil
-        
+
         super.tearDown()
     }
 
     func testWhenThePackageIsLocalReturnsCorrectPackageName() throws {
         let name = try packageDataProvider.nameOfPackage(at: URL(string: "/usr/franco/repo")!)
-        
+
         XCTAssertEqual(name, "danger-swift")
     }
-    
+
     func testWhenThePackageIsRemoteReturnsCorrectPackageName() throws {
         let name = try packageDataProvider.nameOfPackage(at: URL(string: "http://url.com/repo.git")!)
-        
+
         XCTAssertEqual(executor.receivedCommand, "git clone http://url.com/repo.git --single-branch --depth 1 tmp/Clone -q")
         XCTAssertEqual(name, "danger-swift")
     }
-    
+
     private var packageText: String {
         return """
         // swift-tools-version:4.2

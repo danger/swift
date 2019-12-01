@@ -1,24 +1,22 @@
 import DangerDependenciesResolver
-import Files
+import Foundation
 import Logger
 
 func getScriptManager(_: Logger) throws -> ScriptManager {
-    let folder = "~/.danger-swift"
+    let homeFolder: String
 
-    let fileSystem = FileSystem()
+    if #available(OSX 10.12, *) {
+        homeFolder = FileManager.default.homeDirectoryForCurrentUser.path
+    } else {
+        homeFolder = NSHomeDirectory()
+    }
 
-    let rootFolder = try fileSystem.createFolderIfNeeded(at: folder)
-    let packageFolder = try rootFolder.createSubfolderIfNeeded(withName: "Packages")
-    let scriptFolder = try rootFolder.createSubfolderIfNeeded(withName: "Scripts")
+    let folder = "\(homeFolder)/.danger-swift/"
 
-    // Move over local cache for repos, and build artefacts to save git/compile time
-    do {
-        let localBuild = try fileSystem.currentFolder.subfolder(named: ".build")
-        let generated = try packageFolder.createSubfolderIfNeeded(withName: "Generated")
-        try localBuild.copy(to: generated)
-    } catch {}
+    let packageFolder = folder + "Packages/"
+    let scriptFolder = folder + "Scripts/"
 
-    let packageManager = try PackageManager(folder: packageFolder.path)
+    let packageManager = try PackageManager(folder: packageFolder)
 
-    return try ScriptManager(folder: scriptFolder.path, packageManager: packageManager)
+    return try ScriptManager(folder: scriptFolder, packageManager: packageManager)
 }

@@ -1,4 +1,3 @@
-
 public let GitHubPRJSON = """
 
 {

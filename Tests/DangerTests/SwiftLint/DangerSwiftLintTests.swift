@@ -50,7 +50,7 @@ final class DangerSwiftLintTests: XCTestCase {
         let modified = [
             "CHANGELOG.md",
             "Harvey/SomeOtherFile.m",
-            "circle.yml",
+            "circle.yml"
         ]
 
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
@@ -169,7 +169,7 @@ final class DangerSwiftLintTests: XCTestCase {
             "Tests/SomeFile.swift",
             "Harvey/SomeOtherFile.swift",
             "Test Dir/SomeThirdFile.swift",
-            "circle.yml",
+            "circle.yml"
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
@@ -191,7 +191,7 @@ final class DangerSwiftLintTests: XCTestCase {
             "Tests/SomeFile.swift",
             "Harvey/SomeOtherFile.swift",
             "Test Dir/SomeThirdFile.swift",
-            "circle.yml",
+            "circle.yml"
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
@@ -214,7 +214,7 @@ final class DangerSwiftLintTests: XCTestCase {
             "Tests/SomeFile.swift",
             "Harvey/SomeOtherFile.swift",
             "Test Dir/SomeThirdFile.swift",
-            "circle.yml",
+            "circle.yml"
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
@@ -262,7 +262,7 @@ final class DangerSwiftLintTests: XCTestCase {
         let modified = [
             "Tests/SomeFile.swift",
             "Harvey/SomeOtherFile.swift",
-            "circle.yml",
+            "circle.yml"
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
@@ -307,7 +307,7 @@ final class DangerSwiftLintTests: XCTestCase {
             "Tests/SomeFile.swift",
             "Harvey/SomeOtherFile.swift",
             "Test Dir/SomeThirdFile.swift",
-            "circle.yml",
+            "circle.yml"
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
@@ -380,7 +380,7 @@ final class DangerSwiftLintTests: XCTestCase {
         ("testPrintsNoMarkdownIfNoViolations", testPrintsNoMarkdownIfNoViolations),
         ("testViolations", testViolations),
         ("testMarkdownReporting", testMarkdownReporting),
-        ("testQuotesPathArguments", testQuotesPathArguments),
+        ("testQuotesPathArguments", testQuotesPathArguments)
     ]
 }
 

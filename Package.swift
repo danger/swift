@@ -14,7 +14,6 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/shibapm/Logger", from: "0.1.0"),
-        .package(url: "https://github.com/JohnSundell/Marathon", from: "3.3.0"),
         .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0"),
         .package(url: "https://github.com/mxcl/Version", from: "1.0.0"),
         // Danger Plugins
@@ -33,7 +32,7 @@ let package = Package(
         .target(name: "DangerDependenciesResolver", dependencies: ["DangerShellExecutor", "Version"]),
         .target(name: "Danger", dependencies: ["OctoKit", "Logger", "DangerShellExecutor"]),
         .target(name: "RunnerLib", dependencies: ["Logger", "DangerShellExecutor"]),
-        .target(name: "Runner", dependencies: ["RunnerLib", "MarathonCore", "Logger", "DangerDependenciesResolver"]),
+        .target(name: "Runner", dependencies: ["RunnerLib", "Logger", "DangerDependenciesResolver"]),
         .target(name: "DangerFixtures", dependencies: ["Danger"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]), // dev
         .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib", "SnapshotTesting"]), // dev

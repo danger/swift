@@ -13,5 +13,3 @@ extension Encodable {
         return try encoder.encode(self)
     }
 }
-
-

@@ -22,17 +22,17 @@ final class PackageListMakerTests: XCTestCase {
         let fileManager = StubbedFileManager()
         fileManager.stubbedContent = ["Package1.swift", "File.swift", "Package2.swift"]
         let packageListMaker = PackageListMaker(folder: "/user/franco", fileManager: fileManager, dataReader: dataReader)
-        
+
         let packages = packageListMaker.makePackageList()
-        
+
         XCTAssertEqual(packages, [expectedResult, expectedResult2])
     }
 }
 
 final class StubbedFileManager: FileManager {
     var stubbedContent: [String] = []
-    
-    override func contentsOfDirectory(atPath path: String) throws -> [String] {
+
+    override func contentsOfDirectory(atPath _: String) throws -> [String] {
         return stubbedContent
     }
 }

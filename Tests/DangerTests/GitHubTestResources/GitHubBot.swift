@@ -1,4 +1,3 @@
-
 public let GitHubBotJSON = """
 {
     "login": "dependabot-preview[bot]",

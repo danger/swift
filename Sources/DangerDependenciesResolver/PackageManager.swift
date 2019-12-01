@@ -29,7 +29,7 @@ public struct PackageManager {
                       fileCreator: FileCreator(),
                       packageDataProvider: PackageDataProvider())
     }
-    
+
     init(folder: String,
          fileReader: FileReading,
          fileCreator: FileCreating,
@@ -80,13 +80,13 @@ public struct PackageManager {
             guard !folder.containsItem(named: pinnedPackage.name) else {
                 continue
             }
-            
+
             let package = Package(
                 name: pinnedPackage.name,
                 url: pinnedPackage.url,
                 majorVersion: pinnedPackage.state.version.major
             )
-            
+
             try save(package: package)
         }
     }
@@ -259,7 +259,7 @@ extension String {
             return self + "/" + path
         }
     }
-    
+
     fileprivate func deletingPrefix(_ prefix: String) -> String {
         guard hasPrefix(prefix) else { return self }
         return String(dropFirst(prefix.count))
