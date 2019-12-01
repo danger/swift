@@ -2,17 +2,18 @@ import Logger
 import DangerShellExecutor
 import Foundation
 
-struct PackageDataProvider {
-    let temporaryFolder: String
+protocol PackageDataProviding {
+    func nameOfPackage(at url: URL, temporaryFolder: String) throws -> String
+}
+
+struct PackageDataProvider: PackageDataProviding {
     let fileReader: FileReading
     let logger: Logger
     let executor: ShellExecuting
     
-    init(temporaryFolder: String,
-         fileReader: FileReading,
-         logger: Logger,
-         executor: ShellExecuting = ShellExecutor()) {
-        self.temporaryFolder = temporaryFolder
+    init(logger: Logger = Logger(),
+        fileReader: FileReading = FileReader(),
+        executor: ShellExecuting = ShellExecutor()) {
         self.fileReader = fileReader
         self.logger = logger
         self.executor = executor
@@ -23,10 +24,10 @@ struct PackageDataProvider {
         case failedToReadPackageFile(String)
     }
     
-    func nameOfPackage(at url: URL) throws -> String {
+    func nameOfPackage(at url: URL, temporaryFolder: String) throws -> String {
         do {
             guard !url.isForRemoteRepository else {
-                return try nameOfRemotePackage(at: url)
+                return try nameOfRemotePackage(at: url, temporaryFolder: temporaryFolder)
             }
             
             let folder = url.absoluteString
@@ -36,7 +37,7 @@ struct PackageDataProvider {
         }
     }
     
-    private func nameOfRemotePackage(at url: URL) throws -> String {
+    private func nameOfRemotePackage(at url: URL, temporaryFolder: String) throws -> String {
         removeCloneFolder(temporaryFolder: temporaryFolder)
         
         logger.logInfo("Cloning \(url.absoluteString)...")

@@ -18,20 +18,26 @@ public struct PackageManager {
     private let packageGenerator: PackageGenerator
     private let fileCreator: FileCreating
     private let fileReader: FileReading
+    private let packageDataProvider: PackageDataProviding
     private var masterPackageName: String { return "PACKAGES" }
 
     // MARK: - Init
 
     public init(folder: String) throws {
-        try self.init(folder: folder, fileReader: FileReader(), fileCreator: FileCreator())
+        try self.init(folder: folder,
+                      fileReader: FileReader(),
+                      fileCreator: FileCreator(),
+                      packageDataProvider: PackageDataProvider())
     }
     
     init(folder: String,
          fileReader: FileReading,
-         fileCreator: FileCreating) throws {
+         fileCreator: FileCreating,
+         packageDataProvider: PackageDataProviding) throws {
         self.folder = folder
         self.fileReader = fileReader
         self.fileCreator = fileCreator
+        self.packageDataProvider = packageDataProvider
         generatedFolder = try folder.createSubfolderIfNeeded(withName: "Generated")
         temporaryFolder = try folder.createSubfolderIfNeeded(withName: "Temp")
         packageGenerator = PackageGenerator(folder: folder, generatedFolder: generatedFolder)
@@ -53,7 +59,7 @@ public struct PackageManager {
     }
 
     @discardableResult func addPackage(at url: URL) throws -> Package {
-        let name = try nameOfPackage(at: url)
+        let name = try packageDataProvider.nameOfPackage(at: url, temporaryFolder: temporaryFolder)
 
         let latestVersion = try latestMajorVersionForPackage(at: url)
         let package = Package(name: name, url: absoluteRepositoryURL(from: url), majorVersion: latestVersion)
@@ -106,60 +112,6 @@ public struct PackageManager {
 
         let path = url.absoluteString
         return URL(string: path)!
-    }
-
-    private func nameOfPackage(at url: URL) throws -> String {
-        do {
-            guard !url.isForRemoteRepository else {
-                return try nameOfRemotePackage(at: url)
-            }
-
-            let folder = url.absoluteString
-            return try nameOfPackage(in: folder)
-        } catch {
-            throw Errors.failedToResolveName(url)
-        }
-    }
-
-    private func nameOfRemotePackage(at url: URL) throws -> String {
-        removeCloneFolder(temporaryFolder: temporaryFolder)
-
-//        printer.reportProgress("Cloning \(url.absoluteString)...")
-
-        let executor = ShellExecutor()
-        try executor.spawn("git clone", arguments: ["\(url.absoluteString)", "--single-branch", "--depth 1", "\(temporaryFolder.appendingPath("Clone"))", "-q"])
-        let clone = temporaryFolder.appendingPath("Clone")
-        let name = try nameOfPackage(in: clone)
-        removeCloneFolder(temporaryFolder: temporaryFolder)
-
-        return name
-    }
-
-    private func removeCloneFolder(temporaryFolder: String) {
-        try? FileManager.default.removeItem(atPath: temporaryFolder.appendingPath("Clone"))
-    }
-
-    private func nameOfPackage(in folder: String) throws -> String {
-        let packageFile = folder.appendingPath("Package.swift")
-
-        for line in try fileReader.readText(atPath: packageFile).components(separatedBy: .newlines) {
-            guard let nameTokenRange = line.range(of: "name:") else {
-                continue
-            }
-
-            var line = String(line[nameTokenRange.upperBound...])
-
-            if let range = line.range(of: ",") {
-                line = String(line[..<range.lowerBound])
-            } else if let range = line.range(of: ")") {
-                line = String(line[..<range.lowerBound])
-            }
-
-            line = line.trimmingCharacters(in: .whitespacesAndNewlines)
-            return line.replacingOccurrences(of: "\"", with: "")
-        }
-
-        throw Errors.failedToReadPackageFile(packageFile)
     }
 
     func symlinkPackages(to folder: String) throws {
