@@ -10,17 +10,17 @@ public struct Inline: Decodable, Equatable
 ### `from`
 
 ```swift
-public let from: Int
+public let from: Int?
 ```
 
 ### `to`
 
 ```swift
-public let to: Int // swiftlint:disable:this identifier_name
+public let to: Int? // swiftlint:disable:this identifier_name
 ```
 
 ### `path`
 
 ```swift
-public let path: String
+public let path: String?
 ```

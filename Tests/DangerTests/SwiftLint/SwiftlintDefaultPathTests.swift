@@ -2,7 +2,9 @@
 import XCTest
 
 final class SwiftlintDefaultPathTests: XCTestCase {
-    let package = "testPackage.swift"
+    var package: String {
+        return "testPackage.swift"
+    }
 
     override func tearDown() {
         try? FileManager.default.removeItem(atPath: package)

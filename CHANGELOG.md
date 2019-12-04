@@ -13,6 +13,20 @@
 
 ## Master
 
+- Use enums as namespace [@f-meloni][] - [#296](htts://github.com/danger/swift/pull/296) 
+- Add error message when danger js is not installed [@f-meloni][] - [#295](https://github.com/danger/swift/pull/295)
+- Read standard error when the shell executor fails [@f-meloni][] - [#288](https://github.com/danger/swift/pull/288)
+- Add --version support [@f-meloni][] - [#287](https://github.com/danger/swift/pull/287)
+
+## 2.0.6
+
+- Fix GitLabDSL parsing (missing arguments) [@fortmarek][] - [#283](https://github.com/danger/swift/pull/283)
+- Protect bitbucket cloud inline comment with all options being optional [@khoogheem][] - [#280](https://github.com/danger/swift/pull/280)
+
+## 2.0.5
+
+- Make bitbucket cloud inline comment from optional [@f-meloni][] - [#278](https://github.com/danger/swift/pull/278)
+
 ## 2.0.4
 
 - Update Marathon to 3.3.0 [@f-meloni][] - [#272](https://github.com/danger/swift/pull/272)
@@ -349,3 +363,5 @@ This release also includes:
 [@mollyIV]: https://github.com/mollyIV
 [@smalljd]: https://github.com/smalljd
 [@manicmaniac]: https://github.com/manicmaniac
+[@khoogheem]: https://github.com/khoogheem
+[@fortmarek]: https://github.com/danger/swift/pull/283

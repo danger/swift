@@ -2,7 +2,9 @@
 import XCTest
 
 final class DateFormatterExtensionTests: XCTestCase {
-    private let dateFormatter = DateFormatter.defaultDateFormatter
+    private var dateFormatter: DateFormatter {
+        return DateFormatter.defaultDateFormatter
+    }
 
     func test_DateFormatter_dateFromString() {
         var dateComponents = DateComponents()

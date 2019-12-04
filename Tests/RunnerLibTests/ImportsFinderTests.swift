@@ -9,6 +9,11 @@ final class ImportsFinderTests: XCTestCase {
         importsFinder = ImportsFinder()
     }
 
+    override func tearDown() {
+        importsFinder = nil
+        super.tearDown()
+    }
+
     func testItRetunsTheCorrectFilePathsWhenThePassedStringContainsImports() {
         checkReturnsTheCorrectFilePaths(string: stringWithImports, expectedResult: ["File1", "File2"])
     }
