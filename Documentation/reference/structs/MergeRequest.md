@@ -10,13 +10,13 @@ public struct MergeRequest: Decodable, Equatable
 ### `allowCollaboration`
 
 ```swift
-public let allowCollaboration: Bool
+public let allowCollaboration: Bool?
 ```
 
 ### `allowMaintainerToPush`
 
 ```swift
-public let allowMaintainerToPush: Bool
+public let allowMaintainerToPush: Bool?
 ```
 
 ### `approvalsBeforeMerge`

@@ -17,11 +17,12 @@ final class DangerSwiftLintTests: XCTestCase {
     }
 
     override func tearDown() {
-        super.tearDown()
         executor = nil
         fakePathProvider = nil
         danger = nil
         markdownMessage = nil
+
+        super.tearDown()
     }
 
     func testExecutesTheShell() {

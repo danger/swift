@@ -25,7 +25,7 @@ extension GitLab {
             case closed
             case locked
             case merged
-            case open
+            case opened
         }
 
         public struct Milestone: Decodable, Equatable {
@@ -163,8 +163,8 @@ extension GitLab {
             case workInProgress = "work_in_progress"
         }
 
-        public let allowCollaboration: Bool
-        public let allowMaintainerToPush: Bool
+        public let allowCollaboration: Bool?
+        public let allowMaintainerToPush: Bool?
         public let approvalsBeforeMerge: Int?
         public let assignee: User?
         public let author: User

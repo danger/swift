@@ -5,6 +5,7 @@ import XCTest
 final class DangerDSLTests: XCTestCase {
     override func tearDown() {
         resetDangerResults()
+
         super.tearDown()
     }
 

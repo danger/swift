@@ -2,7 +2,9 @@
 import XCTest
 
 final class NSRegularExpressionExtensionsTests: XCTestCase {
-    let string = "Dogs and cats were wearing hats"
+    var string: String {
+        return "Dogs and cats were wearing hats"
+    }
 
     func test_firstMatchingString_passingRegex() {
         let pattern = "(cats|hats)$"
