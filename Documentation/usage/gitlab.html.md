@@ -1,8 +1,8 @@
 ---
 title: Danger + GitLab
 subtitle: Self-Hosted
-layout: guide_js
-order: 4
+layout: guide_sw
+order: 5
 blurb: An overview of using Danger with GitLab, and some examples
 ---
 
