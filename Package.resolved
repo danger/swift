@@ -129,7 +129,7 @@
       },
       {
         "package": "RequestKit",
-        "repositoryURL": "https://github.com/nerdishbynature/RequestKit.git",
+        "repositoryURL": "https://github.com/nerdishbynature/RequestKit",
         "state": {
           "branch": null,
           "revision": "fd5e9e99aada7432170366c9e95967011ce13bad",
