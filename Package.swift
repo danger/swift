@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/shibapm/Logger", from: "0.1.0"),
         .package(url: "https://github.com/JohnSundell/Marathon", from: "3.3.0"),
-        .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.9.0"),
+        .package(url: "https://github.com/nerdishbynature/octokit.swift", .branch("master")),
         // Danger Plugins
         // Dev dependencies
         .package(url: "https://github.com/shibapm/Komondor", from: "1.0.0"), // dev
