@@ -2,7 +2,7 @@
 title: Danger + BitBucket Server
 subtitle: Dangerous bits
 layout: guide_sw
-order: 4
+order: 3
 blurb: An overview of using Danger with BitBucket Server, and some examples
 ---
 
