@@ -1,9 +1,11 @@
 import DangerShellExecutor
 import Foundation
 import Logger
+import Version
 
 protocol PackageDataProviding {
     func nameOfPackage(at url: URL, temporaryFolder: String) throws -> String
+    func latestMajorVersionForPackage(at url: URL) throws -> Int
 }
 
 struct PackageDataProvider: PackageDataProviding {
@@ -22,11 +24,11 @@ struct PackageDataProvider: PackageDataProviding {
     enum Errors: Error {
         case failedToResolveName(URL)
         case failedToReadPackageFile(String)
+        case failedToResolveLatestVersion(URL)
     }
 
     func nameOfPackage(at url: URL, temporaryFolder: String) throws -> String {
         do {
-            logger.logInfo("AAAA \(url.absoluteURL)")
             guard !url.isForRemoteRepository else {
                 return try nameOfRemotePackage(at: url, temporaryFolder: temporaryFolder)
             }
@@ -36,6 +38,15 @@ struct PackageDataProvider: PackageDataProviding {
         } catch {
             throw Errors.failedToResolveName(url)
         }
+    }
+    
+    func latestMajorVersionForPackage(at url: URL) throws -> Int {
+        guard let releases = try? versions(for: url),
+            let latestVersion = releases.sorted().last else {
+                throw Errors.failedToResolveLatestVersion(url)
+        }
+        
+        return latestVersion.major
     }
 
     private func nameOfRemotePackage(at url: URL, temporaryFolder: String) throws -> String {
@@ -76,5 +87,13 @@ struct PackageDataProvider: PackageDataProviding {
 
     private func removeCloneFolder(temporaryFolder: String) {
         try? FileManager.default.removeItem(atPath: temporaryFolder.appendingPath("Clone"))
+    }
+    
+    private func versions(for url: URL) throws -> [Version] {
+        let lines = try executor.spawn("git ls-remote", arguments: ["--tags", "\(url.absoluteString)"]).components(separatedBy: .newlines)
+        
+        return lines.compactMap { line in
+            line.components(separatedBy: "refs/tags/").last.flatMap(Version.init)
+        }
     }
 }

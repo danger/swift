@@ -4,9 +4,6 @@ import Version
 
 public struct PackageManager {
     enum Errors: Error {
-        case failedToResolveName(URL)
-        case failedToResolveLatestVersion(URL)
-        case failedToReadPackageFile(String)
         case failedToUpdatePackages(String)
         case unrecognizedTagFormat(String)
     }
@@ -61,7 +58,7 @@ public struct PackageManager {
     @discardableResult func addPackage(at url: URL) throws -> Package {
         let name = try packageDataProvider.nameOfPackage(at: url, temporaryFolder: temporaryFolder)
 
-        let latestVersion = try latestMajorVersionForPackage(at: url)
+        let latestVersion = try packageDataProvider.latestMajorVersionForPackage(at: url)
         let package = Package(name: name, url: absoluteRepositoryURL(from: url), majorVersion: latestVersion)
         try save(package: package)
 
@@ -184,24 +181,6 @@ public struct PackageManager {
         }
 
         return Version(versionString ?? "") ?? .null
-    }
-
-    private func latestMajorVersionForPackage(at url: URL) throws -> Int {
-        guard let releases = try? versions(for: url),
-            let latestVersion = releases.sorted().last else {
-            throw Errors.failedToResolveLatestVersion(url)
-        }
-
-        return latestVersion.major
-    }
-
-    private func versions(for url: URL) throws -> [Version] {
-        let executor = ShellExecutor()
-        let lines = try executor.spawn("git ls-remote", arguments: ["--tags", "\(url.absoluteString)"]).components(separatedBy: .newlines)
-
-        return lines.compactMap { line in
-            line.components(separatedBy: "refs/tags/").last.flatMap(Version.init)
-        }
     }
 }
 
