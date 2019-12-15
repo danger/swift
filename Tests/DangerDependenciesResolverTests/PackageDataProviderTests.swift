@@ -2,6 +2,7 @@
 import DangerShellExecutor
 import Logger
 import XCTest
+import Version
 
 final class PackageDataProviderTests: XCTestCase {
     var fileReader: StubbedDataReader!
@@ -10,9 +11,7 @@ final class PackageDataProviderTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        fileReader = StubbedDataReader(stubbedReadText: { _ in
-            self.packageText
-        })
+        fileReader = StubbedDataReader()
 
         executor = MockedExecutor()
 
@@ -32,12 +31,18 @@ final class PackageDataProviderTests: XCTestCase {
     }
 
     func testWhenThePackageIsLocalReturnsCorrectPackageName() throws {
+        fileReader.stubbedReadText = { _ in
+            self.packageText
+        }
         let name = try packageDataProvider.nameOfPackage(at: URL(string: "/usr/franco/repo")!, temporaryFolder: "tmp")
 
         XCTAssertEqual(name, "danger-swift")
     }
 
     func testWhenThePackageIsRemoteReturnsCorrectPackageName() throws {
+        fileReader.stubbedReadText = { _ in
+            self.packageText
+        }
         let name = try packageDataProvider.nameOfPackage(at: URL(string: "http://url.com/repo.git")!, temporaryFolder: "tmp")
 
         XCTAssertEqual(executor.receivedCommand, "git clone http://url.com/repo.git --single-branch --depth 1 tmp/Clone -q")
@@ -57,6 +62,41 @@ final class PackageDataProviderTests: XCTestCase {
         executor.result = ""
         
         XCTAssertThrowsError(try packageDataProvider.latestMajorVersionForPackage(at: URL(string: "http://url.com/repo.git")!))
+    }
+    
+    func testResolvePinnedPackagesReturnsCorrectPinnedPackages() throws {
+        fileReader.stubbedReadData = { path in
+            switch path {
+            case "/usr/franco/Package.resolved":
+                return self.resolvedPackageText.data(using: .utf8)!
+            default:
+                XCTFail("Received unexpected path \(path)")
+                return Data()
+            }
+        }
+        
+        let packages = try packageDataProvider.resolvePinnedPackages(generatedFolder: "/usr/franco")
+        
+        XCTAssertEqual(packages, [
+            .init(name: "AEXML",
+                  url: URL(string: "https://github.com/tadija/AEXML")!,
+                  state: .init(version: "4.3.3")),
+            .init(name: "Commandant",
+                  url: URL(string: "https://github.com/Carthage/Commandant.git")!,
+                  state: .init(version: "0.16.0")),
+            .init(name: "Curry",
+                  url: URL(string: "https://github.com/thoughtbot/Curry.git")!,
+                  state: .init(version: "4.0.2")),
+            .init(name: "JSONUtilities",
+                  url: URL(string: "https://github.com/yonaskolb/JSONUtilities.git")!,
+                  state: .init(version: "4.2.0")),
+            .init(name: "Komondor",
+                  url: URL(string: "https://github.com/shibapm/Komondor")!,
+                  state: .init(version: "1.0.4")),
+            .init(name: "OctoKit",
+                  url: URL(string: "https://github.com/nerdishbynature/octokit.swift")!,
+                  state: .init(version: "0.9.0"))
+        ])
     }
 
     private var packageText: String {
@@ -110,6 +150,72 @@ final class PackageDataProviderTests: XCTestCase {
         33d35bf94f54155be505ffecfca745e4cc1cd0cc    refs/tags/1.6.5
         """
     }
+    
+    private var resolvedPackageText: String {
+        return """
+        {
+          "object": {
+            "pins": [
+              {
+                "package": "AEXML",
+                "repositoryURL": "https://github.com/tadija/AEXML",
+                "state": {
+                  "branch": null,
+                  "revision": "54bb8ea6fb693dd3f92a89e5fcc19e199fdeedd0",
+                  "version": "4.3.3"
+                }
+              },
+              {
+                "package": "Commandant",
+                "repositoryURL": "https://github.com/Carthage/Commandant.git",
+                "state": {
+                  "branch": null,
+                  "revision": "2cd0210f897fe46c6ce42f52ccfa72b3bbb621a0",
+                  "version": "0.16.0"
+                }
+              },
+              {
+                "package": "Curry",
+                "repositoryURL": "https://github.com/thoughtbot/Curry.git",
+                "state": {
+                  "branch": null,
+                  "revision": "4331dd50bc1db007db664a23f32e6f3df93d4e1a",
+                  "version": "4.0.2"
+                }
+              },
+              {
+                "package": "JSONUtilities",
+                "repositoryURL": "https://github.com/yonaskolb/JSONUtilities.git",
+                "state": {
+                  "branch": null,
+                  "revision": "128d2ffc22467f69569ef8ff971683e2393191a0",
+                  "version": "4.2.0"
+                }
+              },
+              {
+                "package": "Komondor",
+                "repositoryURL": "https://github.com/shibapm/Komondor",
+                "state": {
+                  "branch": null,
+                  "revision": "3cd6d76887816ead5931ddbfb249c2935f518e17",
+                  "version": "1.0.4"
+                }
+              },
+              {
+                "package": "OctoKit",
+                "repositoryURL": "https://github.com/nerdishbynature/octokit.swift",
+                "state": {
+                  "branch": null,
+                  "revision": "b63f2ec1b55f26c8e94159d81ad695aeb92f3d4e",
+                  "version": "0.9.0"
+                }
+              }
+            ]
+          },
+          "version": 1
+        }
+        """
+    }
 }
 
 final class SpyPrinter: Printing {
@@ -132,5 +238,11 @@ final class MockedExecutor: ShellExecuting {
     func spawn(_ command: String, arguments: [String], environmentVariables _: [String: String], outputFile: String?) throws -> String {
         receivedCommand = command + " " + arguments.joined(separator: " ")
         return result
+    }
+}
+
+extension Version: ExpressibleByStringLiteral {
+    public init(stringLiteral value: String) {
+        self.init(value)!
     }
 }

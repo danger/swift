@@ -6,6 +6,7 @@ import Version
 protocol PackageDataProviding {
     func nameOfPackage(at url: URL, temporaryFolder: String) throws -> String
     func latestMajorVersionForPackage(at url: URL) throws -> Int
+    func resolvePinnedPackages(generatedFolder: String) throws -> [Package.Pinned]
 }
 
 struct PackageDataProvider: PackageDataProviding {
@@ -47,6 +48,21 @@ struct PackageDataProvider: PackageDataProviding {
         }
         
         return latestVersion.major
+    }
+    
+    func resolvePinnedPackages(generatedFolder: String) throws -> [Package.Pinned] {
+        struct ResolvedPackagesState: Decodable {
+            struct Object: Decodable {
+                let pins: [Package.Pinned]
+            }
+
+            let object: Object
+        }
+
+        let data = try fileReader.readData(atPath: generatedFolder.appendingPath("Package.resolved"))
+        let state: ResolvedPackagesState = try data.decoded()
+        
+        return state.object.pins
     }
 
     private func nameOfRemotePackage(at url: URL, temporaryFolder: String) throws -> String {

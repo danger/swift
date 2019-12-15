@@ -66,35 +66,6 @@ public struct ScriptManager {
             .replacingOccurrences(of: " ", with: "-") ?? "Dangerfile.swift"
     }
 
-    private func resolveInlineDependencies(from path: String) throws {
-        let lines = try String(contentsOfFile: path).components(separatedBy: .newlines)
-        var packageURLs = [URL]()
-
-        for line in lines {
-            if line.hasPrefix("import ") {
-                let components = line.components(separatedBy: config.dependencyPrefix)
-
-                guard components.count > 1 else {
-                    continue
-                }
-
-                let urlString = components.last!.trimmingCharacters(in: .whitespaces)
-
-                guard let url = URL(string: urlString) else {
-                    throw Errors.invalidInlineDependencyURL(urlString)
-                }
-
-                packageURLs.append(url)
-            } else if let firstCharacter = line.unicodeScalars.first {
-                guard !CharacterSet.alphanumerics.contains(firstCharacter) else {
-                    break
-                }
-            }
-        }
-
-        try packageManager.addPackagesIfNeeded(from: packageURLs)
-    }
-
     private func resolveInlineDependencies(fromPath path: String) throws {
         let lines = try String(contentsOfFile: path).components(separatedBy: .newlines)
         var packageURLs = [URL]()
@@ -114,10 +85,9 @@ public struct ScriptManager {
                 }
 
                 packageURLs.append(url)
-            } else if let firstCharacter = line.unicodeScalars.first {
-                guard !CharacterSet.alphanumerics.contains(firstCharacter) else {
-                    break
-                }
+            } else if let firstCharacter = line.unicodeScalars.first,
+                !CharacterSet.alphanumerics.contains(firstCharacter)  {
+                break
             }
         }
 

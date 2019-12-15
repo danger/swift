@@ -1,7 +1,7 @@
 @testable import DangerDependenciesResolver
 import Foundation
 
-struct StubbedDataReader: FileReading {
+final class StubbedDataReader: FileReading {
     var stubbedReadData: ((String) -> Data)!
     var stubbedReadText: ((String) -> String)!
 

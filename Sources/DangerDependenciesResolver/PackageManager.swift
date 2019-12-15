@@ -73,7 +73,7 @@ public struct PackageManager {
     }
 
     private func addMissingPackageFiles() throws {
-        for pinnedPackage in try resolvePinnedPackages() {
+        for pinnedPackage in try packageDataProvider.resolvePinnedPackages(generatedFolder: generatedFolder) {
             guard !folder.containsItem(named: pinnedPackage.name) else {
                 continue
             }
@@ -86,20 +86,6 @@ public struct PackageManager {
 
             try save(package: package)
         }
-    }
-
-    private func resolvePinnedPackages() throws -> [Package.Pinned] {
-        struct ResolvedPackagesState: Decodable {
-            struct Object: Decodable {
-                let pins: [Package.Pinned]
-            }
-
-            let object: Object
-        }
-
-        let data = try String(contentsOfFile: generatedFolder.appendingPath("Package.resolved")).data(using: .utf8) ?? Data()
-        let state = try data.decoded() as ResolvedPackagesState
-        return state.object.pins
     }
 
     private func absoluteRepositoryURL(from url: URL) -> URL {
@@ -182,12 +168,6 @@ public struct PackageManager {
 
         return Version(versionString ?? "") ?? .null
     }
-}
-
-public struct Package: Equatable, Codable {
-    public let name: String
-    public let url: URL
-    public var majorVersion: Int
 }
 
 extension String {
