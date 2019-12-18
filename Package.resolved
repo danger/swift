@@ -95,9 +95,9 @@
         "package": "OctoKit",
         "repositoryURL": "https://github.com/nerdishbynature/octokit.swift",
         "state": {
-          "branch": "master",
-          "revision": "bb74d379d18cb8b65f7a5ec0cb6668a0a295ebdd",
-          "version": null
+          "branch": null,
+          "revision": "9ad4d6eff94ad1d9873d3b410a47c663c820d4bd",
+          "version": "0.10.0"
         }
       },
       {
@@ -159,8 +159,8 @@
         "repositoryURL": "https://github.com/JohnSundell/ShellOut.git",
         "state": {
           "branch": null,
-          "revision": "d3d54ce662dfee7fef619330b71d251b8d4869f9",
-          "version": "2.2.0"
+          "revision": "4ebf25863deb9c3c02696704fc3d39736183f258",
+          "version": "2.2.1"
         }
       },
       {
@@ -186,7 +186,7 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
           "branch": "master",
-          "revision": "81331a8c7e6706b23d62eda519da1f62203cb843",
+          "revision": "12c6a7ce9d67f39a23c6bab757bdb073bd997885",
           "version": null
         }
       },
@@ -195,8 +195,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
           "branch": null,
-          "revision": "c008fa16e0e4d2a2aff3f5a99c5d0dd5709da5ee",
-          "version": "0.42.0"
+          "revision": "b564570c139d1c36292e8a5bb08d4ba6818b0a91",
+          "version": "0.43.0"
         }
       },
       {
