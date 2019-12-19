@@ -8,8 +8,12 @@ LABEL "com.github.actions.icon"="zap"
 LABEL "com.github.actions.color"="blue"
 
 # Install nodejs
-RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash -
-RUN apt-get install -y nodejs curl
+RUN apt-get update -q \
+    && apt-get install -qy curl \
+    && mv /usr/lib/python2.7/site-packages /usr/lib/python2.7/dist-packages; ln -s dist-packages /usr/lib/python2.7/site-package \
+    && curl -sL https://deb.nodesource.com/setup_10.x |  bash - \
+    && apt-get install -qy nodejs \
+    && rm -r /var/lib/apt/lists/*
 
 # Install danger-swift globally
 COPY . _danger-swift
