@@ -1,4 +1,4 @@
-FROM swift:4.2
+FROM swift:5.1
 
 MAINTAINER Orta Therox
 
@@ -9,10 +9,10 @@ LABEL "com.github.actions.color"="blue"
 
 # Install nodejs
 RUN curl -sL https://deb.nodesource.com/setup_10.x |  bash -
-RUN apt-get install -y nodejs
+RUN apt-get install -y nodejs curl
 
 # Install danger-swift globally
-RUN git clone https://github.com/danger/danger-swift.git --single-branch --depth 1 --branch 2.0.6 _danger-swift
+COPY . _danger-swift
 RUN cd _danger-swift && make install
 
 # Run Danger Swift via Danger JS, allowing for custom args
