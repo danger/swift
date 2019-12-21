@@ -2,7 +2,7 @@ import DangerDependenciesResolver
 import Foundation
 import Logger
 
-func getScriptManager(_: Logger) throws -> ScriptManager {
+func getScriptManager(_ logger: Logger) throws -> ScriptManager {
     let homeFolder: String
 
     if #available(OSX 10.12, *) {
@@ -16,7 +16,7 @@ func getScriptManager(_: Logger) throws -> ScriptManager {
     let packageFolder = folder + "Packages/"
     let scriptFolder = folder + "Scripts/"
 
-    let packageManager = try PackageManager(folder: packageFolder)
+    let packageManager = try PackageManager(folder: packageFolder, logger: logger)
 
-    return try ScriptManager(folder: scriptFolder, packageManager: packageManager)
+    return try ScriptManager(folder: scriptFolder, packageManager: packageManager, logger: logger)
 }

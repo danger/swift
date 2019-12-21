@@ -14,7 +14,7 @@ struct PackageDataProvider: PackageDataProviding {
     let logger: Logger
     let executor: ShellExecuting
 
-    init(logger: Logger = Logger(),
+    init(logger: Logger,
          fileReader: FileReading = FileReader(),
          executor: ShellExecuting = ShellExecutor()) {
         self.fileReader = fileReader
@@ -47,6 +47,8 @@ struct PackageDataProvider: PackageDataProviding {
                 throw Errors.failedToResolveLatestVersion(url)
         }
         
+        logger.logInfo("Using \(url.absoluteString) latest major:\(latestVersion.major)")
+        
         return latestVersion.major
     }
     
@@ -68,7 +70,7 @@ struct PackageDataProvider: PackageDataProviding {
     private func nameOfRemotePackage(at url: URL, temporaryFolder: String) throws -> String {
         removeCloneFolder(temporaryFolder: temporaryFolder)
 
-        logger.logInfo("Cloning \(url.absoluteString)...")
+        logger.logInfo("Cloning \(url.absoluteString)...", isVerbose: true)
 
         let clone = temporaryFolder.appendingPath("Clone")
         try executor.spawn("git clone", arguments: ["\(url.absoluteString)", "--single-branch", "--depth 1", "\(clone)", "-q"])

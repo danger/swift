@@ -1,5 +1,6 @@
 import DangerShellExecutor
 import Foundation
+import Logger
 
 public struct ScriptManager {
     public struct Config {
@@ -24,9 +25,13 @@ public struct ScriptManager {
     private let folder: String
     private let cacheFolder: String
     private let temporaryFolder: String
+    private let logger: Logger
 
-    public init(folder: String, packageManager: PackageManager) throws {
+    public init(folder: String,
+                packageManager: PackageManager,
+                logger: Logger) throws {
         self.folder = folder
+        self.logger = logger
         cacheFolder = try folder.createSubfolderIfNeeded(withName: "Cache")
         temporaryFolder = try folder.createSubfolderIfNeeded(withName: "Temp")
         self.packageManager = packageManager
@@ -44,7 +49,7 @@ public struct ScriptManager {
     private func script(fromPath path: String) throws -> Script {
         let identifier = scriptIdentifier(fromPath: path)
         let folder = try createFolderIfNeededForScript(withIdentifier: identifier, filePath: path)
-        let script = Script(name: path.nameExcludingExtension, folder: folder)
+        let script = Script(name: path.nameExcludingExtension, folder: folder, logger: logger)
 
         try resolveInlineDependencies(fromPath: path)
 
@@ -125,10 +130,12 @@ public final class Script {
 
     private var copyLoopDispatchQueue: DispatchQueue?
     private var localPath: String { return "Sources/\(name)/main.swift" }
-
-    init(name: String, folder: String) {
+    private var logger: Logger
+    
+    init(name: String, folder: String, logger: Logger) {
         self.name = name
         self.folder = folder
+        self.logger = logger
     }
 
     public func build(withArguments arguments: [String] = []) throws {
@@ -177,8 +184,8 @@ public final class Script {
 
             try ShellExecutor().spawn("open \"\(path)\"", arguments: [])
 
-//                printer.output("\nℹ️  Marathon will keep running, in order to commit any changes you make in Xcode back to the original script file")
-//                printer.output("   Press the return key once you're done")
+            logger.logInfo("\nℹ️  Danger will keep running, in order to commit any changes you make in Xcode back to the original script file")
+            logger.logInfo("   Press the return key once you're done")
 
             startCopyLoop(imports: imports)
             _ = FileHandle.standardInput.availableData

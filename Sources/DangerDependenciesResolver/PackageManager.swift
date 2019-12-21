@@ -1,6 +1,7 @@
 import DangerShellExecutor
 import Foundation
 import Version
+import Logger
 
 public struct PackageManager {
     enum Errors: Error {
@@ -16,24 +17,29 @@ public struct PackageManager {
     private let fileCreator: FileCreating
     private let fileReader: FileReading
     private let packageDataProvider: PackageDataProviding
+    private let logger: Logger
     private var masterPackageName: String { return "PACKAGES" }
 
     // MARK: - Init
 
-    public init(folder: String) throws {
+    public init(folder: String,
+                logger: Logger) throws {
         try self.init(folder: folder,
                       fileReader: FileReader(),
                       fileCreator: FileCreator(),
-                      packageDataProvider: PackageDataProvider())
+                      packageDataProvider: PackageDataProvider(logger: logger),
+                      logger: logger)
     }
 
     init(folder: String,
          fileReader: FileReading,
          fileCreator: FileCreating,
-         packageDataProvider: PackageDataProviding) throws {
+         packageDataProvider: PackageDataProviding,
+         logger: Logger) throws {
         self.folder = folder
         self.fileReader = fileReader
         self.fileCreator = fileCreator
+        self.logger = logger
         self.packageDataProvider = packageDataProvider
         generatedFolder = try folder.createSubfolderIfNeeded(withName: "Generated")
         temporaryFolder = try folder.createSubfolderIfNeeded(withName: "Temp")
@@ -141,7 +147,7 @@ public struct PackageManager {
     }
 
     private func updatePackages() throws {
-        //           printer.reportProgress("Updating packages...")
+        logger.logInfo("Updating packages...")
 
         do {
             let executor = ShellExecutor()
