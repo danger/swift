@@ -13,6 +13,8 @@
 
 ## Master
 
+- Move to swift 5.1 [@f-meloni][] - [#275](htts://github.com/danger/swift/pull/275)
+
 ## 2.0.7
 
 - Use enums as namespace [@f-meloni][] - [#296](htts://github.com/danger/swift/pull/296) 
