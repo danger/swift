@@ -5,14 +5,28 @@ import SnapshotTesting
 import XCTest
 
 final class DangerFileGeneratorTests: SnapshotTestCase {
-    private let logger = Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
-    private var createdFiles: [String] = []
+    private var logger: Logger {
+        return Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
+    }
+
+    private var createdFiles: [String]!
     private var generator: DangerFileGenerator!
 
-    private let generatedFilePath = "GeneratedTestDangerfile.swift"
-    private let file1Path = "GeneratedTestFile1.swift"
-    private let file2Path = "GeneratedTestFile2.swift"
-    private let file3Path = "GeneratedTestFile3.swift"
+    private var generatedFilePath: String {
+        return "GeneratedTestDangerfile.swift"
+    }
+
+    private var file1Path: String {
+        return "GeneratedTestFile1.swift"
+    }
+
+    private var file2Path: String {
+        return "GeneratedTestFile2.swift"
+    }
+
+    private var file3Path: String {
+        return "GeneratedTestFile3.swift"
+    }
 
     override func setUp() {
         super.setUp()
@@ -23,6 +37,8 @@ final class DangerFileGeneratorTests: SnapshotTestCase {
 
     override func tearDown() {
         createdFiles.forEach { try? FileManager.default.removeItem(atPath: $0) }
+        createdFiles = nil
+        generator = nil
         super.tearDown()
     }
 

@@ -3,14 +3,16 @@ import DangerFixtures
 import XCTest
 
 final class DangerUtilsLineSearchTests: XCTestCase {
-    let fileContent = """
-    not here
-    no
-    match
-    not here
-    no
-    match
-    """.replacingOccurrences(of: "\n", with: "\\n")
+    var fileContent: String {
+        return """
+        not here
+        no
+        match
+        not here
+        no
+        match
+        """.replacingOccurrences(of: "\n", with: "\\n")
+    }
 
     func testItReturnsAnEmptyArrayIfNoResultsAreFound() throws {
         let danger = githubWithFilesDSL(created: ["file.swift"], fileMap: ["file.swift": fileContent])

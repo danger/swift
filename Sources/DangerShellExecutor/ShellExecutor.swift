@@ -95,7 +95,7 @@ public struct ShellExecutor: ShellExecuting {
         }
 
         // OK, so it failed, raise a new error with all the useful metadata
-        let stderrData = stdout.fileHandleForReading.readDataToEndOfFile()
+        let stderrData = stderr.fileHandleForReading.readDataToEndOfFile()
         let stderrString = String(data: stderrData, encoding: .utf8)!
 
         throw SpawnError.commandFailed(command: command,

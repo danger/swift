@@ -3,8 +3,14 @@ import Logger
 import RunnerLib
 
 func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger) throws -> Int32 {
-    let dangerJS = try getDangerCommandPath(logger: logger)
-    let dangerJSVersion = try DangerJSVersionFinder.findDangerJSVersion(dangerJSPath: dangerJS)
+    guard let dangerJS = try? getDangerCommandPath(logger: logger) else {
+        logger.logError("Danger JS was not found on the system",
+                        "Please install it with npm or brew",
+                        separator: "\n")
+        exit(1)
+    }
+
+    let dangerJSVersion = DangerJSVersionFinder.findDangerJSVersion(dangerJSPath: dangerJS)
 
     guard dangerJSVersion.compare(MinimumDangerJSVersion, options: .numeric) != .orderedAscending else {
         logger.logError("The installed danger-js version is below the minimum supported version",

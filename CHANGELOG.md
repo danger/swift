@@ -13,6 +13,15 @@
 
 ## Master
 
+- Move to swift 5.1 [@f-meloni][] - [#275](htts://github.com/danger/swift/pull/275)
+
+## 2.0.7
+
+- Use enums as namespace [@f-meloni][] - [#296](htts://github.com/danger/swift/pull/296) 
+- Add error message when danger js is not installed [@f-meloni][] - [#295](https://github.com/danger/swift/pull/295)
+- Read standard error when the shell executor fails [@f-meloni][] - [#288](https://github.com/danger/swift/pull/288)
+- Add --version support [@f-meloni][] - [#287](https://github.com/danger/swift/pull/287)
+
 ## 2.0.6
 
 - Fix GitLabDSL parsing (missing arguments) [@fortmarek][] - [#283](https://github.com/danger/swift/pull/283)
