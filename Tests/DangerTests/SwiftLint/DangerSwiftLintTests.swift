@@ -339,7 +339,7 @@ final class DangerSwiftLintTests: XCTestCase {
     }
 
     func mockedViolationJSON(_: String) -> String {
-        return """
+        """
         [
             {
                 "rule_id" : "opening_brace",
@@ -364,7 +364,7 @@ final class DangerSwiftLintTests: XCTestCase {
     }
 
     func mockedEmptyJSON(_: String) -> String {
-        return "[]"
+        "[]"
     }
 
     func writeMarkdown(_ message: String) {

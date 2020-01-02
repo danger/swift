@@ -36,8 +36,8 @@ public func githubWithFilesDSL(created: [File] = [],
                                modified: [File] = [],
                                deleted: [File] = [],
                                fileMap: [String: String] = [:]) -> DangerDSL {
-    return parseDangerDSL(with: githubJSONWithFiles(created: created,
-                                                    modified: modified,
-                                                    deleted: deleted,
-                                                    fileMap: fileMap))
+    parseDangerDSL(with: githubJSONWithFiles(created: created,
+                                             modified: modified,
+                                             deleted: deleted,
+                                             fileMap: fileMap))
 }

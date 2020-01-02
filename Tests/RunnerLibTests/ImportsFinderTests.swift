@@ -25,7 +25,7 @@ final class ImportsFinderTests: XCTestCase {
 
 extension ImportsFinderTests {
     private var stringWithImports: String {
-        return """
+        """
         // fileImport: File1
         
         text text
@@ -35,7 +35,7 @@ extension ImportsFinderTests {
     }
 
     private var stringWithoutImports: String {
-        return """
+        """
         // comment
         
         text text

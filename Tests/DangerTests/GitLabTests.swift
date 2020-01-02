@@ -4,7 +4,7 @@ import XCTest
 
 final class GitLabTests: XCTestCase {
     private var gitLab: GitLab {
-        return gitlabFixtureDSL.gitLab
+        gitlabFixtureDSL.gitLab
     }
 
     func testParsesMergeRequest() {

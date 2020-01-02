@@ -1,4 +1,4 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.0
 
 import PackageDescription
 
@@ -20,14 +20,13 @@ let package = Package(
         // Dev dependencies
         .package(url: "https://github.com/shibapm/Komondor", from: "1.0.0"), // dev
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"), // dev
-        .package(url: "https://github.com/Realm/SwiftLint", from: "0.28.1"), // dev
+        .package(url: "https://github.com/Realm/SwiftLint", from: "0.38.0"), // dev
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", .branch("master")), // dev
         .package(url: "https://github.com/shibapm/Rocket", from: "0.4.0"), // dev
-        .package(url: "https://github.com/jpsim/Yams.git", from: "1.0.0"), // dev
-        .package(url: "https://github.com/eneko/SourceDocs", from: "0.5.1"), // dev
+        .package(url: "https://github.com/eneko/SourceDocs", from: "0.6.0"), // dev
     ],
     targets: [
-        .target(name: "Danger-Swift", dependencies: ["Danger", "Yams"]), // dev
+        .target(name: "Danger-Swift", dependencies: ["Danger"]), // dev
         .target(name: "DangerShellExecutor"),
         .target(name: "Danger", dependencies: ["OctoKit", "Logger", "DangerShellExecutor"]),
         .target(name: "RunnerLib", dependencies: ["Logger", "DangerShellExecutor"]),

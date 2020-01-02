@@ -72,14 +72,14 @@ public struct DangerDSL: Decodable {
 
 extension DangerDSL {
     var runningOnGithub: Bool {
-        return github != nil
+        github != nil
     }
 
     var runningOnBitbucketServer: Bool {
-        return bitbucketServer != nil
+        bitbucketServer != nil
     }
 
     var supportsSuggestions: Bool {
-        return runningOnGithub
+        runningOnGithub
     }
 }

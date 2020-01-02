@@ -11,7 +11,7 @@ public struct SwiftLintViolation: Decodable {
     var file: String
 
     var messageText: String {
-        return reason + " (`\(ruleID)`)"
+        reason + " (`\(ruleID)`)"
     }
 
     enum CodingKeys: String, CodingKey {

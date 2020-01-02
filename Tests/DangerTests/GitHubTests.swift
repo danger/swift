@@ -3,7 +3,7 @@ import XCTest
 
 final class GitHubTests: XCTestCase {
     private var dateFormatter: DateFormatter {
-        return DateFormatter.defaultDateFormatter
+        DateFormatter.defaultDateFormatter
     }
 
     private var decoder: JSONDecoder!

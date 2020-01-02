@@ -4,7 +4,7 @@ import XCTest
 
 final class DangerUtilsLineSearchTests: XCTestCase {
     var fileContent: String {
-        return """
+        """
         not here
         no
         match
