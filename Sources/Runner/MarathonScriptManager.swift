@@ -34,13 +34,13 @@ func getScriptManager(_ logger: Logger) throws -> ScriptManager {
 }
 
 private func makeProgressPrintingFunction(logger: Logger) -> VerbosePrintFunction { { (messageExpression: () -> String) in
-        let message = messageExpression()
-        logger.debug(message)
-    }
+    let message = messageExpression()
+    logger.debug(message)
+}
 }
 
 private func makeVerbosePrintingFunction(_ logger: Logger) -> VerbosePrintFunction { { (messageExpression: () -> String) in
-        let message = "\u{001B}[0;3m\(messageExpression())\u{001B}[0;23m"
-        logger.debug(message)
-    }
+    let message = "\u{001B}[0;3m\(messageExpression())\u{001B}[0;23m"
+    logger.debug(message)
+}
 }
