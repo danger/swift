@@ -33,16 +33,14 @@ func getScriptManager(_ logger: Logger) throws -> ScriptManager {
     return try ScriptManager(folder: scriptFolder, packageManager: packageManager, printer: printer, config: config)
 }
 
-private func makeProgressPrintingFunction(logger: Logger) -> VerbosePrintFunction {
-    return { (messageExpression: () -> String) in
-        let message = messageExpression()
-        logger.debug(message)
-    }
+private func makeProgressPrintingFunction(logger: Logger) -> VerbosePrintFunction { { (messageExpression: () -> String) in
+    let message = messageExpression()
+    logger.debug(message)
+}
 }
 
-private func makeVerbosePrintingFunction(_ logger: Logger) -> VerbosePrintFunction {
-    return { (messageExpression: () -> String) in
-        let message = "\u{001B}[0;3m\(messageExpression())\u{001B}[0;23m"
-        logger.debug(message)
-    }
+private func makeVerbosePrintingFunction(_ logger: Logger) -> VerbosePrintFunction { { (messageExpression: () -> String) in
+    let message = "\u{001B}[0;3m\(messageExpression())\u{001B}[0;23m"
+    logger.debug(message)
+}
 }

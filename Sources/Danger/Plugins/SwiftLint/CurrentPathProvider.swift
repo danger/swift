@@ -6,6 +6,6 @@ internal protocol CurrentPathProvider {
 
 internal final class DefaultCurrentPathProvider: CurrentPathProvider {
     var currentPath: String {
-        return FileManager.default.currentDirectoryPath
+        FileManager.default.currentDirectoryPath
     }
 }

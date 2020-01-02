@@ -4,7 +4,7 @@ import XCTest
 
 final class BitBucketCloudTests: XCTestCase {
     private var bitbucketCould: BitBucketCloud {
-        return bitbucketCloudFixtureDSL.bitbucketCloud
+        bitbucketCloudFixtureDSL.bitbucketCloud
     }
 
     func testParsesActivities() {

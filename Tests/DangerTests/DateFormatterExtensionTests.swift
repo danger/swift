@@ -3,7 +3,7 @@ import XCTest
 
 final class DateFormatterExtensionTests: XCTestCase {
     private var dateFormatter: DateFormatter {
-        return DateFormatter.defaultDateFormatter
+        DateFormatter.defaultDateFormatter
     }
 
     func test_DateFormatter_dateFromString() {

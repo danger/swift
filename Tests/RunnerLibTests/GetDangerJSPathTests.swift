@@ -4,7 +4,7 @@ import XCTest
 
 final class GetDangerJSPathTests: XCTestCase {
     private var logger: Logger {
-        return Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
+        Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
     }
 
     func testItUsesTheDangerJSPathOptionIfPresent() throws {

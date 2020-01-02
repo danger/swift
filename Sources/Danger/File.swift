@@ -7,11 +7,11 @@ public typealias File = String
 
 extension File {
     public var fileType: FileType? {
-        return FileType(from: self)
+        FileType(from: self)
     }
 
     public var name: String {
-        return String(self)
+        String(self)
     }
 }
 
@@ -26,7 +26,7 @@ public enum FileType: String, Equatable, CaseIterable {
 
 extension FileType {
     public var `extension`: String {
-        return rawValue
+        rawValue
     }
 
     init?(from file: File) {

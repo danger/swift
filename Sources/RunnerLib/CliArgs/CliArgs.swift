@@ -39,6 +39,6 @@ public struct CliArgs {
 
 private extension Dictionary where Key == String {
     subscript(_ codingKey: CliArgs.CodingKeys) -> Value? {
-        return self[codingKey.rawValue]
+        self[codingKey.rawValue]
     }
 }

@@ -1,7 +1,7 @@
 import Foundation
 
 private var dangerRunner: DangerRunner {
-    return DangerRunner.shared
+    DangerRunner.shared
 }
 
 /// Results available if you're doing @testable on
@@ -42,22 +42,22 @@ func resetDangerResults() {
 extension DangerDSL {
     /// Fails on the Danger report
     public var fails: [Violation] {
-        return globalResults.fails
+        globalResults.fails
     }
 
     /// Warnings on the Danger report
     public var warnings: [Violation] {
-        return globalResults.warnings
+        globalResults.warnings
     }
 
     /// Messages on the Danger report
     public var messages: [Violation] {
-        return globalResults.messages
+        globalResults.messages
     }
 
     /// Markdowns on the Danger report
     public var markdowns: [Violation] {
-        return globalResults.markdowns
+        globalResults.markdowns
     }
 
     /// Adds a warning message to the Danger report
@@ -128,22 +128,22 @@ extension DangerDSL {
 
 /// Fails on the Danger report
 public var fails: [Violation] {
-    return globalResults.fails
+    globalResults.fails
 }
 
 /// Warnings on the Danger report
 public var warnings: [Violation] {
-    return globalResults.warnings
+    globalResults.warnings
 }
 
 /// Messages on the Danger report
 public var messages: [Violation] {
-    return globalResults.messages
+    globalResults.messages
 }
 
 /// Markdowns on the Danger report
 public var markdowns: [Violation] {
-    return globalResults.markdowns
+    globalResults.markdowns
 }
 
 /// Adds a warning message to the Danger report

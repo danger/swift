@@ -4,7 +4,7 @@ import XCTest
 
 final class DefaultDateFormatterTests: XCTestCase {
     var formatter: DateFormatter {
-        return DateFormatter.defaultDateFormatter
+        DateFormatter.defaultDateFormatter
     }
 
     func testParsesDateWithMilliseconds() {

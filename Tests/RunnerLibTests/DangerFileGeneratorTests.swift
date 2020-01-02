@@ -4,28 +4,28 @@ import Logger
 import SnapshotTesting
 import XCTest
 
-final class DangerFileGeneratorTests: SnapshotTestCase {
+final class DangerFileGeneratorTests: XCTestCase {
     private var logger: Logger {
-        return Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
+        Logger(isVerbose: false, isSilent: false, printer: SpyPrinter())
     }
 
     private var createdFiles: [String]!
     private var generator: DangerFileGenerator!
 
     private var generatedFilePath: String {
-        return "GeneratedTestDangerfile.swift"
+        "GeneratedTestDangerfile.swift"
     }
 
     private var file1Path: String {
-        return "GeneratedTestFile1.swift"
+        "GeneratedTestFile1.swift"
     }
 
     private var file2Path: String {
-        return "GeneratedTestFile2.swift"
+        "GeneratedTestFile2.swift"
     }
 
     private var file3Path: String {
-        return "GeneratedTestFile3.swift"
+        "GeneratedTestFile3.swift"
     }
 
     override func setUp() {
@@ -87,36 +87,36 @@ final class DangerFileGeneratorTests: SnapshotTestCase {
 
 extension DangerFileGeneratorTests {
     private var contentWithoutImports: String {
-        return """
+        """
         message("Text")
         message("Another Text")
         """
     }
 
     private var contentWithOneImport: String {
-        return "// fileImport: " + file1Path + "\n" + contentWithoutImports
+        "// fileImport: " + file1Path + "\n" + contentWithoutImports
     }
 
     private var contentWithMultipleImports: String {
-        return "// fileImport: " + file2Path + "\n\n" +
+        "// fileImport: " + file2Path + "\n\n" +
             "// fileImport: " + file3Path + "\n" + contentWithOneImport
     }
 
     private var file1Content: String {
-        return """
+        """
         file1Content 👍🏻
         secondLine
         """
     }
 
     private var file2Content: String {
-        return """
+        """
         file2Content ⚠️
         """
     }
 
     private var file3Content: String {
-        return """
+        """
         file3Content 👩‍👩‍👦‍👦
         secondLine
         really really really really really really really really really really really really really really really really really really really really really really long text
@@ -124,6 +124,6 @@ extension DangerFileGeneratorTests {
     }
 
     private var generatedContent: String {
-        return try! String(contentsOfFile: generatedFilePath)
+        try! String(contentsOfFile: generatedFilePath)
     }
 }

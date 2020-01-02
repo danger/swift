@@ -3,7 +3,7 @@ import XCTest
 
 final class SPMDangerTests: XCTestCase {
     var testPackage: String {
-        return "testPackage.swift"
+        "testPackage.swift"
     }
 
     override func tearDown() {
@@ -72,6 +72,6 @@ private class StubbedFileManager: FileManager {
     fileprivate var stubbedFileExists: Bool = true
 
     override func fileExists(atPath _: String) -> Bool {
-        return stubbedFileExists
+        stubbedFileExists
     }
 }

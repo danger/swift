@@ -106,14 +106,14 @@ extension BitBucketCloud {
         private let branch: Branch
 
         public var branchName: String {
-            return branch.name
+            branch.name
         }
 
         private let commit: Commit
 
         /// Hash of the last commit
         public var commitHash: String {
-            return commit.hash
+            commit.hash
         }
 
         public let repository: Repo

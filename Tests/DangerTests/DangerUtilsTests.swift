@@ -8,7 +8,7 @@ final class DangerUtilsTests: XCTestCase {
     }
 
     private var fileContent: String {
-        return """
+        """
         Write your Dangerfiles in Swift.
         
         ### Requirements
