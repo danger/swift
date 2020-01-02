@@ -32,7 +32,7 @@ public struct SPMDanger {
     }
 
     public var swiftcLibImport: String {
-        return "-l\(depsLibName)"
+        "-l\(depsLibName)"
     }
 
     public var xcodeImportFlags: [String] {

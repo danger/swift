@@ -12,7 +12,7 @@ public enum Runtime {
 
     /// Finds a Dangerfile from the current working directory
     public static func getDangerfile() -> String? {
-        return supportedPaths.first { FileManager.default.fileExists(atPath: $0) }
+        supportedPaths.first { FileManager.default.fileExists(atPath: $0) }
     }
 
     /// Is this a dev build: e.g. running inside a cloned danger/danger-swift
@@ -47,7 +47,7 @@ public enum Runtime {
         let libPaths = potentialLibraryFolders + depManagerDangerLibPaths
 
         func isTheDangerLibPath(path: String) -> Bool {
-            return fileManager.fileExists(atPath: path + "/libDanger.dylib") || // OSX
+            fileManager.fileExists(atPath: path + "/libDanger.dylib") || // OSX
                 fileManager.fileExists(atPath: path + "/libDanger.so") // Linux
         }
 

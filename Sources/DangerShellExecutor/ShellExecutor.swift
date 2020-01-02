@@ -22,27 +22,27 @@ extension ShellExecuting {
     @discardableResult
     public func execute(_ command: String,
                         arguments: [String]) -> String {
-        return execute(command, arguments: arguments, environmentVariables: [:], outputFile: nil)
+        execute(command, arguments: arguments, environmentVariables: [:], outputFile: nil)
     }
 
     @discardableResult
     func execute(_ command: String,
                  arguments: [String],
                  environmentVariables: [String: String]) -> String {
-        return execute(command, arguments: arguments, environmentVariables: environmentVariables, outputFile: nil)
+        execute(command, arguments: arguments, environmentVariables: environmentVariables, outputFile: nil)
     }
 
     @discardableResult
     public func spawn(_ command: String,
                       arguments: [String]) throws -> String {
-        return try spawn(command, arguments: arguments, environmentVariables: [:], outputFile: nil)
+        try spawn(command, arguments: arguments, environmentVariables: [:], outputFile: nil)
     }
 
     @discardableResult
     func spawn(_ command: String,
                arguments: [String],
                environmentVariables: [String: String]) throws -> String {
-        return try spawn(command, arguments: arguments, environmentVariables: environmentVariables, outputFile: nil)
+        try spawn(command, arguments: arguments, environmentVariables: environmentVariables, outputFile: nil)
     }
 }
 
@@ -127,7 +127,7 @@ public struct ShellExecutor: ShellExecuting {
     }
 
     private func mergeEnvs(localEnv: [String: String], processEnv: [String: String]) -> [String: String] {
-        return localEnv.merging(processEnv, uniquingKeysWith: { (_, envString) -> String in
+        localEnv.merging(processEnv, uniquingKeysWith: { (_, envString) -> String in
             envString
         })
     }

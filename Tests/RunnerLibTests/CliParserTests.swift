@@ -45,7 +45,7 @@ final class CliParserTests: XCTestCase {
 
 extension CliParserTests {
     private var correctJSON: String {
-        return """
+        """
         {
             "danger": {
                 "settings": {
@@ -64,7 +64,7 @@ extension CliParserTests {
     }
 
     private var correctJSONWithOnlyDangerfile: String {
-        return """
+        """
         {
             "danger": {
                 "settings": {
@@ -78,7 +78,7 @@ extension CliParserTests {
     }
 
     private var jsonWithoutCliArgs: String {
-        return """
+        """
         {
             "danger": {
                 "settings": {

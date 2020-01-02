@@ -2,7 +2,7 @@ import RunnerLib
 import SnapshotTesting
 import XCTest
 
-final class CreateConfigTests: SnapshotTestCase {
+final class CreateConfigTests: XCTestCase {
     func testItCreatesTheCorrectConfig() throws {
         record = false
         let testPath = "test"

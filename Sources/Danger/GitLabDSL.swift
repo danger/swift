@@ -206,7 +206,7 @@ extension GitLab {
         let userMergeData: UserMergeData
 
         public var userCanMerge: Bool {
-            return userMergeData.canMerge
+            userMergeData.canMerge
         }
     }
 }

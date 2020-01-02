@@ -23,7 +23,7 @@ final class PackageGeneratorTests: XCTestCase {
         let packageListMaker = StubbedPackageListMaker(packages: [
             Package(name: "Dependency1", url: URL(string: "https://github.com/danger/dependency1")!, majorVersion: 1),
             Package(name: "Dependency2", url: URL(string: "https://github.com/danger/dependency2")!, majorVersion: 2),
-            Package(name: "Dependency3", url: URL(string: "https://github.com/danger/dependency3")!, majorVersion: 3)
+            Package(name: "Dependency3", url: URL(string: "https://github.com/danger/dependency3")!, majorVersion: 3),
         ])
         let spyFileCreator = SpyFileCreator()
         let generator = PackageGenerator(folder: "folder", generatedFolder: "generatedFolder", packageListMaker: packageListMaker, fileCreator: spyFileCreator)
@@ -46,7 +46,7 @@ private struct StubbedPackageListMaker: PackageListMaking {
     let packages: [Package]
 
     func makePackageList() -> [Package] {
-        return packages
+        packages
     }
 }
 

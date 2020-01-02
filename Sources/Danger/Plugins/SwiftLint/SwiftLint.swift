@@ -17,14 +17,14 @@ public enum SwiftLint {
     public static func lint(inline: Bool = false, directory: String? = nil,
                             configFile: String? = nil, strict: Bool = false, lintAllFiles: Bool = false,
                             swiftlintPath: String? = nil) -> [SwiftLintViolation] {
-        return lint(danger: danger,
-                    shellExecutor: shellExecutor,
-                    swiftlintPath: swiftlintPath ?? SwiftLint.swiftlintDefaultPath(),
-                    inline: inline,
-                    directory: directory,
-                    configFile: configFile,
-                    strict: strict,
-                    lintAllFiles: lintAllFiles)
+        lint(danger: danger,
+             shellExecutor: shellExecutor,
+             swiftlintPath: swiftlintPath ?? SwiftLint.swiftlintDefaultPath(),
+             inline: inline,
+             directory: directory,
+             configFile: configFile,
+             strict: strict,
+             lintAllFiles: lintAllFiles)
     }
 }
 

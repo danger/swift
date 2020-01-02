@@ -9,7 +9,7 @@ public struct Package: Equatable, Codable {
 
 extension Package {
     var dependencyString: String {
-        return ".package(url: \"\(url.absoluteString)\", from: \"\(majorVersion).0.0\")"
+        ".package(url: \"\(url.absoluteString)\", from: \"\(majorVersion).0.0\")"
     }
 }
 

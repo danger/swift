@@ -3,7 +3,7 @@ import XCTest
 
 final class NSRegularExpressionExtensionsTests: XCTestCase {
     var string: String {
-        return "Dogs and cats were wearing hats"
+        "Dogs and cats were wearing hats"
     }
 
     func test_firstMatchingString_passingRegex() {

@@ -1,4 +1,3 @@
-
 #if !canImport(ObjectiveC)
     import XCTest
 
@@ -11,7 +10,7 @@
             ("testParsesComments", testParsesComments),
             ("testParsesCommits", testParsesCommits),
             ("testParsesMetadata", testParsesMetadata),
-            ("testParsesPR", testParsesPR)
+            ("testParsesPR", testParsesPR),
         ]
     }
 
@@ -25,7 +24,7 @@
             ("testItParsesTheBitBucketComments", testItParsesTheBitBucketComments),
             ("testItParsesTheBitBucketCommits", testItParsesTheBitBucketCommits),
             ("testItParsesTheBitBucketMetadata", testItParsesTheBitBucketMetadata),
-            ("testItParsesTheBitBucketPullRequest", testItParsesTheBitBucketPullRequest)
+            ("testItParsesTheBitBucketPullRequest", testItParsesTheBitBucketPullRequest),
         ]
     }
 
@@ -38,7 +37,7 @@
             ("testFileMapWorksCorrectly", testFileMapWorksCorrectly),
             ("testGithubFixtureDSL", testGithubFixtureDSL),
             ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnBitBucketServer", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnBitBucketServer),
-            ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise)
+            ("testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise", testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise),
         ]
     }
 
@@ -64,7 +63,7 @@
             ("testQuotesPathArguments", testQuotesPathArguments),
             ("testSendsOuputFileToTheExecutorWhenLintingAllTheFiles", testSendsOuputFileToTheExecutorWhenLintingAllTheFiles),
             ("testSendsOuputFileToTheExecutorWhenLintingModifiedFiles", testSendsOuputFileToTheExecutorWhenLintingModifiedFiles),
-            ("testViolations", testViolations)
+            ("testViolations", testViolations),
         ]
     }
 
@@ -74,7 +73,7 @@
         // to regenerate.
         static let __allTests__DangerUtilsLineSearchTests = [
             ("testItReturnsAnEmptyArrayIfNoResultsAreFound", testItReturnsAnEmptyArrayIfNoResultsAreFound),
-            ("testItReturnsTheCorrectResultsIfTheSearchedStringIsPresent", testItReturnsTheCorrectResultsIfTheSearchedStringIsPresent)
+            ("testItReturnsTheCorrectResultsIfTheSearchedStringIsPresent", testItReturnsTheCorrectResultsIfTheSearchedStringIsPresent),
         ]
     }
 
@@ -83,7 +82,7 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__DangerUtilsTests = [
-            ("testLinesForStringReturnsTheCorrectResult", testLinesForStringReturnsTheCorrectResult)
+            ("testLinesForStringReturnsTheCorrectResult", testLinesForStringReturnsTheCorrectResult),
         ]
     }
 
@@ -93,7 +92,7 @@
         // to regenerate.
         static let __allTests__DateFormatterExtensionTests = [
             ("test_DateFormatter_dateFromString", test_DateFormatter_dateFromString),
-            ("test_DateFormatter_nilFromInvalidString", test_DateFormatter_nilFromInvalidString)
+            ("test_DateFormatter_nilFromInvalidString", test_DateFormatter_nilFromInvalidString),
         ]
     }
 
@@ -103,7 +102,7 @@
         // to regenerate.
         static let __allTests__DefaultDateFormatterTests = [
             ("testParsesDateWithMilliseconds", testParsesDateWithMilliseconds),
-            ("testParsesDateWithoutMilliseconds", testParsesDateWithoutMilliseconds)
+            ("testParsesDateWithoutMilliseconds", testParsesDateWithoutMilliseconds),
         ]
     }
 
@@ -124,7 +123,7 @@
             ("test_fileType_forXCScheme", test_fileType_forXCScheme),
             ("test_fileType_forYAML", test_fileType_forYAML),
             ("test_fileType_forYML", test_fileType_forYML),
-            ("test_fileType_withMultipleDots", test_fileType_withMultipleDots)
+            ("test_fileType_withMultipleDots", test_fileType_withMultipleDots),
         ]
     }
 
@@ -133,7 +132,7 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__FileTypeTests = [
-            ("test_extension_matchesRawValue", test_extension_matchesRawValue)
+            ("test_extension_matchesRawValue", test_extension_matchesRawValue),
         ]
     }
 
@@ -157,7 +156,7 @@
             ("test_GitHubRepo_decode", test_GitHubRepo_decode),
             ("test_GitHubReview_decode", test_GitHubReview_decode),
             ("test_GitHubTeam_decode", test_GitHubTeam_decode),
-            ("test_GitHubUser_decode", test_GitHubUser_decode)
+            ("test_GitHubUser_decode", test_GitHubUser_decode),
         ]
     }
 
@@ -167,7 +166,7 @@
         // to regenerate.
         static let __allTests__GitLabTests = [
             ("testParsesCorrectlyMetadata", testParsesCorrectlyMetadata),
-            ("testParsesMergeRequest", testParsesMergeRequest)
+            ("testParsesMergeRequest", testParsesMergeRequest),
         ]
     }
 
@@ -176,7 +175,7 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__GitTests = [
-            ("test", test)
+            ("test", test),
         ]
     }
 
@@ -186,7 +185,7 @@
         // to regenerate.
         static let __allTests__NSRegularExpressionExtensionsTests = [
             ("test_firstMatchingString_failingRegex", test_firstMatchingString_failingRegex),
-            ("test_firstMatchingString_passingRegex", test_firstMatchingString_passingRegex)
+            ("test_firstMatchingString_passingRegex", test_firstMatchingString_passingRegex),
         ]
     }
 
@@ -196,7 +195,7 @@
         // to regenerate.
         static let __allTests__SwiftlintDefaultPathTests = [
             ("testItReturnsTheSPMCommandIfThePackageContainsTheSwiftlintDependency", testItReturnsTheSPMCommandIfThePackageContainsTheSwiftlintDependency),
-            ("testItReturnsTheSwiftlintCLICommandIfThePackageContainsTheSwiftlintDependency", testItReturnsTheSwiftlintCLICommandIfThePackageContainsTheSwiftlintDependency)
+            ("testItReturnsTheSwiftlintCLICommandIfThePackageContainsTheSwiftlintDependency", testItReturnsTheSwiftlintCLICommandIfThePackageContainsTheSwiftlintDependency),
         ]
     }
 
@@ -205,7 +204,7 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__SwiftlintReportDeleterTests = [
-            ("testCallsRemoveItemOnFileManager", testCallsRemoveItemOnFileManager)
+            ("testCallsRemoveItemOnFileManager", testCallsRemoveItemOnFileManager),
         ]
     }
 
@@ -214,12 +213,12 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__ViolnationTests = [
-            ("testDecoding", testDecoding)
+            ("testDecoding", testDecoding),
         ]
     }
 
     public func __allTests() -> [XCTestCaseEntry] {
-        return [
+        [
             testCase(BitBucketCloudTests.__allTests__BitBucketCloudTests),
             testCase(BitBucketServerTests.__allTests__BitBucketServerTests),
             testCase(DangerDSLTests.__allTests__DangerDSLTests),
@@ -236,7 +235,7 @@
             testCase(NSRegularExpressionExtensionsTests.__allTests__NSRegularExpressionExtensionsTests),
             testCase(SwiftlintDefaultPathTests.__allTests__SwiftlintDefaultPathTests),
             testCase(SwiftlintReportDeleterTests.__allTests__SwiftlintReportDeleterTests),
-            testCase(ViolnationTests.__allTests__ViolnationTests)
+            testCase(ViolnationTests.__allTests__ViolnationTests),
         ]
     }
 #endif

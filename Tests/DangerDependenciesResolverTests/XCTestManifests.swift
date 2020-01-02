@@ -6,8 +6,11 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__PackageDataProviderTests = [
+            ("testLatestMajorVersionForPackageReturnsCorrectVersion", testLatestMajorVersionForPackageReturnsCorrectVersion),
+            ("testLatestMajorVersionForPackageThrowsAnErrorWhenInputIsInvalid", testLatestMajorVersionForPackageThrowsAnErrorWhenInputIsInvalid),
+            ("testResolvePinnedPackagesReturnsCorrectPinnedPackages", testResolvePinnedPackagesReturnsCorrectPinnedPackages),
             ("testWhenThePackageIsLocalReturnsCorrectPackageName", testWhenThePackageIsLocalReturnsCorrectPackageName),
-            ("testWhenThePackageIsRemoteReturnsCorrectPackageName", testWhenThePackageIsRemoteReturnsCorrectPackageName)
+            ("testWhenThePackageIsRemoteReturnsCorrectPackageName", testWhenThePackageIsRemoteReturnsCorrectPackageName),
         ]
     }
 
@@ -18,7 +21,7 @@
         static let __allTests__PackageGeneratorTests = [
             ("testGeneratedDescriptionHeader", testGeneratedDescriptionHeader),
             ("testGeneratedPackageWhenThereAreDependencies", testGeneratedPackageWhenThereAreDependencies),
-            ("testGeneratedPackageWhenThereAreNoDependencies", testGeneratedPackageWhenThereAreNoDependencies)
+            ("testGeneratedPackageWhenThereAreNoDependencies", testGeneratedPackageWhenThereAreNoDependencies),
         ]
     }
 
@@ -27,15 +30,15 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__PackageListMakerTests = [
-            ("testParsesValidPackages", testParsesValidPackages)
+            ("testParsesValidPackages", testParsesValidPackages),
         ]
     }
 
     public func __allTests() -> [XCTestCaseEntry] {
-        return [
+        [
             testCase(PackageDataProviderTests.__allTests__PackageDataProviderTests),
             testCase(PackageGeneratorTests.__allTests__PackageGeneratorTests),
-            testCase(PackageListMakerTests.__allTests__PackageListMakerTests)
+            testCase(PackageListMakerTests.__allTests__PackageListMakerTests),
         ]
     }
 #endif

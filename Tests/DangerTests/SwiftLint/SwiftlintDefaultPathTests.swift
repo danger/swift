@@ -3,7 +3,7 @@ import XCTest
 
 final class SwiftlintDefaultPathTests: XCTestCase {
     var package: String {
-        return "testPackage.swift"
+        "testPackage.swift"
     }
 
     override func tearDown() {

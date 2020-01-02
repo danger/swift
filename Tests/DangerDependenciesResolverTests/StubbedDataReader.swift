@@ -11,10 +11,10 @@ final class StubbedDataReader: FileReading {
     }
 
     func readData(atPath path: String) throws -> Data {
-        return stubbedReadData(path)
+        stubbedReadData(path)
     }
 
     func readText(atPath path: String) throws -> String {
-        return stubbedReadText(path)
+        stubbedReadText(path)
     }
 }

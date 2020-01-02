@@ -10,12 +10,12 @@ struct PackageListMaker: PackageListMaking {
     let dataReader: FileReading
 
     func makePackageList() -> [Package] {
-        return files(onFolder: folder).compactMap {
+        files(onFolder: folder).compactMap {
             try? dataReader.readData(atPath: $0).decoded()
         }
     }
 
     private func files(onFolder folder: String) -> [String] {
-        return (try? fileManager.contentsOfDirectory(atPath: folder).sorted().map(folder.appendingPath)) ?? []
+        (try? fileManager.contentsOfDirectory(atPath: folder).sorted().map(folder.appendingPath)) ?? []
     }
 }

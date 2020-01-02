@@ -7,10 +7,10 @@ protocol FileReading {
 
 struct FileReader: FileReading {
     func readData(atPath path: String) throws -> Data {
-        return try Data(contentsOf: URL(fileURLWithPath: path))
+        try Data(contentsOf: URL(fileURLWithPath: path))
     }
 
     func readText(atPath path: String) throws -> String {
-        return try String(contentsOfFile: path)
+        try String(contentsOfFile: path)
     }
 }

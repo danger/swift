@@ -7,7 +7,7 @@ struct PackageGenerator {
     let generatedFolder: String
     let packageListMaker: PackageListMaking
     let fileCreator: FileCreating
-    private var masterPackageName: String { return "PACKAGES" }
+    private var masterPackageName: String { "PACKAGES" }
 
     init(folder: String,
          generatedFolder: String,

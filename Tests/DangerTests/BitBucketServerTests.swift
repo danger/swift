@@ -4,7 +4,7 @@ import XCTest
 
 final class BitBucketServerTests: XCTestCase {
     private var bitBucketServer: BitBucketServer {
-        return bitbucketFixtureDSL.bitbucketServer
+        bitbucketFixtureDSL.bitbucketServer
     }
 
     func testItParsesTheBitBucketPullRequest() {

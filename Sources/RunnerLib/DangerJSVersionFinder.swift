@@ -3,7 +3,7 @@ import Logger
 
 public enum DangerJSVersionFinder {
     public static func findDangerJSVersion(dangerJSPath: String) -> String {
-        return findDangerJSVersion(dangerJSPath: dangerJSPath, executor: ShellExecutor())
+        findDangerJSVersion(dangerJSPath: dangerJSPath, executor: ShellExecutor())
     }
 
     static func findDangerJSVersion(dangerJSPath: String, executor: ShellExecuting) -> String {

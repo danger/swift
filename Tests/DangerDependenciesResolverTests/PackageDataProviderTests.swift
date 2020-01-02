@@ -1,8 +1,8 @@
 @testable import DangerDependenciesResolver
 import DangerShellExecutor
 import Logger
-import XCTest
 import Version
+import XCTest
 
 final class PackageDataProviderTests: XCTestCase {
     var fileReader: StubbedDataReader!
@@ -48,22 +48,22 @@ final class PackageDataProviderTests: XCTestCase {
         XCTAssertEqual(executor.receivedCommand, "git clone http://url.com/repo.git --single-branch --depth 1 tmp/Clone -q")
         XCTAssertEqual(name, "danger-swift")
     }
-    
+
     func testLatestMajorVersionForPackageReturnsCorrectVersion() throws {
         executor.result = gitLsRemoteTestResponse
-        
+
         let version = try packageDataProvider.latestMajorVersionForPackage(at: URL(string: "http://url.com/repo.git")!)
-        
+
         XCTAssertEqual(executor.receivedCommand, "git ls-remote --tags http://url.com/repo.git")
         XCTAssertEqual(version, 2)
     }
-    
+
     func testLatestMajorVersionForPackageThrowsAnErrorWhenInputIsInvalid() throws {
         executor.result = ""
-        
+
         XCTAssertThrowsError(try packageDataProvider.latestMajorVersionForPackage(at: URL(string: "http://url.com/repo.git")!))
     }
-    
+
     func testResolvePinnedPackagesReturnsCorrectPinnedPackages() throws {
         fileReader.stubbedReadData = { path in
             switch path {
@@ -74,9 +74,9 @@ final class PackageDataProviderTests: XCTestCase {
                 return Data()
             }
         }
-        
+
         let packages = try packageDataProvider.resolvePinnedPackages(generatedFolder: "/usr/franco")
-        
+
         XCTAssertEqual(packages, [
             .init(name: "AEXML",
                   url: URL(string: "https://github.com/tadija/AEXML")!,
@@ -95,12 +95,12 @@ final class PackageDataProviderTests: XCTestCase {
                   state: .init(version: "1.0.4")),
             .init(name: "OctoKit",
                   url: URL(string: "https://github.com/nerdishbynature/octokit.swift")!,
-                  state: .init(version: "0.9.0"))
+                  state: .init(version: "0.9.0")),
         ])
     }
 
     private var packageText: String {
-        return """
+        """
         // swift-tools-version:4.2
 
         import PackageDescription
@@ -119,9 +119,9 @@ final class PackageDataProviderTests: XCTestCase {
         )
         """
     }
-    
+
     private var gitLsRemoteTestResponse: String {
-        return """
+        """
         9ef6e482c3ab0d77e52b02e272a15b0e790a1202    HEAD
         a314c289277b5bf77b3d318bda52494daf99f2f0    refs/heads/actions_readme
         cb5da9bd4ec3701d0678eb8ef443b5e9939ab39d    refs/heads/bitbucket_inline_comment_optional_from
@@ -150,9 +150,9 @@ final class PackageDataProviderTests: XCTestCase {
         33d35bf94f54155be505ffecfca745e4cc1cd0cc    refs/tags/1.6.5
         """
     }
-    
+
     private var resolvedPackageText: String {
-        return """
+        """
         {
           "object": {
             "pins": [

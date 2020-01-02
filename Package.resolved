@@ -20,12 +20,21 @@
         }
       },
       {
-        "package": "JSONUtilities",
-        "repositoryURL": "https://github.com/yonaskolb/JSONUtilities.git",
+        "package": "CwlCatchException",
+        "repositoryURL": "https://github.com/mattgallagher/CwlCatchException.git",
         "state": {
           "branch": null,
-          "revision": "a84615f4558151fab52ac38df697ce2442991f93",
-          "version": "2.3.0"
+          "revision": "7cd2f8cacc4d22f21bc0b2309c3b18acf7957b66",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "CwlPreconditionTesting",
+        "repositoryURL": "https://github.com/mattgallagher/CwlPreconditionTesting.git",
+        "state": {
+          "branch": null,
+          "revision": "c228db5d2ad1b01ebc84435e823e6cca4e3db98b",
+          "version": "1.2.0"
         }
       },
       {
@@ -60,8 +69,8 @@
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
           "branch": null,
-          "revision": "6abeb3f5c03beba2b9e4dbe20886e773b5b629b6",
-          "version": "8.0.4"
+          "revision": "b02b00b30b6353632aa4a5fb6124f8147f7140c0",
+          "version": "8.0.5"
         }
       },
       {
@@ -83,6 +92,15 @@
         }
       },
       {
+        "package": "Rainbow",
+        "repositoryURL": "https://github.com/onevcat/Rainbow",
+        "state": {
+          "branch": null,
+          "revision": "9c52c1952e9b2305d4507cf473392ac2d7c9b155",
+          "version": "3.1.5"
+        }
+      },
+      {
         "package": "RequestKit",
         "repositoryURL": "https://github.com/nerdishbynature/RequestKit.git",
         "state": {
@@ -96,8 +114,8 @@
         "repositoryURL": "https://github.com/shibapm/Rocket",
         "state": {
           "branch": null,
-          "revision": "111050957c6457022794f7316836371b69b0c8e3",
-          "version": "0.9.1"
+          "revision": "f75c9736733b489a3456b4f3a47cf13adb99f197",
+          "version": "0.9.2"
         }
       },
       {
@@ -114,8 +132,8 @@
         "repositoryURL": "https://github.com/eneko/SourceDocs",
         "state": {
           "branch": null,
-          "revision": "951606c945f4a9d3b0b8c2a37fa28ac2c99d25bb",
-          "version": "0.5.1"
+          "revision": "dfa6fdae84c555264ad9795dcb7d629339191c01",
+          "version": "0.6.1"
         }
       },
       {
@@ -123,8 +141,26 @@
         "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
         "state": {
           "branch": null,
-          "revision": "176f04295a09324673245d8ec0afcce21ace8722",
-          "version": "0.22.0"
+          "revision": "356551fc513eb12ed779bb369f79cf86a3a01599",
+          "version": "0.27.0"
+        }
+      },
+      {
+        "package": "llbuild",
+        "repositoryURL": "https://github.com/apple/swift-llbuild.git",
+        "state": {
+          "branch": null,
+          "revision": "f1c9ad9a253cdf1aa89a7f5c99c30b4513b06ddb",
+          "version": "0.1.1"
+        }
+      },
+      {
+        "package": "SwiftPM",
+        "repositoryURL": "https://github.com/apple/swift-package-manager.git",
+        "state": {
+          "branch": null,
+          "revision": "8656a25cb906c1896339f950ac960ee1b4fe8034",
+          "version": "0.4.0"
         }
       },
       {
@@ -132,7 +168,7 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
           "branch": "master",
-          "revision": "12c6a7ce9d67f39a23c6bab757bdb073bd997885",
+          "revision": "acf77ae0b0341e2adceb2289cdea32852822da10",
           "version": null
         }
       },
@@ -141,8 +177,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
           "branch": null,
-          "revision": "b564570c139d1c36292e8a5bb08d4ba6818b0a91",
-          "version": "0.43.0"
+          "revision": "09887f054cfc8e61d3854273b5aeb3455a4ed56c",
+          "version": "0.43.3"
         }
       },
       {
@@ -150,8 +186,8 @@
         "repositoryURL": "https://github.com/Realm/SwiftLint",
         "state": {
           "branch": null,
-          "revision": "26c0048cf4567f0e96f97e2c567ce1c05209e476",
-          "version": "0.31.0"
+          "revision": "8dc3e811934704a3d0e46a8ffd1de785fddcf7ec",
+          "version": "0.38.0"
         }
       },
       {
@@ -177,8 +213,17 @@
         "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
         "state": {
           "branch": null,
-          "revision": "f43166a8e18fdd0857f29e303b1bb79a5428bca0",
-          "version": "4.9.0"
+          "revision": "a4931e5c3bafbedeb1601d3bb76bbe835c6d475a",
+          "version": "5.0.1"
+        }
+      },
+      {
+        "package": "System",
+        "repositoryURL": "https://github.com/eneko/System.git",
+        "state": {
+          "branch": null,
+          "revision": "381352d9479fb9c75d99a5ae5503f7d560c62449",
+          "version": "0.2.0"
         }
       },
       {
@@ -186,26 +231,8 @@
         "repositoryURL": "https://github.com/mxcl/Version",
         "state": {
           "branch": null,
-          "revision": "799aea2cf7669b6b923c32e6adc77cdb3fa4412b",
-          "version": "1.1.2"
-        }
-      },
-      {
-        "package": "XcodeGen",
-        "repositoryURL": "https://github.com/yonaskolb/XcodeGen.git",
-        "state": {
-          "branch": null,
-          "revision": "95bc051d268f6b8b924ae9c84e40566efe90cb80",
-          "version": "2.3.0"
-        }
-      },
-      {
-        "package": "xcodeproj",
-        "repositoryURL": "https://github.com/tuist/xcodeproj.git",
-        "state": {
-          "branch": null,
-          "revision": "8e15cc74149ee946b7ae125685177915b4ff7317",
-          "version": "6.4.0"
+          "revision": "200046c93f6d5d78a6d72bfd9c0b27a95e9c0a2b",
+          "version": "1.2.0"
         }
       },
       {
@@ -213,8 +240,8 @@
         "repositoryURL": "https://github.com/jpsim/Yams.git",
         "state": {
           "branch": null,
-          "revision": "b08dba4bcea978bf1ad37703a384097d3efce5af",
-          "version": "1.0.2"
+          "revision": "c947a306d2e80ecb2c0859047b35c73b8e1ca27f",
+          "version": "2.0.0"
         }
       }
     ]

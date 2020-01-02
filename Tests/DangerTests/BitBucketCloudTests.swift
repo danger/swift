@@ -4,7 +4,7 @@ import XCTest
 
 final class BitBucketCloudTests: XCTestCase {
     private var bitbucketCould: BitBucketCloud {
-        return bitbucketCloudFixtureDSL.bitbucketCloud
+        bitbucketCloudFixtureDSL.bitbucketCloud
     }
 
     func testParsesActivities() {
@@ -12,7 +12,7 @@ final class BitBucketCloudTests: XCTestCase {
 
         XCTAssertEqual(activities, [
             BitBucketCloud.Activity(comment: nil),
-            BitBucketCloud.Activity(comment: nil)
+            BitBucketCloud.Activity(comment: nil),
         ])
     }
 
@@ -36,7 +36,7 @@ final class BitBucketCloudTests: XCTestCase {
                     nickname: "Zagolo",
                     uuid: "{bd1991e4-a3ed-45b2-be38-acea659650f1}"
                 )
-            )
+            ),
         ])
     }
 
@@ -56,7 +56,7 @@ final class BitBucketCloudTests: XCTestCase {
                 date: Date(timeIntervalSince1970: 1_563_114_728.0),
                 hash: "9ab48765728b309d88486a52bb57805fffe20410",
                 message: "README.md edited online with Bitbucket"
-            )
+            ),
         ])
     }
 

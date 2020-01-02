@@ -62,7 +62,7 @@ final class DangerRunner {
 
 // swiftlint:disable:next identifier_name
 public func Danger() -> DangerDSL {
-    return DangerRunner.shared.dsl
+    DangerRunner.shared.dsl
 }
 
 // MARK: - Private Functions

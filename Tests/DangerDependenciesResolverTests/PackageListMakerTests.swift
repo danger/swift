@@ -33,6 +33,6 @@ final class StubbedFileManager: FileManager {
     var stubbedContent: [String] = []
 
     override func contentsOfDirectory(atPath _: String) throws -> [String] {
-        return stubbedContent
+        stubbedContent
     }
 }

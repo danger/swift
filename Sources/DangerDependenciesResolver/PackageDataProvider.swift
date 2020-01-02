@@ -40,18 +40,18 @@ struct PackageDataProvider: PackageDataProviding {
             throw Errors.failedToResolveName(url)
         }
     }
-    
+
     func latestMajorVersionForPackage(at url: URL) throws -> Int {
         guard let releases = try? versions(for: url),
             let latestVersion = releases.sorted().last else {
-                throw Errors.failedToResolveLatestVersion(url)
+            throw Errors.failedToResolveLatestVersion(url)
         }
-        
+
         logger.logInfo("Using \(url.absoluteString) latest major:\(latestVersion.major)")
-        
+
         return latestVersion.major
     }
-    
+
     func resolvePinnedPackages(generatedFolder: String) throws -> [Package.Pinned] {
         struct ResolvedPackagesState: Decodable {
             struct Object: Decodable {
@@ -63,7 +63,7 @@ struct PackageDataProvider: PackageDataProviding {
 
         let data = try fileReader.readData(atPath: generatedFolder.appendingPath("Package.resolved"))
         let state: ResolvedPackagesState = try data.decoded()
-        
+
         return state.object.pins
     }
 
@@ -106,10 +106,10 @@ struct PackageDataProvider: PackageDataProviding {
     private func removeCloneFolder(temporaryFolder: String) {
         try? FileManager.default.removeItem(atPath: temporaryFolder.appendingPath("Clone"))
     }
-    
+
     private func versions(for url: URL) throws -> [Version] {
         let lines = try executor.spawn("git ls-remote", arguments: ["--tags", "\(url.absoluteString)"]).components(separatedBy: .newlines)
-        
+
         return lines.compactMap { line in
             line.components(separatedBy: "refs/tags/").last.flatMap(Version.init)
         }

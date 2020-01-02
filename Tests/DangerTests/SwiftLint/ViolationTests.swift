@@ -23,6 +23,6 @@ class ViolnationTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testDecoding", testDecoding)
+        ("testDecoding", testDecoding),
     ]
 }

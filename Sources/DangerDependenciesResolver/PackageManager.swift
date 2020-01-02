@@ -1,7 +1,7 @@
 import DangerShellExecutor
 import Foundation
-import Version
 import Logger
+import Version
 
 public struct PackageManager {
     enum Errors: Error {
@@ -18,7 +18,7 @@ public struct PackageManager {
     private let fileReader: FileReading
     private let packageDataProvider: PackageDataProviding
     private let logger: Logger
-    private var masterPackageName: String { return "PACKAGES" }
+    private var masterPackageName: String { "PACKAGES" }
 
     // MARK: - Init
 
@@ -182,7 +182,7 @@ extension String {
     }
 
     private var fileManager: FileManager {
-        return .default
+        .default
     }
 
     @discardableResult
@@ -196,11 +196,11 @@ extension String {
     }
 
     func createSubfolder(withName name: String) throws -> String {
-        return try createSubfolder(folderPath: appendingPath(name))
+        try createSubfolder(folderPath: appendingPath(name))
     }
 
     func containsItem(named item: String) -> Bool {
-        return (try? fileManager.contentsOfDirectory(atPath: self).contains(item)) ?? false
+        (try? fileManager.contentsOfDirectory(atPath: self).contains(item)) ?? false
     }
 
     func createSymlink(to originalPath: String, at linkPath: String) throws {

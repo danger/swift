@@ -91,7 +91,7 @@ public struct ScriptManager {
 
                 packageURLs.append(url)
             } else if let firstCharacter = line.unicodeScalars.first,
-                !CharacterSet.alphanumerics.contains(firstCharacter)  {
+                !CharacterSet.alphanumerics.contains(firstCharacter) {
                 break
             }
         }
@@ -129,9 +129,9 @@ public final class Script {
     public let folder: String
 
     private var copyLoopDispatchQueue: DispatchQueue?
-    private var localPath: String { return "Sources/\(name)/main.swift" }
+    private var localPath: String { "Sources/\(name)/main.swift" }
     private var logger: Logger
-    
+
     init(name: String, folder: String, logger: Logger) {
         self.name = name
         self.folder = folder
@@ -158,7 +158,7 @@ public final class Script {
     }
 
     private func editingPath() -> String {
-        return folder.appendingPath(name + ".xcodeproj")
+        folder.appendingPath(name + ".xcodeproj")
     }
 
     private func generateXCodeProjWithConfig(configPath: String) throws {
@@ -166,7 +166,7 @@ public final class Script {
     }
 
     private func sourcesImportPath(forImportPath importPath: String) -> String {
-        return folder
+        folder
             .appendingPath("Sources")
             .appendingPath(name)
             .appendingPath(importPath.fileName)
@@ -221,7 +221,7 @@ public final class Script {
     }
 
     private func expandSymlink() throws -> String {
-        return try ShellExecutor().spawn("readlink \(folder.appendingPath("OriginalFile"))", arguments: [])
+        try ShellExecutor().spawn("readlink \(folder.appendingPath("OriginalFile"))", arguments: [])
     }
 
     private func copyImports(_ imports: [String]) throws {
@@ -290,10 +290,10 @@ private extension String {
     }
 
     var fileName: String {
-        return components(separatedBy: "/").last ?? "Dangerfile.swift"
+        components(separatedBy: "/").last ?? "Dangerfile.swift"
     }
 
     var folderPath: String {
-        return components(separatedBy: "/").dropLast().joined(separator: "/")
+        components(separatedBy: "/").dropLast().joined(separator: "/")
     }
 }
