@@ -5,7 +5,7 @@ final class PackageListMakerTests: XCTestCase {
     func testParsesValidPackages() {
         let expectedResult = Package(name: "test", url: URL(string: "about:blank")!, majorVersion: 5)
         let expectedResult2 = Package(name: "test", url: URL(string: "about:blank")!, majorVersion: 5)
-        var dataReader = StubbedDataReader()
+        let dataReader = StubbedDataReader()
         dataReader.stubbedReadData = { path in
             switch path {
             case "/user/franco/Package1.swift":

@@ -162,7 +162,9 @@ public final class Script {
     }
 
     private func generateXCodeProjWithConfig(configPath: String) throws {
-        try executeSwiftCommand("package generate-xcodeproj --xcconfig-overrides \(configPath)", onFolder: folder, executor: ShellExecutor())
+        try executeSwiftCommand("package generate-xcodeproj --xcconfig-overrides \(configPath)",
+                                onFolder: folder,
+                                executor: ShellExecutor())
     }
 
     private func sourcesImportPath(forImportPath importPath: String) -> String {
@@ -184,7 +186,8 @@ public final class Script {
 
             try ShellExecutor().spawn("open \"\(path)\"", arguments: [])
 
-            logger.logInfo("\nℹ️  Danger will keep running, in order to commit any changes you make in Xcode back to the original script file")
+            logger.logInfo("\nℹ️  Danger will keep running, " +
+                "in order to commit any changes you make in Xcode back to the original script file")
             logger.logInfo("   Press the return key once you're done")
 
             startCopyLoop(imports: imports)
@@ -226,13 +229,18 @@ public final class Script {
 
     private func copyImports(_ imports: [String]) throws {
         try imports.forEach { importPath in
-            try Data(contentsOf: URL(fileURLWithPath: sourcesImportPath(forImportPath: importPath))).write(to: URL(fileURLWithPath: importPath))
+            try Data(contentsOf:
+                URL(fileURLWithPath: sourcesImportPath(forImportPath: importPath)))
+                .write(to: URL(fileURLWithPath: importPath))
         }
     }
 }
 
 @discardableResult
-func executeSwiftCommand(_ command: String, onFolder folder: String? = nil, arguments: [String] = [], executor: ShellExecutor) throws -> String {
+func executeSwiftCommand(_ command: String,
+                         onFolder folder: String? = nil,
+                         arguments: [String] = [],
+                         executor: ShellExecutor) throws -> String {
     func resolveSwiftPath() -> String {
         #if os(Linux)
             return "swift"
@@ -252,7 +260,7 @@ private extension String {
         var value = self
 
         if !hasSuffix(".swift") {
-            value = value + ".swift"
+            value += ".swift"
         }
 
         if !hasPrefix("/") {

@@ -143,7 +143,9 @@ public struct PackageManager {
             return try makePackageDescription(for: script)
         }
 
-        return masterDescription.replacingOccurrences(of: masterPackageName, with: script.name).data(using: .utf8) ?? Data()
+        return masterDescription
+            .replacingOccurrences(of: masterPackageName, with: script.name)
+            .data(using: .utf8) ?? Data()
     }
 
     private func updatePackages() throws {
@@ -162,7 +164,10 @@ public struct PackageManager {
     }
 
     private func resolveSwiftToolsVersion(executor: ShellExecutor, onFolder _: String) throws -> Version {
-        var versionString: String? = try executeSwiftCommand("package", onFolder: folder, arguments: ["--version"], executor: executor)
+        var versionString: String? = try executeSwiftCommand("package",
+                                                             onFolder: folder,
+                                                             arguments: ["--version"],
+                                                             executor: executor)
         versionString = versionString?.components(separatedBy: " (swiftpm").first
         versionString = versionString?.deletingPrefix("Apple Swift Package Manager - Swift ")
 

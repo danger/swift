@@ -31,7 +31,9 @@ struct PackageGenerator {
             "import PackageDescription\n\n" +
             "let package = Package(\n" +
             "    name: \"\(masterPackageName)\",\n" +
-            "    products: [.library(name: \"DangerDependencies\", type: .dynamic, targets: [\"\(masterPackageName)\"])],\n" +
+            "    products: [.library(name: \"DangerDependencies\", " +
+            "type: .dynamic, targets: [\"\(masterPackageName)\"])]," +
+            "\n" +
             "    dependencies: [\n"
 
         for (index, package) in packages.enumerated() {
@@ -61,7 +63,8 @@ struct PackageGenerator {
 
         description.append("    swiftLanguageVersions: [.version(\"\(versionString)\")]\n)")
 
-        fileCreator.createFile(atPath: generatedFolder.appendingPath("Package.swift"), contents: description.data(using: .utf8))
+        fileCreator.createFile(atPath: generatedFolder.appendingPath("Package.swift"),
+                               contents: description.data(using: .utf8))
     }
 
     func makePackageDescriptionHeader(forSwiftToolsVersion toolsVersion: Version) -> String {

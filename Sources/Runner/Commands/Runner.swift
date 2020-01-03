@@ -70,7 +70,9 @@ func runDanger(logger: Logger) throws {
         libArgs += ["-L", libDangerPath] // Link to libDanger inside this folder
         libArgs += ["-I", libDangerPath] // Find libDanger inside this folder
 
-        let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") } // swiftlint:disable:this line_length
+        let importExternalDeps = importsOnly
+            .components(separatedBy: .newlines)
+            .filter { $0.hasPrefix("import") && $0.contains("package: ") } // swiftlint:disable:this line_length
 
         if !importExternalDeps.isEmpty {
             logger.logInfo("Cloning and building inline dependencies:",
@@ -89,7 +91,12 @@ func runDanger(logger: Logger) throws {
             let marathonPath = script.folder
             let artifactPaths = [".build/debug", ".build/release"]
 
-            let marathonLibPath = artifactPaths.lazy.map { marathonPath + "/" + $0 }.filter(fileManager.fileExists).first
+            let marathonLibPath = artifactPaths
+                .lazy
+                .map { marathonPath + "/" + $0 }
+                .filter(fileManager.fileExists)
+                .first
+
             if marathonLibPath != nil {
                 libArgs += ["-L", marathonLibPath!]
                 libArgs += ["-I", marathonLibPath!]

@@ -53,6 +53,7 @@ struct PackageDataProvider: PackageDataProviding {
     }
 
     func resolvePinnedPackages(generatedFolder: String) throws -> [Package.Pinned] {
+        // swiftlint:disable nesting
         struct ResolvedPackagesState: Decodable {
             struct Object: Decodable {
                 let pins: [Package.Pinned]
@@ -60,6 +61,7 @@ struct PackageDataProvider: PackageDataProviding {
 
             let object: Object
         }
+        // swiftlint:enable nesting
 
         let data = try fileReader.readData(atPath: generatedFolder.appendingPath("Package.resolved"))
         let state: ResolvedPackagesState = try data.decoded()
@@ -73,7 +75,11 @@ struct PackageDataProvider: PackageDataProviding {
         logger.logInfo("Cloning \(url.absoluteString)...", isVerbose: true)
 
         let clone = temporaryFolder.appendingPath("Clone")
-        try executor.spawn("git clone", arguments: ["\(url.absoluteString)", "--single-branch", "--depth 1", "\(clone)", "-q"])
+        try executor.spawn("git clone",
+                           arguments: ["\(url.absoluteString)",
+                                       "--single-branch",
+                                       "--depth 1",
+                                       "\(clone)", "-q"])
         let name = try nameOfPackage(in: clone)
         removeCloneFolder(temporaryFolder: temporaryFolder)
 
@@ -108,7 +114,8 @@ struct PackageDataProvider: PackageDataProviding {
     }
 
     private func versions(for url: URL) throws -> [Version] {
-        let lines = try executor.spawn("git ls-remote", arguments: ["--tags", "\(url.absoluteString)"]).components(separatedBy: .newlines)
+        let lines = try executor.spawn("git ls-remote", arguments: ["--tags", "\(url.absoluteString)"])
+            .components(separatedBy: .newlines)
 
         return lines.compactMap { line in
             line.components(separatedBy: "refs/tags/").last.flatMap(Version.init)
