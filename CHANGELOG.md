@@ -13,6 +13,7 @@
 
 ## Master
 
+- Danger dependencies resolver [@f-meloni][] - [#303](htts://github.com/danger/swift/pull/303)
 - Update swift toolchain to 5.0 [@f-meloni][] - [#307](htts://github.com/danger/swift/pull/307) 
 - Move to swift 5.1 [@f-meloni][] - [#275](htts://github.com/danger/swift/pull/275)
 
