@@ -1,8 +1,7 @@
+import DangerDependenciesResolver
 import DangerShellExecutor
-import Files
 import Foundation
 import Logger
-import MarathonCore
 import RunnerLib
 
 // swiftlint:disable:next function_body_length
@@ -51,7 +50,7 @@ func runDanger(logger: Logger) throws {
     var libArgs: [String] = []
 
     // Set up plugin infra
-    let importsOnly = try File(path: dangerfilePath).readAsString()
+    let importsOnly = try String(contentsOfFile: dangerfilePath)
     let executor = ShellExecutor()
 
     if let spmDanger = SPMDanger() {
@@ -71,30 +70,39 @@ func runDanger(logger: Logger) throws {
         libArgs += ["-L", libDangerPath] // Link to libDanger inside this folder
         libArgs += ["-I", libDangerPath] // Find libDanger inside this folder
 
-        let importExternalDeps = importsOnly.components(separatedBy: .newlines).filter { $0.hasPrefix("import") && $0.contains("package: ") } // swiftlint:disable:this line_length
+        let importExternalDeps = importsOnly
+            .components(separatedBy: .newlines)
+            .filter { $0.hasPrefix("import") && $0.contains("package: ") }
 
         if !importExternalDeps.isEmpty {
             logger.logInfo("Cloning and building inline dependencies:",
                            "\(importExternalDeps.joined(separator: ", ")),",
                            "this might take some time.")
 
-            try Folder(path: ".").createFileIfNeeded(withName: "_dangerfile_imports.swift")
-            let tempDangerfile = try File(path: "_dangerfile_imports.swift")
-            try tempDangerfile.write(string: importExternalDeps.joined(separator: "\n"))
-            defer { try? tempDangerfile.delete() }
+            let tempDangerfile = "_dangerfile_imports.swift"
+            try importExternalDeps
+                .joined(separator: "\n")
+                .write(toFile: tempDangerfile, atomically: false, encoding: .utf8)
+
+            defer { try? FileManager.default.removeItem(atPath: tempDangerfile) }
 
             let scriptManager = try getScriptManager(logger)
-            let script = try scriptManager.script(atPath: tempDangerfile.path, allowRemote: true)
+            let script = try scriptManager.script(atPath: tempDangerfile)
 
             try script.build()
-            let marathonPath = script.folder.path
+            let marathonPath = script.folder
             let artifactPaths = [".build/debug", ".build/release"]
 
-            let marathonLibPath = artifactPaths.first(where: { fileManager.fileExists(atPath: marathonPath + $0) })
+            let marathonLibPath = artifactPaths
+                .lazy
+                .map { marathonPath + "/" + $0 }
+                .filter(fileManager.fileExists)
+                .first
+
             if marathonLibPath != nil {
-                libArgs += ["-L", marathonPath + marathonLibPath!]
-                libArgs += ["-I", marathonPath + marathonLibPath!]
-                libArgs += ["-lMarathonDependencies"]
+                libArgs += ["-L", marathonLibPath!]
+                libArgs += ["-I", marathonLibPath!]
+                libArgs += ["-lDangerDependencies"]
             }
         }
 

@@ -117,6 +117,7 @@ public struct ShellExecutor: ShellExecuting {
         }
 
         let script = "\(command) \(arguments.joined(separator: " "))" + scriptOutputFile
+
         let task = Process()
         task.launchPath = "/bin/sh"
         task.arguments = ["-c", script]

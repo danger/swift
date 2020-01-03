@@ -1,7 +1,6 @@
-import Files
+import DangerDependenciesResolver
 import Foundation
 import Logger
-import MarathonCore
 import RunnerLib
 
 func editDanger(logger: Logger) throws {
@@ -9,13 +8,12 @@ func editDanger(logger: Logger) throws {
 
     if let dangerfileArgumentPath = DangerfilePathFinder.dangerfilePath() {
         dangerfilePath = dangerfileArgumentPath
-
-        if !FileManager.default.fileExists(atPath: dangerfileArgumentPath) {
-            createDangerfile(dangerfileArgumentPath)
-        }
-
     } else {
-        dangerfilePath = Runtime.getDangerfile() ?? createDangerfile("Dangerfile.swift")
+        dangerfilePath = Runtime.getDangerfile() ?? "Dangerfile.swift"
+    }
+
+    if !FileManager.default.fileExists(atPath: dangerfilePath) {
+        createDangerfile(dangerfilePath)
     }
 
     let absoluteLibPath: String
@@ -34,11 +32,11 @@ func editDanger(logger: Logger) throws {
             exit(1)
         }
 
-        absoluteLibPath = try Folder(path: libPath).path
+        absoluteLibPath = libPath.fullPath
         libsImport = ["-l Danger"]
     }
 
-    guard let dangerfileContent = try? File(path: dangerfilePath).readAsString() else {
+    guard let dangerfileContent = try? String(contentsOfFile: dangerfilePath) else {
         logger.logError("Could not read the dangerPath")
         exit(1)
     }
@@ -46,27 +44,38 @@ func editDanger(logger: Logger) throws {
     let importsFinder = ImportsFinder()
     let importedFiles = importsFinder.findImports(inString: dangerfileContent)
 
-    let arguments = CommandLine.arguments
     let scriptManager = try getScriptManager(logger)
-    let script = try scriptManager.script(atPath: dangerfilePath, allowRemote: true)
+    let script = try scriptManager.script(atPath: dangerfilePath)
 
     let configPath = NSTemporaryDirectory() + "config.xcconfig"
 
     try createConfig(atPath: configPath, libPath: absoluteLibPath, libsImport: libsImport)
 
-    try script.setupForEdit(arguments: arguments, importedFiles: importedFiles, configPath: configPath)
-
-    try script.watch(arguments: arguments, importedFiles: importedFiles)
+    try script.setupForEdit(importedFiles: importedFiles, configPath: configPath)
+    try script.watch(importedFiles: importedFiles)
 }
 
-@discardableResult
-private func createDangerfile(_ dangerfilePath: String) -> String {
-    do {
-        let template = "import Danger \nlet danger = Danger()"
-        let data = template.data(using: .utf8)!
-        return try FileSystem().createFile(at: dangerfilePath, contents: data).path
-    } catch {
-        logger.logError("Could not find or generate a Dangerfile")
-        exit(1)
+private func createDangerfile(_ dangerfilePath: String) {
+    let template = "import Danger \nlet danger = Danger()"
+    let data = template.data(using: .utf8)!
+
+    FileManager.default.createFile(atPath: dangerfilePath, contents: data, attributes: [:])
+}
+
+private extension String {
+    var fullPath: String {
+        if hasPrefix("/") {
+            return self
+        } else {
+            return FileManager.default.currentDirectoryPath.appendingPath(self)
+        }
+    }
+
+    func appendingPath(_ path: String) -> String {
+        if hasSuffix("/") {
+            return self + path
+        } else {
+            return self + "/" + path
+        }
     }
 }

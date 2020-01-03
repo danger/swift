@@ -8,7 +8,7 @@ final class DangerJSVersionFinderTests: XCTestCase {
 
         let dangerJSPath = "/test/danger"
 
-        let version = try DangerJSVersionFinder.findDangerJSVersion(dangerJSPath: dangerJSPath, executor: executor)
+        let version = DangerJSVersionFinder.findDangerJSVersion(dangerJSPath: dangerJSPath, executor: executor)
 
         XCTAssertEqual(executor.receivedCommand, dangerJSPath + " --version")
         XCTAssertEqual(version, executor.result)

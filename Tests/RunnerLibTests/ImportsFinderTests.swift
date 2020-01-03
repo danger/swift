@@ -27,9 +27,9 @@ extension ImportsFinderTests {
     private var stringWithImports: String {
         """
         // fileImport: File1
-        
+
         text text
-        
+
         // fileImport: File2
         """
     }
@@ -37,9 +37,9 @@ extension ImportsFinderTests {
     private var stringWithoutImports: String {
         """
         // comment
-        
+
         text text
-        
+
         more text
         """
     }
