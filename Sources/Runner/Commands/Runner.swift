@@ -72,7 +72,7 @@ func runDanger(logger: Logger) throws {
 
         let importExternalDeps = importsOnly
             .components(separatedBy: .newlines)
-            .filter { $0.hasPrefix("import") && $0.contains("package: ") } // swiftlint:disable:this line_length
+            .filter { $0.hasPrefix("import") && $0.contains("package: ") }
 
         if !importExternalDeps.isEmpty {
             logger.logInfo("Cloning and building inline dependencies:",
@@ -80,7 +80,9 @@ func runDanger(logger: Logger) throws {
                            "this might take some time.")
 
             let tempDangerfile = "_dangerfile_imports.swift"
-            try importExternalDeps.joined(separator: "\n").write(toFile: tempDangerfile, atomically: false, encoding: .utf8)
+            try importExternalDeps
+                .joined(separator: "\n")
+                .write(toFile: tempDangerfile, atomically: false, encoding: .utf8)
 
             defer { try? FileManager.default.removeItem(atPath: tempDangerfile) }
 
