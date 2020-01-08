@@ -4,6 +4,8 @@ import Foundation
 /// The SwiftLint plugin has been embedded inside Danger, making
 /// it usable out of the box.
 public enum SwiftLint {
+    public typealias FilesFilter = ((_ file: File) -> Bool)
+
     static let danger = Danger()
     static let shellExecutor = ShellExecutor()
 
@@ -14,8 +16,13 @@ public enum SwiftLint {
     /// otherwise calls directly the swiftlint command
 
     @discardableResult
-    public static func lint(inline: Bool = false, directory: String? = nil,
-                            configFile: String? = nil, strict: Bool = false, lintAllFiles: Bool = false,
+    public static func lint(inline: Bool = false,
+                            directory: String? = nil,
+                            configFile: String? = nil,
+                            strict: Bool = false,
+                            quiet: Bool = true,
+                            lintAllFiles: Bool = false,
+                            filesFilter: FilesFilter? = nil,
                             swiftlintPath: String? = nil) -> [SwiftLintViolation] {
         lint(danger: danger,
              shellExecutor: shellExecutor,
@@ -24,7 +31,9 @@ public enum SwiftLint {
              directory: directory,
              configFile: configFile,
              strict: strict,
-             lintAllFiles: lintAllFiles)
+             quiet: quiet,
+             lintAllFiles: lintAllFiles,
+             filesFilter: filesFilter)
     }
 }
 
@@ -39,7 +48,9 @@ extension SwiftLint {
         directory: String? = nil,
         configFile: String? = nil,
         strict: Bool = false,
+        quiet: Bool = true,
         lintAllFiles: Bool = false,
+        filesFilter: FilesFilter? = nil,
         currentPathProvider: CurrentPathProvider = DefaultCurrentPathProvider(),
         outputFilePath: String = tmpSwiftlintOutputFilePath,
         reportDeleter: SwiftlintReportDeleting = SwiftlintReportDeleter(),
@@ -49,7 +60,17 @@ extension SwiftLint {
         warnInlineAction: (String, String, Int) -> Void = warn,
         readFile: (String) -> String = danger.utils.readFile
     ) -> [SwiftLintViolation] {
-        var arguments = ["lint", "--quiet", "--reporter json"]
+
+        if filesFilter != nil && lintAllFiles {
+            failAction("You can't use a files filter when lintAllFiles is set to `true`.")
+            return []
+        }
+
+        var arguments = ["lint", "--reporter json"]
+
+        if quiet {
+            arguments.append("--quiet")
+        }
 
         if let configFile = configFile {
             arguments.append("--config \"\(configFile)\"")
@@ -72,6 +93,7 @@ extension SwiftLint {
         } else {
             violations = lintModifiedAndCreated(danger: danger,
                                                 directory: directory,
+                                                filesFilter: filesFilter,
                                                 arguments: arguments,
                                                 shellExecutor: shellExecutor,
                                                 swiftlintPath: swiftlintPath,
@@ -146,6 +168,7 @@ extension SwiftLint {
     // swiftlint:disable function_parameter_count
     private static func lintModifiedAndCreated(danger: DangerDSL,
                                                directory: String?,
+                                               filesFilter: FilesFilter?,
                                                arguments: [String],
                                                shellExecutor: ShellExecuting,
                                                swiftlintPath: String,
@@ -156,6 +179,10 @@ extension SwiftLint {
         var files = (danger.git.createdFiles + danger.git.modifiedFiles).filter { $0.fileType == .swift }
         if let directory = directory {
             files = files.filter { $0.hasPrefix(directory) }
+        }
+
+        if let filesFilter = filesFilter {
+            files = files.filter(filesFilter)
         }
 
         // Only run Swiftlint, if there are files to lint

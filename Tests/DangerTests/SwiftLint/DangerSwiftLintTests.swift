@@ -135,6 +135,38 @@ final class DangerSwiftLintTests: XCTestCase {
         }
     }
 
+    func testExecutesVerboseIfNotQuiet() {
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           quiet: false,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
+
+        let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
+        XCTAssertTrue(!swiftlintCommands.isEmpty)
+        swiftlintCommands.forEach { _, arguments, _, _ in
+            XCTAssertFalse(arguments.contains("--quiet"))
+        }
+    }
+
+    func testExecutesQuiet() {
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           quiet: true,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
+
+        let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
+        XCTAssertTrue(!swiftlintCommands.isEmpty)
+        swiftlintCommands.forEach { _, arguments, _, _ in
+            XCTAssertTrue(arguments.contains("--quiet"))
+        }
+    }
+
     func testSendsOuputFileToTheExecutorWhenLintingModifiedFiles() {
         let configFile = "/Path/to/config/.swiftlint.yml"
 
@@ -247,6 +279,47 @@ final class DangerSwiftLintTests: XCTestCase {
         let filesExtensions = Set(executor.invocations.first!.environmentVariables.filter { $0.key != "SCRIPT_INPUT_FILE_COUNT" }.values.compactMap { $0.split(separator: ".").last?.trimmingCharacters(in: quoteCharacterSet)
         })
         XCTAssertEqual(filesExtensions, ["swift"])
+    }
+
+    func testFailsWithFilterAndAllFiles() {
+        var failedMessage: String?
+        let failAction: (String) -> Void = { failedMessage = $0 }
+
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           inline: true,
+                           lintAllFiles: true,
+                           filesFilter: { _ in true },
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           failAction: failAction,
+                           readFile: mockedViolationJSON)
+        XCTAssertEqual(failedMessage, "You can't use a files filter when lintAllFiles is set to `true`.")
+    }
+
+    func testFileFilter() {
+        let modified = [
+            "Tests/SomeFile.swift",
+            "Harvey/SomeOtherFile.swift",
+            "ExampleTests.swift",
+            "circle.yml",
+        ]
+        danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
+
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           filesFilter: { file in
+                                return !file.contains("Tests")
+                           },
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
+
+        let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
+        XCTAssertEqual(swiftlintCommands.count, 1)
+        XCTAssertEqual(swiftlintCommands.first!.environmentVariables, ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"])
     }
 
     func testPrintsNoMarkdownIfNoViolations() {
@@ -382,6 +455,10 @@ final class DangerSwiftLintTests: XCTestCase {
         ("testViolations", testViolations),
         ("testMarkdownReporting", testMarkdownReporting),
         ("testQuotesPathArguments", testQuotesPathArguments),
+        ("testExecutesVerboseIfNotQuiet", testExecutesVerboseIfNotQuiet),
+        ("testExecutesQuiet", testExecutesQuiet),
+        ("testFileFilter", testFileFilter),
+        ("testFailsWithFilterAndAllFiles", testFailsWithFilterAndAllFiles)
     ]
 }
 
