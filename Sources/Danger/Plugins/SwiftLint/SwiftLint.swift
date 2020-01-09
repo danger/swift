@@ -33,7 +33,14 @@ public enum SwiftLint {
                             quiet: Bool = true,
                             lintAllFiles: Bool = false,
                             swiftlintPath: String? = nil) -> [SwiftLintViolation] {
-        let lintStyle: LintStyle = lintAllFiles ? .all(directory: directory) : .modifiedAndCreatedFiles(directory: directory)
+        let lintStyle: LintStyle = {
+            if lintAllFiles {
+                return .all(directory: directory)
+            } else {
+                return .modifiedAndCreatedFiles(directory: directory)
+            }
+        }()
+
         return lint(lintStyle,
                     inline: inline,
                     configFile: configFile,
@@ -144,38 +151,12 @@ extension SwiftLint {
             return []
         }
 
-        let currentPath = currentPathProvider.currentPath
-        violations = violations.map { violation in
-            var violation = violation
-
-            let updatedPath = violation.file.deletingPrefix(currentPath).deletingPrefix("/")
-            violation.file = updatedPath
-
-            if strict {
-                violation.severity = .error
-            }
-            return violation
-        }
-
-        if inline {
-            violations.forEach { violation in
-                switch violation.severity {
-                case .error:
-                    failInlineAction(violation.messageText, violation.file, violation.line)
-                case .warning:
-                    warnInlineAction(violation.messageText, violation.file, violation.line)
-                }
-            }
-        } else {
-            var markdownMessage = """
-            ### SwiftLint found issues
-
-            | Severity | File | Reason |
-            | -------- | ---- | ------ |\n
-            """
-            markdownMessage += violations.map { $0.toMarkdown() }.joined(separator: "\n")
-            markdownAction(markdownMessage)
-        }
+        violations = violations.updatingForCurrentPathProvider(currentPathProvider, strictSeverity: strict)
+        handleViolations(violations,
+                         inline: inline,
+                         markdownAction: markdownAction,
+                         failInlineAction: failInlineAction,
+                         warnInlineAction: warnInlineAction)
 
         return violations
     }
@@ -214,7 +195,7 @@ extension SwiftLint {
                                   readFile: (String) -> String) -> [SwiftLintViolation] {
 
         let files = files.filter { $0.fileType == .swift }
-        
+
         // Only run Swiftlint, if there are files to lint
         guard !files.isEmpty else {
             return []
@@ -247,6 +228,33 @@ extension SwiftLint {
             return "swift run swiftlint"
         } else {
             return "swiftlint"
+        }
+    }
+
+    /// Prints out the violation either inline or in Markdown.
+    private static func handleViolations(_ violations: [SwiftLintViolation],
+                                         inline: Bool,
+                                         markdownAction: (String) -> Void,
+                                         failInlineAction: (String, String, Int) -> Void,
+                                         warnInlineAction: (String, String, Int) -> Void) {
+        if inline {
+            violations.forEach { violation in
+                switch violation.severity {
+                case .error:
+                    failInlineAction(violation.messageText, violation.file, violation.line)
+                case .warning:
+                    warnInlineAction(violation.messageText, violation.file, violation.line)
+                }
+            }
+        } else {
+            var markdownMessage = """
+            ### SwiftLint found issues
+
+            | Severity | File | Reason |
+            | -------- | ---- | ------ |\n
+            """
+            markdownMessage += violations.map { $0.toMarkdown() }.joined(separator: "\n")
+            markdownAction(markdownMessage)
         }
     }
 
@@ -290,5 +298,22 @@ private extension String {
     func deletingPrefix(_ prefix: String) -> String {
         guard hasPrefix(prefix) else { return self }
         return String(dropFirst(prefix.count))
+    }
+}
+
+private extension Array where Element == SwiftLintViolation {
+    func updatingForCurrentPathProvider(_ currentPathProvider: CurrentPathProvider, strictSeverity: Bool) -> [Element] {
+        let currentPath = currentPathProvider.currentPath
+        return map { violation -> SwiftLintViolation in
+            var violation = violation
+
+            let updatedPath = violation.file.deletingPrefix(currentPath).deletingPrefix("/")
+            violation.file = updatedPath
+
+            if strictSeverity {
+                violation.severity = .error
+            }
+            return violation
+        }
     }
 }
