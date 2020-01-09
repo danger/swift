@@ -61,7 +61,7 @@ public enum SwiftLint {
 extension SwiftLint {
     // swiftlint:disable:next function_body_length
     static func lint(
-        lintStyle: LintStyle,
+        lintStyle: LintStyle = .modifiedAndCreatedFiles(directory: nil),
         danger: DangerDSL,
         shellExecutor: ShellExecuting,
         swiftlintPath: String,
