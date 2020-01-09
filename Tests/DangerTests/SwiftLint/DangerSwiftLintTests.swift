@@ -135,6 +135,38 @@ final class DangerSwiftLintTests: XCTestCase {
         }
     }
 
+    func testExecutesVerboseIfNotQuiet() {
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           quiet: false,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
+
+        let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
+        XCTAssertTrue(!swiftlintCommands.isEmpty)
+        swiftlintCommands.forEach { _, arguments, _, _ in
+            XCTAssertFalse(arguments.contains("--quiet"))
+        }
+    }
+
+    func testExecutesQuiet() {
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           quiet: true,
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
+
+        let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
+        XCTAssertTrue(!swiftlintCommands.isEmpty)
+        swiftlintCommands.forEach { _, arguments, _, _ in
+            XCTAssertTrue(arguments.contains("--quiet"))
+        }
+    }
+
     func testSendsOuputFileToTheExecutorWhenLintingModifiedFiles() {
         let configFile = "/Path/to/config/.swiftlint.yml"
 
@@ -152,11 +184,11 @@ final class DangerSwiftLintTests: XCTestCase {
     func testSendsOuputFileToTheExecutorWhenLintingAllTheFiles() {
         let configFile = "/Path/to/config/.swiftlint.yml"
 
-        _ = SwiftLint.lint(danger: danger,
+        _ = SwiftLint.lint(lintStyle: .all(directory: nil),
+                           danger: danger,
                            shellExecutor: executor,
                            swiftlintPath: "swiftlint",
                            configFile: configFile,
-                           lintAllFiles: true,
                            currentPathProvider: fakePathProvider,
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
@@ -174,10 +206,10 @@ final class DangerSwiftLintTests: XCTestCase {
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
-        _ = SwiftLint.lint(danger: danger,
+        _ = SwiftLint.lint(lintStyle: .modifiedAndCreatedFiles(directory: directory),
+                           danger: danger,
                            shellExecutor: executor,
                            swiftlintPath: "swiftlint",
-                           directory: directory,
                            currentPathProvider: fakePathProvider,
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
@@ -196,10 +228,10 @@ final class DangerSwiftLintTests: XCTestCase {
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
-        _ = SwiftLint.lint(danger: danger,
+        _ = SwiftLint.lint(lintStyle: .all(directory: nil),
+                           danger: danger,
                            shellExecutor: executor,
                            swiftlintPath: "swiftlint",
-                           lintAllFiles: true,
                            currentPathProvider: fakePathProvider,
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
@@ -219,11 +251,10 @@ final class DangerSwiftLintTests: XCTestCase {
         ]
         danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
 
-        _ = SwiftLint.lint(danger: danger,
+        _ = SwiftLint.lint(lintStyle: .all(directory: directory),
+                           danger: danger,
                            shellExecutor: executor,
                            swiftlintPath: "swiftlint",
-                           directory: directory,
-                           lintAllFiles: true,
                            currentPathProvider: fakePathProvider,
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
@@ -247,6 +278,50 @@ final class DangerSwiftLintTests: XCTestCase {
         let filesExtensions = Set(executor.invocations.first!.environmentVariables.filter { $0.key != "SCRIPT_INPUT_FILE_COUNT" }.values.compactMap { $0.split(separator: ".").last?.trimmingCharacters(in: quoteCharacterSet)
         })
         XCTAssertEqual(filesExtensions, ["swift"])
+    }
+
+    func testSpecificFilesLintStyle() {
+        let modified = [
+            "Tests/SomeFile.swift",
+            "Harvey/SomeOtherFile.swift",
+            "ExampleTests.swift",
+            "circle.yml",
+        ]
+        danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
+
+        _ = SwiftLint.lint(lintStyle: .files(["Harvey/SomeOtherFile.swift"]),
+                           danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
+
+        let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
+        XCTAssertEqual(swiftlintCommands.count, 1)
+        XCTAssertEqual(swiftlintCommands.first!.environmentVariables, ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"])
+    }
+
+    func testSpecificFilesSwiftOnlyFilter() {
+        let modified = [
+            "Tests/SomeFile.swift",
+            "Harvey/SomeOtherFile.swift",
+            "ExampleTests.swift",
+            "circle.yml",
+        ]
+        danger = githubWithFilesDSL(created: [], modified: modified, deleted: [], fileMap: [:])
+
+        _ = SwiftLint.lint(lintStyle: .files(["Harvey/SomeOtherFile.swift", "circle.yml"]),
+                           danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           readFile: mockedEmptyJSON)
+
+        let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
+        XCTAssertEqual(swiftlintCommands.count, 1)
+        XCTAssertEqual(swiftlintCommands.first!.environmentVariables, ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"])
     }
 
     func testPrintsNoMarkdownIfNoViolations() {
@@ -382,6 +457,10 @@ final class DangerSwiftLintTests: XCTestCase {
         ("testViolations", testViolations),
         ("testMarkdownReporting", testMarkdownReporting),
         ("testQuotesPathArguments", testQuotesPathArguments),
+        ("testExecutesVerboseIfNotQuiet", testExecutesVerboseIfNotQuiet),
+        ("testExecutesQuiet", testExecutesQuiet),
+        ("testSpecificFilesLintStyle", testSpecificFilesLintStyle),
+        ("testSpecificFilesSwiftOnlyFilter", testSpecificFilesSwiftOnlyFilter)
     ]
 }
 

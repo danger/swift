@@ -13,13 +13,14 @@
 
 ## Master
 
-- Danger dependencies resolver [@f-meloni][] - [#303](htts://github.com/danger/swift/pull/303)
-- Update swift toolchain to 5.0 [@f-meloni][] - [#307](htts://github.com/danger/swift/pull/307) 
-- Move to swift 5.1 [@f-meloni][] - [#275](htts://github.com/danger/swift/pull/275)
+- Danger dependencies resolver [@f-meloni][] - [#303](https://github.com/danger/swift/pull/303)
+- Update swift toolchain to 5.0 [@f-meloni][] - [#307](https://github.com/danger/swift/pull/307) 
+- Move to swift 5.1 [@f-meloni][] - [#275](https://github.com/danger/swift/pull/275)
+- Add a new `LintStyle` enum to be able to also lint a specific set of files with SwiftLint [@avdlee][] - [#308](https://github.com/danger/swift/pull/308)
 
 ## 2.0.7
 
-- Use enums as namespace [@f-meloni][] - [#296](htts://github.com/danger/swift/pull/296) 
+- Use enums as namespace [@f-meloni][] - [#296](https://github.com/danger/swift/pull/296) 
 - Add error message when danger js is not installed [@f-meloni][] - [#295](https://github.com/danger/swift/pull/295)
 - Read standard error when the shell executor fails [@f-meloni][] - [#288](https://github.com/danger/swift/pull/288)
 - Add --version support [@f-meloni][] - [#287](https://github.com/danger/swift/pull/287)
@@ -371,3 +372,4 @@ This release also includes:
 [@manicmaniac]: https://github.com/manicmaniac
 [@khoogheem]: https://github.com/khoogheem
 [@fortmarek]: https://github.com/danger/swift/pull/283
+[@avdlee]: https://github.com/AvdLee

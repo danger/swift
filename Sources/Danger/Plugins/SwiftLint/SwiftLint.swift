@@ -4,27 +4,71 @@ import Foundation
 /// The SwiftLint plugin has been embedded inside Danger, making
 /// it usable out of the box.
 public enum SwiftLint {
+    public enum LintStyle {
+        /// Lints all the files instead of only the modified and created files.
+        /// - Parameters:
+        ///   - directory: Optional property to set the --path to execute at.
+        case all(directory: String?)
+
+        /// Only lints the modified and created files with `.swift` extension.
+        /// - Parameters:
+        ///   - directory: Optional property to set the --path to execute at.
+        case modifiedAndCreatedFiles(directory: String?)
+
+        /// Lints only the given files. This can be useful to do some manual filtering.
+        /// The files will be filtered on `.swift` only.
+        case files([File])
+    }
+
     static let danger = Danger()
     static let shellExecutor = ShellExecutor()
+
+    /// This method is deprecated in favor of
+    @available(*, deprecated, message: "Use the lint(_ lintStyle ..) method instead.")
+    @discardableResult
+    public static func lint(inline: Bool = false,
+                            directory: String? = nil,
+                            configFile: String? = nil,
+                            strict: Bool = false,
+                            quiet: Bool = true,
+                            lintAllFiles: Bool = false,
+                            swiftlintPath: String? = nil) -> [SwiftLintViolation] {
+        let lintStyle: LintStyle = {
+            if lintAllFiles {
+                return .all(directory: directory)
+            } else {
+                return .modifiedAndCreatedFiles(directory: directory)
+            }
+        }()
+
+        return lint(lintStyle,
+                    inline: inline,
+                    configFile: configFile,
+                    strict: strict,
+                    quiet: quiet,
+                    swiftlintPath: swiftlintPath)
+    }
 
     /// This is the main entry point for linting Swift in PRs.
     ///
     /// When the swiftlintPath is not specified,
     /// it uses by default swift run swiftlint if the Package.swift contains swiftlint as dependency,
     /// otherwise calls directly the swiftlint command
-
     @discardableResult
-    public static func lint(inline: Bool = false, directory: String? = nil,
-                            configFile: String? = nil, strict: Bool = false, lintAllFiles: Bool = false,
+    public static func lint(_ lintStyle: LintStyle = .modifiedAndCreatedFiles(directory: nil),
+                            inline: Bool = false,
+                            configFile: String? = nil,
+                            strict: Bool = false,
+                            quiet: Bool = true,
                             swiftlintPath: String? = nil) -> [SwiftLintViolation] {
-        lint(danger: danger,
+        lint(lintStyle: lintStyle,
+             danger: danger,
              shellExecutor: shellExecutor,
              swiftlintPath: swiftlintPath ?? SwiftLint.swiftlintDefaultPath(),
              inline: inline,
-             directory: directory,
              configFile: configFile,
              strict: strict,
-             lintAllFiles: lintAllFiles)
+             quiet: quiet)
     }
 }
 
@@ -32,14 +76,14 @@ public enum SwiftLint {
 extension SwiftLint {
     // swiftlint:disable:next function_body_length
     static func lint(
+        lintStyle: LintStyle = .modifiedAndCreatedFiles(directory: nil),
         danger: DangerDSL,
         shellExecutor: ShellExecuting,
         swiftlintPath: String,
         inline: Bool = false,
-        directory: String? = nil,
         configFile: String? = nil,
         strict: Bool = false,
-        lintAllFiles: Bool = false,
+        quiet: Bool = true,
         currentPathProvider: CurrentPathProvider = DefaultCurrentPathProvider(),
         outputFilePath: String = tmpSwiftlintOutputFilePath,
         reportDeleter: SwiftlintReportDeleting = SwiftlintReportDeleter(),
@@ -49,7 +93,12 @@ extension SwiftLint {
         warnInlineAction: (String, String, Int) -> Void = warn,
         readFile: (String) -> String = danger.utils.readFile
     ) -> [SwiftLintViolation] {
-        var arguments = ["lint", "--quiet", "--reporter json"]
+
+        var arguments = ["lint", "--reporter json"]
+
+        if quiet {
+            arguments.append("--quiet")
+        }
 
         if let configFile = configFile {
             arguments.append("--config \"\(configFile)\"")
@@ -60,7 +109,9 @@ extension SwiftLint {
         }
 
         var violations: [SwiftLintViolation]
-        if lintAllFiles {
+
+        switch lintStyle {
+        case .all(let directory):
             // Allow folks to lint all the potential files
             violations = lintAll(directory: directory,
                                  arguments: arguments,
@@ -69,53 +120,43 @@ extension SwiftLint {
                                  outputFilePath: outputFilePath,
                                  failAction: failAction,
                                  readFile: readFile)
-        } else {
-            violations = lintModifiedAndCreated(danger: danger,
-                                                directory: directory,
-                                                arguments: arguments,
-                                                shellExecutor: shellExecutor,
-                                                swiftlintPath: swiftlintPath,
-                                                outputFilePath: outputFilePath,
-                                                failAction: failAction,
-                                                readFile: readFile)
+        case .modifiedAndCreatedFiles(let directory):
+            // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
+            var files = (danger.git.createdFiles + danger.git.modifiedFiles)
+            if let directory = directory {
+                files = files.filter { $0.hasPrefix(directory) }
+            }
+
+            violations = lintFiles(files,
+                                   danger: danger,
+                                   arguments: arguments,
+                                   shellExecutor: shellExecutor,
+                                   swiftlintPath: swiftlintPath,
+                                   outputFilePath: outputFilePath,
+                                   failAction: failAction,
+                                   readFile: readFile)
+
+        case .files(let files):
+            violations = lintFiles(files,
+                                   danger: danger,
+                                   arguments: arguments,
+                                   shellExecutor: shellExecutor,
+                                   swiftlintPath: swiftlintPath,
+                                   outputFilePath: outputFilePath,
+                                   failAction: failAction,
+                                   readFile: readFile)
         }
 
         guard !violations.isEmpty else {
             return []
         }
 
-        let currentPath = currentPathProvider.currentPath
-        violations = violations.map { violation in
-            var violation = violation
-
-            let updatedPath = violation.file.deletingPrefix(currentPath).deletingPrefix("/")
-            violation.file = updatedPath
-
-            if strict {
-                violation.severity = .error
-            }
-            return violation
-        }
-
-        if inline {
-            violations.forEach { violation in
-                switch violation.severity {
-                case .error:
-                    failInlineAction(violation.messageText, violation.file, violation.line)
-                case .warning:
-                    warnInlineAction(violation.messageText, violation.file, violation.line)
-                }
-            }
-        } else {
-            var markdownMessage = """
-            ### SwiftLint found issues
-
-            | Severity | File | Reason |
-            | -------- | ---- | ------ |\n
-            """
-            markdownMessage += violations.map { $0.toMarkdown() }.joined(separator: "\n")
-            markdownAction(markdownMessage)
-        }
+        violations = violations.updatingForCurrentPathProvider(currentPathProvider, strictSeverity: strict)
+        handleViolations(violations,
+                         inline: inline,
+                         markdownAction: markdownAction,
+                         failInlineAction: failInlineAction,
+                         warnInlineAction: warnInlineAction)
 
         return violations
     }
@@ -144,19 +185,16 @@ extension SwiftLint {
     }
 
     // swiftlint:disable function_parameter_count
-    private static func lintModifiedAndCreated(danger: DangerDSL,
-                                               directory: String?,
-                                               arguments: [String],
-                                               shellExecutor: ShellExecuting,
-                                               swiftlintPath: String,
-                                               outputFilePath: String,
-                                               failAction: (String) -> Void,
-                                               readFile: (String) -> String) -> [SwiftLintViolation] {
-        // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
-        var files = (danger.git.createdFiles + danger.git.modifiedFiles).filter { $0.fileType == .swift }
-        if let directory = directory {
-            files = files.filter { $0.hasPrefix(directory) }
-        }
+    private static func lintFiles(_ files: [File],
+                                  danger: DangerDSL,
+                                  arguments: [String],
+                                  shellExecutor: ShellExecuting,
+                                  swiftlintPath: String,
+                                  outputFilePath: String,
+                                  failAction: (String) -> Void,
+                                  readFile: (String) -> String) -> [SwiftLintViolation] {
+
+        let files = files.filter { $0.fileType == .swift }
 
         // Only run Swiftlint, if there are files to lint
         guard !files.isEmpty else {
@@ -190,6 +228,33 @@ extension SwiftLint {
             return "swift run swiftlint"
         } else {
             return "swiftlint"
+        }
+    }
+
+    /// Prints out the violation either inline or in Markdown.
+    private static func handleViolations(_ violations: [SwiftLintViolation],
+                                         inline: Bool,
+                                         markdownAction: (String) -> Void,
+                                         failInlineAction: (String, String, Int) -> Void,
+                                         warnInlineAction: (String, String, Int) -> Void) {
+        if inline {
+            violations.forEach { violation in
+                switch violation.severity {
+                case .error:
+                    failInlineAction(violation.messageText, violation.file, violation.line)
+                case .warning:
+                    warnInlineAction(violation.messageText, violation.file, violation.line)
+                }
+            }
+        } else {
+            var markdownMessage = """
+            ### SwiftLint found issues
+
+            | Severity | File | Reason |
+            | -------- | ---- | ------ |\n
+            """
+            markdownMessage += violations.map { $0.toMarkdown() }.joined(separator: "\n")
+            markdownAction(markdownMessage)
         }
     }
 
@@ -233,5 +298,22 @@ private extension String {
     func deletingPrefix(_ prefix: String) -> String {
         guard hasPrefix(prefix) else { return self }
         return String(dropFirst(prefix.count))
+    }
+}
+
+private extension Array where Element == SwiftLintViolation {
+    func updatingForCurrentPathProvider(_ currentPathProvider: CurrentPathProvider, strictSeverity: Bool) -> [Element] {
+        let currentPath = currentPathProvider.currentPath
+        return map { violation -> SwiftLintViolation in
+            var violation = violation
+
+            let updatedPath = violation.file.deletingPrefix(currentPath).deletingPrefix("/")
+            violation.file = updatedPath
+
+            if strictSeverity {
+                violation.severity = .error
+            }
+            return violation
+        }
     }
 }
