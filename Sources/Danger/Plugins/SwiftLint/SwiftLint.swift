@@ -5,8 +5,18 @@ import Foundation
 /// it usable out of the box.
 public enum SwiftLint {
     public enum LintStyle {
+        /// Lints all the files instead of only the modified and created files.
+        /// - Parameters:
+        ///   - directory: Optional property to set the --path to execute at.
         case all(directory: String?)
+
+        /// Only lints the modified and created files with `.swift` extension.
+        /// - Parameters:
+        ///   - directory: Optional property to set the --path to execute at.
         case modifiedAndCreatedFiles(directory: String?)
+
+        /// Lints only the given files. This can be useful to do some manual filtering.
+        /// The files will be filtered on `.swift` only.
         case files([File])
     }
 
@@ -107,7 +117,7 @@ extension SwiftLint {
                                  readFile: readFile)
         case .modifiedAndCreatedFiles(let directory):
             // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
-            var files = (danger.git.createdFiles + danger.git.modifiedFiles).filter { $0.fileType == .swift }
+            var files = (danger.git.createdFiles + danger.git.modifiedFiles)
             if let directory = directory {
                 files = files.filter { $0.hasPrefix(directory) }
             }
@@ -205,6 +215,8 @@ extension SwiftLint {
                                   failAction: (String) -> Void,
                                   readFile: (String) -> String) -> [SwiftLintViolation] {
 
+        let files = files.filter { $0.fileType == .swift }
+        
         // Only run Swiftlint, if there are files to lint
         guard !files.isEmpty else {
             return []
