@@ -6,7 +6,7 @@ import Foundation
 public enum SwiftLint {
     public enum LintStyle {
         case all(directory: String?)
-        case modifiedFiles(directory: String?)
+        case modifiedAndCreatedFiles(directory: String?)
         case files([File])
     }
 
@@ -23,7 +23,7 @@ public enum SwiftLint {
                             quiet: Bool = true,
                             lintAllFiles: Bool = false,
                             swiftlintPath: String? = nil) -> [SwiftLintViolation] {
-        let lintStyle: LintStyle = lintAllFiles ? .all(directory: directory) : .modifiedFiles(directory: directory)
+        let lintStyle: LintStyle = lintAllFiles ? .all(directory: directory) : .modifiedAndCreatedFiles(directory: directory)
         return lint(lintStyle,
                     inline: inline,
                     configFile: configFile,
@@ -39,7 +39,7 @@ public enum SwiftLint {
     /// it uses by default swift run swiftlint if the Package.swift contains swiftlint as dependency,
     /// otherwise calls directly the swiftlint command
     @discardableResult
-    public static func lint(_ lintStyle: LintStyle = .modifiedFiles(directory: nil),
+    public static func lint(_ lintStyle: LintStyle = .modifiedAndCreatedFiles(directory: nil),
                             inline: Bool = false,
                             configFile: String? = nil,
                             strict: Bool = false,
@@ -105,7 +105,7 @@ extension SwiftLint {
                                  outputFilePath: outputFilePath,
                                  failAction: failAction,
                                  readFile: readFile)
-        case .modifiedFiles(let directory):
+        case .modifiedAndCreatedFiles(let directory):
             // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
             var files = (danger.git.createdFiles + danger.git.modifiedFiles).filter { $0.fileType == .swift }
             if let directory = directory {
