@@ -39,7 +39,6 @@ public enum SwiftLint {
                     configFile: configFile,
                     strict: strict,
                     quiet: quiet,
-                    lintAllFiles: lintAllFiles,
                     swiftlintPath: swiftlintPath)
     }
 
@@ -54,7 +53,6 @@ public enum SwiftLint {
                             configFile: String? = nil,
                             strict: Bool = false,
                             quiet: Bool = true,
-                            lintAllFiles: Bool = false,
                             swiftlintPath: String? = nil) -> [SwiftLintViolation] {
         lint(lintStyle: lintStyle,
              danger: danger,
