@@ -93,7 +93,6 @@ extension SwiftLint {
         warnInlineAction: (String, String, Int) -> Void = warn,
         readFile: (String) -> String = danger.utils.readFile
     ) -> [SwiftLintViolation] {
-
         var arguments = ["lint", "--reporter json"]
 
         if quiet {
@@ -111,7 +110,7 @@ extension SwiftLint {
         var violations: [SwiftLintViolation]
 
         switch lintStyle {
-        case .all(let directory):
+        case let .all(directory):
             // Allow folks to lint all the potential files
             violations = lintAll(directory: directory,
                                  arguments: arguments,
@@ -120,7 +119,7 @@ extension SwiftLint {
                                  outputFilePath: outputFilePath,
                                  failAction: failAction,
                                  readFile: readFile)
-        case .modifiedAndCreatedFiles(let directory):
+        case let .modifiedAndCreatedFiles(directory):
             // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
             var files = (danger.git.createdFiles + danger.git.modifiedFiles)
             if let directory = directory {
@@ -136,7 +135,7 @@ extension SwiftLint {
                                    failAction: failAction,
                                    readFile: readFile)
 
-        case .files(let files):
+        case let .files(files):
             violations = lintFiles(files,
                                    danger: danger,
                                    arguments: arguments,
@@ -186,14 +185,13 @@ extension SwiftLint {
 
     // swiftlint:disable function_parameter_count
     private static func lintFiles(_ files: [File],
-                                  danger: DangerDSL,
+                                  danger _: DangerDSL,
                                   arguments: [String],
                                   shellExecutor: ShellExecuting,
                                   swiftlintPath: String,
                                   outputFilePath: String,
                                   failAction: (String) -> Void,
                                   readFile: (String) -> String) -> [SwiftLintViolation] {
-
         let files = files.filter { $0.fileType == .swift }
 
         // Only run Swiftlint, if there are files to lint

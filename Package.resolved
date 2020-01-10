@@ -123,8 +123,8 @@
         "repositoryURL": "https://github.com/JohnSundell/ShellOut.git",
         "state": {
           "branch": null,
-          "revision": "4ebf25863deb9c3c02696704fc3d39736183f258",
-          "version": "2.2.1"
+          "revision": "e1577acf2b6e90086d01a6d5e2b8efdaae033568",
+          "version": "2.3.0"
         }
       },
       {
@@ -141,8 +141,8 @@
         "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
         "state": {
           "branch": null,
-          "revision": "356551fc513eb12ed779bb369f79cf86a3a01599",
-          "version": "0.27.0"
+          "revision": "97b5848e5692150d75b5cf0b81d7ebef5f4d5071",
+          "version": "0.28.0"
         }
       },
       {
@@ -167,9 +167,9 @@
         "package": "SnapshotTesting",
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
-          "branch": "master",
-          "revision": "acf77ae0b0341e2adceb2289cdea32852822da10",
-          "version": null
+          "branch": null,
+          "revision": "12c6a7ce9d67f39a23c6bab757bdb073bd997885",
+          "version": "1.7.1"
         }
       },
       {
@@ -177,8 +177,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
           "branch": null,
-          "revision": "09887f054cfc8e61d3854273b5aeb3455a4ed56c",
-          "version": "0.43.3"
+          "revision": "d9b7cf39e06e89428004a767d97006fb6d293c53",
+          "version": "0.43.5"
         }
       },
       {
@@ -186,8 +186,8 @@
         "repositoryURL": "https://github.com/Realm/SwiftLint",
         "state": {
           "branch": null,
-          "revision": "8dc3e811934704a3d0e46a8ffd1de785fddcf7ec",
-          "version": "0.38.0"
+          "revision": "76d44cff391645a7f4d5ba2bf1853afaf3f5c1fb",
+          "version": "0.38.2"
         }
       },
       {

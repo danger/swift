@@ -48,12 +48,14 @@
         static let __allTests__DangerSwiftLintTests = [
             ("testDeletesReportFile", testDeletesReportFile),
             ("testDoNotExecuteSwiftlintWhenNoFilesToCheck", testDoNotExecuteSwiftlintWhenNoFilesToCheck),
+            ("testExecutesQuiet", testExecutesQuiet),
             ("testExecutesSwiftLintWhenLintingAllFiles", testExecutesSwiftLintWhenLintingAllFiles),
             ("testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed", testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed),
             ("testExecutesSwiftLintWithConfigWhenPassed", testExecutesSwiftLintWithConfigWhenPassed),
             ("testExecutesSwiftLintWithDirectoryPassed", testExecutesSwiftLintWithDirectoryPassed),
             ("testExecutesTheShell", testExecutesTheShell),
             ("testExecutesTheShellWithCustomSwiftLintPath", testExecutesTheShellWithCustomSwiftLintPath),
+            ("testExecutesVerboseIfNotQuiet", testExecutesVerboseIfNotQuiet),
             ("testExecuteSwiftLintInInlineMode", testExecuteSwiftLintInInlineMode),
             ("testExecuteSwiftWithStructAndInlineMode", testExecuteSwiftWithStructAndInlineMode),
             ("testFiltersOnSwiftFiles", testFiltersOnSwiftFiles),
@@ -63,6 +65,8 @@
             ("testQuotesPathArguments", testQuotesPathArguments),
             ("testSendsOuputFileToTheExecutorWhenLintingAllTheFiles", testSendsOuputFileToTheExecutorWhenLintingAllTheFiles),
             ("testSendsOuputFileToTheExecutorWhenLintingModifiedFiles", testSendsOuputFileToTheExecutorWhenLintingModifiedFiles),
+            ("testSpecificFilesLintStyle", testSpecificFilesLintStyle),
+            ("testSpecificFilesSwiftOnlyFilter", testSpecificFilesSwiftOnlyFilter),
             ("testViolations", testViolations),
         ]
     }
