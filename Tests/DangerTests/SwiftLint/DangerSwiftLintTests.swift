@@ -460,7 +460,7 @@ final class DangerSwiftLintTests: XCTestCase {
         ("testExecutesVerboseIfNotQuiet", testExecutesVerboseIfNotQuiet),
         ("testExecutesQuiet", testExecutesQuiet),
         ("testSpecificFilesLintStyle", testSpecificFilesLintStyle),
-        ("testSpecificFilesSwiftOnlyFilter", testSpecificFilesSwiftOnlyFilter)
+        ("testSpecificFilesSwiftOnlyFilter", testSpecificFilesSwiftOnlyFilter),
     ]
 }
 
