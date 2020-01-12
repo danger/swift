@@ -55,7 +55,6 @@ let package = Package(
         ],
         "rocket": [
             "before": [
-                "make docs",
                 "Scripts/update_makefile.sh",
                 "Scripts/update_danger_version.sh",
                 "Scripts/update_changelog.sh",
