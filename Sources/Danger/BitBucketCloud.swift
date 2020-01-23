@@ -244,3 +244,7 @@ extension BitBucketCloud {
         public let comment: Comment?
     }
 }
+
+public var bitbucketCloud: BitBucketCloud! {
+    return DangerRunner.shared.dsl.bitbucketCloud
+}

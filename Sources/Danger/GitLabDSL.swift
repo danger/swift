@@ -235,3 +235,7 @@ extension GitLab {
         public let webUrl: String
     }
 }
+
+public var gitLab: GitLab! {
+    return DangerRunner.shared.dsl.gitLab
+}

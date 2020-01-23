@@ -395,3 +395,7 @@ extension BitBucketServer {
         public let type: String?
     }
 }
+
+public var bitbucketServer: BitBucketServer! {
+    return DangerRunner.shared.dsl.bitbucketServer
+}

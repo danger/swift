@@ -460,3 +460,7 @@ extension GitHub {
         public let dueOn: Date?
     }
 }
+
+public var github: GitHub! {
+    return DangerRunner.shared.dsl.github
+}

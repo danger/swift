@@ -82,3 +82,7 @@ public struct DangerUtils {
         return try shellExecutor.spawn(command, arguments: arguments)
     }
 }
+
+public var utils: DangerUtils {
+    return DangerRunner.shared.dsl.utils
+}

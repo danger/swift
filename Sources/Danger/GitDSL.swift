@@ -54,3 +54,7 @@ extension Git {
         public let url: String
     }
 }
+
+public var git: Git {
+    return DangerRunner.shared.dsl.git
+}
