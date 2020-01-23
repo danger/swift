@@ -13,6 +13,8 @@
 
 ## Master
 
+- Add top-level properties for child DSLs [@417-72KI][] - [#314](https://github.com/danger/swift/pull/314)
+
 ## 3.0.0
 
 - Danger dependencies manager [@f-meloni][] - [#303](https://github.com/danger/swift/pull/303)
