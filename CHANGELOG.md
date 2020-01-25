@@ -13,6 +13,8 @@
 
 ## Master
 
+- Use # for regex strings [@f-meloni][] - [#315](https://github.com/danger/swift/pull/315)
+
 ## 3.0.0
 
 - Danger dependencies manager [@f-meloni][] - [#303](https://github.com/danger/swift/pull/303)
