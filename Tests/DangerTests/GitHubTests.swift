@@ -1,4 +1,5 @@
 @testable import Danger
+import DangerFixtures
 import XCTest
 
 final class GitHubTests: XCTestCase {
@@ -166,11 +167,6 @@ final class GitHubTests: XCTestCase {
     }
 
     func test_GitHubRepo_decode() throws {
-        guard let data = GitHubRepoJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
-
         let user = GitHub.User(id: 1, login: "octocat", userType: .user)
         let correctRepo = GitHub.Repo(id: 1_296_269,
                                       name: "Hello-World",
@@ -181,12 +177,41 @@ final class GitHubTests: XCTestCase {
                                       isFork: false,
                                       htmlURL: "https://github.com/octocat/Hello-World")
 
-        let testRepo = try decoder.decode(GitHub.Repo.self, from: data)
+        let testRepo = try decoder.decode(GitHub.Repo.self, from: Data(GitHubRepoJSON.utf8))
 
         XCTAssertEqual(testRepo, correctRepo)
     }
 
-    func test_GitHubReview_decode() throws {}
+    func test_GitHubReview_decode() throws {
+        let testReviews = try decoder.decode([GitHub.Review].self, from: Data(GitHubReviews.utf8))
+
+        XCTAssertEqual(testReviews, [
+            .init(body: "",
+                  commitId: "c2dd12f6f1b54fa7a8ce89a0ac2d116a5d4d81c7",
+                  id: 172_114_916,
+                  state: .approved,
+                  submittedAt: Date(timeIntervalSince1970: 1_541_522_564.0),
+                  user: .init(id: 49038,
+                              login: "orta",
+                              userType: .user)),
+            .init(body: "",
+                  commitId: "c2dd12f6f1b54fa7a8ce89a0ac2d116a5d4d81c7",
+                  id: 172_121_815,
+                  state: .comment,
+                  submittedAt: Date(timeIntervalSince1970: 1_541_523_134.0),
+                  user: .init(id: 36_844_464,
+                              login: "KITSFrancoMeloni",
+                              userType: .user)),
+            .init(body: "",
+                  commitId: "c2dd12f6f1b54fa7a8ce89a0ac2d116a5d4d81c7",
+                  id: 172_123_782,
+                  state: .comment,
+                  submittedAt: Date(timeIntervalSince1970: 1_541_523_347.0),
+                  user: .init(id: 17_830_956,
+                              login: "f-meloni",
+                              userType: .user)),
+        ])
+    }
 
     func test_GitHubCommit_decode() throws {}
 
