@@ -243,11 +243,12 @@ extension GitHub {
 extension GitHub {
     public struct Review: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
-            case user
-            case id // swiftlint:disable:this identifier_name
             case body
-            case state
             case commitId = "commit_id"
+            case id // swiftlint:disable:this identifier_name
+            case state
+            case submittedAt = "submitted_at"
+            case user
         }
 
         public enum State: String, Decodable {
@@ -258,20 +259,23 @@ extension GitHub {
             case dismissed = "DISMISSED"
         }
 
-        /// The user who has completed the review or has been requested to review.
-        public let user: User
-
-        /// The id for the review (if a review was made).
-        public let id: Int? // swiftlint:disable:this identifier_name
-
         /// The body of the review (if a review was made).
         public let body: String?
 
         /// The commit ID the review was made on (if a review was made).
         public let commitId: String?
 
+        /// The id for the review (if a review was made).
+        public let id: Int? // swiftlint:disable:this identifier_name
+
         /// The state of the review (if a review was made).
         public let state: State?
+
+        /// The date when the review was submitted
+        public let submittedAt: Date
+
+        /// The user who has completed the review or has been requested to review.
+        public let user: User
     }
 }
 
