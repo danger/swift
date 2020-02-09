@@ -13,6 +13,7 @@
 
 ## Master
 
+- Parse review's submittedAt date [@f-meloni][] - [#317](https://github.com/danger/swift/pull/317)
 - Use # for regex strings [@f-meloni][] - [#315](https://github.com/danger/swift/pull/315)
 
 ## 3.0.0
