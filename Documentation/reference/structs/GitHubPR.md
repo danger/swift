@@ -127,6 +127,14 @@ public let isMerged: Bool?
 
 > A boolean indicating if the pull request has been merged.
 
+### `mergeable`
+
+```swift
+public let mergeable: MergeableState
+```
+
+> The state for mergeable based on the existence of merge conflicts: conflicting, mergeable, unknown.
+
 ### `commitCount`
 
 ```swift
