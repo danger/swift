@@ -13,6 +13,8 @@
 
 ## Master
 
+- Release a Dockerfile with swiftlint during releases [@f-meloni][] - [#319](https://github.com/danger/swift/pull/319)
+
 ## 3.1.0
 
 - Parse review's submittedAt date [@f-meloni][] - [#317](https://github.com/danger/swift/pull/317)
