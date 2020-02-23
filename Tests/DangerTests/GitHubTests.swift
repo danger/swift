@@ -20,11 +20,7 @@ final class GitHubTests: XCTestCase {
     }
 
     func test_GitHubUser_decode() throws {
-        guard let data = GitHubUserJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
-
+        let data = Data(GitHubUserJSON.utf8)
         let correctUser = GitHub.User(id: 25_879_490, login: "yhkaplan", userType: .user)
         let testUser: GitHub.User = try JSONDecoder().decode(GitHub.User.self, from: data)
 
@@ -32,11 +28,7 @@ final class GitHubTests: XCTestCase {
     }
 
     func test_GitHubBot_decode() throws {
-        guard let data = GitHubBotJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
-
+        let data = Data(GitHubBotJSON.utf8)
         let correctUser = GitHub.User(id: 27_856_297, login: "dependabot-preview[bot]", userType: .bot)
         let testBot = try JSONDecoder().decode(GitHub.User.self, from: data)
 
@@ -44,13 +36,9 @@ final class GitHubTests: XCTestCase {
     }
 
     func test_GitHubMilestone_decodeWithSomeParameters() throws {
-        guard let data = GitHubMilestoneJSONWithSomeParameters.data(using: .utf8),
-            let createdAt = dateFormatter.date(from: "2018-01-20T16:29:28Z"),
-            let updatedAt = dateFormatter.date(from: "2018-02-27T06:23:58Z") else {
-            XCTFail("Could not generate data")
-            return
-        }
-
+        let data = Data(GitHubMilestoneJSONWithSomeParameters.utf8)
+        let createdAt = Date(timeIntervalSince1970: 1_516_465_768.0)
+        let updatedAt = Date(timeIntervalSince1970: 1_519_712_638.0)
         let creator = GitHub.User(id: 739_696, login: "rnystrom", userType: .user)
         let correctMilestone = GitHub.Milestone(id: 3_050_458,
                                                 number: 11,
@@ -71,15 +59,11 @@ final class GitHubTests: XCTestCase {
     }
 
     func test_GitHubMilestone_decodeWithAllParameters() throws {
-        guard let data = GitHubMilestoneJSONWithAllParameters.data(using: .utf8),
-            let createdAt = dateFormatter.date(from: "2018-01-20T16:29:28Z"),
-            let updatedAt = dateFormatter.date(from: "2018-02-27T06:23:58Z"),
-            let closedAt = dateFormatter.date(from: "2018-03-20T09:46:21Z"),
-            let dueOn = dateFormatter.date(from: "2018-03-27T07:10:01Z") else {
-            XCTFail("Could not generate data")
-            return
-        }
-
+        let data = Data(GitHubMilestoneJSONWithAllParameters.utf8)
+        let createdAt = Date(timeIntervalSince1970: 1_516_465_768.0)
+        let updatedAt = Date(timeIntervalSince1970: 1_519_712_638.0)
+        let closedAt = Date(timeIntervalSince1970: 1_521_539_181.0)
+        let dueOn = Date(timeIntervalSince1970: 1_522_134_601.0)
         let creator = GitHub.User(id: 739_696, login: "rnystrom", userType: .user)
         let correctMilestone = GitHub.Milestone(id: 3_050_458,
                                                 number: 11,
@@ -100,13 +84,9 @@ final class GitHubTests: XCTestCase {
     }
 
     func test_GitHubMilestone_decodeWithoutDescription() throws {
-        guard let data = GitHubMilestoneJSONWithoutDescription.data(using: .utf8),
-            let createdAt = dateFormatter.date(from: "2018-01-20T16:29:28Z"),
-            let updatedAt = dateFormatter.date(from: "2018-02-27T06:23:58Z") else {
-            XCTFail("Could not generate data")
-            return
-        }
-
+        let data = Data(GitHubMilestoneJSONWithoutDescription.utf8)
+        let createdAt = Date(timeIntervalSince1970: 1_516_465_768.0)
+        let updatedAt = Date(timeIntervalSince1970: 1_519_712_638.0)
         let creator = GitHub.User(id: 739_696, login: "rnystrom", userType: .user)
         let correctMilestone = GitHub.Milestone(id: 3_050_458,
                                                 number: 11,
@@ -127,11 +107,7 @@ final class GitHubTests: XCTestCase {
     }
 
     func test_GitHubTeam_decode() throws {
-        guard let data = GitHubTeamJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
-
+        let data = Data(GitHubTeamJSON.utf8)
         let correctTeam = GitHub.Team(id: 1, name: "Justice League")
 
         let testTeam = try decoder.decode(GitHub.Team.self, from: data)
@@ -140,10 +116,7 @@ final class GitHubTests: XCTestCase {
     }
 
     func test_GitHubMergeRef_decode() throws {
-        guard let data = GitHubPRJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
+        let data = Data(GitHubPRJSON.utf8)
 
         let user = GitHub.User(id: 1, login: "octocat", userType: .user)
         let repo = GitHub.Repo(id: 1_296_269,
@@ -218,10 +191,7 @@ final class GitHubTests: XCTestCase {
     func test_GitHubIssueLabel_decode() throws {}
 
     func test_GitHubIssue_decode() throws {
-        guard let data = GitHubIssueJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
+        let data = Data(GitHubIssueJSON.utf8)
 
         let user = GitHub.User(id: 2_538_074, login: "davdroman", userType: .user)
         let correctIssue = GitHub.Issue(
@@ -248,10 +218,7 @@ final class GitHubTests: XCTestCase {
     }
 
     func test_GitHubIssue_emptyBody_decode() throws {
-        guard let data = GitHubEmptyBodyIssueJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
+        let data = Data(GitHubEmptyBodyIssueJSON.utf8)
 
         let user = GitHub.User(id: 2_538_074, login: "davdroman", userType: .user)
         let correctIssue = GitHub.Issue(
@@ -278,10 +245,7 @@ final class GitHubTests: XCTestCase {
     }
 
     func test_GitHubCommit_decodesJSONWithEmptyAuthor() throws {
-        guard let data = GitHubCommitWithEmptyAuthorJSON.data(using: .utf8) else {
-            XCTFail("Could not generate data")
-            return
-        }
+        let data = Data(GitHubCommitWithEmptyAuthorJSON.utf8)
         let expectedAuthor = Git.Commit.Author(name: "Franco Meloni", email: "franco.meloni91@gmail.com", date: "2019-04-20T17:46:50Z")
 
         let testCommit = try decoder.decode(GitHub.Commit.self, from: data)

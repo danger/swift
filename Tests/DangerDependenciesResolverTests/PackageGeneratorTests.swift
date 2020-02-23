@@ -54,7 +54,7 @@ private final class SpyFileCreator: FileCreating {
     var receivedPath: String?
     var receivedContents: Data?
 
-    func createFile(atPath path: String, contents: Data?) {
+    func createFile(atPath path: String, contents: Data) {
         receivedPath = path
         receivedContents = contents
     }

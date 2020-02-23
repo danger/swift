@@ -64,7 +64,7 @@ struct PackageGenerator {
         description.append("    swiftLanguageVersions: [.version(\"\(versionString)\")]\n)")
 
         fileCreator.createFile(atPath: generatedFolder.appendingPath("Package.swift"),
-                               contents: description.data(using: .utf8))
+                               contents: Data(description.utf8))
     }
 
     func makePackageDescriptionHeader(forSwiftToolsVersion toolsVersion: Version) -> String {

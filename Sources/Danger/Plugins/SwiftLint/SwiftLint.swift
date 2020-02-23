@@ -275,7 +275,7 @@ extension SwiftLint {
     private static func makeViolations(from response: String, failAction: (String) -> Void) -> [SwiftLintViolation] {
         let decoder = JSONDecoder()
         do {
-            let violations = try decoder.decode([SwiftLintViolation].self, from: response.data(using: .utf8)!)
+            let violations = try decoder.decode([SwiftLintViolation].self, from: Data(response.utf8))
             return violations
         } catch {
             failAction("Error deserializing SwiftLint JSON response (\(response)): \(error)")

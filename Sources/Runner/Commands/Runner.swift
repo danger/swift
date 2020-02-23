@@ -171,7 +171,7 @@ func runDanger(logger: Logger) throws {
     }
 
     // Support the upcoming danger results-url
-    standardOutput.write("danger-results:/\(dangerResponsePath)\n\n".data(using: .utf8)!)
+    standardOutput.write(Data("danger-results:/\(dangerResponsePath)\n\n".utf8))
     logger.debug("Saving and storing the results at \(dangerResponsePath)")
 
     // Clean up after ourselves
