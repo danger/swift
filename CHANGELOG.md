@@ -13,6 +13,8 @@
 
 ## Master
 
+- Use new Data API to avoid coalescing operator and optionals [@f-meloni][] - [#320](https://github.com/danger/swift/pull/320)
+
 ## 3.1.0
 
 - Parse review's submittedAt date [@f-meloni][] - [#317](https://github.com/danger/swift/pull/317)
