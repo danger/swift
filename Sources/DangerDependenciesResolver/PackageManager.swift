@@ -143,9 +143,9 @@ public struct PackageManager {
             return try makePackageDescription(for: script)
         }
 
-        return masterDescription
+        return Data(masterDescription
             .replacingOccurrences(of: masterPackageName, with: script.name)
-            .data(using: .utf8) ?? Data()
+            .utf8)
     }
 
     private func updatePackages() throws {

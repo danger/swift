@@ -13,6 +13,7 @@
 
 ## Master
 
+- Use new Data API to avoid coalescing operator and optionals [@f-meloni][] - [#320](https://github.com/danger/swift/pull/320)
 - Release a Dockerfile with swiftlint during releases [@f-meloni][] - [#319](https://github.com/danger/swift/pull/319)
 
 ## 3.1.0

@@ -68,7 +68,7 @@ final class PackageDataProviderTests: XCTestCase {
         fileReader.stubbedReadData = { path in
             switch path {
             case "/usr/franco/Package.resolved":
-                return self.resolvedPackageText.data(using: .utf8)!
+                return Data(self.resolvedPackageText.utf8)
             default:
                 XCTFail("Received unexpected path \(path)")
                 return Data()

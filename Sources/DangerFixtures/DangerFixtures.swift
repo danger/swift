@@ -15,7 +15,7 @@ import Foundation
 /// - Returns: a DangerDSL
 ///
 public func parseDangerDSL(with body: String) -> DangerDSL {
-    let dslJSONContents = body.data(using: .utf8)!
+    let dslJSONContents = Data(body.utf8)
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .formatted(DateFormatter.defaultDateFormatter)
     return try! decoder.decode(DSL.self, from: dslJSONContents).danger // swiftlint:disable:this force_try

@@ -113,7 +113,7 @@ public struct ScriptManager {
         let moduleFolder = try sourcesFolder.createSubfolder(withName: filePath.nameExcludingExtension)
 
         FileManager.default.createFile(atPath: moduleFolder.appendingPath("main.swift"),
-                                       contents: try String(contentsOfFile: filePath).data(using: .utf8) ?? Data(),
+                                       contents: Data(try String(contentsOfFile: filePath).utf8),
                                        attributes: [:])
 
         return scriptFolder

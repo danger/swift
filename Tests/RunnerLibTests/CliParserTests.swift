@@ -15,7 +15,7 @@ final class CliParserTests: XCTestCase {
     }
 
     func testItReturnsTheCliArgsIfTheJSONIsCorrect() {
-        let cli = parser.parseCli(fromData: correctJSON.data(using: .utf8)!)
+        let cli = parser.parseCli(fromData: Data(correctJSON.utf8))
 
         XCTAssertEqual(cli?.id, "testId")
         XCTAssertEqual(cli?.base, "testBase")
@@ -26,7 +26,7 @@ final class CliParserTests: XCTestCase {
     }
 
     func testItReturnsTheCliArgsIfTheJSONIsCorrectButDoesntContainAllTheFields() {
-        let cli = parser.parseCli(fromData: correctJSONWithOnlyDangerfile.data(using: .utf8)!)
+        let cli = parser.parseCli(fromData: Data(correctJSONWithOnlyDangerfile.utf8))
 
         XCTAssertNil(cli?.id)
         XCTAssertNil(cli?.base)
@@ -37,7 +37,7 @@ final class CliParserTests: XCTestCase {
     }
 
     func testItReturnsNilIfTheJSONDoesntContainCliArgs() {
-        let cli = parser.parseCli(fromData: jsonWithoutCliArgs.data(using: .utf8)!)
+        let cli = parser.parseCli(fromData: Data(jsonWithoutCliArgs.utf8))
 
         XCTAssertNil(cli)
     }
