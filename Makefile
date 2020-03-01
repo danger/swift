@@ -23,7 +23,7 @@ deploy_tap:
 
 install: build
 	mkdir -p $(PREFIX)/bin
-	mkdir -p $(PREFIX)/lib/danger
+	mkdir -p $(LIB_INSTALL_PATH)
 	cp -f $(BUILD_PATH) $(INSTALL_PATH)
 	cp -f $(SWIFT_LIB_FILES) $(LIB_INSTALL_PATH)
 
