@@ -1,7 +1,7 @@
 @testable import Danger
 import XCTest
 
-class ViolnationTests: XCTestCase {
+final class ViolationTests: XCTestCase {
     func testDecoding() {
         let json = """
         {
