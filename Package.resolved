@@ -83,15 +83,6 @@
         }
       },
       {
-        "package": "PackageConfig",
-        "repositoryURL": "https://github.com/shibapm/PackageConfig.git",
-        "state": {
-          "branch": null,
-          "revision": "fd0829aac9851434b3d2db0890e27bc489fc973a",
-          "version": "0.12.2"
-        }
-      },
-      {
         "package": "Quick",
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {
