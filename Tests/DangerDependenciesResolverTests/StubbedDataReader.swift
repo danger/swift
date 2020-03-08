@@ -2,8 +2,8 @@
 import Foundation
 
 final class StubbedDataReader: FileReading {
-    var stubbedReadData: ((String) -> Data)!
-    var stubbedReadText: ((String) -> String)!
+    var stubbedReadData: ((String) throws -> Data)!
+    var stubbedReadText: ((String) throws -> String)!
 
     init(stubbedReadData: ((String) -> Data)? = nil, stubbedReadText: ((String) -> String)? = nil) {
         self.stubbedReadData = stubbedReadData
@@ -11,10 +11,10 @@ final class StubbedDataReader: FileReading {
     }
 
     func readData(atPath path: String) throws -> Data {
-        stubbedReadData(path)
+        try stubbedReadData(path)
     }
 
     func readText(atPath path: String) throws -> String {
-        stubbedReadText(path)
+        try stubbedReadText(path)
     }
 }

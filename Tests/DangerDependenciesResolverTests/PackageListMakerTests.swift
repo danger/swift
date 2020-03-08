@@ -9,9 +9,9 @@ final class PackageListMakerTests: XCTestCase {
         dataReader.stubbedReadData = { path in
             switch path {
             case "/user/franco/Package1.swift":
-                return try! expectedResult.encoded()
+                return try expectedResult.encoded()
             case "/user/franco/Package2.swift":
-                return try! expectedResult.encoded()
+                return try expectedResult.encoded()
             case "/user/franco/File.swift":
                 return Data()
             default:

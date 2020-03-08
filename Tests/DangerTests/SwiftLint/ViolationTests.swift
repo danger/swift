@@ -2,7 +2,7 @@
 import XCTest
 
 final class ViolationTests: XCTestCase {
-    func testDecoding() {
+    func testDecoding() throws {
         let json = """
         {
             "rule_id" : "opening_brace",
@@ -14,7 +14,7 @@ final class ViolationTests: XCTestCase {
             "line" : 8
         }
         """
-        let subject = try! JSONDecoder().decode(SwiftLintViolation.self, from: Data(json.utf8))
+        let subject = try JSONDecoder().decode(SwiftLintViolation.self, from: Data(json.utf8))
         XCTAssertEqual(subject.ruleID, "opening_brace")
         XCTAssertEqual(subject.reason, "Opening braces should be preceded by a single space and on the same line as the declaration.")
         XCTAssertEqual(subject.line, 8)
