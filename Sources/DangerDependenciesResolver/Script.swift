@@ -6,10 +6,14 @@ public struct ScriptManager {
     public struct Config {
         let dependencyPrefix: String
         let dependencyFile: String
+        let majorVersionPrefix: String
 
-        public init(prefix: String = "package: ", file: String = "Dangerplugins") {
+        public init(prefix: String = "package: ",
+                    file: String = "Dangerplugins",
+                    major: String = "major: ") {
             dependencyPrefix = prefix
             dependencyFile = file
+            majorVersionPrefix = major
         }
     }
 
@@ -26,6 +30,7 @@ public struct ScriptManager {
     private let cacheFolder: String
     private let temporaryFolder: String
     private let logger: Logger
+    private let inlineDependenciesFinder: InlineDependenciesFinder
 
     public init(folder: String,
                 packageManager: PackageManager,
@@ -34,6 +39,7 @@ public struct ScriptManager {
         self.logger = logger
         cacheFolder = try folder.createSubfolderIfNeeded(withName: "Cache")
         temporaryFolder = try folder.createSubfolderIfNeeded(withName: "Temp")
+        inlineDependenciesFinder = InlineDependenciesFinder(config: config)
         self.packageManager = packageManager
     }
 
@@ -51,7 +57,8 @@ public struct ScriptManager {
         let folder = try createFolderIfNeededForScript(withIdentifier: identifier, filePath: path)
         let script = Script(name: path.nameExcludingExtension, folder: folder, logger: logger)
 
-        try resolveInlineDependencies(fromPath: path)
+        let packages = try inlineDependenciesFinder.resolveInlineDependencies(fromPath: path)
+        try packageManager.addPackagesIfNeeded(from: packages)
 
         do {
             try FileManager.default.createFile(atPath: folder.appendingPath("Package.swift"),
@@ -69,34 +76,6 @@ public struct ScriptManager {
         return pathExcludingExtension?.replacingOccurrences(of: ":", with: "-")
             .replacingOccurrences(of: "/", with: "-")
             .replacingOccurrences(of: " ", with: "-") ?? "Dangerfile.swift"
-    }
-
-    private func resolveInlineDependencies(fromPath path: String) throws {
-        let lines = try String(contentsOfFile: path).components(separatedBy: .newlines)
-        var packageURLs = [URL]()
-
-        for line in lines {
-            if line.hasPrefix("import ") {
-                let components = line.components(separatedBy: config.dependencyPrefix)
-
-                guard components.count > 1 else {
-                    continue
-                }
-
-                let urlString = components.last!.trimmingCharacters(in: .whitespaces)
-
-                guard let url = URL(string: urlString) else {
-                    throw Errors.invalidInlineDependencyURL(urlString)
-                }
-
-                packageURLs.append(url)
-            } else if let firstCharacter = line.unicodeScalars.first,
-                !CharacterSet.alphanumerics.contains(firstCharacter) {
-                break
-            }
-        }
-
-        try packageManager.addPackagesIfNeeded(from: packageURLs)
     }
 
     private func createFolderIfNeededForScript(withIdentifier identifier: String, filePath: String) throws -> String {
