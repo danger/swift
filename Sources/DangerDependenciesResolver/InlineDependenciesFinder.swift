@@ -23,7 +23,9 @@ struct InlineDependenciesFinder {
                     continue
                 }
 
-                let splittedImportString = lastComponent.trimmingCharacters(in: .whitespaces).components(separatedBy: " " + config.majorVersionPrefix)
+                let splittedImportString = lastComponent
+                  .trimmingCharacters(in: .whitespaces)
+                  .components(separatedBy: " " + config.majorVersionPrefix)
 
                 guard let url = URL(string: splittedImportString[0]) else {
                     throw Errors.invalidInlineDependencyURL(splittedImportString[0])
