@@ -29,13 +29,7 @@ struct InlineDependenciesFinder {
                     throw Errors.invalidInlineDependencyURL(splittedImportString[0])
                 }
 
-                let majorVersion: Int?
-                if splittedImportString.count > 1 {
-                    let majorVersionString = splittedImportString[1]
-                    majorVersion = Int(majorVersionString)
-                } else {
-                    majorVersion = nil
-                }
+                let majorVersion: Int? = splittedImportString.count > 1 ? Int(splittedImportString[1]) : nil
 
                 result.append(InlineDependency(url: url, major: majorVersion))
             } else if let firstCharacter = line.unicodeScalars.first,
