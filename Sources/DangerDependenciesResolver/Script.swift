@@ -10,7 +10,7 @@ public struct ScriptManager {
 
         public init(prefix: String = "package: ",
                     file: String = "Dangerplugins",
-                    major: String = "major: ") {
+                    major: String = "~> ") {
             dependencyPrefix = prefix
             dependencyFile = file
             majorVersionPrefix = major

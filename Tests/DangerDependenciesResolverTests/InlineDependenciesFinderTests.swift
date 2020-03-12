@@ -7,7 +7,7 @@ final class InlineDependenciesFinderTests: XCTestCase {
         let fileReader = StubbedDataReader { _ -> String in
             self.script
         }
-        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader, config: ScriptManager.Config(prefix: "package: ", file: "", major: "major: "))
+        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader, config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
 
         let result = try dependenciesFinder.resolveInlineDependencies(fromPath: "path")
 
@@ -21,7 +21,7 @@ final class InlineDependenciesFinderTests: XCTestCase {
         let fileReader = StubbedDataReader { _ -> String in
             self.scriptWithInvalidURL
         }
-        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader, config: ScriptManager.Config(prefix: "package: ", file: "", major: "major: "))
+        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader, config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
 
         XCTAssertThrowsError(try dependenciesFinder.resolveInlineDependencies(fromPath: "path"))
     }
@@ -30,7 +30,7 @@ final class InlineDependenciesFinderTests: XCTestCase {
         let fileReader = StubbedDataReader { _ -> String in
             self.scriptWithoutPackagePrefix
         }
-        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader, config: ScriptManager.Config(prefix: "package: ", file: "", major: "major: "))
+        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader, config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
 
         let result = try dependenciesFinder.resolveInlineDependencies(fromPath: "path")
 
@@ -41,7 +41,7 @@ final class InlineDependenciesFinderTests: XCTestCase {
         """
         import LibA
         import LibB // package: http://danger.systems
-        import LibC // package: http://danger.systems/swift major: 2
+        import LibC // package: http://danger.systems/swift ~> 2
         """
     }
 
