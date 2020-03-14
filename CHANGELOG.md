@@ -13,6 +13,7 @@
 
 ## Master
 
+- Allow the usage of `~>` to pin a dependency to a major version  [@f-meloni][] - [#326](https://github.com/danger/swift/pull/326)
 - Use new Data API to avoid coalescing operator and optionals [@f-meloni][] - [#320](https://github.com/danger/swift/pull/320)
 - Release a Dockerfile with swiftlint during releases [@f-meloni][] - [#319](https://github.com/danger/swift/pull/319)
 
