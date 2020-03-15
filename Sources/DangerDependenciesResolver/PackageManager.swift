@@ -47,31 +47,34 @@ public struct PackageManager {
         packageListMaker = PackageListMaker(folder: folder, fileManager: .default, dataReader: FileReader())
     }
 
-    func addPackagesIfNeeded(from packageURLs: [URL]) throws {
+    func addPackagesIfNeeded(from packages: [InlineDependenciesFinder.InlineDependency]) throws {
         let existingPackageURLs = Set(packageListMaker.makePackageList().map { package in
             package.url.absoluteString.lowercased()
         })
 
-        for url in packageURLs {
-            guard !existingPackageURLs.contains(url.absoluteString.lowercased()) else {
+        for package in packages {
+            guard !existingPackageURLs.contains(package.url.absoluteString.lowercased()) else {
                 continue
             }
 
-            try addPackage(at: url)
+            try addPackage(package)
         }
     }
 
-    @discardableResult func addPackage(at url: URL) throws -> Package {
-        let name = try packageDataProvider.nameOfPackage(at: url, temporaryFolder: temporaryFolder)
+    func addPackage(_ package: InlineDependenciesFinder.InlineDependency) throws {
+        let name = try packageDataProvider.nameOfPackage(at: package.url, temporaryFolder: temporaryFolder)
 
-        let latestVersion = try packageDataProvider.latestMajorVersionForPackage(at: url)
-        let package = Package(name: name, url: absoluteRepositoryURL(from: url), majorVersion: latestVersion)
+        let latestVersion: Int
+        if let major = package.major {
+            latestVersion = major
+        } else {
+            latestVersion = try packageDataProvider.latestMajorVersionForPackage(at: package.url)
+        }
+        let package = Package(name: name, url: absoluteRepositoryURL(from: package.url), majorVersion: latestVersion)
         try save(package: package)
 
         try updatePackages()
         try addMissingPackageFiles()
-
-        return package
     }
 
     private func save(package: Package) throws {
