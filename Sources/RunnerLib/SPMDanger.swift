@@ -4,8 +4,11 @@ import Foundation
 public struct SPMDanger {
     private static let dangerDepsPrefix = "DangerDeps"
     private let fileManager: FileManager
-    public static let buildFolder = ".build/debug"
     public let depsLibName: String
+
+    public var buildFolder: String {
+        fileManager.currentDirectoryPath + "/.build/debug"
+    }
 
     public init?(packagePath: String = "Package.swift", fileManager: FileManager = .default) {
         self.fileManager = fileManager
@@ -40,8 +43,8 @@ public struct SPMDanger {
 
         // The danger lib is not always generated, this mainly happens on the danger repo,
         // where the DangerDeps library and Danger.swiftmodule are enough
-        if fileManager.fileExists(atPath: SPMDanger.buildFolder + "/libDanger.dylib") ||
-            fileManager.fileExists(atPath: SPMDanger.buildFolder + "/libDanger.so") {
+        if fileManager.fileExists(atPath: buildFolder + "/libDanger.dylib") ||
+            fileManager.fileExists(atPath: buildFolder + "/libDanger.so") {
             return libsImport + ["-l Danger"]
         } else {
             return libsImport
