@@ -25,7 +25,7 @@ install: build
 	mkdir -p $(PREFIX)/bin
 	mkdir -p $(LIB_INSTALL_PATH)
 	cp -f $(BUILD_PATH) $(INSTALL_PATH)
-	cp -f $(SWIFT_LIB_FILES) $(LIB_INSTALL_PATH)
+	cp -fr $(SWIFT_LIB_FILES) $(LIB_INSTALL_PATH)
 
 build:
 	swift package clean
