@@ -12,6 +12,7 @@
 -->
 
 ## Master
+- Adds mergeable state property in the Github PR struct [@Juanpe][] - [#318](https://github.com/danger/swift/pull/318)
 
 ## 3.2.1
 

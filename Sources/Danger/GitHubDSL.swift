@@ -42,6 +42,7 @@ extension GitHub {
             case state
             case head
             case base
+            case mergeable
             case isLocked = "locked"
             case isMerged = "merged"
             case createdAt = "created_at"
@@ -60,6 +61,12 @@ extension GitHub {
             case closed
             case merged
             case locked
+        }
+        
+        public enum MergeableState: String, Decodable {
+            case conflicting
+            case mergeable
+            case unknown
         }
 
         /// The number of the pull request.
@@ -106,6 +113,9 @@ extension GitHub {
 
         /// A boolean indicating if the pull request has been merged.
         public let isMerged: Bool?
+        
+        /// The state for mergeable based on the existence of merge conflicts: conflicting, mergeable, unknown.
+        public let mergeable: MergeableState
 
         /// The number of commits in the pull request.
         public let commitCount: Int?

@@ -543,6 +543,7 @@ public let DSLGitHubEnterpriseJSON = """
           "updated_at": "2016-08-17T15:26:15Z",
           "closed_at": "2016-08-17T15:26:14Z",
           "merged_at": "2016-08-17T15:26:14Z",
+          "mergeable": "mergeable",
           "merge_commit_sha": "e80bc6c78cd2f3524577e1401d7a460feba7a26c",
           "assignee": {
             "login": "orta",
@@ -848,9 +849,8 @@ public let DSLGitHubEnterpriseJSON = """
           },
           "author_association": "MEMBER",
           "merged": true,
-          "mergeable": null,
           "rebaseable": null,
-          "mergeable_state": "unknown",
+          "mergeable": "mergeable",
           "merged_by": {
             "login": "ashfurrow",
             "id": 498212,

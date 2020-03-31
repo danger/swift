@@ -845,9 +845,8 @@
           },
           "author_association": "MEMBER",
           "merged": true,
-          "mergeable": null,
+          "mergeable": "mergeable",
           "rebaseable": null,
-          "mergeable_state": "unknown",
           "merged_by": {
             "login": "ashfurrow",
             "id": 498212,
