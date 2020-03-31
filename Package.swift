@@ -58,7 +58,7 @@ let package = Package(
                 "Scripts/update_makefile.sh",
                 "Scripts/update_danger_version.sh",
                 "Scripts/update_changelog.sh",
-                "Scripts/release_swiftlint_docker.sh",
+//                "Scripts/release_swiftlint_docker.sh",
             ],
             "after": [
                 "Scripts/create_homebrew_tap.sh",
