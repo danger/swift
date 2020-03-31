@@ -8,6 +8,9 @@ import RunnerLib
 func runDanger(logger: Logger) throws {
     // Pull in the JSON from Danger JS
 
+    print("Env: " + ProcessInfo.processInfo.environment.reduce(into: "") { "\($0), \($1.key): \($1.value)" })
+    print("Args: " + ProcessInfo.processInfo.arguments.joined(separator: ","))
+
     let standardInput = FileHandle.standardInput
     let fileManager = FileManager.default
     let tmpPath = NSTemporaryDirectory()
@@ -147,6 +150,11 @@ func runDanger(logger: Logger) throws {
     proc.launchPath = swiftC
     proc.arguments = args
     let standardOutput = FileHandle.standardOutput
+    if let cwdOptionIndex = CommandLine.arguments.firstIndex(of: DangeSwiftRunnerOption.cwd.rawValue),
+        (cwdOptionIndex + 1) < CommandLine.arguments.count,
+        let directoryURL = URL(string: CommandLine.arguments[cwdOptionIndex + 1]) {
+        proc.currentDirectoryPath = directoryURL.absoluteString
+    }
     proc.standardOutput = standardOutput
     proc.standardError = standardOutput
 
