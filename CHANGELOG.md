@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.2.1
+
 - Fix make install [@lucasmpaim][] - [#331](https://github.com/danger/swift/pull/331)
 
 ## 3.2.0
