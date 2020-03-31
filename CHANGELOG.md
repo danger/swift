@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix make install [@lucasmpaim][] - [#331](https://github.com/danger/swift/pull/331)
+
 ## 3.2.0
 
 - Update OctoKit to support Xcode 11.4 [@lucasmpaim][] - [#329](https://github.com/danger/swift/pull/329)
