@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.2.0
+
 - Update OctoKit to support Xcode 11.4 [@lucasmpaim][] - [#329](https://github.com/danger/swift/pull/329)
 - Use new Data API to avoid coalescing operator and optionals [@f-meloni][] - [#320](https://github.com/danger/swift/pull/320)
 - Release a Dockerfile with swiftlint during releases [@f-meloni][] - [#319](https://github.com/danger/swift/pull/319)
