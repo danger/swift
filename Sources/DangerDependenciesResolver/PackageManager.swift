@@ -231,8 +231,8 @@ extension String {
     }
 
     var onlyNumbersAndDots: String? {
-        guard let regex = try? NSRegularExpression(pattern: "[^0-9.]", options: .caseInsensitive) else { return nil }
-        return regex.stringByReplacingMatches(in: self, options: .withTransparentBounds,
-                                              range: NSRange(location: 0, length: count), withTemplate: "")
+        var charset = CharacterSet.decimalDigits
+        charset.insert(".")
+        return String(unicodeScalars.filter { charset.contains($0) })
     }
 }
