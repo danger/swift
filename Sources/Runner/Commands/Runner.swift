@@ -7,10 +7,6 @@ import RunnerLib
 // swiftlint:disable:next function_body_length
 func runDanger(logger: Logger) throws {
     // Pull in the JSON from Danger JS
-
-    print("Env: " + ProcessInfo.processInfo.environment.reduce(into: "") { "\($0), \($1.key): \($1.value)" })
-    print("Args: " + ProcessInfo.processInfo.arguments.joined(separator: ","))
-
     let standardInput = FileHandle.standardInput
     let fileManager = FileManager.default
     let tmpPath = NSTemporaryDirectory()
