@@ -171,7 +171,7 @@ public struct PackageManager {
                                                              onFolder: folder,
                                                              arguments: ["--version"],
                                                              executor: executor)
-        versionString = versionString?.components(separatedBy: " (swiftpm").first?.onlyNumbersAndDots
+        versionString = versionString?.onlyNumbersAndDots
         return Version(versionString ?? "") ?? .null
     }
 }
