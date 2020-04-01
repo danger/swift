@@ -233,6 +233,6 @@ extension String {
     var onlyNumbersAndDots: String? {
         var charset = CharacterSet.decimalDigits
         charset.insert(".")
-        return String(unicodeScalars.filter { charset.contains($0) })
+        return String(unicodeScalars.filter(charset.contains))
     }
 }
