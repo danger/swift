@@ -171,15 +171,7 @@ public struct PackageManager {
                                                              onFolder: folder,
                                                              arguments: ["--version"],
                                                              executor: executor)
-        versionString = versionString?.components(separatedBy: " (swiftpm").first
-        versionString = versionString?.deletingPrefix("Apple Swift Package Manager - Swift ")
-
-        let versionComponents = versionString?.components(separatedBy: ".") ?? []
-
-        if versionComponents.count > 2 {
-            versionString = "\(versionComponents[0]).\(versionComponents[1]).\(versionComponents[2])"
-        }
-
+        versionString = versionString?.components(separatedBy: " (swiftpm").first?.onlyNumbersAndDots
         return Version(versionString ?? "") ?? .null
     }
 }
@@ -236,5 +228,11 @@ extension String {
     fileprivate func deletingPrefix(_ prefix: String) -> String {
         guard hasPrefix(prefix) else { return self }
         return String(dropFirst(prefix.count))
+    }
+
+    var onlyNumbersAndDots: String? {
+        guard let regex = try? NSRegularExpression(pattern: "[^0-9.]", options: .caseInsensitive) else { return nil }
+        return regex.stringByReplacingMatches(in: self, options: .withTransparentBounds,
+                                              range: NSRange(location: 0, length: count), withTemplate: "")
     }
 }
