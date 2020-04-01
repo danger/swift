@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.2.2
+
 - Fix danger-swift edit [@lucasmpaim][] - [#332](https://github.com/danger/swift/pull/332)
 
 ## 3.2.1
