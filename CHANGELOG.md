@@ -13,6 +13,8 @@
 
 ## Master
 
+- Add cwd parameter to define the current working directory [@f-meloni][] - [#333](https://github.com/danger/swift/pull/333)
+
 ## 3.2.2
 
 - Fix danger-swift edit [@lucasmpaim][] - [#332](https://github.com/danger/swift/pull/332)
