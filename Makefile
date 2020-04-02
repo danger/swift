@@ -1,6 +1,6 @@
 TOOL_NAME = danger-swift
 # Get this from the Danger.swift someday
-VERSION = 3.1.0
+VERSION = 3.2.2
 
 PREFIX = /usr/local
 INSTALL_PATH = $(PREFIX)/bin/$(TOOL_NAME)
@@ -25,7 +25,7 @@ install: build
 	mkdir -p $(PREFIX)/bin
 	mkdir -p $(LIB_INSTALL_PATH)
 	cp -f $(BUILD_PATH) $(INSTALL_PATH)
-	cp -f $(SWIFT_LIB_FILES) $(LIB_INSTALL_PATH)
+	cp -fr $(SWIFT_LIB_FILES) $(LIB_INSTALL_PATH)
 
 build:
 	swift package clean

@@ -13,7 +13,17 @@
 
 ## Master
 
-- Allow the usage of `~>` to pin a dependency to a major version  [@f-meloni][] - [#326](https://github.com/danger/swift/pull/326)
+## 3.2.2
+
+- Fix danger-swift edit [@lucasmpaim][] - [#332](https://github.com/danger/swift/pull/332)
+
+## 3.2.1
+
+- Fix make install [@lucasmpaim][] - [#331](https://github.com/danger/swift/pull/331)
+
+## 3.2.0
+
+- Update OctoKit to support Xcode 11.4 [@lucasmpaim][] - [#329](https://github.com/danger/swift/pull/329)
 - Use new Data API to avoid coalescing operator and optionals [@f-meloni][] - [#320](https://github.com/danger/swift/pull/320)
 - Release a Dockerfile with swiftlint during releases [@f-meloni][] - [#319](https://github.com/danger/swift/pull/319)
 
@@ -384,3 +394,4 @@ This release also includes:
 [@khoogheem]: https://github.com/khoogheem
 [@fortmarek]: https://github.com/danger/swift/pull/283
 [@avdlee]: https://github.com/AvdLee
+[@lucasmpaim]: https://github.com/lucasmpaim

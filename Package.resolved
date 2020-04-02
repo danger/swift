@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/nerdishbynature/octokit.swift",
         "state": {
           "branch": null,
-          "revision": "9ad4d6eff94ad1d9873d3b410a47c663c820d4bd",
-          "version": "0.10.0"
+          "revision": "c391cfba4d33f3f4c7d7d8fa6708970f7d30af82",
+          "version": "0.10.1"
         }
       },
       {
