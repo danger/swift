@@ -190,6 +190,17 @@ To use a local compiled copy of danger-js use the `danger-js-path` argument:
 danger-swift command --danger-js-path path/to/danger-js
 ```
 
+#### Current working directory
+
+Many people prefers using the SPM Danger configuration, because is more performing.
+But having a `Package.swift` on your root folder can be annoying, especially now that Xcode (from 11) doesn't put on the recents list an `xcproj` (or `xcworkspace`) when there is a `Package.swift` in the same folder.
+With the `--cwd` parameter you can specify a working directory.
+This allows you to have your `Package.swift` in another directory and still run danger-swift as it was executed from your project root directory.
+
+```swift
+swift run danger-swift command --cwd path/to/working-directory
+```
+
 #### Dev
 
 You need to be using Xcode 10.
