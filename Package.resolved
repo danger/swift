@@ -20,6 +20,24 @@
         }
       },
       {
+        "package": "CwlCatchException",
+        "repositoryURL": "https://github.com/mattgallagher/CwlCatchException.git",
+        "state": {
+          "branch": null,
+          "revision": "7cd2f8cacc4d22f21bc0b2309c3b18acf7957b66",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "CwlPreconditionTesting",
+        "repositoryURL": "https://github.com/mattgallagher/CwlPreconditionTesting.git",
+        "state": {
+          "branch": null,
+          "revision": "c228db5d2ad1b01ebc84435e823e6cca4e3db98b",
+          "version": "1.2.0"
+        }
+      },
+      {
         "package": "GraphViz",
         "repositoryURL": "https://github.com/SwiftDocOrg/GraphViz.git",
         "state": {
@@ -69,8 +87,8 @@
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
           "branch": null,
-          "revision": "7fd118ec8795888bcbbebc1a41f6984454c4cd6f",
-          "version": "8.0.7"
+          "revision": "b02b00b30b6353632aa4a5fb6124f8147f7140c0",
+          "version": "8.0.5"
         }
       },
       {
@@ -80,6 +98,15 @@
           "branch": null,
           "revision": "c391cfba4d33f3f4c7d7d8fa6708970f7d30af82",
           "version": "0.10.1"
+        }
+      },
+      {
+        "package": "PackageConfig",
+        "repositoryURL": "https://github.com/shibapm/PackageConfig.git",
+        "state": {
+          "branch": null,
+          "revision": "fd0829aac9851434b3d2db0890e27bc489fc973a",
+          "version": "0.12.2"
         }
       },
       {
@@ -123,8 +150,8 @@
         "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
         "state": {
           "branch": null,
-          "revision": "77a4dbbb477a8110eb8765e3c44c70fb4929098f",
-          "version": "0.29.0"
+          "revision": "97b5848e5692150d75b5cf0b81d7ebef5f4d5071",
+          "version": "0.28.0"
         }
       },
       {
@@ -150,7 +177,7 @@
         "repositoryURL": "https://github.com/SwiftDocOrg/swift-doc",
         "state": {
           "branch": "master",
-          "revision": "3df4fac1ead9747f0da22e45fb37264fafb56541",
+          "revision": "0b2291a52f22a30d5e2528f06be79d40cac570cb",
           "version": null
         }
       },
@@ -186,8 +213,8 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
           "branch": null,
-          "revision": "114882386a815f4a2e6d8f2f7ee4857acd372438",
-          "version": "1.7.2"
+          "revision": "12c6a7ce9d67f39a23c6bab757bdb073bd997885",
+          "version": "1.7.1"
         }
       },
       {
@@ -204,8 +231,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
           "branch": null,
-          "revision": "03989b9a28f98ea5cad5ca2b22024a8b67aca31c",
-          "version": "0.44.7"
+          "revision": "d9b7cf39e06e89428004a767d97006fb6d293c53",
+          "version": "0.43.5"
         }
       },
       {
@@ -213,8 +240,8 @@
         "repositoryURL": "https://github.com/Realm/SwiftLint",
         "state": {
           "branch": null,
-          "revision": "b1c72069cafa6cdebfb9274806cd976c54d8dde5",
-          "version": "0.39.2"
+          "revision": "76d44cff391645a7f4d5ba2bf1853afaf3f5c1fb",
+          "version": "0.38.2"
         }
       },
       {
@@ -278,6 +305,15 @@
           "branch": null,
           "revision": "200046c93f6d5d78a6d72bfd9c0b27a95e9c0a2b",
           "version": "1.2.0"
+        }
+      },
+      {
+        "package": "Yams",
+        "repositoryURL": "https://github.com/jpsim/Yams",
+        "state": {
+          "branch": null,
+          "revision": "c947a306d2e80ecb2c0859047b35c73b8e1ca27f",
+          "version": "2.0.0"
         }
       }
     ]
