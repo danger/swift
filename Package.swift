@@ -23,7 +23,7 @@ let package = Package(
         .package(url: "https://github.com/Realm/SwiftLint", from: "0.38.0"), // dev
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.1"), // dev
         .package(url: "https://github.com/shibapm/Rocket", from: "0.4.0"), // dev
-        .package(url: "https://github.com/eneko/SourceDocs", from: "0.6.0"), // dev
+        .package(url: "https://github.com/SwiftDocOrg/swift-doc", .branch("master")), // dev
     ],
     targets: [
         .target(name: "Danger-Swift", dependencies: ["Danger"]), // dev
