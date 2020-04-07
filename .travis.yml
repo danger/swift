@@ -73,8 +73,8 @@ matrix:
       install:
         - node -v
         - npm install -g danger
-        - echo "5.2" > .swift-version
+        - echo "5.2.0" > .swift-version
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
-        - swiftenv global 5.2
+        - swiftenv global 5.2.0
       script:
         - swift run danger-swift ci
