@@ -72,6 +72,12 @@ public struct DangerPlugin {
 
 You can use Swift PM to install both `danger-swift` and your plugins:
 
+- Install Danger JS
+
+  ```bash
+  $ npm install -g danger
+  ```
+
 - Add to your `Package.swift`:
 
   ```swift
