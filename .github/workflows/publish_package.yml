@@ -1,4 +1,4 @@
-name: Swift
+name: Release Danger-Swift package
 
 on:
   push:
