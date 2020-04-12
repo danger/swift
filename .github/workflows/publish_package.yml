@@ -1,0 +1,23 @@
+name: Release Danger-Swift package
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker Login
+      run: echo $GITHUB_PACKAGES_WRITE_TOKEN | docker login docker.pkg.github.com -u $GITHUB_USERNAME -password-stdin
+      env:
+        GITHUB_PACKAGES_WRITE_TOKEN: ${{ secrets.GITHUB_PACKAGES_WRITE_TOKEN }}
+        GITHUB_USERNAME: ${{ secrets.GITHUB_USERNAME }}
+    - name: Docker Build
+      run: docker build -t docker.pkg.github.com/danger/swift/danger-swift:$GITHUB_REF
+    - name: Deploy
+      run: docker push docker.pkg.github.com/danger/swift/danger-swift:$GITHUB_REF
