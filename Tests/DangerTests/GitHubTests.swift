@@ -262,7 +262,86 @@ final class GitHubTests: XCTestCase {
         XCTAssertEqual(testCommit.committer, GitHub.User(id: 17_830_956, login: "f-meloni", userType: .user))
     }
 
-    func test_GitHubPR_decode() throws {}
+    func test_GitHubPR_decode() throws {
+        let data = Data(GitHubPRJSON.utf8)
+        let actualPR = try decoder.decode(GitHub.PullRequest.self, from: data)
+
+        let expectedUser = GitHub.User(
+            id: 1,
+            login: "octocat",
+            userType: .user
+        )
+
+        let repo = GitHub.Repo(
+            id: 1_296_269,
+            name: "Hello-World",
+            fullName: "octocat/Hello-World",
+            owner: expectedUser,
+            isPrivate: false,
+            description: "This your first repo!",
+            isFork: true,
+            htmlURL: "https://github.com/octocat/Hello-World"
+        )
+
+        let head = GitHub.MergeRef(
+            label: "new-topic",
+            ref: "new-topic1",
+            sha: "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+            user: expectedUser,
+            repo: repo
+        )
+
+        let base = GitHub.MergeRef(
+            label: "master",
+            ref: "master",
+            sha: "6dcb09b5b57875f334f61aebed695e2e4193db5e",
+            user: expectedUser, repo: repo
+        )
+
+        let milestone = GitHub.Milestone(
+            id: 1_002_604,
+            number: 1,
+            state: GitHub.Milestone.State.open,
+            title: "v1.0",
+            description: "Tracking milestone for version 1.0",
+            creator: expectedUser,
+            openIssues: 4,
+            closedIssues: 8,
+            createdAt: Date(timeIntervalSince1970: 1_302_466_171.0),
+            updatedAt: Date(timeIntervalSince1970: 1_393_873_090.0),
+            closedAt: Date(timeIntervalSince1970: 1_360_675_321.0),
+            dueOn: Date(timeIntervalSince1970: 1_349_825_941.0)
+        )
+
+        let expectedPR = GitHub.PullRequest(
+            number: 1347,
+            title: "new-feature",
+            body: "Please pull these awesome changes",
+            user: expectedUser,
+            assignee: expectedUser,
+            assignees: nil,
+            createdAt: Date(timeIntervalSince1970: 1_296_068_472.0),
+            updatedAt: Date(timeIntervalSince1970: 1_296_068_472.0),
+            closedAt: Date(timeIntervalSince1970: 1_296_068_472.0),
+            mergedAt: Date(timeIntervalSince1970: 1_296_068_472.0),
+            head: head,
+            base: base,
+            state: GitHub.PullRequest.PullRequestState.open,
+            isLocked: true,
+            isMerged: nil,
+            commitCount: nil,
+            commentCount: nil,
+            reviewCommentCount: nil,
+            additions: nil,
+            deletions: nil,
+            changedFiles: nil,
+            milestone: milestone,
+            htmlUrl: "https://github.com/octocat/Hello-World/pull/1347",
+            draft: false
+        )
+
+        XCTAssertEqual(expectedPR, actualPR)
+    }
 
     func test_GitHub_decode() throws {}
 }
