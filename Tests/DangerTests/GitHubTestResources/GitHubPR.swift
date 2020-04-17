@@ -14,6 +14,7 @@ public let GitHubPRJSON = """
 "statuses_url": "https://api.github.com/repos/octocat/Hello-World/statuses/6dcb09b5b57875f334f61aebed695e2e4193db5e",
 "number": 1347,
 "state": "open",
+"draft": false,
 "title": "new-feature",
 "body": "Please pull these awesome changes",
 "assignee": {

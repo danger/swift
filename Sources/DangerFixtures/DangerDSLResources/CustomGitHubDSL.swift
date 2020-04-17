@@ -1,3 +1,5 @@
+// swiftlint:disable line_length file_length identifier_name function_body_length
+
 public func githubJSONWithFiles(created: [String] = [], modified: [String] = [], deleted: [String] = [], fileMap: [String: String] = [:]) -> String {
     let fileMapString: String = fileMap.keys.map { k in "\"\(k)\": \"\(fileMap[k]!)\"" }.joined(separator: ", ")
     return """
@@ -432,6 +434,7 @@ public func githubJSONWithFiles(created: [String] = [], modified: [String] = [],
               "updated_at": "2016-08-17T15:26:14Z",
               "closed_at": "2016-08-17T15:26:14Z",
               "author_association": "MEMBER",
+              "draft": false,
               "pull_request": {
                 "url": "https://api.github.com/repos/artsy/eidolon/pulls/609",
                 "html_url": "https://github.com/artsy/eidolon/pull/609",
@@ -799,6 +802,7 @@ public func githubJSONWithFiles(created: [String] = [], modified: [String] = [],
                 }
               },
               "author_association": "MEMBER",
+              "draft": false,
               "merged": true,
               "mergeable": null,
               "rebaseable": null,
