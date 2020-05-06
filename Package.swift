@@ -56,7 +56,7 @@ let package = Package(
         "rocket": [
             "pre_release_checks": [
                 "clean_git"
-            ]
+            ],
             "before": [
                 "Scripts/update_makefile.sh",
                 "Scripts/update_danger_version.sh",
