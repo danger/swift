@@ -8,6 +8,7 @@ final class SPMDangerTests: XCTestCase {
 
     override func tearDown() {
         try? FileManager.default.removeItem(atPath: testPackage)
+
         super.tearDown()
     }
 
@@ -15,6 +16,7 @@ final class SPMDangerTests: XCTestCase {
         try ".library(name: \"DangerDeps\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
 
         let spmDanger = SPMDanger(packagePath: testPackage)
+
         XCTAssertEqual(spmDanger?.depsLibName, "DangerDeps")
     }
 
@@ -22,6 +24,7 @@ final class SPMDangerTests: XCTestCase {
         try ".library(name: \"DangerDepsEigen\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
 
         let spmDanger = SPMDanger(packagePath: testPackage)
+
         XCTAssertEqual(spmDanger?.depsLibName, "DangerDepsEigen")
     }
 
@@ -64,7 +67,14 @@ final class SPMDangerTests: XCTestCase {
 
     func testItReturnsTheCorrectSwiftcDepsImport() throws {
         try ".library(name: \"DangerDepsEigen\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
+
         XCTAssertEqual(SPMDanger(packagePath: testPackage)?.swiftcLibImport, "-lDangerDepsEigen")
+    }
+
+    func testItReturnsTheCorrectBuildFolder() throws {
+        try ".library(name: \"DangerDepsEigen\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
+
+        XCTAssertEqual(SPMDanger(packagePath: testPackage, fileManager: StubbedFileManager())?.buildFolder, "testPath/.build/debug")
     }
 }
 
@@ -73,5 +83,9 @@ private class StubbedFileManager: FileManager {
 
     override func fileExists(atPath _: String) -> Bool {
         stubbedFileExists
+    }
+
+    override var currentDirectoryPath: String {
+        "testPath"
     }
 }

@@ -72,6 +72,12 @@ public struct DangerPlugin {
 
 You can use Swift PM to install both `danger-swift` and your plugins:
 
+- Install Danger JS
+
+  ```bash
+  $ npm install -g danger
+  ```
+
 - Add to your `Package.swift`:
 
   ```swift
@@ -84,7 +90,7 @@ You can use Swift PM to install both `danger-swift` and your plugins:
       ],
       dependencies: [
           ...
-          .package(url: "https://github.com/danger/swift.git", from: "2.0.0"), // dev
+          .package(url: "https://github.com/danger/swift.git", from: "3.0.0"), // dev
           // Danger Plugins
           .package(url: "https://github.com/username/DangerPlugin.git", from: "0.1.0") // dev
           ...
@@ -175,7 +181,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Danger
-        uses: danger/swift@2.0.3
+        uses: danger/swift@3.3.0
         with:
             args: --failOnErrors --no-publish-check
         env:
@@ -188,6 +194,17 @@ To use a local compiled copy of danger-js use the `danger-js-path` argument:
 
 ```
 danger-swift command --danger-js-path path/to/danger-js
+```
+
+#### Current working directory
+
+Many people prefers using the SPM Danger configuration, because is more performing.
+But having a `Package.swift` on your root folder can be annoying, especially now that Xcode (from 11) doesn't put on the recents list an `xcproj` (or `xcworkspace`) when there is a `Package.swift` in the same folder.
+With the `--cwd` parameter you can specify a working directory.
+This allows you to have your `Package.swift` in another directory and still run danger-swift as it was executed from your project root directory.
+
+```swift
+swift run danger-swift command --cwd path/to/working-directory
 ```
 
 #### Dev

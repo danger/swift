@@ -53,6 +53,7 @@ extension GitHub {
             case reviewCommentCount = "review_comments"
             case changedFiles = "changed_files"
             case htmlUrl = "html_url"
+            case draft
         }
 
         public enum PullRequestState: String, Decodable {
@@ -130,6 +131,9 @@ extension GitHub {
 
         /// The link back to this PR as user-facing
         public let htmlUrl: String
+
+        // The draft state of the pull request
+        public let draft: Bool
     }
 }
 

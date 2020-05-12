@@ -10,3 +10,14 @@ public enum DangerSwiftOption: String, CaseIterable {
         }
     }
 }
+
+public enum DangeSwiftRunnerOption: String, CaseIterable {
+    case cwd = "--cwd"
+
+    public var hasParameter: Bool {
+        switch self {
+        case .cwd:
+            return true
+        }
+    }
+}

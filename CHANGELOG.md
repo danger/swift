@@ -12,6 +12,19 @@
 -->
 
 ## Master
+- Add GitHub draft support[@captainbarbosa][] - [#341](https://github.com/danger/swift/pull/341)
+
+## 3.3.0
+
+- Add cwd parameter to define the current working directory [@f-meloni][] - [#333](https://github.com/danger/swift/pull/333)
+
+## 3.2.2
+
+- Fix danger-swift edit [@lucasmpaim][] - [#332](https://github.com/danger/swift/pull/332)
+
+## 3.2.1
+
+- Fix make install [@lucasmpaim][] - [#331](https://github.com/danger/swift/pull/331)
 
 ## 3.2.0
 
@@ -387,3 +400,4 @@ This release also includes:
 [@fortmarek]: https://github.com/danger/swift/pull/283
 [@avdlee]: https://github.com/AvdLee
 [@lucasmpaim]: https://github.com/lucasmpaim
+[@captainbarbosa]: https://github.com/captainbarbosa

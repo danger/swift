@@ -11,12 +11,12 @@
         }
       },
       {
-        "package": "Curry",
-        "repositoryURL": "https://github.com/thoughtbot/Curry.git",
+        "package": "CommonMark",
+        "repositoryURL": "https://github.com/SwiftDocOrg/CommonMark.git",
         "state": {
           "branch": null,
-          "revision": "4331dd50bc1db007db664a23f32e6f3df93d4e1a",
-          "version": "4.0.2"
+          "revision": "902cc82abc2e8ad23b73c982eed27c63ae3d9384",
+          "version": null
         }
       },
       {
@@ -38,6 +38,24 @@
         }
       },
       {
+        "package": "GraphViz",
+        "repositoryURL": "https://github.com/SwiftDocOrg/GraphViz.git",
+        "state": {
+          "branch": null,
+          "revision": "03405c13dc1c31f50c08bbec6e7587cbee1c7fb3",
+          "version": null
+        }
+      },
+      {
+        "package": "HypertextLiteral",
+        "repositoryURL": "https://github.com/NSHipster/HypertextLiteral.git",
+        "state": {
+          "branch": null,
+          "revision": "3e45da849e507d171c7264146176bb834a01be4f",
+          "version": "0.0.2"
+        }
+      },
+      {
         "package": "Komondor",
         "repositoryURL": "https://github.com/shibapm/Komondor",
         "state": {
@@ -56,12 +74,12 @@
         }
       },
       {
-        "package": "MarkdownGenerator",
-        "repositoryURL": "https://github.com/eneko/MarkdownGenerator.git",
+        "package": "Markup",
+        "repositoryURL": "https://github.com/SwiftDocOrg/Markup.git",
         "state": {
           "branch": null,
-          "revision": "1fc31be6b66245187c3f87f35d86b6aeac6dfe7f",
-          "version": "0.5.0"
+          "revision": "029ad8c1115ab32b7c20ab52eb092fbc030deb17",
+          "version": "0.0.4"
         }
       },
       {
@@ -101,15 +119,6 @@
         }
       },
       {
-        "package": "Rainbow",
-        "repositoryURL": "https://github.com/onevcat/Rainbow",
-        "state": {
-          "branch": null,
-          "revision": "9c52c1952e9b2305d4507cf473392ac2d7c9b155",
-          "version": "3.1.5"
-        }
-      },
-      {
         "package": "RequestKit",
         "repositoryURL": "https://github.com/nerdishbynature/RequestKit.git",
         "state": {
@@ -137,15 +146,6 @@
         }
       },
       {
-        "package": "SourceDocs",
-        "repositoryURL": "https://github.com/eneko/SourceDocs",
-        "state": {
-          "branch": null,
-          "revision": "dfa6fdae84c555264ad9795dcb7d629339191c01",
-          "version": "0.6.1"
-        }
-      },
-      {
         "package": "SourceKitten",
         "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
         "state": {
@@ -155,12 +155,75 @@
         }
       },
       {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
+        "state": {
+          "branch": null,
+          "revision": "9f04d1ff1afbccd02279338a2c91e5f27c45e93a",
+          "version": "0.0.5"
+        }
+      },
+      {
+        "package": "cmark",
+        "repositoryURL": "https://github.com/SwiftDocOrg/swift-cmark.git",
+        "state": {
+          "branch": null,
+          "revision": "1168665f6b36be747ffe6b7b90bc54cfc17f42b7",
+          "version": "0.28.3+20200207.1168665"
+        }
+      },
+      {
+        "package": "swift-doc",
+        "repositoryURL": "https://github.com/SwiftDocOrg/swift-doc",
+        "state": {
+          "branch": "master",
+          "revision": "137d67f0926dc2dcb969d514bb46636f1b0b8344",
+          "version": null
+        }
+      },
+      {
+        "package": "HTMLEntities",
+        "repositoryURL": "https://github.com/IBM-Swift/swift-html-entities.git",
+        "state": {
+          "branch": null,
+          "revision": "744c094976355aa96ca61b9b60ef0a38e979feb7",
+          "version": "3.0.14"
+        }
+      },
+      {
+        "package": "swift-log",
+        "repositoryURL": "https://github.com/apple/swift-log.git",
+        "state": {
+          "branch": null,
+          "revision": "74d7b91ceebc85daf387ebb206003f78813f71aa",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "LoggingGitHubActions",
+        "repositoryURL": "https://github.com/NSHipster/swift-log-github-actions.git",
+        "state": {
+          "branch": null,
+          "revision": "13ce1e95e5b0c5fffa7667214d42e1f316693ef5",
+          "version": "0.0.1"
+        }
+      },
+      {
         "package": "SnapshotTesting",
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
           "branch": null,
           "revision": "12c6a7ce9d67f39a23c6bab757bdb073bd997885",
           "version": "1.7.1"
+        }
+      },
+      {
+        "package": "SwiftSyntax",
+        "repositoryURL": "https://github.com/apple/swift-syntax.git",
+        "state": {
+          "branch": "0.50200.0",
+          "revision": "0688b9cfc4c3dd234e4f55f1f056b2affc849873",
+          "version": null
         }
       },
       {
@@ -182,12 +245,39 @@
         }
       },
       {
+        "package": "SwiftMarkup",
+        "repositoryURL": "https://github.com/SwiftDocOrg/SwiftMarkup.git",
+        "state": {
+          "branch": "0.2.0",
+          "revision": "f395f3bd9e345402cc744aa9051780ed403d3b26",
+          "version": null
+        }
+      },
+      {
+        "package": "SwiftSemantics",
+        "repositoryURL": "https://github.com/SwiftDocOrg/SwiftSemantics.git",
+        "state": {
+          "branch": null,
+          "revision": "4fdc48bddbbb8311079ed111e5a4f2b92423b05c",
+          "version": "0.1.0"
+        }
+      },
+      {
         "package": "SwiftShell",
         "repositoryURL": "https://github.com/kareman/SwiftShell",
         "state": {
           "branch": null,
           "revision": "beebe43c986d89ea5359ac3adcb42dac94e5e08a",
           "version": "4.1.2"
+        }
+      },
+      {
+        "package": "SwiftSyntaxHighlighter",
+        "repositoryURL": "https://github.com/NSHipster/SwiftSyntaxHighlighter.git",
+        "state": {
+          "branch": "1.0.0",
+          "revision": "4a20d10bba17241b66650d99081801536146b43c",
+          "version": null
         }
       },
       {
@@ -209,30 +299,12 @@
         }
       },
       {
-        "package": "System",
-        "repositoryURL": "https://github.com/eneko/System.git",
-        "state": {
-          "branch": null,
-          "revision": "07424d234b23ce8ce4637ddab1beb6ef945903ea",
-          "version": "0.3.0"
-        }
-      },
-      {
         "package": "Version",
         "repositoryURL": "https://github.com/mxcl/Version",
         "state": {
           "branch": null,
           "revision": "200046c93f6d5d78a6d72bfd9c0b27a95e9c0a2b",
           "version": "1.2.0"
-        }
-      },
-      {
-        "package": "Yams",
-        "repositoryURL": "https://github.com/jpsim/Yams.git",
-        "state": {
-          "branch": null,
-          "revision": "c947a306d2e80ecb2c0859047b35c73b8e1ca27f",
-          "version": "2.0.0"
         }
       }
     ]

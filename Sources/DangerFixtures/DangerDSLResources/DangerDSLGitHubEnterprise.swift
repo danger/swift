@@ -480,6 +480,7 @@ public let DSLGitHubEnterpriseJSON = """
           "updated_at": "2016-08-17T15:26:14Z",
           "closed_at": "2016-08-17T15:26:14Z",
           "author_association": "MEMBER",
+          "draft": false,
           "pull_request": {
             "url": "https://api.github.com/repos/artsy/eidolon/pulls/609",
             "html_url": "https://github.com/artsy/eidolon/pull/609",
@@ -847,6 +848,7 @@ public let DSLGitHubEnterpriseJSON = """
             }
           },
           "author_association": "MEMBER",
+          "draft": false,
           "merged": true,
           "mergeable": null,
           "rebaseable": null,

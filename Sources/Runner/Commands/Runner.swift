@@ -7,7 +7,6 @@ import RunnerLib
 // swiftlint:disable:next function_body_length
 func runDanger(logger: Logger) throws {
     // Pull in the JSON from Danger JS
-
     let standardInput = FileHandle.standardInput
     let fileManager = FileManager.default
     let tmpPath = NSTemporaryDirectory()
@@ -55,8 +54,8 @@ func runDanger(logger: Logger) throws {
 
     if let spmDanger = SPMDanger() {
         spmDanger.buildDependencies(executor: executor)
-        libArgs += ["-L", SPMDanger.buildFolder]
-        libArgs += ["-I", SPMDanger.buildFolder]
+        libArgs += ["-L", spmDanger.buildFolder]
+        libArgs += ["-I", spmDanger.buildFolder]
         libArgs += [spmDanger.swiftcLibImport]
     } else {
         guard let libDangerPath = Runtime.getLibDangerPath() else {
@@ -146,8 +145,12 @@ func runDanger(logger: Logger) throws {
     let proc = Process()
     proc.launchPath = swiftC
     proc.arguments = args
-
     let standardOutput = FileHandle.standardOutput
+    if let cwdOptionIndex = CommandLine.arguments.firstIndex(of: DangeSwiftRunnerOption.cwd.rawValue),
+        (cwdOptionIndex + 1) < CommandLine.arguments.count,
+        let directoryURL = URL(string: CommandLine.arguments[cwdOptionIndex + 1]) {
+        proc.currentDirectoryPath = directoryURL.absoluteString
+    }
     proc.standardOutput = standardOutput
     proc.standardError = standardOutput
 

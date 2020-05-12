@@ -21,7 +21,7 @@ func editDanger(logger: Logger) throws {
 
     if let spmDanger = SPMDanger() {
         spmDanger.buildDependencies()
-        absoluteLibPath = FileManager.default.currentDirectoryPath + "/" + SPMDanger.buildFolder
+        absoluteLibPath = spmDanger.buildFolder
         libsImport = spmDanger.xcodeImportFlags
     } else {
         guard let libPath = Runtime.getLibDangerPath() else {
