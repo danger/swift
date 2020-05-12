@@ -83,6 +83,15 @@
         }
       },
       {
+        "package": "PackageConfig",
+        "repositoryURL": "https://github.com/shibapm/PackageConfig.git",
+        "state": {
+          "branch": null,
+          "revision": "fd0829aac9851434b3d2db0890e27bc489fc973a",
+          "version": "0.12.2"
+        }
+      },
+      {
         "package": "Quick",
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {
@@ -146,24 +155,6 @@
         }
       },
       {
-        "package": "llbuild",
-        "repositoryURL": "https://github.com/apple/swift-llbuild.git",
-        "state": {
-          "branch": null,
-          "revision": "f1c9ad9a253cdf1aa89a7f5c99c30b4513b06ddb",
-          "version": "0.1.1"
-        }
-      },
-      {
-        "package": "SwiftPM",
-        "repositoryURL": "https://github.com/apple/swift-package-manager.git",
-        "state": {
-          "branch": null,
-          "revision": "8656a25cb906c1896339f950ac960ee1b4fe8034",
-          "version": "0.4.0"
-        }
-      },
-      {
         "package": "SnapshotTesting",
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
@@ -222,8 +213,8 @@
         "repositoryURL": "https://github.com/eneko/System.git",
         "state": {
           "branch": null,
-          "revision": "381352d9479fb9c75d99a5ae5503f7d560c62449",
-          "version": "0.2.0"
+          "revision": "07424d234b23ce8ce4637ddab1beb6ef945903ea",
+          "version": "0.3.0"
         }
       },
       {
