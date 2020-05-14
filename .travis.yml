@@ -22,7 +22,7 @@ matrix:
     - os: linux
       language: generic
       sudo: required
-      dist: trusty
+      dist: bionic
       install:
         - node -v
         - npm install -g danger
@@ -56,7 +56,7 @@ matrix:
       name: Danger with SPM
       language: generic
       sudo: required
-      dist: trusty
+      dist: bionic
       install:
         - node -v
         - npm install -g danger
@@ -69,7 +69,7 @@ matrix:
       name: Danger with SPM
       language: generic
       sudo: required
-      dist: trusty
+      dist: bionic
       install:
         - node -v
         - npm install -g danger
