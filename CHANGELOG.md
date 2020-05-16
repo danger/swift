@@ -12,6 +12,8 @@
 -->
 
 ## Master
+
+- Update Dockerfile to use swift 5.2 [@f-meloni][] - [#330](https://github.com/danger/swift/pull/330)
 - Add GitHub draft support[@captainbarbosa][] - [#341](https://github.com/danger/swift/pull/341)
 
 ## 3.3.0
