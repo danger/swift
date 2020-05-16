@@ -13,7 +13,7 @@ matrix:
       osx_image: xcode11.2
       install:
         - node -v
-        - npm install -g danger@7.1.4
+        - npm install -g danger
         - make install
       script:
         - swift test
@@ -22,10 +22,10 @@ matrix:
     - os: linux
       language: generic
       sudo: required
-      dist: trusty
+      dist: bionic
       install:
         - node -v
-        - npm install -g danger@7.1.4
+        - npm install -g danger
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
         - swiftenv global 5.1.1
       script:
@@ -39,7 +39,16 @@ matrix:
       osx_image: xcode11.2
       install:
         - node -v
-        - npm install -g danger@7.1.4
+        - npm install -g danger
+      script:
+        - swift run danger-swift ci
+
+    - os: osx
+      name: Xcode 11.4
+      osx_image: xcode11.4
+      install:
+        - node -v
+        - npm install -g danger
       script:
         - swift run danger-swift ci
 
@@ -47,11 +56,25 @@ matrix:
       name: Danger with SPM
       language: generic
       sudo: required
-      dist: trusty
+      dist: bionic
       install:
         - node -v
-        - npm install -g danger@7.1.4
+        - npm install -g danger
         - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
         - swiftenv global 5.1.1
+      script:
+        - swift run danger-swift ci
+
+    - os: linux
+      name: Danger with SPM
+      language: generic
+      sudo: required
+      dist: bionic
+      install:
+        - node -v
+        - npm install -g danger
+        - echo 5.2.2 > .swift-version
+        - eval "$(curl -sL https://swiftenv.fuller.li/install.sh)"
+        - swiftenv global 5.2.2
       script:
         - swift run danger-swift ci

@@ -14,8 +14,8 @@
         "package": "CommonMark",
         "repositoryURL": "https://github.com/SwiftDocOrg/CommonMark.git",
         "state": {
-          "branch": "master",
-          "revision": "00d3a8ce879b6578979a3470430867f85af26b92",
+          "branch": null,
+          "revision": "902cc82abc2e8ad23b73c982eed27c63ae3d9384",
           "version": null
         }
       },
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/SwiftDocOrg/Markup.git",
         "state": {
           "branch": null,
-          "revision": "9a429d0011d738059bc94f5f92ee406689597a91",
-          "version": "0.0.3"
+          "revision": "029ad8c1115ab32b7c20ab52eb092fbc030deb17",
+          "version": "0.0.4"
         }
       },
       {
@@ -159,8 +159,8 @@
         "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
         "state": {
           "branch": null,
-          "revision": "8d31a0905c346a45c87773ad50862b5b3df8dff6",
-          "version": "0.0.4"
+          "revision": "9f04d1ff1afbccd02279338a2c91e5f27c45e93a",
+          "version": "0.0.5"
         }
       },
       {
@@ -177,7 +177,7 @@
         "repositoryURL": "https://github.com/SwiftDocOrg/swift-doc",
         "state": {
           "branch": "master",
-          "revision": "0b2291a52f22a30d5e2528f06be79d40cac570cb",
+          "revision": "137d67f0926dc2dcb969d514bb46636f1b0b8344",
           "version": null
         }
       },
@@ -248,9 +248,9 @@
         "package": "SwiftMarkup",
         "repositoryURL": "https://github.com/SwiftDocOrg/SwiftMarkup.git",
         "state": {
-          "branch": null,
-          "revision": "431f418ae1833a312646e934a2891e778c1b03b0",
-          "version": "0.0.5"
+          "branch": "0.2.0",
+          "revision": "f395f3bd9e345402cc744aa9051780ed403d3b26",
+          "version": null
         }
       },
       {
@@ -305,15 +305,6 @@
           "branch": null,
           "revision": "200046c93f6d5d78a6d72bfd9c0b27a95e9c0a2b",
           "version": "1.2.0"
-        }
-      },
-      {
-        "package": "Yams",
-        "repositoryURL": "https://github.com/jpsim/Yams",
-        "state": {
-          "branch": null,
-          "revision": "c947a306d2e80ecb2c0859047b35c73b8e1ca27f",
-          "version": "2.0.0"
         }
       }
     ]
