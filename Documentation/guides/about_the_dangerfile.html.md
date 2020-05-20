@@ -90,7 +90,8 @@ let package = Package(
 ...
 products: [
     ...
-    .library(name: "DangerDeps[Product name (optional)]", type: .dynamic, targets: ["DangerDependencies"]), // dev
+    // Library name must be `DangerDeps` otherwise `Danger` won't be able to import it.
+    .library(name: "DangerDeps", type: .dynamic, targets: ["DangerDependencies"]), // dev
     ...
     ],
     dependencies: [
