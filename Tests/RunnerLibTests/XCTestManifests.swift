@@ -66,8 +66,9 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__GetDangerJSPathTests = [
-            ("testItSearchesForDangerJSIfTheDangerJSPathOptionIsNotPresent", testItSearchesForDangerJSIfTheDangerJSPathOptionIsNotPresent),
-            ("testItUsesTheDangerJSPathOptionIfPresent", testItUsesTheDangerJSPathOptionIfPresent),
+            ("testItSearchesForDangerIfTheDangerPathOptionIsNotPresentAndDangerJSIsNotFound", testItSearchesForDangerIfTheDangerPathOptionIsNotPresentAndDangerJSIsNotFound),
+            ("testItSearchesForDangerJSIfDangerJSPathOptionIsNotPresent", testItSearchesForDangerJSIfDangerJSPathOptionIsNotPresent),
+            ("testItUsesDangerJSPathOptionIfPresent", testItUsesDangerJSPathOptionIfPresent),
         ]
     }
 
