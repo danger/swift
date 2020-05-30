@@ -55,7 +55,7 @@ extension BitBucketCloud {
             public let role: Role
 
             /// The user who participated in this PR
-            public let user: User
+            public let user: User?
         }
 
         /// The creator of the PR
@@ -167,7 +167,7 @@ extension BitBucketCloud {
             let raw: String
 
             /// The user that created the commit
-            let user: User
+            let user: User?
         }
 
         public struct Parent {
@@ -227,7 +227,7 @@ extension BitBucketCloud {
         public let updatedOn: Date
 
         /// The user that created the comment
-        public let user: User
+        public let user: User?
     }
 }
 
