@@ -15,12 +15,11 @@ final class GetDangerJSPathTests: XCTestCase {
 
     func testItSearchesForDangerJSIfDangerJSPathOptionIsNotPresent() throws {
         let executor = MockedExecutor()
-        let expectedResult = "/usr/test/danger-js"
-        executor.result = { _ in expectedResult }
+        executor.result = { _ in "/usr/test/danger-js" }
 
         let path = try getDangerCommandPath(logger: logger, args: [], shellOutExecutor: executor)
         XCTAssertEqual(executor.receivedCommands, ["command -v danger-js"])
-        XCTAssertEqual(path, expectedResult)
+        XCTAssertEqual(path, "/usr/test/danger")
     }
 
     func testItSearchesForDangerIfTheDangerPathOptionIsNotPresentAndDangerJSIsNotFound() throws {
