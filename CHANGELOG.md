@@ -13,7 +13,7 @@
 
 ## Master
 
-- Update BitBucketCloud commit user to be optional [@mahmoud-amer-m][https://github.com/mahmoud-amer-m] - [#355](https://github.com/danger/swift/pull/355)
+- Update BitBucketCloud commit user to be optional [@mahmoud-amer-m](https://github.com/mahmoud-amer-m) - [#355](https://github.com/danger/swift/pull/355)
 
 ## Master
 
