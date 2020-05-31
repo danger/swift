@@ -13,6 +13,7 @@
 
 ## Master
 
+- Search for danger-js binary before searching danger binary [@f-meloni][] - [#351](https://github.com/danger/swift/pull/351)
 - Update Dockerfile to use swift 5.2 [@f-meloni][] - [#330](https://github.com/danger/swift/pull/330)
 - Add GitHub draft support[@captainbarbosa][] - [#341](https://github.com/danger/swift/pull/341)
 
