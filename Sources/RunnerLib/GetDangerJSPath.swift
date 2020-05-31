@@ -11,7 +11,8 @@ public func getDangerCommandPath(logger: Logger,
     } else {
         logger.debug("Finding out where the danger executable is")
 
-        if let dangerJsPath = try? shellOutExecutor.spawn("command -v danger-js", arguments: []).trimmingCharacters(in: .whitespaces),
+        if let dangerJsPath = try? shellOutExecutor.spawn("command -v danger-js",
+                                                          arguments: []).trimmingCharacters(in: .whitespaces),
             !dangerJsPath.isEmpty {
             return dangerJsPath.deletingSuffix("-js")
         } else {
