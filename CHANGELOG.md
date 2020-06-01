@@ -13,6 +13,10 @@
 
 ## Master
 
+- Update BitBucketCloud commit user to be optional [@mahmoud-amer-m](https://github.com/mahmoud-amer-m) - [#355](https://github.com/danger/swift/pull/355)
+
+## Master
+
 - Update Dockerfile to use swift 5.2 [@f-meloni][] - [#330](https://github.com/danger/swift/pull/330)
 - Add GitHub draft support[@captainbarbosa][] - [#341](https://github.com/danger/swift/pull/341)
 

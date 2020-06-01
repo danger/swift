@@ -167,7 +167,7 @@ extension BitBucketCloud {
             let raw: String
 
             /// The user that created the commit
-            let user: User
+            let user: User?
         }
 
         public struct Parent {

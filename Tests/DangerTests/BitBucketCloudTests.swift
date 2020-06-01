@@ -59,6 +59,16 @@ final class BitBucketCloudTests: XCTestCase {
             ),
         ])
     }
+    
+    func testCommitWithoutUser() {
+        do {
+            let commit = try JSONDecoder().decode(BitBucketCloud.Commit.self, from: Data(BitBucketCloudCommitWithoutUser.utf8))
+            XCTAssertEqual(commit.author.raw, "Franco Meloni <franco.meloni91@gmail.com>")
+            XCTAssertNil(commit.author.user)
+        } catch {
+            XCTFail("Couldn't parse JSON commit (BitBucketCloudCommitWithoutUser) in BitbucketCloudCommit. \nError: \(error)")
+        }
+    }
 
     func testParsesMetadata() {
         let metadata = bitbucketCould.metadata
