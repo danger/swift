@@ -46,7 +46,7 @@ final class SPMDangerTests: XCTestCase {
         try ".library(name: \"DangerDeps\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
         SPMDanger(packagePath: testPackage)?.buildDependencies(executor: executor, fileManager: fileManager)
 
-        XCTAssertEqual(executor.receivedCommand, "swift build --product DangerDeps")
+        XCTAssertEqual(executor.receivedCommands, ["swift build --product DangerDeps"])
     }
 
     func testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib() throws {

@@ -10,6 +10,20 @@ public func getDangerCommandPath(logger: Logger,
         return args[dangerJSPathOptionIndex + 1]
     } else {
         logger.debug("Finding out where the danger executable is")
-        return try shellOutExecutor.spawn("command -v danger", arguments: []).trimmingCharacters(in: .whitespaces)
+
+        if let dangerJsPath = try? shellOutExecutor.spawn("command -v danger-js",
+                                                          arguments: []).trimmingCharacters(in: .whitespaces),
+            !dangerJsPath.isEmpty {
+            return dangerJsPath.deletingSuffix("-js")
+        } else {
+            return try shellOutExecutor.spawn("command -v danger", arguments: []).trimmingCharacters(in: .whitespaces)
+        }
+    }
+}
+
+private extension String {
+    func deletingSuffix(_ suffix: String) -> String {
+        guard hasSuffix(suffix) else { return self }
+        return String(dropLast(suffix.count))
     }
 }
