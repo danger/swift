@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.3.1
+
 - Search for danger-js binary before searching danger binary [@f-meloni][] - [#351](https://github.com/danger/swift/pull/351)
 - Update BitBucketCloud commit user to be optional [@mahmoud-amer-m](https://github.com/mahmoud-amer-m) - [#355](https://github.com/danger/swift/pull/355)
 - Update Dockerfile to use swift 5.2 [@f-meloni][] - [#330](https://github.com/danger/swift/pull/330)
