@@ -35,6 +35,19 @@ matrix:
         - DEBUG="*" danger-swift ci
 
     - os: osx
+      osx_image: xcode11.2
+      name: Danger Dependencies
+      install:
+        - node -v
+        - npm install -g danger
+        - make install
+      script:
+        - mkdir Test
+        - mv DangerfileWithDependencies.swift Test
+        - cd Test && danger-swift ci
+
+
+    - os: osx
       name: Danger with SPM
       osx_image: xcode11.2
       install:
