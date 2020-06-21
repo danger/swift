@@ -6,6 +6,7 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__BitBucketCloudTests = [
+            ("testCommitWithoutUser", testCommitWithoutUser),
             ("testParsesActivities", testParsesActivities),
             ("testParsesComments", testParsesComments),
             ("testParsesCommits", testParsesCommits),

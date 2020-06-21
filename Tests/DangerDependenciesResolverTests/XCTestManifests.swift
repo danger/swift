@@ -32,6 +32,7 @@
         static let __allTests__PackageGeneratorTests = [
             ("testGeneratedDescriptionHeader", testGeneratedDescriptionHeader),
             ("testGeneratedPackageWhenThereAreDependencies", testGeneratedPackageWhenThereAreDependencies),
+            ("testGeneratedPackageWhenThereAreDependenciesAndSwiftVersionIs5_2", testGeneratedPackageWhenThereAreDependenciesAndSwiftVersionIs5_2),
             ("testGeneratedPackageWhenThereAreNoDependencies", testGeneratedPackageWhenThereAreNoDependencies),
         ]
     }
