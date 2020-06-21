@@ -35,7 +35,7 @@ matrix:
         - DEBUG="*" danger-swift ci
 
     - os: osx
-      osx_image: xcode11.2
+      osx_image: xcode11.5
       name: Danger Dependencies
       install:
         - node -v
