@@ -44,7 +44,7 @@ matrix:
       script:
         - mkdir Test
         - mv DangerfileWithDependencies.swift Test
-        - cd Test && danger-swift ci --dangerfile DangerfileWithDependencies.swift
+        - cd Test && danger-swift ci --dangerfile DangerfileWithDependencies.swift --id Dependencies_Test
 
 
     - os: osx
