@@ -35,7 +35,7 @@ matrix:
         - DEBUG="*" danger-swift ci
 
     - os: osx
-      osx_image: xcode11.2
+      osx_image: xcode11.5
       name: Danger Dependencies
       install:
         - node -v
@@ -44,7 +44,7 @@ matrix:
       script:
         - mkdir Test
         - mv DangerfileWithDependencies.swift Test
-        - cd Test && danger-swift ci --dangerfile DangerfileWithDependencies.swift
+        - cd Test && danger-swift ci --dangerfile DangerfileWithDependencies.swift --id Dependencies_Test
 
 
     - os: osx

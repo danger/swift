@@ -13,6 +13,8 @@
 
 ## Master
 
+- Add dependency name when resolving for swift >= 5.2 [@f-meloni][] - [#357](https://github.com/danger/swift/pull/357)
+
 ## 3.3.1
 
 - Search for danger-js binary before searching danger binary [@f-meloni][] - [#351](https://github.com/danger/swift/pull/351)

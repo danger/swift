@@ -41,7 +41,7 @@ struct PackageGenerator {
                 description += ",\n"
             }
 
-            description.append("        \(package.dependencyString)")
+            description.append("        \(package.dependencyString(forToolsVersion: toolsVersion))")
         }
 
         description.append("\n    ],\n")

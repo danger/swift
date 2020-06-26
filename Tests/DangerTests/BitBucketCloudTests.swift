@@ -59,7 +59,7 @@ final class BitBucketCloudTests: XCTestCase {
             ),
         ])
     }
-    
+
     func testCommitWithoutUser() {
         do {
             let commit = try JSONDecoder().decode(BitBucketCloud.Commit.self, from: Data(BitBucketCloudCommitWithoutUser.utf8))

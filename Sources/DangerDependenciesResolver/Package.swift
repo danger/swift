@@ -8,8 +8,12 @@ public struct Package: Equatable, Codable {
 }
 
 extension Package {
-    var dependencyString: String {
-        ".package(url: \"\(url.absoluteString)\", from: \"\(majorVersion).0.0\")"
+    func dependencyString(forToolsVersion version: Version) -> String {
+        if version >= Version(major: 5, minor: 2, patch: 0) {
+            return #".package(name: "\#(name)", url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
+        } else {
+            return #".package(url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
+        }
     }
 }
 
