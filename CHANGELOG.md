@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.3.2
+
 - Add dependency name when resolving for swift >= 5.2 [@f-meloni][] - [#357](https://github.com/danger/swift/pull/357)
 
 ## 3.3.1
