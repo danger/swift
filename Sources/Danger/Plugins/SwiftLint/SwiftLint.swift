@@ -292,13 +292,6 @@ extension SwiftLint {
     }
 }
 
-private extension String {
-    func deletingPrefix(_ prefix: String) -> String {
-        guard hasPrefix(prefix) else { return self }
-        return String(dropFirst(prefix.count))
-    }
-}
-
 private extension Array where Element == SwiftLintViolation {
     func updatingForCurrentPathProvider(_ currentPathProvider: CurrentPathProvider, strictSeverity: Bool) -> [Element] {
         let currentPath = currentPathProvider.currentPath
