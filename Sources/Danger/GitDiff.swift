@@ -16,9 +16,9 @@ struct FileDiff: Equatable, CustomStringConvertible {
     var changes: Changes {
         switch parsedHeader.change {
         case .created:
-            return .created(addedLines: hunks.flatMap { $0.lines.map(\.text) })
+            return .created(addedLines: hunks.flatMap { hunk in hunk.lines.map { $0.text } })
         case .deleted:
-            return .deleted(deletedLines: hunks.flatMap { $0.lines.map(\.text) })
+            return .deleted(deletedLines: hunks.flatMap { hunk in hunk.lines.map { $0.text } })
         case .modified:
             return .modified(hunks: hunks)
         case let .renamed(oldPath: oldPath):
