@@ -62,7 +62,8 @@ extension FileDiff {
         public let newLineSpan: Int
         public let lines: [Line]
         var description: String {
-            "@@ -\(oldLineStart),\(oldLineSpan) +\(newLineStart),\(newLineSpan) @@" + lines.map(\.description).joined(separator: "\n")
+            "@@ -\(oldLineStart),\(oldLineSpan) +\(newLineStart),\(newLineSpan) @@" +
+                lines.map(\.description).joined(separator: "\n")
         }
     }
 
@@ -113,7 +114,8 @@ struct DiffParser {
     private func parseHeader(_ header: String) -> FileDiff.ParsedHeader {
         let lines = header.components(separatedBy: "\n")
 
-        let filePath = lines.first?.split(separator: " ").first(where: { $0.starts(with: "b/") })?.deletingPrefix("b/") ?? ""
+        let filePath = lines.first?.split(separator: " ").first(where: { $0.starts(with: "b/") })?
+            .deletingPrefix("b/") ?? ""
 
         let change: FileDiff.ParsedHeader.ChangeType
 
@@ -137,7 +139,11 @@ struct DiffParser {
             let lines = changes.components(separatedBy: "\n").dropFirst().dropLast().map(parseLine)
             let parsedChanges = parseChangesSpan(changesSpan)
 
-            return FileDiff.Hunk(oldLineStart: parsedChanges.oldLineStart, oldLineSpan: parsedChanges.oldLineSpan, newLineStart: parsedChanges.newLineStart, newLineSpan: parsedChanges.newLineSpan, lines: lines)
+            return FileDiff.Hunk(oldLineStart: parsedChanges.oldLineStart,
+                                 oldLineSpan: parsedChanges.oldLineSpan,
+                                 newLineStart: parsedChanges.newLineStart,
+                                 newLineSpan: parsedChanges.newLineSpan,
+                                 lines: lines)
         }
     }
 
@@ -152,7 +158,7 @@ struct DiffParser {
         }
     }
 
-    private func parseChangesSpan(_ changesSpan: String) -> (oldLineStart: Int, oldLineSpan: Int, newLineStart: Int, newLineSpan: Int) {
+    private func parseChangesSpan(_ changesSpan: String) -> HunkSpan {
         let dividedSpan = changesSpan.split(separator: " ").map { $0.dropFirst().components(separatedBy: ",") }
         if dividedSpan.count == 2,
             dividedSpan[0].count == 2,
@@ -161,9 +167,18 @@ struct DiffParser {
             let oldLineSpan = Int(dividedSpan[0][1]),
             let newLineStart = Int(dividedSpan[1][0]),
             let newLineSpan = Int(dividedSpan[1][1]) {
-            return (oldLineStart, oldLineSpan, newLineStart, newLineSpan)
+            return HunkSpan(oldLineStart: oldLineStart, oldLineSpan: oldLineSpan, newLineStart: newLineStart, newLineSpan: newLineSpan)
         } else {
-            return (0, 0, 0, 0)
+            return HunkSpan(oldLineStart: 0, oldLineSpan: 0, newLineStart: 0, newLineSpan: 0)
         }
+    }
+}
+
+private extension DiffParser {
+    struct HunkSpan {
+        let oldLineStart: Int
+        let oldLineSpan: Int
+        let newLineStart: Int
+        let newLineSpan: Int
     }
 }
