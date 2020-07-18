@@ -27,7 +27,7 @@ struct FileDiff: Equatable, CustomStringConvertible {
     }
 
     var description: String {
-        hunks.map(\.description).joined(separator: "\n")
+        hunks.map { $0.description }.joined(separator: "\n")
     }
 }
 
@@ -63,7 +63,7 @@ extension FileDiff {
         public let lines: [Line]
         var description: String {
             "@@ -\(oldLineStart),\(oldLineSpan) +\(newLineStart),\(newLineSpan) @@" +
-                lines.map(\.description).joined(separator: "\n")
+                lines.map { $0.description }.joined(separator: "\n")
         }
     }
 
