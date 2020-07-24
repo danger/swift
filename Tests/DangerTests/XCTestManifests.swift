@@ -146,6 +146,10 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__GitDiffTests = [
+            ("testChangeTypeForCreated", testChangeTypeForCreated),
+            ("testChangeTypeForDeleted", testChangeTypeForDeleted),
+            ("testChangeTypeForModified", testChangeTypeForModified),
+            ("testChangeTypeForRenamed", testChangeTypeForRenamed),
             ("testParsesDiff", testParsesDiff),
         ]
     }
