@@ -89,6 +89,62 @@ final class GitDiffTests: XCTestCase {
                        ])
     }
 
+    func testChangeTypeForCreated() {
+        XCTAssertEqual(DiffParser().parse(testDiff)[0].changes, .created(addedLines: [
+            #"<?xml version="1.0" encoding="UTF-8"?>"#,
+            "<Workspace",
+            #"   version = "1.0">"#,
+            "   <FileRef",
+            #"      location = "self:">"#,
+            "   </FileRef>",
+            "</Workspace>",
+        ]))
+    }
+
+    func testChangeTypeForDeleted() {
+        XCTAssertEqual(DiffParser().parse(testDiff)[2].changes, .deleted(deletedLines: [
+            "# frozen_string_literal: true",
+            "",
+            #"source "https://rubygems.org""#,
+            "",
+            #"git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }"#,
+            "",
+            #"gem "xcpretty-json-formatter""#,
+        ]))
+    }
+
+    func testChangeTypeForModified() {
+        XCTAssertEqual(DiffParser().parse(testDiff)[3].changes, .modified(hunks: [
+            .init(oldLineStart: 20, oldLineSpan: 7, newLineStart: 20, newLineSpan: 8, lines: [
+                FileDiff.Line(text: "extension ReportSection {", changeType: .unchanged),
+                FileDiff.Line(text: "    init(fromSPM spm: SPMCoverage, fileManager: FileManager) {", changeType: .unchanged),
+                FileDiff.Line(text: "        titleText = nil", changeType: .unchanged),
+                FileDiff.Line(text: "        items = spm.data.flatMap { $0.files.map { ReportFile(fileName: $0.filename.deletingPrefix(fileManager.currentDirectoryPath + \"/\"), coverage: $0.summary.percent) } }", changeType: .removed),
+                FileDiff.Line(text: "        items = spm.data.flatMap { $0.files.map { ReportFile(fileName: $0.filename.deletingPrefix(fileManager.currentDirectoryPath + \"/\"), coverage: $0.summary.percent)", changeType: .added),
+                FileDiff.Line(text: "        } }", changeType: .added),
+                FileDiff.Line(text: "    }", changeType: .unchanged),
+                FileDiff.Line(text: "}", changeType: .unchanged),
+                FileDiff.Line(text: "", changeType: .unchanged),
+            ]),
+        ]))
+    }
+
+    func testChangeTypeForRenamed() {
+        XCTAssertEqual(DiffParser().parse(testDiff)[5].changes, .renamed(oldPath: "Sources/DangerSwiftCoverage/ShellOutExecutor.swift", hunks: [
+            .init(oldLineStart: 3, oldLineSpan: 6, newLineStart: 3, newLineSpan: 8, lines: [
+                FileDiff.Line(text: "", changeType: .unchanged),
+                FileDiff.Line(text: "protocol ShellOutExecuting {", changeType: .unchanged),
+                FileDiff.Line(text: "    func execute(command: String) throws -> Data", changeType: .unchanged),
+                FileDiff.Line(text: "", changeType: .added),
+                FileDiff.Line(text: "", changeType: .added),
+                FileDiff.Line(text: "}", changeType: .unchanged),
+                FileDiff.Line(text: "", changeType: .unchanged),
+                FileDiff.Line(text: "struct ShellOutExecutor: ShellOutExecuting {", changeType: .unchanged),
+                FileDiff.Line(text: "", changeType: .unchanged),
+            ]),
+        ]))
+    }
+
     var testDiff: String {
         """
         diff --git a/.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata b/.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
