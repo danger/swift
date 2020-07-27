@@ -6,7 +6,7 @@ final class PackageGeneratorTests: XCTestCase {
     override func setUp() {
         super.setUp()
 
-        record = false
+//        record = false
     }
 
     func testGeneratedPackageWhenThereAreNoDependencies() throws {

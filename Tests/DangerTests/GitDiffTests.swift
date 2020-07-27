@@ -83,7 +83,6 @@ final class GitDiffTests: XCTestCase {
                                    FileDiff.Line(text: "}", changeType: .unchanged),
                                    FileDiff.Line(text: "", changeType: .unchanged),
                                    FileDiff.Line(text: "struct ShellOutExecutor: ShellOutExecuting {", changeType: .unchanged),
-                                   FileDiff.Line(text: "", changeType: .unchanged),
                                ]),
                            ]),
                        ])
@@ -140,7 +139,6 @@ final class GitDiffTests: XCTestCase {
                 FileDiff.Line(text: "}", changeType: .unchanged),
                 FileDiff.Line(text: "", changeType: .unchanged),
                 FileDiff.Line(text: "struct ShellOutExecutor: ShellOutExecuting {", changeType: .unchanged),
-                FileDiff.Line(text: "", changeType: .unchanged),
             ]),
         ]))
     }
@@ -237,8 +235,6 @@ final class GitDiffTests: XCTestCase {
          }
          
          struct ShellOutExecutor: ShellOutExecuting {
-
-
         """
     }
 }

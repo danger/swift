@@ -1,6 +1,6 @@
 import Foundation
 
-struct FileDiff: Equatable, CustomStringConvertible {
+public struct FileDiff: Equatable, CustomStringConvertible {
     private let parsedHeader: ParsedHeader
     private let hunks: [FileDiff.Hunk]
 
@@ -9,11 +9,11 @@ struct FileDiff: Equatable, CustomStringConvertible {
         self.hunks = hunks
     }
 
-    var filePath: String {
+    public var filePath: String {
         parsedHeader.filePath
     }
 
-    var changes: Changes {
+    public var changes: Changes {
         switch parsedHeader.change {
         case .created:
             return .created(addedLines: hunks.flatMap { hunk in hunk.lines.map { $0.text } })
@@ -26,7 +26,7 @@ struct FileDiff: Equatable, CustomStringConvertible {
         }
     }
 
-    var description: String {
+    public var description: String {
         hunks.map { $0.description }.joined(separator: "\n")
     }
 }
@@ -48,29 +48,29 @@ extension FileDiff.ParsedHeader {
 }
 
 extension FileDiff {
-    enum Changes: Equatable {
+    public enum Changes: Equatable {
         case created(addedLines: [String])
         case deleted(deletedLines: [String])
         case modified(hunks: [Hunk])
         case renamed(oldPath: String, hunks: [Hunk])
     }
 
-    struct Hunk: Equatable, CustomStringConvertible {
+    public struct Hunk: Equatable, CustomStringConvertible {
         public let oldLineStart: Int
         public let oldLineSpan: Int
         public let newLineStart: Int
         public let newLineSpan: Int
         public let lines: [Line]
-        var description: String {
+        public var description: String {
             "@@ -\(oldLineStart),\(oldLineSpan) +\(newLineStart),\(newLineSpan) @@" +
                 lines.map { $0.description }.joined(separator: "\n")
         }
     }
 
-    struct Line: Equatable, CustomStringConvertible {
+    public struct Line: Equatable, CustomStringConvertible {
         let text: String
         let changeType: ChangeType
-        var description: String {
+        public var description: String {
             switch changeType {
             case .added:
                 return "+" + text
@@ -136,7 +136,7 @@ struct DiffParser {
         (0 ..< hunks.count / 2).compactMap { index -> FileDiff.Hunk? in
             let changesSpan = hunks[index * 2]
             let changes = hunks[index * 2 + 1]
-            let lines = changes.components(separatedBy: "\n").dropFirst().dropLast().map(parseLine)
+            let lines = changes.components(separatedBy: "\n").dropFirst().filter { !$0.isEmpty }.map(parseLine)
             let parsedChanges = parseChangesSpan(changesSpan)
 
             return FileDiff.Hunk(oldLineStart: parsedChanges.oldLineStart,

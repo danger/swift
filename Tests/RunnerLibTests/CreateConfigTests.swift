@@ -4,7 +4,7 @@ import XCTest
 
 final class CreateConfigTests: XCTestCase {
     func testItCreatesTheCorrectConfig() throws {
-        record = false
+//        record = false
         let testPath = "test"
         try createConfig(atPath: testPath, libPath: "libPath", libsImport: ["-lDangerDeps", "-lDanger"])
 
