@@ -86,7 +86,11 @@ public struct DangerUtils {
         try shellExecutor.spawn(command, arguments: arguments)
     }
 
-    public func diff(for file: String) -> Result<FileDiff, Error> {
+    /// Gives you the diff for a single file
+    ///
+    /// - Parameter file: The file path
+    /// - Returns: File diff or error
+    public func diff(forFile file: String) -> Result<FileDiff, Error> {
         let parser = DiffParser()
         let diff = Result { try shellExecutor.spawn("git diff", arguments: [file]) }
 
