@@ -5,6 +5,12 @@ import Foundation
 
 public struct DangerUtils {
     let fileMap: [String: String]
+    let shellExecutor: ShellExecuting
+
+    init(fileMap: [String: String], shellExecutor: ShellExecuting = ShellExecutor()) {
+        self.fileMap = fileMap
+        self.shellExecutor = shellExecutor
+    }
 
     /// Let's you go from a file path to the contents of the file
     /// with less hassle.
@@ -66,8 +72,7 @@ public struct DangerUtils {
     /// - Parameter arguments: An optional array of arguements to pass in extra
     /// - Returns: the stdout from the command
     public func exec(_ command: String, arguments: [String] = []) -> String {
-        let shellExecutor = ShellExecutor()
-        return shellExecutor.execute(command, arguments: arguments)
+        shellExecutor.execute(command, arguments: arguments)
     }
 
     /// Gives you the ability to cheaply run a command and read the
@@ -78,7 +83,31 @@ public struct DangerUtils {
     /// - Parameter arguments: An optional array of arguements to pass in extra
     /// - Returns: the stdout from the command
     public func spawn(_ command: String, arguments: [String] = []) throws -> String {
-        let shellExecutor = ShellExecutor()
-        return try shellExecutor.spawn(command, arguments: arguments)
+        try shellExecutor.spawn(command, arguments: arguments)
+    }
+
+    /// Gives you the diff for a single file
+    ///
+    /// - Parameter file: The file path
+    /// - Returns: File diff or error
+    public func diff(forFile file: String) -> Result<FileDiff, Error> {
+        let parser = DiffParser()
+        let diff = Result { try shellExecutor.spawn("git diff", arguments: [file]) }
+
+        return diff.flatMap {
+            let diff = parser.parse($0)
+
+            if let fileDiff = diff.first {
+                return .success(fileDiff)
+            } else {
+                return .failure(DiffError.invalidDiff)
+            }
+        }
+    }
+}
+
+extension DangerUtils {
+    enum DiffError: Error, Equatable {
+        case invalidDiff
     }
 }
