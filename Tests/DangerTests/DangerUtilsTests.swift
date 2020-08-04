@@ -12,7 +12,7 @@ final class DangerUtilsTests: XCTestCase {
         executor.output = validDiff
 
         let dangerUtils = DangerUtils(fileMap: [:], shellExecutor: executor)
-        let diff = dangerUtils.diff(forFile: "file")
+        let diff = dangerUtils.diff(forFile: "file", sourceBranch: "master")
 
         guard case let .success(fileDiff) = diff else {
             XCTFail("Expected success, got \(diff)")
