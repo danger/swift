@@ -90,9 +90,9 @@ public struct DangerUtils {
     ///
     /// - Parameter file: The file path
     /// - Returns: File diff or error
-    public func diff(forFile file: String) -> Result<FileDiff, Error> {
+    public func diff(forFile file: String, sourceBranch: String) -> Result<FileDiff, Error> {
         let parser = DiffParser()
-        let diff = Result { try shellExecutor.spawn("git diff", arguments: [file]) }
+        let diff = Result { try shellExecutor.spawn("git diff \(sourceBranch) -- \(file)", arguments: [file]) }
 
         return diff.flatMap {
             let diff = parser.parse($0)
