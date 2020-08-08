@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix script to deploy packages on release
+
 ## 3.4.0
 
 - Add diff for single file to danger utils [@f-meloni][] - [#362](https://github.com/danger/swift/pull/362)
