@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.4.1
+
 - Fix script to deploy packages on release
 
 ## 3.4.0
