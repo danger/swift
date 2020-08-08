@@ -22,11 +22,7 @@ jobs:
         USERNAME: ${{ secrets.DOCKER_GITHUB_USERNAME }}
 
     - name: Docker Build
-      run: docker build -t docker.pkg.github.com/danger/danger-swift/danger-swift:$VERSION .
-      env:
-        USERNAME: ${{ secrets.DOCKER_GITHUB_USERNAME }}
+      run: docker build -t docker.pkg.github.com/danger/swift/danger-swift:$VERSION .
 
     - name: Deploy
-      run: docker push docker.pkg.github.com/danger/danger-swift/danger-swift:$VERSION
-      env:
-        USERNAME: ${{ secrets.DOCKER_GITHUB_USERNAME }}
+      run: docker push docker.pkg.github.com/danger/swift/danger-swift:$VERSION
