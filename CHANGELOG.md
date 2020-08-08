@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.4.0
+
 - Add diff for single file to danger utils [@f-meloni][] - [#362](https://github.com/danger/swift/pull/362)
 - Add parser for git diff [@f-meloni][] - [#359](https://github.com/danger/swift/pull/359)
 
