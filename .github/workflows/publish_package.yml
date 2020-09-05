@@ -16,13 +16,13 @@ jobs:
       run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
     
     - name: Docker Login
-      run: echo $PACKAGES_WRITE_TOKEN | docker login docker.pkg.github.com -u $USERNAME --password-stdin
+      run: echo $PACKAGES_WRITE_TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
       env:
         PACKAGES_WRITE_TOKEN: ${{ secrets.DOCKER_GITHUB_PASSWORD }}
         USERNAME: ${{ secrets.DOCKER_GITHUB_USERNAME }}
 
     - name: Docker Build
-      run: docker build -t docker.pkg.github.com/danger/swift/danger-swift:$VERSION .
+      run: docker build -t ghcr.io/danger/danger-swiftn:$VERSION .
 
     - name: Deploy
-      run: docker push docker.pkg.github.com/danger/swift/danger-swift:$VERSION
+      run: docker push ghcr.io/danger/danger-swift:$VERSION
