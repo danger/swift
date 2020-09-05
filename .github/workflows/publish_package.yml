@@ -22,7 +22,7 @@ jobs:
         USERNAME: ${{ secrets.DOCKER_GITHUB_USERNAME }}
 
     - name: Docker Build
-      run: docker build -t ghcr.io/danger/danger-swiftn:$VERSION .
+      run: docker build -t ghcr.io/danger/danger-swift:$VERSION .
 
     - name: Deploy
       run: docker push ghcr.io/danger/danger-swift:$VERSION
