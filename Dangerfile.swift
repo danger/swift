@@ -30,13 +30,15 @@ if danger.github != nil {
     }
 
     // TODO: We're still figuring this out
-    _ = danger.github.api.me { response in
-        print("OK")
-        switch response {
-        case let .success(user):
-            message(user.name ?? "")
-        case .failure:
-            break
+    let name: Result<String, Error> = danger.utils.await { completion -> Void in
+        danger.github.api.me { response in
+            switch response {
+            case let .success(user):
+                completion(.success(user.name ?? ""))
+            case let .failure(error):
+                completion(.failure(error))
+            }
         }
     }
+    message(try name.get())
 }

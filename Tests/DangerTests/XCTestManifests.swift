@@ -87,6 +87,7 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__DangerUtilsTests = [
+            ("testAwaitsFunctionResult", testAwaitsFunctionResult),
             ("testFileDiffWhenDiffIsValid", testFileDiffWhenDiffIsValid),
             ("testLinesForStringReturnsTheCorrectResult", testLinesForStringReturnsTheCorrectResult),
         ]

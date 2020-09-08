@@ -32,6 +32,18 @@ final class DangerUtilsTests: XCTestCase {
         ]))
     }
 
+    func testAwaitsFunctionResult() {
+        var executed = false
+
+        executed = DangerUtils(fileMap: [:]).await { completion in
+            DispatchQueue(label: "Test", qos: .userInteractive).async {
+                completion(true)
+            }
+        }
+
+        XCTAssertTrue(executed)
+    }
+
     private var fileContent: String {
         """
         Write your Dangerfiles in Swift.
