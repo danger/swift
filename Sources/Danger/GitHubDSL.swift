@@ -155,22 +155,30 @@ extension GitHub.PullRequest {
             case statuses
         }
 
+        public struct Relation: Decodable, Equatable, ExpressibleByStringLiteral {
+            public let href: String
+
+            public init(stringLiteral value: String) {
+                self.href = value
+            }
+        }
+
         /// The API location of the Pull Request.
-        public let `self`: String
+        public let `self`: Relation
         /// The HTML location of the Pull Request.
-        public let html: String
+        public let html: Relation
         /// The API location of the Pull Request's Issue.
-        public let issue: String
+        public let issue: Relation
         /// The API location of the Pull Request's Issue comments.
-        public let comments: String
+        public let comments: Relation
         /// The API location of the Pull Request's Review comments.
-        public let reviewComments: String
+        public let reviewComments: Relation
         /// The URL template to construct the API location for a Review comment in the Pull Request's repository.
-        public let reviewComment: String
+        public let reviewComment: Relation
         /// The API location of the Pull Request's commits.
-        public let commits: String
+        public let commits: Relation
         /// The API location of the Pull Request's commit statuses, which are the statuses of its head branch.
-        public let statuses: String
+        public let statuses: Relation
     }
 }
 
