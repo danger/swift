@@ -111,7 +111,7 @@ public struct DangerUtils {
     ///
     /// - Parameter body: The async function must be called inside this body and closure provided as parameter must be executed on completion
     /// - Returns: The value returned by the async function
-    public func await<T>(_ body: (@escaping (T) -> Void) -> Void) -> T {
+    public func sync<T>(_ body: (@escaping (T) -> Void) -> Void) -> T {
         let group = DispatchGroup()
         var result: T!
 

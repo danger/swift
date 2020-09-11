@@ -35,7 +35,7 @@ final class DangerUtilsTests: XCTestCase {
     func testAwaitsFunctionResult() {
         var executed = false
 
-        executed = DangerUtils(fileMap: [:]).await { completion in
+        executed = DangerUtils(fileMap: [:]).sync { completion in
             DispatchQueue(label: "Test", qos: .userInteractive).async {
                 completion(true)
             }
