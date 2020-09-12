@@ -13,6 +13,8 @@
 
 ## Master
 
+- Create sync utils function to make async calls sync [@f-meloni][] - [#369](https://github.com/danger/swift/pull/369)
+
 ## 3.4.1
 
 - Fix script to deploy packages on release
