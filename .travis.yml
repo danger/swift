@@ -5,7 +5,9 @@ cache:
     # Danger Swift plugins
     - ~/.danger-swift
 
-language: generic
+language: node_js
+node_js:
+  - 10
 
 matrix:
   include:

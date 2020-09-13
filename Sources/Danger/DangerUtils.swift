@@ -1,5 +1,7 @@
 import DangerShellExecutor
 import Foundation
+import OctoKit
+import RequestKit
 
 /// Utility functions that make Dangerfiles easier to write
 
@@ -103,6 +105,26 @@ public struct DangerUtils {
                 return .failure(DiffError.invalidDiff)
             }
         }
+    }
+
+    /// Converts an asynchronous function to synchronous.
+    ///
+    /// - Parameter body: The async function must be called inside this body and closure provided as parameter must be executed on completion
+    /// - Returns: The value returned by the async function
+    public func sync<T>(_ body: (@escaping (T) -> Void) -> Void) -> T {
+        let group = DispatchGroup()
+        var result: T!
+
+        group.enter()
+
+        body {
+            result = $0
+            group.leave()
+        }
+
+        group.wait()
+
+        return result
     }
 }
 
