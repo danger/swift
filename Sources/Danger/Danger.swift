@@ -14,7 +14,12 @@ final class DangerRunner {
 
     let logger: Logger
     let dsl: DangerDSL
-    var results = DangerResults()
+    let outputPath: String
+    var results = DangerResults() {
+        didSet {
+            dumpResults()
+        }
+    }
 
     private init() {
         let isVerbose = CommandLine.arguments.contains("--verbose")
@@ -54,7 +59,29 @@ final class DangerRunner {
         }
 
         logger.debug("Setting up to dump results")
-        dumpResultsAtExit(self, path: outputJSONPath)
+        outputPath = outputJSONPath
+        dumpResults()
+    }
+    
+    private func dumpResults() {
+        logger.debug("Sending results back to Danger")
+        do {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let data = try encoder.encode(results)
+
+            if !FileManager.default.createFile(atPath: outputPath,
+                                               contents: data,
+                                               attributes: nil) {
+                logger.logError("Could not create a temporary file " +
+                    "for the Dangerfile DSL at: \(outputPath)")
+                exit(0)
+            }
+
+        } catch {
+            logger.logError("Failed to generate result JSON:", error)
+            exit(1)
+        }
     }
 }
 
@@ -63,34 +90,4 @@ final class DangerRunner {
 // swiftlint:disable:next identifier_name
 public func Danger() -> DangerDSL {
     DangerRunner.shared.dsl
-}
-
-// MARK: - Private Functions
-
-private var dumpInfo: (danger: DangerRunner, path: String)?
-
-private func dumpResultsAtExit(_ runner: DangerRunner, path: String) {
-    func dump() {
-        guard let dumpInfo = dumpInfo else { return }
-        dumpInfo.danger.logger.debug("Sending results back to Danger")
-        do {
-            let encoder = JSONEncoder()
-            encoder.outputFormatting = .prettyPrinted
-            let data = try encoder.encode(dumpInfo.danger.results)
-
-            if !FileManager.default.createFile(atPath: dumpInfo.path,
-                                               contents: data,
-                                               attributes: nil) {
-                dumpInfo.danger.logger.logError("Could not create a temporary file " +
-                    "for the Dangerfile DSL at: \(dumpInfo.path)")
-                exit(0)
-            }
-
-        } catch {
-            dumpInfo.danger.logger.logError("Failed to generate result JSON:", error)
-            exit(1)
-        }
-    }
-    dumpInfo = (runner, path)
-    atexit(dump)
 }
