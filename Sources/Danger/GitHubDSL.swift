@@ -142,7 +142,10 @@ extension GitHub {
 }
 
 extension GitHub.PullRequest {
-    /// Pull Requests have these possible link relations
+    /// Pull Requests have possible link relations
+    ///
+    /// - See:
+    ///   [Reference](https://docs.github.com/en/rest/reference/pulls#link-relations)
     public struct Link: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case `self`
