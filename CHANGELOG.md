@@ -15,7 +15,7 @@
 
 ## 3.5.0
 
-- Add workaround for Xcode 12 [@f-meloni][] - [#372](https://github.com/danger/swift/pull/3672)
+- Add workaround for Xcode 12 [@f-meloni][] - [#372](https://github.com/danger/swift/pull/372)
 - Deploy Danger swift Docker image on GitHub Container Registry [@f-meloni][] - [#367](https://github.com/danger/swift/pull/367)
 - Create sync utils function to make async calls sync [@f-meloni][] - [#369](https://github.com/danger/swift/pull/369)
 
