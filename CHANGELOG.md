@@ -13,6 +13,8 @@
 
 ## Master
 
+- Add Link Relations for GitHub PR [@417-72KI][] - [#368](https://github.com/danger/swift/pull/368)
+
 ## 3.5.0
 
 - Add workaround for Xcode 12 [@f-meloni][] - [#372](https://github.com/danger/swift/pull/372)
