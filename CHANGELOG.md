@@ -14,6 +14,7 @@
 ## Master
 
 - Add Link Relations for GitHub PR [@417-72KI][] - [#368](https://github.com/danger/swift/pull/368)
+- Make `SwiftLintViolation` properties public - [#377](https://github.com/danger/swift/pull/377)
 
 ## 3.5.0
 
