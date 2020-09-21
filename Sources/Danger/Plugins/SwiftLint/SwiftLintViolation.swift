@@ -4,11 +4,11 @@ public struct SwiftLintViolation: Decodable {
         case error = "Error"
     }
 
-    public var ruleID: String
-    public var reason: String
-    public var line: Int
-    public var severity: Severity
-    public var file: String
+    public internal(set) var ruleID: String
+    public internal(set) var reason: String
+    public internal(set) var line: Int
+    public internal(set) var severity: Severity
+    public internal(set) var file: String
 
     var messageText: String {
         reason + " (`\(ruleID)`)"
