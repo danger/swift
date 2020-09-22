@@ -133,7 +133,7 @@ extension GitHub {
         /// The link back to this PR as user-facing
         public let htmlUrl: String
 
-        // The draft state of the pull request
+        /// The draft state of the pull request
         public let draft: Bool?
 
         /// Possible link relations
