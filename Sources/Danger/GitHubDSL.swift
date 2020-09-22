@@ -134,7 +134,7 @@ extension GitHub {
         public let htmlUrl: String
 
         // The draft state of the pull request
-        public let draft: Bool
+        public let draft: Bool?
 
         /// Possible link relations
         public let links: Link
