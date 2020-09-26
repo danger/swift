@@ -16,7 +16,7 @@ RUN apt-get update -q \
     && rm -r /var/lib/apt/lists/*
 
 
-# ARG SWIFT_LINT_VER=0.39.1 # swiftlint
+# ARG SWIFT_LINT_VER=0.40.3 # swiftlint
 # RUN git clone -b $SWIFT_LINT_VER --single-branch --depth 1 https://github.com/realm/SwiftLint.git _SwiftLint # swiftlint
 # RUN cd _SwiftLint && git submodule update --init --recursive; make install # swiftlint
 

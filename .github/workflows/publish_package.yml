@@ -26,3 +26,12 @@ jobs:
 
     - name: Deploy
       run: docker push ghcr.io/danger/danger-swift:$VERSION
+
+    - name: Update Dockerfile to create image with Swiftlint
+      run: Scripts/release_swiftlint_docker.sh
+    
+    - name: Docker Build
+      run: docker build -t ghcr.io/danger/danger-swift-with-swiftlint:$VERSION .
+
+    - name: Deploy
+      run: docker push ghcr.io/danger/danger-swift-with-swiftlint:$VERSION
