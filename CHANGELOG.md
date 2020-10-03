@@ -13,6 +13,8 @@
 
 ## Master
 
+- Release Docker image with SwiftLint [@f-meloni][] - [#380](https://github.com/danger/swift/pull/3680)
+
 ## 3.5.0
 
 - Add workaround for Xcode 12 [@f-meloni][] - [#372](https://github.com/danger/swift/pull/3672)
