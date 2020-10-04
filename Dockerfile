@@ -7,12 +7,13 @@ LABEL "com.github.actions.description"="Runs Swift Dangerfiles"
 LABEL "com.github.actions.icon"="zap"
 LABEL "com.github.actions.color"="blue"
 
-# Install nodejs
+# Install nodejs and Danger
 RUN apt-get update -q \
     && apt-get install -qy curl \
     && mv /usr/lib/python2.7/site-packages /usr/lib/python2.7/dist-packages; ln -s dist-packages /usr/lib/python2.7/site-package \
     && curl -sL https://deb.nodesource.com/setup_10.x |  bash - \
     && apt-get install -qy nodejs \
+    && npm install -g danger
     && rm -r /var/lib/apt/lists/*
 
 
@@ -21,7 +22,7 @@ RUN apt-get update -q \
 
 # Install danger-swift globally
 COPY . _danger-swift
-RUN cd _danger-swift && make install
+RUN cd _danger-swift && make install && rm -rf _danger-swift
 
 # Run Danger Swift via Danger JS, allowing for custom args
-ENTRYPOINT ["npx", "--package", "danger", "danger-swift", "ci"]
+ENTRYPOINT ["danger-swift", "ci"]

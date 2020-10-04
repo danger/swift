@@ -54,6 +54,7 @@ extension GitHub {
             case changedFiles = "changed_files"
             case htmlUrl = "html_url"
             case draft
+            case links = "_links"
         }
 
         public enum PullRequestState: String, Decodable {
@@ -132,8 +133,55 @@ extension GitHub {
         /// The link back to this PR as user-facing
         public let htmlUrl: String
 
-        // The draft state of the pull request
-        public let draft: Bool
+        /// The draft state of the pull request
+        public let draft: Bool?
+
+        /// Possible link relations
+        public let links: Link
+    }
+}
+
+extension GitHub.PullRequest {
+    /// Pull Requests have possible link relations
+    ///
+    /// - See:
+    ///   [Reference](https://docs.github.com/en/rest/reference/pulls#link-relations)
+    public struct Link: Decodable, Equatable {
+        enum CodingKeys: String, CodingKey {
+            case `self`
+            case html
+            case issue
+            case comments
+            case reviewComments = "review_comments"
+            case reviewComment = "review_comment"
+            case commits
+            case statuses
+        }
+
+        public struct Relation: Decodable, Equatable, ExpressibleByStringLiteral {
+            public let href: String
+
+            public init(stringLiteral value: String) {
+                self.href = value
+            }
+        }
+
+        /// The API location of the Pull Request.
+        public let `self`: Relation
+        /// The HTML location of the Pull Request.
+        public let html: Relation
+        /// The API location of the Pull Request's Issue.
+        public let issue: Relation
+        /// The API location of the Pull Request's Issue comments.
+        public let comments: Relation
+        /// The API location of the Pull Request's Review comments.
+        public let reviewComments: Relation
+        /// The URL template to construct the API location for a Review comment in the Pull Request's repository.
+        public let reviewComment: Relation
+        /// The API location of the Pull Request's commits.
+        public let commits: Relation
+        /// The API location of the Pull Request's commit statuses, which are the statuses of its head branch.
+        public let statuses: Relation
     }
 }
 
