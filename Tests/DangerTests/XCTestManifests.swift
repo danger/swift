@@ -185,6 +185,7 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__GitLabTests = [
+            ("testMilestoneWithoutDueDate", testMilestoneWithoutDueDate),
             ("testParsesCorrectlyMetadata", testParsesCorrectlyMetadata),
             ("testParsesMergeRequest", testParsesMergeRequest),
         ]

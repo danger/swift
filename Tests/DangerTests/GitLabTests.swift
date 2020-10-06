@@ -91,4 +91,10 @@ final class GitLabTests: XCTestCase {
         XCTAssertEqual(metadata.pullRequestID, "182")
         XCTAssertEqual(metadata.repoSlug, "danger-systems/danger.systems")
     }
+
+    func testMilestoneWithoutDueDate() {
+        let gitLab = gitlabWithoutMilestoneDueDateFixtureDSL.gitLab
+
+        XCTAssertNil(gitLab?.mergeRequest.milestone?.dueDate)
+    }
 }
