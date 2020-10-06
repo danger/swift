@@ -94,7 +94,7 @@ final class GitLabTests: XCTestCase {
     }
 
     func testMilestoneWithoutDueDate() {
-        let gitLab = gitlabWithoutMilestoneDateRangeFixtureDSL.gitLab
+        let gitLab = gitlabMilestoneNoDateRangeFixtureDSL.gitLab
 
         XCTAssertNil(gitLab?.mergeRequest.milestone?.dueDate)
     }

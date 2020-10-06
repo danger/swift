@@ -30,7 +30,7 @@ public let bitbucketFixtureDSL = parseDangerDSL(with: DSLBitBucketServerJSON)
 /// An example DSL using GitLab
 public let gitlabFixtureDSL = parseDangerDSL(with: DSLGitLabJSON)
 /// An example DSL without milestone date range using GitLab
-public let gitlabWithoutMilestoneDateRangeFixtureDSL = parseDangerDSL(with: DSLGitLabWithoutMilestoneDateRangeJSON)
+public let gitlabMilestoneNoDateRangeFixtureDSL = parseDangerDSL(with: DSLGitLabMilestoneNoDateRangeJSON)
 /// An example DSL using BitBucket Cloud
 public let bitbucketCloudFixtureDSL = parseDangerDSL(with: DSLBitBucketCloudJSON)
 /// An example DSL using GitHub
