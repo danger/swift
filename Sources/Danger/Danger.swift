@@ -62,7 +62,7 @@ final class DangerRunner {
         outputPath = outputJSONPath
         dumpResults()
     }
-    
+
     private func dumpResults() {
         logger.debug("Sending results back to Danger")
         do {

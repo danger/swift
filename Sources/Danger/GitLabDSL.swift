@@ -50,7 +50,7 @@ extension GitLab {
 
             public let createdAt: Date
             public let description: String
-            public let dueDate: Date
+            public let dueDate: Date?
             public let id: Int // swiftlint:disable:this identifier_name
             public let iid: Int
             public let projectId: Int
