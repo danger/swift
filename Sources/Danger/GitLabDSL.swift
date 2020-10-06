@@ -125,6 +125,7 @@ extension GitLab {
             case allowMaintainerToPush = "allow_maintainer_to_push"
             case approvalsBeforeMerge = "approvals_before_merge"
             case assignee
+            case assignees
             case author
             case changesCount = "changes_count"
             case closedAt = "closed_at"
@@ -167,6 +168,7 @@ extension GitLab {
         public let allowMaintainerToPush: Bool?
         public let approvalsBeforeMerge: Int?
         public let assignee: User?
+        public let assignees: [User]?
         public let author: User
         public let changesCount: String
         public let closedAt: Date?

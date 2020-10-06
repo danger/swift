@@ -75,7 +75,16 @@ public let DSLGitLabJSON = """
           "avatar_url": "https://secure.gravatar.com/avatar/3d90e967de2beab6d44cfadbb4976b87?s=80&d=identicon",
           "web_url": "https://gitlab.com/f-meloni"
         },
-        "assignees": [],
+        "assignees": [
+          {
+            "id": 377669,
+            "name": "Orta",
+            "username": "orta",
+            "state": "active",
+            "avatar_url": "https://secure.gravatar.com/avatar/f116cb3be23153ec08b94e8bd4dbcfeb?s=80&d=identicon",
+            "web_url": "https://gitlab.com/orta"
+          }
+        ],
         "source_project_id": 10132593,
         "target_project_id": 1620437,
         "labels": [],

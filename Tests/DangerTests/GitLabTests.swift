@@ -47,6 +47,7 @@ final class GitLabTests: XCTestCase {
         XCTAssertEqual(mergeRequest.allowMaintainerToPush, false)
         XCTAssertEqual(mergeRequest.approvalsBeforeMerge, 1)
         XCTAssertEqual(mergeRequest.assignee, orta)
+        XCTAssertEqual(mergeRequest.assignees?.first, orta)
         XCTAssertEqual(mergeRequest.author, fmeloni)
         XCTAssertEqual(mergeRequest.changesCount, "1")
         XCTAssertNil(mergeRequest.closedAt)
