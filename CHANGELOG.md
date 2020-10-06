@@ -13,6 +13,8 @@
 
 ## Master
 
+- Make `startDate` and `dueDate` optional for GitLab API may produce null values for these two properties [@vc7][] - [#381](https://github.com/danger/swift/pull/381)
+- Fix `startDate` and `dueDate` formatting issue due to the date string from GitLab API has become `yyyy-MM-dd`, and make the date formatter is able to handle multiple format of date strings. [@vc7][] - [#381](https://github.com/danger/swift/pull/381)
 - Make `draft` optional for some repos which Draft pull requests are not available in GitHub Pulls [@417-72KI][] - [#378](https://github.com/danger/swift/pull/378)
 - Add Link Relations for GitHub PR [@417-72KI][] - [#368](https://github.com/danger/swift/pull/368)
 - Make `SwiftLintViolation` properties public - [#377](https://github.com/danger/swift/pull/377)
