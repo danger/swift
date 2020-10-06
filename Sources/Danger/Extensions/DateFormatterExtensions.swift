@@ -20,7 +20,10 @@ extension DateFormatter {
         } else if let date = onlyDateDateFormatter.date(from: dateString) {
             return date
         } else {
-            fatalError("Unexpected date coding key: \(decoder.codingPath.last?.stringValue ?? "Not Valid Key Name")")
+            let path = decoder.codingPath.map(\.stringValue).joined(separator: ".")
+            throw OptionalFractionalSecondsDateFormatter
+                .DateError
+                .invalidFormat(path: path, dateString: dateString)
         }
     }
 }
@@ -66,5 +69,20 @@ private final class OptionalFractionalSecondsDateFormatter: DateFormatter {
             return result
         }
         return OptionalFractionalSecondsDateFormatter.withMilliseconds.date(from: string)
+    }
+}
+
+extension OptionalFractionalSecondsDateFormatter {
+    enum DateError: LocalizedError {
+        case invalidFormat(path: String, dateString: String)
+
+        // MARK: LocalizedError
+
+        var errorDescription: String? {
+            switch self {
+            case let .invalidFormat(path, dateString):
+                return "Format Invalid with path \"\(path)\", date string: \"\(dateString)\""
+            }
+        }
     }
 }
