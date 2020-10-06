@@ -30,7 +30,7 @@ final class GitLabTests: XCTestCase {
                                                               id: 1,
                                                               iid: 2,
                                                               projectId: 1000,
-                                                              startDate: Date(timeIntervalSince1970: 1_554_933_465.346),
+                                                              startDate: Date(timeIntervalSince1970: 1_554_854_400.0),
                                                               state: .closed,
                                                               title: "Test Milestone",
                                                               updatedAt: Date(timeIntervalSince1970: 1_554_933_465.346),
@@ -94,7 +94,7 @@ final class GitLabTests: XCTestCase {
     }
 
     func testMilestoneWithoutDueDate() {
-        let gitLab = gitlabWithoutMilestoneDueDateFixtureDSL.gitLab
+        let gitLab = gitlabWithoutMilestoneDateRangeFixtureDSL.gitLab
 
         XCTAssertNil(gitLab?.mergeRequest.milestone?.dueDate)
     }

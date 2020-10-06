@@ -96,10 +96,10 @@ public let DSLGitLabJSON = """
           "title": "Test Milestone",
           "description": "Test Description",
           "state": "closed",
-          "start_date": "2019-04-10T21:57:45.346Z",
+          "start_date": "2019-04-10",
           "created_at": "2019-04-10T21:57:45.346Z",
           "updated_at": "2019-04-10T21:57:45.346Z",
-          "due_date": "2019-06-10T00:00:00.000Z",
+          "due_date": "2019-06-10",
           "web_url": "https://gitlab.com/milestone"
         },
         "merge_when_pipeline_succeeds": false,

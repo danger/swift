@@ -1,6 +1,6 @@
 // swiftlint:disable line_length
 
-public let DSLGitLabWithoutMilestoneDueDateJSON = """
+public let DSLGitLabWithoutMilestoneDateRangeJSON = """
 {
   "danger": {
     "git": {
@@ -87,7 +87,7 @@ public let DSLGitLabWithoutMilestoneDueDateJSON = """
           "title": "Test Milestone",
           "description": "Test Description",
           "state": "closed",
-          "start_date": "2019-04-10T21:57:45.346Z",
+          "start_date": null,
           "created_at": "2019-04-10T21:57:45.346Z",
           "updated_at": "2019-04-10T21:57:45.346Z",
           "due_date": null,

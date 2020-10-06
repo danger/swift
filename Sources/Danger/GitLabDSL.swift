@@ -54,7 +54,7 @@ extension GitLab {
             public let id: Int // swiftlint:disable:this identifier_name
             public let iid: Int
             public let projectId: Int
-            public let startDate: Date
+            public let startDate: Date?
             public let state: State
             public let title: String
             public let updatedAt: Date
