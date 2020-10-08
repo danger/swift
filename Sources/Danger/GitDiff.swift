@@ -103,7 +103,8 @@ struct DiffParser {
         diff.components(separatedBy: "diff --git ").compactMap { fileDiff in
             let headerAndHunks = fileDiff.components(separatedBy: "@@")
             guard let header = headerAndHunks.first,
-                !header.isEmpty else {
+                !header.isEmpty
+            else {
                 return nil
             }
 

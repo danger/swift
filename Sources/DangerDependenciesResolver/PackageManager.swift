@@ -112,7 +112,8 @@ public struct PackageManager {
         let resolvedPackageFile = generatedFolder.appendingPath("Package.resolved")
 
         guard FileManager.default.fileExists(atPath: checkoutsFolder),
-            FileManager.default.fileExists(atPath: repositoriesFolder) else {
+            FileManager.default.fileExists(atPath: repositoriesFolder)
+        else {
             try updatePackages()
             return try symlinkPackages(to: folder)
         }

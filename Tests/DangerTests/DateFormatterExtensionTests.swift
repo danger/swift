@@ -19,7 +19,8 @@ final class DateFormatterExtensionTests: XCTestCase {
         dateComponents.calendar = Calendar(identifier: .gregorian)
 
         guard let testDate = dateFormatter.date(from: "2020-06-24T23:13:08Z"),
-            let correctDate = dateComponents.date else {
+            let correctDate = dateComponents.date
+        else {
             XCTFail("Could not generate date")
             return
         }

@@ -2,7 +2,7 @@
 import Foundation
 import XCTest
 
-class DateFormatterHandlerTests: XCTestCase {
+final class DateFormatterHandlerTests: XCTestCase {
     func testRegularParseSuccess() throws {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .custom(DateFormatter.dateFormatterHandler)
@@ -38,10 +38,7 @@ class DateFormatterHandlerTests: XCTestCase {
         """
         let data = Data(json.utf8)
 
-        do {
-            _ = try decoder.decode(DummyModel.self, from: data)
-            XCTFail("The decode should not succeed")
-        } catch {
+        XCTAssertThrowsError(try decoder.decode(DummyModel.self, from: data)) { error in
             XCTAssertEqual(error.localizedDescription, "Format Invalid with path \"date\", date string: \"2019*04*10\"")
         }
     }
