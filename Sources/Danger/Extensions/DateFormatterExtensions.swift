@@ -20,7 +20,7 @@ extension DateFormatter {
         } else if let date = onlyDateDateFormatter.date(from: dateString) {
             return date
         } else {
-            let path = decoder.codingPath.map(\.stringValue).joined(separator: ".")
+            let path = decoder.codingPath.map { $0.stringValue }.joined(separator: ".")
             throw OptionalFractionalSecondsDateFormatter
                 .DateError
                 .invalidFormat(path: path, dateString: dateString)
