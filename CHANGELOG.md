@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.6.1
+
 - Fix Dockerfile [@f-meloni][] - [#384](https://github.com/danger/swift/pull/384)
 
 ## 3.6.0
