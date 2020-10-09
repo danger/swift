@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.6.0
+
 - Make `startDate` and `dueDate` optional for GitLab API may produce null values for these two properties [@vc7][] - [#381](https://github.com/danger/swift/pull/381)
 - Fix `startDate` and `dueDate` formatting issue due to the date string from GitLab API has become `yyyy-MM-dd`, and make the date formatter is able to handle multiple format of date strings. [@vc7][] - [#381](https://github.com/danger/swift/pull/381)
 - Introduce `assignees` to GitLab's MergeRequest [@vc7][] - [#381](https://github.com/danger/swift/pull/381)
