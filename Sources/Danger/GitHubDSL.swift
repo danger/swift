@@ -162,7 +162,7 @@ extension GitHub.PullRequest {
             public let href: String
 
             public init(stringLiteral value: String) {
-                self.href = value
+                href = value
             }
         }
 

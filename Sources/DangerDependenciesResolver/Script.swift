@@ -24,7 +24,7 @@ public struct ScriptManager {
         case scriptNotFound(String)
     }
 
-    private let config: Config = Config()
+    private let config = Config()
     private let packageManager: PackageManager
     private let folder: String
     private let cacheFolder: String

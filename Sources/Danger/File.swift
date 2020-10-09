@@ -33,7 +33,8 @@ extension FileType {
         let splittedPath = file.split(separator: ".")
 
         guard let fileTypeString = splittedPath.last,
-            splittedPath.count > 1 else {
+            splittedPath.count > 1
+        else {
             return nil
         }
 

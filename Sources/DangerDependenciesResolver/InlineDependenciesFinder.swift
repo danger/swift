@@ -19,7 +19,8 @@ struct InlineDependenciesFinder {
             if line.hasPrefix("import ") {
                 let components = line.components(separatedBy: config.dependencyPrefix)
                 guard components.count > 1,
-                    let lastComponent = components.last else {
+                    let lastComponent = components.last
+                else {
                     continue
                 }
 

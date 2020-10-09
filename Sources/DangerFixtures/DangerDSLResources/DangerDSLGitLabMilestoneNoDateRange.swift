@@ -1,6 +1,6 @@
 // swiftlint:disable line_length
 
-public let DSLGitLabJSON = """
+public let DSLGitLabMilestoneNoDateRangeJSON = """
 {
   "danger": {
     "git": {
@@ -75,16 +75,7 @@ public let DSLGitLabJSON = """
           "avatar_url": "https://secure.gravatar.com/avatar/3d90e967de2beab6d44cfadbb4976b87?s=80&d=identicon",
           "web_url": "https://gitlab.com/f-meloni"
         },
-        "assignees": [
-          {
-            "id": 377669,
-            "name": "Orta",
-            "username": "orta",
-            "state": "active",
-            "avatar_url": "https://secure.gravatar.com/avatar/f116cb3be23153ec08b94e8bd4dbcfeb?s=80&d=identicon",
-            "web_url": "https://gitlab.com/orta"
-          }
-        ],
+        "assignees": [],
         "source_project_id": 10132593,
         "target_project_id": 1620437,
         "labels": [],
@@ -96,10 +87,10 @@ public let DSLGitLabJSON = """
           "title": "Test Milestone",
           "description": "Test Description",
           "state": "closed",
-          "start_date": "2019-04-10",
+          "start_date": null,
           "created_at": "2019-04-10T21:57:45.346Z",
           "updated_at": "2019-04-10T21:57:45.346Z",
-          "due_date": "2019-06-10",
+          "due_date": null,
           "web_url": "https://gitlab.com/milestone"
         },
         "merge_when_pipeline_succeeds": false,
