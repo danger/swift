@@ -30,7 +30,7 @@ final class GitLabTests: XCTestCase {
                                                               id: 1,
                                                               iid: 2,
                                                               projectId: 1000,
-                                                              startDate: Date(timeIntervalSince1970: 1_554_933_465.346),
+                                                              startDate: Date(timeIntervalSince1970: 1_554_854_400.0),
                                                               state: .closed,
                                                               title: "Test Milestone",
                                                               updatedAt: Date(timeIntervalSince1970: 1_554_933_465.346),
@@ -47,6 +47,7 @@ final class GitLabTests: XCTestCase {
         XCTAssertEqual(mergeRequest.allowMaintainerToPush, false)
         XCTAssertEqual(mergeRequest.approvalsBeforeMerge, 1)
         XCTAssertEqual(mergeRequest.assignee, orta)
+        XCTAssertEqual(mergeRequest.assignees?.first, orta)
         XCTAssertEqual(mergeRequest.author, fmeloni)
         XCTAssertEqual(mergeRequest.changesCount, "1")
         XCTAssertNil(mergeRequest.closedAt)
@@ -90,5 +91,11 @@ final class GitLabTests: XCTestCase {
 
         XCTAssertEqual(metadata.pullRequestID, "182")
         XCTAssertEqual(metadata.repoSlug, "danger-systems/danger.systems")
+    }
+
+    func testMilestoneWithoutDueDate() {
+        let gitLab = gitlabMilestoneNoDateRangeFixtureDSL.gitLab
+
+        XCTAssertNil(gitLab?.mergeRequest.milestone?.dueDate)
     }
 }

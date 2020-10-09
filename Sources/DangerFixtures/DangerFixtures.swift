@@ -17,7 +17,7 @@ import Foundation
 public func parseDangerDSL(with body: String) -> DangerDSL {
     let dslJSONContents = Data(body.utf8)
     let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .formatted(DateFormatter.defaultDateFormatter)
+    decoder.dateDecodingStrategy = .custom(DateFormatter.dateFormatterHandler)
     return try! decoder.decode(DSL.self, from: dslJSONContents).danger // swiftlint:disable:this force_try
 }
 
@@ -29,6 +29,8 @@ public let githubEnterpriseFixtureDSL = parseDangerDSL(with: DSLGitHubEnterprise
 public let bitbucketFixtureDSL = parseDangerDSL(with: DSLBitBucketServerJSON)
 /// An example DSL using GitLab
 public let gitlabFixtureDSL = parseDangerDSL(with: DSLGitLabJSON)
+/// An example DSL without milestone date range using GitLab
+public let gitlabMilestoneNoDateRangeFixtureDSL = parseDangerDSL(with: DSLGitLabMilestoneNoDateRangeJSON)
 /// An example DSL using BitBucket Cloud
 public let bitbucketCloudFixtureDSL = parseDangerDSL(with: DSLBitBucketCloudJSON)
 /// An example DSL using GitHub

@@ -50,7 +50,7 @@ final class DangerRunner {
         }
         do {
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(DateFormatter.defaultDateFormatter)
+            decoder.dateDecodingStrategy = .custom(DateFormatter.dateFormatterHandler)
             logger.debug("Decoding the DSL into Swift types")
             dsl = try decoder.decode(DSL.self, from: dslJSONContents).danger
         } catch {

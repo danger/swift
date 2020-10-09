@@ -337,7 +337,17 @@ final class GitHubTests: XCTestCase {
             changedFiles: nil,
             milestone: milestone,
             htmlUrl: "https://github.com/octocat/Hello-World/pull/1347",
-            draft: false
+            draft: false,
+            links: GitHub.PullRequest.Link(
+                self: "https://api.github.com/repos/octocat/Hello-World/pulls/1347",
+                html: "https://github.com/octocat/Hello-World/pull/1347",
+                issue: "https://api.github.com/repos/octocat/Hello-World/issues/1347",
+                comments: "https://api.github.com/repos/octocat/Hello-World/issues/1347/comments",
+                reviewComments: "https://api.github.com/repos/octocat/Hello-World/pulls/1347/comments",
+                reviewComment: "https://api.github.com/repos/octocat/Hello-World/pulls/comments{/number}",
+                commits: "https://api.github.com/repos/octocat/Hello-World/pulls/1347/commits",
+                statuses: "https://api.github.com/repos/octocat/Hello-World/statuses/6dcb09b5b57875f334f61aebed695e2e4193db5e"
+            )
         )
 
         XCTAssertEqual(expectedPR, actualPR)

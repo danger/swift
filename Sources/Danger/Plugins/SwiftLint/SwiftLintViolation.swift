@@ -1,14 +1,14 @@
 public struct SwiftLintViolation: Decodable {
-    enum Severity: String, Decodable {
+    public enum Severity: String, Decodable {
         case warning = "Warning"
         case error = "Error"
     }
 
-    var ruleID: String
-    var reason: String
-    var line: Int
-    var severity: Severity
-    var file: String
+    public internal(set) var ruleID: String
+    public internal(set) var reason: String
+    public internal(set) var line: Int
+    public internal(set) var severity: Severity
+    public internal(set) var file: String
 
     var messageText: String {
         reason + " (`\(ruleID)`)"

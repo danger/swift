@@ -15,9 +15,23 @@
 
 - Release Docker image with SwiftLint [@f-meloni][] - [#380](https://github.com/danger/swift/pull/3680)
 
+## 3.6.1
+
+- Fix Dockerfile [@f-meloni][] - [#384](https://github.com/danger/swift/pull/384)
+
+## 3.6.0
+
+- Make `startDate` and `dueDate` optional for GitLab API may produce null values for these two properties [@vc7][] - [#381](https://github.com/danger/swift/pull/381)
+- Fix `startDate` and `dueDate` formatting issue due to the date string from GitLab API has become `yyyy-MM-dd`, and make the date formatter is able to handle multiple format of date strings. [@vc7][] - [#381](https://github.com/danger/swift/pull/381)
+- Introduce `assignees` to GitLab's MergeRequest [@vc7][] - [#381](https://github.com/danger/swift/pull/381)
+- Make `draft` optional for some repos which Draft pull requests are not available in GitHub Pulls [@417-72KI][] - [#378](https://github.com/danger/swift/pull/378)
+- Add Link Relations for GitHub PR [@417-72KI][] - [#368](https://github.com/danger/swift/pull/368)
+- Make `SwiftLintViolation` properties public - [#377](https://github.com/danger/swift/pull/377)
+>>>>>>> b314d94208775862c5f1e8fbe571f5e083e453cb
+
 ## 3.5.0
 
-- Add workaround for Xcode 12 [@f-meloni][] - [#372](https://github.com/danger/swift/pull/3672)
+- Add workaround for Xcode 12 [@f-meloni][] - [#372](https://github.com/danger/swift/pull/372)
 - Deploy Danger swift Docker image on GitHub Container Registry [@f-meloni][] - [#367](https://github.com/danger/swift/pull/367)
 - Create sync utils function to make async calls sync [@f-meloni][] - [#369](https://github.com/danger/swift/pull/369)
 
@@ -428,3 +442,5 @@ This release also includes:
 [@avdlee]: https://github.com/AvdLee
 [@lucasmpaim]: https://github.com/lucasmpaim
 [@captainbarbosa]: https://github.com/captainbarbosa
+[@417-72KI]: https://github.com/417-72KI
+[@vc7]: https://github.com/vc7
