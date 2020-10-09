@@ -433,3 +433,5 @@ This release also includes:
 [@avdlee]: https://github.com/AvdLee
 [@lucasmpaim]: https://github.com/lucasmpaim
 [@captainbarbosa]: https://github.com/captainbarbosa
+[@417-72KI]: https://github.com/417-72KI
+[@vc7]: https://github.com/vc7
