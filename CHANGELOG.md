@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix Dockerfile [@f-meloni][] - [#384](https://github.com/danger/swift/pull/384)
+
 ## 3.6.0
 
 - Make `startDate` and `dueDate` optional for GitLab API may produce null values for these two properties [@vc7][] - [#381](https://github.com/danger/swift/pull/381)
