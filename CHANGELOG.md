@@ -27,7 +27,9 @@
 - Make `draft` optional for some repos which Draft pull requests are not available in GitHub Pulls [@417-72KI][] - [#378](https://github.com/danger/swift/pull/378)
 - Add Link Relations for GitHub PR [@417-72KI][] - [#368](https://github.com/danger/swift/pull/368)
 - Make `SwiftLintViolation` properties public - [#377](https://github.com/danger/swift/pull/377)
->>>>>>> b314d94208775862c5f1e8fbe571f5e083e453cb
+- Make `draft` optional for some repos which Draft pull requests are not available in GitHub Pulls [@417-72KI][] - [#378](https://github.com/danger/swift/pull/378)
+- Add Link Relations for GitHub PR [@417-72KI][] - [#368](https://github.com/danger/swift/pull/368)
+- Make `SwiftLintViolation` properties public - [#377](https://github.com/danger/swift/pull/377)
 
 ## 3.5.0
 
