@@ -36,6 +36,7 @@ extension GitLab {
                 case id // swiftlint:disable:this identifier_name
                 case iid
                 case projectId = "project_id"
+                case groupId = "group_id"
                 case startDate = "start_date"
                 case state
                 case title
@@ -53,7 +54,8 @@ extension GitLab {
             public let dueDate: Date?
             public let id: Int // swiftlint:disable:this identifier_name
             public let iid: Int
-            public let projectId: Int
+            public let projectId: Int?
+            public let groupId: Int?
             public let startDate: Date?
             public let state: State
             public let title: String
