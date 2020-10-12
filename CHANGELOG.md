@@ -13,6 +13,8 @@
 
 ## Master
 
+- Release Docker image with SwiftLint [@f-meloni][] - [#380](https://github.com/danger/swift/pull/3680)
+
 ## 3.6.1
 
 - Fix Dockerfile [@f-meloni][] - [#384](https://github.com/danger/swift/pull/384)
