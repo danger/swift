@@ -1,4 +1,6 @@
 included:
   - Sources
-excluded:
   - Tests
+excluded:
+  - Tests/**/*Resources # files in this directory contains only JSON strings.
+  - Tests/**/XCTestManifests.swift # auto-generated file
