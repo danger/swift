@@ -54,7 +54,9 @@ extension GitLab {
             public let dueDate: Date?
             public let id: Int // swiftlint:disable:this identifier_name
             public let iid: Int
+            /// Will has value if it is a regular [project milestone](https://docs.gitlab.com/ee/api/milestones.html). Or it will be nil.
             public let projectId: Int?
+            /// Will has value if it is a [group milestone](https://docs.gitlab.com/ee/api/group_milestones.html). Or it will be nil.
             public let groupId: Int?
             public let startDate: Date?
             public let state: State
