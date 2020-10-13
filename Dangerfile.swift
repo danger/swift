@@ -21,7 +21,7 @@ if !swiftFilesWithCopyright.isEmpty {
 }
 
 //SwiftLint.lint(.modifiedAndCreatedFiles(directory: "Sources"), inline: true)
-SwiftLint.lint(.all(directory: "Sources"), inline: true)
+SwiftLint.lint(.all(directory: nil), inline: true)
 
 // Support running via `danger local`
 if danger.github != nil {
