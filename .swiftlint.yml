@@ -12,5 +12,7 @@ line_length:
   ignores_function_declarations: true
   ignores_interpolated_strings: true
 identifier_name:
-  min_length: 
-    warning: 2
+  excluded:
+    - ci
+    - id
+    - pr
