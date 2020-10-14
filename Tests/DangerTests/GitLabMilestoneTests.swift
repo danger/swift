@@ -2,31 +2,23 @@
 import DangerFixtures
 import XCTest
 
-class GitLabMilestoneTests: XCTestCase {
-    func testParseGroupMilestone() {
+final class GitLabMilestoneTests: XCTestCase {
+    func testParseGroupMilestone() throws {
         let jsonString = DSLGitLabGroupMilestoneJSON
         let data = Data(jsonString.utf8)
 
-        do {
-            let milestone = try jsonDecoder.decode(GitLab.MergeRequest.Milestone.self, from: data)
-            XCTAssertEqual(milestone.groupId, 9_449_452)
-            XCTAssertNil(milestone.projectId)
-        } catch {
-            XCTFail(error.localizedDescription)
-        }
+        let milestone = try jsonDecoder.decode(GitLab.MergeRequest.Milestone.self, from: data)
+        XCTAssertEqual(milestone.groupId, 9_449_452)
+        XCTAssertNil(milestone.projectId)
     }
 
-    func testParseProjectMilestone() {
+    func testParseProjectMilestone() throws {
         let jsonString = DSLGitLabProjectMilestoneJSON
         let data = Data(jsonString.utf8)
 
-        do {
-            let milestone = try jsonDecoder.decode(GitLab.MergeRequest.Milestone.self, from: data)
-            XCTAssertEqual(milestone.projectId, 21_265_694)
-            XCTAssertNil(milestone.groupId)
-        } catch {
-            XCTFail(error.localizedDescription)
-        }
+        let milestone = try jsonDecoder.decode(GitLab.MergeRequest.Milestone.self, from: data)
+        XCTAssertEqual(milestone.projectId, 21_265_694)
+        XCTAssertNil(milestone.groupId)
     }
 
     private var jsonDecoder: JSONDecoder {
