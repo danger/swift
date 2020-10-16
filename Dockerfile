@@ -7,8 +7,6 @@ LABEL "com.github.actions.description"="Runs Swift Dangerfiles"
 LABEL "com.github.actions.icon"="zap"
 LABEL "com.github.actions.color"="blue"
 
-RUN swift --version
-
 # Install nodejs and Danger
 RUN apt-get update -q \
     && apt-get install -qy curl make \
