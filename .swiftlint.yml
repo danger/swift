@@ -1,0 +1,18 @@
+included:
+  - Sources
+  - Tests
+excluded:
+  - Tests/**/*Resources # files in this directory contains only JSON strings.
+  - Tests/**/XCTestManifests.swift # auto-generated file
+line_length:
+  warning: 140 # needs discussion (default: 120)
+  error: 350 # needs discussion (default: 200)
+  ignores_comments: true
+  ignores_urls: true
+  ignores_function_declarations: true
+  ignores_interpolated_strings: true
+identifier_name:
+  excluded:
+    - ci
+    - id
+    - pr
