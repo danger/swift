@@ -8,8 +8,8 @@ final class GitLabMilestoneTests: XCTestCase {
         let data = Data(jsonString.utf8)
 
         let milestone = try jsonDecoder.decode(GitLab.MergeRequest.Milestone.self, from: data)
-        XCTAssertEqual(milestone.groupId, 9_449_452)
-        XCTAssertNil(milestone.projectId)
+        XCTAssertTrue(milestone.parent.isGroup)
+        XCTAssertEqual(milestone.parent.id, 9_449_452)
     }
 
     func testParseProjectMilestone() throws {
@@ -17,8 +17,20 @@ final class GitLabMilestoneTests: XCTestCase {
         let data = Data(jsonString.utf8)
 
         let milestone = try jsonDecoder.decode(GitLab.MergeRequest.Milestone.self, from: data)
-        XCTAssertEqual(milestone.projectId, 21_265_694)
-        XCTAssertNil(milestone.groupId)
+        XCTAssertTrue(milestone.parent.isProject)
+        XCTAssertEqual(milestone.parent.id, 21_265_694)
+    }
+
+    func testParseMilestoneFailure() throws {
+        let jsonString = "{}"
+        let data = Data(jsonString.utf8)
+
+        XCTAssertThrowsError(
+            try jsonDecoder.decode(
+                GitLab.MergeRequest.Milestone.self,
+                from: data
+            )
+        )
     }
 
     private var jsonDecoder: JSONDecoder {

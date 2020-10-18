@@ -197,6 +197,7 @@
         // to regenerate.
         static let __allTests__GitLabMilestoneTests = [
             ("testParseGroupMilestone", testParseGroupMilestone),
+            ("testParseMilestoneFailure", testParseMilestoneFailure),
             ("testParseProjectMilestone", testParseProjectMilestone),
         ]
     }
