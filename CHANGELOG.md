@@ -14,7 +14,7 @@
 ## Master
 
 - Release Docker image with SwiftLint [@f-meloni][] - [#380](https://github.com/danger/swift/pull/3680)
-- Add and parsing `groupId` for [Group Milestones](https://docs.gitlab.com/ee/api/group_milestones.html#group-milestones-api). Meantime, `projectId` of GitLab.MergeRequest.Milestone is becoming an optional property. [@vc7][] - [#385](https://github.com/danger/swift/pull/385)
+- Handling [group milestones](https://docs.gitlab.com/ee/api/group_milestones.html#group-milestones-api). Meantime, retired `projectId` and merge it to the new enum `ParentIdentifier` which is able to handle group_id and project_id as a shared property. [@vc7][] - [#385](https://github.com/danger/swift/pull/385)
 
 ## 3.6.1
 
