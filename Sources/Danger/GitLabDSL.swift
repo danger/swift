@@ -92,7 +92,7 @@ extension GitLab {
             public let dueDate: Date?
             public let id: Int // swiftlint:disable:this identifier_name
             public let iid: Int
-            /// A unified identifier for [project milestone](https://docs.gitlab.com/ee/api/milestones.html)'s `project_id` \
+            /// An unified identifier for [project milestone](https://docs.gitlab.com/ee/api/milestones.html)'s `project_id` \
             /// and [group milestone](https://docs.gitlab.com/ee/api/group_milestones.html)'s `group_id`.
             public let parent: ParentIdentifier
             public let startDate: Date?
