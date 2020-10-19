@@ -193,7 +193,7 @@ extension BitBucketCloud {
     public struct Comment: Decodable, Equatable {
         public struct Inline: Decodable, Equatable {
             public let from: Int?
-            public let to: Int? 
+            public let to: Int? // swiftlint:disable:this identifier_name
             public let path: String?
         }
 
@@ -217,7 +217,7 @@ extension BitBucketCloud {
         /// Was the comment deleted?
         public let deleted: Bool
 
-        public let id: Int 
+        public let id: Int
 
         public let inline: Inline?
 
