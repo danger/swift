@@ -189,7 +189,7 @@ extension GitHub {
     /// A GitHub user account.
     public struct User: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
-            case id // swiftlint:disable:this identifier_name
+            case id
             case login
             case userType = "type"
         }
@@ -201,7 +201,7 @@ extension GitHub {
         }
 
         /// The UUID for the user organization.
-        public let id: Int // swiftlint:disable:this identifier_name
+        public let id: Int
 
         /// The handle for the user or organization.
         public let login: String
@@ -215,7 +215,7 @@ extension GitHub {
     /// A GitHub team.
     public struct Team: Decodable, Equatable {
         /// The UUID for the team.
-        public let id: Int // swiftlint:disable:this identifier_name
+        public let id: Int
 
         /// The team name
         public let name: String
@@ -256,7 +256,7 @@ extension GitHub {
 extension GitHub {
     public struct Repo: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
-            case id // swiftlint:disable:this identifier_name
+            case id
             case name
             case owner
             case description
@@ -267,7 +267,7 @@ extension GitHub {
         }
 
         /// Generic UUID.
-        public let id: Int // swiftlint:disable:this identifier_name
+        public let id: Int
 
         /// The name of the repo, e.g. "danger-swift".
         public let name: String
@@ -297,7 +297,7 @@ extension GitHub {
         enum CodingKeys: String, CodingKey {
             case body
             case commitId = "commit_id"
-            case id // swiftlint:disable:this identifier_name
+            case id
             case state
             case submittedAt = "submitted_at"
             case user
@@ -318,7 +318,7 @@ extension GitHub {
         public let commitId: String?
 
         /// The id for the review (if a review was made).
-        public let id: Int? // swiftlint:disable:this identifier_name
+        public let id: Int?
 
         /// The state of the review (if a review was made).
         public let state: State?
@@ -372,7 +372,7 @@ extension GitHub {
 extension GitHub {
     public struct Issue: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
-            case id // swiftlint:disable:this identifier_name
+            case id
             case number
             case title
             case user
@@ -397,7 +397,7 @@ extension GitHub {
 
         public struct Label: Decodable, Equatable {
             /// The id number of this label.
-            public let id: Int // swiftlint:disable:this identifier_name
+            public let id: Int
 
             /// The URL that links to this label.
             public let url: String
@@ -410,7 +410,7 @@ extension GitHub {
         }
 
         /// The id number of the issue
-        public let id: Int // swiftlint:disable:this identifier_name
+        public let id: Int
 
         /// The number of the issue.
         public let number: Int
@@ -465,7 +465,7 @@ extension GitHub {
             case creator
             case description
             case dueOn = "due_on"
-            case id // swiftlint:disable:this identifier_name
+            case id
             case number
             case openIssues = "open_issues"
             case state
@@ -480,7 +480,7 @@ extension GitHub {
         }
 
         /// The id number of this milestone
-        public let id: Int // swiftlint:disable:this identifier_name
+        public let id: Int
 
         /// The number of this milestone
         public let number: Int

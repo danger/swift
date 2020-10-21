@@ -114,7 +114,6 @@ func runDanger(logger: Logger) throws {
     let generator = DangerFileGenerator()
     try generator.generateDangerFile(fromContent: importsOnly, fileName: tempDangerfilePath, logger: logger)
 
-    // swiftlint:disable line_length
     // Example commands:
     //
     //

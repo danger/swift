@@ -1,4 +1,4 @@
-// swiftlint:disable line_length file_length
+// swiftlint:disable file_length
 
 public let DSLBitBucketCloudJSON = """
 {

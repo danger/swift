@@ -14,6 +14,8 @@
 ## Master
 
 - Release Docker image with SwiftLint [@f-meloni][] - [#380](https://github.com/danger/swift/pull/3680)
+- Add .swiftlint.yml [@417-72KI][] [#383](https://github.com/danger/swift/pull/383)
+- Resolve `superfluous_disable_command` [@417-72KI][] [#387](https://github.com/danger/swift/pull/387)
 
 ## 3.6.1
 

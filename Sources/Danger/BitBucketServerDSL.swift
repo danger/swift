@@ -1,7 +1,6 @@
 import Foundation
 
 // swiftlint:disable nesting
-// swiftlint:disable identifier_name
 
 public struct BitBucketServer: Decodable, Equatable {
     enum CodingKeys: String, CodingKey {
