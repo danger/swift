@@ -71,7 +71,7 @@ extension GitLab {
                 case createdAt = "created_at"
                 case description
                 case dueDate = "due_date"
-                case id // swiftlint:disable:this identifier_name
+                case id
                 case iid
                 case projectId = "project_id"
                 case groupId = "group_id"
@@ -90,7 +90,7 @@ extension GitLab {
             public let createdAt: Date
             public let description: String
             public let dueDate: Date?
-            public let id: Int // swiftlint:disable:this identifier_name
+            public let id: Int
             public let iid: Int
             /// An unified identifier for [project milestone](https://docs.gitlab.com/ee/api/milestones.html)'s `project_id` \
             /// and [group milestone](https://docs.gitlab.com/ee/api/group_milestones.html)'s `group_id`.
@@ -147,14 +147,14 @@ extension GitLab {
             }
 
             public enum CodingKeys: String, CodingKey {
-                case id // swiftlint:disable:this identifier_name
+                case id
                 case ref
                 case sha
                 case status
                 case webUrl = "web_url"
             }
 
-            public let id: Int // swiftlint:disable:this identifier_name
+            public let id: Int
             public let ref: String
             public let sha: String
             public let status: Status
@@ -176,7 +176,7 @@ extension GitLab {
             case downvotes
             case firstDeployedToProductionAt = "first_deployed_to_production_at"
             case forceRemoveSourceBranch = "force_remove_source_branch"
-            case id // swiftlint:disable:this identifier_name
+            case id
             case iid
             case latestBuildStartedAt = "latest_build_started_at"
             case latestBuildFinishedAt = "latest_build_finished_at"
@@ -219,7 +219,7 @@ extension GitLab {
         public let downvotes: Int
         public let firstDeployedToProductionAt: Date?
         public let forceRemoveSourceBranch: Bool
-        public let id: Int // swiftlint:disable:this identifier_name
+        public let id: Int
         public let iid: Int
         public let latestBuildFinishedAt: Date?
         public let latestBuildStartedAt: Date?
@@ -258,7 +258,7 @@ extension GitLab {
     public struct User: Decodable, Equatable {
         public enum CodingKeys: String, CodingKey {
             case avatarUrl = "avatar_url"
-            case id // swiftlint:disable:this identifier_name
+            case id
             case name
             case state
             case username
@@ -271,7 +271,7 @@ extension GitLab {
         }
 
         public let avatarUrl: String?
-        public let id: Int // swiftlint:disable:this identifier_name
+        public let id: Int
         public let name: String
         public let state: State
         public let username: String

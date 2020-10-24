@@ -1,4 +1,4 @@
-FROM swift:5.2
+FROM swift:5.2.5-focal
 
 MAINTAINER Orta Therox
 
@@ -9,8 +9,7 @@ LABEL "com.github.actions.color"="blue"
 
 # Install nodejs and Danger
 RUN apt-get update -q \
-    && apt-get install -qy curl \
-    && mv /usr/lib/python2.7/site-packages /usr/lib/python2.7/dist-packages; ln -s dist-packages /usr/lib/python2.7/site-package \
+    && apt-get install -qy curl make \
     && curl -sL https://deb.nodesource.com/setup_10.x |  bash - \
     && apt-get install -qy nodejs \
     && npm install -g danger \
