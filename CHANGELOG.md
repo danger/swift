@@ -16,6 +16,7 @@
 - Release Docker image with SwiftLint [@f-meloni][] - [#380](https://github.com/danger/swift/pull/3680)
 - Add .swiftlint.yml [@417-72KI][] [#383](https://github.com/danger/swift/pull/383)
 - Resolve `superfluous_disable_command` [@417-72KI][] [#387](https://github.com/danger/swift/pull/387)
+- Make BitBucketCloud.User accountId and nickname optional [@abel3cl][] - [#388](https://github.com/danger/swift/pull/388)
 
 ## 3.6.1
 

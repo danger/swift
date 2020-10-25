@@ -147,13 +147,13 @@ extension BitBucketCloud {
         }
 
         /// The acount id of the user
-        public let accountId: String
+        public let accountId: String?
 
         /// The display name of user
         public let displayName: String
 
         /// The nick name of the user
-        public let nickname: String
+        public let nickname: String?
 
         /// The uuid of the user
         public let uuid: String
