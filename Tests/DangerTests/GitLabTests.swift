@@ -29,7 +29,7 @@ final class GitLabTests: XCTestCase {
                                                               dueDate: Date(timeIntervalSince1970: 1_560_124_800.0),
                                                               id: 1,
                                                               iid: 2,
-                                                              projectId: 1000,
+                                                              parent: .project(1000),
                                                               startDate: Date(timeIntervalSince1970: 1_554_854_400.0),
                                                               state: .closed,
                                                               title: "Test Milestone",
