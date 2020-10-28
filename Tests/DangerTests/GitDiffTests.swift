@@ -85,7 +85,7 @@ final class GitDiffTests: XCTestCase {
                                    FileDiff.Line(text: "struct ShellOutExecutor: ShellOutExecuting {", changeType: .unchanged),
                                ]),
                            ]),
-                       ])
+        ])
     }
 
     func testChangeTypeForCreated() {
