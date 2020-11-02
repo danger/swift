@@ -23,6 +23,6 @@ final class ViolationTests: XCTestCase {
     }
 
     static var allTests = [
-        ("testDecoding", testDecoding)
+        ("testDecoding", testDecoding),
     ]
 }
