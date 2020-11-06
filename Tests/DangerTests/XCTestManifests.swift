@@ -173,7 +173,6 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__GitHubTests = [
-            ("test_GitHub_decode", test_GitHub_decode),
             ("test_GitHubBot_decode", test_GitHubBot_decode),
             ("test_GitHubCommit_decode", test_GitHubCommit_decode),
             ("test_GitHubCommit_decodesJSONWithEmptyAuthor", test_GitHubCommit_decodesJSONWithEmptyAuthor),
