@@ -2,7 +2,7 @@
 import DangerFixtures
 import XCTest
 
-// swiftlint:disable function_body_length
+// swiftlint:disable function_body_length type_body_length
 final class GitHubTests: XCTestCase {
     private var dateFormatter: DateFormatter {
         DateFormatter.defaultDateFormatter
