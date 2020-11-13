@@ -6,7 +6,8 @@ final class BitBucketServerTests: XCTestCase {
     private var bitBucketServer: BitBucketServer {
         bitbucketFixtureDSL.bitbucketServer
     }
-
+    
+    // swiftlint:disable:next function_body_length
     func testItParsesTheBitBucketPullRequest() {
         let pullRequest = bitBucketServer.pullRequest
         let expectedUser = BitBucketServer.User(id: 1, name: "test",
