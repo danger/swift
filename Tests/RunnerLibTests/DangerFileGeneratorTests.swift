@@ -32,7 +32,7 @@ final class DangerFileGeneratorTests: XCTestCase {
         super.setUp()
         createdFiles = [generatedFilePath]
         generator = DangerFileGenerator()
-        record = false
+//        record = false
     }
 
     override func tearDown() {

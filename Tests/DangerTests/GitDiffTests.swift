@@ -85,7 +85,7 @@ final class GitDiffTests: XCTestCase {
                                    FileDiff.Line(text: "struct ShellOutExecutor: ShellOutExecuting {", changeType: .unchanged),
                                ]),
                            ]),
-        ])
+                       ])
     }
 
     func testChangeTypeForCreated() {
@@ -143,8 +143,6 @@ final class GitDiffTests: XCTestCase {
         ]))
     }
 
-    // swiftlint:disable all
-    // swiftformat:disable all
     var testDiff: String {
         """
         diff --git a/.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata b/.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata

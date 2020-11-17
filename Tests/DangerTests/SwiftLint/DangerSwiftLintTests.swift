@@ -2,6 +2,8 @@
 import DangerFixtures
 import XCTest
 
+// swiftlint:disable type_body_length file_length
+
 final class DangerSwiftLintTests: XCTestCase {
     var executor: FakeShellExecutor!
     var fakePathProvider: FakeCurrentPathProvider!
@@ -79,7 +81,8 @@ final class DangerSwiftLintTests: XCTestCase {
                            warnInlineAction: warnAction,
                            readFile: mockedViolationJSON)
 
-        XCTAssertEqual(warns.first?.0, "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")
+        XCTAssertEqual(warns.first?.0,
+                       "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")
         XCTAssertEqual(warns.first?.1, "SomeFile.swift")
         XCTAssertEqual(warns.first?.2, 8)
 
@@ -108,7 +111,8 @@ final class DangerSwiftLintTests: XCTestCase {
         XCTAssertTrue(warns.isEmpty)
         XCTAssertEqual(fails.count, 2)
 
-        XCTAssertEqual(fails[0].0, "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")
+        XCTAssertEqual(fails[0].0,
+                       "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")
         XCTAssertEqual(fails[0].1, "SomeFile.swift")
         XCTAssertEqual(fails[0].2, 8)
 
@@ -216,7 +220,8 @@ final class DangerSwiftLintTests: XCTestCase {
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables, ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Tests/SomeFile.swift"])
+        XCTAssertEqual(swiftlintCommands.first!.environmentVariables,
+                       ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Tests/SomeFile.swift"])
     }
 
     func testExecutesSwiftLintWhenLintingAllFiles() {
@@ -275,8 +280,13 @@ final class DangerSwiftLintTests: XCTestCase {
                            readFile: mockedEmptyJSON)
 
         let quoteCharacterSet = CharacterSet(charactersIn: "\"")
-        let filesExtensions = Set(executor.invocations.first!.environmentVariables.filter { $0.key != "SCRIPT_INPUT_FILE_COUNT" }.values.compactMap { $0.split(separator: ".").last?.trimmingCharacters(in: quoteCharacterSet)
-        })
+        let filesExtensions = Set(
+            executor.invocations.first!.environmentVariables.filter {
+                $0.key != "SCRIPT_INPUT_FILE_COUNT"
+            }.values.compactMap {
+                $0.split(separator: ".").last?.trimmingCharacters(in: quoteCharacterSet)
+            }
+        )
         XCTAssertEqual(filesExtensions, ["swift"])
     }
 
@@ -299,7 +309,8 @@ final class DangerSwiftLintTests: XCTestCase {
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables, ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"])
+        XCTAssertEqual(swiftlintCommands.first!.environmentVariables,
+                       ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"])
     }
 
     func testSpecificFilesSwiftOnlyFilter() {
@@ -321,7 +332,8 @@ final class DangerSwiftLintTests: XCTestCase {
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables, ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"])
+        XCTAssertEqual(swiftlintCommands.first!.environmentVariables,
+                       ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"])
     }
 
     func testPrintsNoMarkdownIfNoViolations() {
@@ -360,7 +372,11 @@ final class DangerSwiftLintTests: XCTestCase {
                            readFile: mockedViolationJSON)
         XCTAssertNotNil(markdownMessage)
         XCTAssertTrue(markdownMessage!.contains("SwiftLint found issues"))
-        XCTAssertTrue(markdownMessage!.contains("Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)")) // swiftlint:disable:this line_length
+        XCTAssertTrue(
+            markdownMessage!.contains(
+                "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)"
+            )
+        )
     }
 
     func testMarkdownReportingInStrictMode() {
@@ -374,8 +390,11 @@ final class DangerSwiftLintTests: XCTestCase {
         XCTAssertNotNil(markdownMessage)
 
         let lines = markdownMessage!.split(separator: "\n")
-        XCTAssertEqual(lines[3], "Error | SomeFile.swift:8 | Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`) |")
-        XCTAssertEqual(lines[4], "Error | AnotherFile.swift:10 | Line should be 120 characters or less: currently 211 characters (`line_length`) |")
+        XCTAssertEqual(lines[3],
+                       "Error | SomeFile.swift:8 | " +
+                           "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`) |")
+        XCTAssertEqual(lines[4],
+                       "Error | AnotherFile.swift:10 | Line should be 120 characters or less: currently 211 characters (`line_length`) |")
     }
 
     func testQuotesPathArguments() {
@@ -412,7 +431,9 @@ final class DangerSwiftLintTests: XCTestCase {
 
         XCTAssertEqual(reportDeleter.receivedPath, "swiftlintReport.json")
     }
+}
 
+extension DangerSwiftLintTests {
     func mockedViolationJSON(_: String) -> String {
         """
         [
@@ -445,23 +466,6 @@ final class DangerSwiftLintTests: XCTestCase {
     func writeMarkdown(_ message: String) {
         markdownMessage = message
     }
-
-    static var allTests = [
-        ("testExecutesTheShell", testExecutesTheShell),
-        ("testExecutesSwiftLintWithConfigWhenPassed", testExecutesSwiftLintWithConfigWhenPassed),
-        ("testExecutesSwiftLintWithDirectoryPassed", testExecutesSwiftLintWithDirectoryPassed),
-        ("testExecutesSwiftLintWhenLintingAllFiles", testExecutesSwiftLintWhenLintingAllFiles),
-        ("testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed", testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed),
-        ("testFiltersOnSwiftFiles", testFiltersOnSwiftFiles),
-        ("testPrintsNoMarkdownIfNoViolations", testPrintsNoMarkdownIfNoViolations),
-        ("testViolations", testViolations),
-        ("testMarkdownReporting", testMarkdownReporting),
-        ("testQuotesPathArguments", testQuotesPathArguments),
-        ("testExecutesVerboseIfNotQuiet", testExecutesVerboseIfNotQuiet),
-        ("testExecutesQuiet", testExecutesQuiet),
-        ("testSpecificFilesLintStyle", testSpecificFilesLintStyle),
-        ("testSpecificFilesSwiftOnlyFilter", testSpecificFilesSwiftOnlyFilter),
-    ]
 }
 
 private final class SpySwiftlintReportDeleter: SwiftlintReportDeleting {

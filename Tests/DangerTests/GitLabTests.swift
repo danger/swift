@@ -41,7 +41,11 @@ final class GitLabTests: XCTestCase {
                                                             sha: "621bc3348549e51c5bd6ea9f094913e9e4667c7b",
                                                             status: .success,
                                                             webUrl: "https://gitlab.com/danger-systems/danger.systems/pipeline/621bc3348549e51c5bd6ea9f094913e9e4667c7b")
-        let expectedDiffRefs = GitLab.MergeRequest.DiffRefs(baseSha: "ef28580bb2a00d985bffe4a4ce3fe09fdb12283f", headSha: "621bc3348549e51c5bd6ea9f094913e9e4667c7b", startSha: "ef28580bb2a00d985bffe4a4ce3fe09fdb12283f")
+        let expectedDiffRefs = GitLab.MergeRequest.DiffRefs(
+            baseSha: "ef28580bb2a00d985bffe4a4ce3fe09fdb12283f",
+            headSha: "621bc3348549e51c5bd6ea9f094913e9e4667c7b",
+            startSha: "ef28580bb2a00d985bffe4a4ce3fe09fdb12283f"
+        )
 
         XCTAssertEqual(mergeRequest.allowCollaboration, false)
         XCTAssertEqual(mergeRequest.allowMaintainerToPush, false)
