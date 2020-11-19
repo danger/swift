@@ -392,7 +392,8 @@ final class DangerSwiftLintTests: XCTestCase {
         let lines = markdownMessage!.split(separator: "\n")
         XCTAssertEqual(lines[3],
                        "Error | SomeFile.swift:8 | " +
-                           "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`) |")
+                           "Opening braces should be preceded by a single space and on the same line as the declaration." +
+                           " (`opening_brace`) |")
         XCTAssertEqual(lines[4],
                        "Error | AnotherFile.swift:10 | Line should be 120 characters or less: currently 211 characters (`line_length`) |")
     }
