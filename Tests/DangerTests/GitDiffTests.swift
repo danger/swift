@@ -1,6 +1,7 @@
 @testable import Danger
 import XCTest
 
+// swiftlint:disable type_body_length function_body_length line_length
 final class GitDiffTests: XCTestCase {
     func testParsesDiff() {
         let diffParser = DiffParser()
