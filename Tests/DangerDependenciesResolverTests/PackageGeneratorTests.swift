@@ -12,7 +12,10 @@ final class PackageGeneratorTests: XCTestCase {
     func testGeneratedPackageWhenThereAreNoDependencies() throws {
         let packageListMaker = StubbedPackageListMaker(packages: [])
         let spyFileCreator = SpyFileCreator()
-        let generator = PackageGenerator(folder: "folder", generatedFolder: "generatedFolder", packageListMaker: packageListMaker, fileCreator: spyFileCreator)
+        let generator = PackageGenerator(folder: "folder",
+                                         generatedFolder: "generatedFolder",
+                                         packageListMaker: packageListMaker,
+                                         fileCreator: spyFileCreator)
 
         try generator.generateMasterPackageDescription(forSwiftToolsVersion: .init(5, 0, 0))
 
@@ -26,7 +29,10 @@ final class PackageGeneratorTests: XCTestCase {
             Package(name: "Dependency3", url: URL(string: "https://github.com/danger/dependency3")!, majorVersion: 3),
         ])
         let spyFileCreator = SpyFileCreator()
-        let generator = PackageGenerator(folder: "folder", generatedFolder: "generatedFolder", packageListMaker: packageListMaker, fileCreator: spyFileCreator)
+        let generator = PackageGenerator(folder: "folder",
+                                         generatedFolder: "generatedFolder",
+                                         packageListMaker: packageListMaker,
+                                         fileCreator: spyFileCreator)
 
         try generator.generateMasterPackageDescription(forSwiftToolsVersion: .init(5, 0, 0))
 
@@ -40,7 +46,10 @@ final class PackageGeneratorTests: XCTestCase {
             Package(name: "Dependency3", url: URL(string: "https://github.com/danger/dependency3")!, majorVersion: 3),
         ])
         let spyFileCreator = SpyFileCreator()
-        let generator = PackageGenerator(folder: "folder", generatedFolder: "generatedFolder", packageListMaker: packageListMaker, fileCreator: spyFileCreator)
+        let generator = PackageGenerator(folder: "folder",
+                                         generatedFolder: "generatedFolder",
+                                         packageListMaker: packageListMaker,
+                                         fileCreator: spyFileCreator)
 
         try generator.generateMasterPackageDescription(forSwiftToolsVersion: .init(5, 2, 0))
 
@@ -50,7 +59,10 @@ final class PackageGeneratorTests: XCTestCase {
     func testGeneratedDescriptionHeader() throws {
         let packageListMaker = StubbedPackageListMaker(packages: [])
         let spyFileCreator = SpyFileCreator()
-        let generator = PackageGenerator(folder: "folder", generatedFolder: "generatedFolder", packageListMaker: packageListMaker, fileCreator: spyFileCreator)
+        let generator = PackageGenerator(folder: "folder",
+                                         generatedFolder: "generatedFolder",
+                                         packageListMaker: packageListMaker,
+                                         fileCreator: spyFileCreator)
 
         assertSnapshot(matching: generator.makePackageDescriptionHeader(forSwiftToolsVersion: .init(4, 2, 0)), as: .lines)
     }
