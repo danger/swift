@@ -7,7 +7,8 @@ final class InlineDependenciesFinderTests: XCTestCase {
         let fileReader = StubbedDataReader(stubbedReadText: { _ -> String in
             self.script
         })
-        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader, config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
+        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader,
+                                                          config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
 
         let result = try dependenciesFinder.resolveInlineDependencies(fromPath: "path")
 
@@ -21,7 +22,8 @@ final class InlineDependenciesFinderTests: XCTestCase {
         let fileReader = StubbedDataReader(stubbedReadText: { _ -> String in
             self.scriptWithInvalidURL
         })
-        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader, config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
+        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader,
+                                                          config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
 
         XCTAssertThrowsError(try dependenciesFinder.resolveInlineDependencies(fromPath: "path"))
     }
@@ -30,7 +32,8 @@ final class InlineDependenciesFinderTests: XCTestCase {
         let fileReader = StubbedDataReader(stubbedReadText: { _ -> String in
             self.scriptWithoutPackagePrefix
         })
-        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader, config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
+        let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader,
+                                                          config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
 
         let result = try dependenciesFinder.resolveInlineDependencies(fromPath: "path")
 

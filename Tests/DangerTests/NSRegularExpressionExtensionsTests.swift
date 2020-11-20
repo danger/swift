@@ -14,7 +14,8 @@ final class NSRegularExpressionExtensionsTests: XCTestCase {
             let expression = try? NSRegularExpression(pattern: pattern),
             let testMatch = expression.firstMatchingString(in: string)
         else {
-            XCTFail(); return
+            XCTFail("Invalid regular expression")
+            return
         }
 
         XCTAssertEqual(testMatch, expectedMatch)
@@ -24,7 +25,8 @@ final class NSRegularExpressionExtensionsTests: XCTestCase {
         let pattern = "^(cats|hats)"
 
         guard let expression = try? NSRegularExpression(pattern: pattern) else {
-            XCTFail(); return
+            XCTFail("Invalid regular expression")
+            return
         }
 
         let testMatch = expression.firstMatchingString(in: string)

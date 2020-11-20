@@ -2,6 +2,7 @@
 import DangerFixtures
 import XCTest
 
+// swiftlint:disable function_body_length type_body_length
 final class GitHubTests: XCTestCase {
     private var dateFormatter: DateFormatter {
         DateFormatter.defaultDateFormatter
@@ -352,6 +353,4 @@ final class GitHubTests: XCTestCase {
 
         XCTAssertEqual(expectedPR, actualPR)
     }
-
-    func test_GitHub_decode() throws {}
 }

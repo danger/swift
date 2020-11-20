@@ -45,7 +45,7 @@ final class DangerFileGeneratorTests: XCTestCase {
     func testItGeneratesTheCorrectFileWhenThereAreNoImports() throws {
         try generator.generateDangerFile(fromContent: contentWithoutImports, fileName: generatedFilePath, logger: logger)
 
-        assertSnapshot(matching: generatedContent, as: .lines)
+        assertSnapshot(matching: try generatedContent(), as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenThereIsASingleImport() throws {
@@ -55,7 +55,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithOneImport, fileName: generatedFilePath, logger: logger)
 
-        assertSnapshot(matching: generatedContent, as: .lines)
+        assertSnapshot(matching: try generatedContent(), as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenThereIsAreMultipleImports() throws {
@@ -69,7 +69,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithMultipleImports, fileName: generatedFilePath, logger: logger)
 
-        assertSnapshot(matching: generatedContent, as: .lines)
+        assertSnapshot(matching: try generatedContent(), as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenOneOfTheImportedFilesIsMissing() throws {
@@ -81,7 +81,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithMultipleImports, fileName: generatedFilePath, logger: logger)
 
-        assertSnapshot(matching: generatedContent, as: .lines)
+        assertSnapshot(matching: try generatedContent(), as: .lines)
     }
 }
 
@@ -119,11 +119,12 @@ extension DangerFileGeneratorTests {
         """
         file3Content 👩‍👩‍👦‍👦
         secondLine
-        really really really really really really really really really really really really really really really really really really really really really really long text
+        really really really really really really really really really really really really \
+        really really really really really really really really really really long text
         """
     }
 
-    private var generatedContent: String {
-        try! String(contentsOfFile: generatedFilePath)
+    private func generatedContent() throws -> String {
+        try String(contentsOfFile: generatedFilePath)
     }
 }

@@ -14,8 +14,10 @@
 ## Master
 
 - Release Docker image with SwiftLint [@f-meloni][] - [#380](https://github.com/danger/swift/pull/3680)
+- Handling [group milestones](https://docs.gitlab.com/ee/api/group_milestones.html#group-milestones-api). Meantime, retired `projectId` and merge it to the new enum `ParentIdentifier` which is able to handle group_id and project_id as a shared property. [@vc7][] - [#385](https://github.com/danger/swift/pull/385)
 - Add .swiftlint.yml [@417-72KI][] [#383](https://github.com/danger/swift/pull/383)
 - Resolve `superfluous_disable_command` [@417-72KI][] [#387](https://github.com/danger/swift/pull/387)
+- Make BitBucketCloud.User accountId and nickname optional [@abel3cl][] - [#388](https://github.com/danger/swift/pull/388)
 
 ## 3.6.1
 

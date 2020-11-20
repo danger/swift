@@ -29,6 +29,44 @@ extension GitLab {
         }
 
         public struct Milestone: Decodable, Equatable {
+            public enum ParentIdentifier: Equatable {
+                case group(Int)
+                case project(Int)
+
+                // MARK: Local error enum
+
+                enum Error: LocalizedError {
+                    case validKeyNotFound
+
+                    // MARK: LocalizedError
+
+                    var errorDescription: String? {
+                        "Not able to find `group_id` or `project_id` from the raw JSON"
+                    }
+                }
+
+                // MARK: Helpers
+
+                public var id: Int {
+                    switch self {
+                    case let .group(id), let .project(id):
+                        return id
+                    }
+                }
+
+                public var isGroup: Bool {
+                    if case .group = self {
+                        return true
+                    } else {
+                        return false
+                    }
+                }
+
+                public var isProject: Bool {
+                    !isGroup
+                }
+            }
+
             public enum CodingKeys: String, CodingKey {
                 case createdAt = "created_at"
                 case description
@@ -36,6 +74,7 @@ extension GitLab {
                 case id
                 case iid
                 case projectId = "project_id"
+                case groupId = "group_id"
                 case startDate = "start_date"
                 case state
                 case title
@@ -53,7 +92,9 @@ extension GitLab {
             public let dueDate: Date?
             public let id: Int
             public let iid: Int
-            public let projectId: Int
+            /// An unified identifier for [project milestone](https://docs.gitlab.com/ee/api/milestones.html)'s `project_id` \
+            /// and [group milestone](https://docs.gitlab.com/ee/api/group_milestones.html)'s `group_id`.
+            public let parent: ParentIdentifier
             public let startDate: Date?
             public let state: State
             public let title: String
@@ -235,5 +276,32 @@ extension GitLab {
         public let state: State
         public let username: String
         public let webUrl: String
+    }
+}
+
+// MARK: Custom decoder for Milestone
+
+extension GitLab.MergeRequest.Milestone {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        if let id = try container.decodeIfPresent(Int.self, forKey: .groupId) {
+            parent = .group(id)
+        } else if let id = try container.decodeIfPresent(Int.self, forKey: .projectId) {
+            parent = .project(id)
+        } else {
+            throw ParentIdentifier.Error.validKeyNotFound
+        }
+
+        createdAt = try container.decode(Date.self, forKey: .createdAt)
+        description = try container.decode(String.self, forKey: .description)
+        dueDate = try container.decode(Date?.self, forKey: .dueDate)
+        id = try container.decode(Int.self, forKey: .id)
+        iid = try container.decode(Int.self, forKey: .iid)
+        startDate = try container.decode(Date?.self, forKey: .startDate)
+        state = try container.decode(State.self, forKey: .state)
+        title = try container.decode(String.self, forKey: .title)
+        updatedAt = try container.decode(Date.self, forKey: .updatedAt)
+        webUrl = try container.decode(String.self, forKey: .webUrl)
     }
 }

@@ -16,3 +16,5 @@ identifier_name:
     - ci
     - id
     - pr
+disabled_rules:
+  - trailing_comma
