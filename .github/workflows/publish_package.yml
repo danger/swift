@@ -13,7 +13,7 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Export tag version
-      run: echo ::set-env name=VERSION::${GITHUB_REF/refs\/tags\//}
+      run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
     
     - name: Docker Login
       run: echo $PACKAGES_WRITE_TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
