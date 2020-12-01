@@ -20,7 +20,8 @@ public struct SwiftLintViolation: Decodable {
     }
 
     public func toMarkdown() -> String {
-        let formattedFile = file.split(separator: "/").last! + ":\(line)"
+        let filename = file.split(separator: "/").last ?? "unknown"
+        let formattedFile = filename + ":\(line)"
         return "\(severity.rawValue) | \(formattedFile) | \(messageText) |"
     }
 }
