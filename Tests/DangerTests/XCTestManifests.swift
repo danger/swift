@@ -63,6 +63,7 @@
             ("testFiltersOnSwiftFiles", testFiltersOnSwiftFiles),
             ("testMarkdownReporting", testMarkdownReporting),
             ("testMarkdownReportingInStrictMode", testMarkdownReportingInStrictMode),
+            ("testMarkdownReportingWithoutFilePath", testMarkdownReportingWithoutFilePath),
             ("testPrintsNoMarkdownIfNoViolations", testPrintsNoMarkdownIfNoViolations),
             ("testQuotesPathArguments", testQuotesPathArguments),
             ("testSendsOuputFileToTheExecutorWhenLintingAllTheFiles", testSendsOuputFileToTheExecutorWhenLintingAllTheFiles),
