@@ -410,7 +410,8 @@ final class DangerSwiftLintTests: XCTestCase {
 
         let lines = markdownMessage?.split(separator: "\n")
         XCTAssertEqual(lines?[3],
-                       "Error |  | Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`) |")
+                       "Error |  | " +
+                           "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`) |")
     }
 
     func testQuotesPathArguments() {
