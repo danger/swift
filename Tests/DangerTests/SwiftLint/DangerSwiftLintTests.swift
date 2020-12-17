@@ -371,11 +371,11 @@ final class DangerSwiftLintTests: XCTestCase {
                            markdownAction: writeMarkdown,
                            readFile: mockedViolationJSON)
         XCTAssertNotNil(markdownMessage)
-        XCTAssertTrue(markdownMessage!.contains("SwiftLint found issues"))
-        XCTAssertTrue(
-            markdownMessage!.contains(
+        XCTAssertEqual(markdownMessage?.contains("SwiftLint found issues"), true)
+        XCTAssertEqual(
+            markdownMessage?.contains(
                 "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`)"
-            )
+            ), true
         )
     }
 
@@ -389,13 +389,29 @@ final class DangerSwiftLintTests: XCTestCase {
                            readFile: mockedViolationJSON)
         XCTAssertNotNil(markdownMessage)
 
-        let lines = markdownMessage!.split(separator: "\n")
-        XCTAssertEqual(lines[3],
+        let lines = markdownMessage?.split(separator: "\n")
+        XCTAssertEqual(lines?[3],
                        "Error | SomeFile.swift:8 | " +
                            "Opening braces should be preceded by a single space and on the same line as the declaration." +
                            " (`opening_brace`) |")
-        XCTAssertEqual(lines[4],
+        XCTAssertEqual(lines?[4],
                        "Error | AnotherFile.swift:10 | Line should be 120 characters or less: currently 211 characters (`line_length`) |")
+    }
+
+    func testMarkdownReportingWithoutFilePath() {
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: "swiftlint",
+                           strict: true,
+                           currentPathProvider: fakePathProvider,
+                           markdownAction: writeMarkdown,
+                           readFile: mockedViolationJSONWitNoFile)
+        XCTAssertNotNil(markdownMessage)
+
+        let lines = markdownMessage?.split(separator: "\n")
+        XCTAssertEqual(lines?[3],
+                       "Error |  | " +
+                           "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`) |")
     }
 
     func testQuotesPathArguments() {
@@ -455,6 +471,22 @@ extension DangerSwiftLintTests {
                 "severity" : "Error",
                 "type" : "Line Length",
                 "line" : 10
+            }
+        ]
+        """
+    }
+
+    func mockedViolationJSONWitNoFile(_: String) -> String {
+        """
+        [
+            {
+                "rule_id" : "opening_brace",
+                "reason" : "Opening braces should be preceded by a single space and on the same line as the declaration.",
+                "character" : 39,
+                "severity" : "Warning",
+                "file" : "",
+                "type" : "Opening Brace Spacing",
+                "line" : 0
             }
         ]
         """
