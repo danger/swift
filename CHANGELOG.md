@@ -12,6 +12,8 @@
 -->
 
 ## Master
+
+## 3.7.1
 - Fix an issue in the SwiftLint plugin where linting would fail if a `file` field was empty in the Swiftlint output [@MadsBogeskov][] - [#397](https://github.com/danger/swift/pull/397)
 
 ## 3.7.0
