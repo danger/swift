@@ -2,6 +2,8 @@
 import DangerFixtures
 import XCTest
 
+// swiftlint:disable function_body_length
+
 final class GitTests: XCTestCase {
     private var git: Git { githubFixtureDSL.git }
 
@@ -26,7 +28,8 @@ final class GitTests: XCTestCase {
                 url: "https://api.github.com/repos/artsy/eidolon/commits/4cf1e41f72516a4135f1738c47f7dd3d421ff3c4"
             ),
             Git.Commit(
-                sha: "d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac", author: Git.Commit.Author(name: "Ash Furrow", email: "ash@ashfurrow.com", date: "2016-07-26T21:17:40Z"),
+                sha: "d0d72ec5b5ee90c2513a8aafb48911ae5bcdf4ac",
+                author: Git.Commit.Author(name: "Ash Furrow", email: "ash@ashfurrow.com", date: "2016-07-26T21:17:40Z"),
                 committer: Git.Commit.Author(name: "Ash Furrow", email: "ash@ashfurrow.com", date: "2016-07-26T21:17:40Z"),
                 message: "[Deps] Updates dependencies for Swift 2.2.",
                 parents: ["4cf1e41f72516a4135f1738c47f7dd3d421ff3c4"],
