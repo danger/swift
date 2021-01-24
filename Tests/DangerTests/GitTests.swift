@@ -7,8 +7,6 @@ import XCTest
 final class GitTests: XCTestCase {
     private var git: Git { githubFixtureDSL.git }
 
-    private var decoder: JSONDecoder!
-
     func testDecodesCommits() {
         XCTAssertEqual(git.commits, [
             Git.Commit(
