@@ -8,6 +8,7 @@ public struct Git: Decodable, Equatable {
         case modifiedFiles = "modified_files"
         case createdFiles = "created_files"
         case deletedFiles = "deleted_files"
+        case commits
     }
 
     /// Modified filepaths relative to the git root.
@@ -18,13 +19,15 @@ public struct Git: Decodable, Equatable {
 
     /// Removed filepaths relative to the git root.
     public let deletedFiles: [File]
+
+    public let commits: [Commit]
 }
 
 extension Git {
     /// A platform agnostic reference to a git commit.
-    public struct Commit: Decodable, Equatable {
+    public struct Commit: Equatable {
         /// The author of a commit.
-        public struct Author: Decodable, Equatable {
+        public struct Author: Equatable {
             /// The display name for the author.
             public let name: String
 
@@ -54,3 +57,7 @@ extension Git {
         public let url: String
     }
 }
+
+extension Git.Commit: Decodable {}
+
+extension Git.Commit.Author: Decodable {}
