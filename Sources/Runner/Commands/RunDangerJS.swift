@@ -50,6 +50,9 @@ func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger
     let fileManager = FileManager.default
     if fileManager.fileExists(atPath: ".build/debug/danger-swift") {
         dangerSwiftCommand = ".build/debug/danger-swift"
+    } else if let firstArg = CommandLine.arguments.first,
+        fileManager.fileExists(atPath: firstArg) {
+        dangerSwiftCommand = firstArg
     }
 
     proc.arguments = [command.rawValue, "--process", dangerSwiftCommand, "--passURLForDSL"] + unusedArgs
