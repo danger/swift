@@ -44,7 +44,7 @@ public enum Runtime {
         }
 
         let commandArgPath = CommandLine.arguments.first.map { arg in
-            [arg.removingLastPath()]
+            [arg.removingLastPathComponent()]
         } ?? []
 
         // Check and find where we can link to libDanger from
@@ -63,27 +63,5 @@ public enum Runtime {
         }
 
         return fileManager.currentDirectoryPath.appendingPath(path)
-    }
-}
-
-public extension String {
-    var fullPath: String {
-        if hasPrefix("/") {
-            return self
-        } else {
-            return FileManager.default.currentDirectoryPath.appendingPath(self)
-        }
-    }
-
-    func appendingPath(_ path: String) -> String {
-        if hasSuffix("/") {
-            return self + path
-        } else {
-            return self + "/" + path
-        }
-    }
-
-    func removingLastPath() -> String {
-        split(separator: "/").dropLast().joined(separator: "/")
     }
 }
