@@ -13,6 +13,8 @@
 
 ## Master
 
+- Make Danger work well with --package-path [@f-meloni][] - [#406](https://github.com/danger/swift/pull/406)
+
 ## 3.7.2
 
 ## 3.7.1
