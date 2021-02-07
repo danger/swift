@@ -188,6 +188,27 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+Danger has two different pre built images that you can use with your action:
+- https://github.com/orgs/danger/packages/container/package/danger-swift
+- https://github.com/orgs/danger/packages/container/package/danger-swift-with-swiftlint (Danger + Swiftlint)
+
+In order to import one of those use the `docker://` prefix
+
+```yml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: "Run Danger"
+    steps:
+      - uses: actions/checkout@v1
+      - name: Danger
+        uses: docker://ghcr.io/danger/danger-swift:3.7.2
+        with:
+            args: --failOnErrors --no-publish-check
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
 #### Local compiled danger-js
 
 To use a local compiled copy of danger-js use the `danger-js-path` argument:
