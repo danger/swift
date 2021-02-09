@@ -4,6 +4,7 @@ import Logger
 import RunnerLib
 
 func editDanger(logger: Logger) throws {
+    let fileManager = FileManager.default
     let dangerfilePath: String
 
     if let dangerfileArgumentPath = DangerfilePathFinder.dangerfilePath() {
@@ -12,7 +13,7 @@ func editDanger(logger: Logger) throws {
         dangerfilePath = Runtime.getDangerfile() ?? "Dangerfile.swift"
     }
 
-    if !FileManager.default.fileExists(atPath: dangerfilePath) {
+    if !fileManager.fileExists(atPath: dangerfilePath) {
         createDangerfile(dangerfilePath)
     }
 
@@ -60,22 +61,4 @@ private func createDangerfile(_ dangerfilePath: String) {
     let data = Data(template.utf8)
 
     FileManager.default.createFile(atPath: dangerfilePath, contents: data, attributes: [:])
-}
-
-private extension String {
-    var fullPath: String {
-        if hasPrefix("/") {
-            return self
-        } else {
-            return FileManager.default.currentDirectoryPath.appendingPath(self)
-        }
-    }
-
-    func appendingPath(_ path: String) -> String {
-        if hasSuffix("/") {
-            return self + path
-        } else {
-            return self + "/" + path
-        }
-    }
 }

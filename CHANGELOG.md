@@ -13,6 +13,8 @@
 
 ## Master
 
+- Make Danger work well with --package-path [@f-meloni][] - [#406](https://github.com/danger/swift/pull/406)
+
 ## 3.7.2
 
 - Decode git commits array [@f-meloni][] - [#403](https://github.com/danger/swift/pull/403)
