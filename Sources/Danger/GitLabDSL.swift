@@ -218,7 +218,7 @@ extension GitLab {
         public let diffRefs: DiffRefs
         public let downvotes: Int
         public let firstDeployedToProductionAt: Date?
-        public let forceRemoveSourceBranch: Bool
+        public let forceRemoveSourceBranch: Bool?
         public let id: Int
         public let iid: Int
         public let latestBuildFinishedAt: Date?
