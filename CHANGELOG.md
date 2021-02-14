@@ -14,6 +14,7 @@
 ## Master
 
 - Make Danger work well with --package-path [@f-meloni][] - [#406](https://github.com/danger/swift/pull/406)
+- Make `force_remove_source_branch` Optional in GitLabDSL [@417-72KI][] - [#410](https://github.com/danger/swift/pull/410)
 
 ## 3.7.2
 
