@@ -34,7 +34,7 @@ final class DangerDSLTests: XCTestCase {
         XCTAssertTrue(danger.runningOnGithub)
         XCTAssertTrue(danger.supportsSuggestions)
         XCTAssertNotNil(danger.git)
-        XCTAssert(danger.github.api.configuration.accessToken == "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf")
+        XCTAssert(danger.github.api.configuration.accessToken == "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf".data(using: .utf8)?.base64EncodedString())
     }
 
     func testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise() throws {
@@ -45,7 +45,7 @@ final class DangerDSLTests: XCTestCase {
         XCTAssertTrue(danger.runningOnGithub)
         XCTAssertTrue(danger.supportsSuggestions)
         XCTAssertNotNil(danger.git)
-        XCTAssert(danger.github.api.configuration.accessToken == "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf")
+        XCTAssert(danger.github.api.configuration.accessToken == "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf".data(using: .utf8)?.base64EncodedString())
         XCTAssert(danger.github.api.configuration.apiEndpoint == "https://base.url.io")
     }
 
