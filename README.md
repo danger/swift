@@ -119,24 +119,6 @@ You can use Swift PM to install both `danger-swift` and your plugins:
   consumers.
 - **(Recommended)** cache the `.build` folder on your repo
 
-#### Marathon (Easy to use)
-
-By suffixing `package: [url]` to an import, you can directly import Swift PM package as a dependency
-
-For example, a plugin could be used by the following.
-
-```swift
-// Dangerfile.swift
-
-import DangerPlugin // package: https://github.com/username/DangerPlugin.git
-
-DangerPlugin.doYourThing()
-```
-
-You can see an [example danger-swift plugin](https://github.com/ashfurrow/danger-swiftlint#danger-swiftlint).
-
-**(Recommended)** Cache the `~/.danger-swift` folder
-
 ### Setup
 
 For a Mac:
@@ -237,8 +219,7 @@ git clone https://github.com/danger/danger-swift.git
 cd danger-swift
 swift build
 swift run komondor install
-swift package generate-xcodeproj
-open danger-swift.xcodeproj
+open Package.swift
 ```
 
 Then I tend to run `danger-swift` using `swift run`:
@@ -261,6 +242,5 @@ Run `swift run rocket $VERSION` on `master` e.g. `swift run rocket 1.0.0`
 
 Danger Swift is maintained by [@f-meloni](https://github.com/f-meloni), and maybe you?
 
-[m]: https://github.com/JohnSundell/Marathon
 [spm-lr]: http://bhargavg.com/swift/2016/06/11/how-swiftpm-parses-manifest-file.html
 [dsl]: https://github.com/danger/danger-js/pull/341
