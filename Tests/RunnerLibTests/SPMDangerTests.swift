@@ -1,4 +1,5 @@
 @testable import RunnerLib
+import ShellRunnerTestUtils
 import XCTest
 
 final class SPMDangerTests: XCTestCase {
@@ -46,7 +47,7 @@ final class SPMDangerTests: XCTestCase {
         try ".library(name: \"DangerDeps\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
         SPMDanger(packagePath: testPackage)?.buildDependencies(shell: shell, fileManager: fileManager)
 
-        XCTAssertEqual(shell.receivedCommands, ["swift build --product DangerDeps"])
+        XCTAssertEqual(shell.calls, [.run(.init("swift build", ["--product DangerDeps"]))])
     }
 
     func testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib() throws {

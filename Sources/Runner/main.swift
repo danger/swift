@@ -9,8 +9,7 @@ let MinimumDangerJSVersion = "6.1.6" // swiftlint:disable:this identifier_name
 private func runCommand(_ command: DangerCommand, logger: Logger) throws {
     switch command {
     case .ci, .local, .pr:
-        let exitCode = try runDangerJSCommandToRunDangerSwift(command, logger: logger)
-        exit(exitCode)
+        try runDangerJSCommandToRunDangerSwift(command, logger: logger)
     case .edit:
         try editDanger(logger: logger)
     case .runner:
@@ -39,8 +38,8 @@ do {
             exit(0)
         }
 
-        if command != nil {
-            try runCommand(command!, logger: logger)
+        if let command = command {
+            try runCommand(command, logger: logger)
         } else {
             fatalError("Danger Swift does not support this argument, it only handles ci, local, pr & edit'")
         }

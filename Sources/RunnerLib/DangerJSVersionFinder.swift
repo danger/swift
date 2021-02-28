@@ -9,6 +9,10 @@ public enum DangerJSVersionFinder {
     static func findDangerJSVersion(dangerJSPath: String, shell: ShellRunnerProtocol) -> String {
         Logger().debug("Finding danger-js version")
 
-        return shell.execute(dangerJSPath, arguments: ["--version"])
+        do {
+            return try shell.run(dangerJSPath, arguments: ["--version"])
+        } catch {
+            return String(describing: error)
+        }
     }
 }

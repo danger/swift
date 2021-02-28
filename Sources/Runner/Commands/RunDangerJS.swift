@@ -1,16 +1,21 @@
 import Foundation
 import Logger
 import RunnerLib
+import ShellRunner
 
-func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger) throws -> Int32 {
-    guard let dangerJS = try? getDangerCommandPath(logger: logger) else {
+func runDangerJSCommandToRunDangerSwift(
+    _ command: DangerCommand,
+    logger: Logger,
+    shell: ShellRunnerProtocol = ShellRunner()
+) throws {
+    guard let dangerJSPath = try? getDangerCommandPath(logger: logger) else {
         logger.logError("Danger JS was not found on the system",
                         "Please install it with npm or brew",
                         separator: "\n")
         exit(1)
     }
 
-    let dangerJSVersion = DangerJSVersionFinder.findDangerJSVersion(dangerJSPath: dangerJS)
+    let dangerJSVersion = DangerJSVersionFinder.findDangerJSVersion(dangerJSPath: dangerJSPath)
 
     guard dangerJSVersion.compare(MinimumDangerJSVersion, options: .numeric) != .orderedAscending else {
         logger.logError("The installed danger-js version is below the minimum supported version",
@@ -19,10 +24,6 @@ func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger
                         separator: "\n")
         exit(1)
     }
-
-    let proc = Process()
-    proc.environment = ProcessInfo.processInfo.environment
-    proc.launchPath = dangerJS
 
     let dangerOptionsIndexes = DangerSwiftOption.allCases
         .compactMap { option -> (DangerSwiftOption, Int)? in
@@ -55,15 +56,9 @@ func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger
         dangerSwiftCommand = firstArg
     }
 
-    proc.arguments = [command.rawValue, "--process", dangerSwiftCommand, "--passURLForDSL"] + unusedArgs
+    let arguments = [command.rawValue, "--process", dangerSwiftCommand, "--passURLForDSL"] + unusedArgs
 
-    let standardOutput = FileHandle.standardOutput
-    proc.standardOutput = standardOutput
-    proc.standardError = standardOutput
+    logger.debug("Running: \(dangerJSPath) \(arguments.joined(separator: " "))")
 
-    logger.debug("Running: \(proc.launchPath!) \(proc.arguments!.joined(separator: " ")) ")
-    proc.launch()
-    proc.waitUntilExit()
-
-    return proc.terminationStatus
+    try shell.run(dangerJSPath, arguments: arguments)
 }

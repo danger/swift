@@ -76,11 +76,15 @@ struct PackageDataProvider: PackageDataProviding {
         logger.logInfo("Cloning \(url.absoluteString)...", isVerbose: true)
 
         let clone = temporaryFolder.appendingPath("Clone")
-        try shell.spawn("git clone",
-                           arguments: ["\(url.absoluteString)",
-                                       "--single-branch",
-                                       "--depth 1",
-                                       "\(clone)", "-q"])
+        try shell.run(
+            "git clone",
+            arguments: [
+                "\(url.absoluteString)",
+                "--single-branch",
+                "--depth 1",
+                "\(clone)", "-q"
+            ]
+        )
         let name = try nameOfPackage(in: clone)
         removeCloneFolder(temporaryFolder: temporaryFolder)
 
@@ -115,7 +119,7 @@ struct PackageDataProvider: PackageDataProviding {
     }
 
     private func versions(for url: URL) throws -> [Version] {
-        let lines = try shell.spawn("git ls-remote", arguments: ["--tags", "\(url.absoluteString)"])
+        let lines = try shell.run("git ls-remote", arguments: ["--tags", "\(url.absoluteString)"])
             .components(separatedBy: .newlines)
 
         return lines.compactMap { line in

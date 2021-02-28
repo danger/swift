@@ -1,6 +1,7 @@
 @testable import DangerDependenciesResolver
 import Logger
 import ShellRunner
+import ShellRunnerTestUtils
 import Version
 import XCTest
 
@@ -45,21 +46,21 @@ final class PackageDataProviderTests: XCTestCase {
         }
         let name = try packageDataProvider.nameOfPackage(at: URL(string: "http://url.com/repo.git")!, temporaryFolder: "tmp")
 
-        XCTAssertEqual(shell.receivedCommand, "git clone http://url.com/repo.git --single-branch --depth 1 tmp/Clone -q")
+        XCTAssertEqual(shell.calls, [.run(.init("git clone", ["http://url.com/repo.git", "--single-branch", "--depth 1", "tmp/Clone", "-q"]))])
         XCTAssertEqual(name, "danger-swift")
     }
 
     func testLatestMajorVersionForPackageReturnsCorrectVersion() throws {
-        shell.result = gitLsRemoteTestResponse
+        shell.runReturnValue = gitLsRemoteTestResponse
 
         let version = try packageDataProvider.latestMajorVersionForPackage(at: URL(string: "http://url.com/repo.git")!)
 
-        XCTAssertEqual(shell.receivedCommand, "git ls-remote --tags http://url.com/repo.git")
+        XCTAssertEqual(shell.calls, [.run(.init("git ls-remote", ["--tags", "http://url.com/repo.git"]))])
         XCTAssertEqual(version, 2)
     }
 
     func testLatestMajorVersionForPackageThrowsAnErrorWhenInputIsInvalid() throws {
-        shell.result = ""
+        shell.runReturnValue = ""
 
         XCTAssertThrowsError(try packageDataProvider.latestMajorVersionForPackage(at: URL(string: "http://url.com/repo.git")!))
     }

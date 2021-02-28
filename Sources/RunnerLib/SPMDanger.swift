@@ -29,9 +29,11 @@ public struct SPMDanger {
         }
     }
 
-    public func buildDependencies(shell: ShellRunnerProtocol = ShellRunner(),
-                                  fileManager _: FileManager = .default) {
-        shell.execute("swift build", arguments: ["--product \(depsLibName)"])
+    public func buildDependencies(
+        shell: ShellRunnerProtocol = ShellRunner(),
+        fileManager _: FileManager = .default
+    ) {
+        _ = try? shell.run("swift build", arguments: ["--product \(depsLibName)"])
     }
 
     public var swiftcLibImport: String {

@@ -64,28 +64,14 @@ public struct DangerUtils {
     }
 
     /// Gives you the ability to cheaply run a command and read the
-    /// output without having to mess around
-    ///
-    /// It generally assumes that the command will pass, as you only get
-    /// a string of the STDOUT. If you think your command could/should fail
-    /// then you want to use `spawn` instead.
-    ///
-    /// - Parameter command: The first part of the command
-    /// - Parameter arguments: An optional array of arguements to pass in extra
-    /// - Returns: the stdout from the command
-    public func exec(_ command: String, arguments: [String] = []) -> String {
-        shell.execute(command, arguments: arguments)
-    }
-
-    /// Gives you the ability to cheaply run a command and read the
     /// output without having to mess around too much, and exposes
     /// command errors in a pretty elegant way.
     ///
     /// - Parameter command: The first part of the command
     /// - Parameter arguments: An optional array of arguements to pass in extra
     /// - Returns: the stdout from the command
-    public func spawn(_ command: String, arguments: [String] = []) throws -> String {
-        try shell.spawn(command, arguments: arguments)
+    public func run(_ command: String, arguments: [String] = []) throws -> String {
+        try shell.run(command, arguments: arguments)
     }
 
     /// Gives you the diff for a single file
@@ -94,7 +80,7 @@ public struct DangerUtils {
     /// - Returns: File diff or error
     public func diff(forFile file: String, sourceBranch: String) -> Result<FileDiff, Error> {
         let parser = DiffParser()
-        let diff = Result { try shell.spawn("git diff \(sourceBranch) -- \(file)", arguments: [file]) }
+        let diff = Result { try shell.run("git diff \(sourceBranch) -- \(file)", arguments: [file]) }
 
         return diff.flatMap {
             let diff = parser.parse($0)

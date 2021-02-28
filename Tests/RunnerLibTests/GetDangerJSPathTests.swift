@@ -1,5 +1,6 @@
 import Logger
 @testable import RunnerLib
+import ShellRunnerTestUtils
 import XCTest
 
 final class GetDangerJSPathTests: XCTestCase {
@@ -15,26 +16,35 @@ final class GetDangerJSPathTests: XCTestCase {
 
     func testItSearchesForDangerJSIfDangerJSPathOptionIsNotPresent() throws {
         let shell = ShellRunnerMock()
-        shell.result = { _ in "/usr/test/danger-js" }
+        shell.runReturnValue = "/usr/test/danger-js"
 
         let path = try getDangerCommandPath(logger: logger, args: [], shell: shell)
-        XCTAssertEqual(shell.receivedCommands, ["command -v danger-js"])
+        XCTAssertEqual(shell.calls, [.run(.init("command -v danger-js"))])
         XCTAssertEqual(path, "/usr/test/danger")
     }
 
     func testItSearchesForDangerIfTheDangerPathOptionIsNotPresentAndDangerJSIsNotFound() throws {
+        let expectedPath = "/usr/test/danger"
         let shell = ShellRunnerMock()
-        let expectedResult = "/usr/test/danger"
-        shell.result = { command in
-            if command.hasSuffix("danger-js") {
+        shell.runReturnValueClosure = {
+            if $0.command.contains("danger-js") {
                 return ""
             } else {
-                return expectedResult
+                return expectedPath
             }
         }
 
+        // when
         let path = try getDangerCommandPath(logger: logger, args: [], shell: shell)
-        XCTAssertEqual(shell.receivedCommands, ["command -v danger-js", "command -v danger"])
-        XCTAssertEqual(path, expectedResult)
+
+        // then
+        XCTAssertEqual(
+            shell.calls,
+            [
+                .run(.init("command -v danger-js")),
+                .run(.init("command -v danger"))
+            ]
+        )
+        XCTAssertEqual(path, expectedPath)
     }
 }

@@ -2,21 +2,22 @@ import Foundation
 import Logger
 import ShellRunner
 
-public func getDangerCommandPath(logger: Logger,
-                                 args: [String] = CommandLine.arguments,
-                                 shell: ShellRunnerProtocol = ShellRunner()) throws -> String {
+public func getDangerCommandPath(
+    logger: Logger,
+    args: [String] = CommandLine.arguments,
+    shell: ShellRunnerProtocol = ShellRunner()
+) throws -> String {
     if let dangerJSPathOptionIndex = args.firstIndex(of: DangerSwiftOption.dangerJSPath.rawValue),
         dangerJSPathOptionIndex + 1 < args.count {
         return args[dangerJSPathOptionIndex + 1]
     } else {
         logger.debug("Finding out where the danger executable is")
 
-        if let dangerJsPath = try? shell.spawn("command -v danger-js",
-                                                          arguments: []).trimmingCharacters(in: .whitespaces),
+        if let dangerJsPath = try? shell.run("command -v danger-js").trimmingCharacters(in: .whitespaces),
             !dangerJsPath.isEmpty {
             return dangerJsPath.deletingSuffix("-js")
         } else {
-            return try shell.spawn("command -v danger", arguments: []).trimmingCharacters(in: .whitespaces)
+            return try shell.run("command -v danger").trimmingCharacters(in: .whitespaces)
         }
     }
 }

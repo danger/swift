@@ -297,10 +297,12 @@ extension SwiftLint {
                                             shell: ShellRunnerProtocol,
                                             failAction: (String) -> Void,
                                             readFile: (String) -> String) -> [SwiftLintViolation] {
-        shell.execute(swiftlintPath,
-                              arguments: arguments,
-                              environmentVariables: environmentVariables,
-                              outputFile: outputFilePath)
+        _ = try? shell.run(
+            swiftlintPath,
+            arguments: arguments,
+            environmentVariables: environmentVariables,
+            outputFile: outputFilePath
+        )
 
         let outputJSON = readFile(outputFilePath)
         return makeViolations(from: outputJSON, failAction: failAction)

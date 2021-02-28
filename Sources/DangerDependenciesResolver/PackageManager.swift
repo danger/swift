@@ -160,7 +160,7 @@ public struct PackageManager {
 
             let toolsVersion = try resolveSwiftToolsVersion(shell: shell, onFolder: generatedFolder)
             try packageGenerator.generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion)
-            try executeSwiftCommand("package update", onFolder: generatedFolder, arguments: [], shell: shell)
+            try executeSwiftCommand("package update", onFolder: generatedFolder, shell: shell)
             try generatedFolder.createSubfolderIfNeeded(withName: "Packages")
         } catch {
             throw Errors.failedToUpdatePackages(folder)
@@ -206,7 +206,7 @@ extension String {
 
     func createSymlink(to originalPath: String, at linkPath: String) throws {
         let shell = ShellRunner()
-        try shell.spawn("cd \(self) && ln -s \"\(originalPath)\" \"\(linkPath)\"", arguments: [])
+        try shell.run("cd \(self) && ln -s \"\(originalPath)\" \"\(linkPath)\"")
     }
 
     private func createSubfolder(folderPath: String) throws -> String {

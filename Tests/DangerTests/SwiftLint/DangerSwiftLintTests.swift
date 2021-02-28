@@ -1,5 +1,6 @@
 @testable import Danger
 import DangerFixtures
+import ShellRunnerTestUtils
 import XCTest
 
 // swiftlint:disable type_body_length file_length
@@ -34,8 +35,17 @@ final class DangerSwiftLintTests: XCTestCase {
                            currentPathProvider: fakePathProvider,
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
-        XCTAssertEqual(shell.invocations.count, 1)
-        XCTAssertEqual(shell.invocations.first?.command, "swiftlint")
+
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertEqual(
+            shell.calls.first,
+            .run(.init(
+                "swiftlint",
+                .expectedSwiftLintArguments,
+                .expectedEnvironmentVariables,
+                "swiftlintReport.json"
+            ))
+        )
     }
 
     func testExecutesTheShellWithCustomSwiftLintPath() {
@@ -45,8 +55,16 @@ final class DangerSwiftLintTests: XCTestCase {
                            currentPathProvider: fakePathProvider,
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
-        XCTAssertEqual(shell.invocations.count, 1)
-        XCTAssertEqual(shell.invocations.first?.command, "Pods/SwiftLint/swiftlint")
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertEqual(
+            shell.calls.first,
+            .run(.init(
+                "Pods/SwiftLint/swiftlint",
+                .expectedSwiftLintArguments,
+                .expectedEnvironmentVariables,
+                "swiftlintReport.json"
+            ))
+        )
     }
 
     func testDoNotExecuteSwiftlintWhenNoFilesToCheck() {
@@ -62,7 +80,7 @@ final class DangerSwiftLintTests: XCTestCase {
                            shell: shell,
                            swiftlintPath: "swiftlint",
                            readFile: mockedEmptyJSON)
-        XCTAssertEqual(shell.invocations.count, 0, "If there are no files to lint, Swiftlint should not be executed")
+        XCTAssertEqual(shell.calls.count, 0, "If there are no files to lint, Swiftlint should not be executed")
     }
 
     func testExecuteSwiftLintInInlineMode() {
@@ -121,7 +139,7 @@ final class DangerSwiftLintTests: XCTestCase {
         XCTAssertEqual(fails[1].2, 10)
     }
 
-    func testExecutesSwiftLintWithConfigWhenPassed() {
+    func testExecutesSwiftLintWithConfigWhenPassed() throws {
         let configFile = "/Path/to/config/.swiftlint.yml"
 
         _ = SwiftLint.lint(danger: danger,
@@ -132,14 +150,12 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
-        let swiftlintCommands = shell.invocations.filter { $0.command == "swiftlint" }
-        XCTAssertTrue(!swiftlintCommands.isEmpty)
-        swiftlintCommands.forEach { _, arguments, _, _ in
-            XCTAssertTrue(arguments.contains("--config \"\(configFile)\""))
-        }
+        let callParameters = try XCTUnwrap(shell.calls.first?.runCallParameters)
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertTrue(callParameters.arguments.contains("--config \"\(configFile)\""))
     }
 
-    func testExecutesVerboseIfNotQuiet() {
+    func testExecutesVerboseIfNotQuiet() throws {
         _ = SwiftLint.lint(danger: danger,
                            shell: shell,
                            swiftlintPath: "swiftlint",
@@ -148,14 +164,12 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
-        let swiftlintCommands = shell.invocations.filter { $0.command == "swiftlint" }
-        XCTAssertTrue(!swiftlintCommands.isEmpty)
-        swiftlintCommands.forEach { _, arguments, _, _ in
-            XCTAssertFalse(arguments.contains("--quiet"))
-        }
+        let callParameters = try XCTUnwrap(shell.calls.first?.runCallParameters)
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertFalse(callParameters.arguments.contains("--quiet"))
     }
 
-    func testExecutesQuiet() {
+    func testExecutesQuiet() throws {
         _ = SwiftLint.lint(danger: danger,
                            shell: shell,
                            swiftlintPath: "swiftlint",
@@ -164,11 +178,9 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
-        let swiftlintCommands = shell.invocations.filter { $0.command == "swiftlint" }
-        XCTAssertTrue(!swiftlintCommands.isEmpty)
-        swiftlintCommands.forEach { _, arguments, _, _ in
-            XCTAssertTrue(arguments.contains("--quiet"))
-        }
+        let callParameters = try XCTUnwrap(shell.calls.first?.runCallParameters)
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertTrue(callParameters.arguments.contains("--quiet"))
     }
 
     func testSendsOuputFileToTheShellWhenLintingModifiedFiles() {
@@ -182,7 +194,16 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
-        XCTAssertEqual(shell.invocations.first?.outputFile, "swiftlintReport.json")
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertEqual(
+            shell.calls.first,
+            .run(.init(
+                "swiftlint",
+                ["lint", "--reporter json", "--quiet", "--config \"/Path/to/config/.swiftlint.yml\"", "--use-script-input-files", "--force-exclude"],
+                .expectedEnvironmentVariables,
+                "swiftlintReport.json"
+            ))
+        )
     }
 
     func testSendsOuputFileToTheShellWhenLintingAllTheFiles() {
@@ -197,7 +218,16 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
-        XCTAssertEqual(shell.invocations.first?.outputFile, "swiftlintReport.json")
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertEqual(
+            shell.calls.first,
+            .run(.init(
+                "swiftlint",
+                ["lint", "--reporter json", "--quiet", "--config \"/Path/to/config/.swiftlint.yml\""],
+                [:],
+                "swiftlintReport.json"
+            ))
+        )
     }
 
     func testExecutesSwiftLintWithDirectoryPassed() {
@@ -218,13 +248,22 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
-        let swiftlintCommands = shell.invocations.filter { $0.command == "swiftlint" }
-        XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables,
-                       ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Tests/SomeFile.swift"])
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertEqual(
+            shell.calls.first,
+            .run(.init(
+                "swiftlint",
+                .expectedSwiftLintArguments,
+                [
+                    "SCRIPT_INPUT_FILE_COUNT": "1",
+                    "SCRIPT_INPUT_FILE_0": "Tests/SomeFile.swift"
+                ],
+                "swiftlintReport.json"
+            ))
+        )
     }
 
-    func testExecutesSwiftLintWhenLintingAllFiles() {
+    func testExecutesSwiftLintWhenLintingAllFiles() throws {
         let modified = [
             "Tests/SomeFile.swift",
             "Harvey/SomeOtherFile.swift",
@@ -241,9 +280,9 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
-        let swiftlintCommands = shell.invocations.filter { $0.command == "swiftlint" }
-        XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables.count, 0)
+        let call = try XCTUnwrap(shell.calls.first)
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertEqual(call, .run(.init("swiftlint", ["lint", "--reporter json", "--quiet"], [:], "swiftlintReport.json")))
     }
 
     func testExecutesSwiftLintWhenLintingAllFilesWithDirectoryPassed() {
@@ -264,14 +303,11 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
-        let swiftlintCommand = shell.invocations.filter { $0.command == "swiftlint" }.first
-        XCTAssertNotNil(swiftlintCommand)
-        XCTAssertEqual(swiftlintCommand!.environmentVariables.count, 0)
-        XCTAssertFalse(swiftlintCommand!.environmentVariables.values.contains { $0.contains("Tests/SomeFile.swift") })
-        XCTAssertTrue(swiftlintCommand!.arguments.contains("--path \"Tests\""))
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertEqual(shell.calls.first, .run(.init("swiftlint", ["lint", "--reporter json", "--quiet", "--path \"Tests\""], [:], "swiftlintReport.json")))
     }
 
-    func testFiltersOnSwiftFiles() {
+    func testFiltersOnSwiftFiles() throws {
         _ = SwiftLint.lint(danger: danger,
                            shell: shell,
                            swiftlintPath: "swiftlint",
@@ -279,15 +315,16 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
+        let parameters = try XCTUnwrap(shell.calls.first?.runCallParameters)
         let quoteCharacterSet = CharacterSet(charactersIn: "\"")
-        let filesExtensions = Set(
-            shell.invocations.first!.environmentVariables.filter {
-                $0.key != "SCRIPT_INPUT_FILE_COUNT"
-            }.values.compactMap {
-                $0.split(separator: ".").last?.trimmingCharacters(in: quoteCharacterSet)
-            }
+        let fileExtensions = Set(
+            parameters
+                .environmentVariables
+                .filter { $0.key != "SCRIPT_INPUT_FILE_COUNT" }
+                .values
+                .compactMap { $0.split(separator: ".").last?.trimmingCharacters(in: quoteCharacterSet) }
         )
-        XCTAssertEqual(filesExtensions, ["swift"])
+        XCTAssertEqual(fileExtensions, ["swift"])
     }
 
     func testSpecificFilesLintStyle() {
@@ -307,10 +344,19 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
-        let swiftlintCommands = shell.invocations.filter { $0.command == "swiftlint" }
-        XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables,
-                       ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"])
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertEqual(
+            shell.calls.first,
+            .run(.init(
+                "swiftlint",
+                .expectedSwiftLintArguments,
+                [
+                    "SCRIPT_INPUT_FILE_COUNT": "1",
+                    "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"
+                ],
+                "swiftlintReport.json"
+            ))
+        )
     }
 
     func testSpecificFilesSwiftOnlyFilter() {
@@ -330,10 +376,19 @@ final class DangerSwiftLintTests: XCTestCase {
                            outputFilePath: "swiftlintReport.json",
                            readFile: mockedEmptyJSON)
 
-        let swiftlintCommands = shell.invocations.filter { $0.command == "swiftlint" }
-        XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables,
-                       ["SCRIPT_INPUT_FILE_COUNT": "1", "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"])
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertEqual(
+            shell.calls.first,
+            .run(.init(
+                "swiftlint",
+                .expectedSwiftLintArguments,
+                [
+                    "SCRIPT_INPUT_FILE_COUNT": "1",
+                    "SCRIPT_INPUT_FILE_0": "Harvey/SomeOtherFile.swift"
+                ],
+                "swiftlintReport.json"
+            ))
+        )
     }
 
     func testPrintsNoMarkdownIfNoViolations() {
@@ -414,7 +469,7 @@ final class DangerSwiftLintTests: XCTestCase {
                            "Opening braces should be preceded by a single space and on the same line as the declaration. (`opening_brace`) |")
     }
 
-    func testQuotesPathArguments() {
+    func testQuotesPathArguments() throws {
         let modified = [
             "Tests/SomeFile.swift",
             "Harvey/SomeOtherFile.swift",
@@ -429,10 +484,9 @@ final class DangerSwiftLintTests: XCTestCase {
                            currentPathProvider: fakePathProvider,
                            readFile: mockedEmptyJSON)
 
-        let swiftlintCommands = shell.invocations.filter { $0.command == "swiftlint" }
-
-        XCTAssertEqual(swiftlintCommands.count, 1)
-        XCTAssertEqual(swiftlintCommands.first!.environmentVariables["SCRIPT_INPUT_FILE_2"], "Test Dir/SomeThirdFile.swift")
+        let parameters = try XCTUnwrap(shell.calls.first?.runCallParameters)
+        XCTAssertEqual(shell.calls.count, 1)
+        XCTAssertEqual(parameters.environmentVariables["SCRIPT_INPUT_FILE_2"], "Test Dir/SomeThirdFile.swift")
     }
 
     func testDeletesReportFile() {
@@ -449,32 +503,36 @@ final class DangerSwiftLintTests: XCTestCase {
         XCTAssertEqual(reportDeleter.receivedPath, "swiftlintReport.json")
     }
 
-    func testSwiftlintCommandWhenPathIsBin() {
+    func testSwiftlintCommandWhenPathIsBin() throws {
         let reportDeleter = SpySwiftlintReportDeleter()
 
         _ = SwiftLint.lint(danger: danger,
-                           shellExecutor: executor,
+                           shell: shell,
                            swiftlintPath: .bin("swiftlint"),
                            currentPathProvider: fakePathProvider,
                            outputFilePath: "swiftlintReport.json",
                            reportDeleter: reportDeleter,
                            readFile: mockedEmptyJSON)
 
-        XCTAssertEqual(executor.invocations.map { $0.command }, ["swiftlint"])
+        let parameters = try XCTUnwrap(shell.calls.first?.runCallParameters)
+        XCTAssertEqual(parameters.command, "swiftlint")
+        XCTAssertEqual(shell.calls.count, 1)
     }
 
-    func testSwiftlintCommandWhenPathIsSwiftPackage() {
+    func testSwiftlintCommandWhenPathIsSwiftPackage() throws {
         let reportDeleter = SpySwiftlintReportDeleter()
 
         _ = SwiftLint.lint(danger: danger,
-                           shellExecutor: executor,
+                           shell: shell,
                            swiftlintPath: .swiftPackage("Danger/Something"),
                            currentPathProvider: fakePathProvider,
                            outputFilePath: "swiftlintReport.json",
                            reportDeleter: reportDeleter,
                            readFile: mockedEmptyJSON)
 
-        XCTAssertEqual(executor.invocations.map { $0.command }, ["swift run --package-path Danger/Something swiftlint"])
+        let parameters = try XCTUnwrap(shell.calls.first?.runCallParameters)
+        XCTAssertEqual(parameters.command, "swift run --package-path Danger/Something swiftlint")
+        XCTAssertEqual(shell.calls.count, 1)
     }
 }
 
@@ -540,5 +598,34 @@ private final class SpySwiftlintReportDeleter: SwiftlintReportDeleting {
 extension SwiftLint.SwiftlintPath: ExpressibleByStringLiteral {
     public init(stringLiteral value: StringLiteralType) {
         self = .bin(value)
+    }
+}
+
+private extension Array where Element == String {
+    static var expectedSwiftLintArguments: Self {
+        ["lint", "--reporter json", "--quiet", "--use-script-input-files", "--force-exclude"]
+    }
+}
+
+private extension Dictionary where Key == String, Value == String {
+    static var expectedEnvironmentVariables: Self {
+        [
+            "SCRIPT_INPUT_FILE_5": "Kiosk/HelperFunctions.swift",
+            "SCRIPT_INPUT_FILE_6": "KioskTests/Bid Fulfillment/ConfirmYourBidArtsyLoginViewControllerTests.swift",
+            "SCRIPT_INPUT_FILE_13": "KioskTests/Models/SaleArtworkTests.swift",
+            "SCRIPT_INPUT_FILE_4": "Kiosk/Auction Listings/ListingsViewModel.swift",
+            "SCRIPT_INPUT_FILE_11": "KioskTests/Bid Fulfillment/SwipeCreditCardViewControllerTests.swift",
+            "SCRIPT_INPUT_FILE_7": "KioskTests/Bid Fulfillment/ConfirmYourBidEnterYourEmailViewControllerTests.swift",
+            "SCRIPT_INPUT_FILE_14": "KioskTests/XAppTokenSpec.swift",
+            "SCRIPT_INPUT_FILE_12": "KioskTests/ListingsViewControllerTests.swift",
+            "SCRIPT_INPUT_FILE_10": "KioskTests/Bid Fulfillment/RegistrationPasswordViewModelTests.swift",
+            "SCRIPT_INPUT_FILE_9": "KioskTests/Bid Fulfillment/RegistrationEmailViewControllerTests.swift",
+            "SCRIPT_INPUT_FILE_8": "KioskTests/Bid Fulfillment/LoadingViewControllerTests.swift",
+            "SCRIPT_INPUT_FILE_3": "Kiosk/App/Networking/XAppToken.swift",
+            "SCRIPT_INPUT_FILE_COUNT": "15",
+            "SCRIPT_INPUT_FILE_0": "Kiosk/App/Logger.swift",
+            "SCRIPT_INPUT_FILE_1": "Kiosk/App/Networking/NetworkLogger.swift",
+            "SCRIPT_INPUT_FILE_2": "Kiosk/App/Networking/Networking.swift"
+        ]
     }
 }

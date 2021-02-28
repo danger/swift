@@ -163,7 +163,7 @@ public final class Script {
         do {
             let path = editingPath()
 
-            try ShellRunner().spawn("open \"\(path)\"", arguments: [])
+            try ShellRunner().run("open \"\(path)\"")
 
             logger.logInfo("\nℹ️  Danger will keep running, " +
                 "in order to commit any changes you make in Xcode back to the original script file")
@@ -203,7 +203,7 @@ public final class Script {
     }
 
     private func expandSymlink() throws -> String {
-        try ShellRunner().spawn("readlink \(folder.appendingPath("OriginalFile"))", arguments: [])
+        try ShellRunner().run("readlink \(folder.appendingPath("OriginalFile"))")
     }
 
     private func copyImports(_ imports: [String]) throws {
@@ -231,7 +231,7 @@ func executeSwiftCommand(_ command: String,
     let swiftPath = resolveSwiftPath()
     let command = folder.map { "cd \($0) && \(swiftPath) \(command)" } ?? "\(swiftPath) \(command)"
 
-    return try shell.spawn(command, arguments: arguments)
+    return try shell.run(command, arguments: arguments)
 }
 
 private extension String {

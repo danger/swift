@@ -1,4 +1,5 @@
 @testable import Danger
+import ShellRunnerTestUtils
 import XCTest
 
 final class DangerUtilsTests: XCTestCase {
@@ -9,7 +10,7 @@ final class DangerUtilsTests: XCTestCase {
 
     func testFileDiffWhenDiffIsValid() {
         let shell = ShellRunnerMock()
-        shell.output = validDiff
+        shell.runReturnValue = validDiff
 
         let dangerUtils = DangerUtils(fileMap: [:], shell: shell)
         let diff = dangerUtils.diff(forFile: "file", sourceBranch: "master")
