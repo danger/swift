@@ -67,12 +67,13 @@ public enum SwiftLint {
     /// it uses by default swift run swiftlint if the Package.swift in your root folder contains swiftlint as dependency,
     /// otherwise calls directly the swiftlint command
     @discardableResult
+    @available(*, deprecated, message: "Use the lint(_ lintStyle ..) method instead.")
     public static func lint(_ lintStyle: LintStyle = .modifiedAndCreatedFiles(directory: nil),
                             inline: Bool = false,
                             configFile: String? = nil,
                             strict: Bool = false,
                             quiet: Bool = true,
-                            swiftlintPath: String? = nil) -> [SwiftLintViolation] {
+                            swiftlintPath: String?) -> [SwiftLintViolation] {
         lint(lintStyle,
              inline: inline,
              configFile: configFile,
