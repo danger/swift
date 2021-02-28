@@ -27,15 +27,21 @@ let package = Package(
     ],
     targets: [
         .target(name: "Danger-Swift", dependencies: ["Danger"]), // dev
-        .target(name: "ShellRunner"),
-        .target(name: "DangerDependenciesResolver", dependencies: ["ShellRunner", "Version", "Logger"]),
-        .target(name: "Danger", dependencies: ["OctoKit", "Logger", "ShellRunner"]),
-        .target(name: "RunnerLib", dependencies: ["Logger", "ShellRunner"]),
-        .target(name: "Runner", dependencies: ["RunnerLib", "Logger", "DangerDependenciesResolver"]),
         .target(name: "DangerFixtures", dependencies: ["Danger"]),
-        .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]), // dev
-        .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib", "SnapshotTesting"]), // dev
-        .testTarget(name: "DangerDependenciesResolverTests", dependencies: ["DangerDependenciesResolver", "SnapshotTesting"]), // dev
+        .target(name: "Runner", dependencies: ["RunnerLib", "Logger", "DangerDependenciesResolver", "ShellRunner"]),
+
+        .target(name: "Danger", dependencies: ["OctoKit", "Logger", "ShellRunner"]),
+        .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "ShellRunnerTestUtils", "SnapshotTesting"]), // dev
+
+        .target(name: "DangerDependenciesResolver", dependencies: ["ShellRunner", "Version", "Logger"]),
+        .testTarget(name: "DangerDependenciesResolverTests", dependencies: ["DangerDependenciesResolver", "ShellRunnerTestUtils", "SnapshotTesting"]), // dev
+
+        .target(name: "RunnerLib", dependencies: ["Logger", "ShellRunner"]),
+        .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib", "ShellRunnerTestUtils", "SnapshotTesting"]), // dev
+
+        .target(name: "ShellRunner"),
+        .target(name: "ShellRunnerTestUtils", dependencies: ["ShellRunner"]),
+        .testTarget(name: "ShellRunnerTests", dependencies: ["ShellRunner"]),
     ]
 )
 

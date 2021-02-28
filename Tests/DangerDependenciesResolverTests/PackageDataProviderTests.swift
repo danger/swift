@@ -226,21 +226,6 @@ final class SpyPrinter: Printing {
     }
 }
 
-final class ShellRunnerMock: ShellRunnerProtocol {
-    var receivedCommand: String!
-    var result = ""
-
-    func execute(_ command: String, arguments: [String], environmentVariables _: [String: String], outputFile _: String?) -> String {
-        receivedCommand = command + " " + arguments.joined(separator: " ")
-        return result
-    }
-
-    func spawn(_ command: String, arguments: [String], environmentVariables _: [String: String], outputFile _: String?) throws -> String {
-        receivedCommand = command + " " + arguments.joined(separator: " ")
-        return result
-    }
-}
-
 extension Version: ExpressibleByStringLiteral {
     public init(stringLiteral value: String) {
         self.init(value)!
