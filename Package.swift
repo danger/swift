@@ -27,10 +27,10 @@ let package = Package(
     ],
     targets: [
         .target(name: "Danger-Swift", dependencies: ["Danger"]), // dev
-        .target(name: "DangerShellExecutor"),
-        .target(name: "DangerDependenciesResolver", dependencies: ["DangerShellExecutor", "Version", "Logger"]),
-        .target(name: "Danger", dependencies: ["OctoKit", "Logger", "DangerShellExecutor"]),
-        .target(name: "RunnerLib", dependencies: ["Logger", "DangerShellExecutor"]),
+        .target(name: "ShellRunner"),
+        .target(name: "DangerDependenciesResolver", dependencies: ["ShellRunner", "Version", "Logger"]),
+        .target(name: "Danger", dependencies: ["OctoKit", "Logger", "ShellRunner"]),
+        .target(name: "RunnerLib", dependencies: ["Logger", "ShellRunner"]),
         .target(name: "Runner", dependencies: ["RunnerLib", "Logger", "DangerDependenciesResolver"]),
         .target(name: "DangerFixtures", dependencies: ["Danger"]),
         .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]), // dev

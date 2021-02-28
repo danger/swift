@@ -1,5 +1,5 @@
-import DangerShellExecutor
 import Foundation
+import ShellRunner
 import Version
 
 struct PackageGenerator {

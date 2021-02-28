@@ -1,6 +1,6 @@
-import DangerShellExecutor
 import Foundation
 import Logger
+import ShellRunner
 import Version
 
 protocol PackageDataProviding {
@@ -12,14 +12,14 @@ protocol PackageDataProviding {
 struct PackageDataProvider: PackageDataProviding {
     let fileReader: FileReading
     let logger: Logger
-    let executor: ShellExecuting
+    let shell: ShellRunnerProtocol
 
     init(logger: Logger,
          fileReader: FileReading = FileReader(),
-         executor: ShellExecuting = ShellExecutor()) {
+         shell: ShellRunnerProtocol = ShellRunner()) {
         self.fileReader = fileReader
         self.logger = logger
-        self.executor = executor
+        self.shell = shell
     }
 
     enum Errors: Error {
@@ -76,7 +76,7 @@ struct PackageDataProvider: PackageDataProviding {
         logger.logInfo("Cloning \(url.absoluteString)...", isVerbose: true)
 
         let clone = temporaryFolder.appendingPath("Clone")
-        try executor.spawn("git clone",
+        try shell.spawn("git clone",
                            arguments: ["\(url.absoluteString)",
                                        "--single-branch",
                                        "--depth 1",
@@ -115,7 +115,7 @@ struct PackageDataProvider: PackageDataProviding {
     }
 
     private func versions(for url: URL) throws -> [Version] {
-        let lines = try executor.spawn("git ls-remote", arguments: ["--tags", "\(url.absoluteString)"])
+        let lines = try shell.spawn("git ls-remote", arguments: ["--tags", "\(url.absoluteString)"])
             .components(separatedBy: .newlines)
 
         return lines.compactMap { line in

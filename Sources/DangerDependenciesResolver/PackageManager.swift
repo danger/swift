@@ -1,6 +1,6 @@
-import DangerShellExecutor
 import Foundation
 import Logger
+import ShellRunner
 import Version
 
 public struct PackageManager {
@@ -139,7 +139,7 @@ public struct PackageManager {
             return try makePackageDescription(for: script)
         }
 
-        let toolsVersion = try resolveSwiftToolsVersion(executor: ShellExecutor(), onFolder: generatedFolder)
+        let toolsVersion = try resolveSwiftToolsVersion(shell: ShellRunner(), onFolder: generatedFolder)
         let expectedHeader = packageGenerator.makePackageDescriptionHeader(forSwiftToolsVersion: toolsVersion)
 
         guard masterDescription.hasPrefix(expectedHeader) else {
@@ -156,22 +156,22 @@ public struct PackageManager {
         logger.logInfo("Updating packages...")
 
         do {
-            let executor = ShellExecutor()
+            let shell = ShellRunner()
 
-            let toolsVersion = try resolveSwiftToolsVersion(executor: executor, onFolder: generatedFolder)
+            let toolsVersion = try resolveSwiftToolsVersion(shell: shell, onFolder: generatedFolder)
             try packageGenerator.generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion)
-            try executeSwiftCommand("package update", onFolder: generatedFolder, arguments: [], executor: executor)
+            try executeSwiftCommand("package update", onFolder: generatedFolder, arguments: [], shell: shell)
             try generatedFolder.createSubfolderIfNeeded(withName: "Packages")
         } catch {
             throw Errors.failedToUpdatePackages(folder)
         }
     }
 
-    private func resolveSwiftToolsVersion(executor: ShellExecutor, onFolder _: String) throws -> Version {
+    private func resolveSwiftToolsVersion(shell: ShellRunner, onFolder _: String) throws -> Version {
         var versionString: String? = try executeSwiftCommand("package",
                                                              onFolder: folder,
                                                              arguments: ["--version"],
-                                                             executor: executor)
+                                                             shell: shell)
         versionString = versionString?.onlyNumbersAndDots
         return Version(versionString ?? "") ?? .null
     }
@@ -205,8 +205,8 @@ extension String {
     }
 
     func createSymlink(to originalPath: String, at linkPath: String) throws {
-        let executor = ShellExecutor()
-        try executor.spawn("cd \(self) && ln -s \"\(originalPath)\" \"\(linkPath)\"", arguments: [])
+        let shell = ShellRunner()
+        try shell.spawn("cd \(self) && ln -s \"\(originalPath)\" \"\(linkPath)\"", arguments: [])
     }
 
     private func createSubfolder(folderPath: String) throws -> String {

@@ -1,7 +1,7 @@
-import DangerShellExecutor
 import RunnerLib
+import ShellRunner
 
-final class MockedExecutor: ShellExecuting {
+final class ShellRunnerMock: ShellRunnerProtocol {
     var receivedCommands: [String] = []
     var result: (String) -> String = { _ in "" }
 

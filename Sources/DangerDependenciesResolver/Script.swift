@@ -1,6 +1,6 @@
-import DangerShellExecutor
 import Foundation
 import Logger
+import ShellRunner
 
 public struct ScriptManager {
     public struct Config {
@@ -118,8 +118,8 @@ public final class Script {
     }
 
     public func build(withArguments arguments: [String] = []) throws {
-        let executor = ShellExecutor()
-        try executeSwiftCommand("build --package-path \(folder)", arguments: arguments, executor: executor)
+        let shell = ShellRunner()
+        try executeSwiftCommand("build --package-path \(folder)", arguments: arguments, shell: shell)
     }
 
     @discardableResult
@@ -143,7 +143,7 @@ public final class Script {
     private func generateXCodeProjWithConfig(configPath: String) throws {
         try executeSwiftCommand("package generate-xcodeproj --xcconfig-overrides \(configPath)",
                                 onFolder: folder,
-                                executor: ShellExecutor())
+                                shell: ShellRunner())
     }
 
     private func sourcesImportPath(forImportPath importPath: String) -> String {
@@ -163,7 +163,7 @@ public final class Script {
         do {
             let path = editingPath()
 
-            try ShellExecutor().spawn("open \"\(path)\"", arguments: [])
+            try ShellRunner().spawn("open \"\(path)\"", arguments: [])
 
             logger.logInfo("\nℹ️  Danger will keep running, " +
                 "in order to commit any changes you make in Xcode back to the original script file")
@@ -203,7 +203,7 @@ public final class Script {
     }
 
     private func expandSymlink() throws -> String {
-        try ShellExecutor().spawn("readlink \(folder.appendingPath("OriginalFile"))", arguments: [])
+        try ShellRunner().spawn("readlink \(folder.appendingPath("OriginalFile"))", arguments: [])
     }
 
     private func copyImports(_ imports: [String]) throws {
@@ -219,7 +219,7 @@ public final class Script {
 func executeSwiftCommand(_ command: String,
                          onFolder folder: String? = nil,
                          arguments: [String] = [],
-                         executor: ShellExecutor) throws -> String {
+                         shell: ShellRunnerProtocol = ShellRunner()) throws -> String {
     func resolveSwiftPath() -> String {
         #if os(Linux)
             return "swift"
@@ -231,7 +231,7 @@ func executeSwiftCommand(_ command: String,
     let swiftPath = resolveSwiftPath()
     let command = folder.map { "cd \($0) && \(swiftPath) \(command)" } ?? "\(swiftPath) \(command)"
 
-    return try executor.spawn(command, arguments: arguments)
+    return try shell.spawn(command, arguments: arguments)
 }
 
 private extension String {

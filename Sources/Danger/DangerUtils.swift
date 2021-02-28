@@ -1,17 +1,17 @@
-import DangerShellExecutor
 import Foundation
 import OctoKit
 import RequestKit
+import ShellRunner
 
 /// Utility functions that make Dangerfiles easier to write
 
 public struct DangerUtils {
     let fileMap: [String: String]
-    let shellExecutor: ShellExecuting
+    let shell: ShellRunnerProtocol
 
-    init(fileMap: [String: String], shellExecutor: ShellExecuting = ShellExecutor()) {
+    init(fileMap: [String: String], shell: ShellRunnerProtocol = ShellRunner()) {
         self.fileMap = fileMap
-        self.shellExecutor = shellExecutor
+        self.shell = shell
     }
 
     /// Let's you go from a file path to the contents of the file
@@ -74,7 +74,7 @@ public struct DangerUtils {
     /// - Parameter arguments: An optional array of arguements to pass in extra
     /// - Returns: the stdout from the command
     public func exec(_ command: String, arguments: [String] = []) -> String {
-        shellExecutor.execute(command, arguments: arguments)
+        shell.execute(command, arguments: arguments)
     }
 
     /// Gives you the ability to cheaply run a command and read the
@@ -85,7 +85,7 @@ public struct DangerUtils {
     /// - Parameter arguments: An optional array of arguements to pass in extra
     /// - Returns: the stdout from the command
     public func spawn(_ command: String, arguments: [String] = []) throws -> String {
-        try shellExecutor.spawn(command, arguments: arguments)
+        try shell.spawn(command, arguments: arguments)
     }
 
     /// Gives you the diff for a single file
@@ -94,7 +94,7 @@ public struct DangerUtils {
     /// - Returns: File diff or error
     public func diff(forFile file: String, sourceBranch: String) -> Result<FileDiff, Error> {
         let parser = DiffParser()
-        let diff = Result { try shellExecutor.spawn("git diff \(sourceBranch) -- \(file)", arguments: [file]) }
+        let diff = Result { try shell.spawn("git diff \(sourceBranch) -- \(file)", arguments: [file]) }
 
         return diff.flatMap {
             let diff = parser.parse($0)

@@ -4,7 +4,7 @@ public enum SpawnError: Error {
     case commandFailed(command: String, exitCode: Int32, stdout: String, stderr: String)
 }
 
-public protocol ShellExecuting {
+public protocol ShellRunnerProtocol {
     @discardableResult
     func execute(_ command: String,
                  arguments: [String],
@@ -18,7 +18,7 @@ public protocol ShellExecuting {
                outputFile: String?) throws -> String
 }
 
-extension ShellExecuting {
+extension ShellRunnerProtocol {
     @discardableResult
     public func execute(_ command: String,
                         arguments: [String]) -> String {
@@ -46,7 +46,7 @@ extension ShellExecuting {
     }
 }
 
-public struct ShellExecutor: ShellExecuting {
+public struct ShellRunner: ShellRunnerProtocol {
     public init() {}
 
     public func execute(_ command: String,

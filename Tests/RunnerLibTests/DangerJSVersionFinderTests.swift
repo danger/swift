@@ -3,14 +3,14 @@ import XCTest
 
 final class DangerJSVersionFinderTests: XCTestCase {
     func testItSendsTheCorrectCommandAndReturnsTheCorrectResult() throws {
-        let executor = MockedExecutor()
-        executor.result = { _ in "1.0.0" }
+        let shell = ShellRunnerMock()
+        shell.result = { _ in "1.0.0" }
 
         let dangerJSPath = "/test/danger"
 
-        let version = DangerJSVersionFinder.findDangerJSVersion(dangerJSPath: dangerJSPath, executor: executor)
+        let version = DangerJSVersionFinder.findDangerJSVersion(dangerJSPath: dangerJSPath, shell: shell)
 
-        XCTAssertEqual(executor.receivedCommands, [dangerJSPath + " --version"])
+        XCTAssertEqual(shell.receivedCommands, [dangerJSPath + " --version"])
         XCTAssertEqual(version, "1.0.0")
     }
 }

@@ -1,8 +1,8 @@
 import DangerDependenciesResolver
-import DangerShellExecutor
 import Foundation
 import Logger
 import RunnerLib
+import ShellRunner
 
 // swiftlint:disable:next function_body_length
 func runDanger(logger: Logger) throws {
@@ -50,10 +50,10 @@ func runDanger(logger: Logger) throws {
 
     // Set up plugin infra
     let importsOnly = try String(contentsOfFile: dangerfilePath)
-    let executor = ShellExecutor()
+    let shell = ShellRunner()
 
     if let spmDanger = SPMDanger() {
-        spmDanger.buildDependencies(executor: executor)
+        spmDanger.buildDependencies(shell: shell)
         libArgs += ["-L", spmDanger.buildFolder]
         libArgs += ["-I", spmDanger.buildFolder]
         libArgs += [spmDanger.swiftcLibImport]
@@ -136,7 +136,7 @@ func runDanger(logger: Logger) throws {
     args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
     args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
 
-    let swiftC = try executor.spawn("command -v swiftc", arguments: [])
+    let swiftC = try shell.spawn("command -v swiftc", arguments: [])
 
     logger.debug("Running: \(swiftC) \(args.joined(separator: " "))")
 

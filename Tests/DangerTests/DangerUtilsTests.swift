@@ -8,10 +8,10 @@ final class DangerUtilsTests: XCTestCase {
     }
 
     func testFileDiffWhenDiffIsValid() {
-        let executor = FakeShellExecutor()
-        executor.output = validDiff
+        let shell = ShellRunnerMock()
+        shell.output = validDiff
 
-        let dangerUtils = DangerUtils(fileMap: [:], shellExecutor: executor)
+        let dangerUtils = DangerUtils(fileMap: [:], shell: shell)
         let diff = dangerUtils.diff(forFile: "file", sourceBranch: "master")
 
         guard case let .success(fileDiff) = diff else {

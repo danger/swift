@@ -39,14 +39,14 @@ final class SPMDangerTests: XCTestCase {
     }
 
     func testItBuildsTheDependencies() throws {
-        let executor = MockedExecutor()
+        let shell = ShellRunnerMock()
         let fileManager = StubbedFileManager()
         fileManager.stubbedFileExists = false
 
         try ".library(name: \"DangerDeps\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
-        SPMDanger(packagePath: testPackage)?.buildDependencies(executor: executor, fileManager: fileManager)
+        SPMDanger(packagePath: testPackage)?.buildDependencies(shell: shell, fileManager: fileManager)
 
-        XCTAssertEqual(executor.receivedCommands, ["swift build --product DangerDeps"])
+        XCTAssertEqual(shell.receivedCommands, ["swift build --product DangerDeps"])
     }
 
     func testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib() throws {

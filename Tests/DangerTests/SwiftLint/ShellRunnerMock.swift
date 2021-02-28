@@ -1,7 +1,7 @@
 @testable import Danger
-import DangerShellExecutor
+import ShellRunner
 
-final class FakeShellExecutor: ShellExecuting {
+final class ShellRunnerMock: ShellRunnerProtocol {
     typealias Invocation = (command: String, arguments: [String], environmentVariables: [String: String], outputFile: String?)
 
     var invocations = [Invocation]() /// All of the invocations received by this instance.
