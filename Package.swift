@@ -15,13 +15,13 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/shibapm/Logger", from: "0.1.0"),
         .package(url: "https://github.com/mxcl/Version", from: "1.0.0"),
-        .package(url: "https://github.com/nerdishbynature/octokit.swift", from: "0.11.0"),
+        .package(name: "OctoKit", url: "https://github.com/nerdishbynature/octokit.swift", from: "0.11.0"),
         // Danger Plugins
         // Dev dependencies
         .package(url: "https://github.com/shibapm/Komondor", from: "1.0.0"), // dev
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"), // dev
         .package(url: "https://github.com/Realm/SwiftLint", from: "0.38.0"), // dev
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.1"), // dev
+        .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.1"), // dev
         .package(url: "https://github.com/shibapm/Rocket", from: "0.4.0"), // dev
         .package(url: "https://github.com/SwiftDocOrg/swift-doc", .branch("1.0.0-beta.4")), // dev
     ],
