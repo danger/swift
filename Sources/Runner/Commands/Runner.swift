@@ -20,13 +20,14 @@ func runDanger(logger: Logger) throws {
     // Extract the url from something like:
     //  danger://dsl//var/folders/gv/h3hr2l6102l0q6q5kn02kcnr0000gq/T/danger-dsl.json
     //
-    let dslJSONPath = dangerDSLURL.components(separatedBy: "danger://dsl/").last!
-    logger.debug("Got URL for JSON: \(dslJSONPath)")
+    let dslJsonPath = dangerDSLURL.components(separatedBy: "danger://dsl/").last!
+    defer { try? fileManager.removeItem(atPath: dslJsonPath) }
 
-    logger.debug("Created a temporary file for the Dangerfile DSL at: \(dslJSONPath)")
+    logger.debug("Got URL for JSON: \(dslJsonPath)")
+    logger.debug("Created a temporary file for the Dangerfile DSL at: \(dslJsonPath)")
 
     // Pull our the JSON data so we can extract settings
-    guard let dslJSONData = try? Data(contentsOf: URL(fileURLWithPath: dslJSONPath)) else {
+    guard let dslJSONData = try? Data(contentsOf: URL(fileURLWithPath: dslJsonPath)) else {
         logger.logError("Invalid DSL JSON data",
                         "If you are running danger-swift by using danger command --process danger-swift " +
                             "please run danger-swift command instead",
@@ -109,77 +110,96 @@ func runDanger(logger: Logger) throws {
     }
 
     logger.debug("Preparing to compile")
-    let tempDangerfilePath = tmpPath + "_tmp_dangerfile.swift"
 
+    let tempDangerfilePath = tmpPath + "_tmp_dangerfile.swift"
     let generator = DangerFileGenerator()
     try generator.generateDangerFile(fromContent: importsOnly, fileName: tempDangerfilePath, logger: logger)
+    defer { try? fileManager.removeItem(atPath: tempDangerfilePath) }
 
-    // Example commands:
-    //
-    //
-    // ## Run the full system:
-    // swift build;
-    // env DANGER_GITHUB_API_TOKEN='MY_TOKEN' DANGER_FAKE_CI="YEP" DANGER_TEST_REPO='artsy/eigen' DANGER_TEST_PR='2408' danger process .build/debug/danger-swift --verbose --text-only
-    //
-    // ## Run compilation and eval of the Dangerfile:
-    // swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift Fixtures/eidolon_609.json Fixtures/response_data.json
-    //
-    // ## Run Danger Swift with a fixture'd JSON file
-    // swift build; cat Fixtures/eidolon_609.json  | ./.build/debug/danger-swift
-    // swiftlint:enable line_length
+    try evalDangerfile(
+        dangerfilePath: dangerfilePath,
+        libArgs: libArgs,
+        tempDangerfilePath: tempDangerfilePath,
+        dslJsonPath: dslJsonPath,
+        dangerResponsePath: dangerResponsePath
+    )
 
-    var args = [String]()
-    args += ["--driver-mode=swift"] // Eval in swift mode, I think?
-    args += libArgs
-    args += [tempDangerfilePath] // The Dangerfile
-    args += Array(CommandLine.arguments.dropFirst()) // Arguments sent to Danger
-    args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
-    args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
-
-    let swiftC = try shell.run("command -v swiftc")
-
-    logger.debug("Running: \(swiftC) \(args.joined(separator: " "))")
-
-    // Create a process to eval the Swift file
-    let proc = Process()
-    proc.launchPath = swiftC
-    proc.arguments = args
-    let standardOutput = FileHandle.standardOutput
-    if let cwdOptionIndex = CommandLine.arguments.firstIndex(of: DangeSwiftRunnerOption.cwd.rawValue),
-        (cwdOptionIndex + 1) < CommandLine.arguments.count,
-        let directoryURL = URL(string: CommandLine.arguments[cwdOptionIndex + 1]) {
-        proc.currentDirectoryPath = directoryURL.absoluteString
-    }
-    proc.standardOutput = standardOutput
-    proc.standardError = standardOutput
-
-    proc.launch()
-    proc.waitUntilExit()
-
-    logger.debug("Completed evaluation")
-
-    if proc.terminationStatus != 0 {
-        logger.logError("Dangerfile eval failed at \(dangerfilePath)")
-    }
-
-    // Pull out the results JSON that the Danger eval should generate
     guard fileManager.contents(atPath: dangerResponsePath) != nil else {
         logger.logError("Could not get the results JSON file at \(dangerResponsePath)")
-        // Clean up after ourselves
-        try? fileManager.removeItem(atPath: dslJSONPath)
-        try? fileManager.removeItem(atPath: tempDangerfilePath)
         try? fileManager.removeItem(atPath: dangerResponsePath)
         exit(1)
     }
 
     // Support the upcoming danger results-url
-    standardOutput.write(Data("danger-results:/\(dangerResponsePath)\n\n".utf8))
+    logger.logInfo(Data("danger-results:/\(dangerResponsePath)\n\n".utf8))
     logger.debug("Saving and storing the results at \(dangerResponsePath)")
+}
 
-    // Clean up after ourselves
-    try? fileManager.removeItem(atPath: dslJSONPath)
-    try? fileManager.removeItem(atPath: tempDangerfilePath)
+/// # Example commands
+///
+/// ## Run the full system
+///
+///     swift build;
+///     env DANGER_GITHUB_API_TOKEN='MY_TOKEN' DANGER_FAKE_CI="YEP" DANGER_TEST_REPO='artsy/eigen' DANGER_TEST_PR='2408' danger process .build/debug/danger-swift --verbose --text-only
+///
+/// ## Run compilation and eval of the Dangerfile
+///
+///     swiftc --driver-mode=swift -L .build/debug -I .build/debug -lDanger Dangerfile.swift Fixtures/eidolon_609.json Fixtures/response_data.json
+///
+/// ## Run Danger Swift with a fixture'd JSON file
+///
+///     swift build; cat Fixtures/eidolon_609.json  | ./.build/debug/danger-swift
+private func evalDangerfile(
+    dangerfilePath: String,
+    libArgs: [String],
+    tempDangerfilePath: String,
+    dslJsonPath: String,
+    dangerResponsePath: String,
+    shell: ShellRunnerProtocol = ShellRunner()
+) throws {
+    var arguments = [String]()
+    arguments += ["--driver-mode=swift"]
+    arguments += libArgs
+    arguments += [tempDangerfilePath]
+    arguments += Array(CommandLine.arguments.dropFirst())
+    arguments += [dslJsonPath] // The DSL for a Dangerfile from DangerJS
+    arguments += [dangerResponsePath] // The expected response for a Dangerfile from DangerJS
 
-    // Return the same error code as the compilation
-    exit(proc.terminationStatus)
+    let swiftC = try shell.run("command -v swiftc")
+
+    logger.debug("Running: \(swiftC) \(arguments.joined(separator: " "))")
+
+    let process = Process()
+    process.arguments = arguments
+
+    let standardOutput = FileHandle.standardOutput
+    process.standardOutput = standardOutput
+    process.standardError = standardOutput
+
+    if let cwdOptionIndex = CommandLine.arguments.firstIndex(of: DangeSwiftRunnerOption.cwd.rawValue),
+       (cwdOptionIndex + 1) < CommandLine.arguments.count,
+       let currentDirectoryURL = URL(string: CommandLine.arguments[cwdOptionIndex + 1]
+    ) {
+        if #available(macOS 10.13, *) {
+            process.currentDirectoryURL = currentDirectoryURL
+        } else {
+            process.currentDirectoryPath = currentDirectoryURL.absoluteString
+        }
+    }
+
+    if #available(macOS 10.13, *) {
+        process.executableURL = URL(fileURLWithPath: swiftC)
+        try process.run()
+    } else {
+        process.launchPath = swiftC
+        process.launch()
+    }
+
+    process.waitUntilExit()
+
+    if process.terminationStatus == 0 {
+        logger.debug("Completed evaluation")
+    } else {
+        logger.logError("Dangerfile eval failed at \(dangerfilePath)")
+    }
 }
