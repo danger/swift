@@ -70,6 +70,8 @@
             ("testSendsOuputFileToTheExecutorWhenLintingModifiedFiles", testSendsOuputFileToTheExecutorWhenLintingModifiedFiles),
             ("testSpecificFilesLintStyle", testSpecificFilesLintStyle),
             ("testSpecificFilesSwiftOnlyFilter", testSpecificFilesSwiftOnlyFilter),
+            ("testSwiftlintCommandWhenPathIsBin", testSwiftlintCommandWhenPathIsBin),
+            ("testSwiftlintCommandWhenPathIsSwiftPackage", testSwiftlintCommandWhenPathIsSwiftPackage),
             ("testViolations", testViolations),
         ]
     }

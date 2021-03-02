@@ -20,6 +20,20 @@ public enum SwiftLint {
         case files([File])
     }
 
+    public enum SwiftlintPath {
+        case swiftPackage(String)
+        case bin(String)
+
+        var command: String {
+            switch self {
+            case let .bin(path):
+                return path
+            case let .swiftPackage(path):
+                return "swift run --package-path \(path) swiftlint"
+            }
+        }
+    }
+
     static let danger = Danger()
     static let shellExecutor = ShellExecutor()
 
@@ -49,10 +63,29 @@ public enum SwiftLint {
                     swiftlintPath: swiftlintPath)
     }
 
+    /// When the swiftlintPath is not specified,
+    /// it uses by default swift run swiftlint if the Package.swift in your root folder contains swiftlint as dependency,
+    /// otherwise calls directly the swiftlint command
+    @discardableResult
+    @available(*, deprecated, message: "Use the lint(_ lintStyle ..) method instead.")
+    public static func lint(_ lintStyle: LintStyle = .modifiedAndCreatedFiles(directory: nil),
+                            inline: Bool = false,
+                            configFile: String? = nil,
+                            strict: Bool = false,
+                            quiet: Bool = true,
+                            swiftlintPath: String?) -> [SwiftLintViolation] {
+        lint(lintStyle,
+             inline: inline,
+             configFile: configFile,
+             strict: strict,
+             quiet: quiet,
+             swiftlintPath: swiftlintPath.map(SwiftlintPath.bin))
+    }
+
     /// This is the main entry point for linting Swift in PRs.
     ///
     /// When the swiftlintPath is not specified,
-    /// it uses by default swift run swiftlint if the Package.swift contains swiftlint as dependency,
+    /// it uses by default swift run swiftlint if the Package.swift in your root folder contains swiftlint as dependency,
     /// otherwise calls directly the swiftlint command
     @discardableResult
     public static func lint(_ lintStyle: LintStyle = .modifiedAndCreatedFiles(directory: nil),
@@ -60,11 +93,11 @@ public enum SwiftLint {
                             configFile: String? = nil,
                             strict: Bool = false,
                             quiet: Bool = true,
-                            swiftlintPath: String? = nil) -> [SwiftLintViolation] {
+                            swiftlintPath: SwiftlintPath? = nil) -> [SwiftLintViolation] {
         lint(lintStyle: lintStyle,
              danger: danger,
              shellExecutor: shellExecutor,
-             swiftlintPath: swiftlintPath ?? SwiftLint.swiftlintDefaultPath(),
+             swiftlintPath: swiftlintPath,
              inline: inline,
              configFile: configFile,
              strict: strict,
@@ -79,7 +112,7 @@ extension SwiftLint {
         lintStyle: LintStyle = .modifiedAndCreatedFiles(directory: nil),
         danger: DangerDSL,
         shellExecutor: ShellExecuting,
-        swiftlintPath: String,
+        swiftlintPath: SwiftlintPath?,
         inline: Bool = false,
         configFile: String? = nil,
         strict: Bool = false,
@@ -108,6 +141,7 @@ extension SwiftLint {
         }
 
         var violations: [SwiftLintViolation]
+        let swiftlintPath = swiftlintPath?.command ?? SwiftLint.swiftlintDefaultPath()
 
         switch lintStyle {
         case let .all(directory):
