@@ -138,7 +138,7 @@ This is mainly the work of [Ash Furrow][ash] and [Łukasz Mróz][sun] over at [d
 - Read the [Culture doc][culture] on how to introduce new rules without annoying teammates
 - Think about code that always has to be changed in pairs in your code base, and try make a rule for that
 - Explore writing a test that checks for a particular string inside a file
-- Read the Dangerfile for [artsy/eigen][eigen] and [moya/harvey][moya]
+- Read the Dangerfile for [artsy/eigen][eigen] and [moya/moya][moya]
 
 [swiftlint]: https://github.com/realm/SwiftLint/
 [danger-swiftlint]: https://github.com/ashfurrow/danger-swiftlint/
@@ -146,4 +146,4 @@ This is mainly the work of [Ash Furrow][ash] and [Łukasz Mróz][sun] over at [d
 [sun]: https://sunshinejr.com
 [culture]: https://danger.systems/swift/usage/culture.html
 [eigen]: https://github.com/artsy/eigen/blob/master/Dangerfile.swift
-[moya]: https://github.com/Moya/Harvey/blob/master/Dangerfile.swift
+[moya]: https://github.com/Moya/Moya/blob/master/Dangerfile.swift
