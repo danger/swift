@@ -105,7 +105,7 @@ jobs:
 
     - uses: YOCKOW/Action-setup-swift@v1
     
-    - run: sudo chmod -R a+rwx /usr/local/lib/danger
+    - run: sudo chmod -R a+rwx /usr/local/lib
 
     - run: make install
 
