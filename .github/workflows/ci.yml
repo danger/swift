@@ -104,6 +104,8 @@ jobs:
     - run: echo ${{ matrix.swift }} > .swift-version
 
     - uses: YOCKOW/Action-setup-swift@v1
+    
+    - run: sudo chmod -R a+rwx /usr/local/
 
     - run: make install
 
