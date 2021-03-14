@@ -15,7 +15,7 @@ BUILD_PATH=".build/release/$TOOL_NAME"
 LIB_INSTALL_PATH="$PREFIX/lib/danger"
 declare -a SWIFT_LIB_FILES=('libDanger.dylib' 'libDanger.so' 'Danger.swiftdoc' 'Danger.swiftmodule' 'OctoKit.swiftdoc' 'OctoKit.swiftmodule' 'RequestKit.swiftdoc' 'RequestKit.swiftmodule' 'Logger.swiftdoc' 'Logger.swiftmodule' 'DangerShellExecutor.swiftdoc' 'DangerShellExecutor.swiftmodule')
 
-# swift package clean
+swift package clean
 
 SWIFT_VERSION=`swift -version | head -n 1 | perl -lpe 's/.*version\ (\d\.\d\.\d).*/$1/'`
 
