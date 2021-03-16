@@ -1,5 +1,7 @@
-lower () {
-    IFS=. v1_array=($1) v2_array=($2)
+lower() {
+    IFS=. 
+    v1_array=($1) 
+    v2_array=($2)
     v1=$((v1_array[0] * 100 + v1_array[1] * 10 + v1_array[2]))
     v2=$((v2_array[0] * 100 + v2_array[1] * 10 + v2_array[2]))
     diff=$((v2 - v1))
