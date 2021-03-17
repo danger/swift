@@ -1,3 +1,5 @@
+#!/bin/sh
+
 lower () {
     IFS='.' read -a v1_array <<< "$1"
     IFS='.' read -a v2_array <<< "$2"
