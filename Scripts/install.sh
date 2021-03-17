@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 lower () {
     IFS='.' read -a v1_array <<< "$1"
