@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix make install for linux with swift version < 5.3 [@f-meloni][] - [#413](https://github.com/danger/swift/pull/413)
+
 ## 3.8.0
 
 - Support package path for swiftlint [@f-meloni][] - [#413](https://github.com/danger/swift/pull/413)
