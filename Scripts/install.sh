@@ -24,14 +24,9 @@ SWIFT_VERSION=`swift -version | head -n 1 | perl -lpe 's/.*version\ (\d\.\d\.\d)
 
 UNAME_OUT="$(uname -s)"
 
-case "${UNAME_OUT}" in
-    Darwin*)    IS_MAC=true;;
-    *)          IS_MAC=false;;
-esac
-
 lower $SWIFT_VERSION '5.3.0'
 
-if [[ "$?" -eq 0 || $IS_MAC ]]
+if [[ "$?" -eq 0 || "$OSTYPE" == "darwin"* ]]
 then
     BUILD_FOLDER=".build/release"
     swift build --disable-sandbox -c release
