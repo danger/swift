@@ -13,6 +13,7 @@
 
 ## Master
 
+- Move minimum swift version to Swift 5.2 [@lunij] - [#419](https://github.com/danger/swift/pull/419)
 - Fix make install for linux with swift version > 5.3 [@f-meloni][] - [#413](https://github.com/danger/swift/pull/413)
 
 ## 3.8.0
@@ -464,3 +465,4 @@ This release also includes:
 [@captainbarbosa]: https://github.com/captainbarbosa
 [@417-72KI]: https://github.com/417-72KI
 [@vc7]: https://github.com/vc7
+[@lunij]: https://github.com/lunij
