@@ -13,6 +13,10 @@
 
 ## Master
 
+## 3.9.1
+
+- Return the correct version when `--version` is used
+
 ## 3.9.0
 
 - Move minimum swift version to Swift 5.2 [@lunij] - [#419](https://github.com/danger/swift/pull/419)
