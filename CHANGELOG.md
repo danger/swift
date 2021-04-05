@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.9.0
+
 - Move minimum swift version to Swift 5.2 [@lunij] - [#419](https://github.com/danger/swift/pull/419)
 - Fix make install for linux with swift version > 5.3 [@f-meloni][] - [#413](https://github.com/danger/swift/pull/413)
 
