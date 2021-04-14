@@ -139,20 +139,6 @@ extension DangerUtils {
 extension DangerUtils {
     @dynamicMemberLookup
     public struct Environment {
-        public enum Value: CustomStringConvertible, Equatable {
-            case boolean(Bool)
-            case string(String)
-
-            public var description: String {
-                switch self {
-                case let .string(string):
-                    return string
-                case let .boolean(bool):
-                    return bool.description
-                }
-            }
-        }
-
         let env: () -> [String: String]
 
         init(env: @escaping () -> [String: String] = { ProcessInfo.processInfo.environment }) {
@@ -167,6 +153,22 @@ extension DangerUtils {
                 return .boolean(bool)
             } else {
                 return .string(value)
+            }
+        }
+    }
+}
+
+extension DangerUtils.Environment {
+    public enum Value: CustomStringConvertible, Equatable {
+        case boolean(Bool)
+        case string(String)
+
+        public var description: String {
+            switch self {
+            case let .string(string):
+                return string
+            case let .boolean(bool):
+                return bool.description
             }
         }
     }
