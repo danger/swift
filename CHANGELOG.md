@@ -1,4 +1,4 @@
-<!--
+!--
 
 // Please add your own contribution below inside the Master section, no need to
 // set a version number, that happens during a deploy. Thanks!
@@ -12,6 +12,8 @@
 -->
 
 ## Master
+
+- Add support to Danger enviroment [@f-meloni][] - [#431](https://github.com/danger/swift/pull/431)
 
 ## 3.9.1
 
