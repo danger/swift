@@ -13,6 +13,7 @@
 
 ## Master
 
+- Use different structs from GitHub and Git commits [@f-meloni][] - [#433](https://github.com/danger/swift/pull/433)
 - Add support to Danger enviroment [@f-meloni][] - [#431](https://github.com/danger/swift/pull/431)
 
 ## 3.9.1
