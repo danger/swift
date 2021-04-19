@@ -47,6 +47,24 @@ final class DangerUtilsTests: XCTestCase {
         XCTAssertTrue(executed)
     }
 
+    func testEnvironmentReturnsStringValueWhenEnvVariableHasDangerInTheNameAndValueIsAString() {
+        let environment = DangerUtils.Environment(env: { ["DANGER_TEST_VALUE": "test"] })
+
+        XCTAssertEqual(environment.testValue, .string("test"))
+    }
+
+    func testEnvironmentReturnsBooleanValueHasDangerInTheNameAndValueIsABoolean() {
+        let environment = DangerUtils.Environment(env: { ["DANGER_TEST_VALUE": "true"] })
+
+        XCTAssertEqual(environment.testValue, .boolean(true))
+    }
+
+    func testEnvironmentReturnsNoValueWhenValueHasNoDangerInTheName() {
+        let environment = DangerUtils.Environment(env: { ["TEST_VALUE": "true"] })
+
+        XCTAssertNil(environment.testValue)
+    }
+
     private var fileContent: String {
         """
         Write your Dangerfiles in Swift.

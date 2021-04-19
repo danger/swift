@@ -13,6 +13,8 @@
 
 ## Master
 
+- Add support to Danger enviroment [@f-meloni][] - [#431](https://github.com/danger/swift/pull/431)
+
 ## 3.9.1
 
 - Return the correct version when `--version` is used
