@@ -346,7 +346,7 @@ extension GitHub {
         public let sha: String
 
         /// The raw commit metadata.
-        public let commit: Git.Commit
+        public let commit: CommitData
 
         /// The URL for the commit on GitHub.
         public let url: String
@@ -361,11 +361,34 @@ extension GitHub {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
             sha = try container.decode(String.self, forKey: .sha)
-            commit = try container.decode(Git.Commit.self, forKey: .commit)
+            commit = try container.decode(CommitData.self, forKey: .commit)
             url = try container.decode(String.self, forKey: .url)
             author = (try? container.decodeIfPresent(User.self, forKey: .author)) ?? nil
             committer = (try? container.decodeIfPresent(User.self, forKey: .committer)) ?? nil
         }
+    }
+}
+
+extension GitHub.Commit {
+    /// A GitHub specific implementation of a github commit.
+    public struct CommitData: Equatable, Decodable {
+        /// The SHA for the commit.
+        public let sha: String?
+
+        /// Who wrote the commit.
+        public let author: Git.Commit.Author
+
+        /// Who shipped the code.
+        public let committer: Git.Commit.Author
+
+        /// The message for the commit.
+        public let message: String
+
+        /// SHAs for the commit's parents.
+        public let parents: [String]?
+
+        /// The URL for the commit.
+        public let url: String
     }
 }
 

@@ -54,7 +54,7 @@ extension Git {
         public let parents: [String]?
 
         /// The URL for the commit.
-        public let url: String
+        public let url: String?
     }
 }
 
