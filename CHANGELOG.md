@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix homebrew [@f-meloni][] - [#435](https://github.com/danger/swift/pull/435)
+
 ## 3.10.0
 
 - Use different structs from GitHub and Git commits [@f-meloni][] - [#433](https://github.com/danger/swift/pull/433)
