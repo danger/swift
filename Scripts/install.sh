@@ -12,7 +12,7 @@ lower () {
 }
 
 TOOL_NAME="danger-swift"
-PREFIX="/usr/local"
+PREFIX=${PREFIX:='/usr/local'}
 INSTALL_PATH="$PREFIX/bin/$TOOL_NAME"
 BUILD_PATH=".build/release/$TOOL_NAME"
 LIB_INSTALL_PATH="$PREFIX/lib/danger"
