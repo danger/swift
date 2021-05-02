@@ -15,8 +15,8 @@ variables on your CI system:
 Then in your Dangerfiles you will have a fully fleshed out `danger.gitlab` object to work with. For example:
 
 ```swift
-if (danger.gitlab.mr.title.contains("WIP")) {
-  warn("PR is considered WIP")
+if (danger.gitLab.mergeRequest.title.contains("WIP")) {
+  warn("MR is considered WIP")
 }
 ```
 
