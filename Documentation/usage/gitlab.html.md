@@ -23,12 +23,10 @@ if (danger.gitLab.mergeRequest.title.contains("WIP")) {
 The DSL is expansive, you can see all the details inside the [Danger Swift Reference][ref], but the TLDR is:
 
 ```swift
-danger.gitlab.
+danger.gitLab.
 
   /** The pull request and repository metadata */
   metadata: RepoMetaData
   /** The Merge Request metadata */
-  mr: GitLabMR
-  /** The commits associated with the merge request */
-  commits: [GitLabMRCommit]
+  mergeRequest: GitLabMR
 ```
