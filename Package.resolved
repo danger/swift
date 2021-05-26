@@ -168,8 +168,8 @@
         "repositoryURL": "https://github.com/SwiftDocOrg/swift-cmark.git",
         "state": {
           "branch": null,
-          "revision": "1168665f6b36be747ffe6b7b90bc54cfc17f42b7",
-          "version": "0.28.3+20200207.1168665"
+          "revision": "9c8096a23f44794bde297452d87c455fc4f76d42",
+          "version": "0.29.0+20210102.9c8096a"
         }
       },
       {
@@ -186,8 +186,8 @@
         "repositoryURL": "https://github.com/IBM-Swift/swift-html-entities.git",
         "state": {
           "branch": null,
-          "revision": "744c094976355aa96ca61b9b60ef0a38e979feb7",
-          "version": "3.0.14"
+          "revision": "2b14531d0c36dbb7c1c45a4d38db9c2e7898a307",
+          "version": "3.0.200"
         }
       },
       {
