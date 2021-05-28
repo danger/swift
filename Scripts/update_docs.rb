@@ -19,7 +19,6 @@ file = template
          .gsub("[SDK_ROOT]", sdk_dir)
          .gsub("[CWD]", Dir.pwd)
          .gsub("[TMP_DIR]", tmp_dir)
-         .gsub("[XCODE_PATH]", "/Applications/Xcode12.4.app")
 
 File.write("Scripts/data/request.yml", file)
 
