@@ -5,7 +5,7 @@ PREFIX = /usr/local
 INSTALL_PATH = $(PREFIX)/bin/$(TOOL_NAME)
 
 docs: 
-	swift run swift-doc generate Sources/Danger --module-name Danger --output Documentation/reference --format html
+	swift run swift-doc generate Sources/Danger --module-name Danger --output Documentation/reference
 	./Scripts/update_docs.rb
 
 version:

@@ -24,6 +24,7 @@ let package = Package(
         .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.1"), // dev
         .package(url: "https://github.com/shibapm/Rocket", from: "0.4.0"), // dev
         .package(url: "https://github.com/SwiftDocOrg/swift-doc", .branch("1.0.0-beta.4")), // dev
+	.package(url: "https://github.com/minuscorp/ModuleInterface", .branch("v0.0.4"))
     ],
     targets: [
         .target(name: "Danger-Swift", dependencies: ["Danger"]), // dev
