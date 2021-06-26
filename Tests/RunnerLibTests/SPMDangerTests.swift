@@ -19,9 +19,35 @@ final class SPMDangerTests: XCTestCase {
 
         XCTAssertEqual(spmDanger?.depsLibName, "DangerDeps")
     }
+    
+    func testItReturnsTrueWhenThePackageHasTheDangerLibDividedInMultipleLines() throws {
+        try """
+            .library(
+                     name: "DangerDeps",
+                     type: .dynamic,
+                     targets: ["DangerDependencies"]),
+            """.write(toFile: testPackage, atomically: false, encoding: .utf8)
+
+        let spmDanger = SPMDanger(packagePath: testPackage)
+
+        XCTAssertEqual(spmDanger?.depsLibName, "DangerDeps")
+    }
 
     func testItAcceptsAnythingStartsWithDangerDeps() throws {
         try ".library(name: \"DangerDepsEigen\"".write(toFile: testPackage, atomically: false, encoding: .utf8)
+
+        let spmDanger = SPMDanger(packagePath: testPackage)
+
+        XCTAssertEqual(spmDanger?.depsLibName, "DangerDepsEigen")
+    }
+    
+    func testItAcceptsAnythingStartsWithDangerDepsButIsDividedInMultipleLines() throws {
+        try """
+            .library(
+                     name: "DangerDepsEigen",
+                     type: .dynamic,
+                     targets: ["DangerDependencies"]),
+            """.write(toFile: testPackage, atomically: false, encoding: .utf8)
 
         let spmDanger = SPMDanger(packagePath: testPackage)
 
