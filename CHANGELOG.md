@@ -13,6 +13,8 @@
 
 ## Master
 
+- Support DangerDeps definition in multiple lines [@f-meloni][] - [#447](https://github.com/danger/swift/pull/447)
+
 ## 3.10.1
 
 - Fix homebrew [@f-meloni][] - [#435](https://github.com/danger/swift/pull/435)
