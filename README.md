@@ -231,7 +231,7 @@ swift run danger-swift command --cwd path/to/working-directory
 
 #### Dev
 
-You need to be using Xcode 10.
+You need to be using Xcode >= 11.3.1.
 
 ```sh
 git clone https://github.com/danger/danger-swift.git
