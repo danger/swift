@@ -127,7 +127,7 @@ public struct ShellExecutor: ShellExecuting {
     }
 
     private func mergeEnvs(localEnv: [String: String], processEnv: [String: String]) -> [String: String] {
-        localEnv.merging(processEnv, uniquingKeysWith: { (_, envString) -> String in
+        localEnv.merging(processEnv, uniquingKeysWith: { _, envString -> String in
             envString
         })
     }

@@ -27,8 +27,8 @@ public struct GitHub: Decodable {
     public internal(set) var api: Octokit!
 }
 
-extension GitHub {
-    public struct PullRequest: Decodable, Equatable {
+public extension GitHub {
+    struct PullRequest: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case number
             case title
@@ -141,12 +141,12 @@ extension GitHub {
     }
 }
 
-extension GitHub.PullRequest {
+public extension GitHub.PullRequest {
     /// Pull Requests have possible link relations
     ///
     /// - See:
     ///   [Reference](https://docs.github.com/en/rest/reference/pulls#link-relations)
-    public struct Link: Decodable, Equatable {
+    struct Link: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case `self`
             case html
@@ -185,9 +185,9 @@ extension GitHub.PullRequest {
     }
 }
 
-extension GitHub {
+public extension GitHub {
     /// A GitHub user account.
-    public struct User: Decodable, Equatable {
+    struct User: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case id
             case login
@@ -211,9 +211,9 @@ extension GitHub {
     }
 }
 
-extension GitHub {
+public extension GitHub {
     /// A GitHub team.
-    public struct Team: Decodable, Equatable {
+    struct Team: Decodable, Equatable {
         /// The UUID for the team.
         public let id: Int
 
@@ -222,9 +222,9 @@ extension GitHub {
     }
 }
 
-extension GitHub {
+public extension GitHub {
     /// Represents the payload for a PR's requested reviewers value.
-    public struct RequestedReviewers: Decodable, Equatable {
+    struct RequestedReviewers: Decodable, Equatable {
         /// The list of users of whom a review has been requested.
         public let users: [User]
 
@@ -233,9 +233,9 @@ extension GitHub {
     }
 }
 
-extension GitHub {
+public extension GitHub {
     /// Represents 'head' in PR
-    public struct MergeRef: Decodable, Equatable {
+    struct MergeRef: Decodable, Equatable {
         /// The human display name for the merge reference, e.g. "artsy:master".
         public let label: String
 
@@ -253,8 +253,8 @@ extension GitHub {
     }
 }
 
-extension GitHub {
-    public struct Repo: Decodable, Equatable {
+public extension GitHub {
+    struct Repo: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case id
             case name
@@ -292,8 +292,8 @@ extension GitHub {
     }
 }
 
-extension GitHub {
-    public struct Review: Decodable, Equatable {
+public extension GitHub {
+    struct Review: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case body
             case commitId = "commit_id"
@@ -331,9 +331,9 @@ extension GitHub {
     }
 }
 
-extension GitHub {
+public extension GitHub {
     /// A GitHub specific implementation of a git commit.
-    public struct Commit: Decodable, Equatable {
+    struct Commit: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case sha
             case commit
@@ -369,9 +369,9 @@ extension GitHub {
     }
 }
 
-extension GitHub.Commit {
+public extension GitHub.Commit {
     /// A GitHub specific implementation of a github commit.
-    public struct CommitData: Equatable, Decodable {
+    struct CommitData: Equatable, Decodable {
         /// The SHA for the commit.
         public let sha: String?
 
@@ -392,8 +392,8 @@ extension GitHub.Commit {
     }
 }
 
-extension GitHub {
-    public struct Issue: Decodable, Equatable {
+public extension GitHub {
+    struct Issue: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case id
             case number
@@ -479,8 +479,8 @@ extension GitHub {
     }
 }
 
-extension GitHub {
-    public struct Milestone: Decodable, Equatable {
+public extension GitHub {
+    struct Milestone: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case closedAt = "closed_at"
             case closedIssues = "closed_issues"

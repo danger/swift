@@ -460,7 +460,7 @@ final class DangerSwiftLintTests: XCTestCase {
                            reportDeleter: reportDeleter,
                            readFile: mockedEmptyJSON)
 
-        XCTAssertEqual(executor.invocations.map { $0.command }, ["swiftlint"])
+        XCTAssertEqual(executor.invocations.map(\.command), ["swiftlint"])
     }
 
     func testSwiftlintCommandWhenPathIsSwiftPackage() {
@@ -474,7 +474,7 @@ final class DangerSwiftLintTests: XCTestCase {
                            reportDeleter: reportDeleter,
                            readFile: mockedEmptyJSON)
 
-        XCTAssertEqual(executor.invocations.map { $0.command }, ["swift run --package-path Danger/Something swiftlint"])
+        XCTAssertEqual(executor.invocations.map(\.command), ["swift run --package-path Danger/Something swiftlint"])
     }
 }
 

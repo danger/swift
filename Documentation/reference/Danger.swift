@@ -24,8 +24,8 @@ public struct BitBucketCloud: Decodable {
     public let pr: Danger.BitBucketCloud.PullRequest
 }
 
-extension BitBucketCloud {
-    public struct PullRequest: Decodable {
+public extension BitBucketCloud {
+    struct PullRequest: Decodable {
         public enum State: String, Decodable {
             case declined
 
@@ -88,8 +88,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct MergeRef: Decodable {
+public extension BitBucketCloud {
+    struct MergeRef: Decodable {
         public var branchName: String { get }
 
         /// Hash of the last commit
@@ -99,8 +99,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct Repo: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct Repo: Decodable, Equatable {
         public let fullName: String
 
         public let name: String
@@ -110,8 +110,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct User: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct User: Decodable, Equatable {
         /// The acount id of the user
         public let accountId: String?
 
@@ -126,8 +126,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct Commit: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct Commit: Decodable, Equatable {
         public struct Author: Decodable, Equatable {}
 
         public struct Parent {}
@@ -146,8 +146,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct Comment: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct Comment: Decodable, Equatable {
         public struct Inline: Decodable, Equatable {
             public let from: Int?
 
@@ -179,8 +179,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct Content: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct Content: Decodable, Equatable {
         public let html: String
 
         public let markup: String
@@ -189,8 +189,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct Activity: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct Activity: Decodable, Equatable {
         public let comment: Danger.BitBucketCloud.Comment?
     }
 }
@@ -220,8 +220,8 @@ public struct BitBucketServer: Decodable, Equatable {
     public let activities: [Danger.BitBucketServer.Activity]
 }
 
-extension BitBucketServer {
-    public struct Activity: Decodable, Equatable {
+public extension BitBucketServer {
+    struct Activity: Decodable, Equatable {
         /// The activity's ID
         public let id: Int
 
@@ -239,8 +239,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct Comment: Decodable, Equatable {
+public extension BitBucketServer {
+    struct Comment: Decodable, Equatable {
         /// The comment's id
         public let id: Int
 
@@ -327,8 +327,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct Commit: Decodable, Equatable {
+public extension BitBucketServer {
+    struct Commit: Decodable, Equatable {
         /// The SHA for the commit
         public let id: String
 
@@ -363,8 +363,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct PullRequest: Decodable, Equatable {
+public extension BitBucketServer {
+    struct PullRequest: Decodable, Equatable {
         /// The PR's ID
         public let id: Int
 
@@ -430,8 +430,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct MergeRef: Decodable, Equatable {
+public extension BitBucketServer {
+    struct MergeRef: Decodable, Equatable {
         /// The branch name
         public let id: String
 
@@ -446,8 +446,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct Repo: Decodable, Equatable {
+public extension BitBucketServer {
+    struct Repo: Decodable, Equatable {
         /// The repo name
         public let name: String?
 
@@ -468,8 +468,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct Project: Decodable, Equatable {
+public extension BitBucketServer {
+    struct Project: Decodable, Equatable {
         /// The project unique id
         public let id: Int
 
@@ -486,8 +486,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct User: Decodable, Equatable {
+public extension BitBucketServer {
+    struct User: Decodable, Equatable {
         /// The unique user ID
         public let id: Int?
 
@@ -540,53 +540,53 @@ public struct DangerDSL: Decodable {
     public init(from decoder: Decoder) throws
 }
 
-extension DangerDSL {
+public extension DangerDSL {
     /// Fails on the Danger report
-    public var fails: [Danger.Violation] { get }
+    var fails: [Danger.Violation] { get }
 
     /// Warnings on the Danger report
-    public var warnings: [Danger.Violation] { get }
+    var warnings: [Danger.Violation] { get }
 
     /// Messages on the Danger report
-    public var messages: [Danger.Violation] { get }
+    var messages: [Danger.Violation] { get }
 
     /// Markdowns on the Danger report
-    public var markdowns: [Danger.Violation] { get }
+    var markdowns: [Danger.Violation] { get }
 
     /// Adds a warning message to the Danger report
     ///
     /// - Parameter message: A markdown-ish
-    public func warn(_ message: String)
+    func warn(_ message: String)
 
     /// Adds an inline warning message to the Danger report
-    public func warn(message: String, file: String, line: Int)
+    func warn(message: String, file: String, line: Int)
 
     /// Adds a warning message to the Danger report
     ///
     /// - Parameter message: A markdown-ish
-    public func fail(_ message: String)
+    func fail(_ message: String)
 
     /// Adds an inline fail message to the Danger report
-    public func fail(message: String, file: String, line: Int)
+    func fail(message: String, file: String, line: Int)
 
     /// Adds a warning message to the Danger report
     ///
     /// - Parameter message: A markdown-ish
-    public func message(_ message: String)
+    func message(_ message: String)
 
     /// Adds an inline message to the Danger report
-    public func message(message: String, file: String, line: Int)
+    func message(message: String, file: String, line: Int)
 
     /// Adds a warning message to the Danger report
     ///
     /// - Parameter message: A markdown-ish
-    public func markdown(_ message: String)
+    func markdown(_ message: String)
 
     /// Adds an inline message to the Danger report
-    public func markdown(message: String, file: String, line: Int)
+    func markdown(message: String, file: String, line: Int)
 
     /// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
-    public func suggestion(code: String, file: String, line: Int)
+    func suggestion(code: String, file: String, line: Int)
 }
 
 /// Utility functions that make Dangerfiles easier to write
@@ -643,14 +643,14 @@ public struct DangerUtils {
     public func sync<T>(_ body: (@escaping (T) -> Void) -> Void) -> T
 }
 
-extension DangerUtils {
-    @dynamicMemberLookup public struct Environment {
+public extension DangerUtils {
+    @dynamicMemberLookup enum Environment {
         public subscript(dynamicMember _: String) -> Danger.DangerUtils.Environment.Value? { get }
     }
 }
 
-extension DangerUtils.Environment {
-    public enum Value: CustomStringConvertible, Equatable {
+public extension DangerUtils.Environment {
+    enum Value: CustomStringConvertible, Equatable {
         case boolean(Bool)
 
         case string(String)
@@ -716,8 +716,8 @@ public struct FileDiff: Equatable, CustomStringConvertible {
     public var description: String { get }
 }
 
-extension FileDiff {
-    public enum Changes: Equatable {
+public extension FileDiff {
+    enum Changes: Equatable {
         case created(addedLines: [String])
 
         case deleted(deletedLines: [String])
@@ -727,7 +727,7 @@ extension FileDiff {
         case renamed(oldPath: String, hunks: [Danger.FileDiff.Hunk])
     }
 
-    public struct Hunk: Equatable, CustomStringConvertible {
+    struct Hunk: Equatable, CustomStringConvertible {
         public let oldLineStart: Int
 
         public let oldLineSpan: Int
@@ -764,7 +764,7 @@ extension FileDiff {
         public var description: String { get }
     }
 
-    public struct Line: Equatable, CustomStringConvertible {
+    struct Line: Equatable, CustomStringConvertible {
         /// A textual representation of this instance.
         ///
         /// Calling this property directly is discouraged. Instead, convert an
@@ -818,8 +818,8 @@ public enum FileType: String, Equatable, CaseIterable {
     case yml
 }
 
-extension FileType {
-    public var `extension`: String { get }
+public extension FileType {
+    var `extension`: String { get }
 }
 
 /// The git specific metadata for a pull request.
@@ -836,9 +836,9 @@ public struct Git: Decodable, Equatable {
     public let commits: [Danger.Git.Commit]
 }
 
-extension Git {
+public extension Git {
     /// A platform agnostic reference to a git commit.
-    public struct Commit: Equatable {
+    struct Commit: Equatable {
         /// The author of a commit.
         public struct Author: Equatable {
             /// The display name for the author.
@@ -890,8 +890,8 @@ public struct GitHub: Decodable {
     public internal(set) var api: OctoKit.Octokit! { get }
 }
 
-extension GitHub {
-    public struct PullRequest: Decodable, Equatable {
+public extension GitHub {
+    struct PullRequest: Decodable, Equatable {
         public enum PullRequestState: String, Decodable {
             case open
 
@@ -979,9 +979,9 @@ extension GitHub {
     }
 }
 
-extension GitHub {
+public extension GitHub {
     /// A GitHub user account.
-    public struct User: Decodable, Equatable {
+    struct User: Decodable, Equatable {
         public enum UserType: String, Decodable {
             case user
 
@@ -1001,9 +1001,9 @@ extension GitHub {
     }
 }
 
-extension GitHub {
+public extension GitHub {
     /// A GitHub team.
-    public struct Team: Decodable, Equatable {
+    struct Team: Decodable, Equatable {
         /// The UUID for the team.
         public let id: Int
 
@@ -1012,9 +1012,9 @@ extension GitHub {
     }
 }
 
-extension GitHub {
+public extension GitHub {
     /// Represents the payload for a PR's requested reviewers value.
-    public struct RequestedReviewers: Decodable, Equatable {
+    struct RequestedReviewers: Decodable, Equatable {
         /// The list of users of whom a review has been requested.
         public let users: [Danger.GitHub.User]
 
@@ -1023,9 +1023,9 @@ extension GitHub {
     }
 }
 
-extension GitHub {
+public extension GitHub {
     /// Represents 'head' in PR
-    public struct MergeRef: Decodable, Equatable {
+    struct MergeRef: Decodable, Equatable {
         /// The human display name for the merge reference, e.g. "artsy:master".
         public let label: String
 
@@ -1043,8 +1043,8 @@ extension GitHub {
     }
 }
 
-extension GitHub {
-    public struct Repo: Decodable, Equatable {
+public extension GitHub {
+    struct Repo: Decodable, Equatable {
         /// Generic UUID.
         public let id: Int
 
@@ -1071,8 +1071,8 @@ extension GitHub {
     }
 }
 
-extension GitHub {
-    public struct Review: Decodable, Equatable {
+public extension GitHub {
+    struct Review: Decodable, Equatable {
         public enum State: String, Decodable {
             case approved
 
@@ -1105,9 +1105,9 @@ extension GitHub {
     }
 }
 
-extension GitHub {
+public extension GitHub {
     /// A GitHub specific implementation of a git commit.
-    public struct Commit: Decodable, Equatable {
+    struct Commit: Decodable, Equatable {
         /// The SHA for the commit.
         public let sha: String
 
@@ -1133,8 +1133,8 @@ extension GitHub {
     }
 }
 
-extension GitHub {
-    public struct Issue: Decodable, Equatable {
+public extension GitHub {
+    struct Issue: Decodable, Equatable {
         public enum State: String, Decodable {
             case open
 
@@ -1204,8 +1204,8 @@ extension GitHub {
     }
 }
 
-extension GitHub {
-    public struct Milestone: Decodable, Equatable {
+public extension GitHub {
+    struct Milestone: Decodable, Equatable {
         public enum State: String, Decodable {
             case open
 
@@ -1252,12 +1252,12 @@ extension GitHub {
     }
 }
 
-extension GitHub.PullRequest {
+public extension GitHub.PullRequest {
     /// Pull Requests have possible link relations
     ///
     /// - See:
     ///   [Reference](https://docs.github.com/en/rest/reference/pulls#link-relations)
-    public struct Link: Decodable, Equatable {
+    struct Link: Decodable, Equatable {
         public struct Relation: Decodable, Equatable, ExpressibleByStringLiteral {
             public let href: String
 
@@ -1293,9 +1293,9 @@ extension GitHub.PullRequest {
     }
 }
 
-extension GitHub.Commit {
+public extension GitHub.Commit {
     /// A GitHub specific implementation of a github commit.
-    public struct CommitData: Equatable, Decodable {
+    struct CommitData: Equatable, Decodable {
         /// The SHA for the commit.
         public let sha: String?
 
@@ -1328,16 +1328,16 @@ public struct GitLab: Decodable {
     public let metadata: Danger.GitLab.Metadata
 }
 
-extension GitLab {
-    public struct Metadata: Decodable, Equatable {
+public extension GitLab {
+    struct Metadata: Decodable, Equatable {
         public let pullRequestID: String
 
         public let repoSlug: String
     }
 }
 
-extension GitLab {
-    public struct MergeRequest: Decodable, Equatable {
+public extension GitLab {
+    struct MergeRequest: Decodable, Equatable {
         public enum State: String, Decodable {
             case closed
 
@@ -1646,8 +1646,8 @@ extension GitLab {
     }
 }
 
-extension GitLab {
-    public struct User: Decodable, Equatable {
+public extension GitLab {
+    struct User: Decodable, Equatable {
         public enum CodingKeys: String, CodingKey {
             case avatarUrl
 
@@ -1682,14 +1682,14 @@ extension GitLab {
     }
 }
 
-extension GitLab.MergeRequest.Milestone {
+public extension GitLab.MergeRequest.Milestone {
     /// Creates a new instance by decoding from the given decoder.
     ///
     /// This initializer throws an error if reading from the decoder fails, or
     /// if the data read is corrupted or otherwise invalid.
     ///
     /// - Parameter decoder: The decoder to read data from.
-    public init(from decoder: Decoder) throws
+    init(from decoder: Decoder) throws
 }
 
 /// Meta information for showing in the text info
@@ -1808,25 +1808,25 @@ public func warn(message: String, file: String, line: Int)
 /// Warnings on the Danger report
 public var warnings: [Danger.Violation] { get }
 
-extension Optional where Wrapped == Danger.DangerUtils.Environment.Value {
-    public func getString(default defaultString: String) -> String
+public extension Optional where Wrapped == Danger.DangerUtils.Environment.Value {
+    func getString(default defaultString: String) -> String
 
-    public func getBoolean(default defaultBoolean: Bool) -> Bool
+    func getBoolean(default defaultBoolean: Bool) -> Bool
 }
 
-extension DateFormatter {
-    public static var defaultDateFormatter: DateFormatter { get }
+public extension DateFormatter {
+    static var defaultDateFormatter: DateFormatter { get }
 
-    public static var onlyDateDateFormatter: DateFormatter { get }
+    static var onlyDateDateFormatter: DateFormatter { get }
 
     /// Handles multiple date format inside models.
-    public static func dateFormatterHandler(_ decoder: Decoder) throws -> Date
+    static func dateFormatterHandler(_ decoder: Decoder) throws -> Date
 }
 
-extension String {
-    public var fileType: Danger.FileType? { get }
+public extension String {
+    var fileType: Danger.FileType? { get }
 
-    public var name: String { get }
+    var name: String { get }
 }
 
 /// Fails on the Danger report

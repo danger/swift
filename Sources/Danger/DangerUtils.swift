@@ -136,9 +136,9 @@ extension DangerUtils {
     }
 }
 
-extension DangerUtils {
+public extension DangerUtils {
     @dynamicMemberLookup
-    public struct Environment {
+    struct Environment {
         let env: () -> [String: String]
 
         init(env: @escaping () -> [String: String] = { ProcessInfo.processInfo.environment }) {
@@ -158,8 +158,8 @@ extension DangerUtils {
     }
 }
 
-extension DangerUtils.Environment {
-    public enum Value: CustomStringConvertible, Equatable {
+public extension DangerUtils.Environment {
+    enum Value: CustomStringConvertible, Equatable {
         case boolean(Bool)
         case string(String)
 
@@ -174,13 +174,13 @@ extension DangerUtils.Environment {
     }
 }
 
-extension Optional where Wrapped == DangerUtils.Environment.Value {
-    public func getString(default defaultString: String) -> String {
+public extension Optional where Wrapped == DangerUtils.Environment.Value {
+    func getString(default defaultString: String) -> String {
         if case let .string(value) = self { return value }
         return defaultString
     }
 
-    public func getBoolean(default defaultBoolean: Bool) -> Bool {
+    func getBoolean(default defaultBoolean: Bool) -> Bool {
         if case let .boolean(value) = self { return value }
         return defaultBoolean
     }

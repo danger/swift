@@ -22,7 +22,7 @@ public struct SPMDanger {
                                            range: NSRange(location: 0, length: packageContent.count))
 
         if let depsLibNameRange = firstMatch?.range(at: 1),
-            let range = Range(depsLibNameRange, in: packageContent) {
+           let range = Range(depsLibNameRange, in: packageContent) {
             depsLibName = String(packageContent[range])
         } else {
             return nil

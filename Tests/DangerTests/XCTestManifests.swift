@@ -92,6 +92,9 @@
         // to regenerate.
         static let __allTests__DangerUtilsTests = [
             ("testAwaitsFunctionResult", testAwaitsFunctionResult),
+            ("testEnvironmentReturnsBooleanValueHasDangerInTheNameAndValueIsABoolean", testEnvironmentReturnsBooleanValueHasDangerInTheNameAndValueIsABoolean),
+            ("testEnvironmentReturnsNoValueWhenValueHasNoDangerInTheName", testEnvironmentReturnsNoValueWhenValueHasNoDangerInTheName),
+            ("testEnvironmentReturnsStringValueWhenEnvVariableHasDangerInTheNameAndValueIsAString", testEnvironmentReturnsStringValueWhenEnvVariableHasDangerInTheNameAndValueIsAString),
             ("testFileDiffWhenDiffIsValid", testFileDiffWhenDiffIsValid),
             ("testLinesForStringReturnsTheCorrectResult", testLinesForStringReturnsTheCorrectResult),
         ]

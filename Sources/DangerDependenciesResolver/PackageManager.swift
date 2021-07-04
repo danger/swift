@@ -112,7 +112,7 @@ public struct PackageManager {
         let resolvedPackageFile = generatedFolder.appendingPath("Package.resolved")
 
         guard FileManager.default.fileExists(atPath: checkoutsFolder),
-            FileManager.default.fileExists(atPath: repositoriesFolder)
+              FileManager.default.fileExists(atPath: repositoriesFolder)
         else {
             try updatePackages()
             return try symlinkPackages(to: folder)
@@ -226,7 +226,7 @@ extension String {
         }
     }
 
-    fileprivate func deletingPrefix(_ prefix: String) -> String {
+    private func deletingPrefix(_ prefix: String) -> String {
         guard hasPrefix(prefix) else { return self }
         return String(dropFirst(prefix.count))
     }
