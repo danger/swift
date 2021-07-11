@@ -27,8 +27,8 @@ public struct BitBucketServer: Decodable, Equatable {
     public let activities: [Activity]
 }
 
-extension BitBucketServer {
-    public struct Activity: Decodable, Equatable {
+public extension BitBucketServer {
+    struct Activity: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case id
             case createdAt = "createdDate"
@@ -54,8 +54,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct Comment: Decodable, Equatable {
+public extension BitBucketServer {
+    struct Comment: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case id
             case createdAt = "createdDate"
@@ -175,8 +175,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct Commit: Decodable, Equatable {
+public extension BitBucketServer {
+    struct Commit: Decodable, Equatable {
         /// The SHA for the commit
         public let id: String
 
@@ -211,8 +211,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct PullRequest: Decodable, Equatable {
+public extension BitBucketServer {
+    struct PullRequest: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case id
             case version
@@ -296,8 +296,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct MergeRef: Decodable, Equatable {
+public extension BitBucketServer {
+    struct MergeRef: Decodable, Equatable {
         /// The branch name
         public let id: String
 
@@ -312,8 +312,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct Repo: Decodable, Equatable {
+public extension BitBucketServer {
+    struct Repo: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case name
             case slug
@@ -343,8 +343,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct Project: Decodable, Equatable {
+public extension BitBucketServer {
+    struct Project: Decodable, Equatable {
         enum CodingKeys: String, CodingKey {
             case id
             case key
@@ -370,8 +370,8 @@ extension BitBucketServer {
     }
 }
 
-extension BitBucketServer {
-    public struct User: Decodable, Equatable {
+public extension BitBucketServer {
+    struct User: Decodable, Equatable {
         /// The unique user ID
         public let id: Int?
 

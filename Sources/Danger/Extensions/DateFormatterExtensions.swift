@@ -1,26 +1,26 @@
 import Foundation
 
-extension DateFormatter {
+public extension DateFormatter {
     // A default implementation of an iso8601 DateFormatter
-    public static var defaultDateFormatter: DateFormatter {
+    static var defaultDateFormatter: DateFormatter {
         let dateFormatter = OptionalFractionalSecondsDateFormatter()
         return dateFormatter
     }
 
-    public static var onlyDateDateFormatter: DateFormatter {
+    static var onlyDateDateFormatter: DateFormatter {
         let dateFormatter = OptionalFractionalSecondsDateFormatter.onlyDate
         return dateFormatter
     }
 
     /// Handles multiple date format inside models.
-    public static func dateFormatterHandler(_ decoder: Decoder) throws -> Date {
+    static func dateFormatterHandler(_ decoder: Decoder) throws -> Date {
         let dateString = try decoder.singleValueContainer().decode(String.self)
         if let date = defaultDateFormatter.date(from: dateString) {
             return date
         } else if let date = onlyDateDateFormatter.date(from: dateString) {
             return date
         } else {
-            let path = decoder.codingPath.map { $0.stringValue }.joined(separator: ".")
+            let path = decoder.codingPath.map(\.stringValue).joined(separator: ".")
             throw OptionalFractionalSecondsDateFormatter
                 .DateError
                 .invalidFormat(path: path, dateString: dateString)

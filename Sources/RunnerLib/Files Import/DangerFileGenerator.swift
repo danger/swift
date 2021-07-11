@@ -16,7 +16,7 @@ public final class DangerFileGenerator {
             let url = importsRegex.replacementString(for: result, in: dangerContent, offset: 0, template: "$1")
 
             guard let fileContent = try? String(contentsOfFile: url),
-                let replacementRange = Range<String.Index>(result.range, in: dangerContent)
+                  let replacementRange = Range<String.Index>(result.range, in: dangerContent)
             else {
                 logger.logWarning("File not found at \(url)")
                 return

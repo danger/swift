@@ -255,8 +255,8 @@ extension SwiftLint {
     static func swiftlintDefaultPath(packagePath: String = "Package.swift") -> String {
         let swiftPackageDepPattern = #"\.package\(.*SwiftLint.*"#
         if let packageContent = try? String(contentsOfFile: packagePath),
-            let regex = try? NSRegularExpression(pattern: swiftPackageDepPattern, options: .allowCommentsAndWhitespace),
-            regex.firstMatchingString(in: packageContent) != nil {
+           let regex = try? NSRegularExpression(pattern: swiftPackageDepPattern, options: .allowCommentsAndWhitespace),
+           regex.firstMatchingString(in: packageContent) != nil {
             return "swift run swiftlint"
         } else {
             return "swiftlint"

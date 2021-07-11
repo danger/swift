@@ -12,15 +12,15 @@ public struct GitLab: Decodable {
     public let metadata: Metadata
 }
 
-extension GitLab {
-    public struct Metadata: Decodable, Equatable {
+public extension GitLab {
+    struct Metadata: Decodable, Equatable {
         public let pullRequestID: String
         public let repoSlug: String
     }
 }
 
-extension GitLab {
-    public struct MergeRequest: Decodable, Equatable {
+public extension GitLab {
+    struct MergeRequest: Decodable, Equatable {
         public enum State: String, Decodable {
             case closed
             case locked
@@ -254,8 +254,8 @@ extension GitLab {
     }
 }
 
-extension GitLab {
-    public struct User: Decodable, Equatable {
+public extension GitLab {
+    struct User: Decodable, Equatable {
         public enum CodingKeys: String, CodingKey {
             case avatarUrl = "avatar_url"
             case id
@@ -281,8 +281,8 @@ extension GitLab {
 
 // MARK: Custom decoder for Milestone
 
-extension GitLab.MergeRequest.Milestone {
-    public init(from decoder: Decoder) throws {
+public extension GitLab.MergeRequest.Milestone {
+    init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         if let id = try container.decodeIfPresent(Int.self, forKey: .groupId) {

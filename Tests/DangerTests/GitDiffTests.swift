@@ -12,7 +12,7 @@ final class GitDiffTests: XCTestCase {
                                filePath: ".swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata",
                                change: .created
                            ),
-                                    hunks: [
+                           hunks: [
                                .init(oldLineStart: 0, oldLineSpan: 0, newLineStart: 1, newLineSpan: 7, lines: [
                                    FileDiff.Line(text: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>", changeType: .added),
                                    FileDiff.Line(text: "<Workspace", changeType: .added),
@@ -22,12 +22,12 @@ final class GitDiffTests: XCTestCase {
                                    FileDiff.Line(text: "   </FileRef>", changeType: .added),
                                    FileDiff.Line(text: "</Workspace>", changeType: .added),
                                ]),
-                                    ]),
+                           ]),
                            FileDiff(parsedHeader: .init(
                                filePath: ".swiftpm/xcode/package.xcworkspace/xcuserdata/franco.xcuserdatad/UserInterfaceState.xcuserstate",
                                change: .created
                            ),
-                                    hunks: []),
+                           hunks: []),
                            FileDiff(parsedHeader: .init(filePath: "Gemfile", change: .deleted), hunks: [
                                .init(oldLineStart: 1, oldLineSpan: 7, newLineStart: 0, newLineSpan: 0, lines: [
                                    FileDiff.Line(text: "# frozen_string_literal: true", changeType: .removed),
@@ -43,7 +43,7 @@ final class GitDiffTests: XCTestCase {
                                filePath: "Sources/DangerSwiftCoverage/Models/Report.swift",
                                change: .modified
                            ),
-                                    hunks: [
+                           hunks: [
                                .init(oldLineStart: 20, oldLineSpan: 7, newLineStart: 20, newLineSpan: 8, lines: [
                                    FileDiff.Line(text: "extension ReportSection {", changeType: .unchanged),
                                    FileDiff.Line(text: "    init(fromSPM spm: SPMCoverage, fileManager: FileManager) {",
@@ -58,12 +58,12 @@ final class GitDiffTests: XCTestCase {
                                    FileDiff.Line(text: "}", changeType: .unchanged),
                                    FileDiff.Line(text: "", changeType: .unchanged),
                                ]),
-                                    ]),
+                           ]),
                            FileDiff(parsedHeader: .init(
                                filePath: "Sources/DangerSwiftCoverage/SPM/SPMCoverageParser.swift",
                                change: .modified
                            ),
-                                    hunks: [
+                           hunks: [
                                .init(oldLineStart: 1, oldLineSpan: 8, newLineStart: 1, newLineSpan: 11, lines: [
                                    FileDiff.Line(text: "import Foundation", changeType: .unchanged),
                                    FileDiff.Line(text: "", changeType: .unchanged),
@@ -81,25 +81,25 @@ final class GitDiffTests: XCTestCase {
                                    FileDiff.Line(text: "enum SPMCoverageParser: SPMCoverageParsing {", changeType: .unchanged),
                                    FileDiff.Line(text: "    enum Errors: Error {", changeType: .unchanged),
                                ]),
-                                        .init(oldLineStart: 22, oldLineSpan: 6, newLineStart: 25, newLineSpan: 10, lines: [
+                               .init(oldLineStart: 22, oldLineSpan: 6, newLineStart: 25, newLineSpan: 10, lines: [
                                    FileDiff.Line(text: "        let coverage = try JSONDecoder().decode(SPMCoverage.self, from: data)", changeType: .unchanged),
-                                            FileDiff.Line(text: "        let filteredCoverage = coverage.filteringFiles(notOn: files)", changeType: .unchanged),
-                                            FileDiff.Line(text: "", changeType: .unchanged),
-                                            FileDiff.Line(text: "        return Report(messages: [], sections: [ReportSection(fromSPM: filteredCoverage, fileManager: fileManager)])", changeType: .removed),
-                                            FileDiff.Line(text: "        if filteredCoverage.data.contains(where: { !$0.files.isEmpty }) {", changeType: .added),
-                                            FileDiff.Line(text: "            return Report(messages: [], sections: [ReportSection(fromSPM: filteredCoverage, fileManager: fileManager)])", changeType: .added),
-                                            FileDiff.Line(text: "        } else {", changeType: .added),
-                                            FileDiff.Line(text: "            return Report(messages: [], sections: [])", changeType: .added),
-                                            FileDiff.Line(text: "        }", changeType: .added),
-                                            FileDiff.Line(text: "    }", changeType: .unchanged),
-                                            FileDiff.Line(text: "}", changeType: .unchanged),
-                                        ]),
-                                    ]),
+                                   FileDiff.Line(text: "        let filteredCoverage = coverage.filteringFiles(notOn: files)", changeType: .unchanged),
+                                   FileDiff.Line(text: "", changeType: .unchanged),
+                                   FileDiff.Line(text: "        return Report(messages: [], sections: [ReportSection(fromSPM: filteredCoverage, fileManager: fileManager)])", changeType: .removed),
+                                   FileDiff.Line(text: "        if filteredCoverage.data.contains(where: { !$0.files.isEmpty }) {", changeType: .added),
+                                   FileDiff.Line(text: "            return Report(messages: [], sections: [ReportSection(fromSPM: filteredCoverage, fileManager: fileManager)])", changeType: .added),
+                                   FileDiff.Line(text: "        } else {", changeType: .added),
+                                   FileDiff.Line(text: "            return Report(messages: [], sections: [])", changeType: .added),
+                                   FileDiff.Line(text: "        }", changeType: .added),
+                                   FileDiff.Line(text: "    }", changeType: .unchanged),
+                                   FileDiff.Line(text: "}", changeType: .unchanged),
+                               ]),
+                           ]),
                            FileDiff(parsedHeader: .init(
                                filePath: "Sources/DangerSwiftCoverage/ShellOutExecutor1.swift",
                                change: .renamed(oldPath: "Sources/DangerSwiftCoverage/ShellOutExecutor.swift")
                            ),
-                                    hunks: [
+                           hunks: [
                                .init(oldLineStart: 3, oldLineSpan: 6, newLineStart: 3, newLineSpan: 8, lines: [
                                    FileDiff.Line(text: "", changeType: .unchanged),
                                    FileDiff.Line(text: "protocol ShellOutExecuting {", changeType: .unchanged),
@@ -110,7 +110,7 @@ final class GitDiffTests: XCTestCase {
                                    FileDiff.Line(text: "", changeType: .unchanged),
                                    FileDiff.Line(text: "struct ShellOutExecutor: ShellOutExecuting {", changeType: .unchanged),
                                ]),
-                                    ]),
+                           ]),
                        ])
     }
 
@@ -168,6 +168,8 @@ final class GitDiffTests: XCTestCase {
             ]),
         ]))
     }
+
+    // swiftformat:disable all
 
     var testDiff: String {
         """

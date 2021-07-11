@@ -97,6 +97,7 @@
         // to regenerate.
         static let __allTests__SPMDangerTests = [
             ("testItAcceptsAnythingStartsWithDangerDeps", testItAcceptsAnythingStartsWithDangerDeps),
+            ("testItAcceptsAnythingStartsWithDangerDepsButIsDividedInMultipleLines", testItAcceptsAnythingStartsWithDangerDepsButIsDividedInMultipleLines),
             ("testItBuildsTheDependencies", testItBuildsTheDependencies),
             ("testItReturnsFalseWhenThePackageHasNotTheDangerLib", testItReturnsFalseWhenThePackageHasNotTheDangerLib),
             ("testItReturnsFalseWhenThereIsNoPackage", testItReturnsFalseWhenThereIsNoPackage),
@@ -105,6 +106,7 @@
             ("testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib", testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib),
             ("testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsTheDangerLib", testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsTheDangerLib),
             ("testItReturnsTrueWhenThePackageHasTheDangerLib", testItReturnsTrueWhenThePackageHasTheDangerLib),
+            ("testItReturnsTrueWhenThePackageHasTheDangerLibDividedInMultipleLines", testItReturnsTrueWhenThePackageHasTheDangerLibDividedInMultipleLines),
         ]
     }
 

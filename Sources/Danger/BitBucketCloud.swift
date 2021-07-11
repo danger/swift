@@ -19,8 +19,8 @@ public struct BitBucketCloud: Decodable {
     public let pr: PullRequest
 }
 
-extension BitBucketCloud {
-    public struct PullRequest: Decodable {
+public extension BitBucketCloud {
+    struct PullRequest: Decodable {
         public enum State: String, Decodable {
             case declined = "DECLINED"
             case merged = "MERGED"
@@ -93,8 +93,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct MergeRef: Decodable {
+public extension BitBucketCloud {
+    struct MergeRef: Decodable {
         private struct Branch: Decodable, Equatable {
             let name: String
         }
@@ -120,8 +120,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct Repo: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct Repo: Decodable, Equatable {
         private enum CodingKeys: String, CodingKey {
             case fullName = "full_name"
             case name
@@ -137,8 +137,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct User: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct User: Decodable, Equatable {
         private enum CodingKeys: String, CodingKey {
             case accountId = "account_id"
             case displayName = "display_name"
@@ -160,8 +160,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct Commit: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct Commit: Decodable, Equatable {
         public struct Author: Decodable, Equatable {
             /// Format: `Foo Bar <foo@bar.com>`
             let raw: String
@@ -189,8 +189,8 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct Comment: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct Comment: Decodable, Equatable {
         public struct Inline: Decodable, Equatable {
             public let from: Int?
             public let to: Int? // swiftlint:disable:this identifier_name
@@ -231,16 +231,16 @@ extension BitBucketCloud {
     }
 }
 
-extension BitBucketCloud {
-    public struct Content: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct Content: Decodable, Equatable {
         public let html: String
         public let markup: String
         public let raw: String
     }
 }
 
-extension BitBucketCloud {
-    public struct Activity: Decodable, Equatable {
+public extension BitBucketCloud {
+    struct Activity: Decodable, Equatable {
         public let comment: Comment?
     }
 }

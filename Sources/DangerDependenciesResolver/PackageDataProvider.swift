@@ -43,7 +43,7 @@ struct PackageDataProvider: PackageDataProviding {
 
     func latestMajorVersionForPackage(at url: URL) throws -> Int {
         guard let releases = try? versions(for: url),
-            let latestVersion = releases.sorted().last
+              let latestVersion = releases.sorted().last
         else {
             throw Errors.failedToResolveLatestVersion(url)
         }

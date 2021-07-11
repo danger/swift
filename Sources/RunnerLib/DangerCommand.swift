@@ -21,7 +21,7 @@ public enum DangerCommand: String, CaseIterable {
     }
 
     public static var commandsListText: String {
-        allCases.reduce("") { (result, command) -> String in
+        allCases.reduce("") { result, command -> String in
             result + command.rawValue + "\t" + command.commandDescription + "\n"
         }
     }

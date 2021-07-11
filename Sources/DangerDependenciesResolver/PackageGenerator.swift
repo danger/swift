@@ -49,7 +49,7 @@ struct PackageGenerator {
 
         if !packages.isEmpty {
             description.append("\"")
-            description.append(packages.map { $0.name }.joined(separator: "\", \""))
+            description.append(packages.map(\.name).joined(separator: "\", \""))
             description.append("\"")
         }
 
