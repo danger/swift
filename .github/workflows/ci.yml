@@ -10,7 +10,7 @@ on:
 jobs:
   test-on-macos:
     name: Test on macOS
-    runs-on: macOS-latest
+    runs-on: macOS-11
     strategy:
       matrix:
         xcode: [11.4, 12.3, 12.5]
