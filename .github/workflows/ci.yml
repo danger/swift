@@ -29,7 +29,7 @@ jobs:
 
     - run: swift test
 
-    - run: swift run danger-swift ci --verbose
+    - run: swift run danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -55,7 +55,7 @@ jobs:
 
     - run: swift test
 
-    - run: swift run danger-swift ci --verbose
+    - run: swift run danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -81,7 +81,7 @@ jobs:
 
     - run: swift test
 
-    - run: swift run danger-swift ci --verbose
+    - run: swift run danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -107,7 +107,7 @@ jobs:
 
     - run: make install
 
-    - run: danger-swift ci --verbose
+    - run: danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -133,7 +133,7 @@ jobs:
 
     - run: make install
 
-    - run: danger-swift ci --verbose
+    - run: danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -161,7 +161,7 @@ jobs:
 
     - run: make install
 
-    - run: danger-swift ci --verbose
+    - run: danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
