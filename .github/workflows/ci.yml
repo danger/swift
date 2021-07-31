@@ -13,7 +13,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
       matrix:
-        xcode: [11.4, 12.3]
+        xcode: ["11.4", "12.3"]
     steps:
     - uses: actions/checkout@v2
 
@@ -39,7 +39,7 @@ jobs:
     runs-on: macOS-11
     strategy:
       matrix:
-        xcode: [12.5, 13.0]
+        xcode: ["12.5", "13.0"]
     steps:
     - uses: actions/checkout@v2
 
@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        swift: [5.2.4, 5.3.3, 5.4.1]
+        swift: ["5.2.4", "5.3.3", "5.4.1"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -91,7 +91,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
       matrix:
-        xcode: [11.4, 12.3]
+        xcode: ["11.4", "12.3"]
     steps:
     - uses: actions/checkout@v2
 
@@ -117,7 +117,7 @@ jobs:
     runs-on: macOS-11
     strategy:
       matrix:
-        xcode: [12.5, 13.0]
+        xcode: ["12.5", "13.0"]
     steps:
     - uses: actions/checkout@v2
 
@@ -143,7 +143,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        swift: [5.2.4, 5.3.3, 5.4.1]
+        swift: ["5.2.4", "5.3.3", "5.4.1"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
