@@ -20,15 +20,6 @@
         }
       },
       {
-        "package": "Curry",
-        "repositoryURL": "https://github.com/thoughtbot/Curry.git",
-        "state": {
-          "branch": null,
-          "revision": "4331dd50bc1db007db664a23f32e6f3df93d4e1a",
-          "version": "4.0.2"
-        }
-      },
-      {
         "package": "GraphViz",
         "repositoryURL": "https://github.com/SwiftDocOrg/GraphViz.git",
         "state": {
@@ -65,30 +56,12 @@
         }
       },
       {
-        "package": "MarkdownGenerator",
-        "repositoryURL": "https://github.com/eneko/MarkdownGenerator.git",
-        "state": {
-          "branch": null,
-          "revision": "1fc31be6b66245187c3f87f35d86b6aeac6dfe7f",
-          "version": "0.5.0"
-        }
-      },
-      {
         "package": "Markup",
         "repositoryURL": "https://github.com/SwiftDocOrg/Markup.git",
         "state": {
           "branch": null,
           "revision": "029ad8c1115ab32b7c20ab52eb092fbc030deb17",
           "version": "0.0.4"
-        }
-      },
-      {
-        "package": "ModuleInterface",
-        "repositoryURL": "https://github.com/minuscorp/ModuleInterface",
-        "state": {
-          "branch": "v0.0.4",
-          "revision": "abae15b50bad512a77c1dfea3f205731d3542a19",
-          "version": null
         }
       },
       {
@@ -128,15 +101,6 @@
         }
       },
       {
-        "package": "Rainbow",
-        "repositoryURL": "https://github.com/onevcat/Rainbow",
-        "state": {
-          "branch": null,
-          "revision": "626c3d4b6b55354b4af3aa309f998fae9b31a3d9",
-          "version": "3.2.0"
-        }
-      },
-      {
         "package": "RequestKit",
         "repositoryURL": "https://github.com/nerdishbynature/RequestKit.git",
         "state": {
@@ -161,15 +125,6 @@
           "branch": null,
           "revision": "e1577acf2b6e90086d01a6d5e2b8efdaae033568",
           "version": "2.3.0"
-        }
-      },
-      {
-        "package": "SourceDocs",
-        "repositoryURL": "https://github.com/eneko/SourceDocs.git",
-        "state": {
-          "branch": null,
-          "revision": "dfa6fdae84c555264ad9795dcb7d629339191c01",
-          "version": "0.6.1"
         }
       },
       {
@@ -326,15 +281,6 @@
         }
       },
       {
-        "package": "System",
-        "repositoryURL": "https://github.com/eneko/System.git",
-        "state": {
-          "branch": null,
-          "revision": "07424d234b23ce8ce4637ddab1beb6ef945903ea",
-          "version": "0.3.0"
-        }
-      },
-      {
         "package": "Version",
         "repositoryURL": "https://github.com/mxcl/Version",
         "state": {
@@ -345,7 +291,7 @@
       },
       {
         "package": "Yams",
-        "repositoryURL": "https://github.com/jpsim/Yams.git",
+        "repositoryURL": "https://github.com/jpsim/Yams",
         "state": {
           "branch": null,
           "revision": "c947a306d2e80ecb2c0859047b35c73b8e1ca27f",
