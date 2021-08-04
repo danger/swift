@@ -127,7 +127,7 @@ public struct DangerUtils {
         return result
     }
 
-    let environment = Environment()
+    public let environment = Environment()
 }
 
 extension DangerUtils {
