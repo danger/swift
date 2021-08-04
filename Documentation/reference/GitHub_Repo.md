@@ -1,7 +1,7 @@
 # GitHub.Repo
 
 ``` swift
-public struct Repo: Decodable, Equatable 
+struct Repo:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Repo: Decodable, Equatable
 Generic UUID.
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `name`
@@ -23,7 +23,7 @@ public let id: Int
 The name of the repo, e.g. "danger-swift".
 
 ``` swift
-public let name: String
+let name:​ String
 ```
 
 ### `fullName`
@@ -31,7 +31,7 @@ public let name: String
 The full name of the owner + repo, e.g. "Danger/danger-swift"
 
 ``` swift
-public let fullName: String
+let fullName:​ String
 ```
 
 ### `owner`
@@ -39,7 +39,7 @@ public let fullName: String
 The owner of the repo.
 
 ``` swift
-public let owner: User
+let owner:​ User
 ```
 
 ### `isPrivate`
@@ -47,7 +47,7 @@ public let owner: User
 A boolean stating whether the repo is publicly accessible.
 
 ``` swift
-public let isPrivate: Bool
+let isPrivate:​ Bool
 ```
 
 ### `description`
@@ -55,7 +55,7 @@ public let isPrivate: Bool
 A textual description of the repo.
 
 ``` swift
-public let description: String?
+let description:​ String?
 ```
 
 ### `isFork`
@@ -63,7 +63,7 @@ public let description: String?
 A boolean stating whether the repo is a fork.
 
 ``` swift
-public let isFork: Bool
+let isFork:​ Bool
 ```
 
 ### `htmlURL`
@@ -71,5 +71,5 @@ public let isFork: Bool
 The root web URL for the repo, e.g. https:​//github.com/artsy/emission
 
 ``` swift
-public let htmlURL: String
+let htmlURL:​ String
 ```

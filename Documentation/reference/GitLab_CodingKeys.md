@@ -1,7 +1,7 @@
 # GitLab.CodingKeys
 
 ``` swift
-public enum CodingKeys: String, CodingKey 
+public enum CodingKeys
 ```
 
 ## Inheritance
@@ -13,7 +13,7 @@ public enum CodingKeys: String, CodingKey
 ### `mergeRequest`
 
 ``` swift
-case mergeRequest = "mr"
+case mergeRequest
 ```
 
 ### `metadata`

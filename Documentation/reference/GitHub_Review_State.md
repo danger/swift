@@ -1,7 +1,7 @@
 # GitHub.Review.State
 
 ``` swift
-public enum State: String, Decodable 
+public enum State
 ```
 
 ## Inheritance
@@ -13,29 +13,29 @@ public enum State: String, Decodable
 ### `approved`
 
 ``` swift
-case approved = "APPROVED"
+case approved
 ```
 
 ### `requestedChanges`
 
 ``` swift
-case requestedChanges = "CHANGES_REQUESTED"
+case requestedChanges
 ```
 
 ### `comment`
 
 ``` swift
-case comment = "COMMENTED"
+case comment
 ```
 
 ### `pending`
 
 ``` swift
-case pending = "PENDING"
+case pending
 ```
 
 ### `dismissed`
 
 ``` swift
-case dismissed = "DISMISSED"
+case dismissed
 ```

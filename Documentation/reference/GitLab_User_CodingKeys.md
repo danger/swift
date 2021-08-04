@@ -1,7 +1,7 @@
 # GitLab.User.CodingKeys
 
 ``` swift
-public enum CodingKeys: String, CodingKey 
+public enum CodingKeys
 ```
 
 ## Inheritance
@@ -13,7 +13,7 @@ public enum CodingKeys: String, CodingKey
 ### `avatarUrl`
 
 ``` swift
-case avatarUrl = "avatar_url"
+case avatarUrl
 ```
 
 ### `id`
@@ -43,5 +43,5 @@ case username
 ### `webUrl`
 
 ``` swift
-case webUrl = "web_url"
+case webUrl
 ```

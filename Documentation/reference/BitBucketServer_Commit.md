@@ -1,7 +1,7 @@
 # BitBucketServer.Commit
 
 ``` swift
-public struct Commit: Decodable, Equatable 
+struct Commit:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Commit: Decodable, Equatable
 The SHA for the commit
 
 ``` swift
-public let id: String
+let id:​ String
 ```
 
 ### `displayId`
@@ -23,7 +23,7 @@ public let id: String
 The shortened SHA for the commit
 
 ``` swift
-public let displayId: String
+let displayId:​ String
 ```
 
 ### `author`
@@ -31,7 +31,7 @@ public let displayId: String
 The author of the commit, assumed to be the person who wrote the code.
 
 ``` swift
-public let author: User
+let author:​ User
 ```
 
 ### `authorTimestamp`
@@ -39,7 +39,7 @@ public let author: User
 The UNIX timestamp for when the commit was authored
 
 ``` swift
-public let authorTimestamp: Int
+let authorTimestamp:​ Int
 ```
 
 ### `committer`
@@ -47,7 +47,7 @@ public let authorTimestamp: Int
 The author of the commit, assumed to be the person who commited/merged the code into a project.
 
 ``` swift
-public let committer: User?
+let committer:​ User?
 ```
 
 ### `committerTimestamp`
@@ -55,7 +55,7 @@ public let committer: User?
 When the commit was commited to the project
 
 ``` swift
-public let committerTimestamp: Int?
+let committerTimestamp:​ Int?
 ```
 
 ### `message`
@@ -63,7 +63,7 @@ public let committerTimestamp: Int?
 The commit's message
 
 ``` swift
-public let message: String
+let message:​ String
 ```
 
 ### `parents`
@@ -71,5 +71,5 @@ public let message: String
 The commit's parents
 
 ``` swift
-public let parents: [Parent]
+let parents:​ [Parent]
 ```

@@ -1,7 +1,7 @@
 # FileDiff
 
 ``` swift
-public struct FileDiff: Equatable, CustomStringConvertible 
+public struct FileDiff:​ Equatable, CustomStringConvertible
 ```
 
 ## Inheritance
@@ -13,17 +13,17 @@ public struct FileDiff: Equatable, CustomStringConvertible
 ### `filePath`
 
 ``` swift
-public var filePath: String 
+var filePath:​ String
 ```
 
 ### `changes`
 
 ``` swift
-public var changes: Changes 
+var changes:​ Changes
 ```
 
 ### `description`
 
 ``` swift
-public var description: String 
+var description:​ String
 ```

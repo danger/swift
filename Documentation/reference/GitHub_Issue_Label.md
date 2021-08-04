@@ -1,7 +1,7 @@
 # GitHub.Issue.Label
 
 ``` swift
-public struct Label: Decodable, Equatable 
+public struct Label:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Label: Decodable, Equatable
 The id number of this label.
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `url`
@@ -23,7 +23,7 @@ public let id: Int
 The URL that links to this label.
 
 ``` swift
-public let url: String
+let url:​ String
 ```
 
 ### `name`
@@ -31,7 +31,7 @@ public let url: String
 The name of the label.
 
 ``` swift
-public let name: String
+let name:​ String
 ```
 
 ### `color`
@@ -39,5 +39,5 @@ public let name: String
 The color associated with this label.
 
 ``` swift
-public let color: String
+let color:​ String
 ```

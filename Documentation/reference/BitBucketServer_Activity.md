@@ -1,7 +1,7 @@
 # BitBucketServer.Activity
 
 ``` swift
-public struct Activity: Decodable, Equatable 
+struct Activity:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Activity: Decodable, Equatable
 The activity's ID
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `createdAt`
@@ -23,7 +23,7 @@ public let id: Int
 Date activity created as number of mili seconds since the unix epoch
 
 ``` swift
-public let createdAt: Int
+let createdAt:​ Int
 ```
 
 ### `user`
@@ -31,7 +31,7 @@ public let createdAt: Int
 The user that triggered the activity.
 
 ``` swift
-public let user: User
+let user:​ User
 ```
 
 ### `action`
@@ -39,7 +39,7 @@ public let user: User
 The action the activity describes (e.g. "COMMENTED").
 
 ``` swift
-public let action: String
+let action:​ String
 ```
 
 ### `commentAction`
@@ -47,5 +47,5 @@ public let action: String
 In case the action was "COMMENTED" it will state the command specific action (e.g. "CREATED").
 
 ``` swift
-public let commentAction: String?
+let commentAction:​ String?
 ```

@@ -1,7 +1,7 @@
 # GitLab.MergeRequest.Pipeline.CodingKeys
 
 ``` swift
-public enum CodingKeys: String, CodingKey 
+public enum CodingKeys
 ```
 
 ## Inheritance
@@ -37,5 +37,5 @@ case status
 ### `webUrl`
 
 ``` swift
-case webUrl = "web_url"
+case webUrl
 ```

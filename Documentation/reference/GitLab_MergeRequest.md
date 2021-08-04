@@ -1,7 +1,7 @@
 # GitLab.MergeRequest
 
 ``` swift
-public struct MergeRequest: Decodable, Equatable 
+struct MergeRequest:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -13,245 +13,251 @@ public struct MergeRequest: Decodable, Equatable
 ### `allowCollaboration`
 
 ``` swift
-public let allowCollaboration: Bool?
+let allowCollaboration:​ Bool?
 ```
 
 ### `allowMaintainerToPush`
 
 ``` swift
-public let allowMaintainerToPush: Bool?
+let allowMaintainerToPush:​ Bool?
 ```
 
 ### `approvalsBeforeMerge`
 
 ``` swift
-public let approvalsBeforeMerge: Int?
+let approvalsBeforeMerge:​ Int?
 ```
 
 ### `assignee`
 
 ``` swift
-public let assignee: User?
+let assignee:​ User?
 ```
 
 ### `assignees`
 
 ``` swift
-public let assignees: [User]?
+let assignees:​ [User]?
 ```
 
 ### `author`
 
 ``` swift
-public let author: User
+let author:​ User
 ```
 
 ### `changesCount`
 
 ``` swift
-public let changesCount: String
+let changesCount:​ String
 ```
 
 ### `closedAt`
 
 ``` swift
-public let closedAt: Date?
+let closedAt:​ Date?
 ```
 
 ### `closedBy`
 
 ``` swift
-public let closedBy: User?
+let closedBy:​ User?
 ```
 
 ### `description`
 
 ``` swift
-public let description: String
+let description:​ String
 ```
 
 ### `diffRefs`
 
 ``` swift
-public let diffRefs: DiffRefs
+let diffRefs:​ DiffRefs
 ```
 
 ### `downvotes`
 
 ``` swift
-public let downvotes: Int
+let downvotes:​ Int
 ```
 
 ### `firstDeployedToProductionAt`
 
 ``` swift
-public let firstDeployedToProductionAt: Date?
+let firstDeployedToProductionAt:​ Date?
 ```
 
 ### `forceRemoveSourceBranch`
 
 ``` swift
-public let forceRemoveSourceBranch: Bool?
+let forceRemoveSourceBranch:​ Bool?
 ```
 
 ### `id`
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `iid`
 
 ``` swift
-public let iid: Int
+let iid:​ Int
 ```
 
 ### `latestBuildFinishedAt`
 
 ``` swift
-public let latestBuildFinishedAt: Date?
+let latestBuildFinishedAt:​ Date?
 ```
 
 ### `latestBuildStartedAt`
 
 ``` swift
-public let latestBuildStartedAt: Date?
+let latestBuildStartedAt:​ Date?
 ```
 
 ### `labels`
 
 ``` swift
-public let labels: [String]
+let labels:​ [String]
 ```
 
 ### `mergeCommitSha`
 
 ``` swift
-public let mergeCommitSha: String?
+let mergeCommitSha:​ String?
 ```
 
 ### `mergedAt`
 
 ``` swift
-public let mergedAt: Date?
+let mergedAt:​ Date?
 ```
 
 ### `mergedBy`
 
 ``` swift
-public let mergedBy: User?
+let mergedBy:​ User?
 ```
 
 ### `mergeOnPipelineSuccess`
 
 ``` swift
-public let mergeOnPipelineSuccess: Bool
+let mergeOnPipelineSuccess:​ Bool
 ```
 
 ### `milestone`
 
 ``` swift
-public let milestone: Milestone?
+let milestone:​ Milestone?
 ```
 
 ### `pipeline`
 
 ``` swift
-public let pipeline: Pipeline?
+let pipeline:​ Pipeline?
 ```
 
 ### `projectId`
 
 ``` swift
-public let projectId: Int
+let projectId:​ Int
 ```
 
 ### `sha`
 
 ``` swift
-public let sha: String
+let sha:​ String
 ```
 
 ### `shouldRemoveSourceBranch`
 
 ``` swift
-public let shouldRemoveSourceBranch: Bool?
+let shouldRemoveSourceBranch:​ Bool?
 ```
 
 ### `sourceBranch`
 
 ``` swift
-public let sourceBranch: String
+let sourceBranch:​ String
 ```
 
 ### `sourceProjectId`
 
 ``` swift
-public let sourceProjectId: Int
+let sourceProjectId:​ Int
 ```
 
 ### `state`
 
 ``` swift
-public let state: State
+let state:​ State
 ```
 
 ### `subscribed`
 
 ``` swift
-public let subscribed: Bool
+let subscribed:​ Bool
 ```
 
 ### `targetBranch`
 
 ``` swift
-public let targetBranch: String
+let targetBranch:​ String
 ```
 
 ### `targetProjectId`
 
 ``` swift
-public let targetProjectId: Int
+let targetProjectId:​ Int
 ```
 
 ### `timeStats`
 
 ``` swift
-public let timeStats: TimeStats
+let timeStats:​ TimeStats
 ```
 
 ### `title`
 
 ``` swift
-public let title: String
+let title:​ String
 ```
 
 ### `upvotes`
 
 ``` swift
-public let upvotes: Int
+let upvotes:​ Int
 ```
 
 ### `userNotesCount`
 
 ``` swift
-public let userNotesCount: Int
+let userNotesCount:​ Int
 ```
 
 ### `webUrl`
 
 ``` swift
-public let webUrl: String
+let webUrl:​ String
 ```
 
 ### `workInProgress`
 
 ``` swift
-public let workInProgress: Bool
+let workInProgress:​ Bool
+```
+
+### `userMergeData`
+
+``` swift
+let userMergeData:​ UserMergeData
 ```
 
 ### `userCanMerge`
 
 ``` swift
-public var userCanMerge: Bool 
+var userCanMerge:​ Bool
 ```

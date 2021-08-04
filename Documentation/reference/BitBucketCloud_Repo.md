@@ -1,7 +1,7 @@
 # BitBucketCloud.Repo
 
 ``` swift
-public struct Repo: Decodable, Equatable 
+struct Repo:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -13,13 +13,13 @@ public struct Repo: Decodable, Equatable
 ### `fullName`
 
 ``` swift
-public let fullName: String
+let fullName:​ String
 ```
 
 ### `name`
 
 ``` swift
-public let name: String
+let name:​ String
 ```
 
 ### `uuid`
@@ -27,5 +27,5 @@ public let name: String
 The uuid of the repository
 
 ``` swift
-public let uuid: String
+let uuid:​ String
 ```

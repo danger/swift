@@ -1,7 +1,7 @@
 # BitBucketCloud.Comment
 
 ``` swift
-public struct Comment: Decodable, Equatable 
+struct Comment:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Comment: Decodable, Equatable
 Content of the comment
 
 ``` swift
-public let content: Content
+let content:​ Content
 ```
 
 ### `createdOn`
@@ -23,7 +23,7 @@ public let content: Content
 When the comment was created
 
 ``` swift
-public let createdOn: Date
+let createdOn:​ Date
 ```
 
 ### `deleted`
@@ -31,25 +31,25 @@ public let createdOn: Date
 Was the comment deleted?
 
 ``` swift
-public let deleted: Bool
+let deleted:​ Bool
 ```
 
 ### `id`
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `inline`
 
 ``` swift
-public let inline: Inline?
+let inline:​ Inline?
 ```
 
 ### `type`
 
 ``` swift
-public let type: String
+let type:​ String
 ```
 
 ### `updatedOn`
@@ -57,7 +57,7 @@ public let type: String
 When the comment was updated
 
 ``` swift
-public let updatedOn: Date
+let updatedOn:​ Date
 ```
 
 ### `user`
@@ -65,5 +65,5 @@ public let updatedOn: Date
 The user that created the comment
 
 ``` swift
-public let user: User
+let user:​ User
 ```

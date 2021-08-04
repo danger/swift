@@ -1,7 +1,7 @@
 # GitLab.MergeRequest.Milestone.CodingKeys
 
 ``` swift
-public enum CodingKeys: String, CodingKey 
+public enum CodingKeys
 ```
 
 ## Inheritance
@@ -13,7 +13,7 @@ public enum CodingKeys: String, CodingKey
 ### `createdAt`
 
 ``` swift
-case createdAt = "created_at"
+case createdAt
 ```
 
 ### `description`
@@ -25,7 +25,7 @@ case description
 ### `dueDate`
 
 ``` swift
-case dueDate = "due_date"
+case dueDate
 ```
 
 ### `id`
@@ -43,19 +43,19 @@ case iid
 ### `projectId`
 
 ``` swift
-case projectId = "project_id"
+case projectId
 ```
 
 ### `groupId`
 
 ``` swift
-case groupId = "group_id"
+case groupId
 ```
 
 ### `startDate`
 
 ``` swift
-case startDate = "start_date"
+case startDate
 ```
 
 ### `state`
@@ -73,11 +73,11 @@ case title
 ### `updatedAt`
 
 ``` swift
-case updatedAt = "updated_at"
+case updatedAt
 ```
 
 ### `webUrl`
 
 ``` swift
-case webUrl = "web_url"
+case webUrl
 ```

@@ -1,7 +1,7 @@
 # GitHub.Milestone
 
 ``` swift
-public struct Milestone: Decodable, Equatable 
+struct Milestone:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Milestone: Decodable, Equatable
 The id number of this milestone
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `number`
@@ -23,7 +23,7 @@ public let id: Int
 The number of this milestone
 
 ``` swift
-public let number: Int
+let number:​ Int
 ```
 
 ### `state`
@@ -31,7 +31,7 @@ public let number: Int
 The state of this milestone:​ open, closed, all
 
 ``` swift
-public let state: State
+let state:​ State
 ```
 
 ### `title`
@@ -39,7 +39,7 @@ public let state: State
 The title of this milestone
 
 ``` swift
-public let title: String
+let title:​ String
 ```
 
 ### `description`
@@ -47,7 +47,7 @@ public let title: String
 The description of this milestone.
 
 ``` swift
-public let description: String?
+let description:​ String?
 ```
 
 ### `creator`
@@ -55,7 +55,7 @@ public let description: String?
 The user who created this milestone.
 
 ``` swift
-public let creator: User
+let creator:​ User
 ```
 
 ### `openIssues`
@@ -63,7 +63,7 @@ public let creator: User
 The number of open issues in this milestone
 
 ``` swift
-public let openIssues: Int
+let openIssues:​ Int
 ```
 
 ### `closedIssues`
@@ -71,7 +71,7 @@ public let openIssues: Int
 The number of closed issues in this milestone
 
 ``` swift
-public let closedIssues: Int
+let closedIssues:​ Int
 ```
 
 ### `createdAt`
@@ -79,7 +79,7 @@ public let closedIssues: Int
 The ISO8601 date string for when this milestone was created.
 
 ``` swift
-public let createdAt: Date
+let createdAt:​ Date
 ```
 
 ### `updatedAt`
@@ -87,7 +87,7 @@ public let createdAt: Date
 The ISO8601 date string for when this milestone was updated.
 
 ``` swift
-public let updatedAt: Date
+let updatedAt:​ Date
 ```
 
 ### `closedAt`
@@ -95,7 +95,7 @@ public let updatedAt: Date
 The ISO8601 date string for when this milestone was closed.
 
 ``` swift
-public let closedAt: Date?
+let closedAt:​ Date?
 ```
 
 ### `dueOn`
@@ -103,5 +103,5 @@ public let closedAt: Date?
 The ISO8601 date string for the due of this milestone.
 
 ``` swift
-public let dueOn: Date?
+let dueOn:​ Date?
 ```

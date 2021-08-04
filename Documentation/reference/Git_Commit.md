@@ -3,7 +3,7 @@
 A platform agnostic reference to a git commit.
 
 ``` swift
-public struct Commit: Equatable 
+struct Commit:​ Equatable
 ```
 
 ## Inheritance
@@ -17,7 +17,7 @@ public struct Commit: Equatable
 The SHA for the commit.
 
 ``` swift
-public let sha: String?
+let sha:​ String?
 ```
 
 ### `author`
@@ -25,7 +25,7 @@ public let sha: String?
 Who wrote the commit.
 
 ``` swift
-public let author: Author
+let author:​ Author
 ```
 
 ### `committer`
@@ -33,7 +33,7 @@ public let author: Author
 Who shipped the code.
 
 ``` swift
-public let committer: Author
+let committer:​ Author
 ```
 
 ### `message`
@@ -41,7 +41,7 @@ public let committer: Author
 The message for the commit.
 
 ``` swift
-public let message: String
+let message:​ String
 ```
 
 ### `parents`
@@ -49,7 +49,7 @@ public let message: String
 SHAs for the commit's parents.
 
 ``` swift
-public let parents: [String]?
+let parents:​ [String]?
 ```
 
 ### `url`
@@ -57,5 +57,5 @@ public let parents: [String]?
 The URL for the commit.
 
 ``` swift
-public let url: String?
+let url:​ String?
 ```

@@ -1,5 +1,5 @@
 # Danger()
 
 ``` swift
-public func Danger() -> DangerDSL 
+public func Danger() -> DangerDSL
 ```

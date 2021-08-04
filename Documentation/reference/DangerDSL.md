@@ -1,7 +1,7 @@
 # DangerDSL
 
 ``` swift
-public struct DangerDSL: Decodable 
+public struct DangerDSL:​ Decodable
 ```
 
 ## Inheritance
@@ -10,10 +10,10 @@ public struct DangerDSL: Decodable
 
 ## Initializers
 
-### `init(from:)`
+### `init(from:​)`
 
 ``` swift
-public init(from decoder: Decoder) throws 
+public init(from decoder:​ Decoder) throws
 ```
 
 ## Properties
@@ -21,37 +21,37 @@ public init(from decoder: Decoder) throws
 ### `git`
 
 ``` swift
-public let git: Git
+let git:​ Git
 ```
 
 ### `github`
 
 ``` swift
-public private(set) var github: GitHub!
+var github:​ GitHub!
 ```
 
 ### `bitbucketCloud`
 
 ``` swift
-public let bitbucketCloud: BitBucketCloud!
+let bitbucketCloud:​ BitBucketCloud!
 ```
 
 ### `bitbucketServer`
 
 ``` swift
-public let bitbucketServer: BitBucketServer!
+let bitbucketServer:​ BitBucketServer!
 ```
 
 ### `gitLab`
 
 ``` swift
-public let gitLab: GitLab!
+let gitLab:​ GitLab!
 ```
 
 ### `utils`
 
 ``` swift
-public let utils: DangerUtils
+let utils:​ DangerUtils
 ```
 
 ### `fails`
@@ -59,7 +59,7 @@ public let utils: DangerUtils
 Fails on the Danger report
 
 ``` swift
-public var fails: [Violation] 
+var fails:​ [Violation]
 ```
 
 ### `warnings`
@@ -67,7 +67,7 @@ public var fails: [Violation]
 Warnings on the Danger report
 
 ``` swift
-public var warnings: [Violation] 
+var warnings:​ [Violation]
 ```
 
 ### `messages`
@@ -75,7 +75,7 @@ public var warnings: [Violation]
 Messages on the Danger report
 
 ``` swift
-public var messages: [Violation] 
+var messages:​ [Violation]
 ```
 
 ### `markdowns`
@@ -83,95 +83,95 @@ public var messages: [Violation]
 Markdowns on the Danger report
 
 ``` swift
-public var markdowns: [Violation] 
+var markdowns:​ [Violation]
 ```
 
 ## Methods
 
-### `warn(_:)`
+### `warn(_:​)`
 
 Adds a warning message to the Danger report
 
 ``` swift
-public func warn(_ message: String) 
+func warn(_ message:​ String)
 ```
 
 #### Parameters
 
-  - message: A markdown-ish
+  - message:​ - message:​ A markdown-ish
 
-### `warn(message:file:line:)`
+### `warn(message:​file:​line:​)`
 
 Adds an inline warning message to the Danger report
 
 ``` swift
-public func warn(message: String, file: String, line: Int) 
+func warn(message:​ String, file:​ String, line:​ Int)
 ```
 
-### `fail(_:)`
+### `fail(_:​)`
 
 Adds a warning message to the Danger report
 
 ``` swift
-public func fail(_ message: String) 
+func fail(_ message:​ String)
 ```
 
 #### Parameters
 
-  - message: A markdown-ish
+  - message:​ - message:​ A markdown-ish
 
-### `fail(message:file:line:)`
+### `fail(message:​file:​line:​)`
 
 Adds an inline fail message to the Danger report
 
 ``` swift
-public func fail(message: String, file: String, line: Int) 
+func fail(message:​ String, file:​ String, line:​ Int)
 ```
 
-### `message(_:)`
+### `message(_:​)`
 
 Adds a warning message to the Danger report
 
 ``` swift
-public func message(_ message: String) 
+func message(_ message:​ String)
 ```
 
 #### Parameters
 
-  - message: A markdown-ish
+  - message:​ - message:​ A markdown-ish
 
-### `message(message:file:line:)`
+### `message(message:​file:​line:​)`
 
 Adds an inline message to the Danger report
 
 ``` swift
-public func message(message: String, file: String, line: Int) 
+func message(message:​ String, file:​ String, line:​ Int)
 ```
 
-### `markdown(_:)`
+### `markdown(_:​)`
 
 Adds a warning message to the Danger report
 
 ``` swift
-public func markdown(_ message: String) 
+func markdown(_ message:​ String)
 ```
 
 #### Parameters
 
-  - message: A markdown-ish
+  - message:​ - message:​ A markdown-ish
 
-### `markdown(message:file:line:)`
+### `markdown(message:​file:​line:​)`
 
 Adds an inline message to the Danger report
 
 ``` swift
-public func markdown(message: String, file: String, line: Int) 
+func markdown(message:​ String, file:​ String, line:​ Int)
 ```
 
-### `suggestion(code:file:line:)`
+### `suggestion(code:​file:​line:​)`
 
 Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
 
 ``` swift
-public func suggestion(code: String, file: String, line: Int) 
+func suggestion(code:​ String, file:​ String, line:​ Int)
 ```

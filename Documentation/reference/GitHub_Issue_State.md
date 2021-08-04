@@ -1,7 +1,7 @@
 # GitHub.Issue.State
 
 ``` swift
-public enum State: String, Decodable 
+public enum State
 ```
 
 ## Inheritance

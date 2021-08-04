@@ -1,7 +1,7 @@
 # SwiftLintViolation
 
 ``` swift
-public struct SwiftLintViolation: Decodable 
+public struct SwiftLintViolation:​ Decodable
 ```
 
 ## Inheritance
@@ -13,31 +13,31 @@ public struct SwiftLintViolation: Decodable
 ### `ruleID`
 
 ``` swift
-public internal(set) var ruleID: String
+var ruleID:​ String
 ```
 
 ### `reason`
 
 ``` swift
-public internal(set) var reason: String
+var reason:​ String
 ```
 
 ### `line`
 
 ``` swift
-public internal(set) var line: Int
+var line:​ Int
 ```
 
 ### `severity`
 
 ``` swift
-public internal(set) var severity: Severity
+var severity:​ Severity
 ```
 
 ### `file`
 
 ``` swift
-public internal(set) var file: String
+var file:​ String
 ```
 
 ## Methods
@@ -45,5 +45,5 @@ public internal(set) var file: String
 ### `toMarkdown()`
 
 ``` swift
-public func toMarkdown() -> String 
+public func toMarkdown() -> String
 ```

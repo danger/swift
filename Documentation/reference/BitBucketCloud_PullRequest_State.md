@@ -1,7 +1,7 @@
 # BitBucketCloud.PullRequest.State
 
 ``` swift
-public enum State: String, Decodable 
+public enum State
 ```
 
 ## Inheritance
@@ -13,23 +13,23 @@ public enum State: String, Decodable
 ### `declined`
 
 ``` swift
-case declined = "DECLINED"
+case declined
 ```
 
 ### `merged`
 
 ``` swift
-case merged = "MERGED"
+case merged
 ```
 
 ### `open`
 
 ``` swift
-case open = "OPEN"
+case open
 ```
 
 ### `suspended`
 
 ``` swift
-case suspended = "SUPERSEDED"
+case suspended
 ```

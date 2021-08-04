@@ -1,7 +1,7 @@
 # FileDiff.Changes
 
 ``` swift
-public enum Changes: Equatable 
+enum Changes
 ```
 
 ## Inheritance
@@ -13,23 +13,23 @@ public enum Changes: Equatable
 ### `created`
 
 ``` swift
-case created(addedLines: [String])
+case created(addedLines:​ [String])
 ```
 
 ### `deleted`
 
 ``` swift
-case deleted(deletedLines: [String])
+case deleted(deletedLines:​ [String])
 ```
 
 ### `modified`
 
 ``` swift
-case modified(hunks: [Hunk])
+case modified(hunks:​ [Hunk])
 ```
 
 ### `renamed`
 
 ``` swift
-case renamed(oldPath: String, hunks: [Hunk])
+case renamed(oldPath:​ String, hunks:​ [Hunk])
 ```

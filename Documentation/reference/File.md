@@ -1,15 +1,7 @@
-# Extensions on File
+# File
 
-## Properties
-
-### `fileType`
+A simple typealias for strings representing files
 
 ``` swift
-public var fileType: FileType? 
-```
-
-### `name`
-
-``` swift
-public var name: String 
+public typealias File = String
 ```

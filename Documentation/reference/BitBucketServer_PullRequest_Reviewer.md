@@ -3,7 +3,7 @@
 A user that reviewed the PR
 
 ``` swift
-public struct Reviewer: Decodable, Equatable 
+public struct Reviewer:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -17,7 +17,7 @@ public struct Reviewer: Decodable, Equatable
 The BitBucket Server User
 
 ``` swift
-public let user: User
+let user:​ User
 ```
 
 ### `approved`
@@ -25,7 +25,7 @@ public let user: User
 The approval status
 
 ``` swift
-public let approved: Bool
+let approved:​ Bool
 ```
 
 ### `lastReviewedCommit`
@@ -33,5 +33,5 @@ public let approved: Bool
 The commit SHA for the latest commit that was reviewed
 
 ``` swift
-public let lastReviewedCommit: String?
+let lastReviewedCommit:​ String?
 ```

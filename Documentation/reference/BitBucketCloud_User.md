@@ -1,7 +1,7 @@
 # BitBucketCloud.User
 
 ``` swift
-public struct User: Decodable, Equatable 
+struct User:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct User: Decodable, Equatable
 The acount id of the user
 
 ``` swift
-public let accountId: String?
+let accountId:​ String?
 ```
 
 ### `displayName`
@@ -23,7 +23,7 @@ public let accountId: String?
 The display name of user
 
 ``` swift
-public let displayName: String
+let displayName:​ String
 ```
 
 ### `nickname`
@@ -31,7 +31,7 @@ public let displayName: String
 The nick name of the user
 
 ``` swift
-public let nickname: String?
+let nickname:​ String?
 ```
 
 ### `uuid`
@@ -39,5 +39,5 @@ public let nickname: String?
 The uuid of the user
 
 ``` swift
-public let uuid: String
+let uuid:​ String
 ```

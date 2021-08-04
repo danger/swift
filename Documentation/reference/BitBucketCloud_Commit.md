@@ -1,7 +1,7 @@
 # BitBucketCloud.Commit
 
 ``` swift
-public struct Commit: Decodable, Equatable 
+struct Commit:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Commit: Decodable, Equatable
 The author of the commit, assumed to be the person who wrote the code.
 
 ``` swift
-public let author: Author
+let author:​ Author
 ```
 
 ### `date`
@@ -23,7 +23,7 @@ public let author: Author
 When the commit was commited to the project
 
 ``` swift
-public let date: Date
+let date:​ Date
 ```
 
 ### `hash`
@@ -31,7 +31,7 @@ public let date: Date
 The SHA for the commit
 
 ``` swift
-public let hash: String
+let hash:​ String
 ```
 
 ### `message`
@@ -39,5 +39,5 @@ public let hash: String
 The commit's message
 
 ``` swift
-public let message: String
+let message:​ String
 ```

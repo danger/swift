@@ -1,7 +1,7 @@
 # BitBucketMetadata
 
 ``` swift
-public struct BitBucketMetadata: Decodable, Equatable 
+public struct BitBucketMetadata:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct BitBucketMetadata: Decodable, Equatable
 The PR's ID
 
 ``` swift
-public var pullRequestID: String
+var pullRequestID:​ String
 ```
 
 ### `repoSlug`
@@ -23,5 +23,5 @@ public var pullRequestID: String
 The complete repo slug including project slug.
 
 ``` swift
-public var repoSlug: String
+var repoSlug:​ String
 ```

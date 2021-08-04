@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.10.2
+
 - Expose Danger environment from utils [@f-meloni][] - [#456](https://github.com/danger/swift/pull/456)
 - Support DangerDeps definition in multiple lines [@f-meloni][] - [#447](https://github.com/danger/swift/pull/447)
 

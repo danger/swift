@@ -1,7 +1,7 @@
 # GitLab.MergeRequest.TimeStats
 
 ``` swift
-public struct TimeStats: Decodable, Equatable 
+public struct TimeStats:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -13,23 +13,23 @@ public struct TimeStats: Decodable, Equatable
 ### `humanTimeEstimate`
 
 ``` swift
-public let humanTimeEstimate: Int?
+let humanTimeEstimate:​ Int?
 ```
 
 ### `humanTimeSpent`
 
 ``` swift
-public let humanTimeSpent: Int?
+let humanTimeSpent:​ Int?
 ```
 
 ### `timeEstimate`
 
 ``` swift
-public let timeEstimate: Int
+let timeEstimate:​ Int
 ```
 
 ### `totalTimeSpent`
 
 ``` swift
-public let totalTimeSpent: Int
+let totalTimeSpent:​ Int
 ```
