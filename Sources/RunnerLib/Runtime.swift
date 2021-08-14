@@ -20,7 +20,8 @@ public enum Runtime {
         ".build/debug", // Working in Xcode / CLI
         ".build/x86_64-unknown-linux/debug", // Danger Swift's CI
         ".build/release", // Testing prod
-        "/usr/local/lib/danger" // Homebrew installs lib stuff to here
+        "/usr/local/lib/danger", // Intel Homebrew installs lib stuff to here
+        "/opt/homebrew/lib/danger" // Apple Silicon Homebrew installs lib stuff to here
     ]
 
     /// Finds a path to add at runtime to the compiler, which links
