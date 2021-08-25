@@ -1,7 +1,7 @@
 # GitHub.PullRequest
 
 ``` swift
-public struct PullRequest: Decodable, Equatable 
+struct PullRequest:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct PullRequest: Decodable, Equatable
 The number of the pull request.
 
 ``` swift
-public let number: Int
+let number:​ Int
 ```
 
 ### `title`
@@ -23,7 +23,7 @@ public let number: Int
 The title of the pull request.
 
 ``` swift
-public let title: String
+let title:​ String
 ```
 
 ### `body`
@@ -31,7 +31,7 @@ public let title: String
 The markdown body message of the pull request.
 
 ``` swift
-public let body: String?
+let body:​ String?
 ```
 
 ### `user`
@@ -39,7 +39,7 @@ public let body: String?
 The user who submitted the pull request.
 
 ``` swift
-public let user: User
+let user:​ User
 ```
 
 ### `assignee`
@@ -47,7 +47,7 @@ public let user: User
 The user who is assigned to the pull request.
 
 ``` swift
-public let assignee: User?
+let assignee:​ User?
 ```
 
 ### `assignees`
@@ -55,7 +55,7 @@ public let assignee: User?
 The users who are assigned to the pull request.
 
 ``` swift
-public let assignees: [User]?
+let assignees:​ [User]?
 ```
 
 ### `createdAt`
@@ -63,7 +63,7 @@ public let assignees: [User]?
 The ISO8601 date string for when the pull request was created.
 
 ``` swift
-public let createdAt: Date
+let createdAt:​ Date
 ```
 
 ### `updatedAt`
@@ -71,7 +71,7 @@ public let createdAt: Date
 The ISO8601 date string for when the pull request was updated.
 
 ``` swift
-public let updatedAt: Date
+let updatedAt:​ Date
 ```
 
 ### `closedAt`
@@ -79,7 +79,7 @@ public let updatedAt: Date
 The ISO8601 date string for when the pull request was closed.
 
 ``` swift
-public let closedAt: Date?
+let closedAt:​ Date?
 ```
 
 ### `mergedAt`
@@ -87,7 +87,7 @@ public let closedAt: Date?
 The ISO8601 date string for when the pull request was merged.
 
 ``` swift
-public let mergedAt: Date?
+let mergedAt:​ Date?
 ```
 
 ### `head`
@@ -95,7 +95,7 @@ public let mergedAt: Date?
 The merge reference for the *other* repo.
 
 ``` swift
-public let head: MergeRef
+let head:​ MergeRef
 ```
 
 ### `base`
@@ -103,7 +103,7 @@ public let head: MergeRef
 The merge reference for *this* repo.
 
 ``` swift
-public let base: MergeRef
+let base:​ MergeRef
 ```
 
 ### `state`
@@ -111,7 +111,7 @@ public let base: MergeRef
 The state for the pull request:​ open, closed, locked, merged.
 
 ``` swift
-public let state: PullRequestState
+let state:​ PullRequestState
 ```
 
 ### `isLocked`
@@ -119,7 +119,7 @@ public let state: PullRequestState
 A boolean indicating if the pull request has been locked to contributors only.
 
 ``` swift
-public let isLocked: Bool
+let isLocked:​ Bool
 ```
 
 ### `isMerged`
@@ -127,7 +127,7 @@ public let isLocked: Bool
 A boolean indicating if the pull request has been merged.
 
 ``` swift
-public let isMerged: Bool?
+let isMerged:​ Bool?
 ```
 
 ### `commitCount`
@@ -135,7 +135,7 @@ public let isMerged: Bool?
 The number of commits in the pull request.
 
 ``` swift
-public let commitCount: Int?
+let commitCount:​ Int?
 ```
 
 ### `commentCount`
@@ -143,7 +143,7 @@ public let commitCount: Int?
 The number of comments in the pull request.
 
 ``` swift
-public let commentCount: Int?
+let commentCount:​ Int?
 ```
 
 ### `reviewCommentCount`
@@ -151,7 +151,7 @@ public let commentCount: Int?
 The number of review-specific comments in the pull request.
 
 ``` swift
-public let reviewCommentCount: Int?
+let reviewCommentCount:​ Int?
 ```
 
 ### `additions`
@@ -159,7 +159,7 @@ public let reviewCommentCount: Int?
 The number of added lines in the pull request.
 
 ``` swift
-public let additions: Int?
+let additions:​ Int?
 ```
 
 ### `deletions`
@@ -167,7 +167,7 @@ public let additions: Int?
 The number of deleted lines in the pull request.
 
 ``` swift
-public let deletions: Int?
+let deletions:​ Int?
 ```
 
 ### `changedFiles`
@@ -175,7 +175,7 @@ public let deletions: Int?
 The number of files changed in the pull request.
 
 ``` swift
-public let changedFiles: Int?
+let changedFiles:​ Int?
 ```
 
 ### `milestone`
@@ -183,7 +183,7 @@ public let changedFiles: Int?
 The milestone of the pull request
 
 ``` swift
-public let milestone: Milestone?
+let milestone:​ Milestone?
 ```
 
 ### `htmlUrl`
@@ -191,7 +191,7 @@ public let milestone: Milestone?
 The link back to this PR as user-facing
 
 ``` swift
-public let htmlUrl: String
+let htmlUrl:​ String
 ```
 
 ### `draft`
@@ -199,7 +199,7 @@ public let htmlUrl: String
 The draft state of the pull request
 
 ``` swift
-public let draft: Bool?
+let draft:​ Bool?
 ```
 
 ### `links`
@@ -207,5 +207,5 @@ public let draft: Bool?
 Possible link relations
 
 ``` swift
-public let links: Link
+let links:​ Link
 ```

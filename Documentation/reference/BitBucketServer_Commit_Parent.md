@@ -1,7 +1,7 @@
 # BitBucketServer.Commit.Parent
 
 ``` swift
-public struct Parent: Decodable, Equatable 
+public struct Parent:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Parent: Decodable, Equatable
 The SHA for the commit
 
 ``` swift
-public let id: String
+let id:​ String
 ```
 
 ### `displayId`
@@ -23,5 +23,5 @@ public let id: String
 The shortened SHA for the commit
 
 ``` swift
-public let displayId: String
+let displayId:​ String
 ```

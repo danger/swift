@@ -1,7 +1,7 @@
 # GitLab.MergeRequest.Milestone.ParentIdentifier
 
 ``` swift
-public enum ParentIdentifier: Equatable 
+public enum ParentIdentifier
 ```
 
 ## Inheritance
@@ -13,13 +13,13 @@ public enum ParentIdentifier: Equatable
 ### `group`
 
 ``` swift
-case group(Int)
+case group(:​ Int)
 ```
 
 ### `project`
 
 ``` swift
-case project(Int)
+case project(:​ Int)
 ```
 
 ## Properties
@@ -27,17 +27,17 @@ case project(Int)
 ### `id`
 
 ``` swift
-public var id: Int 
+var id:​ Int
 ```
 
 ### `isGroup`
 
 ``` swift
-public var isGroup: Bool 
+var isGroup:​ Bool
 ```
 
 ### `isProject`
 
 ``` swift
-public var isProject: Bool 
+var isProject:​ Bool
 ```

@@ -1,7 +1,7 @@
 # DangerUtils.Environment.Value
 
 ``` swift
-public enum Value: CustomStringConvertible, Equatable 
+enum Value
 ```
 
 ## Inheritance
@@ -13,13 +13,13 @@ public enum Value: CustomStringConvertible, Equatable
 ### `boolean`
 
 ``` swift
-case boolean(Bool)
+case boolean(:​ Bool)
 ```
 
 ### `string`
 
 ``` swift
-case string(String)
+case string(:​ String)
 ```
 
 ## Properties
@@ -27,5 +27,5 @@ case string(String)
 ### `description`
 
 ``` swift
-public var description: String 
+var description:​ String
 ```

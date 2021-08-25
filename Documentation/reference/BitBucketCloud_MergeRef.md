@@ -1,7 +1,7 @@
 # BitBucketCloud.MergeRef
 
 ``` swift
-public struct MergeRef: Decodable 
+struct MergeRef:​ Decodable
 ```
 
 ## Inheritance
@@ -10,10 +10,22 @@ public struct MergeRef: Decodable
 
 ## Properties
 
+### `branch`
+
+``` swift
+let branch:​ Branch
+```
+
 ### `branchName`
 
 ``` swift
-public var branchName: String 
+var branchName:​ String
+```
+
+### `commit`
+
+``` swift
+let commit:​ Commit
 ```
 
 ### `commitHash`
@@ -21,11 +33,11 @@ public var branchName: String
 Hash of the last commit
 
 ``` swift
-public var commitHash: String 
+var commitHash:​ String
 ```
 
 ### `repository`
 
 ``` swift
-public let repository: Repo
+let repository:​ Repo
 ```

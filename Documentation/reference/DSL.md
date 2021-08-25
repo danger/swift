@@ -1,7 +1,7 @@
 # DSL
 
 ``` swift
-public struct DSL: Decodable 
+public struct DSL:​ Decodable
 ```
 
 ## Inheritance
@@ -15,5 +15,5 @@ public struct DSL: Decodable
 The root danger import
 
 ``` swift
-public let danger: DangerDSL
+let danger:​ DangerDSL
 ```

@@ -1,7 +1,7 @@
 # BitBucketServer.User
 
 ``` swift
-public struct User: Decodable, Equatable 
+struct User:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct User: Decodable, Equatable
 The unique user ID
 
 ``` swift
-public let id: Int?
+let id:​ Int?
 ```
 
 ### `name`
@@ -23,7 +23,7 @@ public let id: Int?
 The name of the user
 
 ``` swift
-public let name: String
+let name:​ String
 ```
 
 ### `displayName`
@@ -31,7 +31,7 @@ public let name: String
 The name to use when referencing the user
 
 ``` swift
-public let displayName: String?
+let displayName:​ String?
 ```
 
 ### `emailAddress`
@@ -39,7 +39,7 @@ public let displayName: String?
 The email for the user
 
 ``` swift
-public let emailAddress: String?
+let emailAddress:​ String?
 ```
 
 ### `active`
@@ -47,7 +47,7 @@ public let emailAddress: String?
 Is the account active
 
 ``` swift
-public let active: Bool?
+let active:​ Bool?
 ```
 
 ### `slug`
@@ -55,7 +55,7 @@ public let active: Bool?
 The user's slug for URLs
 
 ``` swift
-public let slug: String?
+let slug:​ String?
 ```
 
 ### `type`
@@ -63,5 +63,5 @@ public let slug: String?
 The type of a user, "NORMAL" being a typical user3
 
 ``` swift
-public let type: String?
+let type:​ String?
 ```

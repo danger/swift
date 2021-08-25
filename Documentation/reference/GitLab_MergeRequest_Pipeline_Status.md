@@ -1,7 +1,7 @@
 # GitLab.MergeRequest.Pipeline.Status
 
 ``` swift
-public enum Status: String, Decodable 
+public enum Status
 ```
 
 ## Inheritance

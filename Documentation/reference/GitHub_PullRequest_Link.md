@@ -3,11 +3,11 @@
 Pull Requests have possible link relations
 
 ``` swift
-public struct Link: Decodable, Equatable 
+struct Link:​ Decodable, Equatable
 ```
 
-  - See:
-    [Reference](https://docs.github.com/en/rest/reference/pulls#link-relations)
+  - See:​
+    [Reference](https:​//docs.github.com/en/rest/reference/pulls#link-relations)
 
 ## Inheritance
 
@@ -20,7 +20,7 @@ public struct Link: Decodable, Equatable
 The API location of the Pull Request.
 
 ``` swift
-public let `self`: Relation
+let `self`:​ Relation
 ```
 
 ### `html`
@@ -28,7 +28,7 @@ public let `self`: Relation
 The HTML location of the Pull Request.
 
 ``` swift
-public let html: Relation
+let html:​ Relation
 ```
 
 ### `issue`
@@ -36,7 +36,7 @@ public let html: Relation
 The API location of the Pull Request's Issue.
 
 ``` swift
-public let issue: Relation
+let issue:​ Relation
 ```
 
 ### `comments`
@@ -44,7 +44,7 @@ public let issue: Relation
 The API location of the Pull Request's Issue comments.
 
 ``` swift
-public let comments: Relation
+let comments:​ Relation
 ```
 
 ### `reviewComments`
@@ -52,7 +52,7 @@ public let comments: Relation
 The API location of the Pull Request's Review comments.
 
 ``` swift
-public let reviewComments: Relation
+let reviewComments:​ Relation
 ```
 
 ### `reviewComment`
@@ -60,7 +60,7 @@ public let reviewComments: Relation
 The URL template to construct the API location for a Review comment in the Pull Request's repository.
 
 ``` swift
-public let reviewComment: Relation
+let reviewComment:​ Relation
 ```
 
 ### `commits`
@@ -68,7 +68,7 @@ public let reviewComment: Relation
 The API location of the Pull Request's commits.
 
 ``` swift
-public let commits: Relation
+let commits:​ Relation
 ```
 
 ### `statuses`
@@ -76,5 +76,5 @@ public let commits: Relation
 The API location of the Pull Request's commit statuses, which are the statuses of its head branch.
 
 ``` swift
-public let statuses: Relation
+let statuses:​ Relation
 ```

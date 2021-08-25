@@ -1,7 +1,7 @@
 # GitLab.MergeRequest.Milestone
 
 ``` swift
-public struct Milestone: Decodable, Equatable 
+public struct Milestone:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -10,10 +10,10 @@ public struct Milestone: Decodable, Equatable
 
 ## Initializers
 
-### `init(from:)`
+### `init(from:​)`
 
 ``` swift
-public init(from decoder: Decoder) throws 
+init(from decoder:​ Decoder) throws
 ```
 
 ## Properties
@@ -21,31 +21,31 @@ public init(from decoder: Decoder) throws
 ### `createdAt`
 
 ``` swift
-public let createdAt: Date
+let createdAt:​ Date
 ```
 
 ### `description`
 
 ``` swift
-public let description: String
+let description:​ String
 ```
 
 ### `dueDate`
 
 ``` swift
-public let dueDate: Date?
+let dueDate:​ Date?
 ```
 
 ### `id`
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `iid`
 
 ``` swift
-public let iid: Int
+let iid:​ Int
 ```
 
 ### `parent`
@@ -54,35 +54,35 @@ An unified identifier for [project milestone](https:​//docs.gitlab.com/ee/api/
 and [group milestone](https:​//docs.gitlab.com/ee/api/group_milestones.html)'s `group_id`.
 
 ``` swift
-public let parent: ParentIdentifier
+let parent:​ ParentIdentifier
 ```
 
 ### `startDate`
 
 ``` swift
-public let startDate: Date?
+let startDate:​ Date?
 ```
 
 ### `state`
 
 ``` swift
-public let state: State
+let state:​ State
 ```
 
 ### `title`
 
 ``` swift
-public let title: String
+let title:​ String
 ```
 
 ### `updatedAt`
 
 ``` swift
-public let updatedAt: Date
+let updatedAt:​ Date
 ```
 
 ### `webUrl`
 
 ``` swift
-public let webUrl: String
+let webUrl:​ String
 ```

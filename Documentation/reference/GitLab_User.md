@@ -1,7 +1,7 @@
 # GitLab.User
 
 ``` swift
-public struct User: Decodable, Equatable 
+struct User:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -13,35 +13,35 @@ public struct User: Decodable, Equatable
 ### `avatarUrl`
 
 ``` swift
-public let avatarUrl: String?
+let avatarUrl:​ String?
 ```
 
 ### `id`
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `name`
 
 ``` swift
-public let name: String
+let name:​ String
 ```
 
 ### `state`
 
 ``` swift
-public let state: State
+let state:​ State
 ```
 
 ### `username`
 
 ``` swift
-public let username: String
+let username:​ String
 ```
 
 ### `webUrl`
 
 ``` swift
-public let webUrl: String
+let webUrl:​ String
 ```

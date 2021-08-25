@@ -3,7 +3,7 @@
 The GitHub metadata for your pull request.
 
 ``` swift
-public struct GitHub: Decodable 
+public struct GitHub:​ Decodable
 ```
 
 ## Inheritance
@@ -15,35 +15,35 @@ public struct GitHub: Decodable
 ### `issue`
 
 ``` swift
-public let issue: Issue
+let issue:​ Issue
 ```
 
 ### `pullRequest`
 
 ``` swift
-public let pullRequest: PullRequest
+let pullRequest:​ PullRequest
 ```
 
 ### `commits`
 
 ``` swift
-public let commits: [Commit]
+let commits:​ [Commit]
 ```
 
 ### `reviews`
 
 ``` swift
-public let reviews: [Review]
+let reviews:​ [Review]
 ```
 
 ### `requestedReviewers`
 
 ``` swift
-public let requestedReviewers: RequestedReviewers
+let requestedReviewers:​ RequestedReviewers
 ```
 
 ### `api`
 
 ``` swift
-public internal(set) var api: Octokit!
+var api:​ Octokit!
 ```

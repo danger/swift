@@ -3,7 +3,7 @@
 Represents the payload for a PR's requested reviewers value.
 
 ``` swift
-public struct RequestedReviewers: Decodable, Equatable 
+struct RequestedReviewers:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -17,7 +17,7 @@ public struct RequestedReviewers: Decodable, Equatable
 The list of users of whom a review has been requested.
 
 ``` swift
-public let users: [User]
+let users:​ [User]
 ```
 
 ### `teams`
@@ -25,5 +25,5 @@ public let users: [User]
 The list of teams of whom a review has been requested.
 
 ``` swift
-public let teams: [Team]
+let teams:​ [Team]
 ```

@@ -1,7 +1,7 @@
 # BitBucketServer.Comment.Detail.Task
 
 ``` swift
-public struct Task: Decodable, Equatable 
+public struct Task:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Task: Decodable, Equatable
 The tasks ID
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `createdAt`
@@ -23,7 +23,7 @@ public let id: Int
 Date activity created as number of mili seconds since the unix epoch
 
 ``` swift
-public let createdAt: Int
+let createdAt:​ Int
 ```
 
 ### `text`
@@ -31,7 +31,7 @@ public let createdAt: Int
 The text of the task
 
 ``` swift
-public let text: String
+let text:​ String
 ```
 
 ### `state`
@@ -39,7 +39,7 @@ public let text: String
 The state of the task (e.g. "OPEN")
 
 ``` swift
-public let state: String
+let state:​ String
 ```
 
 ### `author`
@@ -47,5 +47,5 @@ public let state: String
 The author of the comment
 
 ``` swift
-public let author: User
+let author:​ User
 ```

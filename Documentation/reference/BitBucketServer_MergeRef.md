@@ -1,7 +1,7 @@
 # BitBucketServer.MergeRef
 
 ``` swift
-public struct MergeRef: Decodable, Equatable 
+struct MergeRef:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct MergeRef: Decodable, Equatable
 The branch name
 
 ``` swift
-public let id: String
+let id:​ String
 ```
 
 ### `displayId`
@@ -23,7 +23,7 @@ public let id: String
 The human readable branch name
 
 ``` swift
-public let displayId: String
+let displayId:​ String
 ```
 
 ### `latestCommit`
@@ -31,7 +31,7 @@ public let displayId: String
 The SHA for the latest commit
 
 ``` swift
-public let latestCommit: String
+let latestCommit:​ String
 ```
 
 ### `repository`
@@ -39,5 +39,5 @@ public let latestCommit: String
 Info of the associated repository
 
 ``` swift
-public let repository: Repo
+let repository:​ Repo
 ```

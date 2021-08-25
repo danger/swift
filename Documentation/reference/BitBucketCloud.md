@@ -1,7 +1,7 @@
 # BitBucketCloud
 
 ``` swift
-public struct BitBucketCloud: Decodable 
+public struct BitBucketCloud:​ Decodable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct BitBucketCloud: Decodable
 The activities such as OPENING, CLOSING, MERGING or UPDATING a pull request
 
 ``` swift
-public let activities: [Activity]
+let activities:​ [Activity]
 ```
 
 ### `comments`
@@ -23,7 +23,7 @@ public let activities: [Activity]
 The comments on the pull request
 
 ``` swift
-public let comments: [Comment]
+let comments:​ [Comment]
 ```
 
 ### `commits`
@@ -31,7 +31,7 @@ public let comments: [Comment]
 The commits associated with the pull request
 
 ``` swift
-public let commits: [Commit]
+let commits:​ [Commit]
 ```
 
 ### `metadata`
@@ -39,7 +39,7 @@ public let commits: [Commit]
 The pull request and repository metadata
 
 ``` swift
-public let metadata: BitBucketMetadata
+let metadata:​ BitBucketMetadata
 ```
 
 ### `pr`
@@ -47,5 +47,5 @@ public let metadata: BitBucketMetadata
 The PR metadata
 
 ``` swift
-public let pr: PullRequest
+let pr:​ PullRequest
 ```

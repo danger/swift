@@ -3,7 +3,7 @@
 A GitHub team.
 
 ``` swift
-public struct Team: Decodable, Equatable 
+struct Team:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -17,7 +17,7 @@ public struct Team: Decodable, Equatable
 The UUID for the team.
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `name`
@@ -25,5 +25,5 @@ public let id: Int
 The team name
 
 ``` swift
-public let name: String
+let name:​ String
 ```

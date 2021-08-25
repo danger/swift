@@ -1,7 +1,7 @@
 # BitBucketServer.Comment.Detail
 
 ``` swift
-public struct Detail: Decodable, Equatable 
+public struct Detail:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Detail: Decodable, Equatable
 The comment's id
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `version`
@@ -23,7 +23,7 @@ public let id: Int
 The comment's version
 
 ``` swift
-public let version: Int
+let version:​ Int
 ```
 
 ### `text`
@@ -31,7 +31,7 @@ public let version: Int
 The comment content
 
 ``` swift
-public let text: String
+let text:​ String
 ```
 
 ### `author`
@@ -39,7 +39,7 @@ public let text: String
 The author of the comment
 
 ``` swift
-public let author: User
+let author:​ User
 ```
 
 ### `createdAt`
@@ -47,7 +47,7 @@ public let author: User
 Date comment created as number of mili seconds since the unix epoch
 
 ``` swift
-public let createdAt: Int
+let createdAt:​ Int
 ```
 
 ### `updatedAt`
@@ -55,7 +55,7 @@ public let createdAt: Int
 Date comment updated as number of mili seconds since the unix epoch
 
 ``` swift
-public let updatedAt: Int
+let updatedAt:​ Int
 ```
 
 ### `comments`
@@ -63,7 +63,7 @@ public let updatedAt: Int
 Replys to the comment
 
 ``` swift
-public let comments: [Detail]
+let comments:​ [Detail]
 ```
 
 ### `properties`
@@ -71,7 +71,7 @@ public let comments: [Detail]
 Properties associated with the comment
 
 ``` swift
-public let properties: InnerProperties
+let properties:​ InnerProperties
 ```
 
 ### `tasks`
@@ -79,5 +79,5 @@ public let properties: InnerProperties
 Tasks associated with the comment
 
 ``` swift
-public let tasks: [Task]
+let tasks:​ [Task]
 ```

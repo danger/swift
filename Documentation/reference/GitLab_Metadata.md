@@ -1,7 +1,7 @@
 # GitLab.Metadata
 
 ``` swift
-public struct Metadata: Decodable, Equatable 
+struct Metadata:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -13,11 +13,11 @@ public struct Metadata: Decodable, Equatable
 ### `pullRequestID`
 
 ``` swift
-public let pullRequestID: String
+let pullRequestID:​ String
 ```
 
 ### `repoSlug`
 
 ``` swift
-public let repoSlug: String
+let repoSlug:​ String
 ```

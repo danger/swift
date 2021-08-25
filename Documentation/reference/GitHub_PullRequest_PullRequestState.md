@@ -1,7 +1,7 @@
 # GitHub.PullRequest.PullRequestState
 
 ``` swift
-public enum PullRequestState: String, Decodable 
+public enum PullRequestState
 ```
 
 ## Inheritance

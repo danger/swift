@@ -1,7 +1,7 @@
 # BitBucketCloud.PullRequest.Participant.Role
 
 ``` swift
-public enum Role: String, Decodable 
+public enum Role
 ```
 
 ## Inheritance
@@ -13,11 +13,11 @@ public enum Role: String, Decodable
 ### `reviewer`
 
 ``` swift
-case reviewer = "REVIEWER"
+case reviewer
 ```
 
 ### `participant`
 
 ``` swift
-case participant = "PARTICIPANT"
+case participant
 ```

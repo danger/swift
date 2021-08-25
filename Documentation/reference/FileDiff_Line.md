@@ -1,7 +1,7 @@
 # FileDiff.Line
 
 ``` swift
-public struct Line: Equatable, CustomStringConvertible 
+struct Line:​ Equatable, CustomStringConvertible
 ```
 
 ## Inheritance
@@ -10,8 +10,20 @@ public struct Line: Equatable, CustomStringConvertible
 
 ## Properties
 
+### `text`
+
+``` swift
+let text:​ String
+```
+
+### `changeType`
+
+``` swift
+let changeType:​ ChangeType
+```
+
 ### `description`
 
 ``` swift
-public var description: String 
+var description:​ String
 ```

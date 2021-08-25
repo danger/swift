@@ -3,7 +3,7 @@
 The author of a commit.
 
 ``` swift
-public struct Author: Equatable 
+public struct Author:​ Equatable
 ```
 
 ## Inheritance
@@ -17,7 +17,7 @@ public struct Author: Equatable
 The display name for the author.
 
 ``` swift
-public let name: String
+let name:​ String
 ```
 
 ### `email`
@@ -25,7 +25,7 @@ public let name: String
 The email for the author.
 
 ``` swift
-public let email: String
+let email:​ String
 ```
 
 ### `date`
@@ -33,5 +33,5 @@ public let email: String
 The ISO8601 date string for the commit.
 
 ``` swift
-public let date: String
+let date:​ String
 ```

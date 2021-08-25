@@ -1,7 +1,7 @@
 # GitLab.MergeRequest.CodingKeys
 
 ``` swift
-public enum CodingKeys: String, CodingKey 
+public enum CodingKeys
 ```
 
 ## Inheritance
@@ -13,19 +13,19 @@ public enum CodingKeys: String, CodingKey
 ### `allowCollaboration`
 
 ``` swift
-case allowCollaboration = "allow_collaboration"
+case allowCollaboration
 ```
 
 ### `allowMaintainerToPush`
 
 ``` swift
-case allowMaintainerToPush = "allow_maintainer_to_push"
+case allowMaintainerToPush
 ```
 
 ### `approvalsBeforeMerge`
 
 ``` swift
-case approvalsBeforeMerge = "approvals_before_merge"
+case approvalsBeforeMerge
 ```
 
 ### `assignee`
@@ -49,19 +49,19 @@ case author
 ### `changesCount`
 
 ``` swift
-case changesCount = "changes_count"
+case changesCount
 ```
 
 ### `closedAt`
 
 ``` swift
-case closedAt = "closed_at"
+case closedAt
 ```
 
 ### `closedBy`
 
 ``` swift
-case closedBy = "closed_by"
+case closedBy
 ```
 
 ### `description`
@@ -73,7 +73,7 @@ case description
 ### `diffRefs`
 
 ``` swift
-case diffRefs = "diff_refs"
+case diffRefs
 ```
 
 ### `downvotes`
@@ -85,13 +85,13 @@ case downvotes
 ### `firstDeployedToProductionAt`
 
 ``` swift
-case firstDeployedToProductionAt = "first_deployed_to_production_at"
+case firstDeployedToProductionAt
 ```
 
 ### `forceRemoveSourceBranch`
 
 ``` swift
-case forceRemoveSourceBranch = "force_remove_source_branch"
+case forceRemoveSourceBranch
 ```
 
 ### `id`
@@ -109,13 +109,13 @@ case iid
 ### `latestBuildStartedAt`
 
 ``` swift
-case latestBuildStartedAt = "latest_build_started_at"
+case latestBuildStartedAt
 ```
 
 ### `latestBuildFinishedAt`
 
 ``` swift
-case latestBuildFinishedAt = "latest_build_finished_at"
+case latestBuildFinishedAt
 ```
 
 ### `labels`
@@ -127,25 +127,25 @@ case labels
 ### `mergeCommitSha`
 
 ``` swift
-case mergeCommitSha = "merge_commit_sha"
+case mergeCommitSha
 ```
 
 ### `mergedAt`
 
 ``` swift
-case mergedAt = "merged_at"
+case mergedAt
 ```
 
 ### `mergedBy`
 
 ``` swift
-case mergedBy = "merged_by"
+case mergedBy
 ```
 
 ### `mergeOnPipelineSuccess`
 
 ``` swift
-case mergeOnPipelineSuccess = "merge_when_pipeline_succeeds"
+case mergeOnPipelineSuccess
 ```
 
 ### `milestone`
@@ -163,7 +163,7 @@ case pipeline
 ### `projectId`
 
 ``` swift
-case projectId = "project_id"
+case projectId
 ```
 
 ### `sha`
@@ -175,19 +175,19 @@ case sha
 ### `shouldRemoveSourceBranch`
 
 ``` swift
-case shouldRemoveSourceBranch = "should_remove_source_branch"
+case shouldRemoveSourceBranch
 ```
 
 ### `sourceBranch`
 
 ``` swift
-case sourceBranch = "source_branch"
+case sourceBranch
 ```
 
 ### `sourceProjectId`
 
 ``` swift
-case sourceProjectId = "source_project_id"
+case sourceProjectId
 ```
 
 ### `state`
@@ -205,19 +205,19 @@ case subscribed
 ### `targetBranch`
 
 ``` swift
-case targetBranch = "target_branch"
+case targetBranch
 ```
 
 ### `targetProjectId`
 
 ``` swift
-case targetProjectId = "target_project_id"
+case targetProjectId
 ```
 
 ### `timeStats`
 
 ``` swift
-case timeStats = "time_stats"
+case timeStats
 ```
 
 ### `title`
@@ -235,23 +235,23 @@ case upvotes
 ### `userMergeData`
 
 ``` swift
-case userMergeData = "user"
+case userMergeData
 ```
 
 ### `userNotesCount`
 
 ``` swift
-case userNotesCount = "user_notes_count"
+case userNotesCount
 ```
 
 ### `webUrl`
 
 ``` swift
-case webUrl = "web_url"
+case webUrl
 ```
 
 ### `workInProgress`
 
 ``` swift
-case workInProgress = "work_in_progress"
+case workInProgress
 ```

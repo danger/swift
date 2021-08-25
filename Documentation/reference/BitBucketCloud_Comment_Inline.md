@@ -1,7 +1,7 @@
 # BitBucketCloud.Comment.Inline
 
 ``` swift
-public struct Inline: Decodable, Equatable 
+public struct Inline:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -13,17 +13,17 @@ public struct Inline: Decodable, Equatable
 ### `from`
 
 ``` swift
-public let from: Int?
+let from:​ Int?
 ```
 
 ### `to`
 
 ``` swift
-public let to: Int? 
+let to:​ Int?
 ```
 
 ### `path`
 
 ``` swift
-public let path: String?
+let path:​ String?
 ```

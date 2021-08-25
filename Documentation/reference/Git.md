@@ -3,7 +3,7 @@
 The git specific metadata for a pull request.
 
 ``` swift
-public struct Git: Decodable, Equatable 
+public struct Git:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -17,7 +17,7 @@ public struct Git: Decodable, Equatable
 Modified filepaths relative to the git root.
 
 ``` swift
-public let modifiedFiles: [File]
+let modifiedFiles:​ [File]
 ```
 
 ### `createdFiles`
@@ -25,7 +25,7 @@ public let modifiedFiles: [File]
 Newly created filepaths relative to the git root.
 
 ``` swift
-public let createdFiles: [File]
+let createdFiles:​ [File]
 ```
 
 ### `deletedFiles`
@@ -33,11 +33,11 @@ public let createdFiles: [File]
 Removed filepaths relative to the git root.
 
 ``` swift
-public let deletedFiles: [File]
+let deletedFiles:​ [File]
 ```
 
 ### `commits`
 
 ``` swift
-public let commits: [Commit]
+let commits:​ [Commit]
 ```

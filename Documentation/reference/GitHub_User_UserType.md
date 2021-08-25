@@ -1,7 +1,7 @@
 # GitHub.User.UserType
 
 ``` swift
-public enum UserType: String, Decodable 
+public enum UserType
 ```
 
 ## Inheritance
@@ -13,17 +13,17 @@ public enum UserType: String, Decodable
 ### `user`
 
 ``` swift
-case user = "User"
+case user
 ```
 
 ### `organization`
 
 ``` swift
-case organization = "Organization"
+case organization
 ```
 
 ### `bot`
 
 ``` swift
-case bot = "Bot"
+case bot
 ```

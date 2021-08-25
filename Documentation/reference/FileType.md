@@ -1,7 +1,7 @@
 # FileType
 
 ``` swift
-public enum FileType: String, Equatable, CaseIterable 
+public enum FileType
 ```
 
 ## Inheritance
@@ -10,76 +10,76 @@ public enum FileType: String, Equatable, CaseIterable
 
 ## Enumeration Cases
 
-### `mm`
+### `json`
 
 ``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
-```
-
-### `yaml`
-
-``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
-```
-
-### `m`
-
-``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
-```
-
-### `pbxproj`
-
-``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
-```
-
-### `xcscheme`
-
-``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
-```
-
-### `markdown`
-
-``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
-```
-
-### `storyboard`
-
-``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
+case json
 ```
 
 ### `swift`
 
 ``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
+case swift
+```
+
+### `yaml`
+
+``` swift
+case yaml
+```
+
+### `pbxproj`
+
+``` swift
+case pbxproj
+```
+
+### `mm`
+
+``` swift
+case mm
 ```
 
 ### `plist`
 
 ``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
+case plist
 ```
 
-### `h`
+### `storyboard`
 
 ``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
+case storyboard
 ```
 
-### `json`
+### `m`
 
 ``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
+case m
+```
+
+### `xcscheme`
+
+``` swift
+case xcscheme
 ```
 
 ### `yml`
 
 ``` swift
-case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
+case yml
+```
+
+### `markdown`
+
+``` swift
+case markdown
+```
+
+### `h`
+
+``` swift
+case h
 ```
 
 ## Properties
@@ -87,5 +87,5 @@ case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcschem
 ### `` `extension` ``
 
 ``` swift
-public var `extension`: String 
+var `extension`:​ String
 ```

@@ -1,7 +1,7 @@
 # GitHub.Issue
 
 ``` swift
-public struct Issue: Decodable, Equatable 
+struct Issue:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Issue: Decodable, Equatable
 The id number of the issue
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `number`
@@ -23,7 +23,7 @@ public let id: Int
 The number of the issue.
 
 ``` swift
-public let number: Int
+let number:​ Int
 ```
 
 ### `title`
@@ -31,7 +31,7 @@ public let number: Int
 The title of the issue.
 
 ``` swift
-public let title: String
+let title:​ String
 ```
 
 ### `user`
@@ -39,7 +39,7 @@ public let title: String
 The user who created the issue.
 
 ``` swift
-public let user: User
+let user:​ User
 ```
 
 ### `state`
@@ -47,7 +47,7 @@ public let user: User
 The state for the issue:​ open, closed, locked.
 
 ``` swift
-public let state: State
+let state:​ State
 ```
 
 ### `isLocked`
@@ -55,7 +55,7 @@ public let state: State
 A boolean indicating if the issue has been locked to contributors only.
 
 ``` swift
-public let isLocked: Bool
+let isLocked:​ Bool
 ```
 
 ### `body`
@@ -63,7 +63,7 @@ public let isLocked: Bool
 The markdown body message of the issue.
 
 ``` swift
-public let body: String?
+let body:​ String?
 ```
 
 ### `commentCount`
@@ -71,7 +71,7 @@ public let body: String?
 The comment number of comments for the issue.
 
 ``` swift
-public let commentCount: Int
+let commentCount:​ Int
 ```
 
 ### `assignee`
@@ -79,7 +79,7 @@ public let commentCount: Int
 The user who is assigned to the issue.
 
 ``` swift
-public let assignee: User?
+let assignee:​ User?
 ```
 
 ### `assignees`
@@ -87,7 +87,7 @@ public let assignee: User?
 The users who are assigned to the issue.
 
 ``` swift
-public let assignees: [User]
+let assignees:​ [User]
 ```
 
 ### `milestone`
@@ -95,7 +95,7 @@ public let assignees: [User]
 The milestone of this issue
 
 ``` swift
-public let milestone: Milestone?
+let milestone:​ Milestone?
 ```
 
 ### `createdAt`
@@ -103,7 +103,7 @@ public let milestone: Milestone?
 The ISO8601 date string for when the issue was created.
 
 ``` swift
-public let createdAt: Date
+let createdAt:​ Date
 ```
 
 ### `updatedAt`
@@ -111,7 +111,7 @@ public let createdAt: Date
 The ISO8601 date string for when the issue was updated.
 
 ``` swift
-public let updatedAt: Date
+let updatedAt:​ Date
 ```
 
 ### `closedAt`
@@ -119,7 +119,7 @@ public let updatedAt: Date
 The ISO8601 date string for when the issue was closed.
 
 ``` swift
-public let closedAt: Date?
+let closedAt:​ Date?
 ```
 
 ### `labels`
@@ -127,5 +127,5 @@ public let closedAt: Date?
 The labels associated with this issue.
 
 ``` swift
-public let labels: [Label]
+let labels:​ [Label]
 ```
