@@ -141,7 +141,7 @@ func runDanger(logger: Logger) throws {
     #else
     let swiftC = try executor.spawn("command -v swift", arguments: [])
     #endif
-    
+
     logger.debug("Running: \(swiftC) \(args.joined(separator: " "))")
 
     // Create a process to eval the Swift file
