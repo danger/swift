@@ -1,7 +1,7 @@
 # GitLab.MergeRequest.Pipeline
 
 ``` swift
-public struct Pipeline: Decodable, Equatable 
+public struct Pipeline:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -13,29 +13,29 @@ public struct Pipeline: Decodable, Equatable
 ### `id`
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `ref`
 
 ``` swift
-public let ref: String
+let ref:​ String
 ```
 
 ### `sha`
 
 ``` swift
-public let sha: String
+let sha:​ String
 ```
 
 ### `status`
 
 ``` swift
-public let status: Status
+let status:​ Status
 ```
 
 ### `webUrl`
 
 ``` swift
-public let webUrl: String
+let webUrl:​ String
 ```

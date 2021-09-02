@@ -3,7 +3,7 @@
 A GitHub specific implementation of a github commit.
 
 ``` swift
-public struct CommitData: Equatable, Decodable 
+struct CommitData:​ Equatable, Decodable
 ```
 
 ## Inheritance
@@ -17,7 +17,7 @@ public struct CommitData: Equatable, Decodable
 The SHA for the commit.
 
 ``` swift
-public let sha: String?
+let sha:​ String?
 ```
 
 ### `author`
@@ -25,7 +25,7 @@ public let sha: String?
 Who wrote the commit.
 
 ``` swift
-public let author: Git.Commit.Author
+let author:​ Git.Commit.Author
 ```
 
 ### `committer`
@@ -33,7 +33,7 @@ public let author: Git.Commit.Author
 Who shipped the code.
 
 ``` swift
-public let committer: Git.Commit.Author
+let committer:​ Git.Commit.Author
 ```
 
 ### `message`
@@ -41,7 +41,7 @@ public let committer: Git.Commit.Author
 The message for the commit.
 
 ``` swift
-public let message: String
+let message:​ String
 ```
 
 ### `parents`
@@ -49,7 +49,7 @@ public let message: String
 SHAs for the commit's parents.
 
 ``` swift
-public let parents: [String]?
+let parents:​ [String]?
 ```
 
 ### `url`
@@ -57,5 +57,5 @@ public let parents: [String]?
 The URL for the commit.
 
 ``` swift
-public let url: String
+let url:​ String
 ```

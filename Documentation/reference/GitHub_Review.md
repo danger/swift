@@ -1,7 +1,7 @@
 # GitHub.Review
 
 ``` swift
-public struct Review: Decodable, Equatable 
+struct Review:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Review: Decodable, Equatable
 The body of the review (if a review was made).
 
 ``` swift
-public let body: String?
+let body:​ String?
 ```
 
 ### `commitId`
@@ -23,7 +23,7 @@ public let body: String?
 The commit ID the review was made on (if a review was made).
 
 ``` swift
-public let commitId: String?
+let commitId:​ String?
 ```
 
 ### `id`
@@ -31,7 +31,7 @@ public let commitId: String?
 The id for the review (if a review was made).
 
 ``` swift
-public let id: Int?
+let id:​ Int?
 ```
 
 ### `state`
@@ -39,7 +39,7 @@ public let id: Int?
 The state of the review (if a review was made).
 
 ``` swift
-public let state: State?
+let state:​ State?
 ```
 
 ### `submittedAt`
@@ -47,7 +47,7 @@ public let state: State?
 The date when the review was submitted
 
 ``` swift
-public let submittedAt: Date
+let submittedAt:​ Date
 ```
 
 ### `user`
@@ -55,5 +55,5 @@ public let submittedAt: Date
 The user who has completed the review or has been requested to review.
 
 ``` swift
-public let user: User
+let user:​ User
 ```

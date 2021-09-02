@@ -1,7 +1,7 @@
 # GitLab.MergeRequest.TimeStats.CodingKeys
 
 ``` swift
-public enum CodingKeys: String, CodingKey 
+public enum CodingKeys
 ```
 
 ## Inheritance
@@ -13,23 +13,23 @@ public enum CodingKeys: String, CodingKey
 ### `humanTimeEstimate`
 
 ``` swift
-case humanTimeEstimate = "human_time_estimate"
+case humanTimeEstimate
 ```
 
 ### `humanTimeSpent`
 
 ``` swift
-case humanTimeSpent = "human_total_time_spent"
+case humanTimeSpent
 ```
 
 ### `timeEstimate`
 
 ``` swift
-case timeEstimate = "time_estimate"
+case timeEstimate
 ```
 
 ### `totalTimeSpent`
 
 ``` swift
-case totalTimeSpent = "total_time_spent"
+case totalTimeSpent
 ```

@@ -1,7 +1,7 @@
 # BitBucketCloud.PullRequest.Participant
 
 ``` swift
-public struct Participant: Decodable, Equatable 
+public struct Participant:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Participant: Decodable, Equatable
 Did they approve of the PR?
 
 ``` swift
-public let approved: Bool
+let approved:​ Bool
 ```
 
 ### `role`
@@ -23,7 +23,7 @@ public let approved: Bool
 How did they contribute
 
 ``` swift
-public let role: Role
+let role:​ Role
 ```
 
 ### `user`
@@ -31,5 +31,5 @@ public let role: Role
 The user who participated in this PR
 
 ``` swift
-public let user: User
+let user:​ User
 ```

@@ -3,7 +3,7 @@
 A user that is parecipating in the PR
 
 ``` swift
-public struct Participant: Decodable, Equatable 
+public struct Participant:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -17,5 +17,5 @@ public struct Participant: Decodable, Equatable
 The BitBucket Server User
 
 ``` swift
-public let user: User
+let user:​ User
 ```

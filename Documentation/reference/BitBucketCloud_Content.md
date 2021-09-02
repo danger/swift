@@ -1,7 +1,7 @@
 # BitBucketCloud.Content
 
 ``` swift
-public struct Content: Decodable, Equatable 
+struct Content:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -13,17 +13,17 @@ public struct Content: Decodable, Equatable
 ### `html`
 
 ``` swift
-public let html: String
+let html:​ String
 ```
 
 ### `markup`
 
 ``` swift
-public let markup: String
+let markup:​ String
 ```
 
 ### `raw`
 
 ``` swift
-public let raw: String
+let raw:​ String
 ```

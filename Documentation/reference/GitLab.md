@@ -1,7 +1,7 @@
 # GitLab
 
 ``` swift
-public struct GitLab: Decodable 
+public struct GitLab:​ Decodable
 ```
 
 ## Inheritance
@@ -13,11 +13,11 @@ public struct GitLab: Decodable
 ### `mergeRequest`
 
 ``` swift
-public let mergeRequest: MergeRequest
+let mergeRequest:​ MergeRequest
 ```
 
 ### `metadata`
 
 ``` swift
-public let metadata: Metadata
+let metadata:​ Metadata
 ```

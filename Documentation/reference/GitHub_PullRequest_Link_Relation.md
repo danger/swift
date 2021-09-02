@@ -1,7 +1,7 @@
 # GitHub.PullRequest.Link.Relation
 
 ``` swift
-public struct Relation: Decodable, Equatable, ExpressibleByStringLiteral 
+public struct Relation:​ Decodable, Equatable, ExpressibleByStringLiteral
 ```
 
 ## Inheritance
@@ -10,10 +10,10 @@ public struct Relation: Decodable, Equatable, ExpressibleByStringLiteral
 
 ## Initializers
 
-### `init(stringLiteral:)`
+### `init(stringLiteral:​)`
 
 ``` swift
-public init(stringLiteral value: String) 
+public init(stringLiteral value:​ String)
 ```
 
 ## Properties
@@ -21,5 +21,5 @@ public init(stringLiteral value: String)
 ### `href`
 
 ``` swift
-public let href: String
+let href:​ String
 ```

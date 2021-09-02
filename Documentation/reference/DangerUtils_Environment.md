@@ -1,6 +1,21 @@
 # DangerUtils.Environment
 
 ``` swift
-@dynamicMemberLookup
-    public struct Environment 
+@dynamicMemberLookup struct Environment
+```
+
+## Initializers
+
+### `init(env:​)`
+
+``` swift
+init(env:​ @escaping () -> [String:​ String] = { ProcessInfo.processInfo.environment })
+```
+
+## Properties
+
+### `env`
+
+``` swift
+let env:​ () -> [String:​ String]
 ```

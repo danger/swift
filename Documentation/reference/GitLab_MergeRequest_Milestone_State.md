@@ -1,7 +1,7 @@
 # GitLab.MergeRequest.Milestone.State
 
 ``` swift
-public enum State: String, Decodable 
+public enum State
 ```
 
 ## Inheritance

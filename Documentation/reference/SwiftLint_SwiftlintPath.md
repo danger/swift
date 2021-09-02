@@ -1,7 +1,7 @@
 # SwiftLint.SwiftlintPath
 
 ``` swift
-public enum SwiftlintPath 
+public enum SwiftlintPath
 ```
 
 ## Enumeration Cases
@@ -9,11 +9,11 @@ public enum SwiftlintPath
 ### `swiftPackage`
 
 ``` swift
-case swiftPackage(String)
+case swiftPackage(:​ String)
 ```
 
 ### `bin`
 
 ``` swift
-case bin(String)
+case bin(:​ String)
 ```

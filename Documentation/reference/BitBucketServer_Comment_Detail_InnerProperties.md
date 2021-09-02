@@ -1,7 +1,7 @@
 # BitBucketServer.Comment.Detail.InnerProperties
 
 ``` swift
-public struct InnerProperties: Decodable, Equatable 
+public struct InnerProperties:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct InnerProperties: Decodable, Equatable
 The ID of the repo
 
 ``` swift
-public let repositoryId: Int
+let repositoryId:​ Int
 ```
 
 ### `issues`
@@ -23,5 +23,5 @@ public let repositoryId: Int
 Slugs of linkd Jira issues
 
 ``` swift
-public let issues: [String]?
+let issues:​ [String]?
 ```

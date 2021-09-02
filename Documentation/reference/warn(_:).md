@@ -1,11 +1,11 @@
-# warn(\_:)
+# warn(\_:​)
 
 Adds a warning message to the Danger report
 
 ``` swift
-public func warn(_ message: String) 
+public func warn(_ message:​ String)
 ```
 
 ## Parameters
 
-  - message: A markdown-ish
+  - message:​ - message:​ A markdown-ish

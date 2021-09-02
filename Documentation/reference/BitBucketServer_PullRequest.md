@@ -1,7 +1,7 @@
 # BitBucketServer.PullRequest
 
 ``` swift
-public struct PullRequest: Decodable, Equatable 
+struct PullRequest:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct PullRequest: Decodable, Equatable
 The PR's ID
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `version`
@@ -23,7 +23,7 @@ public let id: Int
 The API version
 
 ``` swift
-public let version: Int
+let version:​ Int
 ```
 
 ### `title`
@@ -31,7 +31,7 @@ public let version: Int
 Title of the pull request.
 
 ``` swift
-public let title: String
+let title:​ String
 ```
 
 ### `description`
@@ -39,7 +39,7 @@ public let title: String
 The description of the PR
 
 ``` swift
-public let description: String?
+let description:​ String?
 ```
 
 ### `state`
@@ -47,7 +47,7 @@ public let description: String?
 The pull request's current status.
 
 ``` swift
-public let state: String
+let state:​ String
 ```
 
 ### `open`
@@ -55,7 +55,7 @@ public let state: String
 Is PR open?
 
 ``` swift
-public let open: Bool
+let open:​ Bool
 ```
 
 ### `closed`
@@ -63,7 +63,7 @@ public let open: Bool
 Is PR closed?
 
 ``` swift
-public let closed: Bool
+let closed:​ Bool
 ```
 
 ### `createdAt`
@@ -71,7 +71,7 @@ public let closed: Bool
 Date PR created as number of mili seconds since the unix epoch
 
 ``` swift
-public let createdAt: Int
+let createdAt:​ Int
 ```
 
 ### `updatedAt`
@@ -79,7 +79,7 @@ public let createdAt: Int
 Date PR updated as number of mili seconds since the unix epoch
 
 ``` swift
-public let updatedAt: Int?
+let updatedAt:​ Int?
 ```
 
 ### `fromRef`
@@ -87,7 +87,7 @@ public let updatedAt: Int?
 The PR submittor's reference
 
 ``` swift
-public let fromRef: MergeRef
+let fromRef:​ MergeRef
 ```
 
 ### `toRef`
@@ -95,7 +95,7 @@ public let fromRef: MergeRef
 The repo Danger is running on
 
 ``` swift
-public let toRef: MergeRef
+let toRef:​ MergeRef
 ```
 
 ### `isLocked`
@@ -103,7 +103,7 @@ public let toRef: MergeRef
 Is the PR locked?
 
 ``` swift
-public let isLocked: Bool
+let isLocked:​ Bool
 ```
 
 ### `author`
@@ -111,7 +111,7 @@ public let isLocked: Bool
 The creator of the PR
 
 ``` swift
-public let author: Participant
+let author:​ Participant
 ```
 
 ### `reviewers`
@@ -119,7 +119,7 @@ public let author: Participant
 People requested as reviewers
 
 ``` swift
-public let reviewers: [Reviewer]
+let reviewers:​ [Reviewer]
 ```
 
 ### `participants`
@@ -127,5 +127,5 @@ public let reviewers: [Reviewer]
 People who have participated in the PR
 
 ``` swift
-public let participants: [Participant]
+let participants:​ [Participant]
 ```

@@ -65,7 +65,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        swift: ["5.2.4", "5.3.3", "5.4.1"]
+        swift: ["5.2.4", "5.3.3"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -143,7 +143,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        swift: ["5.2.4", "5.3.3", "5.4.1"]
+        swift: ["5.2.4", "5.3.3"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2

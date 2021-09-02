@@ -3,7 +3,7 @@
 Represents 'head' in PR
 
 ``` swift
-public struct MergeRef: Decodable, Equatable 
+struct MergeRef:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -17,7 +17,7 @@ public struct MergeRef: Decodable, Equatable
 The human display name for the merge reference, e.g. "artsy:​master".
 
 ``` swift
-public let label: String
+let label:​ String
 ```
 
 ### `ref`
@@ -25,7 +25,7 @@ public let label: String
 The reference point for the merge, e.g. "master"
 
 ``` swift
-public let ref: String
+let ref:​ String
 ```
 
 ### `sha`
@@ -33,7 +33,7 @@ public let ref: String
 The reference point for the merge, e.g. "704dc55988c6996f69b6873c2424be7d1de67bbe"
 
 ``` swift
-public let sha: String
+let sha:​ String
 ```
 
 ### `user`
@@ -41,7 +41,7 @@ public let sha: String
 The user that owns the merge reference e.g. "artsy"
 
 ``` swift
-public let user: User
+let user:​ User
 ```
 
 ### `repo`
@@ -49,5 +49,5 @@ public let user: User
 The repo from which the reference comes from
 
 ``` swift
-public let repo: Repo
+let repo:​ Repo
 ```

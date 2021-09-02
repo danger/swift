@@ -1,7 +1,7 @@
 # BitBucketServer.Repo
 
 ``` swift
-public struct Repo: Decodable, Equatable 
+struct Repo:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Repo: Decodable, Equatable
 The repo name
 
 ``` swift
-public let name: String?
+let name:​ String?
 ```
 
 ### `slug`
@@ -23,7 +23,7 @@ public let name: String?
 The slug for the repo
 
 ``` swift
-public let slug: String
+let slug:​ String
 ```
 
 ### `scmId`
@@ -31,7 +31,7 @@ public let slug: String
 The type of SCM tool, probably "git"
 
 ``` swift
-public let scmId: String
+let scmId:​ String
 ```
 
 ### `isPublic`
@@ -39,7 +39,7 @@ public let scmId: String
 Is the repo public?
 
 ``` swift
-public let isPublic: Bool
+let isPublic:​ Bool
 ```
 
 ### `forkable`
@@ -47,7 +47,7 @@ public let isPublic: Bool
 Can someone fork thie repo?
 
 ``` swift
-public let forkable: Bool
+let forkable:​ Bool
 ```
 
 ### `project`
@@ -55,5 +55,5 @@ public let forkable: Bool
 An abtraction for grouping repos
 
 ``` swift
-public let project: Project
+let project:​ Project
 ```

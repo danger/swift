@@ -3,7 +3,7 @@
 A GitHub user account.
 
 ``` swift
-public struct User: Decodable, Equatable 
+struct User:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -17,7 +17,7 @@ public struct User: Decodable, Equatable
 The UUID for the user organization.
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `login`
@@ -25,7 +25,7 @@ public let id: Int
 The handle for the user or organization.
 
 ``` swift
-public let login: String
+let login:​ String
 ```
 
 ### `userType`
@@ -33,5 +33,5 @@ public let login: String
 The type of user:​ user, organization, or bot.
 
 ``` swift
-public let userType: UserType
+let userType:​ UserType
 ```

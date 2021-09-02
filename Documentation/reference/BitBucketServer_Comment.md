@@ -1,7 +1,7 @@
 # BitBucketServer.Comment
 
 ``` swift
-public struct Comment: Decodable, Equatable 
+struct Comment:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Comment: Decodable, Equatable
 The comment's id
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `createdAt`
@@ -23,7 +23,7 @@ public let id: Int
 Date comment created as number of mili seconds since the unix epoch
 
 ``` swift
-public let createdAt: Int
+let createdAt:​ Int
 ```
 
 ### `user`
@@ -31,7 +31,7 @@ public let createdAt: Int
 The comment's author
 
 ``` swift
-public let user: User
+let user:​ User
 ```
 
 ### `action`
@@ -39,7 +39,7 @@ public let user: User
 The action the user did (e.g. "COMMENTED")
 
 ``` swift
-public let action: String
+let action:​ String
 ```
 
 ### `fromHash`
@@ -47,7 +47,7 @@ public let action: String
 The SHA to which the comment was created
 
 ``` swift
-public let fromHash: String?
+let fromHash:​ String?
 ```
 
 ### `previousFromHash`
@@ -55,7 +55,7 @@ public let fromHash: String?
 The previous SHA to which the comment was created
 
 ``` swift
-public let previousFromHash: String?
+let previousFromHash:​ String?
 ```
 
 ### `toHash`
@@ -63,7 +63,7 @@ public let previousFromHash: String?
 The next SHA after the comment was created
 
 ``` swift
-public let toHash: String?
+let toHash:​ String?
 ```
 
 ### `previousToHash`
@@ -71,7 +71,7 @@ public let toHash: String?
 The SHA to which the comment was created
 
 ``` swift
-public let previousToHash: String?
+let previousToHash:​ String?
 ```
 
 ### `commentAction`
@@ -79,7 +79,7 @@ public let previousToHash: String?
 Action the user did (e.g. "ADDED") if it is a new task
 
 ``` swift
-public let commentAction: String?
+let commentAction:​ String?
 ```
 
 ### `comment`
@@ -87,5 +87,5 @@ public let commentAction: String?
 Detailed data of the comment
 
 ``` swift
-public let comment: Detail?
+let comment:​ Detail?
 ```

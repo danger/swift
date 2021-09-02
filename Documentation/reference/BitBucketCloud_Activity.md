@@ -1,7 +1,7 @@
 # BitBucketCloud.Activity
 
 ``` swift
-public struct Activity: Decodable, Equatable 
+struct Activity:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -13,5 +13,5 @@ public struct Activity: Decodable, Equatable
 ### `comment`
 
 ``` swift
-public let comment: Comment?
+let comment:​ Comment?
 ```

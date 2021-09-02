@@ -1,7 +1,7 @@
 # SwiftLint.LintStyle
 
 ``` swift
-public enum LintStyle 
+public enum LintStyle
 ```
 
 ## Enumeration Cases
@@ -11,24 +11,24 @@ public enum LintStyle
 Lints all the files instead of only the modified and created files.
 
 ``` swift
-case all(directory: String?)
+case all(directory:​ String?)
 ```
 
 #### Parameters
 
-  - directory: Optional property to set the --path to execute at.
+  - directory:​ - directory:​ Optional property to set the --path to execute at.
 
 ### `modifiedAndCreatedFiles`
 
 Only lints the modified and created files with `.swift` extension.
 
 ``` swift
-case modifiedAndCreatedFiles(directory: String?)
+case modifiedAndCreatedFiles(directory:​ String?)
 ```
 
 #### Parameters
 
-  - directory: Optional property to set the --path to execute at.
+  - directory:​ - directory:​ Optional property to set the --path to execute at.
 
 ### `files`
 
@@ -36,5 +36,5 @@ Lints only the given files. This can be useful to do some manual filtering.
 The files will be filtered on `.swift` only.
 
 ``` swift
-case files([File])
+case files(:​ [File])
 ```

@@ -1,7 +1,7 @@
 # BitBucketServer.Project
 
 ``` swift
-public struct Project: Decodable, Equatable 
+struct Project:​ Decodable, Equatable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct Project: Decodable, Equatable
 The project unique id
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `key`
@@ -23,7 +23,7 @@ public let id: Int
 The project's human readable project key
 
 ``` swift
-public let key: String
+let key:​ String
 ```
 
 ### `name`
@@ -31,7 +31,7 @@ public let key: String
 The name of the project
 
 ``` swift
-public let name: String
+let name:​ String
 ```
 
 ### `isPublic`
@@ -39,11 +39,11 @@ public let name: String
 Is the project publicly available
 
 ``` swift
-public let isPublic: Bool
+let isPublic:​ Bool
 ```
 
 ### `type`
 
 ``` swift
-public let type: String
+let type:​ String
 ```

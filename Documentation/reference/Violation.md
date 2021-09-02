@@ -3,7 +3,7 @@
 The result of a warn, message, or fail.
 
 ``` swift
-public struct Violation: Encodable 
+public struct Violation:​ Encodable
 ```
 
 ## Inheritance

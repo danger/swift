@@ -1,7 +1,7 @@
 # BitBucketCloud.PullRequest
 
 ``` swift
-public struct PullRequest: Decodable 
+struct PullRequest:​ Decodable
 ```
 
 ## Inheritance
@@ -15,7 +15,7 @@ public struct PullRequest: Decodable
 The creator of the PR
 
 ``` swift
-public let author: User
+let author:​ User
 ```
 
 ### `createdOn`
@@ -23,7 +23,7 @@ public let author: User
 Date when PR was created
 
 ``` swift
-public let createdOn: Date
+let createdOn:​ Date
 ```
 
 ### `description`
@@ -31,7 +31,7 @@ public let createdOn: Date
 The text describing the PR
 
 ``` swift
-public let description: String
+let description:​ String
 ```
 
 ### `destination`
@@ -39,7 +39,7 @@ public let description: String
 The PR's destination
 
 ``` swift
-public let destination: MergeRef
+let destination:​ MergeRef
 ```
 
 ### `id`
@@ -47,7 +47,7 @@ public let destination: MergeRef
 PR's ID
 
 ``` swift
-public let id: Int
+let id:​ Int
 ```
 
 ### `participants`
@@ -55,7 +55,7 @@ public let id: Int
 People who have participated in the PR
 
 ``` swift
-public let participants: [Participant]
+let participants:​ [Participant]
 ```
 
 ### `reviewers`
@@ -63,7 +63,7 @@ public let participants: [Participant]
 People requested as reviewers
 
 ``` swift
-public let reviewers: [User]
+let reviewers:​ [User]
 ```
 
 ### `source`
@@ -71,7 +71,7 @@ public let reviewers: [User]
 The PR's source, The repo Danger is running on
 
 ``` swift
-public let source: MergeRef
+let source:​ MergeRef
 ```
 
 ### `state`
@@ -79,7 +79,7 @@ public let source: MergeRef
 The pull request's current status.
 
 ``` swift
-public let state: State
+let state:​ State
 ```
 
 ### `title`
@@ -87,7 +87,7 @@ public let state: State
 Title of the pull request
 
 ``` swift
-public let title: String
+let title:​ String
 ```
 
 ### `updatedOn`
@@ -95,5 +95,5 @@ public let title: String
 Date of last update
 
 ``` swift
-public let updatedOn: Date
+let updatedOn:​ Date
 ```

@@ -13,6 +13,12 @@
 
 ## Master
 
+- Use swift instead of swiftc to fix compilation on Xcode 13 [@f-meloni][] - [#460](https://github.com/danger/swift/pull/460)
+- Add Homebrew path for Apple Silicon based macOS installations [@majd][] - [#458](https://github.com/danger/swift/pull/458)
+
+## 3.10.2
+
+- Expose Danger environment from utils [@f-meloni][] - [#456](https://github.com/danger/swift/pull/456)
 - Support DangerDeps definition in multiple lines [@f-meloni][] - [#447](https://github.com/danger/swift/pull/447)
 
 ## 3.10.1
@@ -483,3 +489,4 @@ This release also includes:
 [@417-72KI]: https://github.com/417-72KI
 [@vc7]: https://github.com/vc7
 [@lunij]: https://github.com/lunij
+[@majd]: https://github.com/majd

@@ -1,7 +1,7 @@
 # SwiftLintViolation.Severity
 
 ``` swift
-public enum Severity: String, Decodable 
+public enum Severity
 ```
 
 ## Inheritance
@@ -13,11 +13,11 @@ public enum Severity: String, Decodable
 ### `warning`
 
 ``` swift
-case warning = "Warning"
+case warning
 ```
 
 ### `error`
 
 ``` swift
-case error = "Error"
+case error
 ```
