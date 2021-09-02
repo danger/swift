@@ -139,7 +139,7 @@ func runDanger(logger: Logger) throws {
     #if os(macOS)
     let swiftC = try executor.spawn("xcrun", arguments: ["--find", "swift"])
     #else
-    let swiftC = try executor.spawn("command -v swift", arguments: [])
+    let swiftC = try executor.spawn("command", arguments: ["-v", "swift"])
     #endif
 
     logger.debug("Running: \(swiftC) \(args.joined(separator: " "))")
