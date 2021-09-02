@@ -14,6 +14,7 @@
 ## Master
 
 - Use swift instead of swiftc to fix compilation on Xcode 13 [@f-meloni][] - [#460](https://github.com/danger/swift/pull/460)
+- Add Homebrew path for Apple Silicon based macOS installations [@majd][] - [#458](https://github.com/danger/swift/pull/458)
 
 ## 3.10.2
 
@@ -488,3 +489,4 @@ This release also includes:
 [@417-72KI]: https://github.com/417-72KI
 [@vc7]: https://github.com/vc7
 [@lunij]: https://github.com/lunij
+[@majd]: https://github.com/majd
