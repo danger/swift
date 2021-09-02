@@ -136,7 +136,11 @@ func runDanger(logger: Logger) throws {
     args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
     args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
 
-    let swiftC = try executor.spawn("command -v swiftc", arguments: [])
+    #if os(macOS)
+    let swiftC = try executor.spawn("xcrun", arguments: ["--find", "swift"])
+    #else
+    let swiftC = try executor.spawn("command", arguments: ["-v", "swift"])
+    #endif
 
     logger.debug("Running: \(swiftC) \(args.joined(separator: " "))")
 
