@@ -13,6 +13,8 @@
 
 ## Master
 
+- Add Homebrew path for Apple Silicon based macOS installations [@majd][] - [#458](https://github.com/danger/swift/pull/458)
+
 ## 3.10.2
 
 - Expose Danger environment from utils [@f-meloni][] - [#456](https://github.com/danger/swift/pull/456)
@@ -486,3 +488,4 @@ This release also includes:
 [@417-72KI]: https://github.com/417-72KI
 [@vc7]: https://github.com/vc7
 [@lunij]: https://github.com/lunij
+[@majd]: https://github.com/majd
