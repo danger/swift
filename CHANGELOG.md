@@ -13,6 +13,8 @@
 
 ## Master
 
+- Use swift instead of swiftc to fix compilation on Xcode 13 [@f-meloni][] - [#460](https://github.com/danger/swift/pull/460)
+
 ## 3.10.2
 
 - Expose Danger environment from utils [@f-meloni][] - [#456](https://github.com/danger/swift/pull/456)
