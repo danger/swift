@@ -29,7 +29,11 @@ lower $SWIFT_VERSION '5.3.0'
 if [[ "$?" -eq 0 || "$OSTYPE" == "darwin"* ]]
 then
     BUILD_FOLDER=".build/release"
-    swift build --disable-sandbox -c release
+    if [[ `uname -m` == 'arm64' ]]; then
+        swift build --disable-sandbox --arch arm64 -c release
+    else
+        swift build --disable-sandbox -c release
+    fi
 else
     BUILD_FOLDER=".build/debug"
     swift build --disable-sandbox
