@@ -13,6 +13,8 @@
 
 ## Master
 
+- Build for Apple Silicon on Apple Silicon devices [@f-meloni][] - [#460](https://github.com/danger/swift/pull/460)
+
 ## 3.11.0
 
 - Use swift instead of swiftc to fix compilation on Xcode 13 [@f-meloni][] - [#460](https://github.com/danger/swift/pull/460)
