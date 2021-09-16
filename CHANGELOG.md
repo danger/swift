@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.11.1
+
 - Build for Apple Silicon on Apple Silicon devices [@f-meloni][] - [#462](https://github.com/danger/swift/pull/462)
 
 ## 3.11.0
