@@ -17,6 +17,19 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          .build/artifacts
+          .build/checkouts
+          .build/repositories
+        key: ${{ runner.os }}-dependencies-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-dependencies-${{ matrix.xcode }}-
+          ${{ runner.os }}-dependencies-
+          ${{ runner.os }}-
+
     - name: Select Xcode
       run: |
         xcodebuild -version
@@ -44,6 +57,19 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
 
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          .build/artifacts
+          .build/checkouts
+          .build/repositories
+        key: ${{ runner.os }}-dependencies-${{ matrix.swift }}-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-dependencies-${{ matrix.swift }}-
+          ${{ runner.os }}-dependencies-
+          ${{ runner.os }}-
+
     - name: Install danger-js
       run: |
         yarn global add danger
@@ -68,6 +94,19 @@ jobs:
         xcode: ["12.4", "12.5", "13.0"]
     steps:
     - uses: actions/checkout@v2
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          .build/artifacts
+          .build/checkouts
+          .build/repositories
+        key: ${{ runner.os }}-without-spm-package-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-without-spm-package-${{ matrix.xcode }}-
+          ${{ runner.os }}-without-spm-package-
+          ${{ runner.os }}-
 
     - name: Select Xcode
       run: |
@@ -95,6 +134,19 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          .build/artifacts
+          .build/checkouts
+          .build/repositories
+        key: ${{ runner.os }}-without-spm-package-${{ matrix.swift }}-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-without-spm-package-${{ matrix.swift }}-
+          ${{ runner.os }}-without-spm-package-
+          ${{ runner.os }}-
 
     - name: Install danger-js
       run: |
