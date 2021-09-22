@@ -60,7 +60,8 @@ public struct DangerDSL: Decodable {
             let config: TokenConfiguration
             let accessToken: String = {
                 let token = settings.github.accessToken
-                if token.filter({ $0 != "*" }).isEmpty {
+                if token.filter({ $0 != "*" }).isEmpty
+                    || token.hasSuffix("...") {
                     return DangerUtils.Environment()[dynamicMember: "GITHUB_TOKEN"]
                         .getString(default: token)
                 }
