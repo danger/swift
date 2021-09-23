@@ -9,7 +9,7 @@ on:
 
 jobs:
   test-on-macos-11:
-    name: Test on macOS
+    name: Test on macOS 11
     runs-on: macOS-11
     strategy:
       matrix:
@@ -87,7 +87,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
   test-without-spm-on-macos-11:
-    name: Test without SPM on macOS
+    name: Test without SPM on macOS 11
     runs-on: macOS-11
     strategy:
       matrix:
