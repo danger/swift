@@ -3,6 +3,8 @@ import Foundation
 
 let danger = Danger()
 
+warn("Test")
+
 // fileImport: DangerfileExtensions/ChangelogCheck.swift
 checkChangelog()
 
