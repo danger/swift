@@ -8,38 +8,12 @@ on:
       - master
 
 jobs:
-  test-on-macos:
-    name: Test on macOS
-    runs-on: macOS-latest
-    strategy:
-      matrix:
-        xcode: ["11.4", "12.3"]
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Select Xcode
-      run: |
-        xcodebuild -version
-        ls -nt /Applications/ | grep "Xcode*"
-        sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
-        xcodebuild -version
-
-    - name: Install danger-js
-      run: brew install danger/tap/danger-js
-
-    - run: swift test
-
-    - run: swift run danger-swift ci --verbose --failOnErrors
-      if: ${{ github.event_name == 'pull_request' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
   test-on-macos-11:
     name: Test on macOS
     runs-on: macOS-11
     strategy:
       matrix:
-        xcode: ["12.5", "13.0"]
+        xcode: ["12.4", "12.5", "13.0"]
     steps:
     - uses: actions/checkout@v2
 
@@ -65,7 +39,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        swift: ["5.2.4", "5.3.3"]
+        swift: ["5.3.3"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -86,38 +60,12 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-  test-without-spm-on-macos:
-    name: Test without SPM on macOS
-    runs-on: macOS-latest
-    strategy:
-      matrix:
-        xcode: ["11.4", "12.3"]
-    steps:
-    - uses: actions/checkout@v2
-
-    - name: Select Xcode
-      run: |
-        xcodebuild -version
-        ls -nt /Applications/ | grep "Xcode*"
-        sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
-        xcodebuild -version
-
-    - name: Install danger-js
-      run: brew install danger/tap/danger-js
-
-    - run: make install
-
-    - run: danger-swift ci --verbose --failOnErrors
-      if: ${{ github.event_name == 'pull_request' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
   test-without-spm-on-macos-11:
     name: Test without SPM on macOS
     runs-on: macOS-11
     strategy:
       matrix:
-        xcode: ["12.5", "13.0"]
+        xcode: ["12.4", "12.5", "13.0"]
     steps:
     - uses: actions/checkout@v2
 
@@ -143,7 +91,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        swift: ["5.2.4", "5.3.3"]
+        swift: ["5.3.3"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -165,4 +113,3 @@ jobs:
       if: ${{ github.event_name == 'pull_request' }}
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
