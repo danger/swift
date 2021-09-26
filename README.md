@@ -261,7 +261,3 @@ Run `swift run rocket $VERSION` on `master` e.g. `swift run rocket 1.0.0`
 ### Maintainer
 
 Danger Swift is maintained by [@f-meloni](https://github.com/f-meloni), and maybe you?
-
-[m]: https://github.com/JohnSundell/Marathon
-[spm-lr]: http://bhargavg.com/swift/2016/06/11/how-swiftpm-parses-manifest-file.html
-[dsl]: https://github.com/danger/danger-js/pull/341
