@@ -13,6 +13,8 @@
 
 ## Master
 
+- Move to Swift 5.3 [@lunij][] - [#414](https://github.com/danger/swift/pull/414)
+
 ## 3.11.1
 
 - Build for Apple Silicon on Apple Silicon devices [@f-meloni][] - [#462](https://github.com/danger/swift/pull/462)
