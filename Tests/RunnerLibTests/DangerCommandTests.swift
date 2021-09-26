@@ -3,7 +3,7 @@ import XCTest
 
 final class DangerCommandTests: XCTestCase {
     func testItReturnsTheCorrectCommandsListText() {
-        let expectedResult = DangerCommand.allCases.reduce("") { (result, command) -> String in
+        let expectedResult = DangerCommand.allCases.reduce("") { result, command -> String in
             result + command.rawValue + "\t" + command.commandDescription + "\n"
         }
 

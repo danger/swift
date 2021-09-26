@@ -154,7 +154,7 @@ public final class Script {
     }
 
     public func watch(importedFiles: [String]) throws {
-        let fullPathImports = importedFiles.map { $0.fullPath }
+        let fullPathImports = importedFiles.map(\.fullPath)
         try watch(imports: fullPathImports)
         try? copyImports(fullPathImports)
     }

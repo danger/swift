@@ -14,7 +14,7 @@ public struct SPMDanger {
         self.fileManager = fileManager
         let packageContent = (try? String(contentsOfFile: packagePath)) ?? ""
 
-        let regexPattern = #"\.library\(name:[\ ]?\"(\#(SPMDanger.dangerDepsPrefix)[A-Za-z]*)"#
+        let regexPattern = #"\.library\([\ \n]*name:[\ ]?\"(\#(SPMDanger.dangerDepsPrefix)[A-Za-z]*)\""#
         let regex = try? NSRegularExpression(pattern: regexPattern,
                                              options: .allowCommentsAndWhitespace)
         let firstMatch = regex?.firstMatch(in: packageContent,
@@ -22,7 +22,7 @@ public struct SPMDanger {
                                            range: NSRange(location: 0, length: packageContent.count))
 
         if let depsLibNameRange = firstMatch?.range(at: 1),
-            let range = Range(depsLibNameRange, in: packageContent) {
+           let range = Range(depsLibNameRange, in: packageContent) {
             depsLibName = String(packageContent[range])
         } else {
             return nil

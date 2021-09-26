@@ -19,7 +19,7 @@ struct InlineDependenciesFinder {
             if line.hasPrefix("import ") {
                 let components = line.components(separatedBy: config.dependencyPrefix)
                 guard components.count > 1,
-                    let lastComponent = components.last
+                      let lastComponent = components.last
                 else {
                     continue
                 }
@@ -36,7 +36,7 @@ struct InlineDependenciesFinder {
 
                 result.append(InlineDependency(url: url, major: majorVersion))
             } else if let firstCharacter = line.unicodeScalars.first,
-                !CharacterSet.alphanumerics.contains(firstCharacter) {
+                      !CharacterSet.alphanumerics.contains(firstCharacter) {
                 break
             }
         }

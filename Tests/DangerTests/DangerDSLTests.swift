@@ -21,9 +21,9 @@ final class DangerDSLTests: XCTestCase {
         danger.message("Message")
         danger.warn("Warning")
         danger.fail("Fail")
-        XCTAssert(danger.messages.count == 1)
-        XCTAssert(danger.warnings.count == 1)
-        XCTAssert(danger.fails.count == 1)
+        XCTAssertEqual(danger.messages.count, 1)
+        XCTAssertEqual(danger.warnings.count, 1)
+        XCTAssertEqual(danger.fails.count, 1)
     }
 
     func testGithubFixtureDSL() throws {
@@ -34,7 +34,7 @@ final class DangerDSLTests: XCTestCase {
         XCTAssertTrue(danger.runningOnGithub)
         XCTAssertTrue(danger.supportsSuggestions)
         XCTAssertNotNil(danger.git)
-        XCTAssert(danger.github.api.configuration.accessToken == "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf")
+        XCTAssertEqual(danger.github.api.configuration.accessToken, "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf".base64Encoded)
     }
 
     func testItParsesCorrectlyTheDangerDSLWhenThePRIsOnGithubEnterprise() throws {
@@ -45,8 +45,8 @@ final class DangerDSLTests: XCTestCase {
         XCTAssertTrue(danger.runningOnGithub)
         XCTAssertTrue(danger.supportsSuggestions)
         XCTAssertNotNil(danger.git)
-        XCTAssert(danger.github.api.configuration.accessToken == "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf")
-        XCTAssert(danger.github.api.configuration.apiEndpoint == "https://base.url.io")
+        XCTAssertEqual(danger.github.api.configuration.accessToken, "7bd263f8e4becaa3d29b25d534fe6d5f3b555ccf".base64Encoded)
+        XCTAssertEqual(danger.github.api.configuration.apiEndpoint, "https://base.url.io")
     }
 
     func testItParsesCorrectlyTheDangerDSLWhenThePRIsOnBitBucketServer() throws {
@@ -57,5 +57,11 @@ final class DangerDSLTests: XCTestCase {
         XCTAssertFalse(danger.runningOnGithub)
         XCTAssertFalse(danger.supportsSuggestions)
         XCTAssertNotNil(danger.git)
+    }
+}
+
+private extension String {
+    var base64Encoded: String? {
+        data(using: .utf8)?.base64EncodedString()
     }
 }

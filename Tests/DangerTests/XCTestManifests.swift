@@ -70,6 +70,8 @@
             ("testSendsOuputFileToTheExecutorWhenLintingModifiedFiles", testSendsOuputFileToTheExecutorWhenLintingModifiedFiles),
             ("testSpecificFilesLintStyle", testSpecificFilesLintStyle),
             ("testSpecificFilesSwiftOnlyFilter", testSpecificFilesSwiftOnlyFilter),
+            ("testSwiftlintCommandWhenPathIsBin", testSwiftlintCommandWhenPathIsBin),
+            ("testSwiftlintCommandWhenPathIsSwiftPackage", testSwiftlintCommandWhenPathIsSwiftPackage),
             ("testViolations", testViolations),
         ]
     }
@@ -90,6 +92,9 @@
         // to regenerate.
         static let __allTests__DangerUtilsTests = [
             ("testAwaitsFunctionResult", testAwaitsFunctionResult),
+            ("testEnvironmentReturnsBooleanValueHasDangerInTheNameAndValueIsABoolean", testEnvironmentReturnsBooleanValueHasDangerInTheNameAndValueIsABoolean),
+            ("testEnvironmentReturnsNoValueWhenValueHasNoDangerInTheName", testEnvironmentReturnsNoValueWhenValueHasNoDangerInTheName),
+            ("testEnvironmentReturnsStringValueWhenEnvVariableHasDangerInTheNameAndValueIsAString", testEnvironmentReturnsStringValueWhenEnvVariableHasDangerInTheNameAndValueIsAString),
             ("testFileDiffWhenDiffIsValid", testFileDiffWhenDiffIsValid),
             ("testLinesForStringReturnsTheCorrectResult", testLinesForStringReturnsTheCorrectResult),
         ]

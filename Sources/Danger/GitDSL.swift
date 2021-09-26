@@ -23,9 +23,9 @@ public struct Git: Decodable, Equatable {
     public let commits: [Commit]
 }
 
-extension Git {
+public extension Git {
     /// A platform agnostic reference to a git commit.
-    public struct Commit: Equatable {
+    struct Commit: Equatable {
         /// The author of a commit.
         public struct Author: Equatable {
             /// The display name for the author.
@@ -54,7 +54,7 @@ extension Git {
         public let parents: [String]?
 
         /// The URL for the commit.
-        public let url: String
+        public let url: String?
     }
 }
 

@@ -254,12 +254,12 @@ final class GitHubTests: XCTestCase {
         XCTAssertNil(testCommit.author)
         XCTAssertEqual(testCommit.sha, "cad494648f773cd4fad5a9ea948c1bfabf36032a")
         XCTAssertEqual(testCommit.url, "https://api.github.com/repos/danger/swift/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a")
-        XCTAssertEqual(testCommit.commit, Git.Commit(sha: nil,
-                                                     author: expectedAuthor,
-                                                     committer: expectedAuthor,
-                                                     message: "Re use the same executor on the runner",
-                                                     parents: nil,
-                                                     url: "https://api.github.com/repos/danger/swift/git/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a"))
+        XCTAssertEqual(testCommit.commit, GitHub.Commit.CommitData(sha: nil,
+                                                                   author: expectedAuthor,
+                                                                   committer: expectedAuthor,
+                                                                   message: "Re use the same executor on the runner",
+                                                                   parents: nil,
+                                                                   url: "https://api.github.com/repos/danger/swift/git/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a"))
         XCTAssertEqual(testCommit.committer, GitHub.User(id: 17_830_956, login: "f-meloni", userType: .user))
     }
 

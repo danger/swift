@@ -7,8 +7,9 @@ Write your Dangerfiles in Swift.
 
 ### Requirements
 
-Latest version requires Swift 5.1
+Latest version requires Swift 5.2
 
+- If you are using Swift 5.1 use v3.8.0
 - If you are using Swift 4.2 use v2.0.7
 - If you are using Swift 4.1 use v0.4.1
 - If you are using Swift 4.0, Use v0.3.6
@@ -212,7 +213,7 @@ swift run danger-swift command --cwd path/to/working-directory
 
 #### Dev
 
-You need to be using Xcode 10.
+You need to be using Xcode >= 11.3.1.
 
 ```sh
 git clone https://github.com/danger/danger-swift.git

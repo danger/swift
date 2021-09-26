@@ -5,12 +5,12 @@ import Foundation
 /// A simple typealias for strings representing files
 public typealias File = String
 
-extension File {
-    public var fileType: FileType? {
+public extension File {
+    var fileType: FileType? {
         FileType(from: self)
     }
 
-    public var name: String {
+    var name: String {
         String(self)
     }
 }
@@ -33,7 +33,7 @@ extension FileType {
         let splittedPath = file.split(separator: ".")
 
         guard let fileTypeString = splittedPath.last,
-            splittedPath.count > 1
+              splittedPath.count > 1
         else {
             return nil
         }

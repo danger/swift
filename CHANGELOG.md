@@ -13,6 +13,41 @@
 
 ## Master
 
+## 3.11.1
+
+- Build for Apple Silicon on Apple Silicon devices [@f-meloni][] - [#462](https://github.com/danger/swift/pull/462)
+
+## 3.11.0
+
+- Use swift instead of swiftc to fix compilation on Xcode 13 [@f-meloni][] - [#460](https://github.com/danger/swift/pull/460)
+- Add Homebrew path for Apple Silicon based macOS installations [@majd][] - [#458](https://github.com/danger/swift/pull/458)
+
+## 3.10.2
+
+- Expose Danger environment from utils [@f-meloni][] - [#456](https://github.com/danger/swift/pull/456)
+- Support DangerDeps definition in multiple lines [@f-meloni][] - [#447](https://github.com/danger/swift/pull/447)
+
+## 3.10.1
+
+- Fix homebrew [@f-meloni][] - [#435](https://github.com/danger/swift/pull/435)
+
+## 3.10.0
+
+- Use different structs from GitHub and Git commits [@f-meloni][] - [#433](https://github.com/danger/swift/pull/433)
+- Add support to Danger enviroment [@f-meloni][] - [#431](https://github.com/danger/swift/pull/431)
+
+## 3.9.1
+
+- Return the correct version when `--version` is used
+
+## 3.9.0
+
+- Move minimum swift version to Swift 5.2 [@lunij] - [#419](https://github.com/danger/swift/pull/419)
+- Fix make install for linux with swift version > 5.3 [@f-meloni][] - [#413](https://github.com/danger/swift/pull/413)
+
+## 3.8.0
+
+- Support package path for swiftlint [@f-meloni][] - [#413](https://github.com/danger/swift/pull/413)
 - Make Danger work well with --package-path [@f-meloni][] - [#406](https://github.com/danger/swift/pull/406)
 - Make `force_remove_source_branch` Optional in GitLabDSL [@417-72KI][] - [#410](https://github.com/danger/swift/pull/410)
 
@@ -459,3 +494,5 @@ This release also includes:
 [@captainbarbosa]: https://github.com/captainbarbosa
 [@417-72KI]: https://github.com/417-72KI
 [@vc7]: https://github.com/vc7
+[@lunij]: https://github.com/lunij
+[@majd]: https://github.com/majd

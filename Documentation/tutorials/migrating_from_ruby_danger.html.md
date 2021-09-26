@@ -57,7 +57,7 @@ your dependencies added.
 Run `[swift run] danger-swift edit` to create a blank `Dangerfile.swift` and open it in Xcode.
 
 <center>
-<img src="/swift/tutorials/images/swift-edit.png" width="100%">
+<img src="/swift/tutorials/images/swift-edit.png" width="100%" />
 </center>
 
 This is your blank canvas to re-create your old rules with. Here's some rough translations of the API, based on a

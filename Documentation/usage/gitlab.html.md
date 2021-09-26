@@ -15,20 +15,18 @@ variables on your CI system:
 Then in your Dangerfiles you will have a fully fleshed out `danger.gitlab` object to work with. For example:
 
 ```swift
-if (danger.gitlab.mr.title.contains("WIP")) {
-  warn("PR is considered WIP")
+if (danger.gitLab.mergeRequest.title.contains("WIP")) {
+  warn("MR is considered WIP")
 }
 ```
 
 The DSL is expansive, you can see all the details inside the [Danger Swift Reference][ref], but the TLDR is:
 
 ```swift
-danger.gitlab.
+danger.gitLab.
 
   /** The pull request and repository metadata */
   metadata: RepoMetaData
   /** The Merge Request metadata */
-  mr: GitLabMR
-  /** The commits associated with the merge request */
-  commits: [GitLabMRCommit]
+  mergeRequest: GitLabMR
 ```

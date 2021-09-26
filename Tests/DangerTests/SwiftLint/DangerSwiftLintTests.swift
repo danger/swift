@@ -448,6 +448,34 @@ final class DangerSwiftLintTests: XCTestCase {
 
         XCTAssertEqual(reportDeleter.receivedPath, "swiftlintReport.json")
     }
+
+    func testSwiftlintCommandWhenPathIsBin() {
+        let reportDeleter = SpySwiftlintReportDeleter()
+
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: .bin("swiftlint"),
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           reportDeleter: reportDeleter,
+                           readFile: mockedEmptyJSON)
+
+        XCTAssertEqual(executor.invocations.map(\.command), ["swiftlint"])
+    }
+
+    func testSwiftlintCommandWhenPathIsSwiftPackage() {
+        let reportDeleter = SpySwiftlintReportDeleter()
+
+        _ = SwiftLint.lint(danger: danger,
+                           shellExecutor: executor,
+                           swiftlintPath: .swiftPackage("Danger/Something"),
+                           currentPathProvider: fakePathProvider,
+                           outputFilePath: "swiftlintReport.json",
+                           reportDeleter: reportDeleter,
+                           readFile: mockedEmptyJSON)
+
+        XCTAssertEqual(executor.invocations.map(\.command), ["swift run --package-path Danger/Something swiftlint"])
+    }
 }
 
 extension DangerSwiftLintTests {
@@ -506,5 +534,11 @@ private final class SpySwiftlintReportDeleter: SwiftlintReportDeleting {
 
     func deleteReport(atPath path: String) throws {
         receivedPath = path
+    }
+}
+
+extension SwiftLint.SwiftlintPath: ExpressibleByStringLiteral {
+    public init(stringLiteral value: StringLiteralType) {
+        self = .bin(value)
     }
 }

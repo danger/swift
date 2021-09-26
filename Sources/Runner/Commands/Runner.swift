@@ -136,7 +136,11 @@ func runDanger(logger: Logger) throws {
     args += [dslJSONPath] // The DSL for a Dangerfile from DangerJS
     args += [dangerResponsePath] // The expected for a Dangerfile from DangerJS
 
-    let swiftC = try executor.spawn("command -v swiftc", arguments: [])
+    #if os(macOS)
+        let swiftC = try executor.spawn("xcrun", arguments: ["--find", "swift"])
+    #else
+        let swiftC = try executor.spawn("command", arguments: ["-v", "swift"])
+    #endif
 
     logger.debug("Running: \(swiftC) \(args.joined(separator: " "))")
 
@@ -146,8 +150,9 @@ func runDanger(logger: Logger) throws {
     proc.arguments = args
     let standardOutput = FileHandle.standardOutput
     if let cwdOptionIndex = CommandLine.arguments.firstIndex(of: DangeSwiftRunnerOption.cwd.rawValue),
-        (cwdOptionIndex + 1) < CommandLine.arguments.count,
-        let directoryURL = URL(string: CommandLine.arguments[cwdOptionIndex + 1]) {
+       (cwdOptionIndex + 1) < CommandLine.arguments.count,
+       let directoryURL = URL(string: CommandLine.arguments[cwdOptionIndex + 1])
+    {
         proc.currentDirectoryPath = directoryURL.absoluteString
     }
     proc.standardOutput = standardOutput
