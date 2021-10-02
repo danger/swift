@@ -9,7 +9,7 @@ LABEL "com.github.actions.color"="blue"
 
 # Install nodejs and Danger
 RUN apt-get update -q \
-    && apt-get install -qy curl make \
+    && apt-get install -qy curl make ca-certificates \
     && curl -sL https://deb.nodesource.com/setup_10.x |  bash - \
     && apt-get install -qy nodejs \
     && npm install -g danger \
