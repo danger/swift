@@ -1,4 +1,4 @@
-FROM swift:5.2.5-focal
+FROM swift:5.3.3-focal
 
 MAINTAINER Orta Therox
 
