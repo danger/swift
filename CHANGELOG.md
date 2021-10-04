@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.12.0
+
 - Fix Dockerfile node certificates [@f-meloni][] - [#471](https://github.com/danger/swift/pull/471)
 - Move minumum supported version to Swift 5.3 [@lunij][] - [#414](https://github.com/danger/swift/pull/414)
 
