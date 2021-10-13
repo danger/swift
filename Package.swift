@@ -9,7 +9,7 @@ let package = Package(
     products: [
         .library(name: "Danger", type: .dynamic, targets: ["Danger"]),
         .library(name: "DangerFixtures", type: .dynamic, targets: ["DangerFixtures"]),
-        .library(name: "DangerDeps", type: .dynamic, targets: ["Danger-Swift"]),
+        .library(name: "DangerDeps", type: .dynamic, targets: ["Danger-Swift"]), // dev
         .executable(name: "danger-swift", targets: ["Runner"]),
     ],
     dependencies: [
