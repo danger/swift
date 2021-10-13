@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.12.1
+
 - Comment Danger's internal framework on release [@f-meloni][] - [#477](https://github.com/danger/swift/pull/477)
 
 ## 3.12.0
