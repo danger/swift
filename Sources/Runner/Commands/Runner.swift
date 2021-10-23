@@ -98,9 +98,9 @@ func runDanger(logger: Logger) throws {
                 .filter(fileManager.fileExists)
                 .first
 
-            if marathonLibPath != nil {
-                libArgs += ["-L", marathonLibPath!]
-                libArgs += ["-I", marathonLibPath!]
+            if let marathonLibPath = marathonLibPath {
+                libArgs += ["-L", marathonLibPath]
+                libArgs += ["-I", marathonLibPath]
                 libArgs += ["-lDangerDependencies"]
             }
         }
