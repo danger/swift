@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.3
 import PackageDescription
 
 // Version number can be found in Source/Danger/Danger.swift
