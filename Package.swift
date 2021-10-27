@@ -7,8 +7,8 @@ import PackageDescription
 let package = Package(
     name: "danger-swift",
     products: [
-        .library(name: "Danger", type: .dynamic, targets: ["Danger"]),
-        .library(name: "DangerFixtures", type: .dynamic, targets: ["DangerFixtures"]),
+        .library(name: "Danger", targets: ["Danger"]),
+        .library(name: "DangerFixtures", targets: ["DangerFixtures"]),
         .library(name: "DangerDeps", type: .dynamic, targets: ["Danger-Swift"]), // dev
         .executable(name: "danger-swift", targets: ["Runner"]),
     ],
