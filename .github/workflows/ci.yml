@@ -48,7 +48,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test-dependencies-resolver:
-    name: Test on macOS 11
+    name: Test dependencies resolver
     runs-on: macOS-11
     strategy:
       matrix:
@@ -81,7 +81,7 @@ jobs:
 
     - run: make install
 
-    - run: mkdir DangerTestWithDependencies && mv DangerfileWithDependencies.swift DangerTestWithDependencies
+    - run: mkdir DangerTestWithDependencies && mv DangerfileWithDependencies.swift DangerTestWithDependencies/Dangerfile.swift
 
     - run: cd DangerTestWithDependencies && danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
