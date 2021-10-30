@@ -5,7 +5,7 @@ import Version
 
 public struct PackageManager {
     enum Errors: Error {
-        case failedToUpdatePackages(String)
+        case failedToUpdatePackages(String, error: String)
         case unrecognizedTagFormat(String)
     }
 
@@ -19,6 +19,7 @@ public struct PackageManager {
     private let packageDataProvider: PackageDataProviding
     private let logger: Logger
     private var masterPackageName: String { "PACKAGES" }
+    private var fakeFile = "Fake.swift"
 
     // MARK: - Init
 
@@ -159,11 +160,14 @@ public struct PackageManager {
             let executor = ShellExecutor()
 
             let toolsVersion = try resolveSwiftToolsVersion(executor: executor, onFolder: generatedFolder)
+            try generatedFolder.createSubfolderIfNeeded(withName: "Sources/\(masterPackageName)")
+            fileCreator.createFile(atPath: generatedFolder.appendingPath("Sources/\(masterPackageName)").appendingPath(fakeFile),
+                                   contents: Data())
             try packageGenerator.generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion)
             try executeSwiftCommand("package update", onFolder: generatedFolder, arguments: [], executor: executor)
             try generatedFolder.createSubfolderIfNeeded(withName: "Packages")
         } catch {
-            throw Errors.failedToUpdatePackages(folder)
+            throw Errors.failedToUpdatePackages(generatedFolder, error: "\(error)")
         }
     }
 
