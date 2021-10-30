@@ -47,6 +47,47 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  test-dependencies-resolver:
+    name: Test dependencies resolver
+    runs-on: macOS-11
+    strategy:
+      matrix:
+        xcode: ["12.4", "12.5.1", "13.0"]
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          .build/artifacts
+          .build/checkouts
+          .build/repositories
+        key: ${{ runner.os }}-dependencies-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
+        restore-keys: |
+          ${{ runner.os }}-dependencies-${{ matrix.xcode }}-
+          ${{ runner.os }}-dependencies-
+          ${{ runner.os }}-
+
+    - name: Select Xcode
+      run: |
+        xcodebuild -version
+        ls -nt /Applications/ | grep "Xcode*"
+        sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
+        xcodebuild -version
+
+    - name: Install danger-js
+      run: brew install danger/tap/danger-js
+
+    - run: make install
+
+    - run: mkdir DangerTestWithDependencies && mv DangerfileWithDependencies.swift DangerTestWithDependencies/Dangerfile.swift
+
+    - run: cd DangerTestWithDependencies && danger-swift ci --verbose --failOnErrors
+      if: ${{ github.event_name == 'pull_request' }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   test-on-linux:
     name: Test on Linux
     runs-on: ubuntu-latest

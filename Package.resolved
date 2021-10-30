@@ -212,8 +212,8 @@
         "package": "SwiftSyntax",
         "repositoryURL": "https://github.com/apple/swift-syntax.git",
         "state": {
-          "branch": "0.50300.0",
-          "revision": "844574d683f53d0737a9c6d706c3ef31ed2955eb",
+          "branch": "release/5.5",
+          "revision": "2ca29758ed04c0a209221db59f922d4faf539f03",
           "version": null
         }
       },
@@ -248,9 +248,9 @@
         "package": "SwiftSemantics",
         "repositoryURL": "https://github.com/SwiftDocOrg/SwiftSemantics.git",
         "state": {
-          "branch": null,
+          "branch": "0.3.2",
           "revision": "7690606eec5db6b089d6a5d252013ee07cade323",
-          "version": "0.3.2"
+          "version": null
         }
       },
       {
@@ -266,8 +266,8 @@
         "package": "SwiftSyntaxHighlighter",
         "repositoryURL": "https://github.com/NSHipster/SwiftSyntaxHighlighter.git",
         "state": {
-          "branch": "1.2.2",
-          "revision": "175923d005df00dc76c3c191bd7977c066a5288c",
+          "branch": "1.2.4",
+          "revision": "ac89909534b2afa4e9626307191c0d277ff82fe8",
           "version": null
         }
       },
