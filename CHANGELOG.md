@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.12.2
+
 - Fix Dependencies resolver on Xcode 13 [@f-meloni][] - [#482](https://github.com/danger/swift/pull/482)
 - Add support for Swift 5.5 and Xcode 13 [@avdlee][] - [#480](https://github.com/danger/swift/pull/480)
 
