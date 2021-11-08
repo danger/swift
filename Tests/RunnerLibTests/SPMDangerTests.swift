@@ -57,7 +57,10 @@ final class SPMDangerTests: XCTestCase {
     func testItBuildsTheDependencies() throws {
         let executor = MockedExecutor()
 
-        SPMDanger(packagePath: testPackage, readFile: { _ in ".library(name: \"DangerDeps\"" })?.buildDependencies(executor: executor)
+        SPMDanger(
+            packagePath: testPackage,
+            readFile: { _ in ".library(name: \"DangerDeps\"" }
+        )?.buildDependencies(executor: executor)
 
         XCTAssertEqual(executor.receivedCommands, ["swift build --product DangerDeps"])
     }
@@ -67,7 +70,11 @@ final class SPMDangerTests: XCTestCase {
         fileManager.stubbedFileExists = false
 
         XCTAssertEqual(
-            SPMDanger(packagePath: testPackage, readFile: { _ in ".library(name: \"DangerDepsEigen\"" }, fileManager: fileManager)?.xcodeImportFlags,
+            SPMDanger(
+                packagePath: testPackage,
+                readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
+                fileManager: fileManager
+            )?.xcodeImportFlags,
             ["-l DangerDepsEigen"]
         )
     }
@@ -76,19 +83,29 @@ final class SPMDangerTests: XCTestCase {
         let fileManager = StubbedFileManager()
         fileManager.stubbedFileExists = true
 
-        XCTAssertEqual(SPMDanger(packagePath: testPackage, readFile: { _ in ".library(name: \"DangerDepsEigen\"" }, fileManager: fileManager)?.xcodeImportFlags, ["-l DangerDepsEigen", "-l Danger"])
+        XCTAssertEqual(
+            SPMDanger(packagePath: testPackage, readFile: { _ in ".library(name: \"DangerDepsEigen\"" }, fileManager: fileManager)?.xcodeImportFlags,
+            ["-l DangerDepsEigen", "-l Danger"]
+        )
     }
 
     func testItReturnsTheCorrectSwiftcDepsImport() throws {
         XCTAssertEqual(
-            SPMDanger(packagePath: testPackage, readFile: { _ in ".library(name: \"DangerDepsEigen\"" })?.swiftcLibImport,
+            SPMDanger(
+                packagePath: testPackage,
+                readFile: { _ in ".library(name: \"DangerDepsEigen\"" }
+            )?.swiftcLibImport,
             "-lDangerDepsEigen"
         )
     }
 
     func testItReturnsTheCorrectBuildFolder() throws {
         XCTAssertEqual(
-            SPMDanger(packagePath: testPackage, readFile: { _ in ".library(name: \"DangerDepsEigen\"" }, fileManager: StubbedFileManager())?.buildFolder,
+            SPMDanger(
+                packagePath: testPackage,
+                readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
+                fileManager: StubbedFileManager()
+            )?.buildFolder,
             "testPath/.build/debug"
         )
     }
