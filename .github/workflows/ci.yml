@@ -83,7 +83,7 @@ jobs:
 
     - run: mkdir DangerTestWithDependencies && mv DangerfileWithDependencies.swift DangerTestWithDependencies/Dangerfile.swift
 
-    - run: cd DangerTestWithDependencies && danger-swift ci --verbose --failOnErrors
+    - run: cd DangerTestWithDependencies && danger-swift ci --verbose --failOnErrors --id DangerDependencies
       if: ${{ github.event_name == 'pull_request' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
