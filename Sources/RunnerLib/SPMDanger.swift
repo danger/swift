@@ -10,9 +10,13 @@ public struct SPMDanger {
         fileManager.currentDirectoryPath + "/.build/debug"
     }
 
-    public init?(packagePath: String = "Package.swift", fileManager: FileManager = .default) {
+    public init?(
+        packagePath: String = "Package.swift",
+        readFile: (String) -> String? = { try? String(contentsOfFile: $0) },
+        fileManager: FileManager = .default
+    ) {
         self.fileManager = fileManager
-        let packageContent = (try? String(contentsOfFile: packagePath)) ?? ""
+        let packageContent = readFile(packagePath) ?? ""
 
         let regexPattern = #"\.library\([\ \n]*name:[\ ]?\"(\#(SPMDanger.dangerDepsPrefix)[A-Za-z]*)\""#
         let regex = try? NSRegularExpression(pattern: regexPattern,
@@ -22,15 +26,14 @@ public struct SPMDanger {
                                            range: NSRange(location: 0, length: packageContent.count))
 
         if let depsLibNameRange = firstMatch?.range(at: 1),
-           let range = Range(depsLibNameRange, in: packageContent) {
+            let range = Range(depsLibNameRange, in: packageContent) {
             depsLibName = String(packageContent[range])
         } else {
             return nil
         }
     }
 
-    public func buildDependencies(executor: ShellExecuting = ShellExecutor(),
-                                  fileManager _: FileManager = .default) {
+    public func buildDependencies(executor: ShellExecuting = ShellExecutor()) {
         executor.execute("swift build", arguments: ["--product \(depsLibName)"])
     }
 
