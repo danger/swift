@@ -19,9 +19,9 @@ LIB_INSTALL_PATH="$PREFIX/lib/danger"
 declare -a SWIFT_LIB_FILES=('libDanger.dylib' 'libDanger.so' 'Danger.swiftdoc' 'Danger.swiftmodule' 'OctoKit.swiftdoc' 'OctoKit.swiftmodule' 'RequestKit.swiftdoc' 'RequestKit.swiftmodule' 'Logger.swiftdoc' 'Logger.swiftmodule' 'DangerShellExecutor.swiftdoc' 'DangerShellExecutor.swiftmodule')
 
 
-DANGER_LIB_DECLARATION=".library(name: \"Danger\", targets: [\"Danger\"])"
-DANGER_LIB_DYNAMIC_DECLARATION=".library(name: \"Danger\", type: .dynamic, targets: [\"Danger\"])"
-sed "s/$DANGER_LIB_DECLARATION/$DANGER_LIB_DYNAMIC_DECLARATION/g" Package.swift > tmpPackage
+DANGER_LIB_DECLARATION='\.library(name:\ \"Danger\", targets: \[\"Danger\"\])'
+DANGER_LIB_DYNAMIC_DECLARATION='\.library(name:\ \"Danger\",\ type:\ \.dynamic,\ targets:\ \[\"Danger\"\])'
+sed  "s/$DANGER_LIB_DECLARATION/$DANGER_LIB_DYNAMIC_DECLARATION/g" Package.swift > tmpPackage
 mv -f tmpPackage Package.swift
 
 swift package clean
@@ -55,5 +55,5 @@ mkdir -p "$LIB_INSTALL_PATH"
 cp -f "$BUILD_FOLDER/$TOOL_NAME" "$INSTALL_PATH"
 cp -fr "${ARRAY[@]}" "$LIB_INSTALL_PATH" 2>/dev/null || :
 
-sed "s/$DANGER_LIB_DYNAMIC_DECLARATION/$DANGER_LIB_DECLARATION/g" Package.swift > tmpPackage
+sed -e "s/$DANGER_LIB_DYNAMIC_DECLARATION/$DANGER_LIB_DECLARATION/g" Package.swift > tmpPackage
 mv -f tmpPackage Package.swift
