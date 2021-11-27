@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.12.3
+
 - Add dynamic framework type only on install script [@f-meloni][] - [#485](https://github.com/danger/swift/pull/485)
 
 ## 3.12.2
