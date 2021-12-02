@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/shibapm/Logger", from: "0.1.0"),
-        .package(url: "https://github.com/mxcl/Version", from: "1.0.0"),
+        .package(url: "https://github.com/mxcl/Version", from: "2.0.0"),
         .package(name: "OctoKit", url: "https://github.com/nerdishbynature/octokit.swift", from: "0.11.0"),
         // Danger Plugins
         // Dev dependencies
