@@ -1,6 +1,6 @@
 TEXT=`cat CHANGELOG.md| sed -n "/##\ $VERSION/,/##/p"`
 
-TEXT=`echo "$TEXT" | sed '1d;$d'`
+TEXT=`echo "$TEXT" | sed '1d;$d' | sed 's/\[\]//g'`
 
 echo "gh release create $VERSION -n \"## What's Changed\r\n$TEXT\""
 
