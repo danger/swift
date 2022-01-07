@@ -55,6 +55,7 @@ public extension GitHub {
             case htmlUrl = "html_url"
             case draft
             case links = "_links"
+            case labels
         }
 
         public enum PullRequestState: String, Decodable {
@@ -138,6 +139,9 @@ public extension GitHub {
 
         /// Possible link relations
         public let links: Link
+
+        /// The labels associated with this pull request.
+        public let labels: [Label]
     }
 }
 
@@ -418,19 +422,7 @@ public extension GitHub {
             case locked
         }
 
-        public struct Label: Decodable, Equatable {
-            /// The id number of this label.
-            public let id: Int
-
-            /// The URL that links to this label.
-            public let url: String
-
-            /// The name of the label.
-            public let name: String
-
-            /// The color associated with this label.
-            public let color: String
-        }
+        public typealias Label = GitHub.Label
 
         /// The id number of the issue
         public let id: Int
@@ -537,5 +529,21 @@ public extension GitHub {
 
         /// The ISO8601 date string for the due of this milestone.
         public let dueOn: Date?
+    }
+}
+
+public extension GitHub {
+    struct Label: Decodable, Equatable {
+        /// The id number of this label.
+        public let id: Int
+
+        /// The URL that links to this label.
+        public let url: String
+
+        /// The name of the label.
+        public let name: String
+
+        /// The color associated with this label.
+        public let color: String
     }
 }

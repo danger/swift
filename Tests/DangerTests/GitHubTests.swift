@@ -314,6 +314,13 @@ final class GitHubTests: XCTestCase {
             dueOn: Date(timeIntervalSince1970: 1_349_825_941.0)
         )
 
+        let label = GitHub.Label(
+            id: 208045946,
+            url: "https://api.github.com/repos/octocat/Hello-World/labels/bug",
+            name: "bug",
+            color: "f29513"
+        )
+
         let expectedPR = GitHub.PullRequest(
             number: 1347,
             title: "new-feature",
@@ -348,7 +355,8 @@ final class GitHubTests: XCTestCase {
                 reviewComment: "https://api.github.com/repos/octocat/Hello-World/pulls/comments{/number}",
                 commits: "https://api.github.com/repos/octocat/Hello-World/pulls/1347/commits",
                 statuses: "https://api.github.com/repos/octocat/Hello-World/statuses/6dcb09b5b57875f334f61aebed695e2e4193db5e"
-            )
+            ),
+            labels: [label]
         )
 
         XCTAssertEqual(expectedPR, actualPR)
