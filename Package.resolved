@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/NSHipster/HypertextLiteral.git",
         "state": {
           "branch": null,
-          "revision": "3e45da849e507d171c7264146176bb834a01be4f",
-          "version": "0.0.2"
+          "revision": "3993d13c1e1d72a2ab20316646b2d53a705b17d0",
+          "version": "0.0.3"
         }
       },
       {
@@ -60,8 +60,8 @@
         "repositoryURL": "https://github.com/shibapm/Komondor",
         "state": {
           "branch": null,
-          "revision": "855c74f395a4dc9e02828f58d931be6920bcbf6f",
-          "version": "1.0.6"
+          "revision": "1bb467ad7ad57e94af82d73fa0fe063cb0b8ddd5",
+          "version": "1.1.0"
         }
       },
       {
@@ -87,8 +87,8 @@
         "repositoryURL": "https://github.com/Quick/Nimble.git",
         "state": {
           "branch": null,
-          "revision": "b02b00b30b6353632aa4a5fb6124f8147f7140c0",
-          "version": "8.0.5"
+          "revision": "7a46a5fc86cb917f69e3daf79fcb045283d8f008",
+          "version": "8.1.2"
         }
       },
       {
@@ -114,8 +114,8 @@
         "repositoryURL": "https://github.com/Quick/Quick.git",
         "state": {
           "branch": null,
-          "revision": "33682c2f6230c60614861dfc61df267e11a1602f",
-          "version": "2.2.0"
+          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
+          "version": "2.2.1"
         }
       },
       {
@@ -150,8 +150,8 @@
         "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
         "state": {
           "branch": null,
-          "revision": "97b5848e5692150d75b5cf0b81d7ebef5f4d5071",
-          "version": "0.28.0"
+          "revision": "77a4dbbb477a8110eb8765e3c44c70fb4929098f",
+          "version": "0.29.0"
         }
       },
       {
@@ -204,16 +204,16 @@
         "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
         "state": {
           "branch": null,
-          "revision": "12c6a7ce9d67f39a23c6bab757bdb073bd997885",
-          "version": "1.7.1"
+          "revision": "f8a9c997c3c1dab4e216a8ec9014e23144cbab37",
+          "version": "1.9.0"
         }
       },
       {
         "package": "SwiftSyntax",
         "repositoryURL": "https://github.com/apple/swift-syntax.git",
         "state": {
-          "branch": "release/5.5",
-          "revision": "2ca29758ed04c0a209221db59f922d4faf539f03",
+          "branch": "0.50300.0",
+          "revision": "844574d683f53d0737a9c6d706c3ef31ed2955eb",
           "version": null
         }
       },
@@ -222,8 +222,8 @@
         "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
         "state": {
           "branch": null,
-          "revision": "d9b7cf39e06e89428004a767d97006fb6d293c53",
-          "version": "0.43.5"
+          "revision": "fab94f3ca17f0f75e87787ed83b3a9423348b14c",
+          "version": "0.49.1"
         }
       },
       {
@@ -231,8 +231,8 @@
         "repositoryURL": "https://github.com/Realm/SwiftLint",
         "state": {
           "branch": null,
-          "revision": "76d44cff391645a7f4d5ba2bf1853afaf3f5c1fb",
-          "version": "0.38.2"
+          "revision": "da66a81710714112d51041264440987b992849c3",
+          "version": "0.40.0"
         }
       },
       {
@@ -248,9 +248,9 @@
         "package": "SwiftSemantics",
         "repositoryURL": "https://github.com/SwiftDocOrg/SwiftSemantics.git",
         "state": {
-          "branch": "0.3.2",
+          "branch": null,
           "revision": "7690606eec5db6b089d6a5d252013ee07cade323",
-          "version": null
+          "version": "0.3.2"
         }
       },
       {
@@ -266,8 +266,8 @@
         "package": "SwiftSyntaxHighlighter",
         "repositoryURL": "https://github.com/NSHipster/SwiftSyntaxHighlighter.git",
         "state": {
-          "branch": "1.2.4",
-          "revision": "ac89909534b2afa4e9626307191c0d277ff82fe8",
+          "branch": "1.2.2",
+          "revision": "175923d005df00dc76c3c191bd7977c066a5288c",
           "version": null
         }
       },
@@ -285,8 +285,8 @@
         "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
         "state": {
           "branch": null,
-          "revision": "a4931e5c3bafbedeb1601d3bb76bbe835c6d475a",
-          "version": "5.0.1"
+          "revision": "9183170d20857753d4f331b0ca63f73c60764bf3",
+          "version": "5.0.2"
         }
       },
       {

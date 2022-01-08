@@ -8,25 +8,25 @@ import PackageDescription
 let isDevelop = true
 
 let devProducts: [Product] = isDevelop
-? [
-    .library(name: "DangerDeps", type: .dynamic, targets: ["Danger-Swift"])
-] : []
+    ? [
+        .library(name: "DangerDeps", type: .dynamic, targets: ["Danger-Swift"])
+    ] : []
 let devDependencies: [Package.Dependency] = isDevelop
-? [
-    .package(url: "https://github.com/shibapm/Komondor", from: "1.0.0"),
-    .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"),
-    .package(url: "https://github.com/Realm/SwiftLint", from: "0.38.0"),
-    .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.1"),
-    .package(url: "https://github.com/shibapm/Rocket", from: "0.4.0"),
-    .package(url: "https://github.com/SwiftDocOrg/swift-doc", .branch("1.0.0-rc.1")),
-] : []
+    ? [
+        .package(url: "https://github.com/shibapm/Komondor", from: "1.0.0"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"),
+        .package(url: "https://github.com/Realm/SwiftLint", from: "0.38.0"),
+        .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.1"),
+        .package(url: "https://github.com/shibapm/Rocket", from: "0.4.0"),
+        .package(url: "https://github.com/SwiftDocOrg/swift-doc", .branch("1.0.0-rc.1")),
+    ] : []
 let devTargets: [Target] = isDevelop
-? [
-    .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]),
-    .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib", "SnapshotTesting"], exclude: ["__Snapshots__"]),
-    .testTarget(name: "DangerDependenciesResolverTests", dependencies: ["DangerDependenciesResolver", "SnapshotTesting"], exclude: ["__Snapshots__"]),
-]
-: []
+    ? [
+        .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]),
+        .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib", "SnapshotTesting"], exclude: ["__Snapshots__"]),
+        .testTarget(name: "DangerDependenciesResolverTests", dependencies: ["DangerDependenciesResolver", "SnapshotTesting"], exclude: ["__Snapshots__"]),
+    ]
+    : []
 
 let package = Package(
     name: "danger-swift",
