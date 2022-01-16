@@ -26,9 +26,8 @@ jobs:
           .build/repositories
         key: ${{ runner.os }}-dependencies-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
         restore-keys: |
+          ${{ runner.os }}-dependencies-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
           ${{ runner.os }}-dependencies-${{ matrix.xcode }}-
-          ${{ runner.os }}-dependencies-
-          ${{ runner.os }}-
 
     - name: Select Xcode
       run: |
@@ -65,9 +64,8 @@ jobs:
           .build/repositories
         key: ${{ runner.os }}-dependencies-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
         restore-keys: |
+          ${{ runner.os }}-dependencies-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
           ${{ runner.os }}-dependencies-${{ matrix.xcode }}-
-          ${{ runner.os }}-dependencies-
-          ${{ runner.os }}-
 
     - name: Select Xcode
       run: |
@@ -107,9 +105,8 @@ jobs:
           .build/repositories
         key: ${{ runner.os }}-dependencies-${{ matrix.swift }}-${{ hashFiles('**/Package.resolved') }}
         restore-keys: |
+          ${{ runner.os }}-dependencies-${{ matrix.swift }}-${{ hashFiles('**/Package.resolved') }}
           ${{ runner.os }}-dependencies-${{ matrix.swift }}-
-          ${{ runner.os }}-dependencies-
-          ${{ runner.os }}-
 
     - name: Install danger-js
       run: |
@@ -145,9 +142,8 @@ jobs:
           .build/repositories
         key: ${{ runner.os }}-without-spm-package-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
         restore-keys: |
+          ${{ runner.os }}-without-spm-package-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
           ${{ runner.os }}-without-spm-package-${{ matrix.xcode }}-
-          ${{ runner.os }}-without-spm-package-
-          ${{ runner.os }}-
 
     - name: Select Xcode
       run: |
@@ -185,9 +181,8 @@ jobs:
           .build/repositories
         key: ${{ runner.os }}-without-spm-package-${{ matrix.swift }}-${{ hashFiles('**/Package.resolved') }}
         restore-keys: |
+          ${{ runner.os }}-without-spm-package-${{ matrix.swift }}-${{ hashFiles('**/Package.resolved') }}
           ${{ runner.os }}-without-spm-package-${{ matrix.swift }}-
-          ${{ runner.os }}-without-spm-package-
-          ${{ runner.os }}-
 
     - name: Install danger-js
       run: |
