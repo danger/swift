@@ -165,12 +165,6 @@ npm install -g danger
 danger-swift ci
 ```
 
-Mint
-
-```
-mint install danger/swift
-```
-
 GitHub Actions
 
 You can add danger/swift to your actions
