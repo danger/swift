@@ -209,7 +209,7 @@ jobs:
 
 To use a local compiled copy of danger-js use the `danger-js-path` argument:
 
-```
+```bash
 danger-swift command --danger-js-path path/to/danger-js
 ```
 
