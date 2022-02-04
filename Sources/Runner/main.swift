@@ -10,6 +10,7 @@ private func runCommand(_ command: DangerCommand, logger: Logger) throws {
     switch command {
     case .ci, .local, .pr:
         let exitCode = try runDangerJSCommandToRunDangerSwift(command, logger: logger)
+        VersionChecker.checkForUpdate(current: DangerVersion)
         exit(exitCode)
     case .edit:
         try editDanger(logger: logger)
