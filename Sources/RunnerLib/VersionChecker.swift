@@ -5,7 +5,7 @@ import Foundation
 
 public enum VersionChecker {
     public static func checkForUpdate(current currentVersionString: String) {
-        if ProcessInfo.processInfo.environment["DEBUG"] != nil {
+        guard ProcessInfo.processInfo.environment["DEBUG"] == nil else {
             return
         }
         guard let latestVersionString = fetchLatestVersion() else { return }
