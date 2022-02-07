@@ -18,9 +18,6 @@ public class VersionChecker {
 
 public extension VersionChecker {
     func checkForUpdate(current currentVersionString: String) {
-        guard ProcessInfo.processInfo.environment["DEBUG"] == nil else {
-            return
-        }
         guard let latestVersionString = fetchLatestVersion() else { return }
         guard let latestVersion = Version(latestVersionString) else {
             logger.debug("Invalid latestVersionString: (\(latestVersionString)")
