@@ -3,8 +3,21 @@ import Logger
 import Version
 import Foundation
 
-public enum VersionChecker {
-    public static func checkForUpdate(current currentVersionString: String) {
+public class VersionChecker {
+    private let shellExecutor: ShellExecutor
+    private let logger: Logger
+
+    public init(
+        shellExecutor: ShellExecutor = .init(),
+        logger: Logger
+    ) {
+        self.shellExecutor = shellExecutor
+        self.logger = logger
+    }
+}
+
+public extension VersionChecker {
+    func checkForUpdate(current currentVersionString: String) {
         guard ProcessInfo.processInfo.environment["DEBUG"] == nil else {
             return
         }
@@ -21,16 +34,18 @@ public enum VersionChecker {
             logger.logInfo("\nℹ️  A new release of danger-swift is available: \(currentVersion) -> \(latestVersion)")
         }
     }
+}
 
-    static func fetchLatestVersion() -> String? {
+private extension VersionChecker {
+    func fetchLatestVersion() -> String? {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         do {
-            let latest = try ShellExecutor().execute("curl",
-                                                     arguments: [
-                                                        "-s",
-                                                        "https://api.github.com/repos/danger/swift/releases/latest"
-                                                     ])
+            let latest = try shellExecutor.execute("curl",
+                                                   arguments: [
+                                                    "-s",
+                                                    "https://api.github.com/repos/danger/swift/releases/latest"
+                                                   ])
                 .data(using: .utf8)
                 .flatMap { try decoder.decode(Release.self, from: $0) }
             return latest?.tagName
@@ -39,10 +54,6 @@ public enum VersionChecker {
             return nil
         }
     }
-}
-
-extension VersionChecker {
-    static let logger = Logger()
 }
 
 struct Release: Codable {

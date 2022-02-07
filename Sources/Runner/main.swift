@@ -10,13 +10,18 @@ private func runCommand(_ command: DangerCommand, logger: Logger) throws {
     switch command {
     case .ci, .local, .pr:
         let exitCode = try runDangerJSCommandToRunDangerSwift(command, logger: logger)
-        VersionChecker.checkForUpdate(current: DangerVersion)
+        checkForUpdate(logger: logger)
         exit(exitCode)
     case .edit:
         try editDanger(logger: logger)
     case .runner:
         try runDanger(logger: logger)
     }
+}
+
+private func checkForUpdate(logger: Logger) {
+    let versionChecker = VersionChecker(logger: logger)
+    versionChecker.checkForUpdate(current: DangerVersion)
 }
 
 let cliLength = ProcessInfo.processInfo.arguments.count
