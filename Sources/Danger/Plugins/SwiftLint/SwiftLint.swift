@@ -332,7 +332,9 @@ private extension Array where Element == SwiftLintViolation {
         return map { violation -> SwiftLintViolation in
             var violation = violation
 
-            let updatedPath = violation.file.deletingPrefix(currentPath).deletingPrefix("/")
+            let updatedPath = violation.file.deletingPrefix(currentPath) // .deletingPrefix("/")
+            print("original path:", violation.file)
+            print("updated path: ", updatedPath)
             violation.file = updatedPath
 
             if strictSeverity {
