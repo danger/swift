@@ -4,11 +4,11 @@ import Version
 import Foundation
 
 public struct VersionChecker {
-    private let shellExecutor: ShellExecutor
+    private let shellExecutor: ShellExecuting
     private let logger: Logger
 
     public init(
-        shellExecutor: ShellExecutor = .init(),
+        shellExecutor: ShellExecuting = ShellExecutor(),
         logger: Logger
     ) {
         self.shellExecutor = shellExecutor
