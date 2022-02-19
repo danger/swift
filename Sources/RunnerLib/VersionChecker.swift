@@ -3,7 +3,7 @@ import Logger
 import Version
 import Foundation
 
-public class VersionChecker {
+public struct VersionChecker {
     private let shellExecutor: ShellExecutor
     private let logger: Logger
 
