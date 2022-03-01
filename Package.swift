@@ -13,12 +13,11 @@ let devProducts: [Product] = isDevelop
     ] : []
 let devDependencies: [Package.Dependency] = isDevelop
     ? [
-        .package(url: "https://github.com/shibapm/Komondor", from: "1.0.0"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"),
-        .package(url: "https://github.com/Realm/SwiftLint", from: "0.38.0"),
+        .package(url: "https://github.com/shibapm/Komondor", from: "1.1.3"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.49.4"),
+        .package(url: "https://github.com/Realm/SwiftLint", from: "0.46.2"),
         .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.1"),
-        .package(url: "https://github.com/shibapm/Rocket", from: "0.4.0"),
-        .package(url: "https://github.com/SwiftDocOrg/swift-doc", .branch("1.0.0-rc.1")),
+        .package(url: "https://github.com/shibapm/Rocket", from: "1.2.1"),
     ] : []
 let devTargets: [Target] = isDevelop
     ? [
@@ -73,7 +72,6 @@ let package = Package(
                 "Scripts/update_makefile.sh",
                 "Scripts/update_danger_version.sh",
                 "Scripts/update_changelog.sh",
-                "make docs",
             ],
             "after": [
                 "Scripts/create_homebrew_tap.sh",
