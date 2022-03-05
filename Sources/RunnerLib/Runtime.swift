@@ -7,7 +7,7 @@ public enum Runtime {
         "Dangerfile.swift",
         "Danger.swift",
         "danger/Dangerfile.swift",
-        "Danger/Dangerfile.swift"
+        "Danger/Dangerfile.swift",
     ]
 
     /// Finds a Dangerfile from the current working directory
@@ -21,7 +21,7 @@ public enum Runtime {
         ".build/x86_64-unknown-linux/debug", // Danger Swift's CI
         ".build/release", // Testing prod
         "/usr/local/lib/danger", // Intel Homebrew installs lib stuff to here
-        "/opt/homebrew/lib/danger" // Apple Silicon Homebrew installs lib stuff to here
+        "/opt/homebrew/lib/danger", // Apple Silicon Homebrew installs lib stuff to here
     ]
 
     /// Finds a path to add at runtime to the compiler, which links

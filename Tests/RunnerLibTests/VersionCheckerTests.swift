@@ -1,6 +1,6 @@
 //
 //  VersionCheckerTests.swift
-//  
+//
 //
 //  Created by 417.72KI on 2022/02/20.
 //
@@ -10,7 +10,6 @@ import Logger
 import XCTest
 
 final class VersionCheckerTests: XCTestCase {
-
     private var executor: MockedExecutor!
     private var spyPrinter: SpyPrinter!
 
@@ -52,6 +51,6 @@ final class VersionCheckerTests: XCTestCase {
 
 private extension VersionCheckerTests {
     func mockResult(tagName: String) -> (String) -> String {
-       { _ in #"{"tagName": "\#(tagName)"}"# }
+        { _ in #"{"tagName": "\#(tagName)"}"# }
     }
 }

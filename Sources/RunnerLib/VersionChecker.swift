@@ -1,7 +1,7 @@
 import DangerShellExecutor
+import Foundation
 import Logger
 import Version
-import Foundation
 
 public struct VersionChecker {
     private let shellExecutor: ShellExecuting
@@ -40,11 +40,11 @@ private extension VersionChecker {
         do {
             let latest = try shellExecutor.execute("curl",
                                                    arguments: [
-                                                    "-s",
-                                                    "https://api.github.com/repos/danger/swift/releases/latest"
+                                                       "-s",
+                                                       "https://api.github.com/repos/danger/swift/releases/latest",
                                                    ])
-                .data(using: .utf8)
-                .flatMap { try decoder.decode(Release.self, from: $0) }
+                                                   .data(using: .utf8)
+                                                   .flatMap { try decoder.decode(Release.self, from: $0) }
             return latest?.tagName
         } catch {
             logger.debug(error)
