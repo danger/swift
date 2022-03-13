@@ -6,18 +6,22 @@ import Version
 public struct VersionChecker {
     private let shellExecutor: ShellExecuting
     private let logger: Logger
+    private let env: [String: String]
 
     public init(
         shellExecutor: ShellExecuting = ShellExecutor(),
-        logger: Logger
+        logger: Logger,
+        env: [String: String]
     ) {
         self.shellExecutor = shellExecutor
         self.logger = logger
+        self.env = env
     }
 }
 
 public extension VersionChecker {
     func checkForUpdate(current currentVersionString: String) {
+        guard env["DANGER_SWIFT_NO_UPDATE_CHECK"] == nil, env["DEBUG"] == nil else { return }
         guard let latestVersionString = fetchLatestVersion() else { return }
         guard let latestVersion = Version(latestVersionString) else {
             logger.debug("Invalid latestVersionString: (\(latestVersionString)")

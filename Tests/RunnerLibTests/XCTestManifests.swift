@@ -129,6 +129,8 @@
         //   `swift test --generate-linuxmain`
         // to regenerate.
         static let __allTests__VersionCheckerTests = [
+            ("testItIgnoresTheCheckIfDebugEnvVariableIsSet", testItIgnoresTheCheckIfDebugEnvVariableIsSet),
+            ("testItIgnoresTheCheckIfNoUpdateEnvVariableIsSet", testItIgnoresTheCheckIfNoUpdateEnvVariableIsSet),
             ("testItNotShowNotificationIfRunningIsLatest", testItNotShowNotificationIfRunningIsLatest),
             ("testItShowsNotificationIfNewVersionIsAvailable", testItShowsNotificationIfNewVersionIsAvailable),
         ]

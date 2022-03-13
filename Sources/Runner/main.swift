@@ -20,10 +20,7 @@ private func runCommand(_ command: DangerCommand, logger: Logger) throws {
 }
 
 private func checkForUpdate(logger: Logger) {
-    // FIXME: Add another env variable to opt out this check
-    // https://github.com/danger/swift/pull/505#discussion_r799356563
-    guard ProcessInfo.processInfo.environment["DEBUG"] == nil else { return }
-    let versionChecker = VersionChecker(logger: logger)
+    let versionChecker = VersionChecker(logger: logger, env: ProcessInfo.processInfo.environment)
     versionChecker.checkForUpdate(current: DangerVersion)
 }
 
