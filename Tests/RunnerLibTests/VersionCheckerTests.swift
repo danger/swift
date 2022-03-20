@@ -27,10 +27,43 @@ final class VersionCheckerTests: XCTestCase {
                 isVerbose: false,
                 isSilent: false,
                 printer: spyPrinter
-            )
+            ),
+            env: [:]
         )
         versionChecker.checkForUpdate(current: "1.0.0")
         XCTAssertTrue(spyPrinter.printedMessages.contains { $0.contains("A new release of danger-swift is available") })
+    }
+
+    func testItIgnoresTheCheckIfNoUpdateEnvVariableIsSet() throws {
+        executor.result = mockResult(tagName: "1.0.1")
+
+        let versionChecker = VersionChecker(
+            shellExecutor: executor,
+            logger: Logger(
+                isVerbose: false,
+                isSilent: false,
+                printer: spyPrinter
+            ),
+            env: ["DANGER_SWIFT_NO_UPDATE_CHECK": "*"]
+        )
+        versionChecker.checkForUpdate(current: "1.0.0")
+        XCTAssertFalse(spyPrinter.printedMessages.contains { $0.contains("A new release of danger-swift is available") })
+    }
+
+    func testItIgnoresTheCheckIfDebugEnvVariableIsSet() throws {
+        executor.result = mockResult(tagName: "1.0.1")
+
+        let versionChecker = VersionChecker(
+            shellExecutor: executor,
+            logger: Logger(
+                isVerbose: false,
+                isSilent: false,
+                printer: spyPrinter
+            ),
+            env: ["DEBUG": "*"]
+        )
+        versionChecker.checkForUpdate(current: "1.0.0")
+        XCTAssertFalse(spyPrinter.printedMessages.contains { $0.contains("A new release of danger-swift is available") })
     }
 
     func testItNotShowNotificationIfRunningIsLatest() throws {
@@ -42,7 +75,8 @@ final class VersionCheckerTests: XCTestCase {
                 isVerbose: false,
                 isSilent: false,
                 printer: spyPrinter
-            )
+            ),
+            env: [:]
         )
         versionChecker.checkForUpdate(current: "1.0.0")
         XCTAssertFalse(spyPrinter.printedMessages.contains { $0.contains("A new release of danger-swift is available") })
