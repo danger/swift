@@ -13,6 +13,11 @@
 
 ## Master
 
+- Notify a new release on running danger-swift [@417-72KI][] - [#505](https://github.com/danger/swift/pull/505)
+- Remove `swift-doc` from dependencies treee [@417-72KI][] - [#509](https://github.com/danger/swift/pull/509)
+- Generate docker image with swift 5.5.2 [@f-meloni][] - [#501](https://github.com/danger/swift/pull/501)
+- Extract dev dependencies to switch development and release easily [@417-72KI][] - [#491](https://github.com/danger/swift/pull/491)
+
 ## 3.12.3
 
 - Add dynamic framework type only on install script [@f-meloni][] - [#485](https://github.com/danger/swift/pull/485)
