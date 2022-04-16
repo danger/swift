@@ -72,12 +72,15 @@ let package = Package(
                 "Scripts/update_makefile.sh",
                 "Scripts/update_danger_version.sh",
                 "Scripts/update_changelog.sh",
+                "Scripts/change_is_develop.sh false",
                 "git_add",
                 "commit",
                 "tag",
                 "push",
-                "Scripts/create_homebrew_tap.sh"
-            ]
+                "Scripts/change_is_develop.sh true",
+                ["commit": ["message": "Enable dev depdendencies"]],
+                "Scripts/create_homebrew_tap.sh",
+            ],
         ],
     ]).write()
 #endif
