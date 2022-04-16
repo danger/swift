@@ -68,14 +68,16 @@ let package = Package(
             "pre_release_checks": [
                 "clean_git",
             ],
-            "before": [
+            "steps": [
                 "Scripts/update_makefile.sh",
                 "Scripts/update_danger_version.sh",
                 "Scripts/update_changelog.sh",
-            ],
-            "after": [
-                "Scripts/create_homebrew_tap.sh",
-            ],
+                "git_add",
+                "commit",
+                "tag",
+                "push",
+                "Scripts/create_homebrew_tap.sh"
+            ]
         ],
     ]).write()
 #endif
