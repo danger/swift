@@ -23,14 +23,17 @@ struct PackageGenerator {
         }
     }
 
-    func generateMasterPackageDescription(forSwiftToolsVersion toolsVersion: Version) throws {
+    func generateMasterPackageDescription(forSwiftToolsVersion toolsVersion: Version,
+                                          macOSVersion: Version) throws {
         let header = makePackageDescriptionHeader(forSwiftToolsVersion: toolsVersion)
         let packages = packageListMaker.makePackageList()
+        let platform = makeSupportedPlatform(forMacOSVersion: macOSVersion)
 
         var description = "\(header)\n\n" +
             "import PackageDescription\n\n" +
             "let package = Package(\n" +
             "    name: \"\(masterPackageName)\",\n" +
+            (platform.isEmpty ? "" : "    platforms: [\(platform)],\n") +
             "    products: [.library(name: \"DangerDependencies\", " +
             "type: .dynamic, targets: [\"\(masterPackageName)\"])]," +
             "\n" +
@@ -73,5 +76,17 @@ struct PackageGenerator {
 
         return "// swift-tools-version:\(swiftVersion)\n" +
             "// danger-dependency-generator-version:\(generationVersion)"
+    }
+
+    func makeSupportedPlatform(forMacOSVersion macOSVersion: Version) -> String {
+        if case .null = macOSVersion { return "" }
+        switch macOSVersion.major {
+        case 10 where (10...15).contains(macOSVersion.minor):
+            return ".macOS(.v10_\(macOSVersion.minor))"
+        case 11...:
+            return ".macOS(.v\(macOSVersion.major))"
+        default:
+            return ""
+        }
     }
 }
