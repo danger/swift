@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "PACKAGES",
+    platforms: [.macOS(.v12)],
     products: [.library(name: "DangerDependencies", type: .dynamic, targets: ["PACKAGES"])],
     dependencies: [
         .package(name: "Dependency1", url: "https://github.com/danger/dependency1", from: "1.0.0"),
