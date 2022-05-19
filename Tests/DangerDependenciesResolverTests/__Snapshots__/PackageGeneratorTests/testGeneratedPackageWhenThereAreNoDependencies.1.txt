@@ -1,5 +1,5 @@
 // swift-tools-version:5.0
-// danger-dependency-generator-version:1
+// danger-dependency-generator-version:2
 
 import PackageDescription
 

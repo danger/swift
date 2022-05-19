@@ -72,7 +72,7 @@ struct PackageGenerator {
 
     func makePackageDescriptionHeader(forSwiftToolsVersion toolsVersion: Version) -> String {
         let swiftVersion = "\(toolsVersion.major).\(toolsVersion.minor)"
-        let generationVersion = 1
+        let generationVersion = 2
 
         return "// swift-tools-version:\(swiftVersion)\n" +
             "// danger-dependency-generator-version:\(generationVersion)"
