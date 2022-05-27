@@ -36,7 +36,7 @@ if [[ "$?" -eq 0 || "$OSTYPE" == "darwin"* ]]
 then
     BUILD_FOLDER=".build/release"
     if [[ `uname -m` == 'arm64' ]]; then
-        swift build --disable-sandbox --arch arm64 -c release
+        swift build --disable-sandbox --arch x86_64 -c release
     else
         swift build --disable-sandbox -c release
     fi
