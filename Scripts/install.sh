@@ -36,6 +36,7 @@ if [[ "$?" -eq 0 || "$OSTYPE" == "darwin"* ]]
 then
     BUILD_FOLDER=".build/release"
     if [[ `uname -m` == 'arm64' ]]; then
+        # FIXME: patch to fix `error: module 'Danger' was created for incompatible target arm64-apple-macosx10.10: /opt/homebrew/lib/danger/Danger.swiftmodule`
         swift build --disable-sandbox --arch x86_64 -c release
     else
         swift build --disable-sandbox -c release
