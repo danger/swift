@@ -17,7 +17,7 @@ final class PackageGeneratorTests: XCTestCase {
                                          packageListMaker: packageListMaker,
                                          fileCreator: spyFileCreator)
 
-        try generator.generateMasterPackageDescription(forSwiftToolsVersion: .init(5, 0, 0))
+        try generator.generateMasterPackageDescription(forSwiftToolsVersion: .init(5, 0, 0), macOSVersion: .init(12, 0, 0))
 
         assertSnapshot(matching: String(data: spyFileCreator.receivedContents!, encoding: .utf8)!, as: .lines)
     }
@@ -34,7 +34,7 @@ final class PackageGeneratorTests: XCTestCase {
                                          packageListMaker: packageListMaker,
                                          fileCreator: spyFileCreator)
 
-        try generator.generateMasterPackageDescription(forSwiftToolsVersion: .init(5, 0, 0))
+        try generator.generateMasterPackageDescription(forSwiftToolsVersion: .init(5, 0, 0), macOSVersion: .init(12, 0, 0))
 
         assertSnapshot(matching: String(data: spyFileCreator.receivedContents!, encoding: .utf8)!, as: .lines)
     }
@@ -51,7 +51,7 @@ final class PackageGeneratorTests: XCTestCase {
                                          packageListMaker: packageListMaker,
                                          fileCreator: spyFileCreator)
 
-        try generator.generateMasterPackageDescription(forSwiftToolsVersion: .init(5, 2, 0))
+        try generator.generateMasterPackageDescription(forSwiftToolsVersion: .init(5, 2, 0), macOSVersion: .init(12, 0, 0))
 
         assertSnapshot(matching: String(data: spyFileCreator.receivedContents!, encoding: .utf8)!, as: .lines)
     }

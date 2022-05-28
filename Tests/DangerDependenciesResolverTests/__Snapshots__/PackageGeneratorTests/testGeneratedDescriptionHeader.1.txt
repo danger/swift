@@ -1,2 +1,2 @@
 // swift-tools-version:4.2
-// danger-dependency-generator-version:1
+// danger-dependency-generator-version:2

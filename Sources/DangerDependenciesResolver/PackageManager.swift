@@ -143,8 +143,11 @@ public struct PackageManager {
         let toolsVersion = try resolveSwiftToolsVersion(executor: ShellExecutor(), onFolder: generatedFolder)
         let expectedHeader = packageGenerator.makePackageDescriptionHeader(forSwiftToolsVersion: toolsVersion)
 
+        let macOSVersion = resolveMacOSVersion(executor: ShellExecutor())
+
         guard masterDescription.hasPrefix(expectedHeader) else {
-            try packageGenerator.generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion)
+            try packageGenerator.generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion,
+                                                                  macOSVersion: macOSVersion)
             return try makePackageDescription(for: script)
         }
 
@@ -160,10 +163,11 @@ public struct PackageManager {
             let executor = ShellExecutor()
 
             let toolsVersion = try resolveSwiftToolsVersion(executor: executor, onFolder: generatedFolder)
+            let macOSVersion = resolveMacOSVersion(executor: executor)
             try generatedFolder.createSubfolderIfNeeded(withName: "Sources/\(masterPackageName)")
             fileCreator.createFile(atPath: generatedFolder.appendingPath("Sources/\(masterPackageName)").appendingPath(fakeFile),
                                    contents: Data())
-            try packageGenerator.generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion)
+            try packageGenerator.generateMasterPackageDescription(forSwiftToolsVersion: toolsVersion, macOSVersion: macOSVersion)
             try executeSwiftCommand("package update", onFolder: generatedFolder, arguments: [], executor: executor)
             try generatedFolder.createSubfolderIfNeeded(withName: "Packages")
         } catch {
@@ -178,6 +182,25 @@ public struct PackageManager {
                                                              executor: executor)
         versionString = versionString?.onlyNumbersAndDots
         return Version(versionString ?? "") ?? .null
+    }
+
+    private func resolveMacOSVersion(executor: ShellExecutor) -> Version {
+        #if os(macOS)
+        var versionString = executor.execute("sw_vers",
+                                             arguments: ["-productVersion"])
+        versionString = versionString.onlyNumbersAndDots ?? versionString
+        switch versionString.components(separatedBy: ".").count {
+        case 1:
+            versionString += ".0.0"
+        case 2:
+            versionString += ".0"
+        default:
+            break
+        }
+        return Version(versionString) ?? .null
+        #else
+        return .null
+        #endif
     }
 }
 
