@@ -13,8 +13,9 @@
 
 ## Master
 
+- Add platform requirements on `danger-swift edit` [@417-72KI][] - [#518](https://github.com/danger/swift/pull/518)
 - Notify a new release on running danger-swift [@417-72KI][] - [#505](https://github.com/danger/swift/pull/505)
-- Remove `swift-doc` from dependencies treee [@417-72KI][] - [#509](https://github.com/danger/swift/pull/509)
+- Remove `swift-doc` from dependencies tree [@417-72KI][] - [#509](https://github.com/danger/swift/pull/509)
 - Generate docker image with swift 5.5.2 [@f-meloni][] - [#501](https://github.com/danger/swift/pull/501)
 - Extract dev dependencies to switch development and release easily [@417-72KI][] - [#491](https://github.com/danger/swift/pull/491)
 
