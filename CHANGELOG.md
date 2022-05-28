@@ -13,6 +13,7 @@
 
 ## Master
 
+- Run danger-swift with x86_64 arch on M1 mac (patch-fix for [#464](https://github.com/danger/swift/issues/464)) [@417-72KI][] - [#521](https://github.com/danger/swift/pull/521)
 - Add platform requirements on `danger-swift edit` [@417-72KI][] - [#518](https://github.com/danger/swift/pull/518)
 - Notify a new release on running danger-swift [@417-72KI][] - [#505](https://github.com/danger/swift/pull/505)
 - Remove `swift-doc` from dependencies tree [@417-72KI][] - [#509](https://github.com/danger/swift/pull/509)
