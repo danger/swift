@@ -12,9 +12,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test-on-macos-11:
-    name: Test on macOS 11
-    runs-on: macOS-11
+  test-on-macos-12:
+    name: Test on macOS 12
+    runs-on: macOS-12
     strategy:
       fail-fast: false
       matrix:
@@ -53,7 +53,7 @@ jobs:
 
   test-dependencies-resolver:
     name: Test dependencies resolver
-    runs-on: macOS-11
+    runs-on: macOS-12
     strategy:
       fail-fast: false
       matrix:
@@ -131,9 +131,9 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-  test-without-spm-on-macos-11:
-    name: Test without SPM on macOS 11
-    runs-on: macOS-11
+  test-without-spm-on-macos-12:
+    name: Test without SPM on macOS 12
+    runs-on: macOS-12
     strategy:
       fail-fast: false
       matrix:
