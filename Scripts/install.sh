@@ -1,16 +1,5 @@
 #!/bin/bash
 
-lower () {
-    IFS='.' read -a v1_array <<< "$1"
-    IFS='.' read -a v2_array <<< "$2"
-    v1=$((v1_array[0] * 100 + v1_array[1] * 10 + v1_array[2]))
-    v2=$((v2_array[0] * 100 + v2_array[1] * 10 + v2_array[2]))
-    diff=$((v2 - v1))
-
-    ((diff >  0)) && return 0
-    return 1
-}
-
 TOOL_NAME="danger-swift"
 PREFIX=${PREFIX:='/usr/local'}
 INSTALL_PATH="$PREFIX/bin/$TOOL_NAME"
@@ -26,24 +15,8 @@ mv -f tmpPackage Package.swift
 
 swift package clean
 
-SWIFT_VERSION=`swift -version | head -n 1 | perl -lpe 's/.*version\ (\d\.\d\.\d).*/$1/'`
-
-UNAME_OUT="$(uname -s)"
-
-lower $SWIFT_VERSION '5.3.0'
-
-if [[ "$?" -eq 0 || "$OSTYPE" == "darwin"* ]]
-then
-    BUILD_FOLDER=".build/release"
-    if [[ `uname -m` == 'arm64' ]]; then
-        swift build --disable-sandbox --arch arm64 -c release
-    else
-        swift build --disable-sandbox -c release
-    fi
-else
-    BUILD_FOLDER=".build/debug"
-    swift build --disable-sandbox
-fi
+BUILD_FOLDER=".build/release"
+swift build --disable-sandbox -c release
 
 ARRAY=()
 for ARG in "${SWIFT_LIB_FILES[@]}"; do
