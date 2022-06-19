@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.13.0
+
 - Add platform requirements on `danger-swift edit` [@417-72KI][] - [#518](https://github.com/danger/swift/pull/518)
 - Notify a new release on running danger-swift [@417-72KI][] - [#505](https://github.com/danger/swift/pull/505)
 - Remove `swift-doc` from dependencies tree [@417-72KI][] - [#509](https://github.com/danger/swift/pull/509)
