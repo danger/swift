@@ -10,13 +10,19 @@ declare -a SWIFT_LIB_FILES=('libDanger.dylib' 'libDanger.so' 'Danger.swiftdoc' '
 
 DANGER_LIB_DECLARATION='\.library(name:\ \"Danger\", targets: \[\"Danger\"\])'
 DANGER_LIB_DYNAMIC_DECLARATION='\.library(name:\ \"Danger\",\ type:\ \.dynamic,\ targets:\ \[\"Danger\"\])'
-sed  "s/$DANGER_LIB_DECLARATION/$DANGER_LIB_DYNAMIC_DECLARATION/g" Package.swift > tmpPackage
+sed "s/$DANGER_LIB_DECLARATION/$DANGER_LIB_DYNAMIC_DECLARATION/g" Package.swift > tmpPackage
 mv -f tmpPackage Package.swift
 
 swift package clean
 
 BUILD_FOLDER=".build/release"
 swift build --disable-sandbox -c release
+
+if [ $? -ne 0 ]; then
+    echo '[WARN] Failed to install with `release` configuration. Try to install with `debug` configuration.'
+    BUILD_FOLDER=".build/debug"
+    swift build --disable-sandbox -c debug
+fi
 
 ARRAY=()
 for ARG in "${SWIFT_LIB_FILES[@]}"; do
