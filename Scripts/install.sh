@@ -3,7 +3,6 @@
 TOOL_NAME="danger-swift"
 PREFIX=${PREFIX:='/usr/local'}
 INSTALL_PATH="$PREFIX/bin/$TOOL_NAME"
-BUILD_PATH=".build/release/$TOOL_NAME"
 LIB_INSTALL_PATH="$PREFIX/lib/danger"
 declare -a SWIFT_LIB_FILES=('libDanger.dylib' 'libDanger.so' 'Danger.swiftdoc' 'Danger.swiftmodule' 'OctoKit.swiftdoc' 'OctoKit.swiftmodule' 'RequestKit.swiftdoc' 'RequestKit.swiftmodule' 'Logger.swiftdoc' 'Logger.swiftmodule' 'DangerShellExecutor.swiftdoc' 'DangerShellExecutor.swiftmodule')
 
