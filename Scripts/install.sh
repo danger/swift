@@ -17,8 +17,8 @@ swift package clean
 BUILD_FOLDER=".build/release"
 swift build --disable-sandbox -c release
 
-if [ $? -ne 0 ]; then
-    echo '[WARN] Failed to install with `release` configuration. Try to install with `debug` configuration.'
+if [[ $? -ne 0 ]]; then
+    echo -e '\e[33m[WARN] Failed to install with `release` configuration. Install with `debug` configuration.\e[m'
     BUILD_FOLDER=".build/debug"
     swift build --disable-sandbox -c debug
 fi
