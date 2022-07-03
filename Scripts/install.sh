@@ -6,7 +6,6 @@ INSTALL_PATH="$PREFIX/bin/$TOOL_NAME"
 LIB_INSTALL_PATH="$PREFIX/lib/danger"
 declare -a SWIFT_LIB_FILES=('libDanger.dylib' 'libDanger.so' 'Danger.swiftdoc' 'Danger.swiftmodule' 'OctoKit.swiftdoc' 'OctoKit.swiftmodule' 'RequestKit.swiftdoc' 'RequestKit.swiftmodule' 'Logger.swiftdoc' 'Logger.swiftmodule' 'DangerShellExecutor.swiftdoc' 'DangerShellExecutor.swiftmodule')
 
-
 DANGER_LIB_DECLARATION='\.library(name:\ \"Danger\", targets: \[\"Danger\"\])'
 DANGER_LIB_DYNAMIC_DECLARATION='\.library(name:\ \"Danger\",\ type:\ \.dynamic,\ targets:\ \[\"Danger\"\])'
 sed "s/$DANGER_LIB_DECLARATION/$DANGER_LIB_DYNAMIC_DECLARATION/g" Package.swift > tmpPackage
@@ -14,13 +13,12 @@ mv -f tmpPackage Package.swift
 
 swift package clean
 
-BUILD_FOLDER=".build/release"
-swift build --disable-sandbox -c release
-
-if [[ $? -ne 0 ]]; then
-    echo -e '\e[33m[WARN] Failed to install with `release` configuration. Install with `debug` configuration.\e[m'
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    BUILD_FOLDER=".build/release"
+    swift build --disable-sandbox -c release
+else
     BUILD_FOLDER=".build/debug"
-    swift build --disable-sandbox -c debug
+    swift build --disable-sandbox
 fi
 
 ARRAY=()
