@@ -7,13 +7,18 @@ on:
       - main
       - master
 
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
 jobs:
   test-on-macos-11:
     name: Test on macOS 11
     runs-on: macOS-11
     strategy:
+      fail-fast: false
       matrix:
-        xcode: ["12.4", "12.5.1", "13.0"]
+        xcode: ["12.5.1", "13.2.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -50,8 +55,9 @@ jobs:
     name: Test dependencies resolver
     runs-on: macOS-11
     strategy:
+      fail-fast: false
       matrix:
-        xcode: ["12.4", "12.5.1", "13.0"]
+        xcode: ["12.5.1", "13.2.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -90,8 +96,9 @@ jobs:
     name: Test on Linux
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        swift: ["5.3.3", "5.5.2"]
+        swift: ["5.4.3", "5.5.3"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -128,8 +135,9 @@ jobs:
     name: Test without SPM on macOS 11
     runs-on: macOS-11
     strategy:
+      fail-fast: false
       matrix:
-        xcode: ["12.4", "12.5.1", "13.0"]
+        xcode: ["12.5.1", "13.2.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -166,8 +174,9 @@ jobs:
     name: Test without SPM on Linux
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        swift: ["5.3.3", "5.5.2"]
+        swift: ["5.4.3", "5.5.3"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2

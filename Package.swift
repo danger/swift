@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.4
 
 import PackageDescription
 
@@ -45,7 +45,7 @@ let package = Package(
         .target(name: "DangerDependenciesResolver", dependencies: ["DangerShellExecutor", "Version", "Logger"]),
         .target(name: "Danger", dependencies: ["OctoKit", "Logger", "DangerShellExecutor"]),
         .target(name: "RunnerLib", dependencies: ["Logger", "DangerShellExecutor", "Version"]),
-        .target(name: "Runner", dependencies: ["RunnerLib", "Logger", "DangerDependenciesResolver"]),
+        .executableTarget(name: "Runner", dependencies: ["RunnerLib", "Logger", "DangerDependenciesResolver"]),
         .target(name: "DangerFixtures", dependencies: ["Danger"]),
     ] + devTargets
 )
