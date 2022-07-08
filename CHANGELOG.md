@@ -13,6 +13,8 @@
 
 ## Master
 
+- Drop Swift 5.3 support [@417-72KI][] - [#524](https://github.com/danger/swift/pull/524)
+
 ## 3.13.0
 
 - Add platform requirements on `danger-swift edit` [@417-72KI][] - [#518](https://github.com/danger/swift/pull/518)
