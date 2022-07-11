@@ -7,8 +7,9 @@ Write your Dangerfiles in Swift.
 
 ### Requirements
 
-Latest version requires Swift 5.3
+Latest version requires Swift 5.4
 
+- If you are using Swift 5.3 use v3.13.0
 - If you are using Swift 5.2 use v3.11.1
 - If you are using Swift 5.1 use v3.8.0
 - If you are using Swift 4.2 use v2.0.7
