@@ -178,7 +178,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Danger
-        uses: danger/swift@3.3.0
+        uses: danger/swift@3.13.0
         with:
             args: --failOnErrors --no-publish-check
         env:
@@ -199,7 +199,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Danger
-        uses: docker://ghcr.io/danger/danger-swift:3.7.2
+        uses: docker://ghcr.io/danger/danger-swift:3.13.0
         with:
             args: --failOnErrors --no-publish-check
         env:
