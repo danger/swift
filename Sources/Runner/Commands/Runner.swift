@@ -187,7 +187,7 @@ func runDanger(logger: Logger) throws {
 
     // Clean up after ourselves
     try? fileManager.removeItem(atPath: dslJSONPath)
-    try? fileManager.removeItem(atPath: tmpPath)
+    try? fileManager.removeItem(atPath: tempDangerfilePath)
 
     // Return the same error code as the compilation
     exit(proc.terminationStatus)
