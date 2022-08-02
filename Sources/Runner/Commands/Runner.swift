@@ -177,8 +177,7 @@ func runDanger(logger: Logger) throws {
         logger.logError("Could not get the results JSON file at \(dangerResponsePath)")
         // Clean up after ourselves
         try? fileManager.removeItem(atPath: dslJSONPath)
-        try? fileManager.removeItem(atPath: tempDangerfilePath)
-        try? fileManager.removeItem(atPath: dangerResponsePath)
+        try? fileManager.removeItem(atPath: tmpPath)
         exit(1)
     }
 
@@ -188,7 +187,7 @@ func runDanger(logger: Logger) throws {
 
     // Clean up after ourselves
     try? fileManager.removeItem(atPath: dslJSONPath)
-    try? fileManager.removeItem(atPath: tempDangerfilePath)
+    try? fileManager.removeItem(atPath: tmpPath)
 
     // Return the same error code as the compilation
     exit(proc.terminationStatus)
