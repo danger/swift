@@ -9,8 +9,13 @@ func runDanger(logger: Logger) throws {
     // Pull in the JSON from Danger JS
     let standardInput = FileHandle.standardInput
     let fileManager = FileManager.default
-    let tmpPath = NSTemporaryDirectory()
+    let tmpPath = NSTemporaryDirectory() + "danger/\(UUID().uuidString)/"
     let dangerResponsePath = tmpPath + "danger-response.json"
+
+    try fileManager.createDirectory(
+        at: URL(fileURLWithPath: tmpPath),
+        withIntermediateDirectories: true
+    )
 
     // Pull in the JSON from Danger JS
     guard let dangerDSLURL = String(data: standardInput.readDataToEndOfFile(), encoding: .utf8) else {
