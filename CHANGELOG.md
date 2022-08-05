@@ -14,6 +14,7 @@
 ## Master
 
 - Drop Swift 5.3 support [@417-72KI][] - [#524](https://github.com/danger/swift/pull/524)
+- Refine runner temporary path to better support concurrent pipelines [@squarefrog][] - [#530](https://github.com/danger/swift/pull/530)
 
 ## 3.13.0
 
