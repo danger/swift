@@ -114,7 +114,7 @@ You can use Swift PM to install both `danger-swift` and your plugins:
   ```
 
 - Create a folder called `DangerDependencies` in `Sources` with an empty file inside like
-  [Fake.swift](Sources/Sources/Danger-Swift/Fake.swift)
+  [Fake.swift](Sources/Danger-Swift/Fake.swift)
 - To run `Danger` use `swift run danger-swift command`
 - **(Recommended)** If you are using Swift PM to distribute your framework, use
   [Rocket](https://github.com/f-meloni/Rocket), or a similar tool, to comment out all the dev dependencies from your
