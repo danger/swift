@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["12.5.1", "13.2.1"]
+        xcode: ["13.2.1", "13.4.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -57,7 +57,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["12.5.1", "13.2.1"]
+        xcode: ["13.2.1", "13.4.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -137,7 +137,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["12.5.1", "13.2.1"]
+        xcode: ["13.2.1", "13.4.1"]
     steps:
     - uses: actions/checkout@v2
 
