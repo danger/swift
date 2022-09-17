@@ -73,6 +73,7 @@ final class GitLabTests: XCTestCase {
         XCTAssertEqual(mergeRequest.milestone, expectedMilestone)
         XCTAssertEqual(mergeRequest.pipeline, expectedPipeline)
         XCTAssertEqual(mergeRequest.projectId, 1_620_437)
+        XCTAssertEqual(mergeRequest.reviewers?.first, orta)
         XCTAssertEqual(mergeRequest.sha, "621bc3348549e51c5bd6ea9f094913e9e4667c7b")
         XCTAssertNil(mergeRequest.shouldRemoveSourceBranch)
         XCTAssertEqual(mergeRequest.sourceBranch, "patch-2")

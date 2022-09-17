@@ -188,6 +188,7 @@ public extension GitLab {
             case milestone
             case pipeline
             case projectId = "project_id"
+            case reviewers
             case sha
             case shouldRemoveSourceBranch = "should_remove_source_branch"
             case sourceBranch = "source_branch"
@@ -231,6 +232,7 @@ public extension GitLab {
         public let milestone: Milestone?
         public let pipeline: Pipeline?
         public let projectId: Int
+        public let reviewers: [User]?
         public let sha: String
         public let shouldRemoveSourceBranch: Bool?
         public let sourceBranch: String

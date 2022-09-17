@@ -13,6 +13,8 @@
 
 ## Master
 
+- Add `reviewers` property for GitLab merge requests [@pouyayarandi][] - [#534](https://github.com/danger/swift/pull/534)
+
 ## 3.14.0
 
 - Drop Swift 5.3 support [@417-72KI][] - [#524](https://github.com/danger/swift/pull/524)
@@ -527,3 +529,4 @@ This release also includes:
 [@vc7]: https://github.com/vc7
 [@lunij]: https://github.com/lunij
 [@majd]: https://github.com/majd
+[@pouyayarandi]: https://github.com/pouyayarandi
