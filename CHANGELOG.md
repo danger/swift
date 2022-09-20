@@ -14,6 +14,7 @@
 ## Master
 
 - Add `reviewers` property for GitLab merge requests [@pouyayarandi][] - [#534](https://github.com/danger/swift/pull/534)
+- Change `danger-swift edit` generated package to be compatible with swift 5.7 [@dahlborn][]
 
 ## 3.14.0
 
@@ -530,3 +531,4 @@ This release also includes:
 [@lunij]: https://github.com/lunij
 [@majd]: https://github.com/majd
 [@pouyayarandi]: https://github.com/pouyayarandi
+[@dahlborn]: https://github.com/dahlborn

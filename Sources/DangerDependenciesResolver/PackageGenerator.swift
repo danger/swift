@@ -34,8 +34,8 @@ struct PackageGenerator {
             "let package = Package(\n" +
             "    name: \"\(masterPackageName)\",\n" +
             (platform.isEmpty ? "" : "    platforms: [\(platform)],\n") +
-            "    products: [.library(name: \"DangerDependencies\", " +
-            "type: .dynamic, targets: [\"\(masterPackageName)\"])]," +
+            "    products: [.executable(name: \"DangerDependencies\", " +
+            "targets: [\"\(masterPackageName)\"])]," +
             "\n" +
             "    dependencies: [\n"
 
@@ -48,7 +48,7 @@ struct PackageGenerator {
         }
 
         description.append("\n    ],\n")
-        description.append("    targets: [.target(name: \"\(masterPackageName)\", dependencies: [")
+        description.append("    targets: [.executableTarget(name: \"\(masterPackageName)\", dependencies: [")
 
         if !packages.isEmpty {
             description.append("\"")
@@ -72,7 +72,7 @@ struct PackageGenerator {
 
     func makePackageDescriptionHeader(forSwiftToolsVersion toolsVersion: Version) -> String {
         let swiftVersion = "\(toolsVersion.major).\(toolsVersion.minor)"
-        let generationVersion = 2
+        let generationVersion = 3
 
         return "// swift-tools-version:\(swiftVersion)\n" +
             "// danger-dependency-generator-version:\(generationVersion)"
