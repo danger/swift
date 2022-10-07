@@ -1,15 +1,15 @@
 // swift-tools-version:5.0
-// danger-dependency-generator-version:2
+// danger-dependency-generator-version:3
 
 import PackageDescription
 
 let package = Package(
     name: "PACKAGES",
     platforms: [.macOS(.v12)],
-    products: [.library(name: "DangerDependencies", type: .dynamic, targets: ["PACKAGES"])],
+    products: [.executable(name: "DangerDependencies", targets: ["PACKAGES"])],
     dependencies: [
 
     ],
-    targets: [.target(name: "PACKAGES", dependencies: [])],
+    targets: [.executableTarget(name: "PACKAGES", dependencies: [])],
     swiftLanguageVersions: [.version("5")]
 )
