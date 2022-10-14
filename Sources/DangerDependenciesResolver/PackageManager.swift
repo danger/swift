@@ -186,20 +186,20 @@ public struct PackageManager {
 
     private func resolveMacOSVersion(executor: ShellExecutor) -> Version {
         #if os(macOS)
-        var versionString = executor.execute("sw_vers",
-                                             arguments: ["-productVersion"])
-        versionString = versionString.onlyNumbersAndDots ?? versionString
-        switch versionString.components(separatedBy: ".").count {
-        case 1:
-            versionString += ".0.0"
-        case 2:
-            versionString += ".0"
-        default:
-            break
-        }
-        return Version(versionString) ?? .null
+            var versionString = executor.execute("sw_vers",
+                                                 arguments: ["-productVersion"])
+            versionString = versionString.onlyNumbersAndDots ?? versionString
+            switch versionString.components(separatedBy: ".").count {
+            case 1:
+                versionString += ".0.0"
+            case 2:
+                versionString += ".0"
+            default:
+                break
+            }
+            return Version(versionString) ?? .null
         #else
-        return .null
+            return .null
         #endif
     }
 }
