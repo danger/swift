@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.14.2
+
 - Revert Swiftlint version on Dockerfile to 0.46.1 [#540](https://github.com/danger/swift/pull/540)
 
 ## 3.14.1
