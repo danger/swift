@@ -13,6 +13,8 @@
 
 ## Master
 
+- Revert Swiftlint version on Dockerfile to 0.46.1 [#540](https://github.com/danger/swift/pull/540)
+
 ## 3.14.1
 
 - Add `reviewers` property for GitLab merge requests [@pouyayarandi][] - [#534](https://github.com/danger/swift/pull/534)
