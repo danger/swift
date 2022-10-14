@@ -81,7 +81,7 @@ struct PackageGenerator {
     func makeSupportedPlatform(forMacOSVersion macOSVersion: Version) -> String {
         if case .null = macOSVersion { return "" }
         switch macOSVersion.major {
-        case 10 where (10...15).contains(macOSVersion.minor):
+        case 10 where (10 ... 15).contains(macOSVersion.minor):
             return ".macOS(.v10_\(macOSVersion.minor))"
         case 11...:
             return ".macOS(.v\(macOSVersion.major))"
