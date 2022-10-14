@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.14.1
+
 - Add `reviewers` property for GitLab merge requests [@pouyayarandi][] - [#534](https://github.com/danger/swift/pull/534)
 - Update [SwiftLint][] used by [danger-swift-with-swiftlint][] from v0.46.1 to [v0.49.1](https://github.com/realm/SwiftLint/releases/tag/0.49.1). [@Kiran-B][] - [#538](https://github.com/danger/swift/pull/538)
 - Change `danger-swift edit` generated package to be compatible with swift 5.7 [@dahlborn][]
