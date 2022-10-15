@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["13.2.1", "13.4.1"]
+        xcode: ["13.2.1", "13.4.1", "14.0.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -57,7 +57,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["13.2.1", "13.4.1"]
+        xcode: ["13.2.1", "13.4.1", "14.0.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -98,7 +98,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        swift: ["5.4.3", "5.5.3"]
+        swift: ["5.4.3", "5.5.3", "5.6.3", "5.7"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -137,7 +137,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["13.2.1", "13.4.1"]
+        xcode: ["13.2.1", "13.4.1", "14.0.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -176,7 +176,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        swift: ["5.4.3", "5.5.3"]
+        swift: ["5.4.3", "5.5.3", "5.6.3", "5.7"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
