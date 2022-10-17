@@ -84,7 +84,7 @@ struct PackageDataProvider: PackageDataProviding {
                     let pins = try container.decode([Package.PinnedV2].self, forKey: .pins)
                     self.version = .v2(pins: pins)
                 default:
-                    throw DecodingError.valueNotFound(Int.self, .init(codingPath: [CodingKeys.version], debugDescription: "Invalid value: \(version)"))
+                    throw DecodingError.valueNotFound(Int.self, .init(codingPath: [CodingKeys.version], debugDescription: "Unexpected version: \(version). Danger-Swift supporting 1 or 2."))
                 }
             }
         }
