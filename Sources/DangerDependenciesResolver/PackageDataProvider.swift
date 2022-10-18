@@ -96,7 +96,7 @@ struct PackageDataProvider: PackageDataProviding {
         case let .v1(object):
             return object.pins
         case let .v2(pins):
-            return pins.convertToV1()
+            return pins.v1Converted()
         }
     }
 

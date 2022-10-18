@@ -39,7 +39,7 @@ extension Package.Pinned {
     }
 }
 
-// MARK: swift-tools-version >= 5.6
+// MARK: - swift-tools-version >= 5.6
 extension Package {
     struct PinnedV2: Decodable, Equatable {
         let name: String
@@ -63,7 +63,7 @@ extension Package.PinnedV2 {
 }
 
 extension Package.PinnedV2 {
-    func convertToV1() -> Package.Pinned {
+    var v1: Package.Pinned {
         .init(
             name: name,
             url: url,
@@ -72,8 +72,9 @@ extension Package.PinnedV2 {
     }
 }
 
+// MARK: -
 extension Sequence where Element == Package.PinnedV2 {
-    func convertToV1() -> [Package.Pinned] {
-        map { $0.convertToV1() }
+    func v1Converted() -> [Package.Pinned] {
+        map(\.v1)
     }
 }
