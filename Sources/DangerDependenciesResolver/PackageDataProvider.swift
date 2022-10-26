@@ -59,15 +59,45 @@ struct PackageDataProvider: PackageDataProviding {
             struct Object: Decodable {
                 let pins: [Package.Pinned]
             }
+            enum Version {
+                /// swift-tools-version <= 5.5
+                case v1(object: Object)
+                /// swift-tools-version >= 5.6
+                case v2(pins: [Package.PinnedV2])
+            }
+            let version: Version
 
-            let object: Object
+            enum CodingKeys: CodingKey {
+                case object
+                case pins
+                case version
+            }
+
+            init(from decoder: Decoder) throws {
+                let container = try decoder.container(keyedBy: CodingKeys.self)
+                let version = try container.decode(Int.self, forKey: .version)
+                switch version {
+                case 1:
+                    let object = try container.decode(Object.self, forKey: .object)
+                    self.version = .v1(object: object)
+                 case 2:
+                    let pins = try container.decode([Package.PinnedV2].self, forKey: .pins)
+                    self.version = .v2(pins: pins)
+                default:
+                    throw DecodingError.valueNotFound(Int.self, .init(codingPath: [CodingKeys.version], debugDescription: "Unexpected version: \(version). Danger-Swift supporting 1 or 2."))
+                }
+            }
         }
         // swiftlint:enable nesting
 
         let data = try fileReader.readData(atPath: generatedFolder.appendingPath("Package.resolved"))
         let state: ResolvedPackagesState = try data.decoded()
-
-        return state.object.pins
+        switch state.version {
+        case let .v1(object):
+            return object.pins
+        case let .v2(pins):
+            return pins.v1Converted()
+        }
     }
 
     private func nameOfRemotePackage(at url: URL, temporaryFolder: String) throws -> String {

@@ -38,3 +38,43 @@ extension Package.Pinned {
         let version: Version
     }
 }
+
+// MARK: - swift-tools-version >= 5.6
+extension Package {
+    struct PinnedV2: Decodable, Equatable {
+        let name: String
+        let url: URL
+        let state: State
+    }
+}
+
+extension Package.PinnedV2 {
+    enum CodingKeys: String, CodingKey {
+        case name = "identity"
+        case url = "location"
+        case state
+    }
+}
+
+extension Package.PinnedV2 {
+    struct State: Decodable, Equatable {
+        let version: Version
+    }
+}
+
+extension Package.PinnedV2 {
+    var v1: Package.Pinned {
+        .init(
+            name: name,
+            url: url,
+            state: .init(version: state.version)
+        )
+    }
+}
+
+// MARK: -
+extension Sequence where Element == Package.PinnedV2 {
+    func v1Converted() -> [Package.Pinned] {
+        map(\.v1)
+    }
+}

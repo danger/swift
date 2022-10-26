@@ -99,6 +99,41 @@ final class PackageDataProviderTests: XCTestCase {
         ])
     }
 
+    func testResolvePinnedPackagesReturnsCorrectPinnedPackagesV2() throws {
+        fileReader.stubbedReadData = { path in
+            switch path {
+            case "/usr/franco/Package.resolved":
+                return Data(self.resolvedPackageV2Text.utf8)
+            default:
+                XCTFail("Received unexpected path \(path)")
+                return Data()
+            }
+        }
+
+        let packages = try packageDataProvider.resolvePinnedPackages(generatedFolder: "/usr/franco")
+
+        XCTAssertEqual(packages, [
+            .init(name: "aexml",
+                  url: URL(string: "https://github.com/tadija/AEXML")!,
+                  state: .init(version: "4.3.3")),
+            .init(name: "commandant",
+                  url: URL(string: "https://github.com/Carthage/Commandant.git")!,
+                  state: .init(version: "0.16.0")),
+            .init(name: "curry",
+                  url: URL(string: "https://github.com/thoughtbot/Curry.git")!,
+                  state: .init(version: "4.0.2")),
+            .init(name: "jsonutilities",
+                  url: URL(string: "https://github.com/yonaskolb/JSONUtilities.git")!,
+                  state: .init(version: "4.2.0")),
+            .init(name: "komondor",
+                  url: URL(string: "https://github.com/shibapm/Komondor")!,
+                  state: .init(version: "1.0.4")),
+            .init(name: "octokit.swift",
+                  url: URL(string: "https://github.com/nerdishbynature/octokit.swift")!,
+                  state: .init(version: "0.9.0")),
+        ])
+    }
+
     private var packageText: String {
         """
         // swift-tools-version:4.2
@@ -213,6 +248,70 @@ final class PackageDataProviderTests: XCTestCase {
             ]
           },
           "version": 1
+        }
+        """
+    }
+
+    private var resolvedPackageV2Text: String {
+        """
+        {
+          "pins": [
+            {
+              "identity": "aexml",
+              "kind": "remoteSourceControl",
+              "location": "https://github.com/tadija/AEXML",
+              "state": {
+                "revision": "54bb8ea6fb693dd3f92a89e5fcc19e199fdeedd0",
+                "version": "4.3.3"
+              }
+            },
+            {
+              "identity": "commandant",
+              "kind": "remoteSourceControl",
+              "location": "https://github.com/Carthage/Commandant.git",
+              "state": {
+                "revision": "2cd0210f897fe46c6ce42f52ccfa72b3bbb621a0",
+                "version": "0.16.0"
+              }
+            },
+            {
+              "identity": "curry",
+              "kind": "remoteSourceControl",
+              "location": "https://github.com/thoughtbot/Curry.git",
+              "state": {
+                "revision": "4331dd50bc1db007db664a23f32e6f3df93d4e1a",
+                "version": "4.0.2"
+              }
+            },
+            {
+              "identity": "jsonutilities",
+              "kind": "remoteSourceControl",
+              "location": "https://github.com/yonaskolb/JSONUtilities.git",
+              "state": {
+                "revision": "128d2ffc22467f69569ef8ff971683e2393191a0",
+                "version": "4.2.0"
+              }
+            },
+            {
+              "identity": "komondor",
+              "kind": "remoteSourceControl",
+              "location": "https://github.com/shibapm/Komondor",
+              "state": {
+                "revision": "3cd6d76887816ead5931ddbfb249c2935f518e17",
+                "version": "1.0.4"
+              }
+            },
+            {
+              "identity": "octokit.swift",
+              "kind": "remoteSourceControl",
+              "location": "https://github.com/nerdishbynature/octokit.swift",
+              "state": {
+                "revision": "b63f2ec1b55f26c8e94159d81ad695aeb92f3d4e",
+                "version": "0.9.0"
+              }
+            }
+          ],
+          "version": 2
         }
         """
     }
