@@ -13,6 +13,10 @@
 
 ## Master
 
+## 3.14.3
+
+- Bump Docker image base version to swift 5.7 [@mxsc](https://github.com/danger/swift/pull/542)
+
 ## 3.14.2
 
 - Revert Swiftlint version on Dockerfile to 0.46.1 [#540](https://github.com/danger/swift/pull/540)
