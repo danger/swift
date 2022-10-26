@@ -9,12 +9,16 @@ Write your Dangerfiles in Swift.
 
 Latest version requires Swift 5.4
 
-- If you are using Swift 5.3 use v3.13.0
-- If you are using Swift 5.2 use v3.11.1
-- If you are using Swift 5.1 use v3.8.0
-- If you are using Swift 4.2 use v2.0.7
-- If you are using Swift 4.1 use v0.4.1
-- If you are using Swift 4.0, Use v0.3.6
+If you are using an older Swift, use the supported version according to next table.
+
+| Swift version | Danger support version |
+| ------------- | ---------------------- |
+| 5.3           | v3.13.0                |
+| 5.2           | v3.11.1                |
+| 5.1           | v3.8.0                 |
+| 4.2           | v2.0.7                 |
+| 4.1           | v0.4.1                 |
+| 4.0           | v0.3.6                 |
 
 ### What it looks like today
 
