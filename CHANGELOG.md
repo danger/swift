@@ -13,8 +13,6 @@
 
 ## Master
 
-## 3.14.3
-
 - Bump Docker image base version to swift 5.7 [@mxsc](https://github.com/danger/swift/pull/542)
 
 ## 3.14.2
