@@ -389,6 +389,53 @@ public extension GitHub.Commit {
 
         /// The URL for the commit.
         public let url: String
+
+        public let verification: Verification
+    }
+}
+
+public extension GitHub.Commit.CommitData {
+    enum Verification: Equatable, Decodable {
+        case verified(signature: String, payload: String)
+        case unverified(UnverifiedReason)
+
+        enum CodingKeys: String, CodingKey {
+            case payload
+            case reason
+            case signature
+            case verified
+        }
+
+        public init(from decoder: Decoder) throws {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            let verified = try container.decode(Bool.self, forKey: .verified)
+
+            if verified {
+                let signature = try container.decode(String.self, forKey: .signature)
+                let payload = try container.decode(String.self, forKey: .payload)
+                self = .verified(signature: signature, payload: payload)
+            } else {
+                let reason = try container.decode(UnverifiedReason.self, forKey: .reason)
+                self = .unverified(reason)
+            }
+        }
+    }
+}
+
+public extension GitHub.Commit.CommitData.Verification {
+    enum UnverifiedReason: String, Decodable {
+        case expiredKey = "expired_key"
+        case notSigningKey = "not_signing_key"
+        case gpgVerifyError = "gpgverify_error"
+        case gpgVerifyUnavailable = "gpgverify_unavailable"
+        case unsigned
+        case unknownSignatureType = "unknown_signature_type"
+        case noUser = "no_user"
+        case unverifiedEmail = "unverified_email"
+        case badEmail = "bad_email"
+        case unknownKey = "unknown_key"
+        case malformedSignature = "malformed_signature"
+        case invalid
     }
 }
 
