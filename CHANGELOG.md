@@ -14,11 +14,11 @@
 ## Master
 
 - Parse GitHub commit verification [@f-meloni][] - [#547](https://github.com/danger/swift/pull/547)
-- Bump Docker image base version to swift 5.7 [@mxsc](https://github.com/danger/swift/pull/542)
+- Bump Docker image base version to swift 5.7 [@mxsc][] - [#542](https://github.com/danger/swift/pull/542)
 
 ## 3.14.2
 
-- Revert Swiftlint version on Dockerfile to 0.46.1 [#540](https://github.com/danger/swift/pull/540)
+- Revert Swiftlint version on Dockerfile to 0.46.1 [f-meloni][] - [#540](https://github.com/danger/swift/pull/540)
 
 ## 3.14.1
 
@@ -545,3 +545,4 @@ This release also includes:
 [SwiftLint]: https://github.com/realm/SwiftLint
 [danger-swift-with-swiftlint]: https://github.com/orgs/danger/packages/container/package/danger-swift-with-swiftlint
 [@dahlborn]: https://github.com/dahlborn
+[@mxsc]: https://github.com/mxsc
