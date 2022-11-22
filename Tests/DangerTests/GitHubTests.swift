@@ -254,12 +254,36 @@ final class GitHubTests: XCTestCase {
         XCTAssertNil(testCommit.author)
         XCTAssertEqual(testCommit.sha, "cad494648f773cd4fad5a9ea948c1bfabf36032a")
         XCTAssertEqual(testCommit.url, "https://api.github.com/repos/danger/swift/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a")
-        XCTAssertEqual(testCommit.commit, GitHub.Commit.CommitData(sha: nil,
-                                                                   author: expectedAuthor,
-                                                                   committer: expectedAuthor,
-                                                                   message: "Re use the same executor on the runner",
-                                                                   parents: nil,
-                                                                   url: "https://api.github.com/repos/danger/swift/git/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a"))
+        XCTAssertEqual(testCommit.commit, GitHub.Commit.CommitData(
+            sha: nil,
+            author: expectedAuthor,
+            committer: expectedAuthor,
+            message: "Re use the same executor on the runner",
+            parents: nil,
+            url: "https://api.github.com/repos/danger/swift/git/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a",
+            verification: .unverified(.unknownSignatureType)
+        ))
+        XCTAssertEqual(testCommit.committer, GitHub.User(id: 17_830_956, login: "f-meloni", userType: .user))
+    }
+
+    func test_GitHubCommit_decodesJSONWithVerifiedCommit() throws {
+        let data = Data(GitHubCommitVerifiedJSON.utf8)
+        let expectedAuthor = Git.Commit.Author(name: "Franco Meloni", email: "franco.meloni91@gmail.com", date: "2019-04-20T17:46:50Z")
+
+        let testCommit = try decoder.decode(GitHub.Commit.self, from: data)
+
+        XCTAssertNil(testCommit.author)
+        XCTAssertEqual(testCommit.sha, "cad494648f773cd4fad5a9ea948c1bfabf36032a")
+        XCTAssertEqual(testCommit.url, "https://api.github.com/repos/danger/swift/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a")
+        XCTAssertEqual(testCommit.commit, GitHub.Commit.CommitData(
+            sha: nil,
+            author: expectedAuthor,
+            committer: expectedAuthor,
+            message: "Re use the same executor on the runner",
+            parents: nil,
+            url: "https://api.github.com/repos/danger/swift/git/commits/cad494648f773cd4fad5a9ea948c1bfabf36032a",
+            verification: .verified(signature: "Test Signature", payload: "Test Payload")
+        ))
         XCTAssertEqual(testCommit.committer, GitHub.User(id: 17_830_956, login: "f-meloni", userType: .user))
     }
 
