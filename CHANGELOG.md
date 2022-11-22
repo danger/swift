@@ -13,6 +13,7 @@
 
 ## Master
 
+- Parse GitHub commit verification [@f-meloni][] - [#547](https://github.com/danger/swift/pull/547)
 - Bump Docker image base version to swift 5.7 [@mxsc](https://github.com/danger/swift/pull/542)
 
 ## 3.14.2
