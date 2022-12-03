@@ -16,14 +16,28 @@ let devDependencies: [Package.Dependency] = isDevelop
         .package(url: "https://github.com/shibapm/Komondor", from: "1.1.4"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.50.5"),
         .package(url: "https://github.com/Realm/SwiftLint", from: "0.48.0"),
-        .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.10.0"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.10.0"),
         .package(url: "https://github.com/shibapm/Rocket", from: "1.2.1"),
     ] : []
 let devTargets: [Target] = isDevelop
     ? [
-        .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]),
-        .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib", "SnapshotTesting"], exclude: ["__Snapshots__"]),
-        .testTarget(name: "DangerDependenciesResolverTests", dependencies: ["DangerDependenciesResolver", "SnapshotTesting"], exclude: ["__Snapshots__"]),
+        .testTarget(name: "DangerTests",
+                    dependencies: [
+                        "Danger",
+                        "DangerFixtures",
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+                    ]),
+        .testTarget(name: "RunnerLibTests",
+                    dependencies: [
+                        "RunnerLib",
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+        ], exclude: ["__Snapshots__"]),
+        .testTarget(name: "DangerDependenciesResolverTests",
+                    dependencies: [
+                        "DangerDependenciesResolver",
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+                    ],
+                    exclude: ["__Snapshots__"]),
     ]
     : []
 
