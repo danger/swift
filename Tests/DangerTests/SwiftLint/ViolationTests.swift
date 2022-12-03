@@ -21,8 +21,4 @@ final class ViolationTests: XCTestCase {
         XCTAssertEqual(subject.file, "/Users/ash/bin/Harvey/Sources/Harvey/Harvey.swift")
         XCTAssertEqual(subject.severity, .warning)
     }
-
-    static var allTests = [
-        ("testDecoding", testDecoding),
-    ]
 }

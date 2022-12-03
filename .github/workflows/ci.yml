@@ -124,7 +124,7 @@ jobs:
 
     - uses: YOCKOW/Action-setup-swift@v1
 
-    - run: swift test
+    - run: swift test --enable-test-discovery
 
     - run: swift run danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
