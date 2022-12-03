@@ -7,12 +7,13 @@ Write your Dangerfiles in Swift.
 
 ### Requirements
 
-Latest version requires Swift 5.4
+Latest version requires Swift 5.5
 
 If you are using an older Swift, use the supported version according to next table.
 
 | Swift version | Danger support version |
 | ------------- | ---------------------- |
+| 5.4           | v3.15.0                |
 | 5.3           | v3.13.0                |
 | 5.2           | v3.11.1                |
 | 5.1           | v3.8.0                 |
@@ -182,7 +183,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Danger
-        uses: danger/swift@3.13.0
+        uses: danger/swift@3.15.0
         with:
             args: --failOnErrors --no-publish-check
         env:
@@ -203,7 +204,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Danger
-        uses: docker://ghcr.io/danger/danger-swift:3.13.0
+        uses: docker://ghcr.io/danger/danger-swift:3.15.0
         with:
             args: --failOnErrors --no-publish-check
         env:
@@ -231,7 +232,7 @@ swift run danger-swift command --cwd path/to/working-directory
 
 #### Dev
 
-You need to be using Xcode >= 11.3.1.
+You need to be using Xcode >= 13.2.1.
 
 ```sh
 git clone https://github.com/danger/danger-swift.git
