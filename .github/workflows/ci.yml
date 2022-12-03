@@ -98,7 +98,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        swift: ["5.4.3", "5.5.3", "5.6.3", "5.7"]
+        swift: ["5.5.3", "5.6.3", "5.7"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -176,7 +176,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        swift: ["5.4.3", "5.5.3", "5.6.3", "5.7"]
+        swift: ["5.5.3", "5.6.3", "5.7"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
