@@ -122,10 +122,10 @@ public let DSLGitLabJSON = """
         "reference": "!182",
         "web_url": "https://gitlab.com/danger-systems/danger.systems/merge_requests/182",
         "time_stats": {
-          "time_estimate": 0,
-          "total_time_spent": 0,
-          "human_time_estimate": null,
-          "human_total_time_spent": null
+          "time_estimate": 12600,
+          "total_time_spent": 12600,
+          "human_time_estimate": "3h 30m",
+          "human_total_time_spent": "3h 30m",
         },
         "squash": false,
         "subscribed": false,
