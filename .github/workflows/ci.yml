@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["13.2.1", "13.4.1", "14.0.1"]
+        xcode: ["13.2.1", "13.4.1", "14.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -57,7 +57,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["13.2.1", "13.4.1", "14.0.1"]
+        xcode: ["13.2.1", "13.4.1", "14.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -94,11 +94,11 @@ jobs:
 
   test-on-linux:
     name: Test on Linux
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
-        swift: ["5.4.3", "5.5.3", "5.6.3", "5.7"]
+        swift: ["5.5.3", "5.6.3", "5.7"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -124,7 +124,7 @@ jobs:
 
     - uses: YOCKOW/Action-setup-swift@v1
 
-    - run: swift test
+    - run: swift test --enable-test-discovery
 
     - run: swift run danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
@@ -137,7 +137,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["13.2.1", "13.4.1", "14.0.1"]
+        xcode: ["13.2.1", "13.4.1", "14.1"]
     steps:
     - uses: actions/checkout@v2
 
@@ -172,11 +172,11 @@ jobs:
 
   test-without-spm-on-linux:
     name: Test without SPM on Linux
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     strategy:
       fail-fast: false
       matrix:
-        swift: ["5.4.3", "5.5.3", "5.6.3", "5.7"]
+        swift: ["5.5.3", "5.6.3", "5.7"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2

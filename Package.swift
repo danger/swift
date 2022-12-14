@@ -1,4 +1,4 @@
-// swift-tools-version:5.4
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -13,17 +13,31 @@ let devProducts: [Product] = isDevelop
     ] : []
 let devDependencies: [Package.Dependency] = isDevelop
     ? [
-        .package(url: "https://github.com/shibapm/Komondor", from: "1.1.3"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.49.4"),
-        .package(url: "https://github.com/Realm/SwiftLint", from: "0.46.2"),
-        .package(name: "SnapshotTesting", url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.7.1"),
+        .package(url: "https://github.com/shibapm/Komondor", from: "1.1.4"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.50.5"),
+        .package(url: "https://github.com/Realm/SwiftLint", from: "0.48.0"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.10.0"),
         .package(url: "https://github.com/shibapm/Rocket", from: "1.2.1"),
     ] : []
 let devTargets: [Target] = isDevelop
     ? [
-        .testTarget(name: "DangerTests", dependencies: ["Danger", "DangerFixtures", "SnapshotTesting"]),
-        .testTarget(name: "RunnerLibTests", dependencies: ["RunnerLib", "SnapshotTesting"], exclude: ["__Snapshots__"]),
-        .testTarget(name: "DangerDependenciesResolverTests", dependencies: ["DangerDependenciesResolver", "SnapshotTesting"], exclude: ["__Snapshots__"]),
+        .testTarget(name: "DangerTests",
+                    dependencies: [
+                        "Danger",
+                        "DangerFixtures",
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+                    ]),
+        .testTarget(name: "RunnerLibTests",
+                    dependencies: [
+                        "RunnerLib",
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+        ], exclude: ["__Snapshots__"]),
+        .testTarget(name: "DangerDependenciesResolverTests",
+                    dependencies: [
+                        "DangerDependenciesResolver",
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+                    ],
+                    exclude: ["__Snapshots__"]),
     ]
     : []
 
@@ -36,8 +50,8 @@ let package = Package(
     ] + devProducts,
     dependencies: [
         .package(url: "https://github.com/shibapm/Logger", from: "0.1.0"),
-        .package(url: "https://github.com/mxcl/Version", from: "2.0.0"),
-        .package(name: "OctoKit", url: "https://github.com/nerdishbynature/octokit.swift", from: "0.11.0"),
+        .package(url: "https://github.com/mxcl/Version", from: "2.0.1"),
+        .package(name: "OctoKit", url: "https://github.com/nerdishbynature/octokit.swift", from: "0.12.0"),
     ] + devDependencies,
     targets: [
         .target(name: "Danger-Swift", dependencies: ["Danger"]),
