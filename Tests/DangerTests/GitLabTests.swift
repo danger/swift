@@ -14,10 +14,10 @@ final class GitLabTests: XCTestCase {
                                   state: .active,
                                   username: "f-meloni",
                                   webUrl: "https://gitlab.com/f-meloni")
-        let expectedTimeStats = GitLab.MergeRequest.TimeStats(humanTimeEstimate: nil,
-                                                              humanTimeSpent: nil,
-                                                              timeEstimate: 0,
-                                                              totalTimeSpent: 0)
+        let expectedTimeStats = GitLab.MergeRequest.TimeStats(humanTimeEstimate: "3h 30m",
+                                                              humanTimeSpent: "3h 30m",
+                                                              timeEstimate: 12600,
+                                                              totalTimeSpent: 12600)
         let orta = GitLab.User(avatarUrl: "https://secure.gravatar.com/avatar/f116cb3be23153ec08b94e8bd4dbcfeb?s=80&d=identicon",
                                id: 377_669,
                                name: "Orta",

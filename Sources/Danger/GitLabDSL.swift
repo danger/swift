@@ -110,8 +110,8 @@ public extension GitLab {
                 case totalTimeSpent = "total_time_spent"
             }
 
-            public let humanTimeEstimate: Int?
-            public let humanTimeSpent: Int?
+            public let humanTimeEstimate: String?
+            public let humanTimeSpent: String?
             public let timeEstimate: Int
             public let totalTimeSpent: Int
         }

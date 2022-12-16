@@ -13,6 +13,8 @@
 
 ## Master
 
+- Gitlab Error in merge request with estimate or spent time [@oscarcv][] - [#548](https://github.com/danger/swift/pull/548)
+
 ## 3.15.0
 
 - Parse GitHub commit verification [@f-meloni][] - [#547](https://github.com/danger/swift/pull/547)
