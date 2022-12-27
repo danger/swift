@@ -363,7 +363,7 @@ public extension BitBucketServer {
         public let name: String
 
         /// Is the project publicly available
-        public let isPublic: Bool
+        public let isPublic: Bool?
 
         // The project's type
         public let type: String

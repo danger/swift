@@ -14,6 +14,7 @@
 ## Master
 
 - Gitlab Error in merge request with estimate or spent time [@oscarcv][] - [#548](https://github.com/danger/swift/pull/548)
+- Fix a decode error with BitBucket server [@pepix][] - [#553](https://github.com/danger/swift/pull/553)
 
 ## 3.15.0
 
