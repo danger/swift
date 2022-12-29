@@ -5,7 +5,8 @@ struct InlineDependenciesFinder {
     let config: ScriptManager.Config
 
     init(fileReader: FileReading = FileReader(),
-         config: ScriptManager.Config) {
+         config: ScriptManager.Config)
+    {
         self.fileReader = fileReader
         self.config = config
     }
@@ -36,7 +37,8 @@ struct InlineDependenciesFinder {
 
                 result.append(InlineDependency(url: url, major: majorVersion))
             } else if let firstCharacter = line.unicodeScalars.first,
-                      !CharacterSet.alphanumerics.contains(firstCharacter) {
+                      !CharacterSet.alphanumerics.contains(firstCharacter)
+            {
                 break
             }
         }

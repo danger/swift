@@ -72,7 +72,8 @@ final class DangerRunner {
 
             if !FileManager.default.createFile(atPath: outputPath,
                                                contents: data,
-                                               attributes: nil) {
+                                               attributes: nil)
+            {
                 logger.logError("Could not create a temporary file " +
                     "for the Dangerfile DSL at: \(outputPath)")
                 exit(0)

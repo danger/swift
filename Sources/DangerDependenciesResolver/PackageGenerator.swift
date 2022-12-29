@@ -12,7 +12,8 @@ struct PackageGenerator {
     init(folder: String,
          generatedFolder: String,
          packageListMaker: PackageListMaking? = nil,
-         fileCreator: FileCreating = FileCreator()) {
+         fileCreator: FileCreating = FileCreator())
+    {
         self.folder = folder
         self.generatedFolder = generatedFolder
         self.fileCreator = fileCreator
@@ -24,7 +25,8 @@ struct PackageGenerator {
     }
 
     func generateMasterPackageDescription(forSwiftToolsVersion toolsVersion: Version,
-                                          macOSVersion: Version) throws {
+                                          macOSVersion: Version) throws
+    {
         let header = makePackageDescriptionHeader(forSwiftToolsVersion: toolsVersion)
         let packages = packageListMaker.makePackageList()
         let platform = makeSupportedPlatform(forMacOSVersion: macOSVersion)

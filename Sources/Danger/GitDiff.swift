@@ -167,7 +167,8 @@ struct DiffParser {
            let oldLineStart = Int(dividedSpan[0][0]),
            let oldLineSpan = Int(dividedSpan[0][1]),
            let newLineStart = Int(dividedSpan[1][0]),
-           let newLineSpan = Int(dividedSpan[1][1]) {
+           let newLineSpan = Int(dividedSpan[1][1])
+        {
             return HunkSpan(oldLineStart: oldLineStart,
                             oldLineSpan: oldLineSpan,
                             newLineStart: newLineStart,

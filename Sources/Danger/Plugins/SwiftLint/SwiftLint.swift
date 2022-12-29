@@ -46,7 +46,8 @@ public enum SwiftLint {
                             strict: Bool = false,
                             quiet: Bool = true,
                             lintAllFiles: Bool = false,
-                            swiftlintPath: String? = nil) -> [SwiftLintViolation] {
+                            swiftlintPath: String? = nil) -> [SwiftLintViolation]
+    {
         let lintStyle: LintStyle = {
             if lintAllFiles {
                 return .all(directory: directory)
@@ -73,7 +74,8 @@ public enum SwiftLint {
                             configFile: String? = nil,
                             strict: Bool = false,
                             quiet: Bool = true,
-                            swiftlintPath: String?) -> [SwiftLintViolation] {
+                            swiftlintPath: String?) -> [SwiftLintViolation]
+    {
         lint(lintStyle,
              inline: inline,
              configFile: configFile,
@@ -93,7 +95,8 @@ public enum SwiftLint {
                             configFile: String? = nil,
                             strict: Bool = false,
                             quiet: Bool = true,
-                            swiftlintPath: SwiftlintPath? = nil) -> [SwiftLintViolation] {
+                            swiftlintPath: SwiftlintPath? = nil) -> [SwiftLintViolation]
+    {
         lint(lintStyle: lintStyle,
              danger: danger,
              shellExecutor: shellExecutor,
@@ -201,7 +204,8 @@ extension SwiftLint {
                                 swiftlintPath: String,
                                 outputFilePath: String,
                                 failAction: (String) -> Void,
-                                readFile: (String) -> String) -> [SwiftLintViolation] {
+                                readFile: (String) -> String) -> [SwiftLintViolation]
+    {
         var arguments = arguments
 
         if let directory = directory {
@@ -225,7 +229,8 @@ extension SwiftLint {
                                   swiftlintPath: String,
                                   outputFilePath: String,
                                   failAction: (String) -> Void,
-                                  readFile: (String) -> String) -> [SwiftLintViolation] {
+                                  readFile: (String) -> String) -> [SwiftLintViolation]
+    {
         let files = files.filter { $0.fileType == .swift }
 
         // Only run Swiftlint, if there are files to lint
@@ -256,7 +261,8 @@ extension SwiftLint {
         let swiftPackageDepPattern = #"\.package\(.*SwiftLint.*"#
         if let packageContent = try? String(contentsOfFile: packagePath),
            let regex = try? NSRegularExpression(pattern: swiftPackageDepPattern, options: .allowCommentsAndWhitespace),
-           regex.firstMatchingString(in: packageContent) != nil {
+           regex.firstMatchingString(in: packageContent) != nil
+        {
             return "swift run swiftlint"
         } else {
             return "swiftlint"
@@ -268,7 +274,8 @@ extension SwiftLint {
                                          inline: Bool,
                                          markdownAction: (String) -> Void,
                                          failInlineAction: (String, String, Int) -> Void,
-                                         warnInlineAction: (String, String, Int) -> Void) {
+                                         warnInlineAction: (String, String, Int) -> Void)
+    {
         if inline {
             violations.forEach { violation in
                 switch violation.severity {
@@ -296,7 +303,8 @@ extension SwiftLint {
                                             outputFilePath: String,
                                             shellExecutor: ShellExecuting,
                                             failAction: (String) -> Void,
-                                            readFile: (String) -> String) -> [SwiftLintViolation] {
+                                            readFile: (String) -> String) -> [SwiftLintViolation]
+    {
         shellExecutor.execute(swiftlintPath,
                               arguments: arguments,
                               environmentVariables: environmentVariables,

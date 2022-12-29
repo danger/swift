@@ -26,7 +26,8 @@ public struct SPMDanger {
                                            range: NSRange(location: 0, length: packageContent.count))
 
         if let depsLibNameRange = firstMatch?.range(at: 1),
-           let range = Range(depsLibNameRange, in: packageContent) {
+           let range = Range(depsLibNameRange, in: packageContent)
+        {
             depsLibName = String(packageContent[range])
         } else {
             return nil
@@ -47,7 +48,8 @@ public struct SPMDanger {
         // The danger lib is not always generated, this mainly happens on the danger repo,
         // where the DangerDeps library and Danger.swiftmodule are enough
         if fileManager.fileExists(atPath: buildFolder + "/libDanger.dylib") ||
-            fileManager.fileExists(atPath: buildFolder + "/libDanger.so") {
+            fileManager.fileExists(atPath: buildFolder + "/libDanger.so")
+        {
             return libsImport + ["-l Danger"]
         } else {
             return libsImport
