@@ -10,8 +10,7 @@ public struct ScriptManager {
 
         public init(prefix: String = "package: ",
                     file: String = "Dangerplugins",
-                    major: String = "~> ")
-        {
+                    major: String = "~> ") {
             dependencyPrefix = prefix
             dependencyFile = file
             majorVersionPrefix = major
@@ -35,8 +34,7 @@ public struct ScriptManager {
 
     public init(folder: String,
                 packageManager: PackageManager,
-                logger: Logger) throws
-    {
+                logger: Logger) throws {
         self.folder = folder
         self.logger = logger
         cacheFolder = try folder.createSubfolderIfNeeded(withName: "Cache")
@@ -221,8 +219,7 @@ public final class Script {
 func executeSwiftCommand(_ command: String,
                          onFolder folder: String? = nil,
                          arguments: [String] = [],
-                         executor: ShellExecutor) throws -> String
-{
+                         executor: ShellExecutor) throws -> String {
     func resolveSwiftPath() -> String {
         #if os(Linux)
             return "swift"

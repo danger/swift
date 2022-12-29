@@ -16,8 +16,7 @@ struct PackageDataProvider: PackageDataProviding {
 
     init(logger: Logger,
          fileReader: FileReading = FileReader(),
-         executor: ShellExecuting = ShellExecutor())
-    {
+         executor: ShellExecuting = ShellExecutor()) {
         self.fileReader = fileReader
         self.logger = logger
         self.executor = executor
