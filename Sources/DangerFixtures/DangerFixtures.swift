@@ -27,6 +27,8 @@ public let githubFixtureDSL = parseDangerDSL(with: DSLGitHubJSON)
 public let githubEnterpriseFixtureDSL = parseDangerDSL(with: DSLGitHubEnterpriseJSON)
 /// An example DSL using BitBucket Server
 public let bitbucketFixtureDSL = parseDangerDSL(with: DSLBitBucketServerJSON)
+/// An example DSL without public field in fromRef using BitBucket Sever
+public let bitbucketForkedRepoFixtureDSL = parseDangerDSL(with: DSLBitBucketServerForkedRepoJSON)
 /// An example DSL using GitLab
 public let gitlabFixtureDSL = parseDangerDSL(with: DSLGitLabJSON)
 /// An example DSL without milestone date range using GitLab

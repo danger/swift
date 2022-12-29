@@ -3,8 +3,14 @@ import DangerFixtures
 import XCTest
 
 final class BitBucketServerTests: XCTestCase {
+    private var _bitBucketServer: BitBucketServer = bitbucketFixtureDSL.bitbucketServer
     private var bitBucketServer: BitBucketServer {
-        bitbucketFixtureDSL.bitbucketServer
+        get {
+            _bitBucketServer
+        }
+        set {
+            _bitBucketServer = newValue
+        }
     }
 
     // swiftlint:disable:next function_body_length
@@ -161,5 +167,24 @@ final class BitBucketServerTests: XCTestCase {
         XCTAssertEqual(user.slug, "tum-id")
         XCTAssertEqual(user.type, "NORMAL")
         XCTAssertNil(user.emailAddress)
+    }
+
+    // swiftlint:disable:next function_body_length
+    func testItParsesTheBitBucketPullRequestFromForkedRepo() {
+        bitBucketServer = bitbucketForkedRepoFixtureDSL.bitbucketServer
+        let pullRequest = bitBucketServer.pullRequest
+
+        let expectedProject = BitBucketServer.Project(id: 1, key: "PROJ", name: "Project", isPublic: nil, type: "PERSONAL")
+        let expectedRepo = BitBucketServer.Repo(name: "Repo",
+                                                slug: "repo",
+                                                scmId: "git",
+                                                isPublic: false,
+                                                forkable: true,
+                                                project: expectedProject)
+        let expectedBase = BitBucketServer.MergeRef(id: "refs/heads/master",
+                                                    displayId: "master",
+                                                    latestCommit: "8942a1f75e4c95df836f19ef681d20a87da2ee20",
+                                                    repository: expectedRepo)
+        XCTAssertEqual(pullRequest.fromRef, expectedBase)
     }
 }
