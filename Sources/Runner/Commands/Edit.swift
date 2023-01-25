@@ -44,6 +44,7 @@ func editDanger(logger: Logger) throws {
 
     let importsFinder = ImportsFinder()
     let importedFiles = importsFinder.findImports(inString: dangerfileContent)
+        .map { importsFinder.resolveImportPath($0, relativeTo: dangerfilePath) }
 
     let scriptManager = try getScriptManager(logger)
     let script = try scriptManager.script(atPath: dangerfilePath)

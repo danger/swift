@@ -10,4 +10,11 @@ public final class ImportsFinder {
 
         return files
     }
+
+    public func resolveImportPath(_ path: String,
+                                  relativeTo dangerfilePath: String) -> String {
+        dangerfilePath
+            .removingLastPathComponent()
+            .appendingPath(path)
+    }
 }
