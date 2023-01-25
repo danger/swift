@@ -131,13 +131,13 @@ public final class Script {
             try FileManager.default.copyItem(atPath: $0, toPath: sourcesImportPath(forImportPath: $0))
         }
 
-        try generateXCodeProjWithConfig(configPath: configPath)
+        // try generateXCodeProjWithConfig(configPath: configPath)
 
         return editingPath()
     }
 
     private func editingPath() -> String {
-        folder.appendingPath(name + ".xcodeproj")
+        folder.appendingPath("Package.swift")
     }
 
     private func generateXCodeProjWithConfig(configPath: String) throws {
