@@ -8,9 +8,9 @@ func editDanger(logger: Logger) throws {
     let dangerfilePath: String
 
     if let dangerfileArgumentPath = DangerfilePathFinder.dangerfilePath() {
-        dangerfilePath = dangerfileArgumentPath
+        dangerfilePath = dangerfileArgumentPath.fullPath
     } else {
-        dangerfilePath = Runtime.getDangerfile() ?? "Dangerfile.swift"
+        dangerfilePath = (Runtime.getDangerfile() ?? "Dangerfile.swift").fullPath
     }
 
     if !fileManager.fileExists(atPath: dangerfilePath) {
