@@ -131,19 +131,11 @@ public final class Script {
             try FileManager.default.copyItem(atPath: $0, toPath: sourcesImportPath(forImportPath: $0))
         }
 
-        // try generateXCodeProjWithConfig(configPath: configPath)
-
         return editingPath()
     }
 
     private func editingPath() -> String {
         folder.appendingPath("Package.swift")
-    }
-
-    private func generateXCodeProjWithConfig(configPath: String) throws {
-        try executeSwiftCommand("package generate-xcodeproj --xcconfig-overrides \(configPath)",
-                                onFolder: folder,
-                                executor: ShellExecutor())
     }
 
     private func sourcesImportPath(forImportPath importPath: String) -> String {
