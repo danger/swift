@@ -163,7 +163,7 @@ public final class Script {
         do {
             let path = editingPath()
 
-            try ShellExecutor().spawn("open \"\(path)\"", arguments: [])
+            try ShellExecutor().spawn("xed \"\(path)\"", arguments: [])
 
             logger.logInfo("\nℹ️  Danger will keep running, " +
                 "in order to commit any changes you make in Xcode back to the original script file")
