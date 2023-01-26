@@ -123,7 +123,7 @@ public final class Script {
     }
 
     @discardableResult
-    public func setupForEdit(importedFiles: [String], configPath: String) throws -> String {
+    public func setupForEdit(importedFiles: [String]) throws -> String {
         try importedFiles.forEach {
             if !FileManager.default.fileExists(atPath: $0) {
                 _ = FileManager.default.createFile(atPath: $0, contents: nil, attributes: nil)
