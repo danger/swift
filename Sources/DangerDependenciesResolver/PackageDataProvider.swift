@@ -29,6 +29,9 @@ struct PackageDataProvider: PackageDataProviding {
     }
 
     func nameOfPackage(at url: URL, temporaryFolder: String) throws -> String {
+        if case InlineDependenciesFinder.InlineDependency.dangerSwift.url = url {
+            return "Danger"
+        }
         do {
             guard !url.isForRemoteRepository else {
                 return try nameOfRemotePackage(at: url, temporaryFolder: temporaryFolder)

@@ -13,7 +13,7 @@ struct InlineDependenciesFinder {
     func resolveInlineDependencies(fromPath path: String) throws -> [InlineDependency] {
         let lines = try fileReader.readText(atPath: path).components(separatedBy: .newlines)
 
-        var result = [InlineDependency]()
+        var result: [InlineDependency] = [.dangerSwift]
 
         for line in lines {
             if line.hasPrefix("import ") {
@@ -55,5 +55,12 @@ extension InlineDependenciesFinder {
     struct InlineDependency: Equatable {
         let url: URL
         let major: Int?
+    }
+}
+
+extension InlineDependenciesFinder.InlineDependency {
+    static var dangerSwift: Self {
+        .init(url: URL(string: "https://github.com/danger/swift.git")!,
+              major: nil)
     }
 }
