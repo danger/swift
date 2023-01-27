@@ -75,7 +75,7 @@ public struct PackageManager {
         try save(package: package)
 
         try updatePackages()
-        try addMissingPackageFiles()
+        // try addMissingPackageFiles()
     }
 
     private func save(package: Package) throws {
