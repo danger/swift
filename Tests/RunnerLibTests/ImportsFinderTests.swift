@@ -21,6 +21,13 @@ final class ImportsFinderTests: XCTestCase {
     func testItRetunsAnEmptyListWhenThePassedStringDoesntContainImports() {
         checkReturnsTheCorrectFilePaths(string: stringWithoutImports, expectedResult: [])
     }
+
+    func testResolveImportPath() {
+        let dangerfilePath = "/path/to/danger/swift/Dangerfile.swift"
+        XCTAssertEqual(importsFinder.resolveImportPath("DangerfileExtensions/ChangelogCheck.swift", relativeTo: dangerfilePath), "/path/to/danger/swift/DangerfileExtensions/ChangelogCheck.swift")
+
+        XCTAssertEqual(importsFinder.resolveImportPath("SomeFile", relativeTo: dangerfilePath), "/path/to/danger/swift/SomeFile")
+    }
 }
 
 extension ImportsFinderTests {
