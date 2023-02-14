@@ -15,6 +15,7 @@
 
 - Gitlab Error in merge request with estimate or spent time [@oscarcv][] - [#548](https://github.com/danger/swift/pull/548)
 - Resolve `// fileImport: ~` path to an absolute path on running `danger-swift edit` [@417-72KI][] - [#565](https://github.com/danger/swift/pull/565)
+- Add ability to change meta information [@Nikoloutsos][] - [#567](https://github.com/danger/swift/pull/567)
 
 ## 3.15.0
 
