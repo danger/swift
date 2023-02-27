@@ -193,6 +193,7 @@ public extension GitLab {
             case shouldRemoveSourceBranch = "should_remove_source_branch"
             case sourceBranch = "source_branch"
             case sourceProjectId = "source_project_id"
+            case squash
             case state
             case subscribed
             case targetBranch = "target_branch"
@@ -237,6 +238,7 @@ public extension GitLab {
         public let shouldRemoveSourceBranch: Bool?
         public let sourceBranch: String
         public let sourceProjectId: Int
+        public let squash: Bool?
         public let state: State
         public let subscribed: Bool
         public let targetBranch: String
