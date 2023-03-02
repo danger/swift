@@ -169,7 +169,6 @@ final class BitBucketServerTests: XCTestCase {
         XCTAssertNil(user.emailAddress)
     }
 
-    // swiftlint:disable:next function_body_length
     func testItParsesTheBitBucketPullRequestFromForkedRepo() {
         bitBucketServer = bitbucketForkedRepoFixtureDSL.bitbucketServer
         let pullRequest = bitBucketServer.pullRequest

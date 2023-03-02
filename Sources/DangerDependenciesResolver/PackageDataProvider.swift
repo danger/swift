@@ -59,14 +59,12 @@ struct PackageDataProvider: PackageDataProviding {
             struct Object: Decodable {
                 let pins: [Package.Pinned]
             }
-
             enum Version {
                 /// swift-tools-version <= 5.5
                 case v1(object: Object)
                 /// swift-tools-version >= 5.6
                 case v2(pins: [Package.PinnedV2])
             }
-
             let version: Version
 
             enum CodingKeys: CodingKey {
@@ -82,7 +80,7 @@ struct PackageDataProvider: PackageDataProviding {
                 case 1:
                     let object = try container.decode(Object.self, forKey: .object)
                     self.version = .v1(object: object)
-                case 2:
+                 case 2:
                     let pins = try container.decode([Package.PinnedV2].self, forKey: .pins)
                     self.version = .v2(pins: pins)
                 default:
