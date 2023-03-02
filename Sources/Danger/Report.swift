@@ -37,6 +37,7 @@ func resetDangerResults() {
     globalResults.fails = []
     globalResults.warnings = []
     globalResults.markdowns = []
+    globalResults.meta = Meta()
 }
 
 public extension DangerDSL {
@@ -58,6 +59,11 @@ public extension DangerDSL {
     /// Markdowns on the Danger report
     var markdowns: [Violation] {
         globalResults.markdowns
+    }
+
+    /// Meta information on the Danger report
+    var meta: Meta {
+        globalResults.meta
     }
 
     /// Adds a warning message to the Danger report
@@ -124,6 +130,11 @@ public extension DangerDSL {
 
         globalResults.markdowns.append(Violation(message: message, file: file, line: line))
     }
+
+    /// Changes the meta information that will be passed back to Danger JS about this runtime
+    func meta(_ meta: Meta) {
+        globalResults.meta = meta
+    }
 }
 
 /// Fails on the Danger report
@@ -144,6 +155,11 @@ public var messages: [Violation] {
 /// Markdowns on the Danger report
 public var markdowns: [Violation] {
     globalResults.markdowns
+}
+
+/// Meta information on the Danger report
+var meta: Meta {
+    globalResults.meta
 }
 
 /// Adds a warning message to the Danger report
@@ -197,4 +213,9 @@ public func markdown(message: String, file: String, line: Int) {
 /// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
 public func suggestion(code: String, file: String, line: Int) {
     dangerRunner.dsl.suggestion(code: code, file: file, line: line)
+}
+
+/// Changes the meta information that will be passed back to Danger JS about this runtime
+func meta(_ meta: Meta) {
+    dangerRunner.dsl.meta(meta)
 }
