@@ -25,17 +25,17 @@ let devTargets: [Target] = isDevelop
                     dependencies: [
                         "Danger",
                         "DangerFixtures",
-                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
                     ]),
         .testTarget(name: "RunnerLibTests",
                     dependencies: [
                         "RunnerLib",
-                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
-                    ], exclude: ["__Snapshots__"]),
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+        ], exclude: ["__Snapshots__"]),
         .testTarget(name: "DangerDependenciesResolverTests",
                     dependencies: [
                         "DangerDependenciesResolver",
-                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
                     ],
                     exclude: ["__Snapshots__"]),
     ]
