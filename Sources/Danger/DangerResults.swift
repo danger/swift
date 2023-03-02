@@ -17,8 +17,16 @@ public struct Violation: Encodable {
 
 /// Meta information for showing in the text info
 public struct Meta: Encodable {
-    let runtimeName = "Danger Swift"
-    let runtimeHref = "https://danger.systems/swift"
+    let runtimeName: String
+    let runtimeHref: String
+
+    public init(
+        runtimeName: String = "Danger Swift",
+        runtimeHref: String = "https://danger.systems/swift"
+    ) {
+        self.runtimeName = runtimeName
+        self.runtimeHref = runtimeHref
+    }
 }
 
 // MARK: - Results
@@ -38,5 +46,5 @@ struct DangerResults: Encodable {
     var markdowns = [Violation]()
 
     /// Information to pass back to Danger JS about the runtime
-    let meta = Meta()
+    var meta = Meta()
 }

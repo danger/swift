@@ -270,6 +270,7 @@ public extension GitLab {
         public enum State: String, Decodable {
             case active
             case blocked
+            case deactivated
         }
 
         public let avatarUrl: String?
