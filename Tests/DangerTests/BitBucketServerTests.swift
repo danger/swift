@@ -3,14 +3,8 @@ import DangerFixtures
 import XCTest
 
 final class BitBucketServerTests: XCTestCase {
-    private var _bitBucketServer: BitBucketServer = bitbucketFixtureDSL.bitbucketServer
     private var bitBucketServer: BitBucketServer {
-        get {
-            _bitBucketServer
-        }
-        set {
-            _bitBucketServer = newValue
-        }
+        bitbucketFixtureDSL.bitbucketServer
     }
 
     // swiftlint:disable:next function_body_length
@@ -170,7 +164,6 @@ final class BitBucketServerTests: XCTestCase {
     }
 
     func testItParsesTheBitBucketPullRequestFromForkedRepo() {
-        bitBucketServer = bitbucketForkedRepoFixtureDSL.bitbucketServer
         let pullRequest = bitBucketServer.pullRequest
 
         let expectedProject = BitBucketServer.Project(id: 1, key: "PROJ", name: "Project", isPublic: nil, type: "PERSONAL")
