@@ -169,8 +169,7 @@ final class GitDiffTests: XCTestCase {
         ]))
     }
 
-    // swiftformat:disable all
-
+    // swiftlint:disable all
     var testDiff: String {
         """
         diff --git a/.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata b/.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
