@@ -164,7 +164,8 @@ final class BitBucketServerTests: XCTestCase {
     }
 
     func testItParsesTheBitBucketPullRequestFromForkedRepo() {
-        let pullRequest = bitBucketServer.pullRequest
+        let bitBucketServer = bitbucketForkedRepoFixtureDSL.bitbucketServer
+        let pullRequest = bitBucketServer?.pullRequest
 
         let expectedProject = BitBucketServer.Project(id: 1, key: "PROJ", name: "Project", isPublic: nil, type: "PERSONAL")
         let expectedRepo = BitBucketServer.Repo(name: "Repo",
@@ -177,6 +178,6 @@ final class BitBucketServerTests: XCTestCase {
                                                     displayId: "master",
                                                     latestCommit: "8942a1f75e4c95df836f19ef681d20a87da2ee20",
                                                     repository: expectedRepo)
-        XCTAssertEqual(pullRequest.fromRef, expectedBase)
+        XCTAssertEqual(pullRequest?.fromRef, expectedBase)
     }
 }
