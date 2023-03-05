@@ -20,3 +20,5 @@ jobs:
         
       - name: Create release
         run: ./Scripts/release_changelog.sh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
