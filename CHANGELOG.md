@@ -19,6 +19,7 @@
 - Resolve `// fileImport: ~` path to an absolute path on running `danger-swift edit` [@417-72KI][] - [#565](https://github.com/danger/swift/pull/565)
 - Add ability to change meta information [@Nikoloutsos][] - [#567](https://github.com/danger/swift/pull/567)
 - Add deactivated user status for GitLab [@antigp][] - [#572](https://github.com/danger/swift/pull/572)
+- Add `squash` attribute for GitLab merge request [@aserdobintsev][] - [#576](https://github.com/danger/swift/pull/576)
 
 ## 3.15.0
 
@@ -556,3 +557,4 @@ This release also includes:
 [danger-swift-with-swiftlint]: https://github.com/orgs/danger/packages/container/package/danger-swift-with-swiftlint
 [@dahlborn]: https://github.com/dahlborn
 [@mxsc]: https://github.com/mxsc
+[@aserdobintsev]: https://github.com/aserdobintsev

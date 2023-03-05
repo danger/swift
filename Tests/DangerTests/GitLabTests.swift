@@ -78,6 +78,7 @@ final class GitLabTests: XCTestCase {
         XCTAssertNil(mergeRequest.shouldRemoveSourceBranch)
         XCTAssertEqual(mergeRequest.sourceBranch, "patch-2")
         XCTAssertEqual(mergeRequest.sourceProjectId, 10_132_593)
+        XCTAssertEqual(mergeRequest.squash, false)
         XCTAssertEqual(mergeRequest.state, .merged)
         XCTAssertEqual(mergeRequest.subscribed, false)
         XCTAssertEqual(mergeRequest.targetBranch, "master")
