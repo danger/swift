@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.16.0
+
 - Update `SwiftLint` used by `danger-swift-with-swiftlint` from v0.46.1 to [0.50.3](https://github.com/realm/SwiftLint/releases/tag/0.50.3) - [#573](https://github.com/danger/swift/pull/573)
 - Gitlab Error in merge request with estimate or spent time [@oscarcv][] - [#548](https://github.com/danger/swift/pull/548)
 - Fix a decode error with BitBucket server [@pepix][] - [#553](https://github.com/danger/swift/pull/553)
