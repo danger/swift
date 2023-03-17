@@ -52,6 +52,7 @@ public enum Runtime {
         let libPaths = commandArgPath + potentialLibraryFolders + depManagerDangerLibPaths
 
         func isTheDangerLibPath(path: String) -> Bool {
+            fileManager.fileExists(atPath: path + "/Danger.framework") || // OSX
             fileManager.fileExists(atPath: path + "/libDanger.dylib") || // OSX
                 fileManager.fileExists(atPath: path + "/libDanger.so") // Linux
         }
