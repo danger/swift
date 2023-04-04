@@ -13,9 +13,9 @@ private func runCommand(_ command: DangerCommand, logger: Logger) throws {
         checkForUpdate(logger: logger)
         exit(exitCode)
     case .edit:
-        try editDanger(logger: logger)
+        try editDanger(version: DangerVersion, logger: logger)
     case .runner:
-        try runDanger(logger: logger)
+        try runDanger(version: DangerVersion, logger: logger)
     }
 }
 
@@ -51,7 +51,7 @@ do {
             fatalError("Danger Swift does not support this argument, it only handles ci, local, pr & edit'")
         }
     } else {
-        try runDanger(logger: logger)
+        try runDanger(version: DangerVersion, logger: logger)
     }
 } catch {
     logger.logError(error)

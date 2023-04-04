@@ -25,6 +25,7 @@ public struct ScriptManager {
     }
 
     private let config = Config()
+    private let dangerSwiftVersion: String
     private let packageManager: PackageManager
     private let folder: String
     private let cacheFolder: String
@@ -33,8 +34,10 @@ public struct ScriptManager {
     private let inlineDependenciesFinder: InlineDependenciesFinder
 
     public init(folder: String,
+                dangerSwiftVersion: String,
                 packageManager: PackageManager,
                 logger: Logger) throws {
+        self.dangerSwiftVersion = dangerSwiftVersion
         self.folder = folder
         self.logger = logger
         cacheFolder = try folder.createSubfolderIfNeeded(withName: "Cache")
@@ -57,7 +60,8 @@ public struct ScriptManager {
         let folder = try createFolderIfNeededForScript(withIdentifier: identifier, filePath: path)
         let script = Script(name: path.nameExcludingExtension, folder: folder, logger: logger)
 
-        let packages = try inlineDependenciesFinder.resolveInlineDependencies(fromPath: path)
+        let packages = try inlineDependenciesFinder.resolveInlineDependencies(fromPath: path,
+                                                                              dangerSwiftVersion: dangerSwiftVersion)
         try packageManager.addPackagesIfNeeded(from: packages)
 
         do {

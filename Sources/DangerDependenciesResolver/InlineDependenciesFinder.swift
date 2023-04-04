@@ -10,11 +10,11 @@ struct InlineDependenciesFinder {
         self.config = config
     }
 
-    func resolveInlineDependencies(fromPath path: String) throws -> [InlineDependency] {
+    func resolveInlineDependencies(fromPath path: String,
+                                   dangerSwiftVersion: String) throws -> [InlineDependency] {
         let lines = try fileReader.readText(atPath: path).components(separatedBy: .newlines)
 
-        // TODO: inject from main.swift
-        var result: [InlineDependency] = [.dangerSwift(version: "3.15.0")]
+        var result: [InlineDependency] = [.dangerSwift(version: dangerSwiftVersion)]
 
         for line in lines {
             if line.hasPrefix("import ") {

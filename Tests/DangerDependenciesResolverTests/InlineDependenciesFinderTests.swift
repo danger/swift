@@ -10,10 +10,11 @@ final class InlineDependenciesFinderTests: XCTestCase {
         let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader,
                                                           config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
 
-        let result = try dependenciesFinder.resolveInlineDependencies(fromPath: "path")
+        let result = try dependenciesFinder.resolveInlineDependencies(fromPath: "path",
+                                                                      dangerSwiftVersion: "3.0.0")
 
         XCTAssertEqual(result, [
-            .dangerSwift(version: "3.15.0"),
+            .dangerSwift(version: "3.0.0"),
             InlineDependenciesFinder.InlineDependency(url: URL(string: "http://danger.systems")!, major: nil),
             InlineDependenciesFinder.InlineDependency(url: URL(string: "http://danger.systems/swift")!, major: 2),
         ])
@@ -26,7 +27,7 @@ final class InlineDependenciesFinderTests: XCTestCase {
         let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader,
                                                           config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
 
-        XCTAssertThrowsError(try dependenciesFinder.resolveInlineDependencies(fromPath: "path"))
+        XCTAssertThrowsError(try dependenciesFinder.resolveInlineDependencies(fromPath: "path", dangerSwiftVersion: "3.14.0"))
     }
 
     func testReturnsAnEmptyDependenciesListWhenDependenciesDoNotHavePackagePrefix() throws {
@@ -36,9 +37,9 @@ final class InlineDependenciesFinderTests: XCTestCase {
         let dependenciesFinder = InlineDependenciesFinder(fileReader: fileReader,
                                                           config: ScriptManager.Config(prefix: "package: ", file: "", major: "~> "))
 
-        let result = try dependenciesFinder.resolveInlineDependencies(fromPath: "path")
+        let result = try dependenciesFinder.resolveInlineDependencies(fromPath: "path", dangerSwiftVersion: "3.1.4")
 
-        XCTAssertEqual(result, [.dangerSwift(version: "3.15.0")])
+        XCTAssertEqual(result, [.dangerSwift(version: "3.1.4")])
     }
 
     private var script: String {

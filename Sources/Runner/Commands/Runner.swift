@@ -5,7 +5,7 @@ import Logger
 import RunnerLib
 
 // swiftlint:disable:next function_body_length
-func runDanger(logger: Logger) throws {
+func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
     // Pull in the JSON from Danger JS
     let standardInput = FileHandle.standardInput
     let fileManager = FileManager.default
@@ -90,7 +90,8 @@ func runDanger(logger: Logger) throws {
 
             defer { try? FileManager.default.removeItem(atPath: tempDangerfile) }
 
-            let scriptManager = try getScriptManager(logger)
+            let scriptManager = try getScriptManager(forDangerSwiftVersion: dangerSwiftVersion,
+                                                     logger: logger)
             let script = try scriptManager.script(atPath: tempDangerfile)
 
             try script.build()
