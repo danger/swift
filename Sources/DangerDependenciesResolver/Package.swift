@@ -5,14 +5,40 @@ public struct Package: Equatable, Codable {
     public let name: String
     public let url: URL
     public var majorVersion: Int
+    public var minorVersion: Int?
+    public var patchVersion: Int?
 }
 
 extension Package {
     func dependencyString(forToolsVersion version: Version) -> String {
-        if version >= Version(major: 5, minor: 2, patch: 0) {
-            return #".package(name: "\#(name)", url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
-        } else {
-            return #".package(url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
+        switch version {
+        case Version(5, 6, 0)...:
+            if let minorVersion = minorVersion, let patchVersion = patchVersion {
+                return #".package(url: "\#(url.absoluteString)", exact: "\#(majorVersion).\#(minorVersion).\#(patchVersion)")"#
+            } else {
+                return #".package(url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
+            }
+        case Version(5, 2, 0)...:
+            if let minorVersion = minorVersion, let patchVersion = patchVersion {
+                return #".package(name: "\#(name)", url: "\#(url.absoluteString)", .exact("\#(majorVersion).\#(minorVersion).\#(patchVersion)"))"#
+            } else {
+                return #".package(name: "\#(name)", url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
+            }
+        default:
+            if let minorVersion = minorVersion, let patchVersion = patchVersion {
+                return #".package(url: "\#(url.absoluteString)", .exact("\#(majorVersion).\#(minorVersion).\#(patchVersion)"))"#
+            } else {
+                return #".package(url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
+            }
+        }
+    }
+
+    func targetDependencyString(forToolsVersion version: Version) -> String {
+        switch version {
+        case Version(5, 6, 0)...:
+            return #".product(name: "\#(name)", package: "\#(url.lastPathComponent.replacingOccurrences(of: ".git", with: ""))")"#
+        default:
+            return "\"\(name)\""
         }
     }
 }

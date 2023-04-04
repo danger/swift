@@ -71,7 +71,11 @@ public struct PackageManager {
         } else {
             latestVersion = try packageDataProvider.latestMajorVersionForPackage(at: package.url)
         }
-        let package = Package(name: name, url: absoluteRepositoryURL(from: package.url), majorVersion: latestVersion)
+        let package = Package(name: name,
+                              url: absoluteRepositoryURL(from: package.url),
+                              majorVersion: latestVersion,
+                              minorVersion: package.minor,
+                              patchVersion: package.patch)
         try save(package: package)
 
         try updatePackages()
