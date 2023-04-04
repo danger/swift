@@ -12,6 +12,10 @@ let package = Package(
         .package(name: "Dependency2", url: "https://github.com/danger/dependency2", from: "2.0.0"),
         .package(name: "Dependency3", url: "https://github.com/danger/dependency3", from: "3.0.0")
     ],
-    targets: [.executableTarget(name: "PACKAGES", dependencies: ["Dependency1", "Dependency2", "Dependency3"])],
+    targets: [.executableTarget(name: "PACKAGES", dependencies: [
+        "Dependency1",
+        "Dependency2",
+        "Dependency3"
+    ])],
     swiftLanguageVersions: [.version("5")]
 )

@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.6
 // danger-dependency-generator-version:3
 
 import PackageDescription
@@ -13,9 +13,9 @@ let package = Package(
         .package(url: "https://github.com/danger/dependency3", from: "3.0.0")
     ],
     targets: [.executableTarget(name: "PACKAGES", dependencies: [
-        "Dependency1",
-        "Dependency2",
-        "Dependency3"
+        .product(name: "Dependency1", package: "dependency1"),
+        .product(name: "Dependency2", package: "dependency2"),
+        .product(name: "Dependency3", package: "dependency3")
     ])],
     swiftLanguageVersions: [.version("5")]
 )

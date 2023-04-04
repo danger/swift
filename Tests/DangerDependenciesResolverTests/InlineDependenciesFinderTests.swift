@@ -13,7 +13,7 @@ final class InlineDependenciesFinderTests: XCTestCase {
         let result = try dependenciesFinder.resolveInlineDependencies(fromPath: "path")
 
         XCTAssertEqual(result, [
-            .dangerSwift,
+            .dangerSwift(version: "3.15.0"),
             InlineDependenciesFinder.InlineDependency(url: URL(string: "http://danger.systems")!, major: nil),
             InlineDependenciesFinder.InlineDependency(url: URL(string: "http://danger.systems/swift")!, major: 2),
         ])
@@ -38,7 +38,7 @@ final class InlineDependenciesFinderTests: XCTestCase {
 
         let result = try dependenciesFinder.resolveInlineDependencies(fromPath: "path")
 
-        XCTAssertEqual(result, [.dangerSwift])
+        XCTAssertEqual(result, [.dangerSwift(version: "3.15.0")])
     }
 
     private var script: String {
