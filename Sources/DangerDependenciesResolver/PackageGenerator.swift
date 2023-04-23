@@ -51,9 +51,9 @@ struct PackageGenerator {
         description.append("    targets: [.executableTarget(name: \"\(masterPackageName)\", dependencies: [")
 
         if !packages.isEmpty {
-            description.append("\"")
-            description.append(packages.map(\.name).joined(separator: "\", \""))
-            description.append("\"")
+            description.append("\n        ")
+            description.append(packages.map { $0.targetDependencyString(forToolsVersion: toolsVersion) }.joined(separator: ",\n        "))
+            description.append("\n    ")
         }
 
         description.append("])],\n")

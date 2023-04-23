@@ -7,6 +7,14 @@ import PackageDescription
 // switch to false when release
 let isDevelop = true
 
+let swiftLint: Package.Dependency = {
+    #if compiler(>=5.7)
+    return .package(url: "https://github.com/Realm/SwiftLint", from: "0.51.0")
+    #else
+    return .package(url: "https://github.com/Realm/SwiftLint", .exact("0.48.0"))
+    #endif
+}()
+
 let devProducts: [Product] = isDevelop
     ? [
         .library(name: "DangerDeps", type: .dynamic, targets: ["Danger-Swift"])
@@ -15,7 +23,7 @@ let devDependencies: [Package.Dependency] = isDevelop
     ? [
         .package(url: "https://github.com/shibapm/Komondor", from: "1.1.4"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.50.5"),
-        .package(url: "https://github.com/Realm/SwiftLint", from: "0.48.0"),
+        swiftLint,
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.10.0"),
         .package(url: "https://github.com/shibapm/Rocket", from: "1.2.1"),
     ] : []

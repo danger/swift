@@ -3,7 +3,7 @@ import Foundation
 import Logger
 import RunnerLib
 
-func editDanger(logger: Logger) throws {
+func editDanger(version dangerSwiftVersion: String, logger: Logger) throws {
     let fileManager = FileManager.default
     let dangerfilePath: String
 
@@ -46,14 +46,11 @@ func editDanger(logger: Logger) throws {
     let importedFiles = importsFinder.findImports(inString: dangerfileContent)
         .map { importsFinder.resolveImportPath($0, relativeTo: dangerfilePath) }
 
-    let scriptManager = try getScriptManager(logger)
+    let scriptManager = try getScriptManager(forDangerSwiftVersion: dangerSwiftVersion,
+                                             logger: logger)
     let script = try scriptManager.script(atPath: dangerfilePath)
 
-    let configPath = NSTemporaryDirectory() + "config.xcconfig"
-
-    try createConfig(atPath: configPath, libPath: absoluteLibPath, libsImport: libsImport)
-
-    try script.setupForEdit(importedFiles: importedFiles, configPath: configPath)
+    try script.setupForEdit(importedFiles: importedFiles)
     try script.watch(importedFiles: importedFiles)
 }
 

@@ -10,10 +10,11 @@ struct InlineDependenciesFinder {
         self.config = config
     }
 
-    func resolveInlineDependencies(fromPath path: String) throws -> [InlineDependency] {
+    func resolveInlineDependencies(fromPath path: String,
+                                   dangerSwiftVersion: String) throws -> [InlineDependency] {
         let lines = try fileReader.readText(atPath: path).components(separatedBy: .newlines)
 
-        var result = [InlineDependency]()
+        var result: [InlineDependency] = [.dangerSwift(version: dangerSwiftVersion)]
 
         for line in lines {
             if line.hasPrefix("import ") {
@@ -53,7 +54,26 @@ extension InlineDependenciesFinder {
 
 extension InlineDependenciesFinder {
     struct InlineDependency: Equatable {
-        let url: URL
-        let major: Int?
+        var url: URL
+        var major: Int?
+        var minor: Int?
+        var patch: Int?
     }
+}
+
+extension InlineDependenciesFinder.InlineDependency {
+    static func dangerSwift(version: String) -> Self {
+        let components = version.split(separator: ".")
+            .compactMap { Int($0) }
+        precondition(components.count == 3)
+
+        return .init(url: dangerSwiftRepoURL,
+                     major: components[0],
+                     minor: components[1],
+                     patch: components[2])
+    }
+}
+
+extension InlineDependenciesFinder.InlineDependency {
+    static let dangerSwiftRepoURL = URL(string: "https://github.com/danger/swift.git")!
 }

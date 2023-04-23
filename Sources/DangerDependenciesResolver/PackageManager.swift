@@ -71,31 +71,18 @@ public struct PackageManager {
         } else {
             latestVersion = try packageDataProvider.latestMajorVersionForPackage(at: package.url)
         }
-        let package = Package(name: name, url: absoluteRepositoryURL(from: package.url), majorVersion: latestVersion)
+        let package = Package(name: name,
+                              url: absoluteRepositoryURL(from: package.url),
+                              majorVersion: latestVersion,
+                              minorVersion: package.minor,
+                              patchVersion: package.patch)
         try save(package: package)
 
         try updatePackages()
-        try addMissingPackageFiles()
     }
 
     private func save(package: Package) throws {
         try fileCreator.createFile(atPath: folder.appendingPath(package.name), contents: package.encoded())
-    }
-
-    private func addMissingPackageFiles() throws {
-        for pinnedPackage in try packageDataProvider.resolvePinnedPackages(generatedFolder: generatedFolder) {
-            guard !folder.containsItem(named: pinnedPackage.name) else {
-                continue
-            }
-
-            let package = Package(
-                name: pinnedPackage.name,
-                url: pinnedPackage.url,
-                majorVersion: pinnedPackage.state.version.major
-            )
-
-            try save(package: package)
-        }
     }
 
     private func absoluteRepositoryURL(from url: URL) -> URL {

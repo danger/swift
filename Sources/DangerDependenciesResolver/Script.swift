@@ -25,6 +25,7 @@ public struct ScriptManager {
     }
 
     private let config = Config()
+    private let dangerSwiftVersion: String
     private let packageManager: PackageManager
     private let folder: String
     private let cacheFolder: String
@@ -33,8 +34,10 @@ public struct ScriptManager {
     private let inlineDependenciesFinder: InlineDependenciesFinder
 
     public init(folder: String,
+                dangerSwiftVersion: String,
                 packageManager: PackageManager,
                 logger: Logger) throws {
+        self.dangerSwiftVersion = dangerSwiftVersion
         self.folder = folder
         self.logger = logger
         cacheFolder = try folder.createSubfolderIfNeeded(withName: "Cache")
@@ -57,7 +60,8 @@ public struct ScriptManager {
         let folder = try createFolderIfNeededForScript(withIdentifier: identifier, filePath: path)
         let script = Script(name: path.nameExcludingExtension, folder: folder, logger: logger)
 
-        let packages = try inlineDependenciesFinder.resolveInlineDependencies(fromPath: path)
+        let packages = try inlineDependenciesFinder.resolveInlineDependencies(fromPath: path,
+                                                                              dangerSwiftVersion: dangerSwiftVersion)
         try packageManager.addPackagesIfNeeded(from: packages)
 
         do {
@@ -123,7 +127,7 @@ public final class Script {
     }
 
     @discardableResult
-    public func setupForEdit(importedFiles: [String], configPath: String) throws -> String {
+    public func setupForEdit(importedFiles: [String]) throws -> String {
         try importedFiles.forEach {
             if !FileManager.default.fileExists(atPath: $0) {
                 _ = FileManager.default.createFile(atPath: $0, contents: nil, attributes: nil)
@@ -131,19 +135,11 @@ public final class Script {
             try FileManager.default.copyItem(atPath: $0, toPath: sourcesImportPath(forImportPath: $0))
         }
 
-        try generateXCodeProjWithConfig(configPath: configPath)
-
         return editingPath()
     }
 
     private func editingPath() -> String {
-        folder.appendingPath(name + ".xcodeproj")
-    }
-
-    private func generateXCodeProjWithConfig(configPath: String) throws {
-        try executeSwiftCommand("package generate-xcodeproj --xcconfig-overrides \(configPath)",
-                                onFolder: folder,
-                                executor: ShellExecutor())
+        folder.appendingPath("Package.swift")
     }
 
     private func sourcesImportPath(forImportPath importPath: String) -> String {
@@ -163,7 +159,7 @@ public final class Script {
         do {
             let path = editingPath()
 
-            try ShellExecutor().spawn("open \"\(path)\"", arguments: [])
+            try ShellExecutor().spawn("xed \"\(path)\"", arguments: [])
 
             logger.logInfo("\nℹ️  Danger will keep running, " +
                 "in order to commit any changes you make in Xcode back to the original script file")
