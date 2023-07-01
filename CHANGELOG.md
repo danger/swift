@@ -13,13 +13,14 @@
 
 ## Master
 
+- Edit Dangerfile as a Swift Package on `danger-swift edit` instead of xcodeproj [@417-72KI][] - [#566](https://github.com/danger/swift/pull/566)
+
 ## 3.16.0
 
 - Update `SwiftLint` used by `danger-swift-with-swiftlint` from v0.46.1 to [0.50.3](https://github.com/realm/SwiftLint/releases/tag/0.50.3) - [#573](https://github.com/danger/swift/pull/573)
 - Gitlab Error in merge request with estimate or spent time [@oscarcv][] - [#548](https://github.com/danger/swift/pull/548)
 - Fix a decode error with BitBucket server [@pepix][] - [#553](https://github.com/danger/swift/pull/553)
 - Resolve `// fileImport: ~` path to an absolute path on running `danger-swift edit` [@417-72KI][] - [#565](https://github.com/danger/swift/pull/565)
-- Edit Dangerfile as a Swift Package on `danger-swift edit` instead of xcodeproj [@417-72KI][] - [#566](https://github.com/danger/swift/pull/566)
 - Add ability to change meta information [@Nikoloutsos][] - [#567](https://github.com/danger/swift/pull/567)
 - Add deactivated user status for GitLab [@antigp][] - [#572](https://github.com/danger/swift/pull/572)
 - Add `squash` attribute for GitLab merge request [@aserdobintsev][] - [#576](https://github.com/danger/swift/pull/576)
