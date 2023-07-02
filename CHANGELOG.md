@@ -13,6 +13,8 @@
 
 ## Master
 
+- Use http tap url on update homebrew script [f-meloni][]
+
 ## 3.17.0
 
 - Edit Dangerfile as a Swift Package on `danger-swift edit` instead of xcodeproj [@417-72KI][] - [#566](https://github.com/danger/swift/pull/566)
