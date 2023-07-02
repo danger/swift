@@ -15,7 +15,7 @@
 
 ## 3.17.1
 
-- Use http tap url on update homebrew script [f-meloni][]
+- Use http tap url on update homebrew script [@f-meloni][]
 
 ## 3.17.0
 
