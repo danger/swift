@@ -1,6 +1,7 @@
 import DangerShellExecutor
 import Foundation
 import Logger
+import Version
 
 public struct ScriptManager {
     public struct Config {
@@ -10,7 +11,8 @@ public struct ScriptManager {
 
         public init(prefix: String = "package: ",
                     file: String = "Dangerplugins",
-                    major: String = "~> ") {
+                    major: String = "~> ")
+        {
             dependencyPrefix = prefix
             dependencyFile = file
             majorVersionPrefix = major
@@ -22,6 +24,7 @@ public struct ScriptManager {
         case invalidInlineDependencyURL(String)
         case failedToAddDependencyScript(String)
         case scriptNotFound(String)
+        case invalidDangerSwiftVersion
     }
 
     private let config = Config()
@@ -36,7 +39,8 @@ public struct ScriptManager {
     public init(folder: String,
                 dangerSwiftVersion: String,
                 packageManager: PackageManager,
-                logger: Logger) throws {
+                logger: Logger) throws
+    {
         self.dangerSwiftVersion = dangerSwiftVersion
         self.folder = folder
         self.logger = logger
@@ -56,6 +60,10 @@ public struct ScriptManager {
     }
 
     private func script(fromPath path: String) throws -> Script {
+        guard let dangerSwiftVersion = Version(dangerSwiftVersion) else {
+            throw Errors.invalidDangerSwiftVersion
+        }
+
         let identifier = scriptIdentifier(fromPath: path)
         let folder = try createFolderIfNeededForScript(withIdentifier: identifier, filePath: path)
         let script = Script(name: path.nameExcludingExtension, folder: folder, logger: logger)
@@ -95,9 +103,9 @@ public struct ScriptManager {
 
         let moduleFolder = try sourcesFolder.createSubfolder(withName: filePath.nameExcludingExtension)
 
-        FileManager.default.createFile(atPath: moduleFolder.appendingPath("main.swift"),
-                                       contents: Data(try String(contentsOfFile: filePath).utf8),
-                                       attributes: [:])
+        try FileManager.default.createFile(atPath: moduleFolder.appendingPath("main.swift"),
+                                           contents: Data(String(contentsOfFile: filePath).utf8),
+                                           attributes: [:])
 
         return scriptFolder
     }
@@ -215,7 +223,8 @@ public final class Script {
 func executeSwiftCommand(_ command: String,
                          onFolder folder: String? = nil,
                          arguments: [String] = [],
-                         executor: ShellExecutor) throws -> String {
+                         executor: ShellExecutor) throws -> String
+{
     func resolveSwiftPath() -> String {
         #if os(Linux)
             return "swift"
