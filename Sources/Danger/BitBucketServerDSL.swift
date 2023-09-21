@@ -137,7 +137,7 @@ public extension BitBucketServer {
             public let properties: InnerProperties
 
             /// Tasks associated with the comment
-            public let tasks: [Task]
+            public let tasks: [Task]?
 
             public struct Task: Decodable, Equatable {
                 enum CodingKeys: String, CodingKey {
