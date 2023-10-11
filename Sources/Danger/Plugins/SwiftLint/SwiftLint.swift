@@ -307,6 +307,9 @@ extension SwiftLint {
     }
 
     private static func makeViolations(from response: String, failAction: (String) -> Void) -> [SwiftLintViolation] {
+        guard !response.isEmpty else {
+            return []
+        }
         let decoder = JSONDecoder()
         do {
             let violations = try decoder.decode([SwiftLintViolation].self, from: Data(response.utf8))
