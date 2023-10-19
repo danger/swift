@@ -13,7 +13,7 @@
 
 ## Master
 
-- Prevent empty SwiftLint violation response from failure [@pouyayarandi][]
+- Prevent empty SwiftLint violation response from failure [@pouyayarandi][] - [#596](https://github.com/danger/swift/pull/596)
 
 ## 3.17.1
 
