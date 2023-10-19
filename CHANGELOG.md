@@ -13,6 +13,8 @@
 
 ## Master
 
+- Prevent empty SwiftLint violation response from failure [@pouyayarandi][]
+
 ## 3.17.1
 
 - Use http tap url on update homebrew script [@f-meloni][]
