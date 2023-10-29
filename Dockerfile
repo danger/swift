@@ -1,4 +1,5 @@
-FROM swift:5.7.0-focal
+ARG SWIFT_VERSION=5.9
+FROM swift:${SWIFT_VERSION}-focal
 
 MAINTAINER Orta Therox
 
