@@ -131,9 +131,9 @@ public extension GitLab {
                 case startSha = "start_sha"
             }
 
-            let baseSha: String
-            let headSha: String
-            let startSha: String
+            public let baseSha: String
+            public let headSha: String
+            public let startSha: String
         }
 
         public struct Pipeline: Decodable, Equatable {
