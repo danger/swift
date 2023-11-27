@@ -13,7 +13,10 @@
 
 ## Master
 
-- Prevent empty SwiftLint violation response from failure [@pouyayarandi][] - [#596](https://github.com/danger/swift/pull/596)
+- Fix DockerFile [@417-72KI][] - [#597](https://github.com/danger/swift/pull/597)
+- Make GitLab diffRefs members public [@MontakOleg][] - [#599](https://github.com/danger/swift/pull/599)
+- Prevent empty SwiftLint violation response from failure [@pouyayarandi][] - [#596](https://github.com/danger/swift/pull/599)
+- Update tasks to be optional on BitBucketServer [@dromerobarria][] - [#595](https://github.com/danger/swift/pull/595)
 
 ## 3.17.1
 
@@ -568,5 +571,7 @@ This release also includes:
 [SwiftLint]: https://github.com/realm/SwiftLint
 [danger-swift-with-swiftlint]: https://github.com/orgs/danger/packages/container/package/danger-swift-with-swiftlint
 [@dahlborn]: https://github.com/dahlborn
+[@MontakOleg]: https://github.com/MontakOleg
 [@mxsc]: https://github.com/mxsc
 [@aserdobintsev]: https://github.com/aserdobintsev
+[@dromerobarria]: https://github.com/dromerobarria
