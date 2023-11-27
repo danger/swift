@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.18.0
+
 - Fix DockerFile [@417-72KI][] - [#597](https://github.com/danger/swift/pull/597)
 - Make GitLab diffRefs members public [@MontakOleg][] - [#599](https://github.com/danger/swift/pull/599)
 - Prevent empty SwiftLint violation response from failure [@pouyayarandi][] - [#596](https://github.com/danger/swift/pull/599)
