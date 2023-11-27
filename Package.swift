@@ -5,7 +5,7 @@ import PackageDescription
 // Version number can be found in Source/Danger/Danger.swift
 
 // switch to false when release
-let isDevelop = false
+let isDevelop = true
 
 let swiftLint: Package.Dependency = {
     #if compiler(>=5.7)
