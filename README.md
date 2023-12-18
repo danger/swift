@@ -221,13 +221,19 @@ danger-swift command --danger-js-path path/to/danger-js
 
 #### Current working directory
 
-Many people prefers using the SPM Danger configuration, because is more performing.
-But having a `Package.swift` on your root folder can be annoying, especially now that Xcode (from 11) doesn't put on the recents list an `xcproj` (or `xcworkspace`) when there is a `Package.swift` in the same folder.
+Many people prefer using the SPM Danger configuration because is more performant.
+But having a `Package.swift` in your root folder can be annoying, especially now that Xcode (from 11) doesn't put an `xcproj` (or `xcworkspace`) on the recents list when there is a `Package.swift` in the same folder.
 With the `--cwd` parameter you can specify a working directory.
-This allows you to have your `Package.swift` in another directory and still run danger-swift as it was executed from your project root directory.
+This allows you to have your `Package.swift` in another directory and still run danger-swift as it was executed from your project root directory. Since you no longer have a `Package.swift` in your root directory, you'll also have to specify that package path to `swift run`.
 
 ```swift
-swift run danger-swift command --cwd path/to/working-directory
+swift run --package-path path/to/working-directory danger-swift command --cwd path/to/working-directory
+```
+
+Keep in mind that Danger will automatically search for your Dangerfile in a `danger` directory placed at the root of your project. So if you put your `Dangerfile.swift` and `Package.swift` in a `danger` directory you can leave off the `--cwd` parameter (though, you still have to specify your package path to `swift run`)
+
+```swift
+swift run --package-path danger danger-swift command
 ```
 
 #### Dev
