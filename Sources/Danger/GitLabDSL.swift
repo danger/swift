@@ -273,6 +273,7 @@ public extension GitLab {
             case active
             case blocked
             case deactivated
+            case ldapBlocked = "ldap_blocked"
         }
 
         public let avatarUrl: String?
