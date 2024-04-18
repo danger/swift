@@ -32,7 +32,6 @@ func editDanger(version dangerSwiftVersion: String, logger: Logger) throws {
                             separator: "\n")
             exit(1)
         }
-
         absoluteLibPath = libPath.fullPath
         libsImport = ["-l Danger"]
     }
