@@ -13,6 +13,8 @@
 
 ## Master
 
+- Update Node version to 18.x [@hasanabuzayed][] - [#607](https://github.com/danger/swift/pull/607)
+
 ## 3.18.0
 
 - Fix DockerFile [@417-72KI][] - [#597](https://github.com/danger/swift/pull/597)
