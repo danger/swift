@@ -90,6 +90,9 @@ public struct ShellExecutor: ShellExecuting {
         let stdoutData = stdout.fileHandleForReading.readDataToEndOfFile()
         let stdoutString = String(data: stdoutData, encoding: .utf8)!
 
+        // Read from STDERR to ensure the `Pipe` does not fill up
+        let stderrData = stderr.fileHandleForReading.readDataToEndOfFile()
+
         task.waitUntilExit()
 
         // 0 is no problems in unix land
@@ -98,7 +101,6 @@ public struct ShellExecutor: ShellExecuting {
         }
 
         // OK, so it failed, raise a new error with all the useful metadata
-        let stderrData = stderr.fileHandleForReading.readDataToEndOfFile()
         let stderrString = String(data: stderrData, encoding: .utf8)!
 
         throw SpawnError.commandFailed(command: command,
