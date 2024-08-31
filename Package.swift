@@ -8,8 +8,10 @@ import PackageDescription
 let isDevelop = true
 
 let swiftLint: Package.Dependency = {
-    #if compiler(>=5.7)
-    return .package(url: "https://github.com/Realm/SwiftLint", from: "0.51.0")
+    #if compiler(>=5.9)
+    return .package(url: "https://github.com/Realm/SwiftLint", from: "0.56.0")
+    #elseif compiler(>=5.7)
+    return .package(url: "https://github.com/Realm/SwiftLint", from: "0.53.0")
     #else
     return .package(url: "https://github.com/Realm/SwiftLint", .exact("0.48.0"))
     #endif
@@ -22,10 +24,10 @@ let devProducts: [Product] = isDevelop
 let devDependencies: [Package.Dependency] = isDevelop
     ? [
         .package(url: "https://github.com/shibapm/Komondor", from: "1.1.4"),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.50.5"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.54.0"),
         swiftLint,
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.10.0"),
-        .package(url: "https://github.com/shibapm/Rocket", from: "1.2.1"),
+        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.17.0"),
+        .package(url: "https://github.com/shibapm/Rocket", from: "1.3.0"),
     ] : []
 let devTargets: [Target] = isDevelop
     ? [
@@ -59,7 +61,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/shibapm/Logger", from: "0.1.0"),
         .package(url: "https://github.com/mxcl/Version", from: "2.0.1"),
-        .package(name: "OctoKit", url: "https://github.com/nerdishbynature/octokit.swift", from: "0.12.0"),
+        .package(name: "OctoKit", url: "https://github.com/nerdishbynature/octokit.swift", from: "0.13.0"),
     ] + devDependencies,
     targets: [
         .target(name: "Danger-Swift", dependencies: ["Danger"]),
