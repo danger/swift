@@ -121,7 +121,7 @@ jobs:
     - name: Install danger-js
       run: brew install danger/tap/danger-js
 
-    - run: make install
+    - run: make install PREFIX='/opt/homebrew'
 
     - run: mkdir DangerTestWithDependencies && mv DangerfileWithDependencies.swift DangerTestWithDependencies/Dangerfile.swift
 
@@ -201,7 +201,7 @@ jobs:
     - name: Install danger-js
       run: brew install danger/tap/danger-js
 
-    - run: sudo make install
+    - run: make install
 
     - run: danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
@@ -240,7 +240,7 @@ jobs:
     - name: Install danger-js
       run: brew install danger/tap/danger-js
 
-    - run: make install
+    - run: make install PREFIX='/opt/homebrew'
 
     - run: danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
