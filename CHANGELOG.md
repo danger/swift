@@ -13,6 +13,9 @@
 
 ## Master
 
+- Drop Swift 5.7 [@417-72KI][] - [#620](https://github.com/danger/swift/pull/620)
+- Fix pattern for detecting SwiftLint in package [@417-72KI][] - [#616](https://github.com/danger/swift/pull/616)
+
 ## 3.18.1
 
 - Update Node version to 18.x [@hasanabuzayed][] - [#607](https://github.com/danger/swift/pull/607)
