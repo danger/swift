@@ -43,6 +43,8 @@ jobs:
 
     - name: Install danger-js
       run: brew install danger/tap/danger-js
+      env:
+        DEVELOPER_DIR: /Applications/Xcode_15.4.app/Contents/Developer # Avoid Homebrew installation error
 
     - run: swift test
 
@@ -82,6 +84,8 @@ jobs:
 
     - name: Install danger-js
       run: brew install danger/tap/danger-js
+      env:
+        DEVELOPER_DIR: /Applications/Xcode_15.4.app/Contents/Developer # Avoid Homebrew installation error
 
     - run: make install
 
@@ -162,6 +166,8 @@ jobs:
 
     - name: Install danger-js
       run: brew install danger/tap/danger-js
+      env:
+        DEVELOPER_DIR: /Applications/Xcode_15.4.app/Contents/Developer # Avoid Homebrew installation error
 
     - run: make install
 
