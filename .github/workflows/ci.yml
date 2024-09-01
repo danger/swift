@@ -94,7 +94,7 @@ jobs:
 
   test-on-linux:
     name: Test on Linux
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -172,7 +172,7 @@ jobs:
 
   test-without-spm-on-linux:
     name: Test without SPM on Linux
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
