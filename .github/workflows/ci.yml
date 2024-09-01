@@ -12,13 +12,13 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test-on-macos-12:
-    name: Test on macOS 12
-    runs-on: macOS-12
+  test-on-macos-14:
+    name: Test on macOS 14
+    runs-on: macOS-14
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["13.2.1", "13.4.1", "14.1"]
+        xcode: ["14.3.1", "15.2", "15.4"]
     steps:
     - uses: actions/checkout@v2
 
@@ -53,11 +53,11 @@ jobs:
 
   test-dependencies-resolver:
     name: Test dependencies resolver
-    runs-on: macOS-12
+    runs-on: macOS-14
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["13.2.1", "13.4.1", "14.1"]
+        xcode: ["14.3.1", "15.2", "15.4"]
     steps:
     - uses: actions/checkout@v2
 
@@ -98,7 +98,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        swift: ["5.5.3", "5.6.3", "5.7"]
+        swift: ["5.8", "5.9", "5.10"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
@@ -131,13 +131,13 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-  test-without-spm-on-macos-12:
-    name: Test without SPM on macOS 12
-    runs-on: macOS-12
+  test-without-spm-on-macos-14:
+    name: Test without SPM on macOS 14
+    runs-on: macOS-14
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["13.2.1", "13.4.1", "14.1"]
+        xcode: ["14.3.1", "15.2", "15.4"]
     steps:
     - uses: actions/checkout@v2
 
@@ -176,7 +176,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        swift: ["5.5.3", "5.6.3", "5.7"]
+        swift: ["5.8", "5.9", "5.10"]
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
