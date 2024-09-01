@@ -17,6 +17,14 @@ let swiftLint: Package.Dependency = {
     #endif
 }()
 
+let snapshotTesting: Package.Dependency = {
+    #if compiler(>=5.7)
+    return .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.17.0")
+    #else
+    return .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.10.0")
+    #endif
+}()
+
 let devProducts: [Product] = isDevelop
     ? [
         .library(name: "DangerDeps", type: .dynamic, targets: ["Danger-Swift"])
@@ -26,7 +34,7 @@ let devDependencies: [Package.Dependency] = isDevelop
         .package(url: "https://github.com/shibapm/Komondor", from: "1.1.4"),
         .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.54.0"),
         swiftLint,
-        .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.17.0"),
+        snapshotTesting,
         .package(url: "https://github.com/shibapm/Rocket", from: "1.3.0"),
     ] : []
 let devTargets: [Target] = isDevelop
