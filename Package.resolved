@@ -1,187 +1,50 @@
 {
-  "object": {
-    "pins": [
-      {
-        "package": "CollectionConcurrencyKit",
-        "repositoryURL": "https://github.com/JohnSundell/CollectionConcurrencyKit.git",
-        "state": {
-          "branch": null,
-          "revision": "b4f23e24b5a1bff301efc5e70871083ca029ff95",
-          "version": "0.2.0"
-        }
-      },
-      {
-        "package": "CryptoSwift",
-        "repositoryURL": "https://github.com/krzyzanowskim/CryptoSwift.git",
-        "state": {
-          "branch": null,
-          "revision": "678d442c6f7828def400a70ae15968aef67ef52d",
-          "version": "1.8.3"
-        }
-      },
-      {
-        "package": "Komondor",
-        "repositoryURL": "https://github.com/shibapm/Komondor",
-        "state": {
-          "branch": null,
-          "revision": "dedffeaf42a1b52bf072a9dc47afb35000a8b265",
-          "version": "1.1.4"
-        }
-      },
-      {
-        "package": "Logger",
-        "repositoryURL": "https://github.com/shibapm/Logger",
-        "state": {
-          "branch": null,
-          "revision": "53c3ecca5abe8cf46697e33901ee774236d94cce",
-          "version": "0.2.3"
-        }
-      },
-      {
-        "package": "OctoKit",
-        "repositoryURL": "https://github.com/nerdishbynature/octokit.swift",
-        "state": {
-          "branch": null,
-          "revision": "44192458beb89180c3a3a1245d904aacac8be0ae",
-          "version": "0.13.0"
-        }
-      },
-      {
-        "package": "PackageConfig",
-        "repositoryURL": "https://github.com/shibapm/PackageConfig.git",
-        "state": {
-          "branch": null,
-          "revision": "58523193c26fb821ed1720dcd8a21009055c7cdb",
-          "version": "1.1.3"
-        }
-      },
-      {
-        "package": "RequestKit",
-        "repositoryURL": "https://github.com/nerdishbynature/RequestKit.git",
-        "state": {
-          "branch": null,
-          "revision": "e4d905fed938807e36d87f28375f88b7c1c26840",
-          "version": "3.3.0"
-        }
-      },
-      {
-        "package": "Rocket",
-        "repositoryURL": "https://github.com/shibapm/Rocket",
-        "state": {
-          "branch": null,
-          "revision": "32af356776108ee7289884874a0eb63ceacb9e5d",
-          "version": "1.3.0"
-        }
-      },
-      {
-        "package": "ShellOut",
-        "repositoryURL": "https://github.com/JohnSundell/ShellOut.git",
-        "state": {
-          "branch": null,
-          "revision": "e1577acf2b6e90086d01a6d5e2b8efdaae033568",
-          "version": "2.3.0"
-        }
-      },
-      {
-        "package": "SourceKitten",
-        "repositoryURL": "https://github.com/jpsim/SourceKitten.git",
-        "state": {
-          "branch": null,
-          "revision": "fd4df99170f5e9d7cf9aa8312aa8506e0e7a44e7",
-          "version": "0.35.0"
-        }
-      },
-      {
-        "package": "swift-argument-parser",
-        "repositoryURL": "https://github.com/apple/swift-argument-parser.git",
-        "state": {
-          "branch": null,
-          "revision": "fee6933f37fde9a5e12a1e4aeaa93fe60116ff2a",
-          "version": "1.2.2"
-        }
-      },
-      {
-        "package": "swift-snapshot-testing",
-        "repositoryURL": "https://github.com/pointfreeco/swift-snapshot-testing.git",
-        "state": {
-          "branch": null,
-          "revision": "6d932a79e7173b275b96c600c86c603cf84f153c",
-          "version": "1.17.4"
-        }
-      },
-      {
-        "package": "swift-syntax",
-        "repositoryURL": "https://github.com/swiftlang/swift-syntax.git",
-        "state": {
-          "branch": null,
-          "revision": "515f79b522918f83483068d99c68daeb5116342d",
-          "version": "600.0.0-prerelease-2024-08-14"
-        }
-      },
-      {
-        "package": "SwiftFormat",
-        "repositoryURL": "https://github.com/nicklockwood/SwiftFormat",
-        "state": {
-          "branch": null,
-          "revision": "d6309f7440889427426143b4a0b100b959d3f3e6",
-          "version": "0.54.3"
-        }
-      },
-      {
-        "package": "SwiftLint",
-        "repositoryURL": "https://github.com/Realm/SwiftLint",
-        "state": {
-          "branch": null,
-          "revision": "a24488f26e60247d8fff7bbb03d51910af3dc91c",
-          "version": "0.56.2"
-        }
-      },
-      {
-        "package": "SwiftShell",
-        "repositoryURL": "https://github.com/kareman/SwiftShell",
-        "state": {
-          "branch": null,
-          "revision": "99680b2efc7c7dbcace1da0b3979d266f02e213c",
-          "version": "5.1.0"
-        }
-      },
-      {
-        "package": "SwiftyTextTable",
-        "repositoryURL": "https://github.com/scottrhoyt/SwiftyTextTable.git",
-        "state": {
-          "branch": null,
-          "revision": "c6df6cf533d120716bff38f8ff9885e1ce2a4ac3",
-          "version": "0.9.0"
-        }
-      },
-      {
-        "package": "SWXMLHash",
-        "repositoryURL": "https://github.com/drmohundro/SWXMLHash.git",
-        "state": {
-          "branch": null,
-          "revision": "a853604c9e9a83ad9954c7e3d2a565273982471f",
-          "version": "7.0.2"
-        }
-      },
-      {
-        "package": "Version",
-        "repositoryURL": "https://github.com/mxcl/Version",
-        "state": {
-          "branch": null,
-          "revision": "1fe824b80d89201652e7eca7c9252269a1d85e25",
-          "version": "2.0.1"
-        }
-      },
-      {
-        "package": "Yams",
-        "repositoryURL": "https://github.com/jpsim/Yams",
-        "state": {
-          "branch": null,
-          "revision": "3036ba9d69cf1fd04d433527bc339dc0dc75433d",
-          "version": "5.1.3"
-        }
+  "pins" : [
+    {
+      "identity" : "logger",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/shibapm/Logger",
+      "state" : {
+        "revision" : "53c3ecca5abe8cf46697e33901ee774236d94cce",
+        "version" : "0.2.3"
       }
-    ]
-  },
-  "version": 1
+    },
+    {
+      "identity" : "octokit.swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nerdishbynature/octokit.swift",
+      "state" : {
+        "revision" : "44192458beb89180c3a3a1245d904aacac8be0ae",
+        "version" : "0.13.0"
+      }
+    },
+    {
+      "identity" : "requestkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nerdishbynature/RequestKit.git",
+      "state" : {
+        "revision" : "e4d905fed938807e36d87f28375f88b7c1c26840",
+        "version" : "3.3.0"
+      }
+    },
+    {
+      "identity" : "swiftformat",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/nicklockwood/SwiftFormat",
+      "state" : {
+        "revision" : "d6309f7440889427426143b4a0b100b959d3f3e6",
+        "version" : "0.54.3"
+      }
+    },
+    {
+      "identity" : "version",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mxcl/Version",
+      "state" : {
+        "revision" : "1fe824b80d89201652e7eca7c9252269a1d85e25",
+        "version" : "2.0.1"
+      }
+    }
+  ],
+  "version" : 2
 }
