@@ -30,8 +30,8 @@ echo "  url \"https://github.com/danger/danger-swift/archive/#{version}.tar.gz\"
 echo "  sha256 \"${SHA}\"" >> danger-swift.rb
 echo "  head \"https://github.com/danger/danger-swift.git\""  >> danger-swift.rb
 echo >> danger-swift.rb
-echo "  # Runs only on Xcode 12" >> danger-swift.rb
-echo "  depends_on :xcode => [\"12\", :build]" >> danger-swift.rb
+echo "  # Runs only on Xcode 14" >> danger-swift.rb
+echo "  depends_on :xcode => [\"14\", :build]" >> danger-swift.rb
 echo "  # Use the vendored danger" >> danger-swift.rb
 echo "  depends_on \"danger/tap/danger-js\"" >> danger-swift.rb
 echo >> danger-swift.rb
