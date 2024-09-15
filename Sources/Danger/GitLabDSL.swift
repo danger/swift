@@ -216,7 +216,7 @@ public extension GitLab {
         public let changesCount: String
         public let closedAt: Date?
         public let closedBy: User?
-        public let description: String
+        public let description: String?
         public let diffRefs: DiffRefs
         public let downvotes: Int
         public let firstDeployedToProductionAt: Date?
@@ -273,6 +273,7 @@ public extension GitLab {
             case active
             case blocked
             case deactivated
+            case ldapBlocked = "ldap_blocked"
         }
 
         public let avatarUrl: String?

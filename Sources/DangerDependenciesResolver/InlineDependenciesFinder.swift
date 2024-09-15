@@ -1,17 +1,20 @@
 import Foundation
+import Version
 
 struct InlineDependenciesFinder {
     let fileReader: FileReading
     let config: ScriptManager.Config
 
     init(fileReader: FileReading = FileReader(),
-         config: ScriptManager.Config) {
+         config: ScriptManager.Config)
+    {
         self.fileReader = fileReader
         self.config = config
     }
 
     func resolveInlineDependencies(fromPath path: String,
-                                   dangerSwiftVersion: String) throws -> [InlineDependency] {
+                                   dangerSwiftVersion: Version) throws -> [InlineDependency]
+    {
         let lines = try fileReader.readText(atPath: path).components(separatedBy: .newlines)
 
         var result: [InlineDependency] = [.dangerSwift(version: dangerSwiftVersion)]
@@ -45,7 +48,8 @@ struct InlineDependenciesFinder {
 
                 result.append(InlineDependency(url: url, major: majorVersion))
             } else if let firstCharacter = line.unicodeScalars.first,
-                      !CharacterSet.alphanumerics.contains(firstCharacter) {
+                      !CharacterSet.alphanumerics.contains(firstCharacter)
+            {
                 break
             }
         }
@@ -70,15 +74,11 @@ extension InlineDependenciesFinder {
 }
 
 extension InlineDependenciesFinder.InlineDependency {
-    static func dangerSwift(version: String) -> Self {
-        let components = version.split(separator: ".")
-            .compactMap { Int($0) }
-        precondition(components.count == 3)
-
-        return .init(url: dangerSwiftRepoURL,
-                     major: components[0],
-                     minor: components[1],
-                     patch: components[2])
+    static func dangerSwift(version: Version) -> Self {
+        .init(url: dangerSwiftRepoURL,
+              major: version.major,
+              minor: version.minor,
+              patch: version.patch)
     }
 }
 
