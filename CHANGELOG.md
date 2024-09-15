@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.19.0
+
 - Drop Swift 5.7 [@417-72KI][] - [#620](https://github.com/danger/swift/pull/620)
 - Fix pattern for detecting SwiftLint in package [@417-72KI][] - [#616](https://github.com/danger/swift/pull/616)
 - Allow optional GitLab MR description [@kvvzr][] - [#609](https://github.com/danger/swift/pull/609)
