@@ -13,6 +13,8 @@
 
 ## Master
 
+- Drain stdout while shell commands are running to prevent execution from locking up if there's too much output [@jflan-dd][] - [#614](https://github.com/danger/swift/pull/614)
+
 ## 3.18.1
 
 - Update Node version to 18.x [@hasanabuzayed][] - [#607](https://github.com/danger/swift/pull/607)
