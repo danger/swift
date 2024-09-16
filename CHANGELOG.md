@@ -15,6 +15,13 @@
 
 - Drain stdout while shell commands are running to prevent execution from locking up if there's too much output [@jflan-dd][] - [#614](https://github.com/danger/swift/pull/614)
 
+## 3.19.1
+
+- Expose markdownKit on Swiftlint.lint() for customizing the output [@nikoloutsos][] - [#609](https://github.com/danger/swift/pull/609)
+- Drop Swift 5.7 [@417-72KI][] - [#620](https://github.com/danger/swift/pull/620)
+- Fix pattern for detecting SwiftLint in package [@417-72KI][] - [#616](https://github.com/danger/swift/pull/616)
+- Allow optional GitLab MR description [@kvvzr][] - [#609](https://github.com/danger/swift/pull/609)
+
 ## 3.18.1
 
 - Update Node version to 18.x [@hasanabuzayed][] - [#607](https://github.com/danger/swift/pull/607)

@@ -93,7 +93,9 @@ public enum SwiftLint {
                             configFile: String? = nil,
                             strict: Bool = false,
                             quiet: Bool = true,
-                            swiftlintPath: SwiftlintPath? = nil) -> [SwiftLintViolation] {
+                            swiftlintPath: SwiftlintPath? = nil,
+                            markdownAction: (String) -> Void = markdown
+    ) -> [SwiftLintViolation] {
         lint(lintStyle: lintStyle,
              danger: danger,
              shellExecutor: shellExecutor,
@@ -101,7 +103,9 @@ public enum SwiftLint {
              inline: inline,
              configFile: configFile,
              strict: strict,
-             quiet: quiet)
+             quiet: quiet,
+             markdownAction: markdownAction
+        )
     }
 }
 
@@ -253,7 +257,7 @@ extension SwiftLint {
     }
 
     static func swiftlintDefaultPath(packagePath: String = "Package.swift") -> String {
-        let swiftPackageDepPattern = #"\.package\(.*SwiftLint.*"#
+        let swiftPackageDepPattern = #"\.package\(.*SwiftLint(\.git)?".*"#
         if let packageContent = try? String(contentsOfFile: packagePath),
            let regex = try? NSRegularExpression(pattern: swiftPackageDepPattern, options: .allowCommentsAndWhitespace),
            regex.firstMatchingString(in: packageContent) != nil {
