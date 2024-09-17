@@ -47,14 +47,14 @@ public enum SwiftLint {
                             configFile: String? = nil,
                             strict: Bool = false,
                             quiet: Bool = true,
-                            swiftlintPath: String?,
+                            swiftlintPath: String,
                             markdownAction: (String) -> Void = markdown) -> [SwiftLintViolation] {
         lint(lintStyle,
              inline: inline,
              configFile: configFile,
              strict: strict,
              quiet: quiet,
-             swiftlintPath: swiftlintPath.map(SwiftlintPath.bin),
+             swiftlintPath: .bin(swiftlintPath),
              markdownAction: markdownAction)
     }
 
