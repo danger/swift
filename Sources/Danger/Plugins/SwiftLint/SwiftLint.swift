@@ -37,8 +37,8 @@ public enum SwiftLint {
     static let danger = Danger()
     static let shellExecutor = ShellExecutor()
 
-    /// This method is deprecated in favor of
-    @available(*, deprecated, message: "Use the lint(_ lintStyle ..) method instead.")
+    /// This method is obsoleted in favor of
+    @available(*, unavailable, message: "Use the lint(_ lintStyle ..) method instead.")
     @discardableResult
     public static func lint(inline: Bool = false,
                             directory: String? = nil,
