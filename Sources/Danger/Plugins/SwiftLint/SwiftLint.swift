@@ -37,32 +37,6 @@ public enum SwiftLint {
     static let danger = Danger()
     static let shellExecutor = ShellExecutor()
 
-    /// This method is obsoleted in favor of
-    @available(*, unavailable, message: "Use the lint(_ lintStyle ..) method instead.")
-    @discardableResult
-    public static func lint(inline: Bool = false,
-                            directory: String? = nil,
-                            configFile: String? = nil,
-                            strict: Bool = false,
-                            quiet: Bool = true,
-                            lintAllFiles: Bool = false,
-                            swiftlintPath: String? = nil) -> [SwiftLintViolation] {
-        let lintStyle: LintStyle = {
-            if lintAllFiles {
-                return .all(directory: directory)
-            } else {
-                return .modifiedAndCreatedFiles(directory: directory)
-            }
-        }()
-
-        return lint(lintStyle,
-                    inline: inline,
-                    configFile: configFile,
-                    strict: strict,
-                    quiet: quiet,
-                    swiftlintPath: swiftlintPath)
-    }
-
     /// When the swiftlintPath is not specified,
     /// it uses by default swift run swiftlint if the Package.swift in your root folder contains swiftlint as dependency,
     /// otherwise calls directly the swiftlint command
