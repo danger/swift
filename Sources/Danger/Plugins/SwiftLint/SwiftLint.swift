@@ -73,13 +73,15 @@ public enum SwiftLint {
                             configFile: String? = nil,
                             strict: Bool = false,
                             quiet: Bool = true,
-                            swiftlintPath: String?) -> [SwiftLintViolation] {
+                            swiftlintPath: String?,
+                            markdownAction: (String) -> Void = markdown) -> [SwiftLintViolation] {
         lint(lintStyle,
              inline: inline,
              configFile: configFile,
              strict: strict,
              quiet: quiet,
-             swiftlintPath: swiftlintPath.map(SwiftlintPath.bin))
+             swiftlintPath: swiftlintPath.map(SwiftlintPath.bin),
+             markdownAction: markdownAction)
     }
 
     /// This is the main entry point for linting Swift in PRs.
