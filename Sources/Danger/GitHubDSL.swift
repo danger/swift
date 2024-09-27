@@ -323,8 +323,8 @@ public extension GitHub {
         /// The state of the review (if a review was made).
         public let state: State?
 
-        /// The date when the review was submitted
-        public let submittedAt: Date
+        /// The date when the review was submitted (if a review was made).
+        public let submittedAt: Date?
 
         /// The user who has completed the review or has been requested to review.
         public let user: User
