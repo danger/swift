@@ -14,6 +14,8 @@
 ## Master
 - Remove deprecated `lint` function with `lintAllFiles` flag [@417-72KI][] - [#622](https://github.com/danger/swift/pull/622)
 
+- Drain stdout while shell commands are running to prevent execution from locking up if there's too much output [@jflan-dd][] - [#614](https://github.com/danger/swift/pull/614)
+
 ## 3.19.1
 
 - Expose markdownKit on Swiftlint.lint() for customizing the output [@nikoloutsos][] - [#610](https://github.com/danger/swift/pull/610)

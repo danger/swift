@@ -61,9 +61,11 @@ public struct ShellExecutor: ShellExecuting {
         let pipe = Pipe()
         task.standardOutput = pipe
         task.launch()
-        task.waitUntilExit()
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
+
+        task.waitUntilExit()
+
         return String(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 
@@ -83,11 +85,15 @@ public struct ShellExecutor: ShellExecuting {
         let stderr = Pipe()
         task.standardError = stderr
         task.launch()
-        task.waitUntilExit()
 
         // Pull out the STDOUT as a string because we'll need that regardless
         let stdoutData = stdout.fileHandleForReading.readDataToEndOfFile()
         let stdoutString = String(data: stdoutData, encoding: .utf8)!
+
+        // Read from STDERR to ensure the `Pipe` does not fill up
+        let stderrData = stderr.fileHandleForReading.readDataToEndOfFile()
+
+        task.waitUntilExit()
 
         // 0 is no problems in unix land
         if task.terminationStatus == 0 {
@@ -95,7 +101,6 @@ public struct ShellExecutor: ShellExecuting {
         }
 
         // OK, so it failed, raise a new error with all the useful metadata
-        let stderrData = stderr.fileHandleForReading.readDataToEndOfFile()
         let stderrString = String(data: stderrData, encoding: .utf8)!
 
         throw SpawnError.commandFailed(command: command,
