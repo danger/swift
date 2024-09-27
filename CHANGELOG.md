@@ -13,6 +13,7 @@
 
 ## Master
 - Remove deprecated `lint` function with `lintAllFiles` flag [@417-72KI][] - [#622](https://github.com/danger/swift/pull/622)
+- Fix: `GitHub.Review.submittedAt` may be `nil` [@417-72KI][] - [#624](https://github.com/danger/swift/pull/624)
 
 ## 3.19.1
 
