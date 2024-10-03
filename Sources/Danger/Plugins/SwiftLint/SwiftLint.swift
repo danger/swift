@@ -185,7 +185,7 @@ extension SwiftLint {
         var arguments = arguments
 
         if let directory = directory {
-            arguments.append("--path \"\(directory)\"")
+            arguments.append(" \"\(directory)\"")
         }
 
         return swiftlintViolations(swiftlintPath: swiftlintPath,
