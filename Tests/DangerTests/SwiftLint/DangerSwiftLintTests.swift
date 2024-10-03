@@ -268,7 +268,7 @@ final class DangerSwiftLintTests: XCTestCase {
         XCTAssertNotNil(swiftlintCommand)
         XCTAssertEqual(swiftlintCommand!.environmentVariables.count, 0)
         XCTAssertFalse(swiftlintCommand!.environmentVariables.values.contains { $0.contains("Tests/SomeFile.swift") })
-        XCTAssertEqual(swiftlintCommand!.arguments.last, directory))
+        XCTAssertEqual(swiftlintCommand!.arguments.last, directory)
     }
 
     func testFiltersOnSwiftFiles() {
