@@ -60,7 +60,7 @@ func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
     if let spmDanger = SPMDanger() {
         spmDanger.buildDependencies(executor: executor)
         libArgs += ["-L", spmDanger.buildFolder]
-        libArgs += ["-I", spmDanger.buildFolder]
+        libArgs += ["-I", spmDanger.moduleFolder]
         libArgs += [spmDanger.swiftcLibImport]
     } else {
         guard let libDangerPath = Runtime.getLibDangerPath() else {
