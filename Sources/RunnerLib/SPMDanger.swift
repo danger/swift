@@ -10,6 +10,14 @@ public struct SPMDanger {
         fileManager.currentDirectoryPath + "/.build/debug"
     }
 
+    public var moduleFolder: String {
+        #if compiler(<6.0)
+            buildFolder
+        #else
+            buildFolder + "/Modules"
+        #endif
+    }
+
     public init?(
         packagePath: String = "Package.swift",
         readFile: (String) -> String? = { try? String(contentsOfFile: $0) },
