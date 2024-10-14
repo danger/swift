@@ -237,9 +237,9 @@ extension String {
 
     func appendingPath(_ path: String) -> String {
         if hasSuffix("/") {
-            self + path
+            return self + path
         } else {
-            self + "/" + path
+            return self + "/" + path
         }
     }
 

@@ -8,15 +8,15 @@ public enum DangerCommand: String, CaseIterable {
     var commandDescription: String {
         switch self {
         case .ci:
-            "Use this on CI"
+            return "Use this on CI"
         case .edit:
-            "Creates a temporary Xcode project for working on a Dangerfile"
+            return "Creates a temporary Xcode project for working on a Dangerfile"
         case .local:
-            "Use this to run danger against your local changes from master"
+            return "Use this to run danger against your local changes from master"
         case .pr:
-            "Run danger-swift locally against a PR"
+            return "Run danger-swift locally against a PR"
         case .runner:
-            "Use this to trigger the Dangerfile evaluation"
+            return "Use this to trigger the Dangerfile evaluation"
         }
     }
 

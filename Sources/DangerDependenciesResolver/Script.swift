@@ -264,9 +264,9 @@ private extension String {
 
     var fullPath: String {
         if hasPrefix("/") {
-            self
+            return self
         } else {
-            FileManager.default.currentDirectoryPath.appendingPath(self)
+            return FileManager.default.currentDirectoryPath.appendingPath(self)
         }
     }
 

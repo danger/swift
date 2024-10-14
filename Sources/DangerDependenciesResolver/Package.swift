@@ -14,21 +14,21 @@ extension Package {
         switch version {
         case Version(5, 6, 0)...:
             if let minorVersion, let patchVersion {
-                #".package(url: "\#(url.absoluteString)", exact: "\#(majorVersion).\#(minorVersion).\#(patchVersion)")"#
+                return #".package(url: "\#(url.absoluteString)", exact: "\#(majorVersion).\#(minorVersion).\#(patchVersion)")"#
             } else {
-                #".package(url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
+                return #".package(url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
             }
         case Version(5, 2, 0)...:
             if let minorVersion, let patchVersion {
-                #".package(name: "\#(name)", url: "\#(url.absoluteString)", .exact("\#(majorVersion).\#(minorVersion).\#(patchVersion)"))"#
+                return #".package(name: "\#(name)", url: "\#(url.absoluteString)", .exact("\#(majorVersion).\#(minorVersion).\#(patchVersion)"))"#
             } else {
-                #".package(name: "\#(name)", url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
+                return #".package(name: "\#(name)", url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
             }
         default:
             if let minorVersion, let patchVersion {
-                #".package(url: "\#(url.absoluteString)", .exact("\#(majorVersion).\#(minorVersion).\#(patchVersion)"))"#
+                return #".package(url: "\#(url.absoluteString)", .exact("\#(majorVersion).\#(minorVersion).\#(patchVersion)"))"#
             } else {
-                #".package(url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
+                return #".package(url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
             }
         }
     }
@@ -36,9 +36,9 @@ extension Package {
     func targetDependencyString(forToolsVersion version: Version) -> String {
         switch version {
         case Version(5, 6, 0)...:
-            #".product(name: "\#(name)", package: "\#(url.lastPathComponent.replacingOccurrences(of: ".git", with: ""))")"#
+            return #".product(name: "\#(name)", package: "\#(url.lastPathComponent.replacingOccurrences(of: ".git", with: ""))")"#
         default:
-            "\"\(name)\""
+            return "\"\(name)\""
         }
     }
 }
