@@ -50,15 +50,15 @@ public extension GitLab {
                 public var id: Int {
                     switch self {
                     case let .group(id), let .project(id):
-                        id
+                        return id
                     }
                 }
 
                 public var isGroup: Bool {
                     if case .group = self {
-                        true
+                        return true
                     } else {
-                        false
+                        return false
                     }
                 }
 

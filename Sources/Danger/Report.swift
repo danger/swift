@@ -16,9 +16,9 @@ private var testingResults = DangerResults()
 private var globalResults: DangerResults {
     get {
         if ProcessInfo.processInfo.processName.hasSuffix("xctest") {
-            testingResults
+            return testingResults
         } else {
-            DangerRunner.shared.results
+            return DangerRunner.shared.results
         }
     }
     set {

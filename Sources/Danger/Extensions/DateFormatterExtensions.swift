@@ -28,7 +28,7 @@ public extension DateFormatter {
     }
 }
 
-private final class OptionalFractionalSecondsDateFormatter: DateFormatter {
+private final class OptionalFractionalSecondsDateFormatter: DateFormatter, @unchecked Sendable {
     static let withMilliseconds: DateFormatter = {
         let formatter = DateFormatter()
         setUpFormatter(formatter)
@@ -81,7 +81,7 @@ extension OptionalFractionalSecondsDateFormatter {
         var errorDescription: String? {
             switch self {
             case let .invalidFormat(path, dateString):
-                "Format Invalid with path \"\(path)\", date string: \"\(dateString)\""
+                return "Format Invalid with path \"\(path)\", date string: \"\(dateString)\""
             }
         }
     }

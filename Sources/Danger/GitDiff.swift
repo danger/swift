@@ -16,13 +16,13 @@ public struct FileDiff: Equatable, CustomStringConvertible {
     public var changes: Changes {
         switch parsedHeader.change {
         case .created:
-            .created(addedLines: hunks.flatMap { hunk in hunk.lines.map(\.text) })
+            return .created(addedLines: hunks.flatMap { hunk in hunk.lines.map(\.text) })
         case .deleted:
-            .deleted(deletedLines: hunks.flatMap { hunk in hunk.lines.map(\.text) })
+            return .deleted(deletedLines: hunks.flatMap { hunk in hunk.lines.map(\.text) })
         case .modified:
-            .modified(hunks: hunks)
+            return .modified(hunks: hunks)
         case let .renamed(oldPath: oldPath):
-            .renamed(oldPath: oldPath, hunks: hunks)
+            return .renamed(oldPath: oldPath, hunks: hunks)
         }
     }
 
@@ -73,11 +73,11 @@ public extension FileDiff {
         public var description: String {
             switch changeType {
             case .added:
-                "+" + text
+                return "+" + text
             case .removed:
-                "-" + text
+                return "-" + text
             case .unchanged:
-                " " + text
+                return " " + text
             }
         }
     }

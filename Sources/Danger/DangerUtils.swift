@@ -166,9 +166,9 @@ public extension DangerUtils.Environment {
         public var description: String {
             switch self {
             case let .string(string):
-                string
+                return string
             case let .boolean(bool):
-                bool.description
+                return bool.description
             }
         }
     }

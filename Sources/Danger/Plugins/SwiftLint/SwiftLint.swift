@@ -27,9 +27,9 @@ public enum SwiftLint {
         var command: String {
             switch self {
             case let .bin(path):
-                path
+                return path
             case let .swiftPackage(path):
-                "swift run --package-path \(path) swiftlint"
+                return "swift run --package-path \(path) swiftlint"
             }
         }
     }
@@ -308,9 +308,9 @@ extension SwiftLint {
 
     private static var tmpSwiftlintOutputFilePath: String {
         if #available(OSX 10.12, *) {
-            FileManager.default.temporaryDirectory.appendingPathComponent("swiftlintReport.json").path
+            return FileManager.default.temporaryDirectory.appendingPathComponent("swiftlintReport.json").path
         } else {
-            NSTemporaryDirectory() + "swiftlintReport.json"
+            return NSTemporaryDirectory() + "swiftlintReport.json"
         }
     }
 }
