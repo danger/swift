@@ -215,14 +215,14 @@ final class GitDiffTests: XCTestCase {
         +        } }
              }
          }
-
+         
         diff --git a/Sources/DangerSwiftCoverage/SPM/SPMCoverageParser.swift b/Sources/DangerSwiftCoverage/SPM/SPMCoverageParser.swift
         index 7b22444..1e7d9ff 100644
         --- a/Sources/DangerSwiftCoverage/SPM/SPMCoverageParser.swift
         +++ b/Sources/DangerSwiftCoverage/SPM/SPMCoverageParser.swift
         @@ -1,8 +1,11 @@
          import Foundation
-
+         
         +
         +
         +
@@ -231,13 +231,13 @@ final class GitDiffTests: XCTestCase {
         -    static func coverage(spmCoverageFolder: String, files: [String]) throws -> Report
         -}
         +    static func coverage(spmCoverageFolder: String, files: [String]) throws -> Re
-
+         
          enum SPMCoverageParser: SPMCoverageParsing {
              enum Errors: Error {
         @@ -22,6 +25,10 @@ enum SPMCoverageParser: SPMCoverageParsing {
                  let coverage = try JSONDecoder().decode(SPMCoverage.self, from: data)
                  let filteredCoverage = coverage.filteringFiles(notOn: files)
-
+         
         -        return Report(messages: [], sections: [ReportSection(fromSPM: filteredCoverage, fileManager: fileManager)])
         +        if filteredCoverage.data.contains(where: { !$0.files.isEmpty }) {
         +            return Report(messages: [], sections: [ReportSection(fromSPM: filteredCoverage, fileManager: fileManager)])
@@ -254,13 +254,13 @@ final class GitDiffTests: XCTestCase {
         --- a/Sources/DangerSwiftCoverage/ShellOutExecutor.swift
         +++ b/Sources/DangerSwiftCoverage/ShellOutExecutor1.swift
         @@ -3,6 +3,8 @@ import Foundation
-
+         
          protocol ShellOutExecuting {
              func execute(command: String) throws -> Data
         +
         +
          }
-
+         
          struct ShellOutExecutor: ShellOutExecuting {
         """
     }
