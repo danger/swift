@@ -5,10 +5,12 @@ import Logger
 func getScriptManager(forDangerSwiftVersion dangerSwiftVersion: String,
                       logger: Logger) throws -> ScriptManager
 {
-    let homeFolder: String = if #available(OSX 10.12, *) {
-        FileManager.default.homeDirectoryForCurrentUser.path
+    let homeFolder: String
+    
+    if #available(OSX 10.12, *) {
+        homeFolder = FileManager.default.homeDirectoryForCurrentUser.path
     } else {
-        NSHomeDirectory()
+        homeFolder = NSHomeDirectory()
     }
 
     let folder = "\(homeFolder)/.danger-swift/"

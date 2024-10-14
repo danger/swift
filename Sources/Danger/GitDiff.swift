@@ -118,14 +118,16 @@ struct DiffParser {
         let filePath = lines.first?.split(separator: " ").first(where: { $0.starts(with: "b/") })?
             .deletingPrefix("b/") ?? ""
 
-        let change: FileDiff.ParsedHeader.ChangeType = if lines.contains(where: { $0.hasPrefix("deleted file mode ") }) {
-            .deleted
+        let change: FileDiff.ParsedHeader.ChangeType
+        
+        if lines.contains(where: { $0.hasPrefix("deleted file mode ") }) {
+            change = .deleted
         } else if lines.contains(where: { $0.hasPrefix("new file mode") }) {
-            .created
+            change = .created
         } else if let modifiedLineIndex = lines.firstIndex(where: { $0.hasPrefix("rename from ") }) {
-            .renamed(oldPath: lines[modifiedLineIndex].deletingPrefix("rename from "))
+            change = .renamed(oldPath: lines[modifiedLineIndex].deletingPrefix("rename from "))
         } else {
-            .modified
+            change = .modified
         }
 
         return FileDiff.ParsedHeader(filePath: filePath, change: change)

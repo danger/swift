@@ -67,10 +67,12 @@ public struct PackageManager {
     func addPackage(_ package: InlineDependenciesFinder.InlineDependency) throws {
         let name = try packageDataProvider.nameOfPackage(at: package.url, temporaryFolder: temporaryFolder)
 
-        let latestVersion: Int = if let major = package.major {
-            major
+        let latestVersion: Int
+        
+        if let major = package.major {
+            latestVersion = major
         } else {
-            try packageDataProvider.latestMajorVersionForPackage(at: package.url)
+            latestVersion = try packageDataProvider.latestMajorVersionForPackage(at: package.url)
         }
         let package = Package(name: name,
                               url: absoluteRepositoryURL(from: package.url),

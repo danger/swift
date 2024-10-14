@@ -115,10 +115,12 @@ public struct ShellExecutor: ShellExecuting {
                           environmentVariables: [String: String],
                           outputFile: String?) -> Process
     {
-        let scriptOutputFile = if let outputFile {
-            " > \(outputFile)"
+        let scriptOutputFile: String
+        
+        if let outputFile {
+            scriptOutputFile = " > \(outputFile)"
         } else {
-            ""
+            scriptOutputFile = ""
         }
 
         let script = "\(command) \(arguments.joined(separator: " "))" + scriptOutputFile

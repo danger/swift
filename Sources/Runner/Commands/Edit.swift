@@ -5,16 +5,18 @@ import RunnerLib
 
 func editDanger(version dangerSwiftVersion: String, logger: Logger) throws {
     let fileManager = FileManager.default
-    let dangerfilePath: String = if let dangerfileArgumentPath = DangerfilePathFinder.dangerfilePath() {
-        dangerfileArgumentPath.fullPath
+    let dangerfilePath: String
+    
+    if let dangerfileArgumentPath = DangerfilePathFinder.dangerfilePath() {
+        dangerfilePath = dangerfileArgumentPath.fullPath
     } else {
-        (Runtime.getDangerfile() ?? "Dangerfile.swift").fullPath
+        dangerfilePath = (Runtime.getDangerfile() ?? "Dangerfile.swift").fullPath
     }
 
     if !fileManager.fileExists(atPath: dangerfilePath) {
         createDangerfile(dangerfilePath)
     }
-
+    
     let absoluteLibPath: String
     let libsImport: [String]
 

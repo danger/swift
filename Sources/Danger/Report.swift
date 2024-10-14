@@ -116,14 +116,16 @@ public extension DangerDSL {
 
     /// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
     func suggestion(code: String, file: String, line: Int) {
-        let message: String = if dangerRunner.dsl.supportsSuggestions {
-            """
+        let message: String
+        
+        if dangerRunner.dsl.supportsSuggestions {
+            message = """
             ```suggestion
             \(code)
             ```
             """
         } else {
-            code
+            message = code
         }
 
         globalResults.markdowns.append(Violation(message: message, file: file, line: line))
