@@ -122,6 +122,14 @@ public final class Script {
     private var copyLoopDispatchQueue: DispatchQueue?
     private var localPath: String { "Sources/\(name)/main.swift" }
     private var logger: Logger
+    
+    public var artifactsPath: [String] {
+        #if compiler(<6.0)
+        return [".build/debug", ".build/release"]
+        #else
+        return [".build/debug/Module", ".build/release/Module"]
+        #endif
+    }
 
     init(name: String, folder: String, logger: Logger) {
         self.name = name

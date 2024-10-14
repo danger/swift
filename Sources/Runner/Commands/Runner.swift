@@ -96,7 +96,7 @@ func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
 
             try script.build()
             let marathonPath = script.folder
-            let artifactPaths = [".build/debug", ".build/release"]
+            let artifactPaths = script.artifactsPath
 
             let marathonLibPath = artifactPaths
                 .lazy
