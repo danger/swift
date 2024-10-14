@@ -16,13 +16,13 @@ public struct FileDiff: Equatable, CustomStringConvertible {
     public var changes: Changes {
         switch parsedHeader.change {
         case .created:
-            return .created(addedLines: hunks.flatMap { hunk in hunk.lines.map(\.text) })
+            .created(addedLines: hunks.flatMap { hunk in hunk.lines.map(\.text) })
         case .deleted:
-            return .deleted(deletedLines: hunks.flatMap { hunk in hunk.lines.map(\.text) })
+            .deleted(deletedLines: hunks.flatMap { hunk in hunk.lines.map(\.text) })
         case .modified:
-            return .modified(hunks: hunks)
+            .modified(hunks: hunks)
         case let .renamed(oldPath: oldPath):
-            return .renamed(oldPath: oldPath, hunks: hunks)
+            .renamed(oldPath: oldPath, hunks: hunks)
         }
     }
 
@@ -73,11 +73,11 @@ public extension FileDiff {
         public var description: String {
             switch changeType {
             case .added:
-                return "+" + text
+                "+" + text
             case .removed:
-                return "-" + text
+                "-" + text
             case .unchanged:
-                return " " + text
+                " " + text
             }
         }
     }
@@ -118,16 +118,14 @@ struct DiffParser {
         let filePath = lines.first?.split(separator: " ").first(where: { $0.starts(with: "b/") })?
             .deletingPrefix("b/") ?? ""
 
-        let change: FileDiff.ParsedHeader.ChangeType
-
-        if lines.contains(where: { $0.hasPrefix("deleted file mode ") }) {
-            change = .deleted
+        let change: FileDiff.ParsedHeader.ChangeType = if lines.contains(where: { $0.hasPrefix("deleted file mode ") }) {
+            .deleted
         } else if lines.contains(where: { $0.hasPrefix("new file mode") }) {
-            change = .created
+            .created
         } else if let modifiedLineIndex = lines.firstIndex(where: { $0.hasPrefix("rename from ") }) {
-            change = .renamed(oldPath: lines[modifiedLineIndex].deletingPrefix("rename from "))
+            .renamed(oldPath: lines[modifiedLineIndex].deletingPrefix("rename from "))
         } else {
-            change = .modified
+            .modified
         }
 
         return FileDiff.ParsedHeader(filePath: filePath, change: change)
@@ -167,7 +165,8 @@ struct DiffParser {
            let oldLineStart = Int(dividedSpan[0][0]),
            let oldLineSpan = Int(dividedSpan[0][1]),
            let newLineStart = Int(dividedSpan[1][0]),
-           let newLineSpan = Int(dividedSpan[1][1]) {
+           let newLineSpan = Int(dividedSpan[1][1])
+        {
             return HunkSpan(oldLineStart: oldLineStart,
                             oldLineSpan: oldLineSpan,
                             newLineStart: newLineStart,

@@ -3,17 +3,17 @@ import Foundation
 public extension String {
     var fullPath: String {
         if hasPrefix("/") {
-            return self
+            self
         } else {
-            return FileManager.default.currentDirectoryPath.appendingPath(self)
+            FileManager.default.currentDirectoryPath.appendingPath(self)
         }
     }
 
     func appendingPath(_ path: String) -> String {
         if hasSuffix("/") {
-            return self + path
+            self + path
         } else {
-            return self + "/" + path
+            self + "/" + path
         }
     }
 

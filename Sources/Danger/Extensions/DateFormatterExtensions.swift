@@ -81,7 +81,7 @@ extension OptionalFractionalSecondsDateFormatter {
         var errorDescription: String? {
             switch self {
             case let .invalidFormat(path, dateString):
-                return "Format Invalid with path \"\(path)\", date string: \"\(dateString)\""
+                "Format Invalid with path \"\(path)\", date string: \"\(dateString)\""
             }
         }
     }

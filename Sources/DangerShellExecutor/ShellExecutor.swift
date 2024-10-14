@@ -21,27 +21,31 @@ public protocol ShellExecuting {
 extension ShellExecuting {
     @discardableResult
     public func execute(_ command: String,
-                        arguments: [String]) -> String {
+                        arguments: [String]) -> String
+    {
         execute(command, arguments: arguments, environmentVariables: [:], outputFile: nil)
     }
 
     @discardableResult
     func execute(_ command: String,
                  arguments: [String],
-                 environmentVariables: [String: String]) -> String {
+                 environmentVariables: [String: String]) -> String
+    {
         execute(command, arguments: arguments, environmentVariables: environmentVariables, outputFile: nil)
     }
 
     @discardableResult
     public func spawn(_ command: String,
-                      arguments: [String]) throws -> String {
+                      arguments: [String]) throws -> String
+    {
         try spawn(command, arguments: arguments, environmentVariables: [:], outputFile: nil)
     }
 
     @discardableResult
     func spawn(_ command: String,
                arguments: [String],
-               environmentVariables: [String: String]) throws -> String {
+               environmentVariables: [String: String]) throws -> String
+    {
         try spawn(command, arguments: arguments, environmentVariables: environmentVariables, outputFile: nil)
     }
 }
@@ -52,7 +56,8 @@ public struct ShellExecutor: ShellExecuting {
     public func execute(_ command: String,
                         arguments: [String],
                         environmentVariables: [String: String],
-                        outputFile: String?) -> String {
+                        outputFile: String?) -> String
+    {
         let task = makeTask(for: command,
                             with: arguments,
                             environmentVariables: environmentVariables,
@@ -72,7 +77,8 @@ public struct ShellExecutor: ShellExecuting {
     public func spawn(_ command: String,
                       arguments: [String],
                       environmentVariables: [String: String],
-                      outputFile: String?) throws -> String {
+                      outputFile: String?) throws -> String
+    {
         let task = makeTask(for: command,
                             with: arguments,
                             environmentVariables: environmentVariables,
@@ -107,13 +113,12 @@ public struct ShellExecutor: ShellExecuting {
     private func makeTask(for command: String,
                           with arguments: [String],
                           environmentVariables: [String: String],
-                          outputFile: String?) -> Process {
-        let scriptOutputFile: String
-
-        if let outputFile = outputFile {
-            scriptOutputFile = " > \(outputFile)"
+                          outputFile: String?) -> Process
+    {
+        let scriptOutputFile = if let outputFile {
+            " > \(outputFile)"
         } else {
-            scriptOutputFile = ""
+            ""
         }
 
         let script = "\(command) \(arguments.joined(separator: " "))" + scriptOutputFile

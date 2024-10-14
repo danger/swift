@@ -39,7 +39,8 @@ public let bitbucketCloudFixtureDSL = parseDangerDSL(with: DSLBitBucketCloudJSON
 public func githubWithFilesDSL(created: [File] = [],
                                modified: [File] = [],
                                deleted: [File] = [],
-                               fileMap: [String: String] = [:]) -> DangerDSL {
+                               fileMap: [String: String] = [:]) -> DangerDSL
+{
     parseDangerDSL(with: githubJSONWithFiles(created: created,
                                              modified: modified,
                                              deleted: deleted,

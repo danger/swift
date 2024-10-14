@@ -9,9 +9,9 @@ let isDevelop = true
 
 let swiftLint: Package.Dependency = {
     #if compiler(>=5.9)
-    return .package(url: "https://github.com/Realm/SwiftLint", from: "0.56.0")
+        return .package(url: "https://github.com/Realm/SwiftLint", from: "0.56.0")
     #else
-    return .package(url: "https://github.com/Realm/SwiftLint", exact: "0.53.0")
+        return .package(url: "https://github.com/Realm/SwiftLint", exact: "0.53.0")
     #endif
 }()
 
@@ -33,17 +33,17 @@ let devTargets: [Target] = isDevelop
                     dependencies: [
                         "Danger",
                         "DangerFixtures",
-                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
                     ]),
         .testTarget(name: "RunnerLibTests",
                     dependencies: [
                         "RunnerLib",
-                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
-        ], exclude: ["__Snapshots__"]),
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
+                    ], exclude: ["__Snapshots__"]),
         .testTarget(name: "DangerDependenciesResolverTests",
                     dependencies: [
                         "DangerDependenciesResolver",
-                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing")
+                        .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
                     ],
                     exclude: ["__Snapshots__"]),
     ]
@@ -70,7 +70,7 @@ let package = Package(
             dependencies: [
                 .product(name: "OctoKit", package: "octokit.swift"),
                 "Logger",
-                "DangerShellExecutor"
+                "DangerShellExecutor",
             ]
         ),
         .target(name: "RunnerLib", dependencies: ["Logger", "DangerShellExecutor", "Version"]),

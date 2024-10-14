@@ -25,14 +25,14 @@ final class DangerDSLTests: XCTestCase {
         XCTAssertEqual(danger.warnings.count, 1)
         XCTAssertEqual(danger.fails.count, 1)
     }
-    
-    func testDangerMetaResults() throws {
-       let danger = githubFixtureDSL
-       danger.meta(Meta(runtimeName: "Foo", runtimeHref: "https://foo.com"))
 
-       XCTAssertEqual(danger.meta.runtimeName, "Foo")
-       XCTAssertEqual(danger.meta.runtimeHref, "https://foo.com")
-   }
+    func testDangerMetaResults() throws {
+        let danger = githubFixtureDSL
+        danger.meta(Meta(runtimeName: "Foo", runtimeHref: "https://foo.com"))
+
+        XCTAssertEqual(danger.meta.runtimeName, "Foo")
+        XCTAssertEqual(danger.meta.runtimeHref, "https://foo.com")
+    }
 
     func testGithubFixtureDSL() throws {
         let danger: DangerDSL = githubFixtureDSL

@@ -122,12 +122,12 @@ public final class Script {
     private var copyLoopDispatchQueue: DispatchQueue?
     private var localPath: String { "Sources/\(name)/main.swift" }
     private var logger: Logger
-    
+
     public var artifactsPath: [String] {
         #if compiler(<6.0)
-        return [".build/debug", ".build/release"]
+            return [".build/debug", ".build/release"]
         #else
-        return [".build/debug/Module", ".build/release/Module"]
+            return [".build/debug/Modules", ".build/release/Modules"]
         #endif
     }
 
@@ -264,14 +264,14 @@ private extension String {
 
     var fullPath: String {
         if hasPrefix("/") {
-            return self
+            self
         } else {
-            return FileManager.default.currentDirectoryPath.appendingPath(self)
+            FileManager.default.currentDirectoryPath.appendingPath(self)
         }
     }
 
     var nameExcludingExtension: String {
-        guard let `extension` = `extension` else {
+        guard let `extension` else {
             return fileName
         }
 

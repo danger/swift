@@ -24,7 +24,8 @@ public struct PackageManager {
     // MARK: - Init
 
     public init(folder: String,
-                logger: Logger) throws {
+                logger: Logger) throws
+    {
         try self.init(folder: folder,
                       fileReader: FileReader(),
                       fileCreator: FileCreator(),
@@ -36,7 +37,8 @@ public struct PackageManager {
          fileReader: FileReading,
          fileCreator: FileCreating,
          packageDataProvider: PackageDataProviding,
-         logger: Logger) throws {
+         logger: Logger) throws
+    {
         self.folder = folder
         self.fileReader = fileReader
         self.fileCreator = fileCreator
@@ -65,11 +67,10 @@ public struct PackageManager {
     func addPackage(_ package: InlineDependenciesFinder.InlineDependency) throws {
         let name = try packageDataProvider.nameOfPackage(at: package.url, temporaryFolder: temporaryFolder)
 
-        let latestVersion: Int
-        if let major = package.major {
-            latestVersion = major
+        let latestVersion: Int = if let major = package.major {
+            major
         } else {
-            latestVersion = try packageDataProvider.latestMajorVersionForPackage(at: package.url)
+            try packageDataProvider.latestMajorVersionForPackage(at: package.url)
         }
         let package = Package(name: name,
                               url: absoluteRepositoryURL(from: package.url),
@@ -234,9 +235,9 @@ extension String {
 
     func appendingPath(_ path: String) -> String {
         if hasSuffix("/") {
-            return self + path
+            self + path
         } else {
-            return self + "/" + path
+            self + "/" + path
         }
     }
 

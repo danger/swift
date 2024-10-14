@@ -16,9 +16,9 @@ private var testingResults = DangerResults()
 private var globalResults: DangerResults {
     get {
         if ProcessInfo.processInfo.processName.hasSuffix("xctest") {
-            return testingResults
+            testingResults
         } else {
-            return DangerRunner.shared.results
+            DangerRunner.shared.results
         }
     }
     set {
@@ -116,16 +116,14 @@ public extension DangerDSL {
 
     /// Adds an inline suggestion to the Danger report (sends a normal message if suggestions are not supported)
     func suggestion(code: String, file: String, line: Int) {
-        let message: String
-
-        if dangerRunner.dsl.supportsSuggestions {
-            message = """
+        let message: String = if dangerRunner.dsl.supportsSuggestions {
+            """
             ```suggestion
             \(code)
             ```
             """
         } else {
-            message = code
+            code
         }
 
         globalResults.markdowns.append(Violation(message: message, file: file, line: line))
