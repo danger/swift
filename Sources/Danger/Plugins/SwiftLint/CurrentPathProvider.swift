@@ -1,10 +1,10 @@
 import Foundation
 
-internal protocol CurrentPathProvider {
+protocol CurrentPathProvider {
     var currentPath: String { get }
 }
 
-internal final class DefaultCurrentPathProvider: CurrentPathProvider {
+final class DefaultCurrentPathProvider: CurrentPathProvider {
     var currentPath: String {
         FileManager.default.currentDirectoryPath
     }

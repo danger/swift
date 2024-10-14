@@ -58,7 +58,7 @@ public struct DangerDSL: Decodable {
         // Setup the OctoKit once all other
         if runningOnGithub {
             let config: TokenConfiguration
-
+            
             if let baseURL = settings.github.baseURL {
                 config = TokenConfiguration(settings.github.accessToken, url: baseURL)
             } else {

@@ -51,7 +51,8 @@ func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger
     if fileManager.fileExists(atPath: ".build/debug/danger-swift") {
         dangerSwiftCommand = ".build/debug/danger-swift"
     } else if let firstArg = CommandLine.arguments.first,
-              fileManager.fileExists(atPath: firstArg) {
+              fileManager.fileExists(atPath: firstArg)
+    {
         dangerSwiftCommand = firstArg
     }
 

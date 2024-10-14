@@ -54,7 +54,7 @@ public struct DangerUtils {
 
         let lines = readFile(file).components(separatedBy: .newlines)
 
-        lines.enumerated().forEach { index, line in
+        for (index, line) in lines.enumerated() {
             if line.contains(string) {
                 result.append(index + 1)
             }
@@ -174,7 +174,7 @@ public extension DangerUtils.Environment {
     }
 }
 
-public extension Optional where Wrapped == DangerUtils.Environment.Value {
+public extension DangerUtils.Environment.Value? {
     func getString(default defaultString: String) -> String {
         if case let .string(value) = self { return value }
         return defaultString

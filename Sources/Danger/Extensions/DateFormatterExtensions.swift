@@ -28,7 +28,7 @@ public extension DateFormatter {
     }
 }
 
-private final class OptionalFractionalSecondsDateFormatter: DateFormatter {
+private final class OptionalFractionalSecondsDateFormatter: DateFormatter, @unchecked Sendable {
     static let withMilliseconds: DateFormatter = {
         let formatter = DateFormatter()
         setUpFormatter(formatter)

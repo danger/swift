@@ -21,6 +21,8 @@ else
     swift build --disable-sandbox
 fi
 
+MAJOR_VERSION=$(swift --version | awk '{print $4}' | cut -d '.' -f 1)
+
 ARRAY=()
 for ARG in "${SWIFT_LIB_FILES[@]}"; do
     ARRAY+=("$BUILD_FOLDER/$ARG")
@@ -29,6 +31,12 @@ done
 mkdir -p "$PREFIX/bin"
 mkdir -p "$LIB_INSTALL_PATH"
 cp -f "$BUILD_FOLDER/$TOOL_NAME" "$INSTALL_PATH"
+
+if [[ $MAJOR_VERSION -ge 6 ]]; then
+    BUILD_FOLDER+="/Modules"
+    SWIFT_LIB_FILES=($(ls "$BUILD_FOLDER"))
+fi
+
 cp -fr "${ARRAY[@]}" "$LIB_INSTALL_PATH" 2>/dev/null || :
 
 sed -e "s/$DANGER_LIB_DYNAMIC_DECLARATION/$DANGER_LIB_DECLARATION/g" Package.swift > tmpPackage

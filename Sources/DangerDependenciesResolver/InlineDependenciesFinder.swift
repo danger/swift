@@ -34,13 +34,13 @@ struct InlineDependenciesFinder {
 
                 let url: URL? = {
                     #if os(macOS) && compiler(>=5.9)
-                    if #available(macOS 14.0, *) {
-                        return URL(string: splittedImportString[0], encodingInvalidCharacters: false)
-                    }
+                        if #available(macOS 14.0, *) {
+                            return URL(string: splittedImportString[0], encodingInvalidCharacters: false)
+                        }
                     #endif
                     return URL(string: splittedImportString[0])
                 }()
-                guard let url = url else {
+                guard let url else {
                     throw Errors.invalidInlineDependencyURL(splittedImportString[0])
                 }
 

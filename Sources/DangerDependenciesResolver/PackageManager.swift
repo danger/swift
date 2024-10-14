@@ -24,7 +24,8 @@ public struct PackageManager {
     // MARK: - Init
 
     public init(folder: String,
-                logger: Logger) throws {
+                logger: Logger) throws
+    {
         try self.init(folder: folder,
                       fileReader: FileReader(),
                       fileCreator: FileCreator(),
@@ -36,7 +37,8 @@ public struct PackageManager {
          fileReader: FileReading,
          fileCreator: FileCreating,
          packageDataProvider: PackageDataProviding,
-         logger: Logger) throws {
+         logger: Logger) throws
+    {
         self.folder = folder
         self.fileReader = fileReader
         self.fileCreator = fileCreator
@@ -66,6 +68,7 @@ public struct PackageManager {
         let name = try packageDataProvider.nameOfPackage(at: package.url, temporaryFolder: temporaryFolder)
 
         let latestVersion: Int
+        
         if let major = package.major {
             latestVersion = major
         } else {

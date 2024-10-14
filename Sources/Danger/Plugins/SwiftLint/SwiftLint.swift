@@ -48,7 +48,8 @@ public enum SwiftLint {
                             strict: Bool = false,
                             quiet: Bool = true,
                             swiftlintPath: String,
-                            markdownAction: (String) -> Void = markdown) -> [SwiftLintViolation] {
+                            markdownAction: (String) -> Void = markdown) -> [SwiftLintViolation]
+    {
         lint(lintStyle,
              inline: inline,
              configFile: configFile,
@@ -70,8 +71,8 @@ public enum SwiftLint {
                             strict: Bool = false,
                             quiet: Bool = true,
                             swiftlintPath: SwiftlintPath? = nil,
-                            markdownAction: (String) -> Void = markdown
-    ) -> [SwiftLintViolation] {
+                            markdownAction: (String) -> Void = markdown) -> [SwiftLintViolation]
+    {
         lint(lintStyle: lintStyle,
              danger: danger,
              shellExecutor: shellExecutor,
@@ -80,8 +81,7 @@ public enum SwiftLint {
              configFile: configFile,
              strict: strict,
              quiet: quiet,
-             markdownAction: markdownAction
-        )
+             markdownAction: markdownAction)
     }
 }
 
@@ -112,7 +112,7 @@ extension SwiftLint {
             arguments.append("--quiet")
         }
 
-        if let configFile = configFile {
+        if let configFile {
             arguments.append("--config \"\(configFile)\"")
         }
 
@@ -133,10 +133,11 @@ extension SwiftLint {
                                  outputFilePath: outputFilePath,
                                  failAction: failAction,
                                  readFile: readFile)
+
         case let .modifiedAndCreatedFiles(directory):
             // Gathers modified+created files, invokes SwiftLint on each, and posts collected errors+warnings to Danger.
             var files = (danger.git.createdFiles + danger.git.modifiedFiles)
-            if let directory = directory {
+            if let directory {
                 files = files.filter { $0.hasPrefix(directory) }
             }
 
@@ -181,10 +182,11 @@ extension SwiftLint {
                                 swiftlintPath: String,
                                 outputFilePath: String,
                                 failAction: (String) -> Void,
-                                readFile: (String) -> String) -> [SwiftLintViolation] {
+                                readFile: (String) -> String) -> [SwiftLintViolation]
+    {
         var arguments = arguments
 
-        if let directory = directory {
+        if let directory {
             arguments.append(directory)
         }
 
@@ -205,7 +207,8 @@ extension SwiftLint {
                                   swiftlintPath: String,
                                   outputFilePath: String,
                                   failAction: (String) -> Void,
-                                  readFile: (String) -> String) -> [SwiftLintViolation] {
+                                  readFile: (String) -> String) -> [SwiftLintViolation]
+    {
         let files = files.filter { $0.fileType == .swift }
 
         // Only run Swiftlint, if there are files to lint
@@ -236,7 +239,8 @@ extension SwiftLint {
         let swiftPackageDepPattern = #"\.package\(.*SwiftLint(\.git)?".*"#
         if let packageContent = try? String(contentsOfFile: packagePath),
            let regex = try? NSRegularExpression(pattern: swiftPackageDepPattern, options: .allowCommentsAndWhitespace),
-           regex.firstMatchingString(in: packageContent) != nil {
+           regex.firstMatchingString(in: packageContent) != nil
+        {
             return "swift run swiftlint"
         } else {
             return "swiftlint"
@@ -248,9 +252,10 @@ extension SwiftLint {
                                          inline: Bool,
                                          markdownAction: (String) -> Void,
                                          failInlineAction: (String, String, Int) -> Void,
-                                         warnInlineAction: (String, String, Int) -> Void) {
+                                         warnInlineAction: (String, String, Int) -> Void)
+    {
         if inline {
-            violations.forEach { violation in
+            for violation in violations {
                 switch violation.severity {
                 case .error:
                     failInlineAction(violation.messageText, violation.file, violation.line)
@@ -276,7 +281,8 @@ extension SwiftLint {
                                             outputFilePath: String,
                                             shellExecutor: ShellExecuting,
                                             failAction: (String) -> Void,
-                                            readFile: (String) -> String) -> [SwiftLintViolation] {
+                                            readFile: (String) -> String) -> [SwiftLintViolation]
+    {
         shellExecutor.execute(swiftlintPath,
                               arguments: arguments,
                               environmentVariables: environmentVariables,
@@ -309,7 +315,7 @@ extension SwiftLint {
     }
 }
 
-private extension Array where Element == SwiftLintViolation {
+private extension [SwiftLintViolation] {
     func updatingForCurrentPathProvider(_ currentPathProvider: CurrentPathProvider, strictSeverity: Bool) -> [Element] {
         let currentPath = currentPathProvider.currentPath
         return map { violation -> SwiftLintViolation in

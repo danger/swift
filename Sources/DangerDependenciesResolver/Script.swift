@@ -123,6 +123,14 @@ public final class Script {
     private var localPath: String { "Sources/\(name)/main.swift" }
     private var logger: Logger
 
+    public var artifactsPath: [String] {
+        #if compiler(<6.0)
+            return [".build/debug", ".build/release"]
+        #else
+            return [".build/debug/Modules", ".build/release/Modules"]
+        #endif
+    }
+
     init(name: String, folder: String, logger: Logger) {
         self.name = name
         self.folder = folder
@@ -263,7 +271,7 @@ private extension String {
     }
 
     var nameExcludingExtension: String {
-        guard let `extension` = `extension` else {
+        guard let `extension` else {
             return fileName
         }
 

@@ -3,9 +3,10 @@ import Foundation
 import Logger
 
 func getScriptManager(forDangerSwiftVersion dangerSwiftVersion: String,
-                      logger: Logger) throws -> ScriptManager {
+                      logger: Logger) throws -> ScriptManager
+{
     let homeFolder: String
-
+    
     if #available(OSX 10.12, *) {
         homeFolder = FileManager.default.homeDirectoryForCurrentUser.path
     } else {
@@ -20,7 +21,7 @@ func getScriptManager(forDangerSwiftVersion dangerSwiftVersion: String,
     let packageManager = try PackageManager(folder: packageFolder, logger: logger)
 
     return try ScriptManager(folder: scriptFolder,
-                             dangerSwiftVersion: dangerSwiftVersion, 
-                             packageManager: packageManager, 
+                             dangerSwiftVersion: dangerSwiftVersion,
+                             packageManager: packageManager,
                              logger: logger)
 }

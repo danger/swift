@@ -45,7 +45,7 @@ final class DangerFileGeneratorTests: XCTestCase {
     func testItGeneratesTheCorrectFileWhenThereAreNoImports() throws {
         try generator.generateDangerFile(fromContent: contentWithoutImports, fileName: generatedFilePath, logger: logger)
 
-        assertSnapshot(matching: try generatedContent(), as: .lines)
+        try assertSnapshot(matching: generatedContent(), as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenThereIsASingleImport() throws {
@@ -55,7 +55,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithOneImport, fileName: generatedFilePath, logger: logger)
 
-        assertSnapshot(matching: try generatedContent(), as: .lines)
+        try assertSnapshot(matching: generatedContent(), as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenThereIsAreMultipleImports() throws {
@@ -69,7 +69,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithMultipleImports, fileName: generatedFilePath, logger: logger)
 
-        assertSnapshot(matching: try generatedContent(), as: .lines)
+        try assertSnapshot(matching: generatedContent(), as: .lines)
     }
 
     func testItGeneratesTheCorrectFileWhenOneOfTheImportedFilesIsMissing() throws {
@@ -81,7 +81,7 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try generator.generateDangerFile(fromContent: contentWithMultipleImports, fileName: generatedFilePath, logger: logger)
 
-        assertSnapshot(matching: try generatedContent(), as: .lines)
+        try assertSnapshot(matching: generatedContent(), as: .lines)
     }
 }
 

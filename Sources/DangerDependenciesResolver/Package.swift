@@ -13,19 +13,19 @@ extension Package {
     func dependencyString(forToolsVersion version: Version) -> String {
         switch version {
         case Version(5, 6, 0)...:
-            if let minorVersion = minorVersion, let patchVersion = patchVersion {
+            if let minorVersion, let patchVersion {
                 return #".package(url: "\#(url.absoluteString)", exact: "\#(majorVersion).\#(minorVersion).\#(patchVersion)")"#
             } else {
                 return #".package(url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
             }
         case Version(5, 2, 0)...:
-            if let minorVersion = minorVersion, let patchVersion = patchVersion {
+            if let minorVersion, let patchVersion {
                 return #".package(name: "\#(name)", url: "\#(url.absoluteString)", .exact("\#(majorVersion).\#(minorVersion).\#(patchVersion)"))"#
             } else {
                 return #".package(name: "\#(name)", url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
             }
         default:
-            if let minorVersion = minorVersion, let patchVersion = patchVersion {
+            if let minorVersion, let patchVersion {
                 return #".package(url: "\#(url.absoluteString)", .exact("\#(majorVersion).\#(minorVersion).\#(patchVersion)"))"#
             } else {
                 return #".package(url: "\#(url.absoluteString)", from: "\#(majorVersion).0.0")"#
@@ -66,6 +66,7 @@ extension Package.Pinned {
 }
 
 // MARK: - swift-tools-version >= 5.6
+
 extension Package {
     struct PinnedV2: Decodable, Equatable {
         let name: String
@@ -99,7 +100,8 @@ extension Package.PinnedV2 {
 }
 
 // MARK: -
-extension Sequence where Element == Package.PinnedV2 {
+
+extension Sequence<Package.PinnedV2> {
     func v1Converted() -> [Package.Pinned] {
         map(\.v1)
     }

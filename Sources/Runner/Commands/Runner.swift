@@ -96,7 +96,7 @@ func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
 
             try script.build()
             let marathonPath = script.folder
-            let artifactPaths = [".build/debug", ".build/release"]
+            let artifactPaths = script.artifactsPath
 
             let marathonLibPath = artifactPaths
                 .lazy
@@ -104,7 +104,7 @@ func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
                 .filter(fileManager.fileExists)
                 .first
 
-            if let marathonLibPath = marathonLibPath {
+            if let marathonLibPath {
                 libArgs += ["-L", marathonLibPath]
                 libArgs += ["-I", marathonLibPath]
                 libArgs += ["-lDangerDependencies"]

@@ -134,7 +134,7 @@ final class DangerSwiftLintTests: XCTestCase {
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertTrue(!swiftlintCommands.isEmpty)
-        swiftlintCommands.forEach { _, arguments, _, _ in
+        for (_, arguments, _, _) in swiftlintCommands {
             XCTAssertTrue(arguments.contains("--config \"\(configFile)\""))
         }
     }
@@ -150,7 +150,7 @@ final class DangerSwiftLintTests: XCTestCase {
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertTrue(!swiftlintCommands.isEmpty)
-        swiftlintCommands.forEach { _, arguments, _, _ in
+        for (_, arguments, _, _) in swiftlintCommands {
             XCTAssertFalse(arguments.contains("--quiet"))
         }
     }
@@ -166,7 +166,7 @@ final class DangerSwiftLintTests: XCTestCase {
 
         let swiftlintCommands = executor.invocations.filter { $0.command == "swiftlint" }
         XCTAssertTrue(!swiftlintCommands.isEmpty)
-        swiftlintCommands.forEach { _, arguments, _, _ in
+        for (_, arguments, _, _) in swiftlintCommands {
             XCTAssertTrue(arguments.contains("--quiet"))
         }
     }
