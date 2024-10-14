@@ -21,6 +21,15 @@ else
     swift build --disable-sandbox
 fi
 
+SWIFT_VERSION=$(swift --version | tr -s ' ' | cut -d ' ' -f 4)
+IFS='.' read -r -a SWIFT_VERSION <<< "$1"
+MAJOR_VERSION=${SWIFT_VERSION[0]}
+
+if [[ $MAJOR_VERSION -gt 6 ]]; then
+       BUILD_FOLDER+="/Modules" 
+fi
+
+
 ARRAY=()
 for ARG in "${SWIFT_LIB_FILES[@]}"; do
     ARRAY+=("$BUILD_FOLDER/$ARG")
