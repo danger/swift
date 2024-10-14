@@ -27,9 +27,9 @@ final class GetDangerJSPathTests: XCTestCase {
         let expectedResult = "/usr/test/danger"
         executor.result = { command in
             if command.hasSuffix("danger-js") {
-                ""
+                return ""
             } else {
-                expectedResult
+                return expectedResult
             }
         }
 
