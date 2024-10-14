@@ -6,7 +6,7 @@ public enum DangerSwiftOption: String, CaseIterable {
     public var hasParameter: Bool {
         switch self {
         case .dangerJSPath:
-            true
+            return true
         }
     }
 }
@@ -17,7 +17,7 @@ public enum DangeSwiftRunnerOption: String, CaseIterable {
     public var hasParameter: Bool {
         switch self {
         case .cwd:
-            true
+            return true
         }
     }
 }
