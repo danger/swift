@@ -14,8 +14,10 @@
 ## Master
 
 - Fix: `GitHub.Review.submittedAt` may be `nil` [@417-72KI][] - [#624](https://github.com/danger/swift/pull/624)
+- Drain stdout while shell commands are running to prevent execution from locking up if there's too much output [@jflan-dd][] - [#614](https://github.com/danger/swift/pull/614)
 
 ## 3.20.0
+
 - Remove deprecated `lint` function with `lintAllFiles` flag [@417-72KI][] - [#622](https://github.com/danger/swift/pull/622)
 - Updated Swift 6 build process: Danger files moved to .build/debug/Modules, and SwiftFormat module map conflict resolved by adjusting the Swift import search path. [@abhi-m-simformsolutons][] -[#626](https://github.com/danger/swift/pull/626)
 
