@@ -13,6 +13,7 @@
 
 ## Master
 
+- Add Xcode 16 support for brew and DangerScripting [@f-meloni][] - [#627](https://github.com/danger/swift/pull/627)
 - Fix: `GitHub.Review.submittedAt` may be `nil` [@417-72KI][] - [#624](https://github.com/danger/swift/pull/624)
 - Drain stdout while shell commands are running to prevent execution from locking up if there's too much output [@jflan-dd][] - [#614](https://github.com/danger/swift/pull/614)
 
