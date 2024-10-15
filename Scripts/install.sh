@@ -16,25 +16,28 @@ swift package clean
 if [[ "$OSTYPE" == "darwin"* ]]; then
     BUILD_FOLDER=".build/release"
     swift build --disable-sandbox -c release
+    MAJOR_VERSION=$(swift --version | awk '{print $4}' | cut -d '.' -f 1)
 else
     BUILD_FOLDER=".build/debug"
     swift build --disable-sandbox
+    MAJOR_VERSION=$(swift --version | awk '{for(i=1;i<=NF;i++){if($i ~ /^[0-9]+\.[0-9]+$/){print $i; break}}}' | cut -d '.' -f 1)
 fi
 
-MAJOR_VERSION=$(swift --version | awk '{print $4}' | cut -d '.' -f 1)
+mkdir -p "$PREFIX/bin"
+mkdir -p "$LIB_INSTALL_PATH"
+cp -f "$BUILD_FOLDER/$TOOL_NAME" "$INSTALL_PATH"
 
 ARRAY=()
 for ARG in "${SWIFT_LIB_FILES[@]}"; do
     ARRAY+=("$BUILD_FOLDER/$ARG")
 done
 
-mkdir -p "$PREFIX/bin"
-mkdir -p "$LIB_INSTALL_PATH"
-cp -f "$BUILD_FOLDER/$TOOL_NAME" "$INSTALL_PATH"
-
 if [[ $MAJOR_VERSION -ge 6 ]]; then
     BUILD_FOLDER+="/Modules"
     SWIFT_LIB_FILES=($(ls "$BUILD_FOLDER"))
+    for ARG in "${SWIFT_LIB_FILES[@]}"; do
+        ARRAY+=("$BUILD_FOLDER/$ARG")
+    done
 fi
 
 cp -fr "${ARRAY[@]}" "$LIB_INSTALL_PATH" 2>/dev/null || :
