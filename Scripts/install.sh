@@ -40,9 +40,6 @@ if [[ $MAJOR_VERSION -ge 6 ]]; then
     done
 fi
 
-echo "SWIFT_LIB_FILES: ${ARRAY[@]}"
-echo "LIB_INSTALL_PATH: $LIB_INSTALL_PATH"
-
 cp -fr "${ARRAY[@]}" "$LIB_INSTALL_PATH" 2>/dev/null || :
 
 sed -e "s/$DANGER_LIB_DYNAMIC_DECLARATION/$DANGER_LIB_DECLARATION/g" Package.swift > tmpPackage
