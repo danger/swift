@@ -287,6 +287,8 @@ jobs:
 
     - run: make install
 
+    - run: rm -rf .build && rm -rf Package.swift
+
     - run: danger-swift ci --verbose --failOnErrors
       if: ${{ github.event_name == 'pull_request' }}
       env:
