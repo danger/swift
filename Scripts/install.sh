@@ -32,6 +32,8 @@ for ARG in "${SWIFT_LIB_FILES[@]}"; do
     ARRAY+=("$BUILD_FOLDER/$ARG")
 done
 
+echo "Major version: $MAJOR_VERSION"
+
 if [[ $MAJOR_VERSION -ge 6 ]]; then
     BUILD_FOLDER+="/Modules"
     SWIFT_LIB_FILES=($(ls "$BUILD_FOLDER"))
