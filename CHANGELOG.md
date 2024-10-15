@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix install script to work with Swift 6.0 [@f-meloni][] - [#627](https://github.com/danger/swift/pull/628)
+
 ## 3.20.1
 
 - Add Xcode 16 support for brew and DangerScripting [@f-meloni][] - [#627](https://github.com/danger/swift/pull/627)
