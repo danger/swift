@@ -16,12 +16,12 @@ swift package clean
 if [[ "$OSTYPE" == "darwin"* ]]; then
     BUILD_FOLDER=".build/release"
     swift build --disable-sandbox -c release
+    MAJOR_VERSION=$(swift --version | awk '{print $4}' | cut -d '.' -f 1)
 else
     BUILD_FOLDER=".build/debug"
     swift build --disable-sandbox
+    MAJOR_VERSION=$(swift --version | awk '{for(i=1;i<=NF;i++){if($i ~ /^[0-9]+\.[0-9]+$/){print $i; break}}}' | cut -d '.' -f 1)
 fi
-
-MAJOR_VERSION=$(swift --version | awk '{print $4}' | cut -d '.' -f 1)
 
 mkdir -p "$PREFIX/bin"
 mkdir -p "$LIB_INSTALL_PATH"
