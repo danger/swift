@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.20.2
+
 - Fix install script to work with Swift 6.0 [@f-meloni][] - [#627](https://github.com/danger/swift/pull/628)
 
 ## 3.20.1
