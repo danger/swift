@@ -27,15 +27,18 @@ mkdir -p "$PREFIX/bin"
 mkdir -p "$LIB_INSTALL_PATH"
 cp -f "$BUILD_FOLDER/$TOOL_NAME" "$INSTALL_PATH"
 
-if [[ $MAJOR_VERSION -ge 6 ]]; then
-    BUILD_FOLDER+="/Modules"
-    SWIFT_LIB_FILES=($(ls "$BUILD_FOLDER"))
-fi
-
 ARRAY=()
 for ARG in "${SWIFT_LIB_FILES[@]}"; do
     ARRAY+=("$BUILD_FOLDER/$ARG")
 done
+
+if [[ $MAJOR_VERSION -ge 6 ]]; then
+    BUILD_FOLDER+="/Modules"
+    SWIFT_LIB_FILES=($(ls "$BUILD_FOLDER"))
+    for ARG in "${SWIFT_LIB_FILES[@]}"; do
+        ARRAY+=("$BUILD_FOLDER/$ARG")
+    done
+fi
 
 echo "SWIFT_LIB_FILES: ${ARRAY[@]}"
 echo "LIB_INSTALL_PATH: $LIB_INSTALL_PATH"
