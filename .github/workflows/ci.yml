@@ -20,7 +20,7 @@ jobs:
       matrix:
         xcode: ["14.3.1"]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -58,7 +58,7 @@ jobs:
       matrix:
         xcode: ["15.4", "16.0"]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -97,7 +97,7 @@ jobs:
       matrix:
         xcode: ["15.4", "16.0"]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -138,7 +138,7 @@ jobs:
       matrix:
         swift: ["5.9", "5.10", "6.0"]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - uses: actions/setup-node@v2
 
     - name: Cache dependencies
@@ -177,7 +177,7 @@ jobs:
       matrix:
         xcode: ["14.3.1"]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -218,7 +218,7 @@ jobs:
       matrix:
         xcode: ["15.4", "16.0"]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
 
     - name: Cache dependencies
       uses: actions/cache@v2
@@ -259,7 +259,7 @@ jobs:
       matrix:
         swift: ["5.9", "5.10", "6.0"]
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
     - uses: actions/setup-node@v2
 
     - name: Cache dependencies
