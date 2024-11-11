@@ -33,10 +33,16 @@ public final class DangerFileGenerator {
 
 private extension DangerFileGenerator {
     func mergeImports(in content: inout String) {
-        var lines = content.split(separator: "\n",
-                                  omittingEmptySubsequences: false)
-        let imports = Set(lines.filter { $0.hasPrefix("import ") })
-        lines.removeAll { imports.contains($0) }
+        var lines = content
+            .split(separator: "\n",
+                   omittingEmptySubsequences: false)
+            .map(String.init)
+
+        let imports = Set(
+            lines.map { $0.trimmingCharacters(in: .whitespaces) }
+                .filter { $0.hasPrefix("import ") }
+        )
+        lines.removeAll { imports.contains($0.trimmingCharacters(in: .whitespaces)) }
         lines.insert(contentsOf: imports.sorted(), at: 0)
         content = lines.joined(separator: "\n")
     }

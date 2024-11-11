@@ -87,6 +87,18 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try assertSnapshot(matching: generatedContent(), as: .lines)
     }
+
+    func testItGeneratesTheCorrectFileWhenThereIsAreImportsWithIndent() throws {
+        try? file2Content.write(toFile: file2Path, atomically: true, encoding: .utf8)
+        try? file3Content.write(toFile: file3Path, atomically: true, encoding: .utf8)
+
+        createdFiles.append(file2Path)
+        createdFiles.append(file3Path)
+
+        try generator.generateDangerFile(fromContent: contentWithImportsWithIndent, fileName: generatedFilePath, logger: logger)
+
+        try assertSnapshot(matching: generatedContent(), as: .lines)
+    }
 }
 
 extension DangerFileGeneratorTests {
@@ -115,6 +127,16 @@ extension DangerFileGeneratorTests {
         "// fileImport: " + file2Path + "\n\n"
             + "// fileImport: " + file3Path + "\n"
             + contentWithOneImport
+    }
+
+    private var contentWithImportsWithIndent: String {
+        headerForContentWithoutImports
+            + "if flag {\n"
+            + "    // fileImport: " + file2Path + "\n"
+            + "} else {\n"
+            + "    // fileImport: " + file3Path + "\n"
+            + "}\n"
+            + contentWithoutImports
     }
 
     private var file1Content: String {

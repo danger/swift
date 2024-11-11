@@ -1,0 +1,16 @@
+import Danger
+import Foundation
+
+let danger = Danger()
+
+if flag {
+
+file2Content ⚠️
+} else {
+
+file3Content 👩‍👩‍👦‍👦
+secondLine
+really really really really really really really really really really really really really really really really really really really really really really long text
+}
+message("Text")
+message("Another Text")
