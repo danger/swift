@@ -106,7 +106,9 @@ extension DangerFileGeneratorTests {
     }
 
     private var contentWithOneImport: String {
-        "// fileImport: " + file1Path + "\n" + contentWithoutImports
+        headerForContentWithoutImports
+            + "// fileImport: " + file1Path + "\n"
+            + contentWithoutImports
     }
 
     private var contentWithMultipleImports: String {
