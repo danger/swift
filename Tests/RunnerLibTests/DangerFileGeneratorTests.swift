@@ -43,7 +43,11 @@ final class DangerFileGeneratorTests: XCTestCase {
     }
 
     func testItGeneratesTheCorrectFileWhenThereAreNoImports() throws {
-        try generator.generateDangerFile(fromContent: contentWithoutImports, fileName: generatedFilePath, logger: logger)
+        try generator.generateDangerFile(
+            fromContent: headerForContentWithoutImports + contentWithoutImports,
+            fileName: generatedFilePath,
+            logger: logger
+        )
 
         try assertSnapshot(matching: generatedContent(), as: .lines)
     }
@@ -86,6 +90,14 @@ final class DangerFileGeneratorTests: XCTestCase {
 }
 
 extension DangerFileGeneratorTests {
+    private var headerForContentWithoutImports: String {
+        """
+        import Danger
+
+        let danger = Danger()
+        """ + "\n\n"
+    }
+
     private var contentWithoutImports: String {
         """
         message("Text")
