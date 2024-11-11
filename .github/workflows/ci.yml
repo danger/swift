@@ -110,7 +110,7 @@ jobs:
         swift: ["5.9", "5.10", "6.0"]
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v4
 
     - name: Cache dependencies
       uses: actions/cache@v4
@@ -199,7 +199,7 @@ jobs:
         swift: ["5.9", "5.10", "6.0"]
     steps:
     - uses: actions/checkout@v4
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v4
 
     - name: Cache dependencies
       uses: actions/cache@v4
