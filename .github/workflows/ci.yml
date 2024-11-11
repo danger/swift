@@ -12,13 +12,19 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  test-on-macos-13:
-    name: Test on macOS 13
-    runs-on: macOS-13
+  test-on-macos:
+    name: Test on macOS
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["14.3.1"]
+        include:
+          - runner: "macos-13"
+            xcode: "14.3.1"
+          - runner: "macos-14"
+            xcode: "15.4"
+          - runner: "macos-15"
+            xcode: "16.1"
+    runs-on: ${{ matrix.runner }}
     steps:
     - uses: actions/checkout@v4
 
@@ -50,52 +56,17 @@ jobs:
       if: ${{ github.event_name == 'pull_request' }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  test-on-macos-14:
-    name: Test on macOS 14
-    runs-on: macOS-14
-    strategy:
-      fail-fast: false
-      matrix:
-        xcode: ["15.4", "16.0"]
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: |
-          .build/artifacts
-          .build/checkouts
-          .build/repositories
-        key: ${{ runner.os }}-dependencies-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
-        restore-keys: |
-          ${{ runner.os }}-dependencies-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
-          ${{ runner.os }}-dependencies-${{ matrix.xcode }}-
-
-    - name: Select Xcode
-      run: |
-        xcodebuild -version
-        ls -nt /Applications/ | grep "Xcode*"
-        sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
-        xcodebuild -version
-
-    - name: Install danger-js
-      run: brew install danger/tap/danger-js
-
-    - run: swift test
-
-    - run: swift run danger-swift ci --verbose --failOnErrors
-      if: ${{ github.event_name == 'pull_request' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   test-dependencies-resolver:
     name: Test dependencies resolver
-    runs-on: macOS-14
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["15.4", "16.0"]
+        include:
+          - runner: "macos-14"
+            xcode: "15.4"
+          - runner: "macos-15"
+            xcode: "16.1"
+    runs-on: ${{ matrix.runner }}
     steps:
     - uses: actions/checkout@v4
 
@@ -169,13 +140,19 @@ jobs:
       env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
-  test-without-spm-on-macos-13:
-    name: Test without SPM on macOS 13
-    runs-on: macOS-13
+  test-without-spm-on-macos:
+    name: Test without SPM on macOS
     strategy:
       fail-fast: false
       matrix:
-        xcode: ["14.3.1"]
+        include:
+          - runner: "macos-13"
+            xcode: "14.3.1"
+          - runner: "macos-14"
+            xcode: "15.4"
+          - runner: "macos-15"
+            xcode: "16.1"
+    runs-on: ${{ matrix.runner }}
     steps:
     - uses: actions/checkout@v4
 
@@ -202,47 +179,9 @@ jobs:
       run: brew install danger/tap/danger-js
 
     - run: make install
-
-    - run: rm -rf .build && rm -rf Package.swift
-
-    - run: danger-swift ci --verbose --failOnErrors
-      if: ${{ github.event_name == 'pull_request' }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  test-without-spm-on-macos-14:
-    name: Test without SPM on macOS 14
-    runs-on: macOS-14
-    strategy:
-      fail-fast: false
-      matrix:
-        xcode: ["15.4", "16.0"]
-    steps:
-    - uses: actions/checkout@v4
-
-    - name: Cache dependencies
-      uses: actions/cache@v2
-      with:
-        path: |
-          .build/artifacts
-          .build/checkouts
-          .build/repositories
-        key: ${{ runner.os }}-without-spm-package-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
-        restore-keys: |
-          ${{ runner.os }}-without-spm-package-${{ matrix.xcode }}-${{ hashFiles('**/Package.resolved') }}
-          ${{ runner.os }}-without-spm-package-${{ matrix.xcode }}-
-
-    - name: Select Xcode
-      run: |
-        xcodebuild -version
-        ls -nt /Applications/ | grep "Xcode*"
-        sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
-        xcodebuild -version
-
-    - name: Install danger-js
-      run: brew install danger/tap/danger-js
-
+      if: ${{ runner.os == 'macos-13' }}
     - run: make install PREFIX='/opt/homebrew'
+      if: ${{ runner.os != 'macos-13' }}
 
     - run: rm -rf .build && rm -rf Package.swift
 
