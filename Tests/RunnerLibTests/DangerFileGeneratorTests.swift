@@ -112,8 +112,9 @@ extension DangerFileGeneratorTests {
     }
 
     private var contentWithMultipleImports: String {
-        "// fileImport: " + file2Path + "\n\n" +
-            "// fileImport: " + file3Path + "\n" + contentWithOneImport
+        "// fileImport: " + file2Path + "\n\n"
+            + "// fileImport: " + file3Path + "\n"
+            + contentWithOneImport
     }
 
     private var file1Content: String {
@@ -125,12 +126,17 @@ extension DangerFileGeneratorTests {
 
     private var file2Content: String {
         """
+        import Danger
+        
         file2Content ⚠️
         """
     }
 
     private var file3Content: String {
         """
+        import Danger
+        import Foundation
+        
         file3Content 👩‍👩‍👦‍👦
         secondLine
         really really really really really really really really really really really really \
