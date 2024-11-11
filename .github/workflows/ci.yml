@@ -179,9 +179,9 @@ jobs:
       run: brew install danger/tap/danger-js
 
     - run: make install
-      if: ${{ runner.os == 'macos-13' }}
+      if: ${{ matrix.runner == 'macos-13' }}
     - run: make install PREFIX='/opt/homebrew'
-      if: ${{ runner.os != 'macos-13' }}
+      if: ${{ matrix.runner != 'macos-13' }}
 
     - run: rm -rf .build && rm -rf Package.swift
 
