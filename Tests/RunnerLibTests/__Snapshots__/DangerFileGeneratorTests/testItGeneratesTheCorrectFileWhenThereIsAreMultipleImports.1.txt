@@ -1,8 +1,15 @@
+import Danger
+import Foundation
+
 file2Content ⚠️
+
 
 file3Content 👩‍👩‍👦‍👦
 secondLine
 really really really really really really really really really really really really really really really really really really really really really really long text
+
+let danger = Danger()
+
 file1Content 👍🏻
 secondLine
 message("Text")

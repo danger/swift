@@ -25,6 +25,19 @@ public final class DangerFileGenerator {
             dangerContent.replaceSubrange(replacementRange, with: fileContent)
         })
 
+        mergeImports(in: &dangerContent)
+
         try dangerContent.write(toFile: fileName, atomically: false, encoding: .utf8)
+    }
+}
+
+private extension DangerFileGenerator {
+    func mergeImports(in content: inout String) {
+        var lines = content.split(separator: "\n",
+                                  omittingEmptySubsequences: false)
+        let imports = Set(lines.filter { $0.hasPrefix("import ") })
+        lines.removeAll { imports.contains($0) }
+        lines.insert(contentsOf: imports.sorted(), at: 0)
+        content = lines.joined(separator: "\n")
     }
 }
