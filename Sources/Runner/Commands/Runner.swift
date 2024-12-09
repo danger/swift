@@ -63,8 +63,8 @@ func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
         libArgs += ["-I", spmDanger.moduleFolder]
         libArgs += [spmDanger.swiftcLibImport]
     } else {
-        guard let libDangerPath = Runtime.getLibDangerPath() else {
-            let potentialFolders = Runtime.potentialLibraryFolders
+        guard let libDangerPath = Runtime.getLibDangerPath(forDangerSwiftVersion: dangerSwiftVersion) else {
+            let potentialFolders = Runtime.potentialLibraryFolders(forDangerSwiftVersion: dangerSwiftVersion)
             logger.logError("Could not find a libDanger to link against at any of: \(potentialFolders)",
                             "Or via Homebrew, or Marathon",
                             separator: "\n")
