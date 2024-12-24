@@ -3,6 +3,9 @@ import DangerShellExecutor
 import Foundation
 import Logger
 import RunnerLib
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 // swiftlint:disable:next function_body_length
 func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
@@ -152,19 +155,19 @@ func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
 
     // Create a process to eval the Swift file
     let proc = Process()
-    proc.launchPath = swiftC
+    proc.executableURL = URL(fileURLWithPath: swiftC)
     proc.arguments = args
     let standardOutput = FileHandle.standardOutput
     if let cwdOptionIndex = CommandLine.arguments.firstIndex(of: DangeSwiftRunnerOption.cwd.rawValue),
        (cwdOptionIndex + 1) < CommandLine.arguments.count,
        let directoryURL = URL(string: CommandLine.arguments[cwdOptionIndex + 1])
     {
-        proc.currentDirectoryPath = directoryURL.absoluteString
+        proc.currentDirectoryURL = directoryURL
     }
     proc.standardOutput = standardOutput
     proc.standardError = standardOutput
 
-    proc.launch()
+    try proc.run()
     proc.waitUntilExit()
 
     logger.debug("Completed evaluation")
