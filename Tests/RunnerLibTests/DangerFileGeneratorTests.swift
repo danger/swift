@@ -43,7 +43,11 @@ final class DangerFileGeneratorTests: XCTestCase {
     }
 
     func testItGeneratesTheCorrectFileWhenThereAreNoImports() throws {
-        try generator.generateDangerFile(fromContent: contentWithoutImports, fileName: generatedFilePath, logger: logger)
+        try generator.generateDangerFile(
+            fromContent: headerForContentWithoutImports + contentWithoutImports,
+            fileName: generatedFilePath,
+            logger: logger
+        )
 
         try assertSnapshot(matching: generatedContent(), as: .lines)
     }
@@ -83,9 +87,29 @@ final class DangerFileGeneratorTests: XCTestCase {
 
         try assertSnapshot(matching: generatedContent(), as: .lines)
     }
+
+    func testItGeneratesTheCorrectFileWhenThereIsAreImportsWithIndent() throws {
+        try? file2Content.write(toFile: file2Path, atomically: true, encoding: .utf8)
+        try? file3Content.write(toFile: file3Path, atomically: true, encoding: .utf8)
+
+        createdFiles.append(file2Path)
+        createdFiles.append(file3Path)
+
+        try generator.generateDangerFile(fromContent: contentWithImportsWithIndent, fileName: generatedFilePath, logger: logger)
+
+        try assertSnapshot(matching: generatedContent(), as: .lines)
+    }
 }
 
 extension DangerFileGeneratorTests {
+    private var headerForContentWithoutImports: String {
+        """
+        import Danger
+
+        let danger = Danger()
+        """ + "\n\n"
+    }
+
     private var contentWithoutImports: String {
         """
         message("Text")
@@ -94,12 +118,25 @@ extension DangerFileGeneratorTests {
     }
 
     private var contentWithOneImport: String {
-        "// fileImport: " + file1Path + "\n" + contentWithoutImports
+        headerForContentWithoutImports
+            + "// fileImport: " + file1Path + "\n"
+            + contentWithoutImports
     }
 
     private var contentWithMultipleImports: String {
-        "// fileImport: " + file2Path + "\n\n" +
-            "// fileImport: " + file3Path + "\n" + contentWithOneImport
+        "// fileImport: " + file2Path + "\n\n"
+            + "// fileImport: " + file3Path + "\n"
+            + contentWithOneImport
+    }
+
+    private var contentWithImportsWithIndent: String {
+        headerForContentWithoutImports
+            + "if flag {\n"
+            + "    // fileImport: " + file2Path + "\n"
+            + "} else {\n"
+            + "    // fileImport: " + file3Path + "\n"
+            + "}\n"
+            + contentWithoutImports
     }
 
     private var file1Content: String {
@@ -111,12 +148,17 @@ extension DangerFileGeneratorTests {
 
     private var file2Content: String {
         """
+        import Danger
+        
         file2Content ⚠️
         """
     }
 
     private var file3Content: String {
         """
+        import Danger
+        import Foundation
+        
         file3Content 👩‍👩‍👦‍👦
         secondLine
         really really really really really really really really really really really really \
