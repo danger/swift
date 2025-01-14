@@ -56,7 +56,7 @@ extension ShellExecuting {
 public struct ShellExecutor: ShellExecuting {
     /// Queue used to concurrently listen to both stdout and stderr
     private let outputQueue = DispatchQueue(label: "ShellExecutor.outputQueue", attributes: .concurrent)
-    
+
     public init() {}
 
     public func execute(_ command: String,
