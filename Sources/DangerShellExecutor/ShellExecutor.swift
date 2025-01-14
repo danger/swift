@@ -54,6 +54,9 @@ extension ShellExecuting {
 }
 
 public struct ShellExecutor: ShellExecuting {
+    /// Queue used to concurrently listen to both stdout and stderr
+    private let outputQueue = DispatchQueue(label: "ShellExecutor.outputQueue", attributes: .concurrent)
+    
     public init() {}
 
     public func execute(_ command: String,
@@ -98,12 +101,23 @@ public struct ShellExecutor: ShellExecuting {
         task.standardError = stderr
         try task.run()
 
-        // Pull out the STDOUT as a string because we'll need that regardless
-        let stdoutData = stdout.fileHandleForReading.readDataToEndOfFile()
-        let stdoutString = String(data: stdoutData, encoding: .utf8)!
+        let group = DispatchGroup()
 
-        // Read from STDERR to ensure the `Pipe` does not fill up
-        let stderrData = stderr.fileHandleForReading.readDataToEndOfFile()
+        var stdoutString: String!
+        var stderrData: Data!
+
+        outputQueue.async(group: group, qos: .userInitiated) {
+            // Pull out the STDOUT as a string because we'll need that regardless
+            let stdoutData = stdout.fileHandleForReading.readDataToEndOfFile()
+            stdoutString = String(data: stdoutData, encoding: .utf8)!
+        }
+
+        outputQueue.async(group: group, qos: .userInitiated) {
+            // Read from STDERR to ensure the `Pipe` does not fill up
+            stderrData = stderr.fileHandleForReading.readDataToEndOfFile()
+        }
+
+        group.wait()
 
         task.waitUntilExit()
 
