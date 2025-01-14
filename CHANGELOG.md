@@ -14,6 +14,7 @@
 ## Master
 
 - Add Android support [@marcprux][] - [#635](https://github.com/danger/swift/pull/635)
+- Drain stdout and stderr concurrently [@jflan-dd] - [#636](https://github.com/danger/swift/pull/636)
 
 ## 3.20.2
 
