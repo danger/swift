@@ -13,6 +13,8 @@
 
 ## Master
 
+- Support user type mannequin on for GitHub [@f-meloni][] - [#638](https://github.com/danger/swift/pull/638)
+
 ## 3.20.2
 
 - Fix install script to work with Swift 6.0 [@f-meloni][] - [#627](https://github.com/danger/swift/pull/628)
