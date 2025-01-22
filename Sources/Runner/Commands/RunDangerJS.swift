@@ -1,6 +1,9 @@
 import Foundation
 import Logger
 import RunnerLib
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger) throws -> Int32 {
     guard let dangerJS = try? getDangerCommandPath(logger: logger) else {
@@ -22,7 +25,7 @@ func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger
 
     let proc = Process()
     proc.environment = ProcessInfo.processInfo.environment
-    proc.launchPath = dangerJS
+    proc.executableURL = URL(fileURLWithPath: dangerJS)
 
     let dangerOptionsIndexes = DangerSwiftOption.allCases
         .compactMap { option -> (DangerSwiftOption, Int)? in
@@ -62,8 +65,8 @@ func runDangerJSCommandToRunDangerSwift(_ command: DangerCommand, logger: Logger
     proc.standardOutput = standardOutput
     proc.standardError = standardOutput
 
-    logger.debug("Running: \(proc.launchPath!) \(proc.arguments!.joined(separator: " ")) ")
-    proc.launch()
+    logger.debug("Running: \(proc.executableURL!) \(proc.arguments!.joined(separator: " ")) ")
+    try proc.run()
     proc.waitUntilExit()
 
     return proc.terminationStatus

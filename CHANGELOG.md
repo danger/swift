@@ -14,6 +14,7 @@
 ## Master
 
 - Support user type mannequin on for GitHub [@f-meloni][] - [#638](https://github.com/danger/swift/pull/638)
+- Add Android support [@marcprux][] - [#635](https://github.com/danger/swift/pull/635)
 
 ## 3.20.2
 

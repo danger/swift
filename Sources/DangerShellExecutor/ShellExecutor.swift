@@ -1,4 +1,7 @@
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 public enum SpawnError: Error {
     case commandFailed(command: String, exitCode: Int32, stdout: String, stderr: String)
@@ -62,16 +65,19 @@ public struct ShellExecutor: ShellExecuting {
                             with: arguments,
                             environmentVariables: environmentVariables,
                             outputFile: outputFile)
+        do {
+            let pipe = Pipe()
+            task.standardOutput = pipe
+            try task.run()
 
-        let pipe = Pipe()
-        task.standardOutput = pipe
-        task.launch()
+            let data = pipe.fileHandleForReading.readDataToEndOfFile()
 
-        let data = pipe.fileHandleForReading.readDataToEndOfFile()
+            task.waitUntilExit()
 
-        task.waitUntilExit()
-
-        return String(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+            return String(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+        } catch {
+            return error.localizedDescription
+        }
     }
 
     // Similar to above, but can throw, and throws with most of
@@ -90,7 +96,7 @@ public struct ShellExecutor: ShellExecuting {
         task.standardOutput = stdout
         let stderr = Pipe()
         task.standardError = stderr
-        task.launch()
+        try task.run()
 
         // Pull out the STDOUT as a string because we'll need that regardless
         let stdoutData = stdout.fileHandleForReading.readDataToEndOfFile()
@@ -131,10 +137,10 @@ public struct ShellExecutor: ShellExecuting {
         let script = "\(command) \(arguments.joined(separator: " "))" + scriptOutputFile
 
         let task = Process()
-        task.launchPath = "/bin/sh"
+        task.executableURL = URL(fileURLWithPath: "/bin/sh")
         task.arguments = ["-c", script]
         task.environment = mergeEnvs(localEnv: environmentVariables, processEnv: ProcessInfo.processInfo.environment)
-        task.currentDirectoryPath = FileManager.default.currentDirectoryPath
+        task.currentDirectoryURL = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
         return task
     }
 
