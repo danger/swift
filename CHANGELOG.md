@@ -13,6 +13,8 @@
 
 ## Master
 
+- Add mise support [@msnazarow][] - [#633](https://github.com/danger/swift/pull/633)
+- Replace deprecated properties and functions in Process [@417-72KI][] - [#634](https://github.com/danger/swift/pull/634)
 - Support user type mannequin on for GitHub [@f-meloni][] - [#638](https://github.com/danger/swift/pull/638)
 - Add Android support [@marcprux][] - [#635](https://github.com/danger/swift/pull/635)
 
@@ -606,3 +608,4 @@ This release also includes:
 [@mxsc]: https://github.com/mxsc
 [@aserdobintsev]: https://github.com/aserdobintsev
 [@dromerobarria]: https://github.com/dromerobarria
+[@msnazarow]: https://github.com/msnazarow
