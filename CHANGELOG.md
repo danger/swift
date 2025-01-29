@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.21.1
+
 - Fix current directory url creation [@f-meloni][] - [#640](https://github.com/danger/swift/pull/640)
 
 ## 3.21.0
