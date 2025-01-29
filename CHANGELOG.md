@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix current directory url creation [@f-meloni][] - [#640](https://github.com/danger/swift/pull/640)
+
 ## 3.21.0
 
 - Add mise support [@msnazarow][] - [#633](https://github.com/danger/swift/pull/633)
