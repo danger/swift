@@ -159,9 +159,9 @@ func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
     proc.arguments = args
     let standardOutput = FileHandle.standardOutput
     if let cwdOptionIndex = CommandLine.arguments.firstIndex(of: DangeSwiftRunnerOption.cwd.rawValue),
-       (cwdOptionIndex + 1) < CommandLine.arguments.count,
-       let directoryURL = URL(string: CommandLine.arguments[cwdOptionIndex + 1])
+       (cwdOptionIndex + 1) < CommandLine.arguments.count
     {
+        let directoryURL = URL(fileURLWithPath: CommandLine.arguments[cwdOptionIndex + 1])
         proc.currentDirectoryURL = directoryURL
     }
     proc.standardOutput = standardOutput
