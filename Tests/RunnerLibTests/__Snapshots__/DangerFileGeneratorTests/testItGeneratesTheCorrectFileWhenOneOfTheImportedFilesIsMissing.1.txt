@@ -1,6 +1,11 @@
+import Danger
+
 file2Content ⚠️
 
 // fileImport: GeneratedTestFile3.swift
+
+let danger = Danger()
+
 file1Content 👍🏻
 secondLine
 message("Text")

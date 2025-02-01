@@ -1,3 +1,5 @@
+import Danger
+
 func checkChangelog() {
     let allSourceFiles = danger.git.modifiedFiles + danger.git.createdFiles
 

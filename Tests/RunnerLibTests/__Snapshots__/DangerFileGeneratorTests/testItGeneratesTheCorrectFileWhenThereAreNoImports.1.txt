@@ -1,2 +1,6 @@
+import Danger
+
+let danger = Danger()
+
 message("Text")
 message("Another Text")
