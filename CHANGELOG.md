@@ -23,6 +23,7 @@
 - Replace deprecated properties and functions in Process [@417-72KI][] - [#634](https://github.com/danger/swift/pull/634)
 - Support user type mannequin on for GitHub [@f-meloni][] - [#638](https://github.com/danger/swift/pull/638)
 - Add Android support [@marcprux][] - [#635](https://github.com/danger/swift/pull/635)
+- Drain stdout and stderr concurrently [@jflan-dd] - [#636](https://github.com/danger/swift/pull/636)
 
 ## 3.20.2
 
