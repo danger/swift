@@ -133,6 +133,17 @@ SwiftLint.lint(swiftlintPath: "Pods/SwiftLint/swiftlint")
 
 This is mainly the work of [Ash Furrow][ash] and [Łukasz Mróz][sun] over at [danger-swiftlint][].
 
+#### Note
+
+If the following setting is enabled in the SwiftLint configuration specified for the configFile argument, Danger will fail because it cannot parse the output from SwiftLint.
+
+When using SwiftLint with Danger, you need to either set the following configuration to false or remove it.
+
+```yml
+# If true, SwiftLint will check for updates after linting or analyzing.
+check_for_updates: true
+```
+
 ## Next steps
 
 - Read the [Culture doc][culture] on how to introduce new rules without annoying teammates
