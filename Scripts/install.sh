@@ -20,7 +20,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 else
     BUILD_FOLDER=".build/debug"
     swift build --disable-sandbox
-    MAJOR_VERSION=$(swift --version | awk '{for(i=1;i<=NF;i++){if($i ~ /^[0-9]+\.[0-9]+\.[0-9]?$/){print $i; break}}}' | cut -d '.' -f 1)
+    MAJOR_VERSION=$(swift --version | awk '{for(i=1;i<=NF;i++){if($i ~ /^[0-9]+\.[0-9]+(\.[0-9]+)?$/){print $i; break}}}' | cut -d '.' -f 1)
 fi
 
 mkdir -p "$PREFIX/bin"
