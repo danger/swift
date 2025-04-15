@@ -77,8 +77,8 @@ public struct ShellExecutor: ShellExecuting {
 
             task.waitUntilExit()
 
-            let result = String(data: data, encoding: .utf8) ?? ""
-            return result.trimmingCharacters(in: .whitespacesAndNewlines)
+            let result = String(data: data, encoding: .utf8).map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? ""
+            return result
         } catch {
             return error.localizedDescription
         }
