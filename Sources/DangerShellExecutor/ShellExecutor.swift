@@ -77,7 +77,8 @@ public struct ShellExecutor: ShellExecuting {
 
             task.waitUntilExit()
 
-            return String(data: data, encoding: .utf8)!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let result = String(data: data, encoding: .utf8).map { $0.trimmingCharacters(in: .whitespacesAndNewlines) } ?? ""
+            return result
         } catch {
             return error.localizedDescription
         }
@@ -109,7 +110,7 @@ public struct ShellExecutor: ShellExecuting {
         outputQueue.async(group: group, qos: .userInitiated) {
             // Pull out the STDOUT as a string because we'll need that regardless
             let stdoutData = stdout.fileHandleForReading.readDataToEndOfFile()
-            stdoutString = String(data: stdoutData, encoding: .utf8)!
+            stdoutString = String(data: stdoutData, encoding: .utf8) ?? ""
         }
 
         outputQueue.async(group: group, qos: .userInitiated) {
