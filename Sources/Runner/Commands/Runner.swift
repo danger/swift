@@ -162,7 +162,7 @@ func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
        (cwdOptionIndex + 1) < CommandLine.arguments.count
     {
         let directoryURL = URL(fileURLWithPath: CommandLine.arguments[cwdOptionIndex + 1])
-        proc.currentDirectoryURL = directoryURL
+        proc.currentDirectoryURL = directoryURL.absoluteURL
     }
     proc.standardOutput = standardOutput
     proc.standardError = standardOutput
