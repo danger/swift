@@ -15,7 +15,7 @@
 
 ## 3.21.2
 
-- Fix Runner's path resolution to enable `--cwd` with relative paths [@Fab1n][] - [#650](https://github.com/danger/swift/pull/650)
+- Fix Runner's path resolution to enable `--cwd` with relative paths [@Fab1n](https://github.com/Fab1n) - [#650](https://github.com/danger/swift/pull/650)
 
 ## 3.21.1
 
