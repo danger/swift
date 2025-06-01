@@ -13,9 +13,9 @@
 
 ## Master
 
-## 3.21.2
-
 - Fix Runner's path resolution to enable `--cwd` with relative paths [@Fab1n](https://github.com/Fab1n) - [#650](https://github.com/danger/swift/pull/650)
+- Fixed issue with string force unwrap [@Davarg][] - [#647](https://github.com/danger/swift/pull/647)
+- Fix detecting MAJOR_VERSION in linux [@417-72KI][] - [#646](https://github.com/danger/swift/pull/646)
 
 ## 3.21.1
 
@@ -620,3 +620,4 @@ This release also includes:
 [@aserdobintsev]: https://github.com/aserdobintsev
 [@dromerobarria]: https://github.com/dromerobarria
 [@msnazarow]: https://github.com/msnazarow
+[@Davarg]https://github.com/Davarg
