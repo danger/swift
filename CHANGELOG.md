@@ -624,5 +624,5 @@ This release also includes:
 [@aserdobintsev]: https://github.com/aserdobintsev
 [@dromerobarria]: https://github.com/dromerobarria
 [@msnazarow]: https://github.com/msnazarow
-[@Davarg]https://github.com/Davarg
+[@Davarg]: https://github.com/Davarg
 [@gsl-anthonymerle]: https://github.com/gsl-anthonymerle
