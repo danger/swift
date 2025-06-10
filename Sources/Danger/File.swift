@@ -19,7 +19,7 @@ public extension File {
 
 public enum FileType: String, Equatable, CaseIterable {
     // swiftlint:disable:next identifier_name
-    case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml
+    case h, json, m, markdown = "md", mm, pbxproj, plist, storyboard, swift, xcscheme, yaml, yml, xctestplan
 }
 
 // MARK: - FileType extensions

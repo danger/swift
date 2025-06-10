@@ -13,6 +13,8 @@
 
 ## Master
 
+- Add `.xctestplan` extension to available file extensions [@gsl-anthonymerle][] - [#653](https://github.com/danger/swift/pull/653)
+
 ## 3.21.2
 
 - Fix Runner's path resolution to enable `--cwd` with relative paths [@Fab1n](https://github.com/Fab1n) - [#650](https://github.com/danger/swift/pull/650)
@@ -622,4 +624,5 @@ This release also includes:
 [@aserdobintsev]: https://github.com/aserdobintsev
 [@dromerobarria]: https://github.com/dromerobarria
 [@msnazarow]: https://github.com/msnazarow
-[@Davarg]https://github.com/Davarg
+[@Davarg]: https://github.com/Davarg
+[@gsl-anthonymerle]: https://github.com/gsl-anthonymerle

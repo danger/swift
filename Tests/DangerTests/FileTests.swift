@@ -129,4 +129,12 @@ final class FileTests: XCTestCase {
 
         XCTAssertEqual(file.fileType, expectedType)
     }
+
+    func test_fileType_forXCTestPlan() {
+        let file: File = "TestPlan.xctestplan"
+
+        let expectedType: FileType = .xctestplan
+
+        XCTAssertEqual(file.fileType, expectedType)
+    }
 }
