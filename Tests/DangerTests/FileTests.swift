@@ -135,6 +135,6 @@ final class FileTests: XCTestCase {
 
         let expectedType: FileType = .xctestplan
 
-        XCTassertEqual(file.fileType, expectedType)
+        XCTAssertEqual(file.fileType, expectedType)
     }
 }
