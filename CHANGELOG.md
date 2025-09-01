@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.22.0
+
 - Add `.xctestplan` extension to available file extensions [@gsl-anthonymerle][] - [#653](https://github.com/danger/swift/pull/653)
 
 ## 3.21.2
