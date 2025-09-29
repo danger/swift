@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix arguments for danger-js to avoid discarding URL which contains `danger-swift` [@417-72KI][] - [#656](https://github.com/danger/swift/pull/656)
+
 ## 3.22.0
 
 - Add `.xctestplan` extension to available file extensions [@gsl-anthonymerle][] - [#653](https://github.com/danger/swift/pull/653)
