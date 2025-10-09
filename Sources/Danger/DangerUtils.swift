@@ -1,7 +1,7 @@
-import DangerShellExecutor
+@_implementationOnly import DangerShellExecutor
 import Foundation
-import OctoKit
-import RequestKit
+@_implementationOnly import OctoKit
+@_implementationOnly import RequestKit
 
 /// Utility functions that make Dangerfiles easier to write
 
