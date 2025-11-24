@@ -198,7 +198,7 @@ public extension GitHub {
             case user = "User"
             case organization = "Organization"
             case bot = "Bot"
-            case mannequin
+            case mannequin = "Mannequin"
         }
 
         /// The UUID for the user organization.
