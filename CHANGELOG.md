@@ -13,6 +13,7 @@
 
 ## Master
 
+- Fix enum case value for mannequin in UserType [@tahirmt][] - [#659](https://github.com/danger/swift/pull/659)
 - Fix arguments for danger-js to avoid discarding URL which contains `danger-swift` [@417-72KI][] - [#656](https://github.com/danger/swift/pull/656)
 
 ## 3.22.0
@@ -630,3 +631,4 @@ This release also includes:
 [@msnazarow]: https://github.com/msnazarow
 [@Davarg]: https://github.com/Davarg
 [@gsl-anthonymerle]: https://github.com/gsl-anthonymerle
+[@tahirmt]: https://github.com/tahirmt

@@ -17,7 +17,7 @@ RUN apt-get update -q \
     && rm -r /var/lib/apt/lists/*
 
 
-# RUN git clone -b 0.50.3 --single-branch --depth 1 https://github.com/realm/SwiftLint.git _swiftlint && cd _swiftlint && git submodule update --init --recursive && make install && rm -rf _swiftlint # swiftlint
+RUN curl -s https://api.github.com/repos/realm/SwiftLint/releases/latest | grep "browser_download_url" | grep "swiftlint_linux_amd64.zip" | cut -d '"' -f 4 | xargs curl -L -o swiftlint.zip && unzip swiftlint.zip -d swiftlint && mv swiftlint/swiftlint /usr/local/bin/swiftlint && chmod +x /usr/local/bin/swiftlint && rm -rf swiftlint swiftlint.zip  # swiftlint
 
 # Install danger-swift globally
 COPY . _danger-swift
