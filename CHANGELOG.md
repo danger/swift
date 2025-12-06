@@ -13,6 +13,8 @@
 
 ## Master
 
+## 3.22.1
+
 - Fix enum case value for mannequin in UserType [@tahirmt][] - [#659](https://github.com/danger/swift/pull/659)
 - Fix arguments for danger-js to avoid discarding URL which contains `danger-swift` [@417-72KI][] - [#656](https://github.com/danger/swift/pull/656)
 
