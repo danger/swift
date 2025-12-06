@@ -26,6 +26,7 @@ let devDependencies: [Package.Dependency] = isDevelop
         swiftLint,
         .package(url: "https://github.com/pointfreeco/swift-snapshot-testing.git", from: "1.17.0"),
         .package(url: "https://github.com/shibapm/Rocket", from: "1.3.0"),
+        .package(url: "https://github.com/shibapm/PackageConfig.git", .upToNextMajor(from: "1.0.1")),
     ] : []
 let devTargets: [Target] = isDevelop
     ? [
@@ -45,7 +46,7 @@ let devTargets: [Target] = isDevelop
                         "DangerDependenciesResolver",
                         .product(name: "SnapshotTesting", package: "swift-snapshot-testing"),
                     ],
-                    exclude: ["__Snapshots__"]),
+                    exclude: ["__Snapshots__"])
     ]
     : []
 
