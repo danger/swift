@@ -1,5 +1,5 @@
 #!/bin/bash
-# Clone tap repo
+# Clone tap repo and update the formula to use the prebuilt universal binary.
 
 GIT_ORIGIN_NAME=`git remote get-url origin`
 if [[ $GIT_ORIGIN_NAME != *"danger/"* ]]; then
@@ -8,39 +8,43 @@ if [[ $GIT_ORIGIN_NAME != *"danger/"* ]]; then
 fi
 
 TOOL_NAME=danger-swift
+BINARY_TARBALL="danger-swift-macos-universal.tar.gz"
+BINARY_URL="https://github.com/danger/danger-swift/releases/download/$VERSION/$BINARY_TARBALL"
 
 HOMEBREW_TAP_TMPDIR=$(mktemp -d)
 git clone --depth 1 https://github.com/danger/homebrew-tap.git "$HOMEBREW_TAP_TMPDIR"
 cd "$HOMEBREW_TAP_TMPDIR" || exit 1
 
-TAR_FILENAME="$TOOL_NAME-$VERSION.tar.gz"
-wget "https://github.com/danger/$TOOL_NAME/archive/$VERSION.tar.gz" -O "$TAR_FILENAME" 2> /dev/null
-SHA=`shasum -a 256 "$TAR_FILENAME" | head -n1 | cut -d " " -f1`
-rm "$TAR_FILENAME" 2> /dev/null
+# Compute SHA256 of the prebuilt universal binary.
+wget "$BINARY_URL" -O "$BINARY_TARBALL" 2> /dev/null
+SHA=`shasum -a 256 "$BINARY_TARBALL" | head -n1 | cut -d " " -f1`
+rm "$BINARY_TARBALL" 2> /dev/null
 
-# git config user.name danger
-# git config user.email danger@users.noreply.github.com
+# Write formula using the prebuilt binary — no Xcode or compilation required.
+cat > danger-swift.rb <<FORMULA
+class DangerSwift < Formula
+  desc "Write your Dangerfiles in Swift"
+  homepage "https://github.com/danger/danger-swift"
+  version "$VERSION"
 
-# Write formula
-echo "class DangerSwift < Formula" > danger-swift.rb
-echo "  desc \"Write your Dangerfiles in Swift\"" >> danger-swift.rb
-echo "  homepage \"https://github.com/danger/danger-swift\"" >> danger-swift.rb
-echo "  version \"$VERSION\"" >> danger-swift.rb
-echo "  url \"https://github.com/danger/danger-swift/archive/#{version}.tar.gz\"" >> danger-swift.rb
-echo "  sha256 \"${SHA}\"" >> danger-swift.rb
-echo "  head \"https://github.com/danger/danger-swift.git\""  >> danger-swift.rb
-echo >> danger-swift.rb
-echo "  # Runs only on Xcode 14" >> danger-swift.rb
-echo "  depends_on :xcode => [\"14\", :build]" >> danger-swift.rb
-echo "  # Use the vendored danger" >> danger-swift.rb
-echo "  depends_on \"danger/tap/danger-js\"" >> danger-swift.rb
-echo >> danger-swift.rb
-echo "  def install" >> danger-swift.rb
-echo "    system \"make\", \"install\", \"PREFIX=#{prefix}\"" >> danger-swift.rb
-echo "  end" >> danger-swift.rb
-echo "end" >> danger-swift.rb
+  # Universal binary (arm64 + x86_64) — works on Apple Silicon and Rosetta.
+  url "$BINARY_URL"
+  sha256 "${SHA}"
 
-#Commit changes
+  # Use the vendored danger
+  depends_on "danger/tap/danger-js"
+
+  def install
+    bin.install "danger-swift"
+  end
+
+  test do
+    assert_match "danger-swift", shell_output("#{bin}/danger-swift --help 2>&1")
+  end
+end
+FORMULA
+
+# Commit changes
 git add danger-swift.rb 2> /dev/null
 git commit -m "Releasing danger-swift version $VERSION" --quiet
 git push origin master
