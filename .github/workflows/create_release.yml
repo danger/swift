@@ -8,6 +8,9 @@ on:
     tags:
       - '*'
 
+permissions:
+  contents: write
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
@@ -17,8 +20,39 @@ jobs:
 
       - name: Export tag version
         run: echo "VERSION=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-        
+
       - name: Create release
         run: ./Scripts/release_changelog.sh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  release-macos:
+    name: Build universal binary & publish
+    needs: build
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build universal binary (arm64 + x86_64)
+        run: |
+          swift build -c release --arch arm64
+          swift build -c release --arch x86_64
+          lipo -create \
+            .build/arm64-apple-macosx/release/danger-swift \
+            .build/x86_64-apple-macosx/release/danger-swift \
+            -output .build/release/danger-swift
+          lipo -info .build/release/danger-swift
+
+      - name: Package binary
+        run: |
+          TARBALL="danger-swift-macos-universal.tar.gz"
+          tar -czf "$TARBALL" -C .build/release danger-swift
+          shasum -a 256 "$TARBALL" > "$TARBALL.sha256"
+          echo "TARBALL=$TARBALL" >> "$GITHUB_ENV"
+
+      - name: Upload to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ env.TARBALL }}
+            ${{ env.TARBALL }}.sha256
