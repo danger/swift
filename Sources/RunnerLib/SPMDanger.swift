@@ -32,7 +32,7 @@ public struct SPMDanger {
         #if compiler(<6.0)
             return resolvedBuildFolder
         #else
-            if resolvedBuildFolder == modernBuildFolder {
+            if hasModernBuildFolder {
                 return resolvedBuildFolder
             }
 

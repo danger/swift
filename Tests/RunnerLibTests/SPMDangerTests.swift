@@ -115,7 +115,8 @@ final class SPMDangerTests: XCTestCase {
 
     func testItReturnsTheModernBuildFolderWhenPresent() throws {
         let fileManager = StubbedFileManager()
-        fileManager.existingPaths = Set(["testPath/.build/out/Products/Debug"])
+        let expectedModernPath = fileManager.currentDirectoryPath + "/.build/out/Products/Debug"
+        fileManager.existingPaths = Set([expectedModernPath])
 
         XCTAssertEqual(
             SPMDanger(
@@ -123,13 +124,14 @@ final class SPMDangerTests: XCTestCase {
                 readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
                 fileManager: fileManager
             )?.buildFolder,
-            "testPath/.build/out/Products/Debug"
+            expectedModernPath
         )
     }
 
     func testItReturnsTheModernModuleFolderWhenPresent() throws {
         let fileManager = StubbedFileManager()
-        fileManager.existingPaths = Set(["testPath/.build/out/Products/Debug"])
+        let expectedModernPath = fileManager.currentDirectoryPath + "/.build/out/Products/Debug"
+        fileManager.existingPaths = Set([expectedModernPath])
 
         XCTAssertEqual(
             SPMDanger(
@@ -137,7 +139,7 @@ final class SPMDangerTests: XCTestCase {
                 readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
                 fileManager: fileManager
             )?.moduleFolder,
-            "testPath/.build/out/Products/Debug"
+            expectedModernPath
         )
     }
 }
