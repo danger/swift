@@ -127,7 +127,7 @@ final class SPMDangerTests: XCTestCase {
         )
     }
 
-    func testItReturnsModernModuleFolderWhenPresent() throws {
+    func testItReturnsTheModernModuleFolderWhenPresent() throws {
         let fileManager = StubbedFileManager()
         fileManager.existingPaths = Set(["testPath/.build/out/Products/Debug"])
 
