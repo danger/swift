@@ -14,8 +14,12 @@ public struct SPMDanger {
         fileManager.currentDirectoryPath + "/.build/debug"
     }
 
+    private var hasModernBuildFolder: Bool {
+        fileManager.fileExists(atPath: modernBuildFolder)
+    }
+
     public var buildFolder: String {
-        if fileManager.fileExists(atPath: modernBuildFolder) {
+        if hasModernBuildFolder {
             return modernBuildFolder
         } else {
             return legacyBuildFolder
@@ -23,7 +27,7 @@ public struct SPMDanger {
     }
 
     public var moduleFolder: String {
-        if fileManager.fileExists(atPath: modernBuildFolder) {
+        if hasModernBuildFolder {
             return modernBuildFolder
         }
 
