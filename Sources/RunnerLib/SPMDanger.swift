@@ -6,15 +6,31 @@ public struct SPMDanger {
     private let fileManager: FileManager
     public let depsLibName: String
 
-    public var buildFolder: String {
+    private var modernBuildFolder: String {
+        fileManager.currentDirectoryPath + "/.build/out/Products/Debug"
+    }
+
+    private var legacyBuildFolder: String {
         fileManager.currentDirectoryPath + "/.build/debug"
     }
 
+    public var buildFolder: String {
+        if fileManager.fileExists(atPath: modernBuildFolder) {
+            return modernBuildFolder
+        } else {
+            return legacyBuildFolder
+        }
+    }
+
     public var moduleFolder: String {
+        if buildFolder == modernBuildFolder {
+            return modernBuildFolder
+        }
+
         #if compiler(<6.0)
-            buildFolder
+            return buildFolder
         #else
-            buildFolder + "/Modules"
+            return buildFolder + "/Modules"
         #endif
     }
 

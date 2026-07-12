@@ -100,22 +100,58 @@ final class SPMDangerTests: XCTestCase {
     }
 
     func testItReturnsTheCorrectBuildFolder() throws {
+        let fileManager = StubbedFileManager()
+        fileManager.existingPaths = []
+
         XCTAssertEqual(
             SPMDanger(
                 packagePath: testPackage,
                 readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
-                fileManager: StubbedFileManager()
+                fileManager: fileManager
             )?.buildFolder,
             "testPath/.build/debug"
+        )
+    }
+
+    func testItReturnsTheModernBuildFolderWhenPresent() throws {
+        let fileManager = StubbedFileManager()
+        fileManager.existingPaths = ["testPath/.build/out/Products/Debug"]
+
+        XCTAssertEqual(
+            SPMDanger(
+                packagePath: testPackage,
+                readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
+                fileManager: fileManager
+            )?.buildFolder,
+            "testPath/.build/out/Products/Debug"
+        )
+    }
+
+    func testItReturnsTheCorrectModernModuleFolderWhenModernBuildFolderExists() throws {
+        let fileManager = StubbedFileManager()
+        fileManager.existingPaths = ["testPath/.build/out/Products/Debug"]
+
+        XCTAssertEqual(
+            SPMDanger(
+                packagePath: testPackage,
+                readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
+                fileManager: fileManager
+            )?.moduleFolder,
+            "testPath/.build/out/Products/Debug"
         )
     }
 }
 
 private class StubbedFileManager: FileManager {
     fileprivate var stubbedFileExists: Bool = true
+    fileprivate var existingPaths = Set<String>()
 
-    override func fileExists(atPath _: String) -> Bool {
-        stubbedFileExists
+    override func fileExists(atPath path: String) -> Bool {
+        if existingPaths.isEmpty {
+            return stubbedFileExists
+        }
+
+        return existingPaths.contains(path)
     }
 
     override var currentDirectoryPath: String {
