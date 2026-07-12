@@ -27,14 +27,16 @@ public struct SPMDanger {
     }
 
     public var moduleFolder: String {
-        if hasModernBuildFolder {
-            return modernBuildFolder
-        }
+        let resolvedBuildFolder = buildFolder
 
         #if compiler(<6.0)
-            return buildFolder
+            return resolvedBuildFolder
         #else
-            return buildFolder + "/Modules"
+            if resolvedBuildFolder == modernBuildFolder {
+                return resolvedBuildFolder
+            }
+
+            return resolvedBuildFolder + "/Modules"
         #endif
     }
 
