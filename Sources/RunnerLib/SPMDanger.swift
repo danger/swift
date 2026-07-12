@@ -23,7 +23,7 @@ public struct SPMDanger {
     }
 
     public var moduleFolder: String {
-        if buildFolder == modernBuildFolder {
+        if fileManager.fileExists(atPath: modernBuildFolder) {
             return modernBuildFolder
         }
 

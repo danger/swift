@@ -115,7 +115,7 @@ final class SPMDangerTests: XCTestCase {
 
     func testItReturnsTheModernBuildFolderWhenPresent() throws {
         let fileManager = StubbedFileManager()
-        fileManager.existingPaths = ["testPath/.build/out/Products/Debug"]
+        fileManager.existingPaths = Set(["testPath/.build/out/Products/Debug"])
 
         XCTAssertEqual(
             SPMDanger(
@@ -129,7 +129,7 @@ final class SPMDangerTests: XCTestCase {
 
     func testItReturnsTheCorrectModernModuleFolderWhenModernBuildFolderExists() throws {
         let fileManager = StubbedFileManager()
-        fileManager.existingPaths = ["testPath/.build/out/Products/Debug"]
+        fileManager.existingPaths = Set(["testPath/.build/out/Products/Debug"])
 
         XCTAssertEqual(
             SPMDanger(
