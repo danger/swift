@@ -148,14 +148,14 @@ final class SPMDangerTests: XCTestCase {
 
 private class StubbedFileManager: FileManager {
     fileprivate var stubbedFileExists: Bool = true
-    fileprivate var existingPaths = Set<String>()
+    fileprivate var existingPaths: Set<String>?
 
     override func fileExists(atPath path: String) -> Bool {
-        if existingPaths.isEmpty {
-            return stubbedFileExists
+        if let existingPaths {
+            return existingPaths.contains(path)
         }
 
-        return existingPaths.contains(path)
+        return stubbedFileExists
     }
 
     override var currentDirectoryPath: String {
