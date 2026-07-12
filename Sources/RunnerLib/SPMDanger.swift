@@ -3,6 +3,11 @@ import Foundation
 
 public struct SPMDanger {
     private static let dangerDepsPrefix = "DangerDeps"
+    private enum BuildLayout {
+        case legacy
+        case modern
+    }
+
     private let fileManager: FileManager
     public let depsLibName: String
 
@@ -14,25 +19,31 @@ public struct SPMDanger {
         fileManager.currentDirectoryPath + "/.build/debug"
     }
 
-    private var hasModernBuildFolder: Bool {
-        fileManager.fileExists(atPath: modernBuildFolder)
+    private var buildLayout: BuildLayout {
+        if fileManager.fileExists(atPath: modernBuildFolder) {
+            return .modern
+        } else {
+            return .legacy
+        }
     }
 
     public var buildFolder: String {
-        if hasModernBuildFolder {
+        switch buildLayout {
+        case .modern:
             return modernBuildFolder
-        } else {
+        case .legacy:
             return legacyBuildFolder
         }
     }
 
     public var moduleFolder: String {
-        let resolvedBuildFolder = buildFolder
+        let layout = buildLayout
+        let resolvedBuildFolder = layout == .modern ? modernBuildFolder : legacyBuildFolder
 
         #if compiler(<6.0)
             return resolvedBuildFolder
         #else
-            if hasModernBuildFolder {
+            if layout == .modern {
                 return resolvedBuildFolder
             }
 

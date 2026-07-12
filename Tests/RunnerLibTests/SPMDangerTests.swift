@@ -6,6 +6,10 @@ final class SPMDangerTests: XCTestCase {
         "testPackage.swift"
     }
 
+    var modernBuildPath: String {
+        "testPath/.build/out/Products/Debug"
+    }
+
     func testItReturnsTrueWhenThePackageHasTheDangerLib() throws {
         let spmDanger = SPMDanger(packagePath: testPackage, readFile: { _ in ".library(name: \"DangerDeps\"" })
 
@@ -115,8 +119,7 @@ final class SPMDangerTests: XCTestCase {
 
     func testItReturnsTheModernBuildFolderWhenPresent() throws {
         let fileManager = StubbedFileManager()
-        let expectedModernPath = fileManager.currentDirectoryPath + "/.build/out/Products/Debug"
-        fileManager.existingPaths = Set([expectedModernPath])
+        fileManager.existingPaths = Set([modernBuildPath])
 
         XCTAssertEqual(
             SPMDanger(
@@ -124,14 +127,13 @@ final class SPMDangerTests: XCTestCase {
                 readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
                 fileManager: fileManager
             )?.buildFolder,
-            expectedModernPath
+            modernBuildPath
         )
     }
 
     func testItReturnsTheModernModuleFolderWhenPresent() throws {
         let fileManager = StubbedFileManager()
-        let expectedModernPath = fileManager.currentDirectoryPath + "/.build/out/Products/Debug"
-        fileManager.existingPaths = Set([expectedModernPath])
+        fileManager.existingPaths = Set([modernBuildPath])
 
         XCTAssertEqual(
             SPMDanger(
@@ -139,7 +141,7 @@ final class SPMDangerTests: XCTestCase {
                 readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
                 fileManager: fileManager
             )?.moduleFolder,
-            expectedModernPath
+            modernBuildPath
         )
     }
 }
