@@ -13,6 +13,8 @@
 
 ## Master
 
+- Fix Dangerfile compilation with Swift 6.2/Xcode 27 by supporting SwiftPM’s new `.build/out/Products/Debug` build layout [@f-meloni][]
+
 ## 3.22.1
 
 - Fix enum case value for mannequin in UserType [@tahirmt][] - [#659](https://github.com/danger/swift/pull/659)

@@ -3,18 +3,51 @@ import Foundation
 
 public struct SPMDanger {
     private static let dangerDepsPrefix = "DangerDeps"
+    private enum BuildLayout {
+        case legacy
+        case modern
+    }
+
     private let fileManager: FileManager
     public let depsLibName: String
 
-    public var buildFolder: String {
+    private var modernBuildFolder: String {
+        fileManager.currentDirectoryPath + "/.build/out/Products/Debug"
+    }
+
+    private var legacyBuildFolder: String {
         fileManager.currentDirectoryPath + "/.build/debug"
     }
 
+    private var buildLayout: BuildLayout {
+        if fileManager.fileExists(atPath: modernBuildFolder) {
+            return .modern
+        } else {
+            return .legacy
+        }
+    }
+
+    public var buildFolder: String {
+        switch buildLayout {
+        case .modern:
+            return modernBuildFolder
+        case .legacy:
+            return legacyBuildFolder
+        }
+    }
+
     public var moduleFolder: String {
+        let layout = buildLayout
+        let resolvedBuildFolder = layout == .modern ? modernBuildFolder : legacyBuildFolder
+
         #if compiler(<6.0)
-            buildFolder
+            return resolvedBuildFolder
         #else
-            buildFolder + "/Modules"
+            if layout == .modern {
+                return resolvedBuildFolder
+            }
+
+            return resolvedBuildFolder + "/Modules"
         #endif
     }
 
