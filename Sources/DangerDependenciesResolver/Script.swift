@@ -123,12 +123,30 @@ public final class Script {
     private var localPath: String { "Sources/\(name)/main.swift" }
     private var logger: Logger
 
+    /// Same probe as `SPMDanger.moduleFolder`: pick the exact artifact location (flat vs nested
+    /// under `Modules/`) for each build folder, falling back to today's compiled-in default when
+    /// the probe is ambiguous (both or neither candidate present) so no currently-working
+    /// configuration changes behavior.
     public var artifactsPath: [String] {
-        #if compiler(<6.0)
-            return [".build/debug", ".build/release"]
-        #else
-            return [".build/debug/Modules", ".build/release/Modules"]
-        #endif
+        [".build/debug", ".build/release"].map(Script.moduleFolder(forBuildFolder:))
+    }
+
+    private static func moduleFolder(forBuildFolder buildFolder: String) -> String {
+        let flatModule = buildFolder + "/Danger.swiftmodule"
+        let nestedModule = buildFolder + "/Modules/Danger.swiftmodule"
+
+        switch (FileManager.default.fileExists(atPath: flatModule), FileManager.default.fileExists(atPath: nestedModule)) {
+        case (true, false):
+            return buildFolder
+        case (false, true):
+            return buildFolder + "/Modules"
+        default:
+            #if compiler(<6.0)
+                return buildFolder
+            #else
+                return buildFolder + "/Modules"
+            #endif
+        }
     }
 
     init(name: String, folder: String, logger: Logger) {
