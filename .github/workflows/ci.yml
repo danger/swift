@@ -47,8 +47,14 @@ jobs:
         sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
         xcodebuild -version
 
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+
     - name: Install danger-js
-      run: brew install danger/tap/danger-js
+      run: |
+        yarn global add danger
+        echo `yarn global bin` >> $GITHUB_PATH
 
     - run: swift test
 
@@ -89,8 +95,14 @@ jobs:
         sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
         xcodebuild -version
 
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+
     - name: Install danger-js
-      run: brew install danger/tap/danger-js
+      run: |
+        yarn global add danger
+        echo `yarn global bin` >> $GITHUB_PATH
 
     - run: make install PREFIX='/opt/homebrew'
 
@@ -177,13 +189,16 @@ jobs:
         sudo xcode-select -switch /Applications/Xcode_${{ matrix.xcode }}.app
         xcodebuild -version
 
-    - name: Install danger-js
-      run: brew install danger/tap/danger-js
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
 
-    - run: make install
-      if: ${{ matrix.runner == 'macos-13' }}
+    - name: Install danger-js
+      run: |
+        yarn global add danger
+        echo `yarn global bin` >> $GITHUB_PATH
+
     - run: make install PREFIX='/opt/homebrew'
-      if: ${{ matrix.runner != 'macos-13' }}
 
     - run: rm -rf .build && rm -rf Package.swift
 
