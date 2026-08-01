@@ -67,7 +67,6 @@ final class SPMDangerTests: XCTestCase {
 
     func testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib() throws {
         let fileManager = StubbedFileManager()
-        fileManager.stubbedFileExists = false
 
         XCTAssertEqual(
             SPMDanger(
@@ -81,7 +80,7 @@ final class SPMDangerTests: XCTestCase {
 
     func testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsTheDangerLib() throws {
         let fileManager = StubbedFileManager()
-        fileManager.stubbedFileExists = true
+        fileManager.existingPaths = ["testPath/.build/debug/libDanger.dylib"]
 
         XCTAssertEqual(
             SPMDanger(packagePath: testPackage, readFile: { _ in ".library(name: \"DangerDepsEigen\"" }, fileManager: fileManager)?.xcodeImportFlags,
@@ -179,14 +178,10 @@ final class SPMDangerTests: XCTestCase {
 }
 
 private class StubbedFileManager: FileManager {
-    fileprivate var stubbedFileExists: Bool = true
-    fileprivate var existingPaths: Set<String>?
+    fileprivate var existingPaths: Set<String> = []
 
     override func fileExists(atPath path: String) -> Bool {
-        if let existingPaths {
-            return existingPaths.contains(path)
-        }
-        return stubbedFileExists
+        existingPaths.contains(path)
     }
 
     override var currentDirectoryPath: String {
