@@ -23,9 +23,8 @@ public struct SPMDanger {
     /// `buildFolder` is the `.build/debug` symlink, which SwiftPM repoints at the current
     /// products directory on every build, so probing through it always reflects the layout that
     /// produced the artifacts we are about to link against. Probing for the exact module (not
-    /// mere directory existence) avoids false positives from an empty/partial `Modules/`, a
-    /// leftover from a prior build under a different toolchain, or — on a case-insensitive
-    /// filesystem — an unrelated `modules` directory. When the probe is ambiguous (both or
+    /// mere directory existence) avoids a false positive from an empty/partial `Modules/` left
+    /// over from a prior build under a different toolchain. When the probe is ambiguous (both or
     /// neither candidate exists), keep today's compiled-in default instead of guessing, so no
     /// currently-working configuration changes behavior.
     public var moduleFolder: String {

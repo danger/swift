@@ -122,20 +122,22 @@ public final class Script {
     private var copyLoopDispatchQueue: DispatchQueue?
     private var localPath: String { "Sources/\(name)/main.swift" }
     private var logger: Logger
+    private var fileManager: FileManager
 
-    /// Same probe as `SPMDanger.moduleFolder`: pick the exact artifact location (flat vs nested
-    /// under `Modules/`) for each build folder, falling back to today's compiled-in default when
-    /// the probe is ambiguous (both or neither candidate present) so no currently-working
-    /// configuration changes behavior.
+    /// Same probe as `SPMDanger.moduleFolder`, but resolved against this script's own `folder`
+    /// rather than the process's current directory — `Runner.swift`'s caller joins the returned,
+    /// still-relative path onto `folder` itself, and the build this probes ran there too via
+    /// `build(withArguments:)`'s `--package-path \(folder)`.
     public var artifactsPath: [String] {
-        [".build/debug", ".build/release"].map(Script.moduleFolder(forBuildFolder:))
+        [".build/debug", ".build/release"].map(moduleFolder(forBuildFolder:))
     }
 
-    private static func moduleFolder(forBuildFolder buildFolder: String) -> String {
-        let flatModule = buildFolder + "/Danger.swiftmodule"
-        let nestedModule = buildFolder + "/Modules/Danger.swiftmodule"
+    private func moduleFolder(forBuildFolder buildFolder: String) -> String {
+        let absoluteBuildFolder = folder + "/" + buildFolder
+        let flatModule = absoluteBuildFolder + "/Danger.swiftmodule"
+        let nestedModule = absoluteBuildFolder + "/Modules/Danger.swiftmodule"
 
-        switch (FileManager.default.fileExists(atPath: flatModule), FileManager.default.fileExists(atPath: nestedModule)) {
+        switch (fileManager.fileExists(atPath: flatModule), fileManager.fileExists(atPath: nestedModule)) {
         case (true, false):
             return buildFolder
         case (false, true):
@@ -149,10 +151,11 @@ public final class Script {
         }
     }
 
-    init(name: String, folder: String, logger: Logger) {
+    init(name: String, folder: String, logger: Logger, fileManager: FileManager = .default) {
         self.name = name
         self.folder = folder
         self.logger = logger
+        self.fileManager = fileManager
     }
 
     public func build(withArguments arguments: [String] = []) throws {
