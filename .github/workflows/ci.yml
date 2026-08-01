@@ -18,12 +18,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - runner: "macos-13"
-            xcode: "14.3.1"
           - runner: "macos-14"
             xcode: "15.4"
           - runner: "macos-15"
             xcode: "16.1"
+          - runner: "macos-26"
+            xcode: "26.6"
     runs-on: ${{ matrix.runner }}
     steps:
     - uses: actions/checkout@v4
@@ -72,6 +72,8 @@ jobs:
             xcode: "15.4"
           - runner: "macos-15"
             xcode: "16.1"
+          - runner: "macos-26"
+            xcode: "26.6"
     runs-on: ${{ matrix.runner }}
     steps:
     - uses: actions/checkout@v4
@@ -160,12 +162,12 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - runner: "macos-13"
-            xcode: "14.3.1"
           - runner: "macos-14"
             xcode: "15.4"
           - runner: "macos-15"
             xcode: "16.1"
+          - runner: "macos-26"
+            xcode: "26.6"
     runs-on: ${{ matrix.runner }}
     steps:
     - uses: actions/checkout@v4
