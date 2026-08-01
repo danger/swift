@@ -13,7 +13,7 @@
 
 ## Master
 
-- Fixed macOS CI: the brew-installed `danger-js` binary embeds a Node 18 older than 18.17, which `undici` 6 requires, so every `fetch()` call (including fetching PR files) threw. Install `danger-js` via `setup-node` + `yarn` on macOS instead, matching the already-passing Linux CI. Also retired the `macos-13` legs (that runner image no longer exists) in favor of `macos-26`. [@DylanBettermannDD][]
+- Fixed macOS CI: the brew-installed `danger-js` binary embeds a Node 18 older than 18.17, which `undici` 6 requires, so every `fetch()` call (including fetching PR files) threw. Install `danger-js` via `setup-node` + `yarn` on macOS instead, matching the already-passing Linux CI. Also retired the `macos-13` legs (that runner image no longer exists) in favor of `macos-26`. [@DylanBettermannDD][] - [#664](https://github.com/danger/swift/pull/664)
 
 ## 3.22.1
 
