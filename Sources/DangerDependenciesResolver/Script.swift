@@ -122,19 +122,40 @@ public final class Script {
     private var copyLoopDispatchQueue: DispatchQueue?
     private var localPath: String { "Sources/\(name)/main.swift" }
     private var logger: Logger
+    private var fileManager: FileManager
 
+    /// Same probe as `SPMDanger.moduleFolder`, but resolved against this script's own `folder`
+    /// rather than the process's current directory — `Runner.swift`'s caller joins the returned,
+    /// still-relative path onto `folder` itself, and the build this probes ran there too via
+    /// `build(withArguments:)`'s `--package-path \(folder)`.
     public var artifactsPath: [String] {
-        #if compiler(<6.0)
-            return [".build/debug", ".build/release"]
-        #else
-            return [".build/debug/Modules", ".build/release/Modules"]
-        #endif
+        [".build/debug", ".build/release"].map(moduleFolder(forBuildFolder:))
     }
 
-    init(name: String, folder: String, logger: Logger) {
+    private func moduleFolder(forBuildFolder buildFolder: String) -> String {
+        let absoluteBuildFolder = folder + "/" + buildFolder
+        let flatModule = absoluteBuildFolder + "/Danger.swiftmodule"
+        let nestedModule = absoluteBuildFolder + "/Modules/Danger.swiftmodule"
+
+        switch (fileManager.fileExists(atPath: flatModule), fileManager.fileExists(atPath: nestedModule)) {
+        case (true, false):
+            return buildFolder
+        case (false, true):
+            return buildFolder + "/Modules"
+        default:
+            #if compiler(<6.0)
+                return buildFolder
+            #else
+                return buildFolder + "/Modules"
+            #endif
+        }
+    }
+
+    init(name: String, folder: String, logger: Logger, fileManager: FileManager = .default) {
         self.name = name
         self.folder = folder
         self.logger = logger
+        self.fileManager = fileManager
     }
 
     public func build(withArguments arguments: [String] = []) throws {

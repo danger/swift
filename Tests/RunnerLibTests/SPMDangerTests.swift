@@ -67,7 +67,6 @@ final class SPMDangerTests: XCTestCase {
 
     func testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsNoDangerLib() throws {
         let fileManager = StubbedFileManager()
-        fileManager.stubbedFileExists = false
 
         XCTAssertEqual(
             SPMDanger(
@@ -81,7 +80,7 @@ final class SPMDangerTests: XCTestCase {
 
     func testItReturnsTheCorrectXcodeDepsFlagsWhenThereIsTheDangerLib() throws {
         let fileManager = StubbedFileManager()
-        fileManager.stubbedFileExists = true
+        fileManager.existingPaths = ["testPath/.build/debug/libDanger.dylib"]
 
         XCTAssertEqual(
             SPMDanger(packagePath: testPackage, readFile: { _ in ".library(name: \"DangerDepsEigen\"" }, fileManager: fileManager)?.xcodeImportFlags,
@@ -109,13 +108,80 @@ final class SPMDangerTests: XCTestCase {
             "testPath/.build/debug"
         )
     }
+
+    func testModuleFolderReturnsFlatWhenOnlyTheFlatModuleExists() throws {
+        let fileManager = StubbedFileManager()
+        fileManager.existingPaths = ["testPath/.build/debug/Danger.swiftmodule"]
+
+        XCTAssertEqual(
+            SPMDanger(
+                packagePath: testPackage,
+                readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
+                fileManager: fileManager
+            )?.moduleFolder,
+            "testPath/.build/debug"
+        )
+    }
+
+    func testModuleFolderReturnsNestedWhenOnlyTheNestedModuleExists() throws {
+        let fileManager = StubbedFileManager()
+        fileManager.existingPaths = ["testPath/.build/debug/Modules/Danger.swiftmodule"]
+
+        XCTAssertEqual(
+            SPMDanger(
+                packagePath: testPackage,
+                readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
+                fileManager: fileManager
+            )?.moduleFolder,
+            "testPath/.build/debug/Modules"
+        )
+    }
+
+    func testModuleFolderFallsBackToTheCompiledDefaultWhenBothModulesExist() throws {
+        let fileManager = StubbedFileManager()
+        fileManager.existingPaths = [
+            "testPath/.build/debug/Danger.swiftmodule",
+            "testPath/.build/debug/Modules/Danger.swiftmodule",
+        ]
+
+        XCTAssertEqual(
+            SPMDanger(
+                packagePath: testPackage,
+                readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
+                fileManager: fileManager
+            )?.moduleFolder,
+            expectedCompiledDefaultModuleFolder
+        )
+    }
+
+    func testModuleFolderFallsBackToTheCompiledDefaultWhenNeitherModuleExists() throws {
+        let fileManager = StubbedFileManager()
+        fileManager.existingPaths = []
+
+        XCTAssertEqual(
+            SPMDanger(
+                packagePath: testPackage,
+                readFile: { _ in ".library(name: \"DangerDepsEigen\"" },
+                fileManager: fileManager
+            )?.moduleFolder,
+            expectedCompiledDefaultModuleFolder
+        )
+    }
+
+    private var expectedCompiledDefaultModuleFolder: String {
+        #if compiler(<6.0)
+            "testPath/.build/debug"
+        #else
+            "testPath/.build/debug/Modules"
+        #endif
+    }
 }
 
 private class StubbedFileManager: FileManager {
-    fileprivate var stubbedFileExists: Bool = true
+    fileprivate var existingPaths: Set<String> = []
 
-    override func fileExists(atPath _: String) -> Bool {
-        stubbedFileExists
+    override func fileExists(atPath path: String) -> Bool {
+        existingPaths.contains(path)
     }
 
     override var currentDirectoryPath: String {

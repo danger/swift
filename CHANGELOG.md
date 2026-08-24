@@ -16,6 +16,11 @@
 - Fixed the GitHub Action crashing on every run with `ReferenceError: File is not defined`. The Docker image pinned Node 18, but `danger-js` 14 installs `undici` 7, which needs Node 20.18.1 or newer. The image now installs Node 24, the current LTS. [@orta][] - [#666](https://github.com/danger/swift/issues/666)
 - Fixed CI: `yarn global add danger` always installs the latest `danger-js`, whose `content-type` dependency now requires Node >=22, but every CI job installed Node 20 via `setup-node`. Bump `setup-node` to Node 22 across all CI jobs. [@DylanBettermannDD][] - [#665](https://github.com/danger/swift/pull/665)
 - Fixed macOS CI: the brew-installed `danger-js` binary embeds a Node 18 older than 18.17, which `undici` 6 requires, so every `fetch()` call (including fetching PR files) threw. Install `danger-js` via `setup-node` + `yarn` on macOS instead, matching the already-passing Linux CI. Also retired the `macos-13` legs (that runner image no longer exists) in favor of `macos-26`. [@DylanBettermannDD][] - [#664](https://github.com/danger/swift/pull/664)
+- Fixed module lookup picking the wrong SwiftPM build layout (e.g. under the newer `swiftbuild`
+  build system, or a `danger-swift` binary built with a different Swift version than the one
+  building the target package), by probing for the actual `Danger.swiftmodule` artifact instead
+  of relying on the compiler that built `danger-swift` itself. [@DylanBettermannDD][] -
+  [#663](https://github.com/danger/swift/pull/663)
 
 ## 3.22.1
 

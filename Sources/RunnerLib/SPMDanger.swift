@@ -10,12 +10,39 @@ public struct SPMDanger {
         fileManager.currentDirectoryPath + "/.build/debug"
     }
 
+    /// SwiftPM's module output layout depends on the toolchain *and* the selected build system,
+    /// neither of which can be inferred from the compiler that built danger-swift itself (a
+    /// Homebrew binary, the prebuilt universal binary, or the official Docker image — which
+    /// defaults to an older Swift — are all routinely run against a different toolchain than the
+    /// one building the target package):
+    ///
+    ///   - native build system, Swift >= 6.0:               <buildFolder>/Modules/Danger.swiftmodule
+    ///   - native build system, Swift <  6.0:               <buildFolder>/Danger.swiftmodule
+    ///   - swiftbuild build system (default from Xcode 27): <buildFolder>/Danger.swiftmodule
+    ///
+    /// `buildFolder` is the `.build/debug` symlink, which SwiftPM repoints at the current
+    /// products directory on every build, so probing through it always reflects the layout that
+    /// produced the artifacts we are about to link against. Probing for the exact module (not
+    /// mere directory existence) avoids a false positive from an empty/partial `Modules/` left
+    /// over from a prior build under a different toolchain. When the probe is ambiguous (both or
+    /// neither candidate exists), keep today's compiled-in default instead of guessing, so no
+    /// currently-working configuration changes behavior.
     public var moduleFolder: String {
-        #if compiler(<6.0)
-            buildFolder
-        #else
-            buildFolder + "/Modules"
-        #endif
+        let flatModule = buildFolder + "/Danger.swiftmodule"
+        let nestedModule = buildFolder + "/Modules/Danger.swiftmodule"
+
+        switch (fileManager.fileExists(atPath: flatModule), fileManager.fileExists(atPath: nestedModule)) {
+        case (true, false):
+            return buildFolder
+        case (false, true):
+            return buildFolder + "/Modules"
+        default:
+            #if compiler(<6.0)
+                return buildFolder
+            #else
+                return buildFolder + "/Modules"
+            #endif
+        }
     }
 
     public init?(
