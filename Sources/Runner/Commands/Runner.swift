@@ -74,6 +74,7 @@ func runDanger(version dangerSwiftVersion: String, logger: Logger) throws {
             exit(1)
         }
 
+        libArgs += ["-F", libDangerPath] // Link to Danger.framework inside this folder
         libArgs += ["-L", libDangerPath] // Link to libDanger inside this folder
         libArgs += ["-I", libDangerPath] // Find libDanger inside this folder
 
