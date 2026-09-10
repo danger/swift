@@ -1,5 +1,5 @@
 import Foundation
-import OctoKit
+@_implementationOnly import OctoKit
 
 // swiftlint:disable nesting
 // swiftlint:disable file_length
@@ -24,7 +24,9 @@ public struct GitHub: Decodable {
 
     public let requestedReviewers: RequestedReviewers
 
-    public internal(set) var api: Octokit!
+    // Not currently solving for this -- it will probably require
+    // wrapping OctoKit.
+    public internal(set) var api: Any!
 }
 
 public extension GitHub {
