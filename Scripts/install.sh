@@ -32,7 +32,7 @@ for ARG in "${SWIFT_LIB_FILES[@]}"; do
     ARRAY+=("$BUILD_FOLDER/$ARG")
 done
 
-if [[ $MAJOR_VERSION -ge 6 ]]; then
+if [[ $MAJOR_VERSION -ge 6 ]] && [[ -d "$BUILD_FOLDER/Modules" ]]; then
     BUILD_FOLDER+="/Modules"
     SWIFT_LIB_FILES=($(ls "$BUILD_FOLDER"))
     for ARG in "${SWIFT_LIB_FILES[@]}"; do
