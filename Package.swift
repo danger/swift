@@ -53,7 +53,7 @@ let devTargets: [Target] = isDevelop
 let package = Package(
     name: "danger-swift",
     products: [
-        .library(name: "Danger", targets: ["Danger"]),
+        .library(name: "Danger", type: .dynamic, targets: ["Danger"]),
         .library(name: "DangerFixtures", targets: ["DangerFixtures"]),
         .executable(name: "danger-swift", targets: ["Runner"]),
     ] + devProducts,
