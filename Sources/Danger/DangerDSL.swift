@@ -1,5 +1,5 @@
 import Foundation
-import OctoKit
+@_implementationOnly import OctoKit
 
 // http://danger.systems/js/reference.html
 

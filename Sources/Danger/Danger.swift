@@ -7,7 +7,7 @@ import Foundation
 #else
     import Darwin.C
 #endif
-import Logger
+@_implementationOnly import Logger
 
 // MARK: - DangerRunner
 
