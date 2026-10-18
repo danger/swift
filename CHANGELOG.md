@@ -13,6 +13,10 @@
 
 ## Master
 
+## 3.23.1
+
+- Fix searchpath on make install on Xcode 27 [@417-72KI][] - [#670](https://github.com/danger/swift/pull/670)
+
 ## 3.23.0
 
 - Fixed the GitHub Action crashing on every run with `ReferenceError: File is not defined`. The Docker image pinned Node 18, but `danger-js` 14 installs `undici` 7, which needs Node 20.18.1 or newer. The image now installs Node 24, the current LTS. [@orta][] - [#666](https://github.com/danger/swift/issues/666)
