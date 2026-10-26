@@ -33,20 +33,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build universal binary (arm64 + x86_64)
+      - name: Build universal binary and library (arm64 + x86_64)
         run: |
+          sed -i '' 's/\.library(name: "Danger", targets: \["Danger"\])/.library(name: "Danger", type: .dynamic, targets: ["Danger"])/' Package.swift
           swift build -c release --arch arm64
           swift build -c release --arch x86_64
+          mkdir -p .build/universal/lib/danger
           lipo -create \
             .build/arm64-apple-macosx/release/danger-swift \
             .build/x86_64-apple-macosx/release/danger-swift \
-            -output .build/release/danger-swift
-          lipo -info .build/release/danger-swift
+            -output .build/universal/danger-swift
+          lipo -create \
+            .build/arm64-apple-macosx/release/libDanger.dylib \
+            .build/x86_64-apple-macosx/release/libDanger.dylib \
+            -output .build/universal/lib/danger/libDanger.dylib
+          lipo -info .build/universal/danger-swift
+          # Swift modules are architecture specific; ship the arm64 ones alongside the universal dylib
+          cp -R .build/arm64-apple-macosx/release/Modules/. .build/universal/lib/danger/ 2>/dev/null || true
+          cp -R .build/arm64-apple-macosx/release/*.swiftmodule .build/arm64-apple-macosx/release/*.swiftdoc .build/universal/lib/danger/ 2>/dev/null || true
 
       - name: Package binary
         run: |
           TARBALL="danger-swift-macos-universal.tar.gz"
-          tar -czf "$TARBALL" -C .build/release danger-swift
+          tar -czf "$TARBALL" -C .build/universal danger-swift lib
           shasum -a 256 "$TARBALL" > "$TARBALL.sha256"
           echo "TARBALL=$TARBALL" >> "$GITHUB_ENV"
 
