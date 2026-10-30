@@ -51,35 +51,62 @@ markdown("Free-form markdown that goes under the table, so you can do whatever."
 
 All of the docs are on the user-facing website: https://danger.systems/swift/
 
-### Commands
+### Setup
 
-- `danger-swift ci` - Use this on CI
-- `danger-swift pr https://github.com/Moya/Harvey/pull/23` - Use this to build your Dangerfile
-- `danger-swift local` - Use this to run danger against your local changes from master
-- `danger-swift edit` - Creates a temporary Xcode project for working on a Dangerfile
+Choose an installation method: mise, Homebrew, a source build, or Swift Package Manager.
 
-#### Plugins
+#### Using mise
 
-Infrastructure exists to support plugins, which can help you avoid repeating the same Danger rules across separate
-repos.
+With [mise](https://mise.jdx.dev/getting-started.html) 2026.10.24 or later and a Swift toolchain installed
+on macOS or Linux, add the following to `mise.toml`:
 
-e.g. A plugin implemented with the following at https://github.com/username/DangerPlugin.git.
+```toml
+[tools]
+node = "24"
+danger-js = "13.0.10"
+danger-swift = "3.22.1"
+```
 
-```swift
-// DangerPlugin.swift
-import Danger
+Mise supports per-project version pins in `mise.toml` or
+[`.tool-versions`](https://mise.jdx.dev/dev-tools/versions.html#tool-versions). Danger JS and Node are required
+and installed alongside Danger Swift by this configuration. Run from the project directory:
 
-public struct DangerPlugin {
-    let danger = Danger()
-    public static func doYourThing() {
-        // Code goes here
-    }
-}
+```sh
+mise install
+mise exec -- danger-swift ci
+```
+
+#### Using Homebrew (macOS)
+
+Installs the latest version available in the Homebrew formula, including Danger JS.
+
+```sh
+# Install danger-swift, and a bundled danger-js locally
+brew install danger/tap/danger-swift
+ # Run danger
+danger-swift ci
+```
+
+#### Building from source (Linux)
+
+```sh
+# Install danger-swift
+git clone https://github.com/danger/danger-swift.git
+cd danger-swift
+make install
+
+# Install danger-js
+npm install -g danger
+
+ # Run danger
+danger-swift ci
 ```
 
 #### Swift Package Manager (More performant)
 
-You can use Swift PM to install both `danger-swift` and your plugins:
+Swift Package Manager installs Danger Swift as a project dependency, run with `swift run`. It can also build
+[plugins](#plugins) alongside it. The example includes an optional `DangerPlugin`; omit its dependency, target
+reference and import if you do not use plugins.
 
 - Install Danger JS
 
@@ -128,6 +155,25 @@ You can use Swift PM to install both `danger-swift` and your plugins:
   consumers.
 - **(Recommended)** cache the `.build` folder on your repo
 
+### Plugins
+
+Plugins let you reuse Danger rules across repositories. Build them with the
+[Swift Package Manager setup](#swift-package-manager-more-performant) above, or load them with Marathon as shown below.
+
+e.g. A plugin implemented with the following at https://github.com/username/DangerPlugin.git.
+
+```swift
+// DangerPlugin.swift
+import Danger
+
+public struct DangerPlugin {
+    let danger = Danger()
+    public static func doYourThing() {
+        // Code goes here
+    }
+}
+```
+
 #### Marathon (Easy to use)
 
 By suffixing `package: [url]` to an import, you can directly import Swift PM package as a dependency
@@ -146,33 +192,7 @@ You can see an [example danger-swift plugin](https://github.com/ashfurrow/danger
 
 **(Recommended)** Cache the `~/.danger-swift` folder
 
-### Setup
-
-For a Mac:
-
-```sh
-# Install danger-swift, and a bundled danger-js locally
-brew install danger/tap/danger-swift
- # Run danger
-danger-swift ci
-```
-
-For Linux:
-
-```sh
-# Install danger-swift
-git clone https://github.com/danger/danger-swift.git
-cd danger-swift
-make install
-
-# Install danger-js
-npm install -g danger
-
- # Run danger
-danger-swift ci
-```
-
-GitHub Actions
+### GitHub Actions
 
 You can add danger/swift to your actions
 
@@ -212,6 +232,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
+### Commands
+
+- `danger-swift ci` - Use this on CI
+- `danger-swift pr https://github.com/Moya/Harvey/pull/23` - Use this to build your Dangerfile
+- `danger-swift local` - Use this to run danger against your local changes from master
+- `danger-swift edit` - Creates a temporary Xcode project for working on a Dangerfile
+
+### Advanced usage
+
 #### Local compiled danger-js
 
 To use a local compiled copy of danger-js use the `danger-js-path` argument:
@@ -235,7 +264,7 @@ swift run danger-swift command --cwd path/to/working-directory
 
 Note that to do this, you must run `danger-swift` from the directory where the `Package.swift` is located, and pass the top-level directory relative to this directory to the `--cwd` command-line switch. For example, if you create a folder named **Danger** in the top level of your repo for these files, you would need to `cd Danger` and then run the command `[swift run] danger-swift cmd <cmd parameters> --cwd ..` to tell Danger that it should look at the directory above where the command was executed to correctly invoke the tool.
 
-#### Dev
+### Dev
 
 You need to be using Xcode >= 13.2.1.
 
