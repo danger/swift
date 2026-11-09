@@ -1,0 +1,663 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1119F36D29C51A3000980409 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F35629C51A3000980409 /* Report.swift */; };
+		1119F36E29C51A3000980409 /* BitBucketServerDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F35729C51A3000980409 /* BitBucketServerDSL.swift */; };
+		1119F36F29C51A3000980409 /* Danger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F35829C51A3000980409 /* Danger.swift */; };
+		1119F37029C51A3000980409 /* SwiftLintViolation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F35B29C51A3000980409 /* SwiftLintViolation.swift */; };
+		1119F37129C51A3000980409 /* SwiftlintReportDeleter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F35C29C51A3000980409 /* SwiftlintReportDeleter.swift */; };
+		1119F37229C51A3000980409 /* SwiftLint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F35D29C51A3000980409 /* SwiftLint.swift */; };
+		1119F37329C51A3000980409 /* CurrentPathProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F35E29C51A3000980409 /* CurrentPathProvider.swift */; };
+		1119F37429C51A3000980409 /* DangerResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F35F29C51A3000980409 /* DangerResults.swift */; };
+		1119F37529C51A3000980409 /* GitHubDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36029C51A3000980409 /* GitHubDSL.swift */; };
+		1119F37629C51A3000980409 /* BitBucketCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36129C51A3000980409 /* BitBucketCloud.swift */; };
+		1119F37729C51A3000980409 /* NSRegularExpressionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36329C51A3000980409 /* NSRegularExpressionExtensions.swift */; };
+		1119F37829C51A3000980409 /* DateFormatterExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36429C51A3000980409 /* DateFormatterExtensions.swift */; };
+		1119F37929C51A3000980409 /* GitDiff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36529C51A3000980409 /* GitDiff.swift */; };
+		1119F37A29C51A3000980409 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36629C51A3000980409 /* File.swift */; };
+		1119F37B29C51A3000980409 /* BitBucketMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36729C51A3000980409 /* BitBucketMetadata.swift */; };
+		1119F37C29C51A3000980409 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36829C51A3000980409 /* Settings.swift */; };
+		1119F37D29C51A3000980409 /* GitLabDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36929C51A3000980409 /* GitLabDSL.swift */; };
+		1119F37E29C51A3000980409 /* DangerDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36A29C51A3000980409 /* DangerDSL.swift */; };
+		1119F37F29C51A3000980409 /* DangerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36B29C51A3000980409 /* DangerUtils.swift */; };
+		1119F38029C51A3000980409 /* GitDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F36C29C51A3000980409 /* GitDSL.swift */; };
+		1119F38329C51A7800980409 /* Logger in Frameworks */ = {isa = PBXBuildFile; productRef = 1119F38229C51A7800980409 /* Logger */; };
+		1119F38629C51A8800980409 /* Version in Frameworks */ = {isa = PBXBuildFile; productRef = 1119F38529C51A8800980409 /* Version */; };
+		1119F38929C51A9C00980409 /* OctoKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1119F38829C51A9C00980409 /* OctoKit */; };
+		1119F3AD29C5226300980409 /* ShellExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1119F3AC29C5226200980409 /* ShellExecutor.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		1119F3A729C5211B00980409 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1119F34229C51A1800980409 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1119F39F29C520FB00980409;
+			remoteInfo = DangerShellExecutor;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1119F34B29C51A1800980409 /* Danger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Danger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1119F35629C51A3000980409 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		1119F35729C51A3000980409 /* BitBucketServerDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitBucketServerDSL.swift; sourceTree = "<group>"; };
+		1119F35829C51A3000980409 /* Danger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Danger.swift; sourceTree = "<group>"; };
+		1119F35B29C51A3000980409 /* SwiftLintViolation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLintViolation.swift; sourceTree = "<group>"; };
+		1119F35C29C51A3000980409 /* SwiftlintReportDeleter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftlintReportDeleter.swift; sourceTree = "<group>"; };
+		1119F35D29C51A3000980409 /* SwiftLint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftLint.swift; sourceTree = "<group>"; };
+		1119F35E29C51A3000980409 /* CurrentPathProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentPathProvider.swift; sourceTree = "<group>"; };
+		1119F35F29C51A3000980409 /* DangerResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DangerResults.swift; sourceTree = "<group>"; };
+		1119F36029C51A3000980409 /* GitHubDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitHubDSL.swift; sourceTree = "<group>"; };
+		1119F36129C51A3000980409 /* BitBucketCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitBucketCloud.swift; sourceTree = "<group>"; };
+		1119F36329C51A3000980409 /* NSRegularExpressionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSRegularExpressionExtensions.swift; sourceTree = "<group>"; };
+		1119F36429C51A3000980409 /* DateFormatterExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatterExtensions.swift; sourceTree = "<group>"; };
+		1119F36529C51A3000980409 /* GitDiff.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitDiff.swift; sourceTree = "<group>"; };
+		1119F36629C51A3000980409 /* File.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		1119F36729C51A3000980409 /* BitBucketMetadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitBucketMetadata.swift; sourceTree = "<group>"; };
+		1119F36829C51A3000980409 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		1119F36929C51A3000980409 /* GitLabDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitLabDSL.swift; sourceTree = "<group>"; };
+		1119F36A29C51A3000980409 /* DangerDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DangerDSL.swift; sourceTree = "<group>"; };
+		1119F36B29C51A3000980409 /* DangerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DangerUtils.swift; sourceTree = "<group>"; };
+		1119F36C29C51A3000980409 /* GitDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitDSL.swift; sourceTree = "<group>"; };
+		1119F3A029C520FB00980409 /* DangerShellExecutor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DangerShellExecutor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1119F3AC29C5226200980409 /* ShellExecutor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ShellExecutor.swift; path = ../../../Sources/DangerShellExecutor/ShellExecutor.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1119F34829C51A1800980409 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1119F38929C51A9C00980409 /* OctoKit in Frameworks */,
+				1119F38329C51A7800980409 /* Logger in Frameworks */,
+				1119F38629C51A8800980409 /* Version in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1119F39D29C520FB00980409 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1119F34129C51A1800980409 = {
+			isa = PBXGroup;
+			children = (
+				1119F35529C51A3000980409 /* Danger */,
+				1119F38F29C51AB300980409 /* DangerShellExecutor */,
+				1119F34C29C51A1800980409 /* Products */,
+				1119F39929C51B6A00980409 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		1119F34C29C51A1800980409 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1119F34B29C51A1800980409 /* Danger.framework */,
+				1119F3A029C520FB00980409 /* DangerShellExecutor.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1119F35529C51A3000980409 /* Danger */ = {
+			isa = PBXGroup;
+			children = (
+				1119F35629C51A3000980409 /* Report.swift */,
+				1119F35729C51A3000980409 /* BitBucketServerDSL.swift */,
+				1119F35829C51A3000980409 /* Danger.swift */,
+				1119F35929C51A3000980409 /* Plugins */,
+				1119F35F29C51A3000980409 /* DangerResults.swift */,
+				1119F36029C51A3000980409 /* GitHubDSL.swift */,
+				1119F36129C51A3000980409 /* BitBucketCloud.swift */,
+				1119F36229C51A3000980409 /* Extensions */,
+				1119F36529C51A3000980409 /* GitDiff.swift */,
+				1119F36629C51A3000980409 /* File.swift */,
+				1119F36729C51A3000980409 /* BitBucketMetadata.swift */,
+				1119F36829C51A3000980409 /* Settings.swift */,
+				1119F36929C51A3000980409 /* GitLabDSL.swift */,
+				1119F36A29C51A3000980409 /* DangerDSL.swift */,
+				1119F36B29C51A3000980409 /* DangerUtils.swift */,
+				1119F36C29C51A3000980409 /* GitDSL.swift */,
+			);
+			name = Danger;
+			path = ../../Sources/Danger;
+			sourceTree = "<group>";
+		};
+		1119F35929C51A3000980409 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				1119F35A29C51A3000980409 /* SwiftLint */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		1119F35A29C51A3000980409 /* SwiftLint */ = {
+			isa = PBXGroup;
+			children = (
+				1119F35B29C51A3000980409 /* SwiftLintViolation.swift */,
+				1119F35C29C51A3000980409 /* SwiftlintReportDeleter.swift */,
+				1119F35D29C51A3000980409 /* SwiftLint.swift */,
+				1119F35E29C51A3000980409 /* CurrentPathProvider.swift */,
+			);
+			path = SwiftLint;
+			sourceTree = "<group>";
+		};
+		1119F36229C51A3000980409 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1119F36329C51A3000980409 /* NSRegularExpressionExtensions.swift */,
+				1119F36429C51A3000980409 /* DateFormatterExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1119F38F29C51AB300980409 /* DangerShellExecutor */ = {
+			isa = PBXGroup;
+			children = (
+				1119F3AC29C5226200980409 /* ShellExecutor.swift */,
+			);
+			path = DangerShellExecutor;
+			sourceTree = "<group>";
+		};
+		1119F39929C51B6A00980409 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		1119F34629C51A1800980409 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1119F39B29C520FB00980409 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1119F34A29C51A1800980409 /* Danger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1119F35229C51A1800980409 /* Build configuration list for PBXNativeTarget "Danger" */;
+			buildPhases = (
+				1119F34629C51A1800980409 /* Headers */,
+				1119F34729C51A1800980409 /* Sources */,
+				1119F34829C51A1800980409 /* Frameworks */,
+				1119F34929C51A1800980409 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				1119F3A829C5211B00980409 /* PBXTargetDependency */,
+			);
+			name = Danger;
+			packageProductDependencies = (
+				1119F38229C51A7800980409 /* Logger */,
+				1119F38529C51A8800980409 /* Version */,
+				1119F38829C51A9C00980409 /* OctoKit */,
+			);
+			productName = Danger;
+			productReference = 1119F34B29C51A1800980409 /* Danger.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		1119F39F29C520FB00980409 /* DangerShellExecutor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1119F3A429C520FB00980409 /* Build configuration list for PBXNativeTarget "DangerShellExecutor" */;
+			buildPhases = (
+				1119F39B29C520FB00980409 /* Headers */,
+				1119F39C29C520FB00980409 /* Sources */,
+				1119F39D29C520FB00980409 /* Frameworks */,
+				1119F39E29C520FB00980409 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DangerShellExecutor;
+			productName = DangerShellExecutor;
+			productReference = 1119F3A029C520FB00980409 /* DangerShellExecutor.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1119F34229C51A1800980409 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1420;
+				LastUpgradeCheck = 1420;
+				TargetAttributes = {
+					1119F34A29C51A1800980409 = {
+						CreatedOnToolsVersion = 14.2;
+					};
+					1119F39F29C520FB00980409 = {
+						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
+					};
+				};
+			};
+			buildConfigurationList = 1119F34529C51A1800980409 /* Build configuration list for PBXProject "Danger" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1119F34129C51A1800980409;
+			packageReferences = (
+				1119F38129C51A7800980409 /* XCRemoteSwiftPackageReference "Logger" */,
+				1119F38429C51A8800980409 /* XCRemoteSwiftPackageReference "Version" */,
+				1119F38729C51A9C00980409 /* XCRemoteSwiftPackageReference "octokit" */,
+			);
+			productRefGroup = 1119F34C29C51A1800980409 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1119F34A29C51A1800980409 /* Danger */,
+				1119F39F29C520FB00980409 /* DangerShellExecutor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1119F34929C51A1800980409 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1119F39E29C520FB00980409 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1119F34729C51A1800980409 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1119F37B29C51A3000980409 /* BitBucketMetadata.swift in Sources */,
+				1119F37229C51A3000980409 /* SwiftLint.swift in Sources */,
+				1119F37429C51A3000980409 /* DangerResults.swift in Sources */,
+				1119F37029C51A3000980409 /* SwiftLintViolation.swift in Sources */,
+				1119F37E29C51A3000980409 /* DangerDSL.swift in Sources */,
+				1119F37F29C51A3000980409 /* DangerUtils.swift in Sources */,
+				1119F37D29C51A3000980409 /* GitLabDSL.swift in Sources */,
+				1119F36F29C51A3000980409 /* Danger.swift in Sources */,
+				1119F37729C51A3000980409 /* NSRegularExpressionExtensions.swift in Sources */,
+				1119F37329C51A3000980409 /* CurrentPathProvider.swift in Sources */,
+				1119F37929C51A3000980409 /* GitDiff.swift in Sources */,
+				1119F37629C51A3000980409 /* BitBucketCloud.swift in Sources */,
+				1119F37529C51A3000980409 /* GitHubDSL.swift in Sources */,
+				1119F37C29C51A3000980409 /* Settings.swift in Sources */,
+				1119F37A29C51A3000980409 /* File.swift in Sources */,
+				1119F36E29C51A3000980409 /* BitBucketServerDSL.swift in Sources */,
+				1119F37129C51A3000980409 /* SwiftlintReportDeleter.swift in Sources */,
+				1119F37829C51A3000980409 /* DateFormatterExtensions.swift in Sources */,
+				1119F38029C51A3000980409 /* GitDSL.swift in Sources */,
+				1119F36D29C51A3000980409 /* Report.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1119F39C29C520FB00980409 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1119F3AD29C5226300980409 /* ShellExecutor.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		1119F3A829C5211B00980409 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1119F39F29C520FB00980409 /* DangerShellExecutor */;
+			targetProxy = 1119F3A729C5211B00980409 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		1119F35029C51A1800980409 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		1119F35129C51A1800980409 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		1119F35329C51A1800980409 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = systems.danger.Danger;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1119F35429C51A1800980409 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = systems.danger.Danger;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		1119F3A529C520FB00980409 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = systems.danger.DangerShellExecutor;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		1119F3A629C520FB00980409 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = systems.danger.DangerShellExecutor;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1119F34529C51A1800980409 /* Build configuration list for PBXProject "Danger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1119F35029C51A1800980409 /* Debug */,
+				1119F35129C51A1800980409 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1119F35229C51A1800980409 /* Build configuration list for PBXNativeTarget "Danger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1119F35329C51A1800980409 /* Debug */,
+				1119F35429C51A1800980409 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1119F3A429C520FB00980409 /* Build configuration list for PBXNativeTarget "DangerShellExecutor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1119F3A529C520FB00980409 /* Debug */,
+				1119F3A629C520FB00980409 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1119F38129C51A7800980409 /* XCRemoteSwiftPackageReference "Logger" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/shibapm/Logger";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.3;
+			};
+		};
+		1119F38429C51A8800980409 /* XCRemoteSwiftPackageReference "Version" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mxcl/Version";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		1119F38729C51A9C00980409 /* XCRemoteSwiftPackageReference "octokit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nerdishbynature/octokit.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1119F38229C51A7800980409 /* Logger */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1119F38129C51A7800980409 /* XCRemoteSwiftPackageReference "Logger" */;
+			productName = Logger;
+		};
+		1119F38529C51A8800980409 /* Version */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1119F38429C51A8800980409 /* XCRemoteSwiftPackageReference "Version" */;
+			productName = Version;
+		};
+		1119F38829C51A9C00980409 /* OctoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1119F38729C51A9C00980409 /* XCRemoteSwiftPackageReference "octokit" */;
+			productName = OctoKit;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1119F34229C51A1800980409 /* Project object */;
+}
